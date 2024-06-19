@@ -20,24 +20,24 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating ods and comparing it to data standard 5.0 authoritative artifacts for ODS/API 7.1', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact/v7_1/');
-  const authoritativeCoreFilename = 'ds-5.0-api-schema-authoritative.json';
-  const generatedCoreFilename = 'ds-5.0-api-schema-generated.json';
+describe('when generating ods and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.2', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_2/');
+  const authoritativeCoreFilename = 'ds-5.1-api-schema-authoritative.json';
+  const generatedCoreFilename = 'ds-5.1-api-schema-generated.json';
 
   beforeAll(async () => {
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.1.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/'],
+      defaultPluginTechVersion: '7.2.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0',
-          description: 'The Ed-Fi Data Standard v5.0',
+          projectVersion: '5.1.0',
+          description: 'The Ed-Fi Data Standard v5.1',
         },
       ],
     };
@@ -47,7 +47,7 @@ describe('when generating ods and comparing it to data standard 5.0 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0';
+    state.metaEd.dataStandardVersion = '5.1.0';
 
     setupPlugins(state);
     loadFiles(state);

@@ -48,7 +48,7 @@ SimpleType-1410-Extension-Extension-CreateIndex-EdOrgIdsRelationship-AuthPerform
 /packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
 
-/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_1/*-generated.json
+/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/**/*-generated.json
 
 /packages/metaed-odsapi-deploy/test/integration/output/*
 

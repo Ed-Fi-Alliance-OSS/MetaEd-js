@@ -982,8 +982,7 @@
           },
           "numericJsonPaths": [
             "$.schoolReference.schoolId",
-            "$.totalInstructionalDays",
-            "$.weekIdentifier"
+            "$.totalInstructionalDays"
           ],
           "resourceName": "AcademicWeek"
         },
@@ -1238,10 +1237,6 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.rating",
-            "$.ratingOrganization",
-            "$.ratingProgram",
-            "$.ratingTitle",
             "$.schoolYearTypeReference.schoolYear"
           ],
           "resourceName": "AccountabilityRating"
@@ -2035,17 +2030,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.assessmentItemURI",
-            "$.assessmentReference.assessmentIdentifier",
-            "$.assessmentReference.namespace",
             "$.expectedTimeAssessed",
-            "$.identificationCode",
-            "$.itemText",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
-            "$.maxRawScore",
-            "$.nomenclature",
-            "$.possibleResponses[*].responseDescription",
-            "$.possibleResponses[*].responseValue"
+            "$.maxRawScore"
           ],
           "resourceName": "AssessmentItem"
         },
@@ -2373,15 +2359,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.assessmentReference.assessmentIdentifier",
-            "$.assessmentReference.namespace",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
-            "$.maximumScore",
-            "$.minimumScore",
-            "$.objectiveAssessmentReference.assessmentIdentifier",
-            "$.objectiveAssessmentReference.identificationCode",
-            "$.objectiveAssessmentReference.namespace",
-            "$.scoreRangeId"
           ],
           "resourceName": "AssessmentScoreRangeLearningStandard"
         },
@@ -3121,35 +3098,14 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.assessmentFamily",
-            "$.assessmentForm",
-            "$.assessmentIdentifier",
-            "$.assessmentTitle",
             "$.assessmentVersion",
-            "$.contentStandard.authors[*].author",
             "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
             "$.contentStandard.publicationYear",
-            "$.contentStandard.title",
-            "$.contentStandard.uri",
-            "$.contentStandard.version",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.identificationCodes[*].assigningOrganizationIdentificationCode",
-            "$.identificationCodes[*].identificationCode",
             "$.maxRawScore",
-            "$.namespace",
-            "$.nomenclature",
-            "$.performanceLevels[*].maximumScore",
-            "$.performanceLevels[*].minimumScore",
-            "$.performanceLevels[*].performanceLevelIndicatorName",
             "$.programs[*].programReference.educationOrganizationId",
-            "$.programs[*].programReference.programName",
-            "$.scores[*].maximumScore",
-            "$.scores[*].minimumScore",
-            "$.sections[*].sectionReference.localCourseCode",
             "$.sections[*].sectionReference.schoolId",
-            "$.sections[*].sectionReference.schoolYear",
-            "$.sections[*].sectionReference.sectionIdentifier",
-            "$.sections[*].sectionReference.sessionName"
+            "$.sections[*].sectionReference.schoolYear"
           ],
           "resourceName": "Assessment"
         },
@@ -3413,8 +3369,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "BalanceSheetDimension"
@@ -3740,9 +3694,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.alternateDayName",
-            "$.bellScheduleName",
-            "$.classPeriods[*].classPeriodReference.classPeriodName",
             "$.classPeriods[*].classPeriodReference.schoolId",
             "$.schoolReference.schoolId",
             "$.totalInstructionalTime"
@@ -3982,7 +3933,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.calendarReference.calendarCode",
             "$.calendarReference.schoolId",
             "$.calendarReference.schoolYear"
           ],
@@ -4238,7 +4188,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.calendarCode",
             "$.schoolReference.schoolId",
             "$.schoolYearTypeReference.schoolYear"
           ],
@@ -4766,26 +4715,15 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.accountIdentifier",
-            "$.accountName",
-            "$.balanceSheetDimensionReference.code",
             "$.balanceSheetDimensionReference.fiscalYear",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.fiscalYear",
-            "$.functionDimensionReference.code",
             "$.functionDimensionReference.fiscalYear",
-            "$.fundDimensionReference.code",
             "$.fundDimensionReference.fiscalYear",
-            "$.objectDimensionReference.code",
             "$.objectDimensionReference.fiscalYear",
-            "$.operationalUnitDimensionReference.code",
             "$.operationalUnitDimensionReference.fiscalYear",
-            "$.programDimensionReference.code",
             "$.programDimensionReference.fiscalYear",
-            "$.projectDimensionReference.code",
             "$.projectDimensionReference.fiscalYear",
-            "$.reportingTags[*].tagValue",
-            "$.sourceDimensionReference.code",
             "$.sourceDimensionReference.fiscalYear"
           ],
           "resourceName": "ChartOfAccount"
@@ -5073,7 +5011,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.classPeriodName",
             "$.schoolReference.schoolId"
           ],
           "resourceName": "ClassPeriod"
@@ -5477,11 +5414,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.cohortDescription",
-            "$.cohortIdentifier",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programs[*].programReference.educationOrganizationId",
-            "$.programs[*].programReference.programName"
+            "$.programs[*].programReference.educationOrganizationId"
           ],
           "resourceName": "Cohort"
         },
@@ -6054,30 +5988,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.communityOrganizationId",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.communityOrganizationId"
           ],
           "resourceName": "CommunityOrganization",
           "subclassType": "domainEntity",
@@ -6241,8 +6152,6 @@
           "numericJsonPaths": [
             "$.authorizedFacilityCapacity",
             "$.communityProviderReference.communityProviderId",
-            "$.licenseIdentifier",
-            "$.licensingOrganization",
             "$.oldestAgeAuthorizedToServe",
             "$.youngestAgeAuthorizedToServe"
           ],
@@ -6895,31 +6804,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.communityOrganizationReference.communityOrganizationId",
-            "$.communityProviderId",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.communityProviderId"
           ],
           "resourceName": "CommunityProvider",
           "subclassType": "domainEntity",
@@ -7094,11 +6980,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.competencyObjectiveId",
-            "$.description",
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.objective",
-            "$.successCriteria"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "CompetencyObjective"
         },
@@ -7967,45 +7849,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.contactUniqueId",
-            "$.electronicMails[*].electronicMailAddress",
-            "$.firstName",
-            "$.genderIdentity",
-            "$.generationCodeSuffix",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.lastSurname",
-            "$.loginId",
-            "$.maidenName",
-            "$.middleName",
-            "$.otherNames[*].firstName",
-            "$.otherNames[*].generationCodeSuffix",
-            "$.otherNames[*].lastSurname",
-            "$.otherNames[*].middleName",
-            "$.otherNames[*].personalTitlePrefix",
-            "$.personReference.personId",
-            "$.personalIdentificationDocuments[*].documentTitle",
-            "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
-            "$.personalIdentificationDocuments[*].issuerName",
-            "$.personalTitlePrefix",
-            "$.preferredFirstName",
-            "$.preferredLastSurname",
-            "$.telephones[*].orderOfPriority",
-            "$.telephones[*].telephoneNumber"
+            "$.telephones[*].orderOfPriority"
           ],
           "resourceName": "Contact"
         },
@@ -8775,15 +8619,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.courseReference.courseCode",
             "$.courseReference.educationOrganizationId",
             "$.instructionalTimePlanned",
-            "$.localCourseCode",
-            "$.localCourseTitle",
             "$.schoolReference.schoolId",
             "$.sessionReference.schoolId",
-            "$.sessionReference.schoolYear",
-            "$.sessionReference.sessionName"
+            "$.sessionReference.schoolYear"
           ],
           "resourceName": "CourseOffering"
         },
@@ -9537,38 +9377,20 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.alternativeCourseIdentificationCodes[*].assigningOrganizationIdentificationCode",
-            "$.alternativeCourseIdentificationCodes[*].courseCatalogURL",
-            "$.alternativeCourseIdentificationCodes[*].identificationCode",
-            "$.alternativeCourseTitle",
-            "$.assigningOrganizationIdentificationCode",
             "$.attemptedCreditConversion",
             "$.attemptedCredits",
-            "$.courseCatalogURL",
             "$.coursePrograms[*].courseProgramReference.educationOrganizationId",
-            "$.coursePrograms[*].courseProgramReference.programName",
-            "$.courseReference.courseCode",
             "$.courseReference.educationOrganizationId",
-            "$.courseTitle",
             "$.earnedAdditionalCredits[*].credits",
             "$.earnedCreditConversion",
             "$.earnedCredits",
-            "$.externalEducationOrganizationNameOfInstitution",
             "$.externalEducationOrganizationReference.educationOrganizationId",
-            "$.finalLetterGradeEarned",
             "$.finalNumericGradeEarned",
             "$.partialCourseTranscriptAwards[*].earnedCredits",
-            "$.partialCourseTranscriptAwards[*].letterGradeEarned",
-            "$.partialCourseTranscriptAwards[*].numericGradeEarned",
-            "$.responsibleTeacherStaffReference.staffUniqueId",
-            "$.sections[*].sectionReference.localCourseCode",
             "$.sections[*].sectionReference.schoolId",
             "$.sections[*].sectionReference.schoolYear",
-            "$.sections[*].sectionReference.sectionIdentifier",
-            "$.sections[*].sectionReference.sessionName",
             "$.studentAcademicRecordReference.educationOrganizationId",
-            "$.studentAcademicRecordReference.schoolYear",
-            "$.studentAcademicRecordReference.studentUniqueId"
+            "$.studentAcademicRecordReference.schoolYear"
           ],
           "resourceName": "CourseTranscript"
         },
@@ -9990,14 +9812,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.courseCode",
-            "$.courseDescription",
-            "$.courseTitle",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.identificationCodes[*].assigningOrganizationIdentificationCode",
-            "$.identificationCodes[*].courseCatalogURL",
-            "$.identificationCodes[*].identificationCode",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
             "$.maxCompletionsForCredit",
             "$.maximumAvailableCreditConversion",
             "$.maximumAvailableCredits",
@@ -10335,9 +10150,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.credentialIdentifier",
-            "$.endorsements[*].endorsement",
-            "$.namespace"
           ],
           "resourceName": "Credential"
         },
@@ -10537,7 +10349,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.crisisDescription"
           ],
           "resourceName": "CrisisEvent"
         },
@@ -10815,8 +10626,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.mappedNamespace",
-            "$.namespace"
           ],
           "resourceName": "DescriptorMapping"
         },
@@ -11537,14 +11346,9 @@
           "numericJsonPaths": [
             "$.actualDisciplineActionLength",
             "$.assignmentSchoolReference.schoolId",
-            "$.disciplineActionIdentifier",
             "$.disciplineActionLength",
             "$.responsibilitySchoolReference.schoolId",
-            "$.staffs[*].staffReference.staffUniqueId",
-            "$.studentDisciplineIncidentBehaviorAssociations[*].studentDisciplineIncidentBehaviorAssociationReference.incidentIdentifier",
-            "$.studentDisciplineIncidentBehaviorAssociations[*].studentDisciplineIncidentBehaviorAssociationReference.schoolId",
-            "$.studentDisciplineIncidentBehaviorAssociations[*].studentDisciplineIncidentBehaviorAssociationReference.studentUniqueId",
-            "$.studentReference.studentUniqueId"
+            "$.studentDisciplineIncidentBehaviorAssociations[*].studentDisciplineIncidentBehaviorAssociationReference.schoolId"
           ],
           "resourceName": "DisciplineAction"
         },
@@ -11921,14 +11725,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.behaviors[*].behaviorDetailedDescription",
-            "$.caseNumber",
-            "$.externalParticipants[*].firstName",
-            "$.externalParticipants[*].lastSurname",
             "$.incidentCost",
-            "$.incidentDescription",
-            "$.incidentIdentifier",
-            "$.reporterName",
             "$.schoolReference.schoolId"
           ],
           "resourceName": "DisciplineIncident"
@@ -12381,22 +12178,9 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.authors[*].author",
-            "$.contentIdentifier",
             "$.cost",
-            "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
-            "$.derivativeSourceLearningResourceMetadataURIs[*].derivativeSourceLearningResourceMetadataURI",
-            "$.derivativeSourceURIs[*].derivativeSourceURI",
-            "$.description",
-            "$.learningResourceMetadataURI",
-            "$.learningStandardReference.learningStandardId",
-            "$.namespace",
             "$.publicationYear",
-            "$.publisher",
-            "$.shortDescription",
-            "$.timeRequired",
-            "$.useRightsURL",
-            "$.version"
+            "$.timeRequired"
           ],
           "resourceName": "EducationContent"
         },
@@ -12687,8 +12471,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.interventionPrescriptionReference.educationOrganizationId",
-            "$.interventionPrescriptionReference.interventionPrescriptionIdentificationCode"
+            "$.interventionPrescriptionReference.educationOrganizationId"
           ],
           "resourceName": "EducationOrganizationInterventionPrescriptionAssociation"
         },
@@ -13382,30 +13165,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.educationOrganizationNetworkId",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.educationOrganizationNetworkId"
           ],
           "resourceName": "EducationOrganizationNetwork",
           "subclassType": "domainEntity",
@@ -14155,31 +13915,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.educationServiceCenterId",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.shortNameOfInstitution",
-            "$.stateEducationAgencyReference.stateEducationAgencyId",
-            "$.webSite"
+            "$.stateEducationAgencyReference.stateEducationAgencyId"
           ],
           "resourceName": "EducationServiceCenter",
           "subclassType": "domainEntity",
@@ -14861,12 +14598,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.evaluationCriterionDescription",
             "$.evaluationRubricRating",
             "$.programEvaluationElementReference.programEducationOrganizationId",
-            "$.programEvaluationElementReference.programEvaluationElementTitle",
-            "$.programEvaluationElementReference.programEvaluationTitle",
-            "$.programEvaluationElementReference.programName",
             "$.rubricDimensionSortOrder"
           ],
           "resourceName": "EvaluationRubricDimension"
@@ -15100,7 +14833,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.feederRelationshipDescription",
             "$.feederSchoolReference.schoolId",
             "$.schoolReference.schoolId"
           ],
@@ -15252,8 +14984,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "FunctionDimension"
@@ -15347,8 +15077,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "FundDimension"
@@ -15824,20 +15552,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.description",
-            "$.gradebookEntryIdentifier",
-            "$.gradingPeriodReference.gradingPeriodName",
             "$.gradingPeriodReference.schoolId",
             "$.gradingPeriodReference.schoolYear",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
             "$.maxPoints",
-            "$.namespace",
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.sourceSectionIdentifier"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "GradebookEntry"
         },
@@ -16246,23 +15965,12 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.diagnosticStatement",
-            "$.gradeEarnedDescription",
-            "$.gradingPeriodReference.gradingPeriodName",
             "$.gradingPeriodReference.schoolId",
             "$.gradingPeriodReference.schoolYear",
-            "$.learningStandardGrades[*].diagnosticStatement",
-            "$.learningStandardGrades[*].learningStandardReference.learningStandardId",
-            "$.learningStandardGrades[*].letterGradeEarned",
             "$.learningStandardGrades[*].numericGradeEarned",
-            "$.letterGradeEarned",
             "$.numericGradeEarned",
-            "$.studentSectionAssociationReference.localCourseCode",
             "$.studentSectionAssociationReference.schoolId",
-            "$.studentSectionAssociationReference.schoolYear",
-            "$.studentSectionAssociationReference.sectionIdentifier",
-            "$.studentSectionAssociationReference.sessionName",
-            "$.studentSectionAssociationReference.studentUniqueId"
+            "$.studentSectionAssociationReference.schoolYear"
           ],
           "resourceName": "Grade"
         },
@@ -16473,7 +16181,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.gradingPeriodName",
             "$.periodSequence",
             "$.schoolReference.schoolId",
             "$.schoolYearTypeReference.schoolYear",
@@ -17069,8 +16776,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.creditsByCourses[*].courseSetName",
-            "$.creditsByCourses[*].courses[*].courseReference.courseCode",
             "$.creditsByCourses[*].courses[*].courseReference.educationOrganizationId",
             "$.creditsByCourses[*].creditConversion",
             "$.creditsByCourses[*].credits",
@@ -17080,13 +16785,6 @@
             "$.creditsBySubjects[*].credits",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.graduationSchoolYearTypeReference.schoolYear",
-            "$.requiredAssessments[*].assessmentReference.assessmentIdentifier",
-            "$.requiredAssessments[*].assessmentReference.namespace",
-            "$.requiredAssessments[*].performanceLevel.maximumScore",
-            "$.requiredAssessments[*].performanceLevel.minimumScore",
-            "$.requiredAssessments[*].performanceLevel.performanceLevelIndicatorName",
-            "$.requiredAssessments[*].scores[*].maximumScore",
-            "$.requiredAssessments[*].scores[*].minimumScore",
             "$.totalRequiredCreditConversion",
             "$.totalRequiredCredits"
           ],
@@ -18369,14 +18067,9 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationContents[*].educationContentReference.contentIdentifier",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.interventionPrescriptionIdentificationCode",
-            "$.learningResourceMetadataURIs[*].learningResourceMetadataURI",
             "$.maxDosage",
-            "$.minDosage",
-            "$.namespace",
-            "$.uris[*].uri"
+            "$.minDosage"
           ],
           "resourceName": "InterventionPrescription"
         },
@@ -18773,15 +18466,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationContents[*].educationContentReference.contentIdentifier",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.interventionEffectivenesses[*].improvementIndex",
             "$.interventionPrescriptionReference.educationOrganizationId",
-            "$.interventionPrescriptionReference.interventionPrescriptionIdentificationCode",
-            "$.interventionStudyIdentificationCode",
-            "$.learningResourceMetadataURIs[*].learningResourceMetadataURI",
-            "$.participants",
-            "$.uris[*].uri"
+            "$.participants"
           ],
           "resourceName": "InterventionStudy"
         },
@@ -19234,17 +18922,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationContents[*].educationContentReference.contentIdentifier",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.interventionIdentificationCode",
             "$.interventionPrescriptions[*].interventionPrescriptionReference.educationOrganizationId",
-            "$.interventionPrescriptions[*].interventionPrescriptionReference.interventionPrescriptionIdentificationCode",
-            "$.learningResourceMetadataURIs[*].learningResourceMetadataURI",
             "$.maxDosage",
-            "$.minDosage",
-            "$.namespace",
-            "$.staffs[*].staffReference.staffUniqueId",
-            "$.uris[*].uri"
+            "$.minDosage"
           ],
           "resourceName": "Intervention"
         },
@@ -19605,10 +19286,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.learningStandardEquivalenceStrengthDescription",
-            "$.namespace",
-            "$.sourceLearningStandardReference.learningStandardId",
-            "$.targetLearningStandardReference.learningStandardId"
           ],
           "resourceName": "LearningStandardEquivalenceAssociation"
         },
@@ -20092,22 +19769,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.contentStandard.authors[*].author",
             "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-            "$.contentStandard.publicationYear",
-            "$.contentStandard.title",
-            "$.contentStandard.uri",
-            "$.contentStandard.version",
-            "$.courseTitle",
-            "$.description",
-            "$.identificationCodes[*].contentStandardName",
-            "$.identificationCodes[*].identificationCode",
-            "$.learningStandardId",
-            "$.learningStandardItemCode",
-            "$.namespace",
-            "$.parentLearningStandardReference.learningStandardId",
-            "$.successCriteria",
-            "$.uri"
+            "$.contentStandard.publicationYear"
           ],
           "resourceName": "LearningStandard"
         },
@@ -20515,14 +20178,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.accountIdentifier",
-            "$.accountName",
-            "$.chartOfAccountReference.accountIdentifier",
             "$.chartOfAccountReference.educationOrganizationId",
             "$.chartOfAccountReference.fiscalYear",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.fiscalYear",
-            "$.reportingTags[*].tagValue"
+            "$.fiscalYear"
           ],
           "resourceName": "LocalAccount"
         },
@@ -20640,7 +20299,6 @@
           },
           "numericJsonPaths": [
             "$.amount",
-            "$.localAccountReference.accountIdentifier",
             "$.localAccountReference.educationOrganizationId",
             "$.localAccountReference.fiscalYear"
           ],
@@ -20760,7 +20418,6 @@
           },
           "numericJsonPaths": [
             "$.amount",
-            "$.localAccountReference.accountIdentifier",
             "$.localAccountReference.educationOrganizationId",
             "$.localAccountReference.fiscalYear"
           ],
@@ -20908,10 +20565,8 @@
           },
           "numericJsonPaths": [
             "$.amount",
-            "$.localAccountReference.accountIdentifier",
             "$.localAccountReference.educationOrganizationId",
-            "$.localAccountReference.fiscalYear",
-            "$.staffReference.staffUniqueId"
+            "$.localAccountReference.fiscalYear"
           ],
           "resourceName": "LocalContractedStaff"
         },
@@ -21732,16 +21387,6 @@
           },
           "numericJsonPaths": [
             "$.accountabilities[*].schoolYearTypeReference.schoolYear",
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.educationServiceCenterReference.educationServiceCenterId",
             "$.federalFunds[*].fiscalYear",
             "$.federalFunds[*].innovativeDollarsSpent",
@@ -21752,22 +21397,9 @@
             "$.federalFunds[*].stateAssessmentAdministrationFunding",
             "$.federalFunds[*].supplementalEducationalServicesFundsSpent",
             "$.federalFunds[*].supplementalEducationalServicesPerPupilExpenditure",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
             "$.localEducationAgencyId",
-            "$.nameOfInstitution",
             "$.parentLocalEducationAgencyReference.localEducationAgencyId",
-            "$.shortNameOfInstitution",
-            "$.stateEducationAgencyReference.stateEducationAgencyId",
-            "$.webSite"
+            "$.stateEducationAgencyReference.stateEducationAgencyId"
           ],
           "resourceName": "LocalEducationAgency",
           "subclassType": "domainEntity",
@@ -21946,7 +21578,6 @@
           },
           "numericJsonPaths": [
             "$.amount",
-            "$.localAccountReference.accountIdentifier",
             "$.localAccountReference.educationOrganizationId",
             "$.localAccountReference.fiscalYear"
           ],
@@ -22094,10 +21725,8 @@
           },
           "numericJsonPaths": [
             "$.amount",
-            "$.localAccountReference.accountIdentifier",
             "$.localAccountReference.educationOrganizationId",
-            "$.localAccountReference.fiscalYear",
-            "$.staffReference.staffUniqueId"
+            "$.localAccountReference.fiscalYear"
           ],
           "resourceName": "LocalPayroll"
         },
@@ -22244,7 +21873,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.classroomIdentificationCode",
             "$.maximumNumberOfSeats",
             "$.optimalNumberOfSeats",
             "$.schoolReference.schoolId"
@@ -22910,8 +22538,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "ObjectDimension"
@@ -23337,25 +22963,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.assessmentItems[*].assessmentItemReference.assessmentIdentifier",
-            "$.assessmentItems[*].assessmentItemReference.identificationCode",
-            "$.assessmentItems[*].assessmentItemReference.namespace",
-            "$.assessmentReference.assessmentIdentifier",
-            "$.assessmentReference.namespace",
-            "$.description",
-            "$.identificationCode",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
             "$.maxRawScore",
-            "$.nomenclature",
-            "$.parentObjectiveAssessmentReference.assessmentIdentifier",
-            "$.parentObjectiveAssessmentReference.identificationCode",
-            "$.parentObjectiveAssessmentReference.namespace",
-            "$.percentOfAssessment",
-            "$.performanceLevels[*].maximumScore",
-            "$.performanceLevels[*].minimumScore",
-            "$.performanceLevels[*].performanceLevelIndicatorName",
-            "$.scores[*].maximumScore",
-            "$.scores[*].minimumScore"
+            "$.percentOfAssessment"
           ],
           "resourceName": "ObjectiveAssessment"
         },
@@ -23553,9 +23162,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.positionTitle",
-            "$.requisitionNumber"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "OpenStaffPosition"
         },
@@ -23705,8 +23312,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "OperationalUnitDimension"
@@ -24316,31 +23921,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
             "$.organizationDepartmentId",
-            "$.parentEducationOrganizationReference.educationOrganizationId",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.parentEducationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "OrganizationDepartment",
           "subclassType": "domainEntity",
@@ -24575,7 +24157,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.personId"
           ],
           "resourceName": "Person"
         },
@@ -25030,8 +24611,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.postSecondaryInstitutionReference.postSecondaryInstitutionId",
-            "$.studentReference.studentUniqueId"
+            "$.postSecondaryInstitutionReference.postSecondaryInstitutionId"
           ],
           "resourceName": "PostSecondaryEvent"
         },
@@ -25708,30 +25288,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.postSecondaryInstitutionId",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.postSecondaryInstitutionId"
           ],
           "resourceName": "PostSecondaryInstitution",
           "subclassType": "domainEntity",
@@ -26227,8 +25784,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "ProgramDimension"
@@ -26538,17 +26093,10 @@
             "$.elementMaxNumericRating",
             "$.elementMinNumericRating",
             "$.elementSortOrder",
-            "$.programEvaluationElementDescription",
-            "$.programEvaluationElementTitle",
             "$.programEvaluationLevels[*].maxNumericRating",
             "$.programEvaluationLevels[*].minNumericRating",
             "$.programEvaluationObjectiveReference.programEducationOrganizationId",
-            "$.programEvaluationObjectiveReference.programEvaluationObjectiveTitle",
-            "$.programEvaluationObjectiveReference.programEvaluationTitle",
-            "$.programEvaluationObjectiveReference.programName",
-            "$.programEvaluationReference.programEducationOrganizationId",
-            "$.programEvaluationReference.programEvaluationTitle",
-            "$.programEvaluationReference.programName"
+            "$.programEvaluationReference.programEducationOrganizationId"
           ],
           "resourceName": "ProgramEvaluationElement"
         },
@@ -26753,11 +26301,7 @@
             "$.objectiveSortOrder",
             "$.programEvaluationLevels[*].maxNumericRating",
             "$.programEvaluationLevels[*].minNumericRating",
-            "$.programEvaluationObjectiveDescription",
-            "$.programEvaluationObjectiveTitle",
-            "$.programEvaluationReference.programEducationOrganizationId",
-            "$.programEvaluationReference.programEvaluationTitle",
-            "$.programEvaluationReference.programName"
+            "$.programEvaluationReference.programEducationOrganizationId"
           ],
           "resourceName": "ProgramEvaluationObjective"
         },
@@ -27062,10 +26606,7 @@
             "$.evaluationMinNumericRating",
             "$.levels[*].maxNumericRating",
             "$.levels[*].minNumericRating",
-            "$.programEvaluationDescription",
-            "$.programEvaluationTitle",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "ProgramEvaluation"
         },
@@ -27365,10 +26906,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.learningStandards[*].learningStandardReference.learningStandardId",
-            "$.programId",
-            "$.programName"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "Program"
         },
@@ -27575,8 +27113,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "ProjectDimension"
@@ -28777,27 +28313,17 @@
             "$.educationOrganizationReference.educationOrganizationId",
             "$.gradePointAverages[*].gradePointAverageValue",
             "$.gradePointAverages[*].maxGradePointAverageValue",
-            "$.grades[*].gradeReference.gradingPeriodName",
             "$.grades[*].gradeReference.gradingPeriodSchoolYear",
-            "$.grades[*].gradeReference.localCourseCode",
             "$.grades[*].gradeReference.schoolId",
             "$.grades[*].gradeReference.schoolYear",
-            "$.grades[*].gradeReference.sectionIdentifier",
-            "$.grades[*].gradeReference.sessionName",
-            "$.grades[*].gradeReference.studentUniqueId",
-            "$.gradingPeriodReference.gradingPeriodName",
             "$.gradingPeriodReference.schoolId",
             "$.gradingPeriodReference.schoolYear",
             "$.numberOfDaysAbsent",
             "$.numberOfDaysInAttendance",
             "$.numberOfDaysTardy",
-            "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.gradingPeriodName",
             "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.gradingPeriodSchoolId",
             "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.gradingPeriodSchoolYear",
-            "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.objective",
-            "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.objectiveEducationOrganizationId",
-            "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.studentUniqueId",
-            "$.studentReference.studentUniqueId"
+            "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.objectiveEducationOrganizationId"
           ],
           "resourceName": "ReportCard"
         },
@@ -29346,10 +28872,7 @@
           },
           "numericJsonPaths": [
             "$.programs[*].programReference.educationOrganizationId",
-            "$.programs[*].programReference.programName",
-            "$.restraintEventIdentifier",
-            "$.schoolReference.schoolId",
-            "$.studentReference.studentUniqueId"
+            "$.schoolReference.schoolId"
           ],
           "resourceName": "RestraintEvent"
         },
@@ -30561,32 +30084,9 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.charterApprovalSchoolYearTypeReference.schoolYear",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
             "$.localEducationAgencyReference.localEducationAgencyId",
-            "$.nameOfInstitution",
-            "$.schoolId",
-            "$.shortNameOfInstitution",
-            "$.webSite"
+            "$.schoolId"
           ],
           "resourceName": "School",
           "subclassType": "domainEntity",
@@ -30803,15 +30303,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.calendarDateReference.calendarCode",
             "$.calendarDateReference.schoolId",
             "$.calendarDateReference.schoolYear",
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.staffReference.staffUniqueId"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "SectionAttendanceTakenEvent"
         },
@@ -31395,19 +30890,12 @@
           "numericJsonPaths": [
             "$.availableCreditConversion",
             "$.availableCredits",
-            "$.classPeriods[*].classPeriodReference.classPeriodName",
             "$.classPeriods[*].classPeriodReference.schoolId",
-            "$.courseOfferingReference.localCourseCode",
             "$.courseOfferingReference.schoolId",
             "$.courseOfferingReference.schoolYear",
-            "$.courseOfferingReference.sessionName",
-            "$.locationReference.classroomIdentificationCode",
             "$.locationReference.schoolId",
             "$.locationSchoolReference.schoolId",
             "$.programs[*].programReference.educationOrganizationId",
-            "$.programs[*].programReference.programName",
-            "$.sectionIdentifier",
-            "$.sectionName",
             "$.sequenceOfCourse"
           ],
           "resourceName": "Section"
@@ -31856,13 +31344,10 @@
           },
           "numericJsonPaths": [
             "$.academicWeeks[*].academicWeekReference.schoolId",
-            "$.academicWeeks[*].academicWeekReference.weekIdentifier",
-            "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
             "$.gradingPeriods[*].gradingPeriodReference.schoolId",
             "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
             "$.schoolReference.schoolId",
             "$.schoolYearTypeReference.schoolYear",
-            "$.sessionName",
             "$.totalInstructionalDays"
           ],
           "resourceName": "Session"
@@ -32013,8 +31498,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.code",
-            "$.codeName",
             "$.fiscalYear"
           ],
           "resourceName": "SourceDimension"
@@ -32348,9 +31831,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.absenceEventReason",
-            "$.hoursAbsent",
-            "$.staffReference.staffUniqueId"
+            "$.hoursAbsent"
           ],
           "resourceName": "StaffAbsenceEvent"
         },
@@ -32538,9 +32019,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.cohortReference.cohortIdentifier",
-            "$.cohortReference.educationOrganizationId",
-            "$.staffReference.staffUniqueId"
+            "$.cohortReference.educationOrganizationId"
           ],
           "resourceName": "StaffCohortAssociation"
         },
@@ -32668,9 +32147,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.disciplineIncidentReference.incidentIdentifier",
-            "$.disciplineIncidentReference.schoolId",
-            "$.staffReference.staffUniqueId"
+            "$.disciplineIncidentReference.schoolId"
           ],
           "resourceName": "StaffDisciplineIncidentAssociation"
         },
@@ -32902,14 +32379,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.credentialReference.credentialIdentifier",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.employmentStaffEducationOrganizationEmploymentAssociationReference.educationOrganizationId",
-            "$.employmentStaffEducationOrganizationEmploymentAssociationReference.staffUniqueId",
             "$.fullTimeEquivalency",
-            "$.orderOfAssignment",
-            "$.positionTitle",
-            "$.staffReference.staffUniqueId"
+            "$.orderOfAssignment"
           ],
           "resourceName": "StaffEducationOrganizationAssignmentAssociation"
         },
@@ -33274,22 +32747,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.address.apartmentRoomSuiteNumber",
-            "$.address.buildingSiteNumber",
-            "$.address.city",
-            "$.address.congressionalDistrict",
-            "$.address.countyFIPSCode",
-            "$.address.latitude",
-            "$.address.longitude",
-            "$.address.nameOfCounty",
-            "$.address.postalCode",
-            "$.address.streetNumberName",
-            "$.contactTitle",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.electronicMailAddress",
-            "$.staffReference.staffUniqueId",
-            "$.telephones[*].orderOfPriority",
-            "$.telephones[*].telephoneNumber"
+            "$.telephones[*].orderOfPriority"
           ],
           "resourceName": "StaffEducationOrganizationContactAssociation"
         },
@@ -33512,12 +32971,9 @@
           },
           "numericJsonPaths": [
             "$.annualWage",
-            "$.credentialReference.credentialIdentifier",
-            "$.department",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.fullTimeEquivalency",
-            "$.hourlyWage",
-            "$.staffReference.staffUniqueId"
+            "$.hourlyWage"
           ],
           "resourceName": "StaffEducationOrganizationEmploymentAssociation"
         },
@@ -33746,8 +33202,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.reason",
-            "$.staffReference.staffUniqueId"
           ],
           "resourceName": "StaffLeave"
         },
@@ -33888,9 +33342,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.staffReference.staffUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StaffProgramAssociation"
         },
@@ -34125,12 +33577,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.calendarReference.calendarCode",
             "$.calendarReference.schoolId",
             "$.calendarReference.schoolYear",
             "$.schoolReference.schoolId",
-            "$.schoolYearTypeReference.schoolYear",
-            "$.staffReference.staffUniqueId"
+            "$.schoolYearTypeReference.schoolYear"
           ],
           "resourceName": "StaffSchoolAssociation"
         },
@@ -34325,12 +33775,8 @@
           },
           "numericJsonPaths": [
             "$.percentageContribution",
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.staffReference.staffUniqueId"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "StaffSectionAssociation"
         },
@@ -35607,60 +35053,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
-            "$.credentials[*].credentialReference.credentialIdentifier",
-            "$.electronicMails[*].electronicMailAddress",
-            "$.firstName",
-            "$.genderIdentity",
-            "$.generationCodeSuffix",
-            "$.identificationCodes[*].assigningOrganizationIdentificationCode",
-            "$.identificationCodes[*].identificationCode",
-            "$.identificationDocuments[*].documentTitle",
-            "$.identificationDocuments[*].issuerDocumentIdentificationCode",
-            "$.identificationDocuments[*].issuerName",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.lastSurname",
-            "$.loginId",
-            "$.maidenName",
-            "$.middleName",
-            "$.otherNames[*].firstName",
-            "$.otherNames[*].generationCodeSuffix",
-            "$.otherNames[*].lastSurname",
-            "$.otherNames[*].middleName",
-            "$.otherNames[*].personalTitlePrefix",
-            "$.personReference.personId",
-            "$.personalIdentificationDocuments[*].documentTitle",
-            "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
-            "$.personalIdentificationDocuments[*].issuerName",
-            "$.personalTitlePrefix",
-            "$.preferredFirstName",
-            "$.preferredLastSurname",
-            "$.recognitions[*].achievementCategorySystem",
-            "$.recognitions[*].achievementTitle",
-            "$.recognitions[*].criteria",
-            "$.recognitions[*].criteriaURL",
-            "$.recognitions[*].evidenceStatement",
-            "$.recognitions[*].imageURL",
-            "$.recognitions[*].issuerName",
-            "$.recognitions[*].issuerOriginURL",
-            "$.recognitions[*].recognitionDescription",
-            "$.staffUniqueId",
             "$.telephones[*].orderOfPriority",
-            "$.telephones[*].telephoneNumber",
             "$.yearsOfPriorProfessionalExperience",
             "$.yearsOfPriorTeachingExperience"
           ],
@@ -36373,32 +35766,9 @@
           },
           "numericJsonPaths": [
             "$.accountabilities[*].schoolYearTypeReference.schoolYear",
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.federalFunds[*].federalProgramsFundingAllocation",
             "$.federalFunds[*].fiscalYear",
-            "$.identificationCodes[*].identificationCode",
-            "$.indicators[*].designatedBy",
-            "$.indicators[*].indicatorValue",
-            "$.institutionTelephones[*].telephoneNumber",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.nameOfInstitution",
-            "$.shortNameOfInstitution",
-            "$.stateEducationAgencyId",
-            "$.webSite"
+            "$.stateEducationAgencyId"
           ],
           "resourceName": "StateEducationAgency",
           "subclassType": "domainEntity",
@@ -37278,15 +36648,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.academicHonors[*].achievementCategorySystem",
-            "$.academicHonors[*].achievementTitle",
-            "$.academicHonors[*].criteria",
-            "$.academicHonors[*].criteriaURL",
-            "$.academicHonors[*].evidenceStatement",
-            "$.academicHonors[*].honorDescription",
-            "$.academicHonors[*].imageURL",
-            "$.academicHonors[*].issuerName",
-            "$.academicHonors[*].issuerOriginURL",
             "$.classRanking.classRank",
             "$.classRanking.percentageRanking",
             "$.classRanking.totalNumberInClass",
@@ -37294,38 +36655,17 @@
             "$.cumulativeAttemptedCredits",
             "$.cumulativeEarnedCreditConversion",
             "$.cumulativeEarnedCredits",
-            "$.diplomas[*].achievementCategorySystem",
-            "$.diplomas[*].achievementTitle",
-            "$.diplomas[*].criteria",
-            "$.diplomas[*].criteriaURL",
-            "$.diplomas[*].diplomaDescription",
-            "$.diplomas[*].evidenceStatement",
-            "$.diplomas[*].imageURL",
-            "$.diplomas[*].issuerName",
-            "$.diplomas[*].issuerOriginURL",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.gradePointAverages[*].gradePointAverageValue",
             "$.gradePointAverages[*].maxGradePointAverageValue",
-            "$.recognitions[*].achievementCategorySystem",
-            "$.recognitions[*].achievementTitle",
-            "$.recognitions[*].criteria",
-            "$.recognitions[*].criteriaURL",
-            "$.recognitions[*].evidenceStatement",
-            "$.recognitions[*].imageURL",
-            "$.recognitions[*].issuerName",
-            "$.recognitions[*].issuerOriginURL",
-            "$.recognitions[*].recognitionDescription",
             "$.reportCards[*].reportCardReference.educationOrganizationId",
-            "$.reportCards[*].reportCardReference.gradingPeriodName",
             "$.reportCards[*].reportCardReference.gradingPeriodSchoolId",
             "$.reportCards[*].reportCardReference.gradingPeriodSchoolYear",
-            "$.reportCards[*].reportCardReference.studentUniqueId",
             "$.schoolYearTypeReference.schoolYear",
             "$.sessionAttemptedCreditConversion",
             "$.sessionAttemptedCredits",
             "$.sessionEarnedCreditConversion",
-            "$.sessionEarnedCredits",
-            "$.studentReference.studentUniqueId"
+            "$.sessionEarnedCredits"
           ],
           "resourceName": "StudentAcademicRecord"
         },
@@ -37491,11 +36831,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.schoolYearTypeReference.schoolYear",
-            "$.studentAssessmentReference.assessmentIdentifier",
-            "$.studentAssessmentReference.namespace",
-            "$.studentAssessmentReference.studentAssessmentIdentifier",
-            "$.studentAssessmentReference.studentUniqueId"
+            "$.schoolYearTypeReference.schoolYear"
           ],
           "resourceName": "StudentAssessmentEducationOrganizationAssociation"
         },
@@ -38271,31 +37607,12 @@
           },
           "numericJsonPaths": [
             "$.assessedMinutes",
-            "$.assessmentReference.assessmentIdentifier",
-            "$.assessmentReference.namespace",
-            "$.eventDescription",
-            "$.items[*].assessmentItemReference.assessmentIdentifier",
-            "$.items[*].assessmentItemReference.identificationCode",
-            "$.items[*].assessmentItemReference.namespace",
-            "$.items[*].assessmentResponse",
-            "$.items[*].descriptiveFeedback",
             "$.items[*].itemNumber",
             "$.items[*].rawScoreResult",
             "$.items[*].timeAssessed",
-            "$.performanceLevels[*].performanceLevelIndicatorName",
-            "$.reportedSchoolIdentifier",
             "$.reportedSchoolReference.schoolId",
             "$.schoolYearTypeReference.schoolYear",
-            "$.scoreResults[*].result",
-            "$.serialNumber",
-            "$.studentAssessmentIdentifier",
-            "$.studentObjectiveAssessments[*].assessedMinutes",
-            "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-            "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
-            "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-            "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName",
-            "$.studentObjectiveAssessments[*].scoreResults[*].result",
-            "$.studentReference.studentUniqueId"
+            "$.studentObjectiveAssessments[*].assessedMinutes"
           ],
           "resourceName": "StudentAssessment"
         },
@@ -38617,12 +37934,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.cteProgramServices[*].cipCode",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentCTEProgramAssociation",
           "subclassType": "association",
@@ -38884,14 +38197,9 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.cohortReference.cohortIdentifier",
             "$.cohortReference.educationOrganizationId",
-            "$.sections[*].sectionReference.localCourseCode",
             "$.sections[*].sectionReference.schoolId",
-            "$.sections[*].sectionReference.schoolYear",
-            "$.sections[*].sectionReference.sectionIdentifier",
-            "$.sections[*].sectionReference.sessionName",
-            "$.studentReference.studentUniqueId"
+            "$.sections[*].sectionReference.schoolYear"
           ],
           "resourceName": "StudentCohortAssociation"
         },
@@ -39262,23 +38570,13 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.diagnosticStatement",
             "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
             "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
-            "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-            "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
-            "$.gradingPeriodReference.gradingPeriodName",
             "$.gradingPeriodReference.schoolId",
             "$.gradingPeriodReference.schoolYear",
             "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-            "$.objectiveCompetencyObjectiveReference.objective",
-            "$.studentReference.studentUniqueId",
-            "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
             "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-            "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-            "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-            "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
-            "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId"
+            "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear"
           ],
           "resourceName": "StudentCompetencyObjective"
         },
@@ -39434,10 +38732,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.contactPriority",
-            "$.contactReference.contactUniqueId",
-            "$.contactRestrictions",
-            "$.studentReference.studentUniqueId"
+            "$.contactPriority"
           ],
           "resourceName": "StudentContactAssociation"
         },
@@ -39586,10 +38881,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.behaviorDetailedDescription",
-            "$.disciplineIncidentReference.incidentIdentifier",
-            "$.disciplineIncidentReference.schoolId",
-            "$.studentReference.studentUniqueId"
+            "$.disciplineIncidentReference.schoolId"
           ],
           "resourceName": "StudentDisciplineIncidentBehaviorAssociation"
         },
@@ -39716,9 +39008,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.disciplineIncidentReference.incidentIdentifier",
-            "$.disciplineIncidentReference.schoolId",
-            "$.studentReference.studentUniqueId"
+            "$.disciplineIncidentReference.schoolId"
           ],
           "resourceName": "StudentDisciplineIncidentNonOffenderAssociation"
         },
@@ -40903,40 +40193,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.addresses[*].apartmentRoomSuiteNumber",
-            "$.addresses[*].buildingSiteNumber",
-            "$.addresses[*].city",
-            "$.addresses[*].congressionalDistrict",
-            "$.addresses[*].countyFIPSCode",
-            "$.addresses[*].latitude",
-            "$.addresses[*].longitude",
-            "$.addresses[*].nameOfCounty",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].streetNumberName",
             "$.cohortYears[*].schoolYearTypeReference.schoolYear",
-            "$.disabilities[*].disabilityDiagnosis",
             "$.disabilities[*].orderOfDisability",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.electronicMails[*].electronicMailAddress",
-            "$.genderIdentity",
-            "$.internationalAddresses[*].addressLine1",
-            "$.internationalAddresses[*].addressLine2",
-            "$.internationalAddresses[*].addressLine3",
-            "$.internationalAddresses[*].addressLine4",
-            "$.internationalAddresses[*].latitude",
-            "$.internationalAddresses[*].longitude",
-            "$.loginId",
-            "$.profileThumbnail",
-            "$.studentCharacteristics[*].designatedBy",
-            "$.studentIdentificationCodes[*].assigningOrganizationIdentificationCode",
-            "$.studentIdentificationCodes[*].identificationCode",
-            "$.studentIndicators[*].designatedBy",
-            "$.studentIndicators[*].indicator",
-            "$.studentIndicators[*].indicatorGroup",
-            "$.studentIndicators[*].indicatorName",
-            "$.studentReference.studentUniqueId",
-            "$.telephones[*].orderOfPriority",
-            "$.telephones[*].telephoneNumber"
+            "$.telephones[*].orderOfPriority"
           ],
           "resourceName": "StudentEducationOrganizationAssociation"
         },
@@ -41060,8 +40320,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.studentReference.studentUniqueId"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "StudentEducationOrganizationResponsibilityAssociation"
         },
@@ -41250,13 +40509,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.diagnosticStatement",
-            "$.gradebookEntryReference.gradebookEntryIdentifier",
-            "$.gradebookEntryReference.namespace",
-            "$.letterGradeEarned",
             "$.numericGradeEarned",
-            "$.pointsEarned",
-            "$.studentReference.studentUniqueId"
+            "$.pointsEarned"
           ],
           "resourceName": "StudentGradebookEntry"
         },
@@ -41489,8 +40743,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.studentReference.studentUniqueId"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "StudentHealth"
         },
@@ -41804,10 +41057,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentHomelessProgramAssociation",
           "subclassType": "association",
@@ -42090,14 +41340,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.cohortReference.cohortIdentifier",
             "$.cohortReference.educationOrganizationId",
-            "$.diagnosticStatement",
             "$.dosage",
             "$.interventionEffectivenesses[*].improvementIndex",
-            "$.interventionReference.educationOrganizationId",
-            "$.interventionReference.interventionIdentificationCode",
-            "$.studentReference.studentUniqueId"
+            "$.interventionReference.educationOrganizationId"
           ],
           "resourceName": "StudentInterventionAssociation"
         },
@@ -42259,12 +41505,9 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.attendanceEventReason",
             "$.eventDuration",
             "$.interventionDuration",
-            "$.interventionReference.educationOrganizationId",
-            "$.interventionReference.interventionIdentificationCode",
-            "$.studentReference.studentUniqueId"
+            "$.interventionReference.educationOrganizationId"
           ],
           "resourceName": "StudentInterventionAttendanceEvent"
         },
@@ -42653,10 +41896,7 @@
             "$.dosage",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.englishLanguageProficiencyAssessments[*].schoolYearTypeReference.schoolYear",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentLanguageInstructionProgramAssociation",
           "subclassType": "association",
@@ -43029,10 +42269,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentMigrantEducationProgramAssociation",
           "subclassType": "association",
@@ -43353,10 +42590,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentNeglectedOrDelinquentProgramAssociation",
           "subclassType": "association",
@@ -43701,10 +42935,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentProgramAssociation",
           "subclassType": "association",
@@ -43906,13 +43137,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.attendanceEventReason",
             "$.educationOrganizationReference.educationOrganizationId",
             "$.eventDuration",
             "$.programAttendanceDuration",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentProgramAttendanceEvent"
         },
@@ -44457,23 +43685,11 @@
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
             "$.evaluationDuration",
-            "$.externalEvaluators[*].externalEvaluator",
             "$.programEvaluationReference.programEducationOrganizationId",
-            "$.programEvaluationReference.programEvaluationTitle",
-            "$.programEvaluationReference.programName",
-            "$.staffEvaluatorStaffReference.staffUniqueId",
             "$.studentEvaluationElements[*].evaluationElementNumericRating",
             "$.studentEvaluationElements[*].programEvaluationElementReference.programEducationOrganizationId",
-            "$.studentEvaluationElements[*].programEvaluationElementReference.programEvaluationElementTitle",
-            "$.studentEvaluationElements[*].programEvaluationElementReference.programEvaluationTitle",
-            "$.studentEvaluationElements[*].programEvaluationElementReference.programName",
             "$.studentEvaluationObjectives[*].evaluationObjectiveNumericRating",
             "$.studentEvaluationObjectives[*].programEvaluationObjectiveReference.programEducationOrganizationId",
-            "$.studentEvaluationObjectives[*].programEvaluationObjectiveReference.programEvaluationObjectiveTitle",
-            "$.studentEvaluationObjectives[*].programEvaluationObjectiveReference.programEvaluationTitle",
-            "$.studentEvaluationObjectives[*].programEvaluationObjectiveReference.programName",
-            "$.studentReference.studentUniqueId",
-            "$.summaryEvaluationComment",
             "$.summaryEvaluationNumericRating"
           ],
           "resourceName": "StudentProgramEvaluation"
@@ -45000,7 +44216,6 @@
           "numericJsonPaths": [
             "$.alternativeGraduationPlans[*].alternativeGraduationPlanReference.educationOrganizationId",
             "$.alternativeGraduationPlans[*].alternativeGraduationPlanReference.graduationSchoolYear",
-            "$.calendarReference.calendarCode",
             "$.calendarReference.schoolId",
             "$.calendarReference.schoolYear",
             "$.classOfSchoolYearTypeReference.schoolYear",
@@ -45009,8 +44224,7 @@
             "$.graduationPlanReference.graduationSchoolYear",
             "$.nextYearSchoolReference.schoolId",
             "$.schoolReference.schoolId",
-            "$.schoolYearTypeReference.schoolYear",
-            "$.studentReference.studentUniqueId"
+            "$.schoolYearTypeReference.schoolYear"
           ],
           "resourceName": "StudentSchoolAssociation"
         },
@@ -45233,14 +44447,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.attendanceEventReason",
             "$.eventDuration",
             "$.schoolAttendanceDuration",
             "$.schoolReference.schoolId",
             "$.sessionReference.schoolId",
-            "$.sessionReference.schoolYear",
-            "$.sessionReference.sessionName",
-            "$.studentReference.studentUniqueId"
+            "$.sessionReference.schoolYear"
           ],
           "resourceName": "StudentSchoolAttendanceEvent"
         },
@@ -45534,10 +44745,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentSchoolFoodServiceProgramAssociation",
           "subclassType": "association",
@@ -45795,13 +45003,8 @@
           },
           "numericJsonPaths": [
             "$.programs[*].programReference.educationOrganizationId",
-            "$.programs[*].programReference.programName",
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.studentReference.studentUniqueId"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "StudentSectionAssociation"
         },
@@ -46068,17 +45271,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.attendanceEventReason",
-            "$.classPeriods[*].classPeriodReference.classPeriodName",
             "$.classPeriods[*].classPeriodReference.schoolId",
             "$.eventDuration",
             "$.sectionAttendanceDuration",
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.studentReference.studentUniqueId"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "StudentSectionAttendanceEvent"
         },
@@ -46657,18 +45854,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.disabilities[*].disabilityDiagnosis",
             "$.disabilities[*].orderOfDisability",
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
             "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
             "$.schoolHoursPerWeek",
-            "$.serviceProviders[*].staffReference.staffUniqueId",
-            "$.specialEducationExitExplained",
-            "$.specialEducationHoursPerWeek",
-            "$.specialEducationProgramServices[*].providers[*].staffReference.staffUniqueId",
-            "$.studentReference.studentUniqueId"
+            "$.specialEducationHoursPerWeek"
           ],
           "resourceName": "StudentSpecialEducationProgramAssociation",
           "subclassType": "association",
@@ -46970,10 +46160,7 @@
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
             "$.evaluationDelayDays",
-            "$.evaluationLateReason",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentSpecialEducationProgramEligibilityAssociation"
         },
@@ -47270,10 +46457,7 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.programParticipationStatuses[*].designatedBy",
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.studentReference.studentUniqueId"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "StudentTitleIPartAProgramAssociation",
           "subclassType": "association",
@@ -47487,7 +46671,6 @@
           },
           "numericJsonPaths": [
             "$.studentBusDetails.mileage",
-            "$.studentReference.studentUniqueId",
             "$.transportationEducationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "StudentTransportation"
@@ -47996,29 +47179,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.birthCity",
-            "$.birthInternationalProvince",
-            "$.firstName",
-            "$.generationCodeSuffix",
-            "$.identificationDocuments[*].documentTitle",
-            "$.identificationDocuments[*].issuerDocumentIdentificationCode",
-            "$.identificationDocuments[*].issuerName",
-            "$.lastSurname",
-            "$.maidenName",
-            "$.middleName",
-            "$.otherNames[*].firstName",
-            "$.otherNames[*].generationCodeSuffix",
-            "$.otherNames[*].lastSurname",
-            "$.otherNames[*].middleName",
-            "$.otherNames[*].personalTitlePrefix",
-            "$.personReference.personId",
-            "$.personalIdentificationDocuments[*].documentTitle",
-            "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
-            "$.personalIdentificationDocuments[*].issuerName",
-            "$.personalTitlePrefix",
-            "$.preferredFirstName",
-            "$.preferredLastSurname",
-            "$.studentUniqueId"
           ],
           "resourceName": "Student"
         },
@@ -48303,10 +47463,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.courseReference.courseCode",
-            "$.courseReference.educationOrganizationId",
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier"
+            "$.courseReference.educationOrganizationId"
           ],
           "resourceName": "SurveyCourseAssociation"
         },
@@ -48487,10 +47644,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.programReference.educationOrganizationId",
-            "$.programReference.programName",
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier"
+            "$.programReference.educationOrganizationId"
           ],
           "resourceName": "SurveyProgramAssociation"
         },
@@ -48762,21 +47916,11 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.comment",
-            "$.surveyQuestionMatrixElementResponses[*].matrixElement",
             "$.surveyQuestionMatrixElementResponses[*].maxNumericResponse",
             "$.surveyQuestionMatrixElementResponses[*].minNumericResponse",
             "$.surveyQuestionMatrixElementResponses[*].numericResponse",
-            "$.surveyQuestionMatrixElementResponses[*].textResponse",
-            "$.surveyQuestionReference.namespace",
-            "$.surveyQuestionReference.questionCode",
-            "$.surveyQuestionReference.surveyIdentifier",
-            "$.surveyResponseReference.namespace",
-            "$.surveyResponseReference.surveyIdentifier",
-            "$.surveyResponseReference.surveyResponseIdentifier",
             "$.values[*].numericResponse",
-            "$.values[*].surveyQuestionResponseValueIdentifier",
-            "$.values[*].textResponse"
+            "$.values[*].surveyQuestionResponseValueIdentifier"
           ],
           "resourceName": "SurveyQuestionResponse"
         },
@@ -49020,19 +48164,10 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.matrices[*].matrixElement",
             "$.matrices[*].maxRawScore",
             "$.matrices[*].minRawScore",
-            "$.questionCode",
-            "$.questionText",
             "$.responseChoices[*].numericValue",
-            "$.responseChoices[*].sortOrder",
-            "$.responseChoices[*].textValue",
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier",
-            "$.surveySectionReference.namespace",
-            "$.surveySectionReference.surveyIdentifier",
-            "$.surveySectionReference.surveySectionTitle"
+            "$.responseChoices[*].sortOrder"
           ],
           "resourceName": "SurveyQuestion"
         },
@@ -49146,10 +48281,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.surveyResponseReference.namespace",
-            "$.surveyResponseReference.surveyIdentifier",
-            "$.surveyResponseReference.surveyResponseIdentifier"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "SurveyResponseEducationOrganizationTargetAssociation"
         },
@@ -49264,10 +48396,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.staffReference.staffUniqueId",
-            "$.surveyResponseReference.namespace",
-            "$.surveyResponseReference.surveyIdentifier",
-            "$.surveyResponseReference.surveyResponseIdentifier"
           ],
           "resourceName": "SurveyResponseStaffTargetAssociation"
         },
@@ -49494,16 +48622,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.contactReference.contactUniqueId",
-            "$.electronicMailAddress",
-            "$.fullName",
-            "$.location",
-            "$.responseTime",
-            "$.staffReference.staffUniqueId",
-            "$.studentReference.studentUniqueId",
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier",
-            "$.surveyResponseIdentifier"
+            "$.responseTime"
           ],
           "resourceName": "SurveyResponse"
         },
@@ -49651,13 +48770,8 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.sectionReference.localCourseCode",
             "$.sectionReference.schoolId",
-            "$.sectionReference.schoolYear",
-            "$.sectionReference.sectionIdentifier",
-            "$.sectionReference.sessionName",
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier"
+            "$.sectionReference.schoolYear"
           ],
           "resourceName": "SurveySectionAssociation"
         },
@@ -49782,11 +48896,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.educationOrganizationReference.educationOrganizationId",
-            "$.surveySectionResponseReference.namespace",
-            "$.surveySectionResponseReference.surveyIdentifier",
-            "$.surveySectionResponseReference.surveyResponseIdentifier",
-            "$.surveySectionResponseReference.surveySectionTitle"
+            "$.educationOrganizationReference.educationOrganizationId"
           ],
           "resourceName": "SurveySectionResponseEducationOrganizationTargetAssociation"
         },
@@ -49912,11 +49022,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.staffReference.staffUniqueId",
-            "$.surveySectionResponseReference.namespace",
-            "$.surveySectionResponseReference.surveyIdentifier",
-            "$.surveySectionResponseReference.surveyResponseIdentifier",
-            "$.surveySectionResponseReference.surveySectionTitle"
           ],
           "resourceName": "SurveySectionResponseStaffTargetAssociation"
         },
@@ -50070,13 +49175,7 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.sectionRating",
-            "$.surveyResponseReference.namespace",
-            "$.surveyResponseReference.surveyIdentifier",
-            "$.surveyResponseReference.surveyResponseIdentifier",
-            "$.surveySectionReference.namespace",
-            "$.surveySectionReference.surveyIdentifier",
-            "$.surveySectionReference.surveySectionTitle"
+            "$.sectionRating"
           ],
           "resourceName": "SurveySectionResponse"
         },
@@ -50163,9 +49262,6 @@
             "type": "object"
           },
           "numericJsonPaths": [
-            "$.surveyReference.namespace",
-            "$.surveyReference.surveyIdentifier",
-            "$.surveySectionTitle"
           ],
           "resourceName": "SurveySection"
         },
@@ -50357,14 +49453,10 @@
           },
           "numericJsonPaths": [
             "$.educationOrganizationReference.educationOrganizationId",
-            "$.namespace",
             "$.numberAdministered",
             "$.schoolYearTypeReference.schoolYear",
             "$.sessionReference.schoolId",
-            "$.sessionReference.schoolYear",
-            "$.sessionReference.sessionName",
-            "$.surveyIdentifier",
-            "$.surveyTitle"
+            "$.sessionReference.schoolYear"
           ],
           "resourceName": "Survey"
         },

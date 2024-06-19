@@ -21,7 +21,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         'sharedDecimal',
         'sharedInteger',
         'sharedShort',
-        'sharedString',
         'short',
         'year',
       ];
@@ -32,7 +31,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
           if (jppp.sourceProperty.type === 'boolean') {
             booleanResult.add(jppp.jsonPath);
-          } else if (numericTypes.indexOf(jppp.sourceProperty.type) >= 0) {
+          } else if (numericTypes.includes(jppp.sourceProperty.type)) {
             numericResult.add(jppp.jsonPath);
           }
         });

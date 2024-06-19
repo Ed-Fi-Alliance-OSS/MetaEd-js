@@ -54,6 +54,10 @@ describe('when building simple domain entity with all the simple non-collections
       .withTimeProperty('RequiredTimeProperty', 'doc11', true, false)
       .withEnumerationProperty('SchoolYear', 'doc12', false, false)
       .withYearProperty('OptionalYear', 'doc13', false, false)
+      .withSharedDecimalProperty('OptionalSharedDecimalProperty', null, 'doc14', false, false)
+      .withSharedIntegerProperty('OptionalSharedIntegerProperty', null, 'doc15', false, false)
+      .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc16', false, false)
+      .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc17', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -80,6 +84,9 @@ describe('when building simple domain entity with all the simple non-collections
         Array [
           "$.optionalDecimalProperty",
           "$.optionalPercentProperty",
+          "$.optionalSharedDecimalProperty",
+          "$.optionalSharedIntegerProperty",
+          "$.optionalSharedShortProperty",
           "$.optionalShortProperty",
           "$.optionalYear",
           "$.requiredCurrencyProperty",
