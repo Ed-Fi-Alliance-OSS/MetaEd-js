@@ -1140,7 +1140,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -4090,7 +4090,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -16074,7 +16074,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -16359,7 +16359,7 @@
             "GraduationSchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -20797,7 +20797,7 @@
             "LocalEducationAgencyAccountability.SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -29333,7 +29333,7 @@
           "numericJsonPaths": [
             "$.schoolYear"
           ],
-          "resourceName": "SchoolYearTypes"
+          "resourceName": "SchoolYearType"
         },
         "schools": {
           "allowIdentityUpdates": false,
@@ -29431,7 +29431,7 @@
             "CharterApprovalSchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -31139,7 +31139,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -33407,7 +33407,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -35330,7 +35330,7 @@
             "StateEducationAgencyAccountability.SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -36084,7 +36084,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -36696,7 +36696,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -36973,7 +36973,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -39122,7 +39122,7 @@
             "CohortYear.SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -41574,7 +41574,7 @@
             "EnglishLanguageProficiencyAssessment.SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -43748,7 +43748,7 @@
             "ClassOfSchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -43899,7 +43899,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",
@@ -49293,7 +49293,7 @@
             "SchoolYear": {
               "isDescriptor": false,
               "isReference": true,
-              "projectName": "EdFi",
+              "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
                   "identityJsonPath": "$.schoolYear",

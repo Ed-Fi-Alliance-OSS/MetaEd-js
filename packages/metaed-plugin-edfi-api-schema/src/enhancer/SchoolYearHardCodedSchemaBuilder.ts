@@ -36,7 +36,7 @@ export function buildSchoolYearResourceSchema(
   caseInsensitiveEndpointNameMapping[lowerCasedEndpointName] = endpointName;
 
   resourceSchemaMapping[endpointName] = {
-    resourceName: 'SchoolYearTypes' as MetaEdResourceName,
+    resourceName: 'SchoolYearType' as MetaEdResourceName,
     isDescriptor: false,
     isSchoolYearEnumeration: true,
     allowIdentityUpdates: false,

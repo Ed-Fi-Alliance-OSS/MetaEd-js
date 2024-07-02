@@ -151,7 +151,7 @@ describe('when building simple domain entity with all the simple non-collections
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
-          "projectName": "EdFi",
+          "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.schoolYear",
@@ -259,7 +259,7 @@ describe('when building simple domain entity with all the simple collections', (
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
-          "projectName": "EdFi",
+          "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.schoolYear",
@@ -506,7 +506,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
-          "projectName": "EdFi",
+          "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.schoolYear",
@@ -1381,7 +1381,7 @@ describe('when building a schema for StudentCohort', () => {
         "CohortYear.SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
-          "projectName": "EdFi",
+          "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.schoolYear",

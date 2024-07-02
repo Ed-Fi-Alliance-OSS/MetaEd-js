@@ -168,7 +168,7 @@ function buildSchoolYearEnumerationPath(jsonPaths: JsonPath[]): DocumentReferenc
   return {
     isReference: true,
     isDescriptor: false,
-    projectName: 'EdFi',
+    projectName: 'Ed-Fi',
     resourceName: 'SchoolYearType',
     referenceJsonPaths: [
       {
