@@ -26,7 +26,7 @@
     "ramda": "^0.29.0",
     "semver": "^7.3.8",
     "sugar": "^2.0.6",
-    "topo": "^3.0.3",
+    "@hapi/topo": "^6.0.2",
     "winston": "^3.10.0"
   },
   "devDependencies": {
