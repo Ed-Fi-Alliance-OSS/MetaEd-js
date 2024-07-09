@@ -33,7 +33,14 @@ export type SchemaArray = {
 export type SchemaProperty =
   | SchemaObject
   | SchemaArray
-  | { type: 'string'; description: string; format?: 'date' | 'date-time' | 'time'; minLength?: number; maxLength?: number }
+  | {
+      type: 'string';
+      description: string;
+      format?: 'date' | 'date-time' | 'time';
+      minLength?: number;
+      maxLength?: number;
+      pattern?: string;
+    }
   | { type: 'integer'; description: string; minimum?: number; maximum?: number }
   | { type: 'number'; description: string; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
