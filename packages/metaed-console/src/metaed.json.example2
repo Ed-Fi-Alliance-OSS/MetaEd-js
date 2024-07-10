@@ -7,21 +7,13 @@
       {
         "namespaceName": "EdFi",
         "projectName": "Ed-Fi",
-        "projectVersion": "4.0.0",
+        "projectVersion": "5.1.0",
         "projectExtension": "",
-        "description": "The Ed-Fi Data Model 4.0"
-      },
-      {
-        "namespaceName": "Sample",
-        "projectName": "Sample",
-        "projectVersion": "1.0.0",
-        "projectExtension": "Sample",
-        "description": "Sample"
+        "description": "The Ed-Fi Data Model 5.1"
       }
     ],
     "projectPaths": [
-      "C:\\work\\metaed\\MetaEd-Js\\node_modules\\@edfi\\ed-fi-model-4.0",
-      "C:\\Temp\\SampleMetaEd\\SampleMetaEd"
+      "C:\\work\\metaed\\MetaEd-Js\\node_modules\\@edfi\\ed-fi-model-5.1"
     ],
     "pluginConfigDirectories": [],
     "defaultPluginTechVersion": "7.2.0",
