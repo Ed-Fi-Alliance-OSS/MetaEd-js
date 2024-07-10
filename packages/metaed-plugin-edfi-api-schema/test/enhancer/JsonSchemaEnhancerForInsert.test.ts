@@ -2711,3 +2711,82 @@ describe('when building a domain entity referencing another using a shortenTo di
     ajv.compile(entity.data.edfiApiSchema.jsonSchemaForInsert);
   });
 });
+
+describe('when building a domain entity with different string properties', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentCompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withStringProperty('StringRequired', 'doc', true, false, '30')
+      .withStringProperty('StringOptional', 'doc', false, false, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
+    expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "stringIdentity": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
+            "type": "string",
+          },
+          "stringOptional": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+          "stringRequired": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "pattern": "^(?!\\\\s*$).+",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "stringIdentity",
+          "stringRequired",
+        ],
+        "title": "EdFi.StudentCompetencyObjective",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForInsert);
+  });
+});
