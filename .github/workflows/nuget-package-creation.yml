@@ -27,10 +27,14 @@ jobs:
         run: |
           ls
       - name: Unzip File
+        shell: pwsh
         run: ./eng/ApiSchema/build.ps1 Unzip
+
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build -Configuration Debug 
+      
       - name: Package
         run: ./eng/ApiSchema/build.ps1 Package
+      
       - name: Publish Package
         run: ./eng/ApiSchema/build.ps1 Publish
