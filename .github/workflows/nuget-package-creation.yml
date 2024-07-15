@@ -20,8 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Unzip File
-        run: ./build.ps1 Build -Configuration Debug
+        run: ./build.ps1 Unzip
       - name: Run Build
-        run: ./build.ps1 Build -Configuration Debug        
+        run: ./build.ps1 Build -Configuration Debug 
       - name: Package
-        run: ./build.ps1 Build -Configuration Debug        
+        run: ./build.ps1 Package
+      - name: Publish Package
+        run: ./build.ps1 Publish
