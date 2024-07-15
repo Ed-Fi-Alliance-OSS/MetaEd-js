@@ -1,0 +1,27 @@
+name: NuGet Package Creation for API Schema and XSD Files
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: Run the build with tmate debugging enabled
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  nuget-package-creation:
+    name: Nuget Package Creation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unzip File
+        run: ./build.ps1 Build -Configuration Debug
+      - name: Run Build
+        run: ./build.ps1 Build -Configuration Debug        
+      - name: Package
+        run: ./build.ps1 Build -Configuration Debug        

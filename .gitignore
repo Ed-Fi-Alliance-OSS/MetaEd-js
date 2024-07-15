@@ -83,3 +83,8 @@ MetaEdOutput/
 .secrets
 metaed.conf.json
 build/package-lock.json
+
+# Files built by Visual Studio
+*obj
+
+eng/ApiSchema/*.zip
