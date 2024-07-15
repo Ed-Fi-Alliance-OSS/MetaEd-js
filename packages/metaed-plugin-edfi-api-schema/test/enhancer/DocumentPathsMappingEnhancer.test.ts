@@ -423,6 +423,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "referenceJsonPath": "$.courseOfferingReference.schoolId",
             },
             Object {
+              "identityJsonPath": "$.sessionReference.schoolId",
+              "referenceJsonPath": "$.courseOfferingReference.schoolId",
+            },
+            Object {
               "identityJsonPath": "$.sessionReference.schoolYear",
               "referenceJsonPath": "$.courseOfferingReference.schoolYear",
             },

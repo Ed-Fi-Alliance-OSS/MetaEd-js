@@ -91,11 +91,12 @@ function matchupJsonPaths(
  * array removed.
  */
 function dedupeReferenceJsonPaths(referenceJsonPathsArray: ReferenceJsonPaths[]): ReferenceJsonPaths[] {
-  const duplicateReferenceJsonPathTracker: Set<JsonPath> = new Set();
+  const duplicateReferenceJsonPathTracker: Set<string> = new Set();
 
   return referenceJsonPathsArray.filter((paths: ReferenceJsonPaths) => {
-    const duplicate: boolean = duplicateReferenceJsonPathTracker.has(paths.referenceJsonPath);
-    duplicateReferenceJsonPathTracker.add(paths.referenceJsonPath);
+    const pathKey: string = `${paths.identityJsonPath}-${paths.referenceJsonPath}`;
+    const duplicate: boolean = duplicateReferenceJsonPathTracker.has(pathKey);
+    duplicateReferenceJsonPathTracker.add(pathKey);
     return !duplicate;
   });
 }

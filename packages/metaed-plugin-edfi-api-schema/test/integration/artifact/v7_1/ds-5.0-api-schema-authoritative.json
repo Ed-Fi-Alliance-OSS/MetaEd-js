@@ -30769,6 +30769,10 @@
                   "referenceJsonPath": "$.courseOfferingReference.schoolId"
                 },
                 {
+                  "identityJsonPath": "$.sessionReference.schoolId",
+                  "referenceJsonPath": "$.courseOfferingReference.schoolId"
+                },
+                {
                   "identityJsonPath": "$.sessionReference.schoolYear",
                   "referenceJsonPath": "$.courseOfferingReference.schoolYear"
                 },
