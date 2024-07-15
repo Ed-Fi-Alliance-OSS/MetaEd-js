@@ -67,7 +67,7 @@ function PublishApi {
 }
 
 function Invoke-UnzipFile {
-    wget -O json-and-xsd-5.1.0.zip "https://odsassets.blob.core.windows.net/public/project-tanager/5.0.0-xsd-and-metadata.zip"
+    wget -O json-and-xsd-5.1.0.zip "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip"
     unzip json-and-xsd-5.1.0.zip -d apiSchema
 }
 
