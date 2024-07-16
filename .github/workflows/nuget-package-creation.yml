@@ -31,7 +31,7 @@ jobs:
         run: ./eng/ApiSchema/build.ps1 Unzip
 
       - name: Run Build
-        run: ./eng/ApiSchema/build.ps1 Build -Version 5.1.0 
+        run: ./eng/ApiSchema/build.ps1 Build 5.1.0 
       
       #- name: Package
       #  run: ./eng/ApiSchema/build.ps1 Package

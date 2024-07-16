@@ -1,17 +1,22 @@
 [CmdletBinding()]
 param (
     #[Parameter(Mandatory=$true)]
-    #[String]
-    #$Version,
+    [String]
+    $Version=5.1.0,
 
     #[Switch]
     #$Publish,
 
+    [ValidateSet("Debug", "Release")]
+    $Configuration = "Debug",
+
     [string]
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
-    $Command = "Build"
+    $Command = "Unzip"
 )
 
+$solutionRoot = "$PSScriptRoot"
+$defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 #&dotnet build -c release -p:Version=$Version
@@ -22,6 +27,10 @@ Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 #    dotnet nuget push --source "EdFi" --api-key az "EdFi.ApiSchema.$($Version).nupkg" --interactive
 #}
+
+function Restore {
+    Invoke-Execute { dotnet restore $defaultSolution }
+}
 
 function DotNetClean {
     Invoke-Execute { dotnet clean $defaultSolution -c $Configuration --nologo -v minimal }
@@ -54,7 +63,9 @@ function RunNuGetPack {
 
 function Compile {
     Invoke-Execute {
-        dotnet build $defaultSolution -c $Configuration --nologo --no-restore
+        dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
+        #&dotnet build -c release -p:Version=$Version
+        #&dotnet pack -c release -p:PackageVersion=$Version -o .
     }
 }
 
@@ -100,6 +111,12 @@ function PushPackage {
 
 function Invoke-PushPackage {
     Invoke-Step { PushPackage }
+}
+
+function Invoke-Build {
+    Invoke-Step { DotNetClean }
+    Invoke-Step { Restore }
+    Invoke-Step { Compile }
 }
 
 Invoke-Main {

@@ -12,7 +12,7 @@ param (
 
     [string]
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
-    $Command = "Build"
+     $Command = "Build"
 )
 
 $solutionRoot = "$PSScriptRoot"
