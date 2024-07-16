@@ -12,7 +12,7 @@ param (
     $Command = "Build"
 )
 
-$solutionRoot = "$PSScriptRoot/eng"
+$solutionRoot = "$PSScriptRoot"
 $defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
