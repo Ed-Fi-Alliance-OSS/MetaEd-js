@@ -127,7 +127,7 @@ Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
-        Unzip { Invoke-UnzipFile }
+        #Unzip { Invoke-UnzipFile }
         default { throw "Command '$Command' is not recognized" }
     }
 }
