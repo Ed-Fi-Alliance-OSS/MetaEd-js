@@ -6,7 +6,7 @@ param (
 
     #[Parameter(Mandatory=$true)]
     [String]
-    $Version=5.1.0,
+    $Version="5.1.0",
 
     #[Switch]
     #$Publish,
