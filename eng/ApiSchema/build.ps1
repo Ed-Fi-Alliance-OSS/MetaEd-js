@@ -1,4 +1,4 @@
-[CmdletBinding()]
+[CmdLetBinding()]
 param (
     [string]
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
