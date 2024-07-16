@@ -26,15 +26,15 @@ jobs:
         shell: pwsh
         run: |
           ls
-      - name: Unzip File
+      - name: Unzip Files
         shell: pwsh
         run: ./eng/ApiSchema/build.ps1 Unzip
 
       - name: Run Build
-        run: ./eng/ApiSchema/build.ps1 Build -Configuration Debug 
+        run: ./eng/ApiSchema/build.ps1 Build -Version 5.1.0 
       
-      - name: Package
-        run: ./eng/ApiSchema/build.ps1 Package
+      #- name: Package
+      #  run: ./eng/ApiSchema/build.ps1 Package
       
-      - name: Publish Package
-        run: ./eng/ApiSchema/build.ps1 Publish
+      #- name: Publish Package
+      #  run: ./eng/ApiSchema/build.ps1 Publish
