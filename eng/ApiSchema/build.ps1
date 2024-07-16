@@ -1,5 +1,9 @@
 [CmdletBinding()]
 param (
+    [string]
+    [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
+     $Command = "Build",
+
     #[Parameter(Mandatory=$true)]
     [String]
     $Version=5.1.0,
@@ -8,11 +12,7 @@ param (
     #$Publish,
 
     [ValidateSet("Debug", "Release")]
-    $Configuration = "Debug",
-
-    [string]
-    [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
-     $Command = "Build"
+    $Configuration = "Debug"
 )
 
 $solutionRoot = "$PSScriptRoot"
@@ -127,7 +127,8 @@ Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
-        #Unzip { Invoke-UnzipFile }
+        Unzip { Invoke-UnzipFile }
+        BuildAndPublish { Invoke-Build }
         default { throw "Command '$Command' is not recognized" }
     }
 }

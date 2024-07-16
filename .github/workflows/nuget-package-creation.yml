@@ -28,7 +28,7 @@ jobs:
           ls
       - name: Unzip Files
         shell: pwsh
-        run: ./eng/ApiSchema/build.ps1 Unzip
+        run: ./eng/ApiSchema/build.ps1 Unzip 5.1.0 
 
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build 5.1.0 
