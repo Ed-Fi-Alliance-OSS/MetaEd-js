@@ -7,6 +7,9 @@ param (
     #[Switch]
     #$Publish,
 
+    [ValidateSet("Debug", "Release")]
+    $Configuration = "Debug",
+
     [string]
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip")]
     $Command = "Build"
