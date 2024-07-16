@@ -63,9 +63,9 @@ function RunNuGetPack {
 
 function Compile {
     Invoke-Execute {
-        #dotnet build $defaultSolution -c $Configuration --nologo --no-restore
-        &dotnet build -c release -p:Version=$Version
-        &dotnet pack -c release -p:PackageVersion=$Version -o .
+        dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
+        #&dotnet build -c release -p:Version=$Version
+        #&dotnet pack -c release -p:PackageVersion=$Version -o .
     }
 }
 
