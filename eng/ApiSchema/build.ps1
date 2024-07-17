@@ -127,7 +127,7 @@ function Invoke-BuildPackage {
 }
 
 function BuildPackage {
-    $mainPath = "$applicationRoot/$projectName"
+    $mainPath = "$applicationRoot"
     $projectPath = "$mainPath/$projectName.csproj"
     $nugetSpecPath = "$mainPath/publish/$projectName.nuspec"
 
