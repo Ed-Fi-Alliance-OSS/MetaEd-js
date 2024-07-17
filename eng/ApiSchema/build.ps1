@@ -78,8 +78,10 @@ function PublishApi {
 }
 
 function Invoke-UnzipFile {    
-    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip" -OutFile ../ApiSchema/json-and-xsd-5.1.0.zip
-    Expand-Archive ../ApiSchema/json-and-xsd-5.1.0.zip -Destination ../ApiSchema/
+    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip" -OutFile json-and-xsd-5.1.0.zip
+    Expand-Archive json-and-xsd-5.1.0.zip
+    Move-Item -Path ./json-and-xsd-5.1.0/* -Destination $solutionRoot
+    Remove-Item -Path ./json-and-xsd-5.1.0/
 }
 
 function PushPackage {
