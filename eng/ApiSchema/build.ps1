@@ -111,10 +111,7 @@ function RunNuGetPack {
         $ProjectPath,
 
         [string]
-        $PackageVersion,
-
-        [string]
-        $nuspecPath
+        $PackageVersion
     )
 
     #$copyrightYear = ${(Get-Date).year)}
@@ -127,11 +124,17 @@ function RunNuGetPack {
 }
 
 function BuildPackage {
+    Write-Output "Building Package ($Version)"
     $mainPath = "$applicationRoot"
     $projectPath = "$mainPath/$projectName.csproj"
-    $nugetSpecPath = "$mainPath/publish/$projectName.nuspec"
 
-    RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version $nugetSpecPath
+    RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version
+}
+
+
+function Invoke-Publish {
+    Write-Output "Building Version ($Version)"
+    Invoke-Step { PublishApi }
 }
 
 Invoke-Main {
@@ -143,7 +146,10 @@ Invoke-Main {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
         Unzip { Invoke-UnzipFile }
-        BuildAndPublish { Invoke-Build }
+        BuildAndPublish { 
+            Invoke-Build             
+            Invoke-Publish
+        }
         Package { Invoke-BuildPackage }
         default { throw "Command '$Command' is not recognized" }
     }
