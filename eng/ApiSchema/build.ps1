@@ -42,27 +42,6 @@ function Invoke-Clean {
     Invoke-Step { DotNetClean }
 }
 
-function RunNuGetPack {
-    param (
-        [string]
-        $ProjectPath,
-
-        [string]
-        $PackageVersion,
-
-        [string]
-        $nuspecPath
-    )
-
-    $copyrightYear = ${(Get-Date).year)}
-    # NU5100 is the warning about DLLs outside of a "lib" folder. We're
-    # deliberately using that pattern, therefore we bypass the
-    # warning.
-    
-    #&dotnet pack -c release -p:PackageVersion=$Version -o .
-    dotnet pack $ProjectPath --no-build --no-restore --output $PSScriptRoot -p:NuspecFile=$nuspecPath -p:NuspecProperties="version=$PackageVersion;year=$copyrightYear" /p:NoWarn=NU5100
-}
-
 function Compile {
     Invoke-Execute {
         dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
@@ -124,6 +103,27 @@ function Invoke-Build {
 
 function Invoke-BuildPackage {
     Invoke-Step { BuildPackage }
+}
+
+function RunNuGetPack {
+    param (
+        [string]
+        $ProjectPath,
+
+        [string]
+        $PackageVersion,
+
+        [string]
+        $nuspecPath
+    )
+
+    #$copyrightYear = ${(Get-Date).year)}
+    # NU5100 is the warning about DLLs outside of a "lib" folder. We're
+    # deliberately using that pattern, therefore we bypass the
+    # warning.
+    
+    #&dotnet pack -c release -p:PackageVersion=$Version -o .
+    dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot 
 }
 
 function BuildPackage {
