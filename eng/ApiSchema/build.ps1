@@ -18,7 +18,7 @@ param (
 $solutionRoot = "$PSScriptRoot"
 $defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
-$projectName = "EdFi.DataManagementService.Frontend.AspNetCore"
+$projectName = "EdFi.ApiSchema"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 #&dotnet build -c release -p:Version=$Version
