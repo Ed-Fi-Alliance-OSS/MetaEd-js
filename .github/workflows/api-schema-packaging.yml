@@ -1,4 +1,4 @@
-name: NuGet Package Creation for API Schema and XSD Files
+name: API Schema Packaging and Publishing
 on:
   pull_request:
     branches:
@@ -15,19 +15,17 @@ on:
           - "true"
 
 jobs:
-  nuget-package-creation:
-    name: Nuget Package Creation
+  api-schema-packagin:
+    name: API Schema Packaging
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Checkout repository
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: List repository
-        shell: pwsh
-        run: |
-          ls
-      - name: Unzip Files
-        shell: pwsh
+      - name: Download and Unzip files
         run: ./eng/ApiSchema/build.ps1 Unzip
 
       - name: Run Build

@@ -13,7 +13,9 @@ API Schema definition file representing the core Ed-Fi Data Standard, without ex
 2. Run `./build.ps1 -Version x.y.z` to test the NuGet package build process
 3. Run `./build.ps1 -Version x.y.z -Publish` to push to Azure Artifacts
 
-The `dependencies`, `*-swagger`, and `xsd` files are compressed into [json-and-xsd-5.1.0.zip](./json-and-xsd-5.1.0.zip). Unzip that file into this directory. This is not the long term process; in the long-term, so this zip should never be committed to the `main` branch.
+The `dependencies`, `*-swagger`, and `xsd` files are compressed into [json-and-xsd-5.1.0.zip](./json-and-xsd-5.1.0.zip).
+Unzip that file into this directory. This is not the long term process; in the long-term, so this zip should never be
+committed to the `main` branch.
 
 ## Legal Information
 
