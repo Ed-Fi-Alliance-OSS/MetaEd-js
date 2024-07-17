@@ -17,6 +17,8 @@ param (
 
 $solutionRoot = "$PSScriptRoot"
 $defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
+$applicationRoot = "$solutionRoot/"
+$projectName = "EdFi.DataManagementService.Frontend.AspNetCore"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 #&dotnet build -c release -p:Version=$Version
@@ -78,10 +80,11 @@ function PublishApi {
 }
 
 function Invoke-UnzipFile {    
-    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip" -OutFile json-and-xsd-5.1.0.zip
-    Expand-Archive json-and-xsd-5.1.0.zip
-    Move-Item -Path ./json-and-xsd-5.1.0/* -Destination $solutionRoot
-    Remove-Item -Path ./json-and-xsd-5.1.0/
+    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/$Version-xsd-and-metadata.zip" `
+        -OutFile json-and-xsd-$Version.zip
+    Expand-Archive json-and-xsd-$Version.zip
+    Move-Item -Path ./json-and-xsd-$Version/* -Destination $solutionRoot
+    Remove-Item -Path ./json-and-xsd-$Version/
 }
 
 function PushPackage {
@@ -95,7 +98,7 @@ function PushPackage {
         }
 
         if (-not $PackageFile) {
-            $PackageFile = "$PSScriptRoot/$packageName.$DMSVersion.nupkg"
+            $PackageFile = "$PSScriptRoot/$packageName.$Version.nupkg"
         }
 
         if ($DryRun) {
@@ -119,6 +122,18 @@ function Invoke-Build {
     Invoke-Step { Compile }
 }
 
+function Invoke-BuildPackage {
+    Invoke-Step { BuildPackage }
+}
+
+function BuildPackage {
+    $mainPath = "$applicationRoot/$projectName"
+    $projectPath = "$mainPath/$projectName.csproj"
+    $nugetSpecPath = "$mainPath/publish/$projectName.nuspec"
+
+    RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version $nugetSpecPath
+}
+
 Invoke-Main {
     #if ($IsLocalBuild) {
     #    $nugetExePath = Install-NugetCli
@@ -129,6 +144,7 @@ Invoke-Main {
         Build { Invoke-Build }
         Unzip { Invoke-UnzipFile }
         BuildAndPublish { Invoke-Build }
+        Package { Invoke-BuildPackage }
         default { throw "Command '$Command' is not recognized" }
     }
 }

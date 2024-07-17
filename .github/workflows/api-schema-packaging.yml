@@ -31,8 +31,8 @@ jobs:
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build
       
-      #- name: Package
-      #  run: ./eng/ApiSchema/build.ps1 Package
+      - name: API Schema Package
+        run: ./eng/ApiSchema/build.ps1 Package
       
       #- name: Publish Package
       #  run: ./eng/ApiSchema/build.ps1 Publish
