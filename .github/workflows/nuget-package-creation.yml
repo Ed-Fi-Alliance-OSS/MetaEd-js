@@ -30,8 +30,8 @@ jobs:
         shell: pwsh
         run: ./eng/ApiSchema/build.ps1 Unzip
 
-      #- name: Run Build
-      #  run: ./eng/ApiSchema/build.ps1 Build
+      - name: Run Build
+        run: ./eng/ApiSchema/build.ps1 Build
       
       #- name: Package
       #  run: ./eng/ApiSchema/build.ps1 Package
