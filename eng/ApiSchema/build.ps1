@@ -52,10 +52,14 @@ function Compile {
 
 function PublishApi {
     Invoke-Execute {
-        $project = "$applicationRoot/$projectName/"
+        $project = "$applicationRoot"
         $outputPath = "$project/publish"
         dotnet publish $project -c $Configuration -o $outputPath --nologo
     }
+
+    Write-Output "Building Package ($Version)"
+    $mainPath = "$applicationRoot"
+    $projectPath = "$mainPath/$projectName.csproj"
 }
 
 function Invoke-UnzipFile {    
