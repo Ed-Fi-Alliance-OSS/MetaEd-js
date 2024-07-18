@@ -1,5 +1,10 @@
 name: API Schema Packaging and Publishing
+
 on:
+  push:
+    #For Testing purposes only, this need to
+    branches:
+      - main  
   workflow_dispatch:
     inputs:
       debug_enabled:
