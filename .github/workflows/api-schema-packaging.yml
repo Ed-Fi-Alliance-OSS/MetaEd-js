@@ -1,8 +1,5 @@
 name: API Schema Packaging and Publishing
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -32,7 +29,16 @@ jobs:
         run: ./eng/ApiSchema/build.ps1 Build
       
       - name: API Schema Package
-        run: ./eng/ApiSchema/build.ps1 Package
+        run: ./eng/ApiSchema/build.ps1 Package 1.0.${{ github.run_id }}
       
       - name: Publish Package
-        run: ./eng/ApiSchema/build.ps1 BuildAndPublish
+        run: ./eng/ApiSchema/build.ps1 BuildAndPublish 1.0.${{ github.run_id }}
+
+      #- name: Upload Package as Artifact
+      # if: success()
+      #  uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
+      #  with:
+      #    name: "${{ env.PACKAGE_NAME }}-NuGet"
+      #    path: ${{ github.workspace }}/*.nupkg
+      #    if-no-files-found: error
+      #    retention-days: 30        
