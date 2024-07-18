@@ -4,12 +4,8 @@ param (
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip", "Package")]
      $Command = "Build",
 
-    #[Parameter(Mandatory=$true)]
     [String]
     $Version="5.1.0",
-
-    #[Switch]
-    #$Publish,
 
     [ValidateSet("Debug", "Release")]
     $Configuration = "Debug"
@@ -20,15 +16,6 @@ $defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
 $projectName = "EdFi.ApiSchema"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
-
-#&dotnet build -c release -p:Version=$Version
-#&dotnet pack -c release -p:PackageVersion=$Version -o .
-
-#if ($Publish) {
-#    # Must have https://github.com/microsoft/artifacts-credprovider#azure-artifacts-credential-provider
-
-#    dotnet nuget push --source "EdFi" --api-key az "EdFi.ApiSchema.$($Version).nupkg" --interactive
-#}
 
 function Restore {
     Invoke-Execute { dotnet restore $defaultSolution }
@@ -45,8 +32,6 @@ function Invoke-Clean {
 function Compile {
     Invoke-Execute {
         dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
-        #&dotnet build -c release -p:Version=$Version
-        #&dotnet pack -c release -p:PackageVersion=$Version -o .
     }
 }
 
@@ -56,10 +41,6 @@ function PublishApi {
         $outputPath = "$project/publish"
         dotnet publish $project -c $Configuration -o $outputPath --nologo
     }
-
-    Write-Output "Building Package ($Version)"
-    $mainPath = "$applicationRoot"
-    $projectPath = "$mainPath/$projectName.csproj"
 }
 
 function Invoke-UnzipFile {    
@@ -90,7 +71,8 @@ function PushPackage {
         else {
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
 
-            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source $EdFiNuGetFeed
+            #dotnet nuget push --source "EdFi" --api-key az "EdFi.ApiSchema.$($Version).nupkg" --interactive
+            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source $EdFiNuGetFeed            
         }
     }
 }
@@ -118,12 +100,6 @@ function RunNuGetPack {
         $PackageVersion
     )
 
-    #$copyrightYear = ${(Get-Date).year)}
-    # NU5100 is the warning about DLLs outside of a "lib" folder. We're
-    # deliberately using that pattern, therefore we bypass the
-    # warning.
-    
-    #&dotnet pack -c release -p:PackageVersion=$Version -o .
     dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot 
 }
 
@@ -142,10 +118,6 @@ function Invoke-Publish {
 }
 
 Invoke-Main {
-    #if ($IsLocalBuild) {
-    #    $nugetExePath = Install-NugetCli
-    #    Set-Alias nuget $nugetExePath -Scope Global -Verbose
-    #}
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
