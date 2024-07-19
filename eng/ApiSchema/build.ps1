@@ -2,10 +2,10 @@
 param (
     [string]
     [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip", "Package")]
-     $Command = "Build",
+    $Command = "Build",
 
     [String]
-    $Version="5.1.0",
+    $Version="1.0.0",
 
     [ValidateSet("Debug", "Release")]
     $Configuration = "Debug",
@@ -22,9 +22,9 @@ param (
 )
 
 $solutionRoot = "$PSScriptRoot"
-$defaultSolution = "$solutionRoot/EdFi.ApiSchema.sln"
+$defaultSolution = "$solutionRoot/EdFi.DataStandard51.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
-$projectName = "EdFi.ApiSchema"
+$projectName = "EdFi.DataStandard51.ApiSchema"
 Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 function Restore {
