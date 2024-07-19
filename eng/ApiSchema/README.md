@@ -10,8 +10,8 @@ API Schema definition file representing the core Ed-Fi Data Standard, without ex
       2. Update the version at the top, should be `5.1.0`, not `3`.
    4. `./resources-swagger.json`... see notes above.
    5. `./xsd/` - all of the XSD files from the ODS/API
-2. Run `./build.ps1 -Version x.y.z` to test the NuGet package build process
-3. Run `./build.ps1 -Version x.y.z -Publish` to push to Azure Artifacts
+2. Run `./build.ps1 Package -Version x.y.z` to test the NuGet package build process
+3. Run `./build.ps1 PushPackage -Version x.y.z` to push to Azure Artifacts
 
 The `dependencies`, `*-swagger`, and `xsd` files for a given Data Standard version are
 compressed into a zip file stored in Azure. Unzip that file into this directory before

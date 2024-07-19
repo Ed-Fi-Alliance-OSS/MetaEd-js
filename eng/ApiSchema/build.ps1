@@ -8,7 +8,17 @@ param (
     $Version="5.1.0",
 
     [ValidateSet("Debug", "Release")]
-    $Configuration = "Debug"
+    $Configuration = "Debug",
+
+    # Ed-Fi's official NuGet package feed for package download and distribution.
+    # This value needs to be replaced with the config file
+    [string]
+    $EdFiNuGetFeed = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json",
+    
+    # API key for accessing the feed above. Only required with with the Push
+    # command.
+    [string]
+    $NuGetApiKey
 )
 
 $solutionRoot = "$PSScriptRoot"
@@ -71,7 +81,6 @@ function PushPackage {
         else {
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
 
-            #dotnet nuget push --source "EdFi" --api-key az "EdFi.ApiSchema.$($Version).nupkg" --interactive
             dotnet nuget push $PackageFile --api-key $NuGetApiKey --source $EdFiNuGetFeed            
         }
     }
@@ -125,8 +134,9 @@ Invoke-Main {
         BuildAndPublish { 
             Invoke-Build             
             Invoke-Publish
-        }
+        }        
         Package { Invoke-BuildPackage }
+        PushPackage{ Invoke-PushPackage }
         default { throw "Command '$Command' is not recognized" }
     }
 }

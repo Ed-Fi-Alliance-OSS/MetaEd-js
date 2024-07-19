@@ -33,7 +33,7 @@ jobs:
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build
       
-      - name: API Schema Package
+      - name: API Schema Package - Create NuGet File
         run: ./eng/ApiSchema/build.ps1 Package "1.0.${{ github.run_number }}"
       
       - name: Publish Package
@@ -46,4 +46,16 @@ jobs:
           name: "EdFi.ApiSchema-NuGet.1.0.${{ github.run_number }}"
           path: ./eng/ApiSchema/*.nupkg
           if-no-files-found: error
-          retention-days: 30          
+          retention-days: 30
+
+      - name: Push Package to Azure Artifacts
+        run: |
+          $artifact = (Get-ChildItem -Path $_ -Name -Include *.nupkg)
+          $arguments = @{
+            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
+          }
+
+          $artifact | ForEach-Object {
+              $arguments.PackageFile = $_
+              ./build.ps1 PushPackage @arguments
+          }          
