@@ -34,10 +34,10 @@ jobs:
         run: ./eng/ApiSchema/build.ps1 Build
       
       - name: API Schema Package
-        run: ./eng/ApiSchema/build.ps1 Package "1.0.${{ github.run_id }}"
+        run: ./eng/ApiSchema/build.ps1 Package "1.0.${{ github.run_number }}"
       
       - name: Publish Package
-        run: ./eng/ApiSchema/build.ps1 BuildAndPublish "1.0.${{ github.run_id }}"
+        run: ./eng/ApiSchema/build.ps1 BuildAndPublish "1.0.${{ github.run_number }}"
 
       #- name: Upload Package as Artifact
       # if: success()
