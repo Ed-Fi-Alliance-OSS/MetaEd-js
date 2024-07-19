@@ -17,7 +17,7 @@ on:
           - "true"
 
 jobs:
-  api-schema-packagin:
+  api-schema-packaging:
     name: API Schema Packaging
     runs-on: ubuntu-latest
     defaults:
@@ -48,14 +48,33 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  publish-package:
+    name: Publish NuGet Package
+    needs: api-schema-packaging
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Get Artifact
+        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 #4.1.1
+        with:
+          name: ${{ env.PACKAGE_NAME }}-NuGet
+
+      - name: Install-credential-handler
+        run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
+
       - name: Push Package to Azure Artifacts
         run: |
-          $artifact = (Get-ChildItem -Path $_ -Name -Include *.nupkg)
-          $arguments = @{
-            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
-          }
+         $artifact = (Get-ChildItem -Path $_ -Name -Include *.nupkg)
+         $arguments = @{
+           EdFiNuGetFeed = "nuget.config"
+           NuGetApiKey = "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}"
+         }
 
-          $artifact | ForEach-Object {
-              $arguments.PackageFile = $_
-              ./build.ps1 PushPackage @arguments
-          }          
+         $artifact | ForEach-Object {
+             $arguments.PackageFile = $_
+             ./build.ps1 PushPackage @arguments
+          }                 

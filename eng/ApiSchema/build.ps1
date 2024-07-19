@@ -81,7 +81,7 @@ function PushPackage {
         else {
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
 
-            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source $EdFiNuGetFeed            
+            dotnet nuget push $PackageFile --api-key $NuGetApiKey
         }
     }
 }
@@ -119,7 +119,6 @@ function BuildPackage {
 
     RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version
 }
-
 
 function Invoke-Publish {
     Write-Output "Building Version ($Version)"
