@@ -54,7 +54,7 @@ function PublishApi {
 }
 
 function Invoke-UnzipFile {    
-    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/$Version-xsd-and-metadata.zip" `
+    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip" `
         -OutFile json-and-xsd-$Version.zip
     Expand-Archive json-and-xsd-$Version.zip
     Move-Item -Path ./json-and-xsd-$Version/* -Destination $solutionRoot
