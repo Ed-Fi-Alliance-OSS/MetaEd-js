@@ -100,7 +100,7 @@ function RunNuGetPack {
         $PackageVersion
     )
 
-    dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot 
+    dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot
 }
 
 function BuildPackage {
