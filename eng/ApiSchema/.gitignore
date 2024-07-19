@@ -1,5 +1,6 @@
 *.json
 *.xsd
+*.nupkg
 
 # Build results
 [Dd]ebug/
