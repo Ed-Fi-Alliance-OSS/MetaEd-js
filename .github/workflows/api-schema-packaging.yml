@@ -1,10 +1,6 @@
 name: API Schema Packaging and Publishing
 
-on:
-  #For Testing purposes only, this need to
-  pull_request:
-    branches:
-      - main      
+on: 
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -61,7 +57,7 @@ jobs:
       - name: Get Artifact
         uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 #4.1.1
         with:
-          name: ${{ env.PACKAGE_NAME }}-NuGet
+          name: EdFi.ApiSchema-NuGet.1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
