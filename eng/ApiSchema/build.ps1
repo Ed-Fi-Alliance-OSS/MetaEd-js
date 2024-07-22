@@ -13,7 +13,8 @@ param (
     # Ed-Fi's official NuGet package feed for package download and distribution.
     # This value needs to be replaced with the config file
     [string]
-    $EdFiNuGetFeed = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json",
+    #$EdFiNuGetFeed = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json",
+    $EdFiNuGetFeed,
     
     # API key for accessing the feed above. Only required with with the Push
     # command.
@@ -87,7 +88,7 @@ function PushPackage {
         else {
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
 
-            dotnet nuget push $PackageFile --api-key $NuGetApiKey
+            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source $EdFiNuGetFeed
         }
     }
 }
