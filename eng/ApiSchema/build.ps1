@@ -87,8 +87,8 @@ function PushPackage {
         }
         else {
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
-
-            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source "EdFi" --config-file nuget.config
+            Get-ChildItem
+            dotnet nuget push $PackageFile --source "EdFi" --api-key $NuGetApiKey 
         }
     }
 }
