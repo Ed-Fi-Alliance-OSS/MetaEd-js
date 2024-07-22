@@ -74,9 +74,9 @@ function PushPackage {
             throw "Cannot push a NuGet package without providing an API key in the `NuGetApiKey` argument."
         }
 
-        if (-not $EdFiNuGetFeed) {
-            throw "Cannot push a NuGet package without providing a feed in the `EdFiNuGetFeed` argument."
-        }
+        #if (-not $EdFiNuGetFeed) {
+        #    throw "Cannot push a NuGet package without providing a feed in the `EdFiNuGetFeed` argument."
+        #}
 
         if (-not $PackageFile) {
             $PackageFile = "$PSScriptRoot/$packageName.$Version.nupkg"
