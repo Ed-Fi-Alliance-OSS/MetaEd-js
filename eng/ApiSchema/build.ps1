@@ -1,7 +1,7 @@
 [CmdLetBinding()]
 param (
     [string]
-    [ValidateSet("Clean", "Build", "BuildAndPublish", "Push", "Unzip", "Package")]
+    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package")]
     $Command = "Build",
 
     [String]
