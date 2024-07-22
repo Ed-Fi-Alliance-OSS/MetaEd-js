@@ -74,10 +74,6 @@ function PushPackage {
             throw "Cannot push a NuGet package without providing an API key in the `NuGetApiKey` argument."
         }
 
-        #if (-not $EdFiNuGetFeed) {
-        #    throw "Cannot push a NuGet package without providing a feed in the `EdFiNuGetFeed` argument."
-        #}
-
         if (-not $PackageFile) {
             $PackageFile = "$PSScriptRoot/$packageName.$Version.nupkg"
         }
@@ -86,9 +82,10 @@ function PushPackage {
             Write-Info "Dry run enabled, not pushing package."
         }
         else {
+            Write-Info ("Setting the nuget.config file")
+            dotnet restore --configfile /eng/ApiSchema/nuget.config
+
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
-            Get-ChildItem
-            dotnet restore --configfile /eng/ApiSchema/nuget.config,
             dotnet nuget push $PackageFile --source "EdFi" --api-key $NuGetApiKey 
         }
     }
