@@ -51,7 +51,8 @@ jobs:
   publish-package:
     name: Publish NuGet Package
     needs: api-schema-packaging
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         shell: pwsh
