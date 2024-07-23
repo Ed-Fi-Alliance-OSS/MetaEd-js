@@ -13,8 +13,7 @@ param (
     # Ed-Fi's official NuGet package feed for package download and distribution.
     # This value needs to be replaced with the config file
     [string]
-    #$EdFiNuGetFeed = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json",
-    $EdFiNuGetFeed,
+    $EdFiNuGetFeed = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json",
     
     # API key for accessing the feed above. Only required with with the Push
     # command.
@@ -74,6 +73,10 @@ function PushPackage {
             throw "Cannot push a NuGet package without providing an API key in the `NuGetApiKey` argument."
         }
 
+        if (-not $EdFiNuGetFeed) {
+            throw "Cannot push a NuGet package without providing a feed in the `EdFiNuGetFeed` argument."
+        }
+
         if (-not $PackageFile) {
             $PackageFile = "$PSScriptRoot/$packageName.$Version.nupkg"
         }
@@ -82,12 +85,8 @@ function PushPackage {
             Write-Info "Dry run enabled, not pushing package."
         }
         else {
-            #Write-Info ("Setting the nuget.config file")
-            #dotnet restore ./eng/ApiSchema/EdFi.DataStandard51.ApiSchema.sln --configfile ./eng/ApiSchema/NuGet.Config
-
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
-            #dotnet nuget push $PackageFile --source "EdFi" --api-key $NuGetApiKey 
-            dotnet nuget push $PackageFile --api-key $NuGetApiKey --source "EdFi"
+            dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
         }
     }
 }
