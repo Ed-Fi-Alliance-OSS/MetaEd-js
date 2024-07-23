@@ -24,7 +24,10 @@ param (
     # applies with the Push command. If not set, then the script looks for a
     # NuGet package corresponding to the provided $DMSVersion and $BuildCounter.
     [string]
-    $PackageFile
+    $PackageFile,
+
+    [switch]
+    $DryRun
 )
 
 $solutionRoot = "$PSScriptRoot"
