@@ -83,10 +83,11 @@ function PushPackage {
         }
         else {
             Write-Info ("Setting the nuget.config file")
-            dotnet restore ./eng/ApiSchema/EdFi.DataStandard51.ApiSchema.sln --configfile ./eng/ApiSchema/nuget.config
+            #dotnet restore ./eng/ApiSchema/EdFi.DataStandard51.ApiSchema.sln --configfile ./eng/ApiSchema/nuget.config
 
             Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
-            dotnet nuget push $PackageFile --source "EdFi" --api-key $NuGetApiKey 
+            #dotnet nuget push $PackageFile --source "EdFi" --api-key $NuGetApiKey 
+            dotnet nuget push $PackageFile --api-key $NuGetApiKey 
         }
     }
 }
