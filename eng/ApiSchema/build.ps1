@@ -68,6 +68,22 @@ function Invoke-UnzipFile {
 }
 
 function PushPackage {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]
+        $EdFiNuGetFeed,
+        
+        [Parameter(Mandatory=$true)]
+        [string]
+        $NuGetApiKey,
+    
+        [string]
+        $PackageFile,
+
+        [switch]
+        $DryRun
+    )
+
     Invoke-Execute {
         if (-not $NuGetApiKey) {
             throw "Cannot push a NuGet package without providing an API key in the `NuGetApiKey` argument."
@@ -78,7 +94,7 @@ function PushPackage {
         }
 
         if (-not $PackageFile) {
-            $PackageFile = "$PSScriptRoot/$packageName.$Version.nupkg"
+            $PackageFile = "$PSScriptRoot/$projectName.$Version.nupkg"
         }
 
         if ($DryRun) {
@@ -92,7 +108,14 @@ function PushPackage {
 }
 
 function Invoke-PushPackage {
-    Invoke-Step { PushPackage }
+    Invoke-Step { 
+        PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
+    } -Arguments @{
+        EdFiNuGetFeed = $EdFiNuGetFeed;
+        NuGetApiKey = $NuGetApiKey;
+        PackageFile = $PackageFile;
+        DryRun = $DryRun;
+    }
 }
 
 function Invoke-Build {

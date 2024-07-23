@@ -37,8 +37,13 @@ function Invoke-Execute {
 
 function Invoke-Step {
     param (
+        [Parameter(Mandatory=$true)]
         [ScriptBlock]
-        $block
+        $block,
+
+
+        [string]
+        $Arguments = @{}
     )
 
     $command = $block.ToString().Trim()
@@ -46,7 +51,7 @@ function Invoke-Step {
     Write-NewLine
     Write-Command $command
 
-    &$block
+    &$block $Arguments
 }
 
 function Invoke-Main {
