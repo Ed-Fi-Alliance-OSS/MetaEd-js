@@ -12,6 +12,9 @@ on:
           - "false"
           - "true"
 
+env:
+  ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
+
 jobs:
   api-schema-packaging:
     name: API Schema Packaging
@@ -64,12 +67,14 @@ jobs:
 
       - name: Push Package to Azure Artifacts
         run: |
-         $artifact = (Get-ChildItem -Path $_ -Name -Include *.nupkg)
+         $packageDir = "./eng/ApiSchema"
+         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
+         
          $arguments = @{
-           NuGetApiKey = "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}"
+           NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
          }
 
-         $artifact | ForEach-Object {
-             $arguments.PackageFile = $_
+         $artifacts | ForEach-Object {
+             $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
             ./eng/ApiSchema/build.ps1 PushPackage @arguments
-          }                 
+          }    
