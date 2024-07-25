@@ -2,7 +2,6 @@ import { MetaEdEnvironment, EnhancerResult, Namespace, versionSatisfies, PluginE
 import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
-  changeQueryIndicated,
   applyCreateDeleteTrackingTableEnhancement,
   applyCreateDeleteTrackingTriggerEnhancements,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
@@ -15,7 +14,7 @@ const enhancerName = 'SchoolYearEnumerationEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (changeQueryIndicated(metaEd) && versionSatisfies(targetTechnologyVersion, '>=6.0.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '>=6.0.0')) {
     const edfiNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
     if (edfiNamespace == null) return { enhancerName, success: false };
 

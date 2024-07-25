@@ -73,6 +73,8 @@ AddColumnChangeVersion-v6.0.sql
 sample-AddColumnChangeVersion-v6.0.sql
 AddIndexChangeVersion-v5.0.sql
 AddIndexChangeVersion-v6.0.sql
+IndirectUpdateTrigger-v7.3-Alliance.sql
+IndirectUpdateTrigger-v7.3.sql
 
 CreatedByOwnership-v5.0.sql
 CreatedByOwnership-v5.0-Alliance.sql

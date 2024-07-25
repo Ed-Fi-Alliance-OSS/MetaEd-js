@@ -19,396 +19,11 @@ import { enhance } from '../../src/enhancer/AssociationSubclassChangeQueryEnhanc
 import { metaEdEnvironmentForApiVersion, newCoreNamespace, newExtensionNamespace } from './TestHelper';
 import { PLUGIN_NAME } from '../../src/PluginHelper';
 
-describe('when enhancing core associationSubclass targeting 2.3 ODS/API', (): void => {
+describe('when enhancing core associationSubclass targeting 7.2 ODS/API', (): void => {
   const namespaceName = 'EdFi';
   const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('2.3.0');
-  const namespace: Namespace = newCoreNamespace();
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing core associationSubclass targeting 2.5 ODS/API', (): void => {
-  const namespaceName = 'EdFi';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('2.5.0');
-  const namespace: Namespace = newCoreNamespace();
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing extension associationSubclass targeting 2.5 ODS/API', (): void => {
-  const namespaceName = 'Extension';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('2.5.0');
-  const namespace: Namespace = newExtensionNamespace(namespaceName);
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing core associationSubclass targeting 3.1 ODS/API', (): void => {
-  const namespaceName = 'EdFi';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.1.0');
-  const namespace: Namespace = newCoreNamespace();
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing extension associationSubclass targeting 3.1 ODS/API', (): void => {
-  const namespaceName = 'Extension';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.1.0');
-  const namespace: Namespace = newExtensionNamespace(namespaceName);
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing core associationSubclass targeting 3.3 ODS/API', (): void => {
-  const namespaceName = 'EdFi';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.3.0');
-  const namespace: Namespace = newCoreNamespace();
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing extension associationSubclass targeting 3.3 ODS/API', (): void => {
-  const namespaceName = 'Extension';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const pkColumnName = 'PkColumnName';
-
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.3.0');
-  const namespace: Namespace = newExtensionNamespace(namespaceName);
-  metaEd.namespace.set(namespace.namespaceName, namespace);
-  addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
-
-  beforeAll(() => {
-    const associationSubclass: AssociationSubclass = Object.assign(newAssociationSubclass(), {
-      metaEdName,
-      namespace,
-      data: {
-        edfiOdsRelational: {
-          odsEntityTable: {
-            ...newTable(),
-            name: tableName,
-            nameComponents: [tableName],
-            data: { edfiOdsPostgresql: { tableName } },
-            schema: namespaceName,
-            columns: [
-              { ...newColumn(), data: { edfiOdsPostgresql: { columnName: pkColumnName } }, isPartOfPrimaryKey: true },
-            ],
-            foreignKeys: [
-              {
-                ...newForeignKey(),
-                sourceReference: { ...newForeignKeySourceReference(), isSubclassRelationship: true },
-                data: { edfiOdsPostgresql: { parentTableColumnNames: [], foreignTableColumnNames: [] } },
-              },
-            ],
-          },
-        },
-      },
-    });
-    namespace.entity.associationSubclass.set(associationSubclass.metaEdName, associationSubclass);
-
-    enhance(metaEd);
-  });
-
-  it('should not create delete tracking table', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
-    expect(deleteTrackingTables).toHaveLength(0);
-  });
-
-  it('should not create delete tracking trigger', (): void => {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
-    const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
-    expect(deleteTrackingTriggers).toHaveLength(0);
-  });
-});
-
-describe('when enhancing core associationSubclass targeting 3.4 ODS/API', (): void => {
-  const namespaceName = 'EdFi';
-  const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const primaryKeyName = 'PrimaryKeyName';
+  const tableName = 'tablename';
+  const primaryKeyName = 'primarykeyname';
   const pkColumnName = 'PkColumnName';
 
   const tableNameGroup: TableNameGroup = {
@@ -416,7 +31,7 @@ describe('when enhancing core associationSubclass targeting 3.4 ODS/API', (): vo
     nameElements: [{ ...newTableNameComponent(), name: tableName }],
   };
 
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.4.0');
+  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('7.2.0');
   const namespace: Namespace = newCoreNamespace();
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
@@ -457,7 +72,7 @@ describe('when enhancing core associationSubclass targeting 3.4 ODS/API', (): vo
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
     const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
     expect(deleteTrackingTables).toHaveLength(1);
-    expect(deleteTrackingTables[0].schema).toBe(`tracked_deletes_${namespaceName}`);
+    expect(deleteTrackingTables[0].schema).toBe(`tracked_changes_${namespaceName}`);
     expect(deleteTrackingTables[0].tableName).toBe(tableName);
     expect(deleteTrackingTables[0].columns).toHaveLength(3);
     expect(deleteTrackingTables[0].columns[0].data.edfiOdsPostgresql.columnName).toBe(pkColumnName);
@@ -472,11 +87,11 @@ describe('when enhancing core associationSubclass targeting 3.4 ODS/API', (): vo
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
     const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
     expect(deleteTrackingTriggers).toHaveLength(1);
-    expect(deleteTrackingTriggers[0].triggerSchema).toBe(`tracked_deletes_${namespaceName}`);
-    expect(deleteTrackingTriggers[0].triggerName).toBe(`${tableName}_TR_DelTrkg`);
+    expect(deleteTrackingTriggers[0].triggerSchema).toBe(`tracked_changes_${namespaceName}`);
+    expect(deleteTrackingTriggers[0].triggerName).toBe(`${tableName}_deleted`);
     expect(deleteTrackingTriggers[0].targetTableSchema).toBe(namespaceName);
     expect(deleteTrackingTriggers[0].targetTableName).toBe(tableName);
-    expect(deleteTrackingTriggers[0].deleteTrackingTableSchema).toBe(`tracked_deletes_${namespaceName}`);
+    expect(deleteTrackingTriggers[0].deleteTrackingTableSchema).toBe(`tracked_changes_${namespaceName}`);
     expect(deleteTrackingTriggers[0].deleteTrackingTableName).toBe(`${tableName}`);
     expect(deleteTrackingTriggers[0].primaryKeyColumnNames).toHaveLength(1);
     expect(deleteTrackingTriggers[0].primaryKeyColumnNames[0]).toBe(pkColumnName);
@@ -485,11 +100,11 @@ describe('when enhancing core associationSubclass targeting 3.4 ODS/API', (): vo
   });
 });
 
-describe('when enhancing extension associationSubclass targeting 3.4 ODS/API', (): void => {
+describe('when enhancing extension associationSubclass targeting 7.2 ODS/API', (): void => {
   const namespaceName = 'Extension';
   const metaEdName = 'MetaEdName';
-  const tableName = 'TableName';
-  const primaryKeyName = 'PrimaryKeyName';
+  const tableName = 'tablename';
+  const primaryKeyName = 'primarykeyname';
   const pkColumnName = 'PkColumnName';
 
   const tableNameGroup: TableNameGroup = {
@@ -497,7 +112,7 @@ describe('when enhancing extension associationSubclass targeting 3.4 ODS/API', (
     nameElements: [{ ...newTableNameComponent(), name: tableName }],
   };
 
-  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('3.4.0');
+  const metaEd: MetaEdEnvironment = metaEdEnvironmentForApiVersion('7.2.0');
   const namespace: Namespace = newExtensionNamespace(namespaceName);
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiOdsChangeQueryEntityRepositoryTo(metaEd, PLUGIN_NAME);
@@ -538,7 +153,7 @@ describe('when enhancing extension associationSubclass targeting 3.4 ODS/API', (
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
     const deleteTrackingTables = deleteTrackingTableEntities(plugin, namespace);
     expect(deleteTrackingTables).toHaveLength(1);
-    expect(deleteTrackingTables[0].schema).toBe(`tracked_deletes_${namespaceName}`);
+    expect(deleteTrackingTables[0].schema).toBe(`tracked_changes_${namespaceName}`);
     expect(deleteTrackingTables[0].tableName).toBe(tableName);
     expect(deleteTrackingTables[0].columns).toHaveLength(3);
     expect(deleteTrackingTables[0].columns[0].data.edfiOdsPostgresql.columnName).toBe(pkColumnName);
@@ -553,11 +168,11 @@ describe('when enhancing extension associationSubclass targeting 3.4 ODS/API', (
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, PLUGIN_NAME);
     const deleteTrackingTriggers = deleteTrackingTriggerEntities(plugin, namespace);
     expect(deleteTrackingTriggers).toHaveLength(1);
-    expect(deleteTrackingTriggers[0].triggerSchema).toBe(`tracked_deletes_${namespaceName}`);
-    expect(deleteTrackingTriggers[0].triggerName).toBe(`${tableName}_TR_DelTrkg`);
+    expect(deleteTrackingTriggers[0].triggerSchema).toBe(`tracked_changes_${namespaceName}`);
+    expect(deleteTrackingTriggers[0].triggerName).toBe(`${tableName}_deleted`);
     expect(deleteTrackingTriggers[0].targetTableSchema).toBe(namespaceName);
     expect(deleteTrackingTriggers[0].targetTableName).toBe(tableName);
-    expect(deleteTrackingTriggers[0].deleteTrackingTableSchema).toBe(`tracked_deletes_${namespaceName}`);
+    expect(deleteTrackingTriggers[0].deleteTrackingTableSchema).toBe(`tracked_changes_${namespaceName}`);
     expect(deleteTrackingTriggers[0].deleteTrackingTableName).toBe(`${tableName}`);
     expect(deleteTrackingTriggers[0].primaryKeyColumnNames).toHaveLength(1);
     expect(deleteTrackingTriggers[0].primaryKeyColumnNames[0]).toBe(pkColumnName);

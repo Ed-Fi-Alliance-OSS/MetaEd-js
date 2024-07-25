@@ -1,0 +1,32 @@
+{{#if useLicenseHeader}}
+{{#if triggers}}
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+{{/if}}
+{{/if}}
+{{#triggers}}
+CREATE OR REPLACE FUNCTION {{{mainTableSchema}}}.update_{{{mainTableName}}}_lastmodifieddate()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Check if any volatile foreign key values have changed
+    IF {{#checkForUpdateColumnNames}}NEW.{{{this}}} IS DISTINCT FROM OLD.{{{this}}}
+      {{#unless @last}} OR {{/unless}}{{/checkForUpdateColumnNames}} THEN
+       -- Update the LastModifiedDate in the root table to the current UTC time
+       UPDATE {{{mainTableSchema}}}.{{{mainTableName}}} rt
+       SET LastModifiedDate = NOW()
+       WHERE {{#fkToMainTableColumnNames}}rt.{{{foreignTableColumnName}}} = NEW.{{{parentTableColumnName}}}{{#unless @last}}
+         AND {{/unless}}{{/fkToMainTableColumnNames}};
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_{{{subTableSchema}}}_{{{subTableName}}}_afterupdate
+AFTER UPDATE ON {{{subTableSchema}}}.{{{subTableName}}}
+FOR EACH ROW
+EXECUTE FUNCTION {{{mainTableSchema}}}.update_{{{mainTableName}}}_lastmodifieddate();
+
+{{/triggers}}

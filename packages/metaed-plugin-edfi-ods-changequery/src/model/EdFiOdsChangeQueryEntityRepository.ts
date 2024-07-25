@@ -4,12 +4,14 @@ import { DeleteTrackingTable } from './DeleteTrackingTable';
 import { DeleteTrackingTrigger } from './DeleteTrackingTrigger';
 import { AddColumnChangeVersionForTable } from './AddColumnChangeVersionForTable';
 import { CreateTriggerUpdateChangeVersion } from './CreateTriggerUpdateChangeVersion';
+import { IndirectUpdateCascadeTrigger } from './IndirectUpdateCascadeTrigger';
 
 export interface EdFiOdsChangeQueryEntityRepository {
   deleteTrackingTable: DeleteTrackingTable[];
   deleteTrackingTrigger: DeleteTrackingTrigger[];
   addColumnChangeVersionForTable: AddColumnChangeVersionForTable[];
   createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion[];
+  indirectUpdateCascadeTrigger: IndirectUpdateCascadeTrigger[];
 }
 
 export function newEdFiOdsChangeQueryEntityRepository(): EdFiOdsChangeQueryEntityRepository {
@@ -18,6 +20,7 @@ export function newEdFiOdsChangeQueryEntityRepository(): EdFiOdsChangeQueryEntit
     deleteTrackingTrigger: [],
     addColumnChangeVersionForTable: [],
     createTriggerUpdateChangeVersion: [],
+    indirectUpdateCascadeTrigger: [],
   };
 }
 

@@ -1,7 +1,6 @@
 import { MetaEdEnvironment, ModelBase, EnhancerResult, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { Table, ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
-  changeQueryIndicated,
   tableForModel,
   applyCreateDeleteTrackingTableEnhancement,
   applyCreateDeleteTrackingTriggerEnhancements,
@@ -18,26 +17,25 @@ function domainEntitySuperclassForeignKeyFinder(mainTable: Table): ForeignKey | 
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (changeQueryIndicated(metaEd)) {
-    getAllEntitiesOfType(metaEd, 'domainEntitySubclass').forEach((modelBase: ModelBase) => {
-      applyCreateDeleteTrackingTableEnhancement(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTableModel,
-      );
-      applyCreateDeleteTrackingTriggerEnhancements(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTriggerModel,
-        TARGET_DATABASE_PLUGIN_NAME,
-        domainEntitySuperclassForeignKeyFinder,
-      );
-    });
-  }
+  getAllEntitiesOfType(metaEd, 'domainEntitySubclass').forEach((modelBase: ModelBase) => {
+    applyCreateDeleteTrackingTableEnhancement(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTableModel,
+    );
+    applyCreateDeleteTrackingTriggerEnhancements(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTriggerModel,
+      TARGET_DATABASE_PLUGIN_NAME,
+      domainEntitySuperclassForeignKeyFinder,
+    );
+  });
+
   return {
     enhancerName,
     success: true,

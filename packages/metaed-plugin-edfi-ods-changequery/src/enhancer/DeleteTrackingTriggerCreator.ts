@@ -1,22 +1,13 @@
-import * as R from 'ramda';
 import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
 import { Table, ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { PairedForeignKeyColumnName } from '../model/PairedForeignKeyColumnName';
-import { changeQueryIndicated } from './ChangeQueryIndicator';
-import { pluginEnvironment, deleteTrackingTriggerEntities } from './EnhancerHelper';
+import { pluginEnvironment, deleteTrackingTriggerEntities, pairedForeignKeyColumnNamesFrom } from './EnhancerHelper';
 
 export type SuperclassForeignKeyFinder = (mainTable: Table) => ForeignKey | undefined;
 
 function defaultSuperclassForeignKeyFinder(_mainTable: Table): ForeignKey | undefined {
   return undefined;
-}
-
-function pairUpForeignKeyColumnNames(
-  parentTableColumnName: string,
-  foreignTableColumnName: string,
-): PairedForeignKeyColumnName {
-  return { parentTableColumnName, foreignTableColumnName };
 }
 
 export function applyCreateDeleteTrackingTriggerEnhancements(
@@ -28,7 +19,6 @@ export function applyCreateDeleteTrackingTriggerEnhancements(
   targetDatabasePluginName: string,
   superclassForeignKeyFinder: SuperclassForeignKeyFinder = defaultSuperclassForeignKeyFinder,
 ) {
-  if (!changeQueryIndicated(metaEd)) return;
   if (mainTable == null) return;
 
   const deleteTrackingTriggerModel: DeleteTrackingTrigger = createDeleteTrackingTriggerModel(metaEd, mainTable);
@@ -42,10 +32,9 @@ export function applyCreateDeleteTrackingTriggerEnhancements(
     deleteTrackingTriggerModel.foreignKeyToSuperclass = foreignKeyToSuperclass;
 
     if (foreignKeyToSuperclass.data.edfiOdsChangeQuery == null) foreignKeyToSuperclass.data.edfiOdsChangeQuery = {};
-    const pairedForeignKeyColumnNames: PairedForeignKeyColumnName[] = R.zipWith(
-      pairUpForeignKeyColumnNames,
-      foreignKeyToSuperclass.data[targetDatabasePluginName].parentTableColumnNames,
-      foreignKeyToSuperclass.data[targetDatabasePluginName].foreignTableColumnNames,
+    const pairedForeignKeyColumnNames: PairedForeignKeyColumnName[] = pairedForeignKeyColumnNamesFrom(
+      foreignKeyToSuperclass,
+      targetDatabasePluginName,
     );
     foreignKeyToSuperclass.data.edfiOdsChangeQuery.columnNames = pairedForeignKeyColumnNames.sort((a, b) =>
       a.parentTableColumnName.localeCompare(b.parentTableColumnName),

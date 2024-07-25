@@ -7,7 +7,7 @@ import {
   performCreateTriggerUpdateChangeVersionEnhancement,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
-import { versionSatisfiesForPostgresChangeQuerySupport, changeDataColumnsFor } from './EnhancerHelper';
+import { changeDataColumnsFor } from './EnhancerHelper';
 
 const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
@@ -31,9 +31,8 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (versionSatisfiesForPostgresChangeQuerySupport(metaEd)) {
-    performCreateTriggerUpdateChangeVersionEnhancement(metaEd, PLUGIN_NAME, createTriggerModel);
-  }
+  performCreateTriggerUpdateChangeVersionEnhancement(metaEd, PLUGIN_NAME, createTriggerModel);
+
   return {
     enhancerName,
     success: true,

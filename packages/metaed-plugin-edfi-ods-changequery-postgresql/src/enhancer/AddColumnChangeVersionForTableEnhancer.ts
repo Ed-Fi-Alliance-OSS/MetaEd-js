@@ -6,26 +6,24 @@ import {
   performAddColumnChangeVersionForTableEnhancement,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
-import { versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper';
 
 const enhancerName = 'AddColumnChangeVersionForTableEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (versionSatisfiesForPostgresChangeQuerySupport(metaEd)) {
-    const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-    const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
-    const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
-      ...newAddColumnChangeVersionForTable(),
-      schema: table.schema,
-      tableName: table.data.edfiOdsPostgresql.tableName,
-      tableNameLowercased: (table.data.edfiOdsPostgresql.tableName as string).toLowerCase(),
-      tableNameHash: table.data.edfiOdsPostgresql.truncatedTableNameHash,
-      isStyle6dot0,
-    });
+  const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
+    ...newAddColumnChangeVersionForTable(),
+    schema: table.schema,
+    tableName: table.data.edfiOdsPostgresql.tableName,
+    tableNameLowercased: (table.data.edfiOdsPostgresql.tableName as string).toLowerCase(),
+    tableNameHash: table.data.edfiOdsPostgresql.truncatedTableNameHash,
+    isStyle6dot0,
+  });
 
-    performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);
-  }
+  performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);
+
   return {
     enhancerName,
     success: true,

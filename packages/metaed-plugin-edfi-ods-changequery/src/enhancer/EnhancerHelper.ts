@@ -1,3 +1,4 @@
+import R from 'ramda';
 import {
   getAllEntitiesOfType,
   MetaEdEnvironment,
@@ -8,14 +9,33 @@ import {
   PluginEnvironment,
   SemVer,
 } from '@edfi/metaed-core';
-import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Column, ForeignKey, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { AddColumnChangeVersionForTable } from '../model/AddColumnChangeVersionForTable';
 import { CreateTriggerUpdateChangeVersion } from '../model/CreateTriggerUpdateChangeVersion';
 import { EdFiOdsChangeQueryEntityRepository } from '../model/EdFiOdsChangeQueryEntityRepository';
-import { changeQueryIndicated } from './ChangeQueryIndicator';
 import { applyCreateDeleteTrackingTriggerEnhancements } from './DeleteTrackingTriggerCreator';
+import { PairedForeignKeyColumnName } from '../model/PairedForeignKeyColumnName';
+import { IndirectUpdateCascadeTrigger } from '../model/IndirectUpdateCascadeTrigger';
+
+function pairUpForeignKeyColumnNames(
+  parentTableColumnName: string,
+  foreignTableColumnName: string,
+): PairedForeignKeyColumnName {
+  return { parentTableColumnName, foreignTableColumnName };
+}
+
+export function pairedForeignKeyColumnNamesFrom(
+  foreignKey: ForeignKey,
+  targetDatabasePluginName: string,
+): PairedForeignKeyColumnName[] {
+  return R.zipWith(
+    pairUpForeignKeyColumnNames,
+    foreignKey.data[targetDatabasePluginName].parentTableColumnNames,
+    foreignKey.data[targetDatabasePluginName].foreignTableColumnNames,
+  );
+}
 
 export function pluginEnvironment(metaEd: MetaEdEnvironment, pluginName: string): PluginEnvironment | undefined {
   return metaEd.plugin.get(pluginName) as PluginEnvironment | undefined;
@@ -34,6 +54,14 @@ export function edfiOdsChangeQueryRepositoryForNamespace(
   const edfiOdsChangeQueryRepository: EdFiOdsChangeQueryEntityRepository | null = plugin.namespace.get(namespace);
   // if repository for namespace not there, something's very wrong
   return edfiOdsChangeQueryRepository;
+}
+
+export function indirectUpdateCascadeTriggerEntities(
+  plugin: PluginEnvironment | undefined,
+  namespace: Namespace,
+): IndirectUpdateCascadeTrigger[] {
+  const repository: EdFiOdsChangeQueryEntityRepository | null = edfiOdsChangeQueryRepositoryForNamespace(plugin, namespace);
+  return repository == null ? [] : repository.indirectUpdateCascadeTrigger;
 }
 
 export function deleteTrackingTableEntities(
@@ -73,18 +101,16 @@ export function performAddColumnChangeVersionForTableEnhancement(
   pluginName: string,
   createAddColumnModel: (table: Table) => AddColumnChangeVersionForTable,
 ) {
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace: Namespace) => {
-      tableEntities(metaEd, namespace).forEach((table: Table) => {
-        if (table.isAggregateRootTable) {
-          const addColumnChangeVersionForTable: AddColumnChangeVersionForTable = createAddColumnModel(table);
-          addColumnChangeVersionForTableEntities(plugin, namespace).push(addColumnChangeVersionForTable);
-        }
-      });
+  metaEd.namespace.forEach((namespace: Namespace) => {
+    tableEntities(metaEd, namespace).forEach((table: Table) => {
+      if (table.isAggregateRootTable) {
+        const addColumnChangeVersionForTable: AddColumnChangeVersionForTable = createAddColumnModel(table);
+        addColumnChangeVersionForTableEntities(plugin, namespace).push(addColumnChangeVersionForTable);
+      }
     });
-  }
+  });
 }
 
 export function applyCreateDeleteTrackingTableEnhancement(
@@ -94,7 +120,6 @@ export function applyCreateDeleteTrackingTableEnhancement(
   mainTable: Table,
   createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
 ) {
-  if (!changeQueryIndicated(metaEd)) return;
   if (mainTable == null) return;
 
   const deleteTrackingTable: DeleteTrackingTable = createDeleteTrackingTableModel(metaEd, mainTable);
@@ -114,25 +139,23 @@ export function performAssociationChangeQueryEnhancement(
   createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
   createDeleteTrackingTriggerModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
 ) {
-  if (changeQueryIndicated(metaEd)) {
-    getAllEntitiesOfType(metaEd, 'association').forEach((modelBase: ModelBase) => {
-      applyCreateDeleteTrackingTableEnhancement(
-        metaEd,
-        modelBase.namespace,
-        pluginName,
-        tableForModel(modelBase),
-        createDeleteTrackingTableModel,
-      );
-      applyCreateDeleteTrackingTriggerEnhancements(
-        metaEd,
-        modelBase.namespace,
-        pluginName,
-        tableForModel(modelBase),
-        createDeleteTrackingTriggerModel,
-        targetDatabasePluginName,
-      );
-    });
-  }
+  getAllEntitiesOfType(metaEd, 'association').forEach((modelBase: ModelBase) => {
+    applyCreateDeleteTrackingTableEnhancement(
+      metaEd,
+      modelBase.namespace,
+      pluginName,
+      tableForModel(modelBase),
+      createDeleteTrackingTableModel,
+    );
+    applyCreateDeleteTrackingTriggerEnhancements(
+      metaEd,
+      modelBase.namespace,
+      pluginName,
+      tableForModel(modelBase),
+      createDeleteTrackingTriggerModel,
+      targetDatabasePluginName,
+    );
+  });
 }
 
 export function performCreateTriggerUpdateChangeVersionEnhancement(
@@ -141,20 +164,19 @@ export function performCreateTriggerUpdateChangeVersionEnhancement(
   createTriggerModel: (table: Table, targetTechnologyVersion: SemVer) => CreateTriggerUpdateChangeVersion,
 ) {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
-    metaEd.namespace.forEach((namespace: Namespace) => {
-      tableEntities(metaEd, namespace).forEach((table: Table) => {
-        if (table.isAggregateRootTable) {
-          const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createTriggerModel(
-            table,
-            targetTechnologyVersion,
-          );
-          createTriggerUpdateChangeVersionEntities(plugin, namespace).push(createTriggerUpdateChangeVersion);
-        }
-      });
+
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  metaEd.namespace.forEach((namespace: Namespace) => {
+    tableEntities(metaEd, namespace).forEach((table: Table) => {
+      if (table.isAggregateRootTable) {
+        const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createTriggerModel(
+          table,
+          targetTechnologyVersion,
+        );
+        createTriggerUpdateChangeVersionEntities(plugin, namespace).push(createTriggerUpdateChangeVersion);
+      }
     });
-  }
+  });
 }
 
 export function performEnumerationChangeQueryEnhancement(
@@ -164,25 +186,23 @@ export function performEnumerationChangeQueryEnhancement(
   createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
   createDeleteTrackingTriggerModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
 ) {
-  if (changeQueryIndicated(metaEd)) {
-    getAllEntitiesOfType(metaEd, 'enumeration').forEach((modelBase: ModelBase) => {
-      applyCreateDeleteTrackingTableEnhancement(
-        metaEd,
-        modelBase.namespace,
-        pluginName,
-        tableForModel(modelBase),
-        createDeleteTrackingTableModel,
-      );
-      applyCreateDeleteTrackingTriggerEnhancements(
-        metaEd,
-        modelBase.namespace,
-        pluginName,
-        tableForModel(modelBase),
-        createDeleteTrackingTriggerModel,
-        targetDatabasePluginName,
-      );
-    });
-  }
+  getAllEntitiesOfType(metaEd, 'enumeration').forEach((modelBase: ModelBase) => {
+    applyCreateDeleteTrackingTableEnhancement(
+      metaEd,
+      modelBase.namespace,
+      pluginName,
+      tableForModel(modelBase),
+      createDeleteTrackingTableModel,
+    );
+    applyCreateDeleteTrackingTriggerEnhancements(
+      metaEd,
+      modelBase.namespace,
+      pluginName,
+      tableForModel(modelBase),
+      createDeleteTrackingTriggerModel,
+      targetDatabasePluginName,
+    );
+  });
 }
 
 export function hasRequiredNonIdentityNamespaceColumn(table: Table): boolean {

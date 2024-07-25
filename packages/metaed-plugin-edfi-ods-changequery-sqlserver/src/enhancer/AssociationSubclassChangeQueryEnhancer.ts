@@ -1,11 +1,7 @@
 import { MetaEdEnvironment, ModelBase, EnhancerResult } from '@edfi/metaed-core';
 import { Table, ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { getAllEntitiesOfType } from '@edfi/metaed-core';
-import {
-  changeQueryIndicated,
-  applyCreateDeleteTrackingTriggerEnhancements,
-  tableForModel,
-} from '@edfi/metaed-plugin-edfi-ods-changequery';
+import { applyCreateDeleteTrackingTriggerEnhancements, tableForModel } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { applyCreateDeleteTrackingTableEnhancement } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 import { createDeleteTrackingTableModel } from './DeleteTrackingTableCreator';
@@ -19,26 +15,25 @@ function associationSuperclassForeignKeyFinder(mainTable: Table): ForeignKey | u
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (changeQueryIndicated(metaEd)) {
-    getAllEntitiesOfType(metaEd, 'associationSubclass').forEach((modelBase: ModelBase) => {
-      applyCreateDeleteTrackingTableEnhancement(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTableModel,
-      );
-      applyCreateDeleteTrackingTriggerEnhancements(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTriggerModel,
-        TARGET_DATABASE_PLUGIN_NAME,
-        associationSuperclassForeignKeyFinder,
-      );
-    });
-  }
+  getAllEntitiesOfType(metaEd, 'associationSubclass').forEach((modelBase: ModelBase) => {
+    applyCreateDeleteTrackingTableEnhancement(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTableModel,
+    );
+    applyCreateDeleteTrackingTriggerEnhancements(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTriggerModel,
+      TARGET_DATABASE_PLUGIN_NAME,
+      associationSuperclassForeignKeyFinder,
+    );
+  });
+
   return {
     enhancerName,
     success: true,

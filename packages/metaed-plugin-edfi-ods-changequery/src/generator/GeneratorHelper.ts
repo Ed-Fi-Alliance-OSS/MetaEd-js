@@ -1,6 +1,5 @@
 import { GeneratedOutput, MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { changeQueryIndicated } from '../enhancer/ChangeQueryIndicator';
 import {
   addColumnChangeVersionForTableEntities,
   createTriggerUpdateChangeVersionEntities,
@@ -13,6 +12,7 @@ import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { CreateTriggerUpdateChangeVersion } from '../model/CreateTriggerUpdateChangeVersion';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { HasTriggerName, HasTableName } from '../model/HasName';
+import { ChangeQueryTemplates } from './ChangeQueryTemplates';
 
 function prefixWithLicenseHeaderForVersion5PlusInAllianceMode(
   metaEd: MetaEdEnvironment,
@@ -32,15 +32,6 @@ ${literalOutputContent}`;
   return literalOutputContent;
 }
 
-export interface ChangeQueryTemplates {
-  addColumnChangeVersion: any;
-  deleteTrackingSchema: any;
-  deleteTrackingTable: any;
-  deleteTrackingTrigger: any;
-  createTriggerUpdateChangeVersion: any;
-  addIndexChangeVersion: any;
-}
-
 export function changeQueryPath(databaseFolderName: string) {
   return `/Database/${databaseFolderName}/ODS/Structure/Changes/`;
 }
@@ -56,36 +47,34 @@ export function generateAddColumnChangeVersionForTable(
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace) => {
-      const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
-      if (tables.length > 0) {
-        tables.sort(
-          // by schema then by table name
-          (a: AddColumnChangeVersionForTable, b: AddColumnChangeVersionForTable) => {
-            if (a.schema === b.schema) {
-              if (a.tableName < b.tableName) return -1;
-              return a.tableName > b.tableName ? 1 : 0;
-            }
-            return a.schema < b.schema ? -1 : 1;
-          },
-        );
+  metaEd.namespace.forEach((namespace) => {
+    const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
+    if (tables.length > 0) {
+      tables.sort(
+        // by schema then by table name
+        (a: AddColumnChangeVersionForTable, b: AddColumnChangeVersionForTable) => {
+          if (a.schema === b.schema) {
+            if (a.tableName < b.tableName) return -1;
+            return a.tableName > b.tableName ? 1 : 0;
+          }
+          return a.schema < b.schema ? -1 : 1;
+        },
+      );
 
-        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader, isStyle6dot0 });
+      const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader, isStyle6dot0 });
 
-        results.push({
-          name: 'ODS Change Event: AddColumnChangeVersionForTable',
-          namespace: namespace.namespaceName,
-          folderName: changeQueryPath(databaseFolderName),
-          fileName: '0030-AddColumnChangeVersionForTables.sql',
-          resultString: generatedResult,
-          resultStream: null,
-        });
-      }
-    });
-  }
+      results.push({
+        name: 'ODS Change Event: AddColumnChangeVersionForTable',
+        namespace: namespace.namespaceName,
+        folderName: changeQueryPath(databaseFolderName),
+        fileName: '0030-AddColumnChangeVersionForTables.sql',
+        resultString: generatedResult,
+        resultStream: null,
+      });
+    }
+  });
 
   return results;
 }
@@ -103,23 +92,22 @@ export function generateCreateTrackedDeleteSchemas5dot3(
   }
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach((namespace) => {
-      const generatedResult: string = template().deleteTrackingSchema({
-        schema: `tracked_deletes_${namespace.namespaceName.toLowerCase()}`,
-        useLicenseHeader,
-      });
-
-      results.push({
-        name: 'ODS Change Event: CreateTrackedDeleteSchemas',
-        namespace: namespace.namespaceName,
-        folderName: changeQueryPath(databaseFolderName),
-        fileName: '0045-CreateTrackedDeleteSchema.sql',
-        resultString: generatedResult,
-        resultStream: null,
-      });
+  metaEd.namespace.forEach((namespace) => {
+    const generatedResult: string = template().deleteTrackingSchema({
+      schema: `tracked_deletes_${namespace.namespaceName.toLowerCase()}`,
+      useLicenseHeader,
     });
-  }
+
+    results.push({
+      name: 'ODS Change Event: CreateTrackedDeleteSchemas',
+      namespace: namespace.namespaceName,
+      folderName: changeQueryPath(databaseFolderName),
+      fileName: '0045-CreateTrackedDeleteSchema.sql',
+      resultString: generatedResult,
+      resultStream: null,
+    });
+  });
+
   return results;
 }
 
@@ -144,42 +132,39 @@ export function generateCreateTrackedDeleteTables(
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace) => {
-      const tables: DeleteTrackingTable[] = deleteTrackingTableEntities(plugin, namespace).filter(
-        (table) => !table.isIgnored,
+  metaEd.namespace.forEach((namespace) => {
+    const tables: DeleteTrackingTable[] = deleteTrackingTableEntities(plugin, namespace).filter((table) => !table.isIgnored);
+    if (tables.length > 0) {
+      tables.sort(
+        // by schema then by table name
+        (a: DeleteTrackingTable, b: DeleteTrackingTable) => {
+          if (a.schema === b.schema) {
+            return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
+          }
+          return a.schema < b.schema ? -1 : 1;
+        },
       );
-      if (tables.length > 0) {
-        tables.sort(
-          // by schema then by table name
-          (a: DeleteTrackingTable, b: DeleteTrackingTable) => {
-            if (a.schema === b.schema) {
-              return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
-            }
-            return a.schema < b.schema ? -1 : 1;
-          },
-        );
 
-        const generatedResult: string = template().deleteTrackingTable({
-          tables,
-          useLicenseHeader,
-          isStyle6dot0,
-          schema: tables[0].schema,
-        });
+      const generatedResult: string = template().deleteTrackingTable({
+        tables,
+        useLicenseHeader,
+        isStyle6dot0,
+        schema: tables[0].schema,
+      });
 
-        results.push({
-          name: 'ODS Change Event: CreateTrackedDeleteTables',
-          namespace: namespace.namespaceName,
-          folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle6dot0 ? '0200-CreateTrackedChangeTables.sql' : '0050-CreateTrackedDeleteTables.sql',
-          resultString: generatedResult,
-          resultStream: null,
-        });
-      }
-    });
-  }
+      results.push({
+        name: 'ODS Change Event: CreateTrackedDeleteTables',
+        namespace: namespace.namespaceName,
+        folderName: changeQueryPath(databaseFolderName),
+        fileName: isStyle6dot0 ? '0200-CreateTrackedChangeTables.sql' : '0050-CreateTrackedDeleteTables.sql',
+        resultString: generatedResult,
+        resultStream: null,
+      });
+    }
+  });
+
   return results;
 }
 
@@ -193,37 +178,36 @@ export function generateAddIndexChangeVersionForTable(
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace) => {
-      const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
+  metaEd.namespace.forEach((namespace) => {
+    const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
 
-      if (tables.length > 0) {
-        tables.sort(
-          // by schema then by table name
-          (a: AddColumnChangeVersionForTable, b: AddColumnChangeVersionForTable) => {
-            if (a.schema === b.schema) {
-              if (a.tableName < b.tableName) return -1;
-              return a.tableName > b.tableName ? 1 : 0;
-            }
-            return a.schema < b.schema ? -1 : 1;
-          },
-        );
+    if (tables.length > 0) {
+      tables.sort(
+        // by schema then by table name
+        (a: AddColumnChangeVersionForTable, b: AddColumnChangeVersionForTable) => {
+          if (a.schema === b.schema) {
+            if (a.tableName < b.tableName) return -1;
+            return a.tableName > b.tableName ? 1 : 0;
+          }
+          return a.schema < b.schema ? -1 : 1;
+        },
+      );
 
-        const generatedResult: string = template().addIndexChangeVersion({ tables, useLicenseHeader });
+      const generatedResult: string = template().addIndexChangeVersion({ tables, useLicenseHeader });
 
-        results.push({
-          name: 'ODS Change Event: AddIndexChangeVersionForTable',
-          namespace: namespace.namespaceName,
-          folderName: changeQueryPath(databaseFolderName),
-          fileName: '0070-AddIndexChangeVersionForTables.sql',
-          resultString: generatedResult,
-          resultStream: null,
-        });
-      }
-    });
-  }
+      results.push({
+        name: 'ODS Change Event: AddIndexChangeVersionForTable',
+        namespace: namespace.namespaceName,
+        folderName: changeQueryPath(databaseFolderName),
+        fileName: '0070-AddIndexChangeVersionForTables.sql',
+        resultString: generatedResult,
+        resultStream: null,
+      });
+    }
+  });
+
   return results;
 }
 
@@ -235,18 +219,17 @@ export function generateCreateChangesSchema(
   const results: GeneratedOutput[] = [];
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
-  if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach((namespace) => {
-      results.push({
-        name: 'ODS Change Event: CreateChangesSchema',
-        namespace: namespace.namespaceName,
-        folderName: changeQueryPath(databaseFolderName),
-        fileName: '0010-CreateChangesSchema.sql',
-        resultString,
-        resultStream: null,
-      });
+  metaEd.namespace.forEach((namespace) => {
+    results.push({
+      name: 'ODS Change Event: CreateChangesSchema',
+      namespace: namespace.namespaceName,
+      folderName: changeQueryPath(databaseFolderName),
+      fileName: '0010-CreateChangesSchema.sql',
+      resultString,
+      resultStream: null,
     });
-  }
+  });
+
   return results;
 }
 
@@ -259,18 +242,17 @@ export function generateCreateChangeVersionSequence(
 
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
-  if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach((namespace) => {
-      results.push({
-        name: 'ODS Change Event: CreateChangeVersionSequence',
-        namespace: namespace.namespaceName,
-        folderName: changeQueryPath(databaseFolderName),
-        fileName: '0020-CreateChangeVersionSequence.sql',
-        resultString,
-        resultStream: null,
-      });
+  metaEd.namespace.forEach((namespace) => {
+    results.push({
+      name: 'ODS Change Event: CreateChangeVersionSequence',
+      namespace: namespace.namespaceName,
+      folderName: changeQueryPath(databaseFolderName),
+      fileName: '0020-CreateChangeVersionSequence.sql',
+      resultString,
+      resultStream: null,
     });
-  }
+  });
+
   return results;
 }
 
@@ -295,37 +277,36 @@ export function generateCreateDeletedForTrackingTrigger(
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace) => {
-      const triggers: DeleteTrackingTrigger[] = deleteTrackingTriggerEntities(plugin, namespace).filter(
-        (trigger) => !trigger.isIgnored,
+  metaEd.namespace.forEach((namespace) => {
+    const triggers: DeleteTrackingTrigger[] = deleteTrackingTriggerEntities(plugin, namespace).filter(
+      (trigger) => !trigger.isIgnored,
+    );
+    if (triggers.length > 0) {
+      triggers.sort(
+        // by schema then by trigger name
+        (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
+          if (a.triggerSchema === b.triggerSchema) {
+            return isStyle6dot0 ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
+          }
+          return a.triggerSchema < b.triggerSchema ? -1 : 1;
+        },
       );
-      if (triggers.length > 0) {
-        triggers.sort(
-          // by schema then by trigger name
-          (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
-            if (a.triggerSchema === b.triggerSchema) {
-              return isStyle6dot0 ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
-            }
-            return a.triggerSchema < b.triggerSchema ? -1 : 1;
-          },
-        );
 
-        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader, isStyle6dot0 });
+      const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader, isStyle6dot0 });
 
-        results.push({
-          name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
-          namespace: namespace.namespaceName,
-          folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle6dot0 ? '0220-CreateTriggersForDeleteTracking.sql' : '0060-CreateDeletedForTrackingTriggers.sql',
-          resultString: generatedResult,
-          resultStream: null,
-        });
-      }
-    });
-  }
+      results.push({
+        name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
+        namespace: namespace.namespaceName,
+        folderName: changeQueryPath(databaseFolderName),
+        fileName: isStyle6dot0 ? '0220-CreateTriggersForDeleteTracking.sql' : '0060-CreateDeletedForTrackingTriggers.sql',
+        resultString: generatedResult,
+        resultStream: null,
+      });
+    }
+  });
+
   return results;
 }
 
@@ -340,40 +321,39 @@ export function generateCreateTriggerUpdateChangeVersion(
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
-  if (changeQueryIndicated(metaEd)) {
-    const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
+  const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach((namespace) => {
-      const triggers: CreateTriggerUpdateChangeVersion[] = createTriggerUpdateChangeVersionEntities(plugin, namespace);
-      if (triggers.length > 0) {
-        triggers.sort(
-          // by schema then by table name
-          (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
-            if (a.schema === b.schema) {
-              return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
-            }
-            return a.schema < b.schema ? -1 : 1;
-          },
-        );
+  metaEd.namespace.forEach((namespace) => {
+    const triggers: CreateTriggerUpdateChangeVersion[] = createTriggerUpdateChangeVersionEntities(plugin, namespace);
+    if (triggers.length > 0) {
+      triggers.sort(
+        // by schema then by table name
+        (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
+          if (a.schema === b.schema) {
+            return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
+          }
+          return a.schema < b.schema ? -1 : 1;
+        },
+      );
 
-        const generatedResult: string = template().createTriggerUpdateChangeVersion({
-          triggers,
-          useLicenseHeader,
-          isStyle6dot0,
-        });
+      const generatedResult: string = template().createTriggerUpdateChangeVersion({
+        triggers,
+        useLicenseHeader,
+        isStyle6dot0,
+      });
 
-        results.push({
-          name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',
-          namespace: namespace.namespaceName,
-          folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle6dot0
-            ? '0210-CreateTriggersForChangeVersionAndKeyChanges.sql'
-            : '0040-CreateTriggerUpdateChangeVersionGenerator.sql',
-          resultString: generatedResult,
-          resultStream: null,
-        });
-      }
-    });
-  }
+      results.push({
+        name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',
+        namespace: namespace.namespaceName,
+        folderName: changeQueryPath(databaseFolderName),
+        fileName: isStyle6dot0
+          ? '0210-CreateTriggersForChangeVersionAndKeyChanges.sql'
+          : '0040-CreateTriggerUpdateChangeVersionGenerator.sql',
+        resultString: generatedResult,
+        resultStream: null,
+      });
+    }
+  });
+
   return results;
 }

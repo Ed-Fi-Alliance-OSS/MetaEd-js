@@ -1,6 +1,5 @@
 import { MetaEdEnvironment, ModelBase, EnhancerResult, getAllEntitiesOfType } from '@edfi/metaed-core';
 import {
-  changeQueryIndicated,
   tableForModel,
   applyCreateDeleteTrackingTableEnhancement,
   applyCreateDeleteTrackingTriggerEnhancements,
@@ -13,25 +12,24 @@ import { PLUGIN_NAME } from '../PluginHelper';
 const enhancerName = 'DomainEntityChangeQueryEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (changeQueryIndicated(metaEd)) {
-    getAllEntitiesOfType(metaEd, 'domainEntity').forEach((modelBase: ModelBase) => {
-      applyCreateDeleteTrackingTableEnhancement(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTableModel,
-      );
-      applyCreateDeleteTrackingTriggerEnhancements(
-        metaEd,
-        modelBase.namespace,
-        PLUGIN_NAME,
-        tableForModel(modelBase),
-        createDeleteTrackingTriggerModel,
-        TARGET_DATABASE_PLUGIN_NAME,
-      );
-    });
-  }
+  getAllEntitiesOfType(metaEd, 'domainEntity').forEach((modelBase: ModelBase) => {
+    applyCreateDeleteTrackingTableEnhancement(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTableModel,
+    );
+    applyCreateDeleteTrackingTriggerEnhancements(
+      metaEd,
+      modelBase.namespace,
+      PLUGIN_NAME,
+      tableForModel(modelBase),
+      createDeleteTrackingTriggerModel,
+      TARGET_DATABASE_PLUGIN_NAME,
+    );
+  });
+
   return {
     enhancerName,
     success: true,

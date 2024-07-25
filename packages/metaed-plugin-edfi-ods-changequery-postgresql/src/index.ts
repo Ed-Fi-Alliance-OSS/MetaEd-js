@@ -8,6 +8,7 @@ import { generate as CreateChangesSchemaGenerator } from './generator/CreateChan
 import { generate as CreateTriggerUpdateChangeVersionGenerator } from './generator/CreateTriggerUpdateChangeVersionGenerator';
 import { generate as AddColumnChangeVersionForTableGenerator } from './generator/AddColumnChangeVersionForTableGenerator';
 import { generate as AddIndexChangeVersionForTableGenerator } from './generator/AddIndexChangeVersionForTableGenerator';
+import { generate as CreateIndirectUpdateCascadeTriggerGenerator } from './generator/CreateIndirectUpdateCascadeTriggerGenerator';
 
 import { enhance as edFiOdsChangeQueryEntityRepository } from './enhancer/EdFiOdsChangeQueryEntityRepositoryEnhancer';
 import { enhance as associationChangeQueryEnhancer } from './enhancer/AssociationChangeQueryEnhancer';
@@ -20,6 +21,7 @@ import { enhance as enumerationChangeQueryEnhancer } from './enhancer/Enumeratio
 import { enhance as schoolYearEnumerationChangeQueryEnhancer } from './enhancer/SchoolYearEnumerationChangeQueryEnhancer';
 import { enhance as addColumnChangeVersionForTableEnhancer } from './enhancer/AddColumnChangeVersionForTableEnhancer';
 import { enhance as createTriggerUpdateChangeVersionEnhancer } from './enhancer/CreateTriggerUpdateChangeVersionEnhancer';
+import { enhance as indirectUpdateCascadeTriggerEnhancer } from './enhancer/IndirectUpdateCascadeTriggerEnhancer';
 
 export function initialize(): MetaEdPlugin {
   return {
@@ -36,6 +38,7 @@ export function initialize(): MetaEdPlugin {
       schoolYearEnumerationChangeQueryEnhancer,
       addColumnChangeVersionForTableEnhancer,
       createTriggerUpdateChangeVersionEnhancer,
+      indirectUpdateCascadeTriggerEnhancer,
     ],
     generator: [
       CreateTrackedDeleteSchemasGenerator,
@@ -46,6 +49,7 @@ export function initialize(): MetaEdPlugin {
       CreateTriggerUpdateChangeVersionGenerator,
       AddColumnChangeVersionForTableGenerator,
       AddIndexChangeVersionForTableGenerator,
+      CreateIndirectUpdateCascadeTriggerGenerator,
     ],
     shortName: 'edfiOdsChangeQueryPostgresql',
   };

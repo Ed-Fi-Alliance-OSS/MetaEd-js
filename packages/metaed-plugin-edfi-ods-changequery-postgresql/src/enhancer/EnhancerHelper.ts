@@ -6,7 +6,7 @@ import {
   ColumnNameComponent,
   newColumnNameComponent,
 } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies, EntityProperty } from '@edfi/metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import {
   ChangeDataColumn,
   disciplineActionWithResponsibilitySchoolColumn,
@@ -38,12 +38,6 @@ export function postgresqlTriggerName(table: Table, triggerSuffix: string): stri
     overallMaxLength - separator.length - triggerHash.length - separator.length - triggerSuffix.length;
 
   return `${tableName.substr(0, allowedLengthBeforeHash)}${separator}${triggerHash}${separator}${triggerSuffix}`;
-}
-
-export function versionSatisfiesForPostgresChangeQuerySupport(metaEd: MetaEdEnvironment): boolean {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-
-  return versionSatisfies(targetTechnologyVersion, '>=3.4.0');
 }
 
 function isBaseDescriptorTableIdColumn(table: Table, column: Column) {
