@@ -26,6 +26,7 @@ BEGIN
         INNER JOIN inserted i
             ON {{#fkToMainTableColumnNames}}rt.{{{foreignTableColumnName}}} = i.{{{parentTableColumnName}}}{{#unless @last}}
                AND {{/unless}}{{/fkToMainTableColumnNames}};
+    END
 END;
 GO
 

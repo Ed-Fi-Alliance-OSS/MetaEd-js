@@ -24,6 +24,7 @@ BEGIN
         INNER JOIN inserted i
             ON rt.AssessmentIdentifier = i.AssessmentIdentifier
                AND rt.Namespace = i.Namespace;
+    END
 END;
 GO
 
@@ -45,6 +46,7 @@ BEGIN
         INNER JOIN inserted i
             ON rt.BellScheduleName = i.BellScheduleName
                AND rt.SchoolId = i.SchoolId;
+    END
 END;
 GO
 
@@ -74,6 +76,7 @@ BEGIN
                AND rt.SchoolYear = i.SchoolYear
                AND rt.StudentUSI = i.StudentUSI
                AND rt.TermDescriptorId = i.TermDescriptorId;
+    END
 END;
 GO
 
@@ -108,6 +111,7 @@ BEGIN
                AND rt.GradingPeriodSchoolId = i.GradingPeriodSchoolId
                AND rt.GradingPeriodSchoolYear = i.GradingPeriodSchoolYear
                AND rt.StudentUSI = i.StudentUSI;
+    END
 END;
 GO
 
@@ -132,6 +136,7 @@ BEGIN
                AND rt.SchoolYear = i.SchoolYear
                AND rt.SectionIdentifier = i.SectionIdentifier
                AND rt.SessionName = i.SessionName;
+    END
 END;
 GO
 
@@ -158,6 +163,7 @@ BEGIN
                AND rt.CohortIdentifier = i.CohortIdentifier
                AND rt.EducationOrganizationId = i.EducationOrganizationId
                AND rt.StudentUSI = i.StudentUSI;
+    END
 END;
 GO
 
@@ -190,6 +196,7 @@ BEGIN
                AND rt.Objective = i.Objective
                AND rt.ObjectiveGradeLevelDescriptorId = i.ObjectiveGradeLevelDescriptorId
                AND rt.StudentUSI = i.StudentUSI;
+    END
 END;
 GO
 
@@ -217,6 +224,7 @@ BEGIN
                AND rt.SectionIdentifier = i.SectionIdentifier
                AND rt.SessionName = i.SessionName
                AND rt.StudentUSI = i.StudentUSI;
+    END
 END;
 GO
 
