@@ -35,6 +35,7 @@ export {
   SuperclassForeignKeyFinder,
   applyCreateDeleteTrackingTriggerEnhancements,
 } from './enhancer/DeleteTrackingTriggerCreator';
+export { enhance as indirectUpdateCascadeTriggerEnhancer } from './enhancer/IndirectUpdateCascadeTriggerEnhancer';
 export {
   generateAddColumnChangeVersionForTable,
   generateCreateTrackedDeleteSchemas5dot3,

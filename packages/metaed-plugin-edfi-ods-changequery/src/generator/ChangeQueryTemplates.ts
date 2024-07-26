@@ -6,4 +6,5 @@ export type ChangeQueryTemplates = {
   createTriggerUpdateChangeVersion: any;
   addIndexChangeVersion: any;
   indirectUpdateCascadeTrigger: any;
+  createChangeVersionSequence?: any;
 };

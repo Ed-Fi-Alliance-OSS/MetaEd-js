@@ -1,0 +1,32 @@
+{{#if useLicenseHeader}}
+{{#if triggers}}
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+{{/if}}
+{{/if}}
+{{#triggers}}
+CREATE TRIGGER [{{{subTableSchema}}}].[{{{subTableSchema}}}_{{{subTableName}}}_TR_{{{mainTableName}}}_Update]
+ON [{{{subTableSchema}}}].[{{{subTableName}}}]
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if any volatile foreign key values have changed
+    IF {{#checkForUpdateColumnNames}}UPDATE({{{this}}}){{#unless @last}}
+       OR {{/unless}}{{/checkForUpdateColumnNames}}
+    BEGIN
+        -- Update the LastModifiedDate in the root table to the current UTC time
+        UPDATE rt
+        SET rt.LastModifiedDate = GETUTCDATE()
+        FROM [{{{mainTableSchema}}}].[{{{mainTableName}}}] rt
+        INNER JOIN inserted i
+            ON {{#fkToMainTableColumnNames}}rt.{{{foreignTableColumnName}}} = i.{{{parentTableColumnName}}}{{#unless @last}}
+               AND {{/unless}}{{/fkToMainTableColumnNames}};
+END;
+GO
+
+{{/triggers}}
