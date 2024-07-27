@@ -34,7 +34,7 @@ jobs:
         run: ./eng/ApiSchema/build.ps1 Unzip
 
       - name: Run MetaEd
-        run: ./eng/ApiSchema/build.ps1 Invoke-RunMetaEd
+        run: ./eng/ApiSchema/build.ps1 RunMetaEd
 
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build
