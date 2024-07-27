@@ -161,9 +161,12 @@ function RunMetaEd {
     Invoke-Execute { npm install }
     Invoke-Execute { npm run build }
     Set-Location -Path ./packages/metaed-console
-    Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
 
+    Write-Output "Get Working Dir"
+    Get-Location
     Get-ChildItem
+    
+    Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
 
     Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
     Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
