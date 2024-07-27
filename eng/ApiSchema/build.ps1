@@ -157,6 +157,7 @@ function Invoke-Publish {
 }
 
 function RunMetaEd {
+    Write-Output "Run MetadEd Project"
     Invoke-Execute { npm install }
     Invoke-Execute { npm run build }
     Set-Location -Path ./packages/metaed-console
@@ -169,8 +170,7 @@ function RunMetaEd {
 }
 
 function Invoke-RunMetaEd {
-    Write-Output "Run MetadEd Project"
-    RunMetaEd
+    Invoke-Step { RunMetaEd }
 }
 
 Invoke-Main {
