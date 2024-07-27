@@ -1,7 +1,7 @@
 [CmdLetBinding()]
 param (
     [string]
-    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package")]
+    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd")]
     $Command = "Build",
 
     [String]
@@ -156,6 +156,23 @@ function Invoke-Publish {
     Invoke-Step { PublishApi }
 }
 
+function RunMetaEd {
+    Invoke-Execute { npm install }
+    Invoke-Execute { npm run build }
+    Set-Location -Path ./packages/metaed-console
+    Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
+
+    Get-ChildItem
+
+    Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
+    Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
+}
+
+function Invoke-RunMetaEd {
+    Write-Output "Run MetadEd Project"
+    RunMetaEd
+}
+
 Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
@@ -166,7 +183,8 @@ Invoke-Main {
             Invoke-Publish
         }        
         Package { Invoke-BuildPackage }
-        PushPackage{ Invoke-PushPackage }
+        PushPackage { Invoke-PushPackage }
+        RunMetaEd { Invoke-RunMetaEd }
         default { throw "Command '$Command' is not recognized" }
     }
 }

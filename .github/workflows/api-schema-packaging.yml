@@ -29,6 +29,9 @@ jobs:
       - name: Download and Unzip files
         run: ./eng/ApiSchema/build.ps1 Unzip
 
+      - name: Run MetaEd
+        run: ./eng/ApiSchema/build.ps1 Invoke-RunMetaEd
+
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build
       
