@@ -37,7 +37,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0  
         with:
-          name: "MetadEdOutput"
+          name: "MetaEdOutput"
           path: ./MetaEdOutput
           if-no-files-found: error
           retention-days: 5
