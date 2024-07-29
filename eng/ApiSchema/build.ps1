@@ -167,22 +167,16 @@ function RunMetaEd {
     Get-ChildItem
     
     Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
-
-    #Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
-    #Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
 
 function CopyMetaEdFiles {
     Write-Output "Copy the MetaEd Files into the ApiSchema Folder"
 
-    Write-Output "Copy the ApiSchema.json into the " $solutionRoot
+    Write-Output ("Copy the ApiSchema.json into the " + $solutionRoot)
     Copy-Item -Path ./MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
     
-    Write-Output "Copy the XSD content into the " $solutionRoot "/xsd"
+    Write-Output ("Copy the XSD content into the " + $solutionRoot + "/xsd")
     Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
-    
-    #Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
-    #Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
 
 function Invoke-RunMetaEd {
