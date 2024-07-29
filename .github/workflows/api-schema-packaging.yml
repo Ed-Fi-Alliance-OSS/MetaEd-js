@@ -33,9 +33,20 @@ jobs:
       - name: Run MetaEd Project
         run: ./eng/ApiSchema/build.ps1 RunMetaEd
 
+      - name: Upload MetaEdOutput as Artifact
+        if: success()
+        uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0  
+        with:
+          name: "MetadEdOutput"
+          path: ./MetaEdOutput
+          if-no-files-found: error
+          retention-days: 5
+
+
   api-schema-packaging:
     name: API Schema Packaging
     runs-on: ubuntu-latest
+    needs: run-metaed-project
     defaults:
       run:
         shell: pwsh
