@@ -20,8 +20,8 @@ env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
 
 jobs:
-  api-schema-packaging:
-    name: API Schema Packaging
+  run-metaed-project:
+    name: Run MetaEd Project
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,11 +30,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
+      - name: Run MetaEd Project
+        run: ./eng/ApiSchema/build.ps1 RunMetaEd
+
+  api-schema-packaging:
+    name: API Schema Packaging
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      #- name: Checkout repository
+      #  uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
       - name: Download and Unzip files
         run: ./eng/ApiSchema/build.ps1 Unzip
 
-      - name: Run MetaEd
-        run: ./eng/ApiSchema/build.ps1 RunMetaEd
+      - name: Move MetaEd ApiSchema Files
+        run: ./eng/ApiSchema/build.ps1 MoveMetaEdSchema
 
       - name: Run Build
         run: ./eng/ApiSchema/build.ps1 Build
@@ -69,19 +82,19 @@ jobs:
         with:
           name: EdFi.ApiSchema-NuGet.1.0.${{ github.run_number }}
 
-      - name: Install-credential-handler
-        run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
+      #- name: Install-credential-handler
+      #  run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
 
-      - name: Push Package to Azure Artifacts
-        run: |
-         $packageDir = "./eng/ApiSchema"
-         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
+      #- name: Push Package to Azure Artifacts
+      #  run: |
+      #   $packageDir = "./eng/ApiSchema"
+      #   $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
          
-         $arguments = @{
-           NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
-         }
+      #   $arguments = @{
+      #     NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
+      #   }
 
-         $artifacts | ForEach-Object {
-             $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
-            ./eng/ApiSchema/build.ps1 PushPackage @arguments
-          }    
+      #   $artifacts | ForEach-Object {
+      #       $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
+      #      ./eng/ApiSchema/build.ps1 PushPackage @arguments
+      #    }    

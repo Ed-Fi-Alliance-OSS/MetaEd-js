@@ -1,7 +1,7 @@
 [CmdLetBinding()]
 param (
     [string]
-    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd")]
+    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd", "MoveMetaEdSchema")]
     $Command = "Build",
 
     [String]
@@ -168,12 +168,22 @@ function RunMetaEd {
     
     Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
 
+    #Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
+    #Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
+}
+
+function CopyMetaEdFiles {
+    Write-Output "Copy the MetaEd Files into the ApiSchema Folder"
     Copy-Item -Path ../../MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
     Copy-Item -Path ../../MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
 
 function Invoke-RunMetaEd {
     Invoke-Step { RunMetaEd }
+}
+
+function Invoke-CopyMetaEd {
+    Invoke-Step { CopyMetaEdFiles }
 }
 
 Invoke-Main {
@@ -188,6 +198,7 @@ Invoke-Main {
         Package { Invoke-BuildPackage }
         PushPackage { Invoke-PushPackage }
         RunMetaEd { Invoke-RunMetaEd }
+        MoveMetaEdSchema { Invoke-CopyMetaEd }
         default { throw "Command '$Command' is not recognized" }
     }
 }
