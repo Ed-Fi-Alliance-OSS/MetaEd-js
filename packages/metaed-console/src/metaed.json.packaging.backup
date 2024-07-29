@@ -1,6 +1,6 @@
 {
   "metaEdConfiguration": {
-    "artifactDirectory": "/MetaEd-js/MetaEdOutput",
+    "artifactDirectory": "/MetaEdOutput",
     "deployDirectory": "",
     "pluginTechVersion": {},
     "projects": [
@@ -13,7 +13,7 @@
       }
     ],
     "projectPaths": [
-      "/MetaEd-js/node_modules/@edfi/ed-fi-model-5.1"
+      "/node_modules/@edfi/ed-fi-model-5.1"
     ],
     "pluginConfigDirectories": [],
     "defaultPluginTechVersion": "7.2.0",
