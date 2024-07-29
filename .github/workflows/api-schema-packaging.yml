@@ -57,8 +57,8 @@ jobs:
       - name: Get Artifacts
         uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 #v4.1.1
         with:
-          name: MetadEdOutput
-          path: ./MetadEdOutput
+          name: MetaEdOutput
+          path: ./MetaEdOutput
 
       - name: Display structure of downloaded files
         run: ls -R ./
