@@ -61,7 +61,7 @@ jobs:
           path: ./
 
       - name: Display structure of downloaded files
-        run: ls -R ./MetaEd-js/MetaEd-js/
+        run: ls -R ./
 
       - name: Download and Unzip files
         run: ./eng/ApiSchema/build.ps1 Unzip
