@@ -2319,10 +2319,14 @@ describe('when building a descriptor', () => {
         "properties": Object {
           "codeValue": Object {
             "description": "The descriptor code value",
+            "maxLength": 50,
+            "minLength": 1,
+            "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
           },
           "description": Object {
             "description": "The descriptor description",
+            "maxLength": 1024,
             "type": "string",
           },
           "effectiveBeginDate": Object {
@@ -2337,10 +2341,16 @@ describe('when building a descriptor', () => {
           },
           "namespace": Object {
             "description": "The descriptor namespace as a URI",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
           },
           "shortDescription": Object {
             "description": "The descriptor short description",
+            "maxLength": 75,
+            "minLength": 1,
+            "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
           },
         },
