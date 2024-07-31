@@ -48,18 +48,28 @@ const descriptorSchema: SchemaRoot = {
     namespace: {
       type: 'string',
       description: 'The descriptor namespace as a URI',
+      maxLength: 255,
+      minLength: 1,
+      pattern: '^(?!\\s).*(?<!\\s)$',
     },
     codeValue: {
       type: 'string',
       description: 'The descriptor code value',
+      maxLength: 50,
+      minLength: 1,
+      pattern: '^(?!\\s).*(?<!\\s)$',
     },
     shortDescription: {
       type: 'string',
       description: 'The descriptor short description',
+      maxLength: 75,
+      minLength: 1,
+      pattern: '^(?!\\s).*(?<!\\s)$',
     },
     description: {
       type: 'string',
       description: 'The descriptor description',
+      maxLength: 1024,
     },
     effectiveBeginDate: {
       type: 'string',
