@@ -166,7 +166,7 @@ function RunMetaEd {
     Get-Location
     Get-ChildItem
     
-    Invoke-Execute { node ./dist/index.js -a -c ./src/metaed.json.packaging }
+    Invoke-Execute { node ./dist/index.js -a -c ./src/ApiSchemaPackaging-GitHub.json }
 }
 
 function CopyMetaEdFiles {
