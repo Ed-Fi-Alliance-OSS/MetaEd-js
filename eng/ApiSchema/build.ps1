@@ -166,7 +166,13 @@ function RunMetaEd {
     Get-Location
     Get-ChildItem
     
-    Invoke-Execute { node ./dist/index.js -a -c ./src/ApiSchemaPackaging-GitHub.json }
+    <#
+    After building the project from the parent directory, we need to confirm it's functional using the following command,
+    which will use the provided config file. For more details, 
+    please refer to the readme file located in ./packages/meteaed-console/src/README.md
+    #>     
+    Invoke-Execute { node ./dist/index.js -a `
+        -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json }
 }
 
 function CopyMetaEdFiles {
