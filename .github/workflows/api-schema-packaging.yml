@@ -1,10 +1,6 @@
 name: API Schema Packaging and Publishing
 
 on:
-  #For Testing only
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -105,16 +101,16 @@ jobs:
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
 
-      #- name: Push Package to Azure Artifacts
-        #run: |
-         #$packageDir = "./eng/ApiSchema"
-         #$artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
+      - name: Push Package to Azure Artifacts
+        run: |
+         $packageDir = "./eng/ApiSchema"
+         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
          
-         #$arguments = @{
-           #NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
-         #}
+         $arguments = @{
+           NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
+         }
 
-         #$artifacts | ForEach-Object {
-             #$arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
-            #./eng/ApiSchema/build.ps1 PushPackage @arguments
-          #}    
+         $artifacts | ForEach-Object {
+             $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
+            ./eng/ApiSchema/build.ps1 PushPackage @arguments
+          }    
