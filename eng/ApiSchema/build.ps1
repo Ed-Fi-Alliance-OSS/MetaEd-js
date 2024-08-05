@@ -163,8 +163,10 @@ function Invoke-Publish {
 
 function RunMetaEd {
     #Write-Host "Run MetadEd Project"
-    Invoke-Expression { npm install }
-    Invoke-Expression { npm run build }
+    $nodeInstall = npm install
+    $nodeBuild = npm run build
+    Invoke-Expression { $nodeInstall }
+    Invoke-Expression { $nodeBuild }
     Set-Location -Path ./packages/metaed-console
 
     #Write-Host "Get Working Dir"
