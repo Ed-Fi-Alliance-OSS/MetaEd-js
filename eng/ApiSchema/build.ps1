@@ -158,7 +158,7 @@ function BuildPackage {
 
 function Invoke-Publish {
     #Write-Output "Building Version ($Version)"
-    Invoke-Step { PublishApi }
+    PublishApi
 }
 
 function RunMetaEd {
