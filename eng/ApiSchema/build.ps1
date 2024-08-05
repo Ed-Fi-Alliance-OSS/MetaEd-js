@@ -163,10 +163,10 @@ function Invoke-Publish {
 
 function RunMetaEd {
     #Write-Host "Run MetadEd Project"
-    $nodeInstall = npm install
-    $nodeBuild = npm run build
-    Invoke-Expression { $nodeInstall }
-    Invoke-Expression { $nodeBuild }
+    $nodeInstall = "npm install"
+    $nodeBuild = "npm run build"
+    Invoke-Expression $nodeInstall
+    Invoke-Expression $nodeBuild
     Set-Location -Path ./packages/metaed-console
 
     #Write-Host "Get Working Dir"
@@ -178,8 +178,9 @@ function RunMetaEd {
     which will use the provided config file. For more details, 
     please refer to the readme file located in ./packages/meteaed-console/src/README.md
     #>
-    $nodeCommand = "node ./dist/index.js -a `
-    -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json"
+    $nodeCommand = 
+            "node ./dist/index.js -a -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json"
+
     Invoke-Expression $nodeCommand
 }
 
