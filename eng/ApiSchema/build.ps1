@@ -100,25 +100,15 @@ function PushPackage {
         }
 
         if ($DryRun) {
-            #Write-Host "Dry run enabled, not pushing package."
-            #TODO Add output here
+            Write-Output "Dry run enabled, not pushing package."
         }
         else {
-            #Write-Host ("Pushing $PackageFile to $EdFiNuGetFeed")
             dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
         }
     }
 }
 
 function Invoke-PushPackage {
-    #Invoke-Step { 
-#        PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
-    #}  -Arguments @{
-     #   EdFiNuGetFeed = $EdFiNuGetFeed;
-     #   NuGetApiKey = $NuGetApiKey;
-     #   PackageFile = $PackageFile;
-     #   DryRun = $DryRun;
-    #}
     Invoke-Expression { 
         PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
     }
@@ -148,7 +138,6 @@ function RunNuGetPack {
 }
 
 function BuildPackage {
-    #Write-Output "Building Package ($Version)"
     $mainPath = "$applicationRoot"
     $projectPath = "$mainPath/$projectName.csproj"
 
@@ -157,19 +146,18 @@ function BuildPackage {
 }
 
 function Invoke-Publish {
-    #Write-Output "Building Version ($Version)"
     PublishApi
 }
 
 function RunMetaEd {
-    #Write-Host "Run MetadEd Project"
+    # Run MetadEd Project
     $nodeInstall = "npm install"
     $nodeBuild = "npm run build"
     Invoke-Expression $nodeInstall
     Invoke-Expression $nodeBuild
     Set-Location -Path ./packages/metaed-console
 
-    #Write-Host "Get Working Dir"
+    # Get Working Dir
     Get-Location
     Get-ChildItem
     
@@ -185,46 +173,20 @@ function RunMetaEd {
 }
 
 function CopyMetaEdFiles {
-    #Write-Output "Copy the MetaEd Files into the ApiSchema Folder"
+    # Copy the MetaEd Files into the ApiSchema Folder
 
-    #Write-Output ("Copy the ApiSchema.json into the " + $solutionRoot)
     Copy-Item -Path ./MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
     
-    #Write-Output ("Copy the XSD content into the " + $solutionRoot + "/xsd")
     Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
 
 function Invoke-RunMetaEd {
-    #Invoke-Step { RunMetaEd }
     RunMetaEd
 }
 
 function Invoke-CopyMetaEd {
-    #Invoke-Step { CopyMetaEdFiles }
     CopyMetaEdFiles
 }
-
-#Invoke-Main {
-    #param(
-     #   [Parameter()]
-    #    $Command
-   # )
-   # Write-Info "HERE"
-   # switch ($Command) {
-        #Clean { Invoke-Clean }
-        #Build { Invoke-Build }
-        #Unzip { Invoke-UnzipFile }
-        #BuildAndPublish { 
-        #    Invoke-Build             
-        #    Invoke-Publish
-        #}        
-        #Package { Invoke-BuildPackage }
-        #PushPackage { Invoke-PushPackage }
-        #RunMetaEd { Invoke-RunMetaEd }
-        #MoveMetaEdSchema { Invoke-CopyMetaEd }
-  #      default { throw "Command '$Command' is not recognized" }
- #   }
-#}
 
 $MainFunction = {
     param (
