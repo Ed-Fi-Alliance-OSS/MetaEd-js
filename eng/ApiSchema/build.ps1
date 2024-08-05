@@ -55,7 +55,7 @@ function Compile {
 }
 
 function PublishApi {
-    $project = "$applicationRoot"
+    $project = $applicationRoot
     $outputPath = "$project/publish"
     $dotnetCommand = "dotnet publish $project -c $Configuration -o $outputPath --nologo"
     Invoke-Expression $dotnetCommand
@@ -131,7 +131,7 @@ function Invoke-Build {
 }
 
 function Invoke-BuildPackage {
-    Invoke-Expression { BuildPackage }
+    BuildPackage
 }
 
 function RunNuGetPack {
