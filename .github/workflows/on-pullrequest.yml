@@ -1,9 +1,8 @@
 name: Lint and Test
 on:
-  #TODO Rollback
-  #pull_request:
-    #branches:
-      #- main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       debug_enabled:

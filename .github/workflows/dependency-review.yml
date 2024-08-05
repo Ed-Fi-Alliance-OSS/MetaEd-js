@@ -1,13 +1,12 @@
 name: Dependency Review
 
 on:
-  #TODO Rollback
-  #pull_request:
-    #branches:
-      #- main
-    #paths:
-      #- "packages/**"
-      #- ".github"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "packages/**"
+      - ".github"
   workflow_dispatch:
     inputs:
       debug_enabled:

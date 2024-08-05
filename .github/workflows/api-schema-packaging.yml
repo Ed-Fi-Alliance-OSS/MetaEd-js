@@ -42,7 +42,6 @@ jobs:
           if-no-files-found: error
           retention-days: 5
 
-
   api-schema-packaging:
     name: API Schema Packaging
     runs-on: ubuntu-latest
