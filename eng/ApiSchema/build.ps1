@@ -34,32 +34,31 @@ $solutionRoot = "$PSScriptRoot"
 $defaultSolution = "$solutionRoot/EdFi.DataStandard51.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
 $projectName = "EdFi.DataStandard51.ApiSchema"
-Import-Module -Name "$PSScriptRoot/../../eng/build-helpers.psm1" -Force
 
 function Restore {
-    Invoke-Execute { dotnet restore $defaultSolution }
+    $dotnetCommand = "dotnet restore $defaultSolution"
+    Invoke-Expression $dotnetCommand
 }
 
 function DotNetClean {
-    Invoke-Execute { dotnet clean $defaultSolution -c $Configuration --nologo -v minimal }
+    $dotnetCommand = "dotnet clean $defaultSolution -c $Configuration --nologo -v minimal"
+    Invoke-Expression $dotnetCommand
 }
 
 function Invoke-Clean {
-    Invoke-Step { DotNetClean }
+    DotNetClean
 }
 
 function Compile {
-    Invoke-Execute {
-        dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
-    }
+    $dotnetCommand = "dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore"
+    Invoke-Expression $dotnetCommand
 }
 
 function PublishApi {
-    Invoke-Execute {
-        $project = "$applicationRoot"
-        $outputPath = "$project/publish"
-        dotnet publish $project -c $Configuration -o $outputPath --nologo
-    }
+    $project = "$applicationRoot"
+    $outputPath = "$project/publish"
+    $dotnetCommand = "dotnet publish $project -c $Configuration -o $outputPath --nologo"
+    Invoke-Expression $dotnetCommand
 }
 
 function Invoke-UnzipFile {    
@@ -85,9 +84,9 @@ function PushPackage {
 
         [switch]
         $DryRun
-    )
+    )    
 
-    Invoke-Execute {
+    Invoke-Expression {
         if (-not $NuGetApiKey) {
             throw "Cannot push a NuGet package without providing an API key in the `NuGetApiKey` argument."
         }
@@ -101,34 +100,38 @@ function PushPackage {
         }
 
         if ($DryRun) {
-            Write-Info "Dry run enabled, not pushing package."
+            #Write-Host "Dry run enabled, not pushing package."
+            #TODO Add output here
         }
         else {
-            Write-Info ("Pushing $PackageFile to $EdFiNuGetFeed")
+            #Write-Host ("Pushing $PackageFile to $EdFiNuGetFeed")
             dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
         }
     }
 }
 
 function Invoke-PushPackage {
-    Invoke-Step { 
+    #Invoke-Step { 
+#        PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
+    #}  -Arguments @{
+     #   EdFiNuGetFeed = $EdFiNuGetFeed;
+     #   NuGetApiKey = $NuGetApiKey;
+     #   PackageFile = $PackageFile;
+     #   DryRun = $DryRun;
+    #}
+    Invoke-Expression { 
         PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
-    } -Arguments @{
-        EdFiNuGetFeed = $EdFiNuGetFeed;
-        NuGetApiKey = $NuGetApiKey;
-        PackageFile = $PackageFile;
-        DryRun = $DryRun;
     }
 }
 
 function Invoke-Build {
-    Invoke-Step { DotNetClean }
-    Invoke-Step { Restore }
-    Invoke-Step { Compile }
+    DotNetClean
+    Restore
+    Compile
 }
 
 function Invoke-BuildPackage {
-    Invoke-Step { BuildPackage }
+    Invoke-Expression { BuildPackage }
 }
 
 function RunNuGetPack {
@@ -139,30 +142,32 @@ function RunNuGetPack {
         [string]
         $PackageVersion
     )
-
-    dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot
+    $dotnetCommand = "dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot"
+    
+    Invoke-Expression $dotnetCommand
 }
 
 function BuildPackage {
-    Write-Output "Building Package ($Version)"
+    #Write-Output "Building Package ($Version)"
     $mainPath = "$applicationRoot"
     $projectPath = "$mainPath/$projectName.csproj"
 
-    RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version
+    $dotnetCommand = "RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version"
+    Invoke-Expression $dotnetCommand
 }
 
 function Invoke-Publish {
-    Write-Output "Building Version ($Version)"
+    #Write-Output "Building Version ($Version)"
     Invoke-Step { PublishApi }
 }
 
 function RunMetaEd {
-    Write-Output "Run MetadEd Project"
-    Invoke-Execute { npm install }
-    Invoke-Execute { npm run build }
+    #Write-Host "Run MetadEd Project"
+    Invoke-Expression { npm install }
+    Invoke-Expression { npm run build }
     Set-Location -Path ./packages/metaed-console
 
-    Write-Output "Get Working Dir"
+    #Write-Host "Get Working Dir"
     Get-Location
     Get-ChildItem
     
@@ -170,30 +175,59 @@ function RunMetaEd {
     After building the project from the parent directory, we need to confirm it's functional using the following command,
     which will use the provided config file. For more details, 
     please refer to the readme file located in ./packages/meteaed-console/src/README.md
-    #>     
-    Invoke-Execute { node ./dist/index.js -a `
-        -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json }
+    #>
+    $nodeCommand = "node ./dist/index.js -a `
+    -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json"
+    Invoke-Expression $nodeCommand
 }
 
 function CopyMetaEdFiles {
-    Write-Output "Copy the MetaEd Files into the ApiSchema Folder"
+    #Write-Output "Copy the MetaEd Files into the ApiSchema Folder"
 
-    Write-Output ("Copy the ApiSchema.json into the " + $solutionRoot)
+    #Write-Output ("Copy the ApiSchema.json into the " + $solutionRoot)
     Copy-Item -Path ./MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
     
-    Write-Output ("Copy the XSD content into the " + $solutionRoot + "/xsd")
+    #Write-Output ("Copy the XSD content into the " + $solutionRoot + "/xsd")
     Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
 
 function Invoke-RunMetaEd {
-    Invoke-Step { RunMetaEd }
+    #Invoke-Step { RunMetaEd }
+    RunMetaEd
 }
 
 function Invoke-CopyMetaEd {
-    Invoke-Step { CopyMetaEdFiles }
+    #Invoke-Step { CopyMetaEdFiles }
+    CopyMetaEdFiles
 }
 
-Invoke-Main {
+#Invoke-Main {
+    #param(
+     #   [Parameter()]
+    #    $Command
+   # )
+   # Write-Info "HERE"
+   # switch ($Command) {
+        #Clean { Invoke-Clean }
+        #Build { Invoke-Build }
+        #Unzip { Invoke-UnzipFile }
+        #BuildAndPublish { 
+        #    Invoke-Build             
+        #    Invoke-Publish
+        #}        
+        #Package { Invoke-BuildPackage }
+        #PushPackage { Invoke-PushPackage }
+        #RunMetaEd { Invoke-RunMetaEd }
+        #MoveMetaEdSchema { Invoke-CopyMetaEd }
+  #      default { throw "Command '$Command' is not recognized" }
+ #   }
+#}
+
+$MainFunction = {
+    param (
+        [ScriptBlock]
+        $MainBlock
+    )
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
@@ -208,4 +242,6 @@ Invoke-Main {
         MoveMetaEdSchema { Invoke-CopyMetaEd }
         default { throw "Command '$Command' is not recognized" }
     }
-}
+ }
+
+& $MainFunction

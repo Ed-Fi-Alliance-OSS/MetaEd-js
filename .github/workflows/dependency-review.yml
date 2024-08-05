@@ -1,12 +1,23 @@
 name: Dependency Review
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "packages/**"
-      - ".github"
+  #TODO Rollback
+  #pull_request:
+    #branches:
+      #- main
+    #paths:
+      #- "packages/**"
+      #- ".github"
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: Run the build with tmate debugging enabled
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"      
 
 jobs:
   scan-actions:

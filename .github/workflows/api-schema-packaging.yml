@@ -1,6 +1,10 @@
 name: API Schema Packaging and Publishing
 
 on:
+  #TODO Rollback Testing purposes
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       debug_enabled:
