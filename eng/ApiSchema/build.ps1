@@ -1,7 +1,7 @@
 [CmdLetBinding()]
 param (
     [string]
-    [ValidateSet("Clean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd", "MoveMetaEdSchema")]
+    [ValidateSet("DotNetClean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd", "MoveMetaEdSchema")]
     $Command = "Build",
 
     [String]
@@ -28,6 +28,9 @@ param (
 
     [switch]
     $DryRun
+
+    [string]
+    $schemaPackagingConfigFile = "/home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json"
 )
 
 $solutionRoot = "$PSScriptRoot"
@@ -94,6 +97,7 @@ function PushPackage {
         Write-Output "Dry run enabled, not pushing package."
     }
     else {
+        Write-Output "Pushing the NuGet Package."
         dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
     }
 }
@@ -137,7 +141,7 @@ function RunMetaEd {
     which will use the provided config file. For more details,
     please refer to the readme file located in ./packages/meteaed-console/src/README.md
     #>
-    node ./dist/index.js -a -c /home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json
+    node ./dist/index.js -a -c $schemaPackagingConfigFile
 }
 
 function CopyMetaEdFiles {
@@ -148,7 +152,7 @@ function CopyMetaEdFiles {
 }
 
 switch ($Command) {
-    Clean { DotNetClean }
+    DotNetClean { DotNetClean }
     Build { Invoke-Build }
     Unzip { Invoke-UnzipFile }
     BuildAndPublish {
