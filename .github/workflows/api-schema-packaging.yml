@@ -118,7 +118,7 @@ jobs:
          }
 
          if ($artifacts.Count -eq 0) {
-          throw "Cannot find a NuGet package $packageDir"
+          throw "Cannot find a NuGet package " $packageDir
          } 
          else {
             $artifacts | ForEach-Object {
