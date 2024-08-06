@@ -104,9 +104,10 @@ jobs:
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
 
+      #$packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
       - name: Push Package to Azure Artifacts
         run: |
-         $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
+         $packageDir = "./eng/ApiSchema"
          $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
          
           echo "Artifacts List"
@@ -116,9 +117,16 @@ jobs:
            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
          }
 
-         $artifacts | ForEach-Object {
-             echo "Package Files"             
-             $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
-             echo $arguments.PackageFile
-            ./eng/ApiSchema/build.ps1 PushPackage @arguments
-          }    
+         if ($artifacts.Count -eq 0) {
+          throw "Cannot find a NuGet package $packageDir"
+         } 
+         else {
+            $artifacts | ForEach-Object {
+                echo "Package Files"             
+                $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
+                echo $arguments.PackageFile
+                ./eng/ApiSchema/build.ps1 PushPackage @arguments
+              }
+         }
+
+         
