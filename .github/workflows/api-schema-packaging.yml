@@ -105,7 +105,6 @@ jobs:
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
 
       - name: Push Package to Azure Artifacts
-        #$packageDir = "./eng/ApiSchema"
         run: |
          $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
          $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
@@ -118,8 +117,8 @@ jobs:
          }
 
          $artifacts | ForEach-Object {
-             echo "Package Files"
-             echo $arguments.PackageFile
+             echo "Package Files"             
              $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
+             echo $arguments.PackageFile
             ./eng/ApiSchema/build.ps1 PushPackage @arguments
           }    
