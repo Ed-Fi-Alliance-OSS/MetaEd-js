@@ -162,7 +162,7 @@ switch ($Command) {
         PublishApi
     }
     Package { BuildPackage }
-    PushPackage { PushPackage }
+    PushPackage { PushPackage $EdFiNuGetFeed }
     RunMetaEd { RunMetaEd }
     MoveMetaEdSchema { CopyMetaEdFiles }
     default { throw "Command '$Command' is not recognized" }
