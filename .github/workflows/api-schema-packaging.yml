@@ -109,11 +109,16 @@ jobs:
          $packageDir = "./eng/ApiSchema"
          $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
          
+          echo "Artifacts List"
+          echo $artifacts
+
          $arguments = @{
            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
          }
 
          $artifacts | ForEach-Object {
+             echo "Package Files"
+             echo $arguments.PackageFile
              $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
             ./eng/ApiSchema/build.ps1 PushPackage @arguments
           }    
