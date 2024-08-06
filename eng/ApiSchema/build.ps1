@@ -27,7 +27,7 @@ param (
     $PackageFile,
 
     [switch]
-    $DryRun
+    $DryRun,
 
     [string]
     $schemaPackagingConfigFile = "/home/runner/work/MetaEd-js/MetaEd-js/eng/ApiSchema/ApiSchemaPackaging-GitHub.json"
