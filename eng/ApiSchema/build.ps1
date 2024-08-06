@@ -90,14 +90,16 @@ function PushPackage {
     }
 
     if (-not $PackageFile) {
+        Write-Output "Not Package File specified."
         $PackageFile = "$PSScriptRoot/$projectName.$Version.nupkg"
+        Write-Output "Package File: $PackageFile"
     }
 
     if ($DryRun) {
         Write-Output "Dry run enabled, not pushing package."
     }
     else {
-        Write-Output "Pushing the NuGet Package."
+        Write-Output "Pushing the NuGet Package $PackageFile to $EdFiNuGetFeed"
         dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
     }
 }
