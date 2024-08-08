@@ -272,7 +272,7 @@ function schemaPropertyForNonReference(
       const stringProperty: StringProperty = property as StringProperty;
       if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
       if (stringProperty.maxLength) result.maxLength = Number(stringProperty.maxLength);
-      if (stringProperty.isPartOfIdentity) result.pattern = '^(?!\\s).*(?<!\\s)$';
+      if (stringProperty.isPartOfIdentity) result.pattern = '^(?!\\s)(.*\\S)$';
       if (stringProperty.isRequired) result.pattern = '^(?!\\s*$).+';
       return result;
     }
