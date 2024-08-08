@@ -973,7 +973,7 @@
                 "description": "The school label for the week.",
                 "maxLength": 80,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               }
             },
@@ -1240,7 +1240,7 @@
                 "description": "The title of the rating.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "schoolYearTypeReference": {
@@ -2061,14 +2061,14 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -2086,7 +2086,7 @@
                 "description": "A unique number or alphanumeric code assigned to a space, room, site, building, individual, organization, program, or institution by a school, school system, state, or other agency or entity.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "itemText": {
@@ -2106,7 +2106,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -2153,7 +2153,7 @@
                       "description": "The response value, often an option number or code value (e.g., 1, 2, A, B, true, false).",
                       "maxLength": 60,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -2424,14 +2424,14 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -2456,7 +2456,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -2496,21 +2496,21 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "identificationCode": {
                     "description": "A unique number or alphanumeric code assigned to an objective assessment by a school, school system, a state, or other agency or entity.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -2525,7 +2525,7 @@
                 "description": "A unique number or alphanumeric code assigned to the score range associated with one or more learning standards.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               }
             },
@@ -2902,7 +2902,7 @@
                 "description": "A unique number or alphanumeric code assigned to an assessment.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "assessmentTitle": {
@@ -3071,7 +3071,7 @@
                 "description": "Namespace for the assessment.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "nomenclature": {
@@ -3186,7 +3186,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -3256,7 +3256,7 @@
                           "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -3273,14 +3273,14 @@
                           "description": "The local identifier assigned to a section.",
                           "maxLength": 255,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "sessionName": {
                           "description": "The identifier for the calendar for the academic session.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -3569,7 +3569,7 @@
                 "description": "The code representation of the account balance sheet dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -3849,7 +3849,7 @@
                 "description": "Name or title of the bell schedule.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "classPeriods": {
@@ -3863,7 +3863,7 @@
                           "description": "An indication of the portion of a typical daily session in which students receive instruction in a specified subject (e.g., morning, sixth period, block period, or AB schedules).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -4119,7 +4119,7 @@
                     "description": "The identifier for the calendar.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -4368,7 +4368,7 @@
                 "description": "The identifier for the calendar.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "calendarTypeDescriptor": {
@@ -4738,7 +4738,7 @@
                 "description": "SEA populated code value for the valid combination of account dimensions under which financials are reported.",
                 "maxLength": 50,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "accountName": {
@@ -4757,7 +4757,7 @@
                     "description": "The code representation of the account balance sheet dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4799,7 +4799,7 @@
                     "description": "The code representation of the account function dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4822,7 +4822,7 @@
                     "description": "The code representation of the account fund dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4845,7 +4845,7 @@
                     "description": "The code representation of the account object dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4868,7 +4868,7 @@
                     "description": "The code representation of the account operational unit dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4891,7 +4891,7 @@
                     "description": "The code representation of the account program dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4914,7 +4914,7 @@
                     "description": "The code representation of the account project dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -4961,7 +4961,7 @@
                     "description": "The code representation of the account source dimension.",
                     "maxLength": 16,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "fiscalYear": {
@@ -5262,7 +5262,7 @@
                 "description": "An indication of the portion of a typical daily session in which students receive instruction in a specified subject (e.g., morning, sixth period, block period, or AB schedules).",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "meetingTimes": {
@@ -5690,7 +5690,7 @@
                 "description": "The name or ID for the cohort.",
                 "maxLength": 36,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "cohortScopeDescriptor": {
@@ -5729,7 +5729,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -6028,7 +6028,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -6097,7 +6097,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -6108,7 +6108,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -6487,7 +6487,7 @@
               "licenseIdentifier": {
                 "description": "The unique identifier issued by the licensing organization.",
                 "maxLength": 36,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "licenseIssueDate": {
@@ -6507,7 +6507,7 @@
                 "description": "The organization issuing the license.",
                 "maxLength": 75,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "oldestAgeAuthorizedToServe": {
@@ -6839,7 +6839,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -6908,7 +6908,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -6919,7 +6919,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -7379,7 +7379,7 @@
                 "description": "The designated title of the competency objective.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "objectiveGradeLevelDescriptor": {
@@ -7841,7 +7841,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -7910,7 +7910,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -7921,7 +7921,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -7942,7 +7942,7 @@
                 "description": "A unique alphanumeric code assigned to a contact.",
                 "maxLength": 32,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "electronicMails": {
@@ -7957,7 +7957,7 @@
                       "description": "The electronic mail (e-mail) address listed for an individual or organization.",
                       "maxLength": 128,
                       "minLength": 7,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "electronicMailTypeDescriptor": {
@@ -8192,7 +8192,7 @@
                     "description": "A unique alphanumeric code assigned to a person.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sourceSystemDescriptor": {
@@ -8295,7 +8295,7 @@
                       "description": "The telephone number including the area code, and extension, if applicable.",
                       "maxLength": 24,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "telephoneNumberTypeDescriptor": {
@@ -9074,7 +9074,7 @@
                     "description": "A unique alphanumeric code assigned to a course.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -9115,7 +9115,7 @@
                 "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "localCourseTitle": {
@@ -9172,7 +9172,7 @@
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -9683,7 +9683,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -9715,7 +9715,7 @@
                     "description": "A unique alphanumeric code assigned to a course.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -9872,7 +9872,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -9892,7 +9892,7 @@
                           "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -9909,14 +9909,14 @@
                           "description": "The local identifier assigned to a section.",
                           "maxLength": 255,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "sessionName": {
                           "description": "The identifier for the calendar for the academic session.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -9956,7 +9956,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "termDescriptor": {
@@ -10229,7 +10229,7 @@
                 "description": "A unique alphanumeric code assigned to a course.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "courseDefinedByDescriptor": {
@@ -10324,7 +10324,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -10702,7 +10702,7 @@
                 "description": "Identifier or serial number assigned to the credential.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "credentialTypeDescriptor": {
@@ -11120,14 +11120,14 @@
                 "description": "The namespace of the descriptor value to which the from descriptor value is mapped to.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "mappedValue": {
                 "description": "The descriptor value to which the from descriptor value is being mapped to.",
                 "maxLength": 50,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "modelEntities": {
@@ -11152,14 +11152,14 @@
                 "description": "The namespace of the descriptor value that is being mapped to another value.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "value": {
                 "description": "The descriptor value that is being mapped to another value.",
                 "maxLength": 50,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               }
             },
@@ -11810,7 +11810,7 @@
                 "description": "Identifier assigned by the education organization to the discipline action.",
                 "maxLength": 36,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "disciplineActionLength": {
@@ -11876,7 +11876,7 @@
                           "description": "A unique alphanumeric code assigned to a staff.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -11910,7 +11910,7 @@
                           "description": "A locally assigned unique identifier (within the school or school district) to identify each specific DisciplineIncident or occurrence. The same identifier should be used to document the entire discipline incident even if it included multiple offenses and multiple offenders.",
                           "maxLength": 36,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -11921,7 +11921,7 @@
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -11950,7 +11950,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -12274,14 +12274,14 @@
                       "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                       "maxLength": 75,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "lastSurname": {
                       "description": "The name borne in common by members of a family.",
                       "maxLength": 75,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -12315,7 +12315,7 @@
                 "description": "A locally assigned unique identifier (within the school or school district) to identify each specific DisciplineIncident or occurrence. The same identifier should be used to document the entire discipline incident even if it included multiple offenses and multiple offenders.",
                 "maxLength": 36,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "incidentLocationDescriptor": {
@@ -12612,7 +12612,7 @@
                 "description": "A unique identifier for the education content.",
                 "maxLength": 225,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "cost": {
@@ -12634,7 +12634,7 @@
                           "description": "A unique identifier for the education content.",
                           "maxLength": 225,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -12732,7 +12732,7 @@
                     "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -13097,7 +13097,7 @@
                     "description": "A unique number or alphanumeric code assigned to an intervention prescription.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -13496,7 +13496,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -13565,7 +13565,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -13576,7 +13576,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -14275,7 +14275,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -14344,7 +14344,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -14355,7 +14355,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -15350,7 +15350,7 @@
                   "programEvaluationElementTitle": {
                     "description": "The name or title of the program evaluation element.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationPeriodDescriptor": {
@@ -15360,7 +15360,7 @@
                   "programEvaluationTitle": {
                     "description": "An assigned unique identifier for the student program evaluation.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationTypeDescriptor": {
@@ -15371,7 +15371,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -15782,7 +15782,7 @@
                 "description": "The code representation of the account function dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -15878,7 +15878,7 @@
                 "description": "The code representation of the account fund dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -16292,7 +16292,7 @@
                 "description": "A unique number or alphanumeric code assigned to a gradebook entry by the source system.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "gradebookEntryTypeDescriptor": {
@@ -16310,7 +16310,7 @@
                     "description": "The school's descriptive name of the grading period.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -16343,7 +16343,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -16370,7 +16370,7 @@
                 "description": "Namespace URI for the source of the gradebook entry.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "sectionReference": {
@@ -16380,7 +16380,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -16397,14 +16397,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -16728,7 +16728,7 @@
                     "description": "The school's descriptive name of the grading period.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -16767,7 +16767,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -16826,7 +16826,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -16843,21 +16843,21 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "studentUniqueId": {
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -17056,7 +17056,7 @@
                 "description": "The school's descriptive name of the grading period.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "periodSequence": {
@@ -17428,7 +17428,7 @@
                       "description": "Identifying name given to a collection of courses.",
                       "maxLength": 120,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "courses": {
@@ -17442,7 +17442,7 @@
                                 "description": "A unique alphanumeric code assigned to a course.",
                                 "maxLength": 60,
                                 "minLength": 1,
-                                "pattern": "^(?!\\s).*(?<!\\s)$",
+                                "pattern": "^(?!\\s)(.*\\S)$",
                                 "type": "string"
                               },
                               "educationOrganizationId": {
@@ -17603,14 +17603,14 @@
                           "description": "A unique number or alphanumeric code assigned to an assessment.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "namespace": {
                           "description": "Namespace for the assessment.",
                           "maxLength": 255,
                           "minLength": 5,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -18999,7 +18999,7 @@
                           "description": "A unique identifier for the education content.",
                           "maxLength": 225,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -19039,7 +19039,7 @@
                 "description": "A unique number or alphanumeric code assigned to an intervention prescription.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "learningResourceMetadataURIs": {
@@ -19339,7 +19339,7 @@
                           "description": "A unique identifier for the education content.",
                           "maxLength": 225,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -19420,7 +19420,7 @@
                     "description": "A unique number or alphanumeric code assigned to an intervention prescription.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -19434,7 +19434,7 @@
                 "description": "A unique number or alphanumeric code assigned to an intervention study.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "learningResourceMetadataURIs": {
@@ -19772,7 +19772,7 @@
                           "description": "A unique identifier for the education content.",
                           "maxLength": 225,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -19817,7 +19817,7 @@
                 "description": "A unique number or alphanumeric code assigned to an intervention.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "interventionPrescriptions": {
@@ -19835,7 +19835,7 @@
                           "description": "A unique number or alphanumeric code assigned to an intervention prescription.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -19943,7 +19943,7 @@
                           "description": "A unique alphanumeric code assigned to a staff.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -20359,7 +20359,7 @@
                 "description": "The namespace of the organization that has created and owns the association.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "sourceLearningStandardReference": {
@@ -20369,7 +20369,7 @@
                     "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -20385,7 +20385,7 @@
                     "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -20835,14 +20835,14 @@
                       "description": "The name of the content standard, for example Common Core.",
                       "maxLength": 65,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "identificationCode": {
                       "description": "A unique number or alphanumeric code assigned to a Learning Standard.",
                       "maxLength": 60,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -20864,7 +20864,7 @@
                 "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "learningStandardItemCode": {
@@ -20891,7 +20891,7 @@
                     "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -21289,7 +21289,7 @@
                 "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                 "maxLength": 50,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "accountName": {
@@ -21304,7 +21304,7 @@
                     "description": "SEA populated code value for the valid combination of account dimensions under which financials are reported.",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -21470,7 +21470,7 @@
                     "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -21591,7 +21591,7 @@
                     "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -21725,7 +21725,7 @@
                     "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -21753,7 +21753,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -22187,7 +22187,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -22256,7 +22256,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -22267,7 +22267,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -22794,7 +22794,7 @@
                     "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -22928,7 +22928,7 @@
                     "description": "Code value for the valid combination of account dimensions by LEA under which financials are reported. ",
                     "maxLength": 50,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -22956,7 +22956,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -23104,7 +23104,7 @@
                 "description": "A unique number or alphanumeric code assigned to a room by a school, school system, state, or other agency or entity.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "maximumNumberOfSeats": {
@@ -23796,7 +23796,7 @@
                 "description": "The code representation of the account object dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -24051,21 +24051,21 @@
                           "description": "A unique number or alphanumeric code assigned to an assessment.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "identificationCode": {
                           "description": "A unique number or alphanumeric code assigned to a space, room, site, building, individual, organization, program, or institution by a school, school system, state, or other agency or entity.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "namespace": {
                           "description": "Namespace for the assessment.",
                           "maxLength": 255,
                           "minLength": 5,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -24093,14 +24093,14 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -24120,7 +24120,7 @@
                 "description": "A unique number or alphanumeric code assigned to an objective assessment by a school, school system, a state, or other agency or entity.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "learningStandards": {
@@ -24134,7 +24134,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -24170,21 +24170,21 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "identificationCode": {
                     "description": "A unique number or alphanumeric code assigned to an objective assessment by a school, school system, a state, or other agency or entity.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -24470,7 +24470,7 @@
                 "description": "The number or identifier assigned to an open staff position, typically a requisition number assigned by Human Resources.",
                 "maxLength": 20,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "staffClassificationDescriptor": {
@@ -24610,7 +24610,7 @@
                 "description": "The code representation of the account operational unit dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -24938,7 +24938,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -25007,7 +25007,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -25018,7 +25018,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -25540,7 +25540,7 @@
                 "description": "A unique alphanumeric code assigned to a person.",
                 "maxLength": 32,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "sourceSystemDescriptor": {
@@ -26053,7 +26053,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -26423,7 +26423,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -26492,7 +26492,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -26503,7 +26503,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -27313,7 +27313,7 @@
                 "description": "The code representation of the account program dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -27538,7 +27538,7 @@
               "programEvaluationElementTitle": {
                 "description": "The name or title of the program evaluation element.",
                 "maxLength": 50,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "programEvaluationLevels": {
@@ -27577,7 +27577,7 @@
                   "programEvaluationObjectiveTitle": {
                     "description": "The name or title of the program evaluation objective.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationPeriodDescriptor": {
@@ -27587,7 +27587,7 @@
                   "programEvaluationTitle": {
                     "description": "An assigned unique identifier for the student program evaluation.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationTypeDescriptor": {
@@ -27598,7 +27598,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -27631,7 +27631,7 @@
                   "programEvaluationTitle": {
                     "description": "An assigned unique identifier for the student program evaluation.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationTypeDescriptor": {
@@ -27642,7 +27642,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -27824,7 +27824,7 @@
               "programEvaluationObjectiveTitle": {
                 "description": "The name or title of the program evaluation objective.",
                 "maxLength": 50,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "programEvaluationReference": {
@@ -27841,7 +27841,7 @@
                   "programEvaluationTitle": {
                     "description": "An assigned unique identifier for the student program evaluation.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationTypeDescriptor": {
@@ -27852,7 +27852,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -28164,7 +28164,7 @@
               "programEvaluationTitle": {
                 "description": "An assigned unique identifier for the student program evaluation.",
                 "maxLength": 50,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "programEvaluationTypeDescriptor": {
@@ -28182,7 +28182,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -28473,7 +28473,7 @@
                           "description": "The identifier for the specific learning standard (e.g., 111.15.3.1.A).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -28502,7 +28502,7 @@
                 "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "programTypeDescriptor": {
@@ -28725,7 +28725,7 @@
                 "description": "The code representation of the account project dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -29886,7 +29886,7 @@
                           "description": "The school's descriptive name of the grading period.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "gradingPeriodSchoolYear": {
@@ -29899,7 +29899,7 @@
                           "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -29916,21 +29916,21 @@
                           "description": "The local identifier assigned to a section.",
                           "maxLength": 255,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "sessionName": {
                           "description": "The identifier for the calendar for the academic session.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "studentUniqueId": {
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -29970,7 +29970,7 @@
                     "description": "The school's descriptive name of the grading period.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -30020,7 +30020,7 @@
                           "description": "The school's descriptive name of the grading period.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "gradingPeriodSchoolId": {
@@ -30037,7 +30037,7 @@
                           "description": "The designated title of the competency objective.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "objectiveEducationOrganizationId": {
@@ -30052,7 +30052,7 @@
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -30085,7 +30085,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -30641,7 +30641,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -30688,7 +30688,7 @@
                 "description": "A unique number or alphanumeric code assigned to a restraint event by a school, school system, state, or other agency or entity.",
                 "maxLength": 36,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "schoolReference": {
@@ -30711,7 +30711,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -31611,7 +31611,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -31680,7 +31680,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -31691,7 +31691,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -32168,7 +32168,7 @@
                     "description": "The identifier for the calendar.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "date": {
@@ -32207,7 +32207,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -32224,14 +32224,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -32251,7 +32251,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -32670,7 +32670,7 @@
                           "description": "An indication of the portion of a typical daily session in which students receive instruction in a specified subject (e.g., morning, sixth period, block period, or AB schedules).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -32719,7 +32719,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -32736,7 +32736,7 @@
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -32763,7 +32763,7 @@
                     "description": "A unique number or alphanumeric code assigned to a room by a school, school system, state, or other agency or entity.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -32835,7 +32835,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -32864,7 +32864,7 @@
                 "description": "The local identifier assigned to a section.",
                 "maxLength": 255,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "sectionName": {
@@ -33247,7 +33247,7 @@
                           "description": "The school label for the week.",
                           "maxLength": 80,
                           "minLength": 5,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -33292,7 +33292,7 @@
                           "description": "The school's descriptive name of the grading period.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -33356,7 +33356,7 @@
                 "description": "The identifier for the calendar for the academic session.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "termDescriptor": {
@@ -33508,7 +33508,7 @@
                 "description": "The code representation of the account source dimension.",
                 "maxLength": 16,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "codeName": {
@@ -33907,7 +33907,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34079,7 +34079,7 @@
                     "description": "The name or ID for the cohort.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -34105,7 +34105,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34220,7 +34220,7 @@
                     "description": "A locally assigned unique identifier (within the school or school district) to identify each specific DisciplineIncident or occurrence. The same identifier should be used to document the entire discipline incident even if it included multiple offenses and multiple offenders.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -34241,7 +34241,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34396,7 +34396,7 @@
                     "description": "Identifier or serial number assigned to the credential.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "stateOfIssueStateAbbreviationDescriptor": {
@@ -34438,7 +34438,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34479,7 +34479,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34695,7 +34695,7 @@
                     "description": "The name of the city in which an address is located.",
                     "maxLength": 30,
                     "minLength": 2,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "congressionalDistrict": {
@@ -34764,7 +34764,7 @@
                     "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                     "maxLength": 17,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "stateAbbreviationDescriptor": {
@@ -34775,7 +34775,7 @@
                     "description": "The street number and street name or post office box number of an address.",
                     "maxLength": 150,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34792,7 +34792,7 @@
                 "description": "The title of the contact in the context of the education organization.",
                 "maxLength": 75,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "contactTypeDescriptor": {
@@ -34826,7 +34826,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -34852,7 +34852,7 @@
                       "description": "The telephone number including the area code, and extension, if applicable.",
                       "maxLength": 24,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "telephoneNumberTypeDescriptor": {
@@ -35018,7 +35018,7 @@
                     "description": "Identifier or serial number assigned to the credential.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "stateOfIssueStateAbbreviationDescriptor": {
@@ -35093,7 +35093,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -35345,7 +35345,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -35467,7 +35467,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -35489,7 +35489,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -35654,7 +35654,7 @@
                     "description": "The identifier for the calendar.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -35732,7 +35732,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -35888,7 +35888,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -35905,14 +35905,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -35932,7 +35932,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -36513,7 +36513,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -36582,7 +36582,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -36593,7 +36593,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -36648,7 +36648,7 @@
                           "description": "Identifier or serial number assigned to the credential.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "stateOfIssueStateAbbreviationDescriptor": {
@@ -36684,7 +36684,7 @@
                       "description": "The electronic mail (e-mail) address listed for an individual or organization.",
                       "maxLength": 128,
                       "minLength": 7,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "electronicMailTypeDescriptor": {
@@ -37005,7 +37005,7 @@
                     "description": "A unique alphanumeric code assigned to a person.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sourceSystemDescriptor": {
@@ -37199,7 +37199,7 @@
                 "description": "A unique alphanumeric code assigned to a staff.",
                 "maxLength": 32,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "telephones": {
@@ -37219,7 +37219,7 @@
                       "description": "The telephone number including the area code, and extension, if applicable.",
                       "maxLength": 24,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "telephoneNumberTypeDescriptor": {
@@ -37685,7 +37685,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -37754,7 +37754,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -37765,7 +37765,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -38509,7 +38509,7 @@
                       "description": "A description of the type of academic distinctions earned by or awarded to the individual.",
                       "maxLength": 80,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "imageURL": {
@@ -38841,7 +38841,7 @@
                           "description": "The school's descriptive name of the grading period.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "gradingPeriodSchoolId": {
@@ -38858,7 +38858,7 @@
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -38928,7 +38928,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -39098,28 +39098,28 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "studentAssessmentIdentifier": {
                     "description": "A unique number or alphanumeric code assigned to an assessment administered to a student.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "studentUniqueId": {
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -39547,14 +39547,14 @@
                     "description": "A unique number or alphanumeric code assigned to an assessment.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace for the assessment.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -39585,21 +39585,21 @@
                           "description": "A unique number or alphanumeric code assigned to an assessment.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "identificationCode": {
                           "description": "A unique number or alphanumeric code assigned to a space, room, site, building, individual, organization, program, or institution by a school, school system, state, or other agency or entity.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "namespace": {
                           "description": "Namespace for the assessment.",
                           "maxLength": 255,
                           "minLength": 5,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -39792,7 +39792,7 @@
                 "description": "A unique number or alphanumeric code assigned to an assessment administered to a student.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "studentObjectiveAssessments": {
@@ -39820,21 +39820,21 @@
                           "description": "A unique number or alphanumeric code assigned to an assessment.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "identificationCode": {
                           "description": "A unique number or alphanumeric code assigned to an objective assessment by a school, school system, a state, or other agency or entity.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "namespace": {
                           "description": "Namespace for the assessment.",
                           "maxLength": 255,
                           "minLength": 5,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -39922,7 +39922,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -40225,7 +40225,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -40255,7 +40255,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -40459,7 +40459,7 @@
                     "description": "The name or ID for the cohort.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -40489,7 +40489,7 @@
                           "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -40506,14 +40506,14 @@
                           "description": "The local identifier assigned to a section.",
                           "maxLength": 255,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "sessionName": {
                           "description": "The identifier for the calendar for the academic session.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -40543,7 +40543,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -40778,7 +40778,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -40789,7 +40789,7 @@
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -40816,7 +40816,7 @@
                     "description": "The school's descriptive name of the grading period.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -40849,7 +40849,7 @@
                     "description": "The designated title of the competency objective.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "objectiveGradeLevelDescriptor": {
@@ -40871,7 +40871,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -40896,7 +40896,7 @@
                           "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -40913,21 +40913,21 @@
                           "description": "The local identifier assigned to a section.",
                           "maxLength": 255,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "sessionName": {
                           "description": "The identifier for the calendar for the academic session.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "studentUniqueId": {
                           "description": "A unique alphanumeric code assigned to a student.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -41061,7 +41061,7 @@
                     "description": "A unique alphanumeric code assigned to a contact.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -41103,7 +41103,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -41235,7 +41235,7 @@
                     "description": "A locally assigned unique identifier (within the school or school district) to identify each specific DisciplineIncident or occurrence. The same identifier should be used to document the entire discipline incident even if it included multiple offenses and multiple offenders.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -41256,7 +41256,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -41367,7 +41367,7 @@
                     "description": "A locally assigned unique identifier (within the school or school district) to identify each specific DisciplineIncident or occurrence. The same identifier should be used to document the entire discipline incident even if it included multiple offenses and multiple offenders.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -41388,7 +41388,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -41884,7 +41884,7 @@
                       "description": "The name of the city in which an address is located.",
                       "maxLength": 30,
                       "minLength": 2,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "congressionalDistrict": {
@@ -41953,7 +41953,7 @@
                       "description": "The five or nine digit zip code or overseas postal code portion of an address.",
                       "maxLength": 17,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "stateAbbreviationDescriptor": {
@@ -41964,7 +41964,7 @@
                       "description": "The street number and street name or post office box number of an address.",
                       "maxLength": 150,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     }
                   },
@@ -42116,7 +42116,7 @@
                       "description": "The electronic mail (e-mail) address listed for an individual or organization.",
                       "maxLength": 128,
                       "minLength": 7,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "electronicMailTypeDescriptor": {
@@ -42372,7 +42372,7 @@
                       "description": "The organization code or name assigning the StudentIdentificationCode.",
                       "maxLength": 60,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "identificationCode": {
@@ -42425,7 +42425,7 @@
                       "description": "The name of the indicator or metric.",
                       "maxLength": 200,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "periods": {
@@ -42470,7 +42470,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -42500,7 +42500,7 @@
                       "description": "The telephone number including the area code, and extension, if applicable.",
                       "maxLength": 24,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "telephoneNumberTypeDescriptor": {
@@ -42658,7 +42658,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -42809,14 +42809,14 @@
                     "description": "A unique number or alphanumeric code assigned to a gradebook entry by the source system.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "namespace": {
                     "description": "Namespace URI for the source of the gradebook entry.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -42847,7 +42847,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -43143,7 +43143,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -43173,7 +43173,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -43387,7 +43387,7 @@
                     "description": "The name or ID for the cohort.",
                     "maxLength": 36,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -43459,7 +43459,7 @@
                     "description": "A unique number or alphanumeric code assigned to an intervention.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -43476,7 +43476,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -43627,7 +43627,7 @@
                     "description": "A unique number or alphanumeric code assigned to an intervention.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -43644,7 +43644,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -44007,7 +44007,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -44037,7 +44037,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -44360,7 +44360,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -44400,7 +44400,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -44713,7 +44713,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -44743,7 +44743,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -45041,7 +45041,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -45103,7 +45103,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -45288,7 +45288,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -45310,7 +45310,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -45664,7 +45664,7 @@
                   "programEvaluationTitle": {
                     "description": "An assigned unique identifier for the student program evaluation.",
                     "maxLength": 50,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programEvaluationTypeDescriptor": {
@@ -45675,7 +45675,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -45700,7 +45700,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -45731,7 +45731,7 @@
                         "programEvaluationElementTitle": {
                           "description": "The name or title of the program evaluation element.",
                           "maxLength": 50,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programEvaluationPeriodDescriptor": {
@@ -45741,7 +45741,7 @@
                         "programEvaluationTitle": {
                           "description": "An assigned unique identifier for the student program evaluation.",
                           "maxLength": 50,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programEvaluationTypeDescriptor": {
@@ -45752,7 +45752,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -45803,7 +45803,7 @@
                         "programEvaluationObjectiveTitle": {
                           "description": "The name or title of the program evaluation objective.",
                           "maxLength": 50,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programEvaluationPeriodDescriptor": {
@@ -45813,7 +45813,7 @@
                         "programEvaluationTitle": {
                           "description": "An assigned unique identifier for the student program evaluation.",
                           "maxLength": 50,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programEvaluationTypeDescriptor": {
@@ -45824,7 +45824,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -45860,7 +45860,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -46211,7 +46211,7 @@
                     "description": "The identifier for the calendar.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -46404,7 +46404,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -46627,7 +46627,7 @@
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -46645,7 +46645,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -46886,7 +46886,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -46948,7 +46948,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -47133,7 +47133,7 @@
                           "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "programTypeDescriptor": {
@@ -47169,7 +47169,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -47186,14 +47186,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -47213,7 +47213,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -47397,7 +47397,7 @@
                           "description": "An indication of the portion of a typical daily session in which students receive instruction in a specified subject (e.g., morning, sixth period, block period, or AB schedules).",
                           "maxLength": 60,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         },
                         "schoolId": {
@@ -47452,7 +47452,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -47469,14 +47469,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -47496,7 +47496,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -47933,7 +47933,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -47975,7 +47975,7 @@
                           "description": "A unique alphanumeric code assigned to a staff.",
                           "maxLength": 32,
                           "minLength": 1,
-                          "pattern": "^(?!\\s).*(?<!\\s)$",
+                          "pattern": "^(?!\\s)(.*\\S)$",
                           "type": "string"
                         }
                       },
@@ -48035,7 +48035,7 @@
                                 "description": "A unique alphanumeric code assigned to a staff.",
                                 "maxLength": 32,
                                 "minLength": 1,
-                                "pattern": "^(?!\\s).*(?<!\\s)$",
+                                "pattern": "^(?!\\s)(.*\\S)$",
                                 "type": "string"
                               }
                             },
@@ -48089,7 +48089,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -48365,7 +48365,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -48387,7 +48387,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -48634,7 +48634,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -48664,7 +48664,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -49143,7 +49143,7 @@
                     "description": "A unique alphanumeric code assigned to a person.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sourceSystemDescriptor": {
@@ -49229,7 +49229,7 @@
                 "description": "A unique alphanumeric code assigned to a student.",
                 "maxLength": 32,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "visas": {
@@ -49533,7 +49533,7 @@
                     "description": "A unique alphanumeric code assigned to a course.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "educationOrganizationId": {
@@ -49554,14 +49554,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -49728,7 +49728,7 @@
                     "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "programTypeDescriptor": {
@@ -49750,14 +49750,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -49923,7 +49923,7 @@
                       "description": "For matrix questions, the text identifying each row of the matrix.",
                       "maxLength": 255,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "maxNumericResponse": {
@@ -49967,21 +49967,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "questionCode": {
                     "description": "The identifying code for the question, unique for the survey.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -49999,21 +49999,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50190,7 +50190,7 @@
                       "description": "For matrix questions, the text identifying each row of the matrix.",
                       "maxLength": 255,
                       "minLength": 1,
-                      "pattern": "^(?!\\s).*(?<!\\s)$",
+                      "pattern": "^(?!\\s)(.*\\S)$",
                       "type": "string"
                     },
                     "maxRawScore": {
@@ -50215,7 +50215,7 @@
                 "description": "The identifying code for the question, unique for the survey.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "questionFormDescriptor": {
@@ -50266,14 +50266,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50290,21 +50290,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveySectionTitle": {
                     "description": "The title or label for the survey section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50414,21 +50414,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50520,7 +50520,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50536,21 +50536,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50691,7 +50691,7 @@
                     "description": "A unique alphanumeric code assigned to a contact.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50730,7 +50730,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50743,7 +50743,7 @@
                     "description": "A unique alphanumeric code assigned to a student.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50774,14 +50774,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50795,7 +50795,7 @@
                 "description": "The identifier of the survey typically from the survey application.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               }
             },
@@ -50895,7 +50895,7 @@
                     "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "schoolId": {
@@ -50912,14 +50912,14 @@
                     "description": "The local identifier assigned to a section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "sessionName": {
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -50939,14 +50939,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51056,28 +51056,28 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveySectionTitle": {
                     "description": "The title or label for the survey section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51175,7 +51175,7 @@
                     "description": "A unique alphanumeric code assigned to a staff.",
                     "maxLength": 32,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51191,28 +51191,28 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveySectionTitle": {
                     "description": "The title or label for the survey section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51330,21 +51330,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyResponseIdentifier": {
                     "description": "The identifier of the survey typically from the survey application.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51362,21 +51362,21 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveySectionTitle": {
                     "description": "The title or label for the survey section.",
                     "maxLength": 255,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51455,14 +51455,14 @@
                     "description": "Namespace for the survey.",
                     "maxLength": 255,
                     "minLength": 5,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   },
                   "surveyIdentifier": {
                     "description": "The unique survey identifier from the survey tool.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51476,7 +51476,7 @@
                 "description": "The title or label for the survey section.",
                 "maxLength": 255,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               }
             },
@@ -51606,7 +51606,7 @@
                 "description": "Namespace for the survey.",
                 "maxLength": 255,
                 "minLength": 5,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "numberAdministered": {
@@ -51645,7 +51645,7 @@
                     "description": "The identifier for the calendar for the academic session.",
                     "maxLength": 60,
                     "minLength": 1,
-                    "pattern": "^(?!\\s).*(?<!\\s)$",
+                    "pattern": "^(?!\\s)(.*\\S)$",
                     "type": "string"
                   }
                 },
@@ -51664,7 +51664,7 @@
                 "description": "The unique survey identifier from the survey tool.",
                 "maxLength": 60,
                 "minLength": 1,
-                "pattern": "^(?!\\s).*(?<!\\s)$",
+                "pattern": "^(?!\\s)(.*\\S)$",
                 "type": "string"
               },
               "surveyTitle": {
