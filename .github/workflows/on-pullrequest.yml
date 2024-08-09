@@ -133,7 +133,7 @@ jobs:
 
       - name: Create SQL Server Testing Database
         run: |
-          docker exec -i mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ${{ env.SA_PASSWORD }} -d master \
+          docker exec -i mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ${{ env.SA_PASSWORD }} -C -d master \
             -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
 
       - name: SQLServer Unit tests
