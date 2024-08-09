@@ -18,7 +18,7 @@ param (
     # API key for accessing the feed above. Only required with with the Push
     # command.
     [string]
-    $NuGetApiKey,
+    $NuGetApiKey = "az",
 
     # Full path of a package file to push to the NuGet feed. Optional, only
     # applies with the Push command. If not set, then the script looks for a
@@ -76,7 +76,7 @@ function PushPackage {
 
         [string]
         $PackageFile,
-
+ 
         [switch]
         $DryRun
     )
@@ -88,6 +88,8 @@ function PushPackage {
     if (-not $EdFiNuGetFeed) {
         throw "Cannot push a NuGet package without providing a feed in the `EdFiNuGetFeed` argument."
     }
+
+    Write-Output ">>>>> $PackageFile"
 
     if (-not $PackageFile) {
         Write-Output "Not Package File specified."
@@ -110,22 +112,9 @@ function Invoke-Build {
     Compile
 }
 
-function RunNuGetPack {
-    param (
-        [string]
-        $ProjectPath,
-
-        [string]
-        $PackageVersion
-    )
-    dotnet pack $ProjectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot
-}
-
 function BuildPackage {
-    $mainPath = "$applicationRoot"
-    $projectPath = "$mainPath/$projectName.csproj"
-
-    RunNuGetPack -ProjectPath $projectPath -PackageVersion $Version
+    $projectPath = "$applicationRoot/$projectName.csproj"
+    dotnet pack $projectPath -c release -p:PackageVersion=$Version --output $PSScriptRoot
 }
 
 function RunMetaEd {
@@ -139,9 +128,10 @@ function RunMetaEd {
     Get-ChildItem
 
     <#
-    After building the project from the parent directory, we need to confirm it's functional using the following command,
-    which will use the provided config file. For more details,
-    please refer to the readme file located in ./packages/meteaed-console/src/README.md
+    After building the project from the parent directory, we need to confirm
+    it's functional using the following command, which will use the provided
+    config file. For more details, please refer to the readme file located in
+    ./packages/meteaed-console/src/README.md
     #>
     node ./dist/index.js -a -c $schemaPackagingConfigFile
 }
@@ -162,7 +152,9 @@ switch ($Command) {
         PublishApi
     }
     Package { BuildPackage }
-    PushPackage { PushPackage $EdFiNuGetFeed }
+    PushPackage { 
+        PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
+    }
     RunMetaEd { RunMetaEd }
     MoveMetaEdSchema { CopyMetaEdFiles }
     default { throw "Command '$Command' is not recognized" }
