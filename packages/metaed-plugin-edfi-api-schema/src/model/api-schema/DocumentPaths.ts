@@ -29,7 +29,7 @@ export type DocumentReferencePaths = {
   /**
    * Whether this reference is a descriptor. Descriptors are treated differently from other documents
    */
-  isDescriptor: boolean;
+  isDescriptor: false;
 
   /**
    * JsonPath information for a document reference and it's corresponding identity in the referenced document.

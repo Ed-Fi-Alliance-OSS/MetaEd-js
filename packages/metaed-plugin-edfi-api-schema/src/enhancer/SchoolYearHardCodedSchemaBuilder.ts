@@ -8,6 +8,7 @@ import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping
 import { capitalize } from '../Utility';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EndpointName } from '../model/api-schema/EndpointName';
+import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 
 function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: DocumentObjectKey]: DocumentPaths } {
   const documentPathsMapping: { [key: DocumentObjectKey]: DocumentPaths } = {};
@@ -20,6 +21,16 @@ function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: Docum
   });
 
   return documentPathsMapping;
+}
+
+function buildQueryFieldMapping(documentObjectPaths: string[]): QueryFieldMapping {
+  const result: QueryFieldMapping = {};
+
+  documentObjectPaths.forEach((documentObjectPath) => {
+    result[documentObjectPath] = [`$.${documentObjectPath}` as JsonPath];
+  });
+
+  return result;
 }
 
 export function buildSchoolYearResourceSchema(
@@ -70,5 +81,6 @@ export function buildSchoolYearResourceSchema(
     numericJsonPaths: ['$.schoolYear'] as JsonPath[],
     isSubclass: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
+    queryFieldMapping: buildQueryFieldMapping(documentObjectPaths),
   } as ResourceSchema;
 }

@@ -21,6 +21,7 @@ import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingE
 import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhancer';
 import { enhance as booleanNumericJsonPathsEnhancer } from './BooleanNumericJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
+import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -43,6 +44,7 @@ export function enhancerList(): Enhancer[] {
     identityFullnameEnhancer,
     subclassIdentityFullnameEnhancer,
     documentPathsMappingEnhancer,
+    queryFieldMappingEnhancer,
     identityJsonPathsEnhancer,
     booleanNumericJsonPathsEnhancer,
     apiSchemaBuildingEnhancer,

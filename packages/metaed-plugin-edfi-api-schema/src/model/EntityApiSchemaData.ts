@@ -14,6 +14,7 @@ import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
 import { EndpointName } from './api-schema/EndpointName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { JsonPath } from './api-schema/JsonPath';
+import { QueryFieldMapping } from './api-schema/QueryFieldMapping';
 
 export type EntityApiSchemaData = {
   /**
@@ -100,6 +101,11 @@ export type EntityApiSchemaData = {
    * property.
    */
   documentPathsMapping: DocumentPathsMapping;
+
+  /**
+   * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
+   */
+  queryFieldMapping: QueryFieldMapping;
 };
 
 /**
@@ -118,6 +124,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     endpointName: '' as EndpointName,
     resourceName: '' as MetaEdResourceName,
     identityFullnames: [],
+    queryFieldMapping: {},
   });
 }
 

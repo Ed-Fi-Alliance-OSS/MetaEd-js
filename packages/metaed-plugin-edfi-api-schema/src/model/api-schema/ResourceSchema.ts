@@ -4,6 +4,7 @@ import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchema';
 import { MetaEdResourceName } from './MetaEdResourceName';
 import { JsonPath } from './JsonPath';
+import { QueryFieldMapping } from './QueryFieldMapping';
 
 /**
  * API resource schema information common between regular and subclass resources
@@ -60,6 +61,11 @@ export type BaseResourceSchema = {
    * which provide JsonPaths to the corresponding values in a resource document.
    */
   documentPathsMapping: { [key: MetaEdPropertyFullName]: DocumentPaths };
+
+  /**
+   * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
+   */
+  queryFieldMapping: QueryFieldMapping;
 };
 
 /**

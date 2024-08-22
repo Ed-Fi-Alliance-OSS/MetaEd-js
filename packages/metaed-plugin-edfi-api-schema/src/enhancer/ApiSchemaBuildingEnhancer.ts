@@ -39,6 +39,7 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
+    queryFieldMapping: entityApiSchemaData.queryFieldMapping,
     identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
