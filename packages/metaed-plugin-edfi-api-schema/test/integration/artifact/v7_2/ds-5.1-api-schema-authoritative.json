@@ -36161,7 +36161,6 @@
             ],
             "schoolId": [
               "$.courseOfferingReference.schoolId",
-              "$.courseOfferingReference.schoolId",
               "$.locationSchoolReference.schoolId",
               "$.locationReference.schoolId"
             ],
