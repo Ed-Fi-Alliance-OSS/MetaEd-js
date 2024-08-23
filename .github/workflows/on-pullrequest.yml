@@ -3,6 +3,10 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - packages/**/*
+      - *.json
+      - .github/workflows/on-pullrequest.yml
   workflow_dispatch:
     inputs:
       debug_enabled:
