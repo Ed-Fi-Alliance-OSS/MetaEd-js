@@ -9,8 +9,8 @@ import {
 import { initialize as initializeXsdPlugin } from '@edfi/metaed-plugin-edfi-xsd';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { generate } from '../../src/generator/XmlDataDictionaryGenerator';
-import { readWorkbook } from '../../src/model/Workbook';
 import { Workbook } from '../../src/model/Workbook';
+import { readWorkbook } from './WorkbookReader';
 
 function rowToString(obj, value, i) {
   if (i > 0) return `${obj}, ${value}`;
