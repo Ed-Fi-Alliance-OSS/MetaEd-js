@@ -13,20 +13,18 @@ import {
   ElementGroup,
   NamespaceEdfiXsd,
 } from '@edfi/metaed-plugin-edfi-xsd';
-
-import { Workbook } from '../model/Workbook';
-import { newWorkbook, exportWorkbook } from '../model/Workbook';
-import { Row } from '../model/Row';
-import { newRow, createRow, setRow } from '../model/Row';
-import { Worksheet } from '../model/Worksheet';
-import { newWorksheet } from '../model/Worksheet';
+import writeXlsxFile from 'write-excel-file';
+import { ElementsRow, elementsSchema, elementsWorksheetName } from '../model/Elements';
+import { ComplexTypesRow, complexTypesSchema, complexTypesWorksheetName } from '../model/ComplexTypes';
+import { HasName } from '../model/HasName';
+import { SimpleTypesRow, simpleTypesSchema, simpleTypesWorksheetName } from '../model/SimpleTypes';
 
 type AnySimpleType = DecimalSimpleType & EnumerationSimpleType & IntegerSimpleType & StringSimpleType;
 type AnyComplexTypeItem = Element & ElementGroup;
 
-function byNameDesc(a, b) {
-  if (a.Name < b.Name) return -1;
-  if (a.Name > b.Name) return 1;
+function sortByName(a: HasName, b: HasName) {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
   return 0;
 }
 
@@ -44,7 +42,7 @@ function formatRestrictions(simpleType: AnySimpleType): string {
       result.push(enumerationToken.value);
     });
   }
-  return result.join('\n');
+  return result.length === 0 ? ' ' : result.join('\n');
 }
 
 function formatCardinality(element: Element): string {
@@ -55,7 +53,7 @@ function formatCardinality(element: Element): string {
   } else if (element.maxOccurs) {
     result.push(`maxOccurs: ${element.maxOccurs}`);
   }
-  return result.join('\n');
+  return result.length === 0 ? ' ' : result.join('\n');
 }
 
 interface ElementByComplexType {
@@ -109,46 +107,47 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   const allElementsByComplexType: ElementByComplexType[] = elementsByComplexType(allComplexTypes);
 
-  const eBook: Workbook = newWorkbook();
-
-  const elementsSheet: Worksheet = newWorksheet('Elements');
+  const elementsRows: ElementsRow[] = [];
 
   allElementsByComplexType.forEach((elementByComplexType: ElementByComplexType) => {
-    const eRow: Row = newRow();
-    setRow(eRow, 'Name', elementByComplexType.element.name);
-    setRow(eRow, 'Type', elementByComplexType.element.type);
-    setRow(eRow, 'Parent Type', elementByComplexType.complexType.name);
-    setRow(eRow, 'Cardinality', formatCardinality(elementByComplexType.element));
-    setRow(eRow, 'Description', elementByComplexType.element.annotation.documentation);
-    elementsSheet.rows.push(createRow(eRow));
-    elementsSheet.rows.sort(byNameDesc);
-    elementsSheet['!cols'] = [{ wpx: 100 }, { wpx: 100 }, { wpx: 100 }, { wpx: 100 }, { wpx: 500 }];
+    elementsRows.push({
+      name: elementByComplexType.element.name,
+      type: elementByComplexType.element.type,
+      parentType: elementByComplexType.complexType.name,
+      cardinality: formatCardinality(elementByComplexType.element),
+      description: elementByComplexType.element.annotation.documentation,
+    });
   });
+  elementsRows.sort(sortByName);
 
-  const complexSheet: Worksheet = newWorksheet('Complex Types');
+  const complexTypesRows: ComplexTypesRow[] = [];
+
   allComplexTypes.forEach((complexType) => {
-    const eRow: Row = newRow();
-    setRow(eRow, 'Name', complexType.name);
-    setRow(eRow, 'Description', complexType.annotation.documentation);
-    complexSheet.rows.push(createRow(eRow));
-    complexSheet.rows.sort(byNameDesc);
-    complexSheet['!cols'] = [{ wpx: 100 }, { wpx: 500 }];
+    complexTypesRows.push({
+      name: complexType.name,
+      description: complexType.annotation.documentation,
+    });
   });
+  complexTypesRows.sort(sortByName);
 
-  const simpleSheet: Worksheet = newWorksheet('Simple Types');
+  const simpleTypesRows: SimpleTypesRow[] = [];
+
   allSimpleTypes.forEach((simpleType) => {
-    const eRow: Row = newRow();
-    setRow(eRow, 'Name', simpleType.name);
-    setRow(eRow, 'Restrictions', formatRestrictions(simpleType));
-    setRow(eRow, 'Description', simpleType.annotation.documentation);
-    simpleSheet.rows.push(createRow(eRow));
-    simpleSheet.rows.sort(byNameDesc);
-    simpleSheet['!cols'] = [{ wpx: 100 }, { wpx: 100 }, { wpx: 500 }];
+    simpleTypesRows.push({
+      name: simpleType.name,
+      restrictions: formatRestrictions(simpleType),
+      description: simpleType.annotation.documentation,
+    });
   });
+  simpleTypesRows.sort(sortByName);
 
-  eBook.sheets.push(elementsSheet);
-  eBook.sheets.push(complexSheet);
-  eBook.sheets.push(simpleSheet);
+  // @ts-ignore - TypeScript typings here don't recognize Blob return type
+  const fileAsBlob: Blob = await writeXlsxFile([elementsRows, complexTypesRows, simpleTypesRows], {
+    buffer: true,
+    schema: [elementsSchema, complexTypesSchema, simpleTypesSchema],
+    sheets: [elementsWorksheetName, complexTypesWorksheetName, simpleTypesWorksheetName],
+  });
+  const fileAsArrayBuffer = await fileAsBlob.arrayBuffer();
 
   const generatedOutput: GeneratedOutput[] = [
     {
@@ -157,7 +156,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       folderName: 'DataDictionary',
       fileName: 'XmlDataDictionary.xlsx',
       resultString: '',
-      resultStream: exportWorkbook(eBook, 'buffer'),
+      resultStream: Buffer.from(fileAsArrayBuffer),
     },
   ];
 

@@ -102,7 +102,7 @@ describe('when generating xsd for domain entity', (): void => {
       'BeginDate, xs:date, DomainEntityName, minOccurs: 0\nmaxOccurs: unbounded, The start date for the academic week.',
     );
     expect(workbook.sheets[0].rows[1].values.reduce(rowToString)).toBe(
-      'CodeValue, CodeValue, DescriptorType, , A code or abbreviation that is used to refer to the descriptor.',
+      'CodeValue, CodeValue, DescriptorType,  , A code or abbreviation that is used to refer to the descriptor.',
     );
     expect(workbook.sheets[0].rows[2].values.reduce(rowToString)).toBe(
       'Description, Description, DescriptorType, minOccurs: 0, The description of the descriptor.',
@@ -117,22 +117,22 @@ describe('when generating xsd for domain entity', (): void => {
       'EffectiveEndDate, xs:date, DescriptorType, minOccurs: 0, The end date of the period when the descriptor is in effect.',
     );
     expect(workbook.sheets[0].rows[6].values.reduce(rowToString)).toBe(
-      'MyAddressLine, MyAddressLine, DomainEntityName, , An address line.',
+      'MyAddressLine, MyAddressLine, DomainEntityName,  , An address line.',
     );
     expect(workbook.sheets[0].rows[7].values.reduce(rowToString)).toBe(
-      'Namespace, URI, DescriptorType, , A globally unique identifier for this descriptor.',
+      'Namespace, URI, DescriptorType,  , A globally unique identifier for this descriptor.',
     );
     expect(workbook.sheets[0].rows[8].values.reduce(rowToString)).toBe(
       'PriorDescriptor, DescriptorReferenceType, DescriptorType, minOccurs: 0, Immediately prior to the date in Effective Date, the reference to the equivalent descriptor.',
     );
     expect(workbook.sheets[0].rows[9].values.reduce(rowToString)).toBe(
-      'ShortDescription, ShortDescription, DescriptorType, , A shortened description for the descriptor.',
+      'ShortDescription, ShortDescription, DescriptorType,  , A shortened description for the descriptor.',
     );
     expect(workbook.sheets[0].rows[10].values.reduce(rowToString)).toBe(
-      'TotalInstructionalDays, xs:int, DomainEntityName, , The total instructional days during the academic week.',
+      'TotalInstructionalDays, xs:int, DomainEntityName,  , The total instructional days during the academic week.',
     );
     expect(workbook.sheets[0].rows[11].values.reduce(rowToString)).toBe(
-      'TotalInstructionalDays, xs:int, DomainEntityNameIdentityType, , The total instructional days during the academic week.',
+      'TotalInstructionalDays, xs:int, DomainEntityNameIdentityType,  , The total instructional days during the academic week.',
     );
   });
 
@@ -161,7 +161,7 @@ describe('when generating xsd for domain entity', (): void => {
     expect(workbook.sheets[2].rows[0].values.reduce(rowToString)).toBe(
       'CodeValue, minLength: 1\nmaxLength: 50, A code or abbreviation for an element.',
     );
-    expect(workbook.sheets[2].rows[1].values.reduce(rowToString)).toBe('Currency, , U.S. currency in dollars and cents.');
+    expect(workbook.sheets[2].rows[1].values.reduce(rowToString)).toBe('Currency,  , U.S. currency in dollars and cents.');
     expect(workbook.sheets[2].rows[2].values.reduce(rowToString)).toBe(
       'DescriptorReferenceType, minLength: 1\nmaxLength: 255, Provides references for descriptors represented by the full URI format.',
     );
@@ -172,7 +172,7 @@ describe('when generating xsd for domain entity', (): void => {
       'Percent, minValue: 0\nmaxValue: 1\ntotalDigits: 5\ndecimalPlaces: 4, A proportion in relation to the whole (as measured in parts per one hundred).',
     );
     expect(workbook.sheets[2].rows[5].values.reduce(rowToString)).toBe(
-      'TimeInterval, , A period of time with fixed, well-defined limits.',
+      'TimeInterval,  , A period of time with fixed, well-defined limits.',
     );
   });
 });

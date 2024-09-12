@@ -5,7 +5,7 @@ export interface SimpleTypesRow extends HasName {
   description: string;
 }
 
-export const complexTypesSchema = [
+export const simpleTypesSchema = [
   {
     column: 'Name',
     type: String,
@@ -26,4 +26,4 @@ export const complexTypesSchema = [
   },
 ];
 
-export const complexTypesWorksheetName = 'Simple Types';
+export const simpleTypesWorksheetName = 'Simple Types';
