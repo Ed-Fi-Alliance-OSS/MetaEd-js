@@ -1,7 +1,5 @@
-import xlsx, { WorkSheet } from 'xlsx';
+import xlsx from 'xlsx';
 import { Worksheet } from './Worksheet';
-import { newWorksheet } from './Worksheet';
-import { newRow } from './Row';
 
 export interface Workbook {
   sheets: Worksheet[];
@@ -35,23 +33,4 @@ export function exportWorkbook(workbook: Workbook, type: string): any {
     return Buffer.alloc(0);
   }
   return '';
-}
-
-export function readWorkbook(input: any, type: string): Workbook {
-  const wb: any = xlsx.read(input, { type: type as any });
-  const workbook: Workbook = newWorkbook();
-  Object.values(wb.Sheets).forEach((sheet, i) => {
-    const worksheet: Worksheet = newWorksheet(wb.SheetNames[i]);
-    const parsedWorksheet: any = xlsx.utils.sheet_to_json(sheet as WorkSheet, { header: 1 });
-    const headers: string[] = parsedWorksheet.shift();
-    parsedWorksheet.forEach((row) => {
-      worksheet.rows.push({
-        ...newRow(),
-        headers,
-        values: row,
-      });
-    });
-    workbook.sheets.push(worksheet);
-  });
-  return workbook;
 }

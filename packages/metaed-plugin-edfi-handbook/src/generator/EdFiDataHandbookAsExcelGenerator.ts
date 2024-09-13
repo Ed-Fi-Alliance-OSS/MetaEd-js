@@ -1,16 +1,11 @@
 import * as R from 'ramda';
 import { orderByProp } from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
-
+import writeXlsxFile from 'write-excel-file';
 import { edfiHandbookRepositoryForNamespace } from '../enhancer/EnhancerHelper';
-import { createRow, newRow, setRow } from '../model/Row';
-import { exportWorkbook, newWorkbook } from '../model/Workbook';
-import { newWorksheet } from '../model/Worksheet';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
-import { Workbook } from '../model/Workbook';
-import { Row } from '../model/Row';
-import { Worksheet } from '../model/Worksheet';
+import { HandbookRow, handbookSchema, handbookWorksheetName } from '../model/HandbookRow';
 
 const EOL = '\n';
 
@@ -20,13 +15,13 @@ function handbookEntriesForNamespace(metaEd: MetaEdEnvironment, namespace: Names
   return handbookRepository.handbookEntries;
 }
 
-function asNewLineSeparatedList(list: string[]): string {
-  if (list == null || list.length === 0) return '';
+function asNewLineSeparatedList(list: string[]): string | null {
+  if (list == null || list.length === 0) return null;
   return list.join(EOL);
 }
 
-function getModelReferencesListFor(handbookEntry: HandbookEntry): string {
-  const result: string[] = [];
+function getModelReferencesListFor(handbookEntry: HandbookEntry): string | null {
+  const result: (string | null)[] = [];
   const modelReferencesContainsExists =
     handbookEntry.modelReferencesContains != null && handbookEntry.modelReferencesContains.length !== 0;
 
@@ -41,6 +36,8 @@ function getModelReferencesListFor(handbookEntry: HandbookEntry): string {
     result.push(asNewLineSeparatedList(handbookEntry.modelReferencesUsedBy));
   }
 
+  if (result.length === 0) return null;
+
   return result.join(EOL);
 }
 
@@ -53,35 +50,27 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   const orderedHandbookEntries: HandbookEntry[] = R.sortWith([orderByProp('umlType'), orderByProp('name')])(handbookEntries);
 
-  const workbook: Workbook = newWorkbook();
-  const handbookSheet: Worksheet = newWorksheet('Ed-Fi Handbook');
-  workbook.sheets.push(handbookSheet);
+  const handbookRows: HandbookRow[] = [];
 
   orderedHandbookEntries.forEach((handbookEntry: HandbookEntry) => {
-    const handbookRow: Row = newRow();
-    setRow(
-      handbookRow,
-      'Name',
-      handbookEntry.name + (handbookEntry.deprecationText ? ` - ${handbookEntry.deprecationText}` : ''),
-    );
-    setRow(handbookRow, 'Definition', handbookEntry.definition);
-    setRow(handbookRow, 'UML Type', handbookEntry.umlType);
-    setRow(handbookRow, 'Type Characteristics', asNewLineSeparatedList(handbookEntry.typeCharacteristics));
-    setRow(handbookRow, 'Option List', asNewLineSeparatedList(handbookEntry.optionList));
-    setRow(handbookRow, 'References', getModelReferencesListFor(handbookEntry));
-    setRow(handbookRow, 'ODS', asNewLineSeparatedList(handbookEntry.odsFragment));
-
-    handbookSheet.rows.push(createRow(handbookRow));
-    handbookSheet['!cols'] = [
-      { wpx: 100 },
-      { wpx: 300 },
-      { wpx: 300 },
-      { wpx: 300 },
-      { wpx: 300 },
-      { wpx: 300 },
-      { wpx: 300 },
-    ];
+    handbookRows.push({
+      name: handbookEntry.name + (handbookEntry.deprecationText ? ` - ${handbookEntry.deprecationText}` : ''),
+      definition: handbookEntry.definition,
+      umlType: handbookEntry.umlType,
+      typeCharacteristics: asNewLineSeparatedList(handbookEntry.typeCharacteristics),
+      optionList: asNewLineSeparatedList(handbookEntry.optionList),
+      references: getModelReferencesListFor(handbookEntry),
+      ods: asNewLineSeparatedList(handbookEntry.odsFragment),
+    });
   });
+
+  // @ts-ignore - TypeScript typings here don't recognize Blob return type
+  const fileAsBlob: Blob = await writeXlsxFile([handbookRows], {
+    buffer: true,
+    schema: [handbookSchema],
+    sheets: [handbookWorksheetName],
+  });
+  const fileAsArrayBuffer = await fileAsBlob.arrayBuffer();
 
   const generatedOutput: GeneratedOutput[] = [
     {
@@ -90,7 +79,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       folderName: 'Ed-Fi-Handbook',
       fileName: 'Ed-Fi-Handbook.xlsx',
       resultString: '',
-      resultStream: exportWorkbook(workbook, 'buffer'),
+      resultStream: Buffer.from(fileAsArrayBuffer),
     },
   ];
 
