@@ -158,15 +158,17 @@ Example:
 
 The `documentPathsMapping` property in `ResourceSchema` is a collection of MetaEd property fullnames mapped to `DocumentPaths` objects, which provide information on how to access different properties within a resource document, including both scalar values and references to other resources.
 
-DocumentPaths can be one of three types:
-- DocumentReferencePaths
-- DescriptorReferencePath
-- ScalarPath
+A `DocumentPaths` can be one of three types:
+- `DocumentReferencePaths`
+- `DescriptorReferencePath`
+- `ScalarPath`
 
 ### DocumentReferencePaths
 
 Used for references to non-descriptor resources.
 
+ - `isReference: true` Boolean indicating path is a reference.
+ - `isDescriptor: false` Boolean indicating path is a not descriptor reference.
  - `projectName`: The MetaEd project name of the referenced resource.
  - `resourceName`: The name of the referenced API resource.
  - `referenceJsonPaths`: An array of ReferenceJsonPaths objects, each containing:
@@ -177,6 +179,8 @@ Used for references to non-descriptor resources.
 
 Used for references to descriptor resources.
 
+ - `isReference: true` Boolean indicating path is a reference.
+ - `isDescriptor: true` Boolean indicating path is a descriptor reference.
  - `projectName`: The MetaEd project name of the descriptor.
  - `resourceName`: The name of the descriptor resource.
  - `path`: The JsonPath to the descriptor value in the document.
@@ -185,6 +189,7 @@ Used for references to descriptor resources.
 
 Used for scalar (non-reference) properties.
 
+ - `isReference: false` Boolean indicating path is a not reference.
  - `path`: The JsonPath to the scalar value in the document.
 
 ### DocumentPathsMappings Example
@@ -228,4 +233,75 @@ Here's an example of what a `documentPathsMapping` might look like for a `Studen
     "path": "$.sexDescriptor"
   }
 }
+```
+
+## ReferenceJsonPaths
+
+The `referenceJsonPaths` property is an array of `ReferenceJsonPaths` objects. It provides information about how to map reference fields in the current document to identity fields in the referenced document.
+
+- `referenceJsonPath`: The JsonPath to the reference field in the current document.
+- `identityJsonPath`: The corresponding JsonPath to the identity field in the referenced document.
+
+### Purpose
+
+The `referenceJsonPaths` array serves several important purposes:
+
+- **Reference Construction**: It allows API implementations to correctly construct document references by matching the naming conventions between the referencing and referenced documents.
+- **Identity Mapping**: It provides a clear mapping between the identity fields in the referenced document and how they appear in the referencing document.
+- **Ordered Identity**: The array is ordered correctly for constructing an identity hash, which is crucial for maintaining consistency in references.
+
+### Example
+
+Here's an example of `referenceJsonPaths` for a `CourseOffering` reference on a `Section` resource:
+
+```json
+[
+  {
+    "identityJsonPath": "$.localCourseCode",
+    "referenceJsonPath": "$.courseOfferingReference.localCourseCode"
+  },
+  {
+    "identityJsonPath": "$.schoolReference.schoolId",
+    "referenceJsonPath": "$.courseOfferingReference.schoolId"
+  },
+  {
+    "identityJsonPath": "$.sessionReference.schoolYear",
+    "referenceJsonPath": "$.courseOfferingReference.schoolYear"
+  },
+  {
+    "identityJsonPath": "$.sessionReference.sessionName",
+    "referenceJsonPath": "$.courseOfferingReference.sessionName"
+  }
+]
+```
+
+## EqualityConstraints
+An EqualityConstraint array represents pairs of JsonPaths within a resource document that must have equal values.
+
+ - `sourceJsonPath`: A JsonPath pointing to a value in the resource document.
+ - `targetJsonPath`: Another JsonPath in the same document that should have the same value as the source.
+
+### Purpose
+
+Equality constraints maintain data integrity within a single resource document. For example, a `schoolYear` must be the same for all `GradingPeriod` references in a `Session` document.
+
+### Example
+
+Here's an example of an EqualityConstraint for a `Session` resource:
+
+```json
+"equalityConstraints": [
+  {
+    "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+    "targetJsonPath": "$.schoolYearTypeReference.schoolYear"
+  },
+  {
+    "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+    "targetJsonPath": "$.schoolReference.schoolId"
+  },
+  {
+    "sourceJsonPath": "$.schoolReference.schoolId",
+    "targetJsonPath": "$.academicWeeks[*].academicWeekReference.schoolId"
+  }
+]
 ```
