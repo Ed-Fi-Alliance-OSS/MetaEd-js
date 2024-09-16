@@ -13,7 +13,7 @@ import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DescriptorReferencePath, DocumentReferencePaths, ScalarPath } from '../model/api-schema/DocumentPaths';
 import { ReferenceJsonPaths } from '../model/api-schema/ReferenceJsonPaths';
-import { JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
+import { JsonPathPropertyPair, JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
 
 /**
  * Returns a stripped down copy of the given mergeJsonPathsMapping, with the only properties being those
@@ -79,6 +79,7 @@ function matchupJsonPaths(
       result.push({
         referenceJsonPath: referencingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: matchingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
+        type: referencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type,
       });
     }
   });
@@ -148,8 +149,11 @@ function buildDocumentReferencePaths(
   };
 }
 
-function buildDescriptorPath(jsonPaths: JsonPath[], property: EntityProperty): DescriptorReferencePath {
-  invariant(jsonPaths.length === 1, 'Descriptor should only have one path');
+function buildDescriptorPath(
+  jsonPathPropertyPairs: JsonPathPropertyPair[],
+  property: EntityProperty,
+): DescriptorReferencePath {
+  invariant(jsonPathPropertyPairs.length === 1, 'Descriptor should only have one path');
 
   const { referencedEntity } = property as ReferentialProperty;
   const referencedEntityApiSchemaData = referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
@@ -159,12 +163,13 @@ function buildDescriptorPath(jsonPaths: JsonPath[], property: EntityProperty): D
     isDescriptor: true,
     projectName: property.namespace.projectName,
     resourceName: referencedEntityApiSchemaData.resourceName,
-    path: jsonPaths[0],
+    path: jsonPathPropertyPairs[0].jsonPath,
+    type: jsonPathPropertyPairs[0].sourceProperty.type,
   };
 }
 
-function buildSchoolYearEnumerationPath(jsonPaths: JsonPath[]): DocumentReferencePaths {
-  invariant(jsonPaths.length === 1, 'SchoolYear should only have one path');
+function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): DocumentReferencePaths {
+  invariant(jsonPathPropertyPairs.length === 1, 'SchoolYear should only have one path');
 
   return {
     isReference: true,
@@ -173,18 +178,20 @@ function buildSchoolYearEnumerationPath(jsonPaths: JsonPath[]): DocumentReferenc
     resourceName: 'SchoolYearType',
     referenceJsonPaths: [
       {
-        referenceJsonPath: jsonPaths[0],
+        referenceJsonPath: jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: '$.schoolYear' as JsonPath,
+        type: jsonPathPropertyPairs[0].sourceProperty.type,
       },
     ],
   };
 }
 
-function buildScalarPath(jsonPaths: JsonPath[]): ScalarPath {
-  invariant(jsonPaths.length === 1, 'Scalar should only have one path');
+function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarPath {
+  invariant(jsonPathPropertyPairs.length === 1, 'Scalar should only have one path');
   return {
-    path: jsonPaths[0],
+    path: jsonPathPropertyPairs[0].jsonPath,
     isReference: false,
+    type: jsonPathPropertyPairs[0].sourceProperty.type,
   };
 }
 
@@ -201,18 +208,18 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
     // Only want paths at the top level
     if (!jsonPathsInfo.isTopLevel) return;
 
-    const jsonPaths: JsonPath[] = jsonPathsInfo.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+    const { jsonPathPropertyPairs } = jsonPathsInfo;
     const property: EntityProperty = jsonPathsInfo.terminalProperty;
 
     if (property.type === 'association' || property.type === 'domainEntity') {
       const referenceProperty: ReferentialProperty = property as ReferentialProperty;
       result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
     } else if (property.type === 'descriptor') {
-      result[propertyPath] = buildDescriptorPath(jsonPaths, property);
+      result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property);
     } else if (property.type === 'schoolYearEnumeration') {
-      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPaths);
+      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs);
     } else {
-      result[propertyPath] = buildScalarPath(jsonPaths);
+      result[propertyPath] = buildScalarPath(jsonPathPropertyPairs);
     }
   });
 
