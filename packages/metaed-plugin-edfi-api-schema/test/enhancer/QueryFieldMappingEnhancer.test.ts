@@ -107,43 +107,82 @@ describe('when building simple domain entity with all the simple non-collections
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "optionalBooleanProperty": Array [
-          "$.optionalBooleanProperty",
+          Object {
+            "path": "$.optionalBooleanProperty",
+            "type": "boolean",
+          },
         ],
         "optionalDecimalProperty": Array [
-          "$.optionalDecimalProperty",
+          Object {
+            "path": "$.optionalDecimalProperty",
+            "type": "decimal",
+          },
         ],
         "optionalPercentProperty": Array [
-          "$.optionalPercentProperty",
+          Object {
+            "path": "$.optionalPercentProperty",
+            "type": "percent",
+          },
         ],
         "optionalShortProperty": Array [
-          "$.optionalShortProperty",
+          Object {
+            "path": "$.optionalShortProperty",
+            "type": "short",
+          },
         ],
         "optionalYear": Array [
-          "$.optionalYear",
+          Object {
+            "path": "$.optionalYear",
+            "type": "year",
+          },
         ],
         "requiredCurrencyProperty": Array [
-          "$.requiredCurrencyProperty",
+          Object {
+            "path": "$.requiredCurrencyProperty",
+            "type": "currency",
+          },
         ],
         "requiredDateProperty": Array [
-          "$.requiredDateProperty",
+          Object {
+            "path": "$.requiredDateProperty",
+            "type": "date",
+          },
         ],
         "requiredDatetimeProperty": Array [
-          "$.requiredDatetimeProperty",
+          Object {
+            "path": "$.requiredDatetimeProperty",
+            "type": "datetime",
+          },
         ],
         "requiredDurationProperty": Array [
-          "$.requiredDurationProperty",
+          Object {
+            "path": "$.requiredDurationProperty",
+            "type": "duration",
+          },
         ],
         "requiredIntegerProperty": Array [
-          "$.requiredIntegerProperty",
+          Object {
+            "path": "$.requiredIntegerProperty",
+            "type": "integer",
+          },
         ],
         "requiredTimeProperty": Array [
-          "$.requiredTimeProperty",
+          Object {
+            "path": "$.requiredTimeProperty",
+            "type": "time",
+          },
         ],
         "schoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "path": "$.schoolYearTypeReference.schoolYear",
+            "type": "schoolYearEnumeration",
+          },
         ],
         "stringIdentity": Array [
-          "$.stringIdentity",
+          Object {
+            "path": "$.stringIdentity",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -190,10 +229,16 @@ describe('when building simple domain entity with all the simple collections', (
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "schoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "path": "$.schoolYearTypeReference.schoolYear",
+            "type": "schoolYearEnumeration",
+          },
         ],
         "stringIdentity": Array [
-          "$.stringIdentity",
+          Object {
+            "path": "$.stringIdentity",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -246,13 +291,22 @@ describe('when building a domain entity referencing another referencing another 
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "localCourseCode": Array [
-          "$.courseOfferingReference.localCourseCode",
+          Object {
+            "path": "$.courseOfferingReference.localCourseCode",
+            "type": "string",
+          },
         ],
         "schoolId": Array [
-          "$.courseOfferingReference.schoolId",
+          Object {
+            "path": "$.courseOfferingReference.schoolId",
+            "type": "string",
+          },
         ],
         "sectionIdentifier": Array [
-          "$.sectionIdentifier",
+          Object {
+            "path": "$.sectionIdentifier",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -306,19 +360,34 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "localCourseCode": Array [
-          "$.courseOfferingReference.localCourseCode",
+          Object {
+            "path": "$.courseOfferingReference.localCourseCode",
+            "type": "string",
+          },
         ],
         "schoolId": Array [
-          "$.courseOfferingReference.schoolId",
+          Object {
+            "path": "$.courseOfferingReference.schoolId",
+            "type": "string",
+          },
         ],
         "schoolYear": Array [
-          "$.courseOfferingReference.schoolYear",
+          Object {
+            "path": "$.courseOfferingReference.schoolYear",
+            "type": "schoolYearEnumeration",
+          },
         ],
         "sectionIdentifier": Array [
-          "$.sectionIdentifier",
+          Object {
+            "path": "$.sectionIdentifier",
+            "type": "string",
+          },
         ],
         "sessionName": Array [
-          "$.courseOfferingReference.sessionName",
+          Object {
+            "path": "$.courseOfferingReference.sessionName",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -330,17 +399,28 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "localCourseCode": Array [
-          "$.localCourseCode",
+          Object {
+            "path": "$.localCourseCode",
+            "type": "string",
+          },
         ],
         "schoolId": Array [
-          "$.schoolReference.schoolId",
-          "$.sessionReference.schoolId",
+          Object {
+            "path": "$.sessionReference.schoolId",
+            "type": "string",
+          },
         ],
         "schoolYear": Array [
-          "$.sessionReference.schoolYear",
+          Object {
+            "path": "$.sessionReference.schoolYear",
+            "type": "schoolYearEnumeration",
+          },
         ],
         "sessionName": Array [
-          "$.sessionReference.sessionName",
+          Object {
+            "path": "$.sessionReference.sessionName",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -352,13 +432,22 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "schoolId": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "path": "$.schoolReference.schoolId",
+            "type": "string",
+          },
         ],
         "schoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "path": "$.schoolYearTypeReference.schoolYear",
+            "type": "schoolYearEnumeration",
+          },
         ],
         "sessionName": Array [
-          "$.sessionName",
+          Object {
+            "path": "$.sessionName",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -370,7 +459,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "schoolId": Array [
-          "$.schoolId",
+          Object {
+            "path": "$.schoolId",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -436,19 +528,34 @@ describe('when building domain entity with nested choice and inline commons', ()
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "contentClassDescriptor": Array [
-          "$.contentClassDescriptor",
+          Object {
+            "path": "$.contentClassDescriptor",
+            "type": "descriptor",
+          },
         ],
         "contentIdentifier": Array [
-          "$.contentIdentifier",
+          Object {
+            "path": "$.contentIdentifier",
+            "type": "string",
+          },
         ],
         "description": Array [
-          "$.description",
+          Object {
+            "path": "$.description",
+            "type": "string",
+          },
         ],
         "learningResourceMetadataURI": Array [
-          "$.learningResourceMetadataURI",
+          Object {
+            "path": "$.learningResourceMetadataURI",
+            "type": "string",
+          },
         ],
         "shortDescription": Array [
-          "$.shortDescription",
+          Object {
+            "path": "$.shortDescription",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -484,7 +591,10 @@ describe('when building domain entity with scalar collection named with prefix o
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "contentIdentifier": Array [
-          "$.contentIdentifier",
+          Object {
+            "path": "$.contentIdentifier",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -525,7 +635,10 @@ describe('when building domain entity with Association/DomainEntity collection n
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "contentIdentifier": Array [
-          "$.contentIdentifier",
+          Object {
+            "path": "$.contentIdentifier",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -561,10 +674,16 @@ describe('when building domain entity with acronym property name', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "contentIdentifier": Array [
-          "$.contentIdentifier",
+          Object {
+            "path": "$.contentIdentifier",
+            "type": "string",
+          },
         ],
         "iepBeginDate": Array [
-          "$.iepBeginDate",
+          Object {
+            "path": "$.iepBeginDate",
+            "type": "datetime",
+          },
         ],
       }
     `);
@@ -611,7 +730,10 @@ describe('when building domain entity with a simple common collection', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -666,7 +788,10 @@ describe('when building domain entity subclass with common collection and descri
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "communityOrganizationId": Array [
-          "$.communityOrganizationId",
+          Object {
+            "path": "$.communityOrganizationId",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -747,10 +872,16 @@ describe('when building domain entity with a descriptor with role name', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessedGradeLevelDescriptor": Array [
-          "$.assessedGradeLevelDescriptor",
+          Object {
+            "path": "$.assessedGradeLevelDescriptor",
+            "type": "descriptor",
+          },
         ],
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -790,7 +921,10 @@ describe('when building domain entity with a descriptor collection with role nam
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -839,16 +973,28 @@ describe('when building domain entity with a common with a choice', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
         "publicationDate": Array [
-          "$.contentStandard.publicationDate",
+          Object {
+            "path": "$.contentStandard.publicationDate",
+            "type": "string",
+          },
         ],
         "publicationYear": Array [
-          "$.contentStandard.publicationYear",
+          Object {
+            "path": "$.contentStandard.publicationYear",
+            "type": "string",
+          },
         ],
         "title": Array [
-          "$.contentStandard.title",
+          Object {
+            "path": "$.contentStandard.title",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -894,10 +1040,16 @@ describe('when building domain entity with a common and a common collection with
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
         "beginDate": Array [
-          "$.period.beginDate",
+          Object {
+            "path": "$.period.beginDate",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -930,10 +1082,16 @@ describe('when building domain entity with an all-caps property', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
         "uri": Array [
-          "$.uri",
+          Object {
+            "path": "$.uri",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -980,13 +1138,22 @@ describe('when building domain entity with a common with a domain entity referen
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "assessmentIdentifier": Array [
-          "$.assessmentIdentifier",
+          Object {
+            "path": "$.assessmentIdentifier",
+            "type": "integer",
+          },
         ],
         "educationOrganizationId": Array [
-          "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
+          Object {
+            "path": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
+            "type": "integer",
+          },
         ],
         "title": Array [
-          "$.contentStandard.title",
+          Object {
+            "path": "$.contentStandard.title",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -1111,7 +1278,10 @@ describe('when building a schema for StudentCohort', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "studentUniqueId": Array [
-          "$.studentUniqueId",
+          Object {
+            "path": "$.studentUniqueId",
+            "type": "string",
+          },
         ],
       }
     `);
@@ -1159,10 +1329,16 @@ describe('when building a domain entity with an inline common property with a de
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "availableCreditTypeDescriptor": Array [
-          "$.availableCreditTypeDescriptor",
+          Object {
+            "path": "$.availableCreditTypeDescriptor",
+            "type": "descriptor",
+          },
         ],
         "sectionIdentifier": Array [
-          "$.sectionIdentifier",
+          Object {
+            "path": "$.sectionIdentifier",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -1203,13 +1379,22 @@ describe('when building a Domain Entity subclass', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "schoolId": Array [
-          "$.schoolId",
+          Object {
+            "path": "$.schoolId",
+            "type": "integer",
+          },
         ],
         "subclassProperty": Array [
-          "$.subclassProperty",
+          Object {
+            "path": "$.subclassProperty",
+            "type": "integer",
+          },
         ],
         "superclassProperty": Array [
-          "$.superclassProperty",
+          Object {
+            "path": "$.superclassProperty",
+            "type": "integer",
+          },
         ],
       }
     `);
@@ -1265,22 +1450,40 @@ describe('when building an Association subclass', () => {
     expect(queryFieldMapping).toMatchInlineSnapshot(`
       Object {
         "programId": Array [
-          "$.programReference.programId",
+          Object {
+            "path": "$.programReference.programId",
+            "type": "integer",
+          },
         ],
         "programName": Array [
-          "$.programReference.programName",
+          Object {
+            "path": "$.programReference.programName",
+            "type": "string",
+          },
         ],
         "schoolId": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "path": "$.schoolReference.schoolId",
+            "type": "integer",
+          },
         ],
         "schoolName": Array [
-          "$.schoolReference.schoolName",
+          Object {
+            "path": "$.schoolReference.schoolName",
+            "type": "string",
+          },
         ],
         "subclassProperty": Array [
-          "$.subclassProperty",
+          Object {
+            "path": "$.subclassProperty",
+            "type": "integer",
+          },
         ],
         "superclassProperty": Array [
-          "$.superclassProperty",
+          Object {
+            "path": "$.superclassProperty",
+            "type": "integer",
+          },
         ],
       }
     `);
