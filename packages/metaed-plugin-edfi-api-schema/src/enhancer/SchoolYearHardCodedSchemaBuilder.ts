@@ -27,7 +27,7 @@ function buildQueryFieldMapping(documentObjectPaths: string[]): QueryFieldMappin
   const result: QueryFieldMapping = {};
 
   documentObjectPaths.forEach((documentObjectPath) => {
-    result[documentObjectPath] = [`$.${documentObjectPath}` as JsonPath];
+    result[documentObjectPath] = [{ path: `$.${documentObjectPath}` as JsonPath, type: 'string' }];
   });
 
   return result;
