@@ -1,10 +1,11 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, PropertyType } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import { DocumentPaths } from '../model/api-schema/DocumentPaths';
 import { ReferenceJsonPaths } from '../model/api-schema/ReferenceJsonPaths';
+import { PathType } from '../model/api-schema/PathType';
 
 /**
  * Returns the last part of a JsonPath
@@ -25,16 +26,16 @@ function isNotCollectionPath(jsonPath: JsonPath): boolean {
 /**
  * Add a JsonPath to a QueryFieldMapping
  */
-function addTo(queryFieldMapping: QueryFieldMapping, jsonPath: JsonPath, dataType: PropertyType) {
+function addTo(queryFieldMapping: QueryFieldMapping, jsonPath: JsonPath, pathType: PathType) {
   const queryField = endOfPath(jsonPath);
 
   // Initialize array if not exists
   if (queryFieldMapping[queryField] == null) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: dataType }];
+    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType }];
   }
   // Avoid duplicates
   if (queryFieldMapping[queryField][0].path !== jsonPath) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: dataType }];
+    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType }];
   }
 }
 

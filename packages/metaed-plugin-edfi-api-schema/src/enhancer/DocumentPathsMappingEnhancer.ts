@@ -7,6 +7,7 @@ import {
   EntityProperty,
   ReferentialProperty,
   scalarPropertyTypes,
+  PropertyType,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
@@ -14,6 +15,7 @@ import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DescriptorReferencePath, DocumentReferencePaths, ScalarPath } from '../model/api-schema/DocumentPaths';
 import { ReferenceJsonPaths } from '../model/api-schema/ReferenceJsonPaths';
 import { JsonPathPropertyPair, JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
+import { PathType } from '../model/api-schema/PathType';
 
 /**
  * Returns a stripped down copy of the given mergeJsonPathsMapping, with the only properties being those
@@ -59,6 +61,40 @@ function allJsonPathsMappingFor(entity: TopLevelEntity): JsonPathsMapping {
   return edfiApiSchemaData.allJsonPathsMapping;
 }
 
+function getPathType(propertyType: PropertyType): PathType {
+  switch (propertyType) {
+    case 'boolean':
+      return 'boolean';
+    case 'currency':
+    case 'decimal':
+    case 'duration':
+    case 'percent':
+    case 'sharedDecimal':
+      return 'number';
+    case 'date':
+      return 'date';
+    case 'datetime':
+      return 'date-time';
+    case 'integer':
+    case 'sharedInteger':
+    case 'short':
+    case 'sharedShort':
+    case 'year':
+      return 'integer';
+    case 'descriptor':
+    case 'enumeration':
+    case 'sharedString':
+    case 'string':
+      return 'string';
+    case 'time':
+      return 'time';
+    case 'choice':
+    case 'inlineCommon':
+    default:
+      return 'string';
+  }
+}
+
 function matchupJsonPaths(
   fromReferencingEntity: JsonPathsMapping,
   fromReferencedEntity: JsonPathsMapping,
@@ -79,7 +115,7 @@ function matchupJsonPaths(
       result.push({
         referenceJsonPath: referencingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: matchingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
-        type: referencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type,
+        type: getPathType(referencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type),
       });
     }
   });
@@ -164,7 +200,7 @@ function buildDescriptorPath(
     projectName: property.namespace.projectName,
     resourceName: referencedEntityApiSchemaData.resourceName,
     path: jsonPathPropertyPairs[0].jsonPath,
-    type: jsonPathPropertyPairs[0].sourceProperty.type,
+    type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
   };
 }
 
@@ -180,7 +216,7 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
       {
         referenceJsonPath: jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: '$.schoolYear' as JsonPath,
-        type: jsonPathPropertyPairs[0].sourceProperty.type,
+        type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
       },
     ],
   };
@@ -191,7 +227,7 @@ function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarP
   return {
     path: jsonPathPropertyPairs[0].jsonPath,
     isReference: false,
-    type: jsonPathPropertyPairs[0].sourceProperty.type,
+    type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
   };
 }
 

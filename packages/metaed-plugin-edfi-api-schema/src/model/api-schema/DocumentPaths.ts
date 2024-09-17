@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { PropertyType } from '@edfi/metaed-core';
 import { JsonPath } from './JsonPath';
 import { ReferenceJsonPaths } from './ReferenceJsonPaths';
+import { PathType } from './PathType';
 
 /**
  * JsonPath information for a reference MetaEd property
@@ -96,7 +96,7 @@ export type DescriptorReferencePath = {
   /**
    * Type of the descriptor reference path
    */
-  type: PropertyType;
+  type: PathType;
 };
 
 /**
@@ -116,7 +116,7 @@ export type ScalarPath = {
   /**
    * Type of the scalar
    */
-  type: PropertyType;
+  type: PathType;
 };
 
 /**

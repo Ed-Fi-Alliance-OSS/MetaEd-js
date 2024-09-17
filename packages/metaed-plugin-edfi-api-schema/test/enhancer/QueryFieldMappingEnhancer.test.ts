@@ -115,31 +115,31 @@ describe('when building simple domain entity with all the simple non-collections
         "optionalDecimalProperty": Array [
           Object {
             "path": "$.optionalDecimalProperty",
-            "type": "decimal",
+            "type": "number",
           },
         ],
         "optionalPercentProperty": Array [
           Object {
             "path": "$.optionalPercentProperty",
-            "type": "percent",
+            "type": "number",
           },
         ],
         "optionalShortProperty": Array [
           Object {
             "path": "$.optionalShortProperty",
-            "type": "short",
+            "type": "integer",
           },
         ],
         "optionalYear": Array [
           Object {
             "path": "$.optionalYear",
-            "type": "year",
+            "type": "integer",
           },
         ],
         "requiredCurrencyProperty": Array [
           Object {
             "path": "$.requiredCurrencyProperty",
-            "type": "currency",
+            "type": "number",
           },
         ],
         "requiredDateProperty": Array [
@@ -151,13 +151,13 @@ describe('when building simple domain entity with all the simple non-collections
         "requiredDatetimeProperty": Array [
           Object {
             "path": "$.requiredDatetimeProperty",
-            "type": "datetime",
+            "type": "date-time",
           },
         ],
         "requiredDurationProperty": Array [
           Object {
             "path": "$.requiredDurationProperty",
-            "type": "duration",
+            "type": "number",
           },
         ],
         "requiredIntegerProperty": Array [
@@ -175,7 +175,7 @@ describe('when building simple domain entity with all the simple non-collections
         "schoolYear": Array [
           Object {
             "path": "$.schoolYearTypeReference.schoolYear",
-            "type": "schoolYearEnumeration",
+            "type": "string",
           },
         ],
         "stringIdentity": Array [
@@ -231,7 +231,7 @@ describe('when building simple domain entity with all the simple collections', (
         "schoolYear": Array [
           Object {
             "path": "$.schoolYearTypeReference.schoolYear",
-            "type": "schoolYearEnumeration",
+            "type": "string",
           },
         ],
         "stringIdentity": Array [
@@ -374,7 +374,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "schoolYear": Array [
           Object {
             "path": "$.courseOfferingReference.schoolYear",
-            "type": "schoolYearEnumeration",
+            "type": "string",
           },
         ],
         "sectionIdentifier": Array [
@@ -413,7 +413,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "schoolYear": Array [
           Object {
             "path": "$.sessionReference.schoolYear",
-            "type": "schoolYearEnumeration",
+            "type": "string",
           },
         ],
         "sessionName": Array [
@@ -440,7 +440,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "schoolYear": Array [
           Object {
             "path": "$.schoolYearTypeReference.schoolYear",
-            "type": "schoolYearEnumeration",
+            "type": "string",
           },
         ],
         "sessionName": Array [
@@ -530,7 +530,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "contentClassDescriptor": Array [
           Object {
             "path": "$.contentClassDescriptor",
-            "type": "descriptor",
+            "type": "string",
           },
         ],
         "contentIdentifier": Array [
@@ -682,7 +682,7 @@ describe('when building domain entity with acronym property name', () => {
         "iepBeginDate": Array [
           Object {
             "path": "$.iepBeginDate",
-            "type": "datetime",
+            "type": "date-time",
           },
         ],
       }
@@ -874,7 +874,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "assessedGradeLevelDescriptor": Array [
           Object {
             "path": "$.assessedGradeLevelDescriptor",
-            "type": "descriptor",
+            "type": "string",
           },
         ],
         "assessmentIdentifier": Array [
@@ -1331,7 +1331,7 @@ describe('when building a domain entity with an inline common property with a de
         "availableCreditTypeDescriptor": Array [
           Object {
             "path": "$.availableCreditTypeDescriptor",
-            "type": "descriptor",
+            "type": "string",
           },
         ],
         "sectionIdentifier": Array [
