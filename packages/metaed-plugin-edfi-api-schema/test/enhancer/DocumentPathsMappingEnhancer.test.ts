@@ -122,12 +122,12 @@ describe('when building simple domain entity with all the simple non-collections
         "OptionalShortProperty": Object {
           "isReference": false,
           "path": "$.optionalShortProperty",
-          "type": "integer",
+          "type": "number",
         },
         "OptionalYear": Object {
           "isReference": false,
           "path": "$.optionalYear",
-          "type": "integer",
+          "type": "number",
         },
         "RequiredCurrencyProperty": Object {
           "isReference": false,
@@ -152,7 +152,7 @@ describe('when building simple domain entity with all the simple non-collections
         "RequiredIntegerProperty": Object {
           "isReference": false,
           "path": "$.requiredIntegerProperty",
-          "type": "integer",
+          "type": "number",
         },
         "RequiredTimeProperty": Object {
           "isReference": false,
@@ -239,12 +239,12 @@ describe('when building simple domain entity with all the simple collections', (
         "OptionalShortProperty": Object {
           "isReference": false,
           "path": "$.optionalShortProperties[*].optionalShortProperty",
-          "type": "integer",
+          "type": "number",
         },
         "OptionalYear": Object {
           "isReference": false,
           "path": "$.optionalYears[*].optionalYear",
-          "type": "integer",
+          "type": "number",
         },
         "RequiredCurrencyProperty": Object {
           "isReference": false,
@@ -269,7 +269,7 @@ describe('when building simple domain entity with all the simple collections', (
         "RequiredIntegerProperty": Object {
           "isReference": false,
           "path": "$.requiredIntegerProperties[*].requiredIntegerProperty",
-          "type": "integer",
+          "type": "number",
         },
         "RequiredStringProperty": Object {
           "isReference": false,
@@ -899,7 +899,7 @@ describe('when building domain entity with a simple common collection', () => {
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);
@@ -956,7 +956,7 @@ describe('when building domain entity subclass with common collection and descri
         "CommunityOrganizationId": Object {
           "isReference": false,
           "path": "$.communityOrganizationId",
-          "type": "integer",
+          "type": "number",
         },
         "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": Object {
           "isDescriptor": true,
@@ -1060,7 +1060,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);
@@ -1110,7 +1110,7 @@ describe('when building domain entity with a descriptor collection with role nam
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);
@@ -1161,7 +1161,7 @@ describe('when building domain entity with a common with a choice', () => {
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
         "ContentStandard.PublicationDateChoice.PublicationDate": Object {
           "isReference": false,
@@ -1224,7 +1224,7 @@ describe('when building domain entity with a common and a common collection with
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
         "AssessmentPeriod.BeginDate": Object {
           "isReference": false,
@@ -1269,7 +1269,7 @@ describe('when building domain entity with an all-caps property', () => {
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
         "URI": Object {
           "isReference": false,
@@ -1323,7 +1323,7 @@ describe('when building domain entity with a common with a domain entity referen
         "AssessmentIdentifier": Object {
           "isReference": false,
           "path": "$.assessmentIdentifier",
-          "type": "integer",
+          "type": "number",
         },
         "ContentStandard.MandatingEducationOrganization": Object {
           "isDescriptor": false,
@@ -1333,7 +1333,7 @@ describe('when building domain entity with a common with a domain entity referen
             Object {
               "identityJsonPath": "$.educationOrganizationId",
               "referenceJsonPath": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-              "type": "integer",
+              "type": "number",
             },
           ],
           "resourceName": "EducationOrganization",
@@ -1539,7 +1539,7 @@ describe('when building a domain entity with an inline common property with a de
         "SectionIdentifier": Object {
           "isReference": false,
           "path": "$.sectionIdentifier",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);
@@ -1582,17 +1582,17 @@ describe('when building a Domain Entity subclass', () => {
         "SchoolId": Object {
           "isReference": false,
           "path": "$.schoolId",
-          "type": "integer",
+          "type": "number",
         },
         "SubclassProperty": Object {
           "isReference": false,
           "path": "$.subclassProperty",
-          "type": "integer",
+          "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
           "path": "$.superclassProperty",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);
@@ -1655,7 +1655,7 @@ describe('when building an Association subclass', () => {
             Object {
               "identityJsonPath": "$.programId",
               "referenceJsonPath": "$.programReference.programId",
-              "type": "integer",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.programName",
@@ -1673,7 +1673,7 @@ describe('when building an Association subclass', () => {
             Object {
               "identityJsonPath": "$.schoolId",
               "referenceJsonPath": "$.schoolReference.schoolId",
-              "type": "integer",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.schoolName",
@@ -1686,12 +1686,12 @@ describe('when building an Association subclass', () => {
         "SubclassProperty": Object {
           "isReference": false,
           "path": "$.subclassProperty",
-          "type": "integer",
+          "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
           "path": "$.superclassProperty",
-          "type": "integer",
+          "type": "number",
         },
       }
     `);

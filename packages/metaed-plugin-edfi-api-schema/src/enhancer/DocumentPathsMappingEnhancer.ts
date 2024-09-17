@@ -70,17 +70,16 @@ function getPathType(propertyType: PropertyType): PathType {
     case 'duration':
     case 'percent':
     case 'sharedDecimal':
-      return 'number';
-    case 'date':
-      return 'date';
-    case 'datetime':
-      return 'date-time';
     case 'integer':
     case 'sharedInteger':
     case 'short':
     case 'sharedShort':
     case 'year':
-      return 'integer';
+      return 'number';
+    case 'date':
+      return 'date';
+    case 'datetime':
+      return 'date-time';
     case 'descriptor':
     case 'enumeration':
     case 'sharedString':

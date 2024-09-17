@@ -975,7 +975,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -983,7 +983,7 @@
             "TotalInstructionalDays": {
               "isReference": false,
               "path": "$.totalInstructionalDays",
-              "type": "integer"
+              "type": "number"
             },
             "WeekIdentifier": {
               "isReference": false,
@@ -1078,13 +1078,13 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "totalInstructionalDays": [
               {
                 "path": "$.totalInstructionalDays",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "weekIdentifier": [
@@ -1271,7 +1271,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -1410,7 +1410,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "rating": [
@@ -3157,7 +3157,7 @@
             "AssessmentVersion": {
               "isReference": false,
               "path": "$.assessmentVersion",
-              "type": "integer"
+              "type": "number"
             },
             "ContentStandard.Author": {
               "isReference": false,
@@ -3182,7 +3182,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -3195,7 +3195,7 @@
             "ContentStandard.PublicationDateChoice.PublicationYear": {
               "isReference": false,
               "path": "$.contentStandard.publicationYear",
-              "type": "integer"
+              "type": "number"
             },
             "ContentStandard.PublicationStatusDescriptor": {
               "isDescriptor": true,
@@ -3228,7 +3228,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -3277,7 +3277,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programs[*].programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -3305,7 +3305,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sections[*].sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -3842,7 +3842,7 @@
             "assessmentVersion": [
               {
                 "path": "$.assessmentVersion",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "beginDate": [
@@ -3854,7 +3854,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -3896,7 +3896,7 @@
             "publicationYear": [
               {
                 "path": "$.contentStandard.publicationYear",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "revisionDate": [
@@ -4187,7 +4187,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -4281,7 +4281,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -4477,7 +4477,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ClassPeriod"
@@ -4508,7 +4508,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -4521,7 +4521,7 @@
             "TotalInstructionalTime": {
               "isReference": false,
               "path": "$.totalInstructionalTime",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -4694,7 +4694,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "startTime": [
@@ -4706,7 +4706,7 @@
             "totalInstructionalTime": [
               {
                 "path": "$.totalInstructionalTime",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -4892,7 +4892,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.calendarReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -5018,7 +5018,7 @@
             "schoolId": [
               {
                 "path": "$.calendarReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -5226,7 +5226,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -5353,7 +5353,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -5482,7 +5482,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.balanceSheetDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "BalanceSheetDimension"
@@ -5495,7 +5495,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -5503,7 +5503,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "FunctionFunctionDimension": {
               "isDescriptor": false,
@@ -5518,7 +5518,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.functionDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "FunctionDimension"
@@ -5536,7 +5536,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.fundDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "FundDimension"
@@ -5554,7 +5554,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.objectDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ObjectDimension"
@@ -5572,7 +5572,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.operationalUnitDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "OperationalUnitDimension"
@@ -5590,7 +5590,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.programDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ProgramDimension"
@@ -5608,7 +5608,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.projectDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ProjectDimension"
@@ -5639,7 +5639,7 @@
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.sourceDimensionReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "SourceDimension"
@@ -5982,13 +5982,13 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "fiscalYear": [
               {
                 "path": "$.sourceDimensionReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -6271,7 +6271,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -6373,7 +6373,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -6750,7 +6750,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -6763,7 +6763,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programs[*].programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -6922,7 +6922,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -7026,7 +7026,7 @@
             "CommunityOrganizationId": {
               "isReference": false,
               "path": "$.communityOrganizationId",
-              "type": "integer"
+              "type": "number"
             },
             "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
@@ -7553,7 +7553,7 @@
             "communityOrganizationId": [
               {
                 "path": "$.communityOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nameOfInstitution": [
@@ -7600,7 +7600,7 @@
                 {
                   "identityJsonPath": "$.communityProviderId",
                   "referenceJsonPath": "$.communityProviderReference.communityProviderId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "CommunityProvider"
@@ -7608,7 +7608,7 @@
             "License.AuthorizedFacilityCapacity": {
               "isReference": false,
               "path": "$.authorizedFacilityCapacity",
-              "type": "integer"
+              "type": "number"
             },
             "License.LicenseEffectiveDate": {
               "isReference": false,
@@ -7654,12 +7654,12 @@
             "License.OldestAgeAuthorizedToServe": {
               "isReference": false,
               "path": "$.oldestAgeAuthorizedToServe",
-              "type": "integer"
+              "type": "number"
             },
             "License.YoungestAgeAuthorizedToServe": {
               "isReference": false,
               "path": "$.youngestAgeAuthorizedToServe",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -7763,13 +7763,13 @@
             "authorizedFacilityCapacity": [
               {
                 "path": "$.authorizedFacilityCapacity",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "communityProviderId": [
               {
                 "path": "$.communityProviderReference.communityProviderId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "licenseEffectiveDate": [
@@ -7817,13 +7817,13 @@
             "oldestAgeAuthorizedToServe": [
               {
                 "path": "$.oldestAgeAuthorizedToServe",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "youngestAgeAuthorizedToServe": [
               {
                 "path": "$.youngestAgeAuthorizedToServe",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -7934,7 +7934,7 @@
                 {
                   "identityJsonPath": "$.communityOrganizationId",
                   "referenceJsonPath": "$.communityOrganizationReference.communityOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "CommunityOrganization"
@@ -7942,7 +7942,7 @@
             "CommunityProviderId": {
               "isReference": false,
               "path": "$.communityProviderId",
-              "type": "integer"
+              "type": "number"
             },
             "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
@@ -8539,13 +8539,13 @@
             "communityOrganizationId": [
               {
                 "path": "$.communityOrganizationReference.communityOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "communityProviderId": [
               {
                 "path": "$.communityProviderId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "licenseExemptIndicator": [
@@ -8713,7 +8713,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -8825,7 +8825,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "objective": [
@@ -9298,7 +9298,7 @@
             "Telephone.OrderOfPriority": {
               "isReference": false,
               "path": "$.telephones[*].orderOfPriority",
-              "type": "integer"
+              "type": "number"
             },
             "Telephone.TelephoneNumber": {
               "isReference": false,
@@ -10658,7 +10658,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.courseReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Course"
@@ -10682,7 +10682,7 @@
             "InstructionalTimePlanned": {
               "isReference": false,
               "path": "$.instructionalTimePlanned",
-              "type": "integer"
+              "type": "number"
             },
             "LocalCourseCode": {
               "isReference": false,
@@ -10710,7 +10710,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -10723,7 +10723,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.sessionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -10924,13 +10924,13 @@
             "educationOrganizationId": [
               {
                 "path": "$.courseReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "instructionalTimePlanned": [
               {
                 "path": "$.instructionalTimePlanned",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "localCourseCode": [
@@ -10948,7 +10948,7 @@
             "schoolId": [
               {
                 "path": "$.sessionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -11124,7 +11124,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.courseReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Course"
@@ -11150,7 +11150,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.coursePrograms[*].courseProgramReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -11225,7 +11225,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.externalEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -11307,7 +11307,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sections[*].sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -11335,7 +11335,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.studentAcademicRecordReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -11891,7 +11891,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.externalEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "externalEducationOrganizationNameOfInstitution": [
@@ -12056,7 +12056,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -12082,7 +12082,7 @@
             "MaxCompletionsForCredit": {
               "isReference": false,
               "path": "$.maxCompletionsForCredit",
-              "type": "integer"
+              "type": "number"
             },
             "MaximumAvailableCredits.CreditConversion": {
               "isReference": false,
@@ -12123,7 +12123,7 @@
             "NumberOfParts": {
               "isReference": false,
               "path": "$.numberOfParts",
-              "type": "integer"
+              "type": "number"
             },
             "OfferedGradeLevelDescriptor": {
               "isDescriptor": true,
@@ -12136,7 +12136,7 @@
             "TimeRequiredForCompletion": {
               "isReference": false,
               "path": "$.timeRequiredForCompletion",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -12455,7 +12455,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "highSchoolCourseRequirement": [
@@ -12467,7 +12467,7 @@
             "maxCompletionsForCredit": [
               {
                 "path": "$.maxCompletionsForCredit",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "maximumAvailableCreditConversion": [
@@ -12509,13 +12509,13 @@
             "numberOfParts": [
               {
                 "path": "$.numberOfParts",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "timeRequiredForCompletion": [
               {
                 "path": "$.timeRequiredForCompletion",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -14232,7 +14232,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.assignmentSchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -14286,7 +14286,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.responsibilitySchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -14335,7 +14335,7 @@
                 {
                   "identityJsonPath": "$.disciplineIncidentReference.schoolId",
                   "referenceJsonPath": "$.studentDisciplineIncidentBehaviorAssociations[*].studentDisciplineIncidentBehaviorAssociationReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.studentReference.studentUniqueId",
@@ -14601,7 +14601,7 @@
             "schoolId": [
               {
                 "path": "$.assignmentSchoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "studentUniqueId": [
@@ -14876,7 +14876,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -15121,7 +15121,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -15331,7 +15331,7 @@
             "LearningResourceChoice.LearningResource.PublicationDateChoice.PublicationYear": {
               "isReference": false,
               "path": "$.publicationYear",
-              "type": "integer"
+              "type": "number"
             },
             "LearningResourceChoice.LearningResource.Publisher": {
               "isReference": false,
@@ -15703,7 +15703,7 @@
             "publicationYear": [
               {
                 "path": "$.publicationYear",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "publisher": [
@@ -16000,7 +16000,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -16018,7 +16018,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.interventionPrescriptionReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.interventionPrescriptionIdentificationCode",
@@ -16116,7 +16116,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.interventionPrescriptionReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -16152,7 +16152,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationNetworkId",
                   "referenceJsonPath": "$.educationOrganizationNetworkReference.educationOrganizationNetworkId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganizationNetwork"
@@ -16170,7 +16170,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.memberEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -16255,13 +16255,13 @@
             "educationOrganizationId": [
               {
                 "path": "$.memberEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "educationOrganizationNetworkId": [
               {
                 "path": "$.educationOrganizationNetworkReference.educationOrganizationNetworkId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -16436,7 +16436,7 @@
             "EducationOrganizationNetworkId": {
               "isReference": false,
               "path": "$.educationOrganizationNetworkId",
-              "type": "integer"
+              "type": "number"
             },
             "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
@@ -16911,7 +16911,7 @@
             "educationOrganizationNetworkId": [
               {
                 "path": "$.educationOrganizationNetworkId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nameOfInstitution": [
@@ -16964,7 +16964,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -16977,7 +16977,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.peerEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -17046,7 +17046,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.peerEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -17296,7 +17296,7 @@
             "EducationServiceCenterId": {
               "isReference": false,
               "path": "$.educationServiceCenterId",
-              "type": "integer"
+              "type": "number"
             },
             "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
@@ -17393,7 +17393,7 @@
                 {
                   "identityJsonPath": "$.stateEducationAgencyId",
                   "referenceJsonPath": "$.stateEducationAgencyReference.stateEducationAgencyId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "StateEducationAgency"
@@ -17785,7 +17785,7 @@
             "educationServiceCenterId": [
               {
                 "path": "$.educationServiceCenterId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nameOfInstitution": [
@@ -17809,7 +17809,7 @@
             "stateEducationAgencyId": [
               {
                 "path": "$.stateEducationAgencyReference.stateEducationAgencyId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "webSite": [
@@ -18567,7 +18567,7 @@
             "EvaluationRubricRating": {
               "isReference": false,
               "path": "$.evaluationRubricRating",
-              "type": "integer"
+              "type": "number"
             },
             "EvaluationRubricRatingLevelDescriptor": {
               "isDescriptor": true,
@@ -18590,7 +18590,7 @@
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
                   "referenceJsonPath": "$.programEvaluationElementReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEvaluationPeriodDescriptor",
@@ -18623,7 +18623,7 @@
             "RubricDimensionSortOrder": {
               "isReference": false,
               "path": "$.rubricDimensionSortOrder",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -18744,7 +18744,7 @@
             "evaluationRubricRating": [
               {
                 "path": "$.evaluationRubricRating",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "evaluationRubricRatingLevelDescriptor": [
@@ -18756,7 +18756,7 @@
             "programEducationOrganizationId": [
               {
                 "path": "$.programEvaluationElementReference.programEducationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEvaluationElementTitle": [
@@ -18798,7 +18798,7 @@
             "rubricDimensionSortOrder": [
               {
                 "path": "$.rubricDimensionSortOrder",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -18994,7 +18994,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.feederSchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -19007,7 +19007,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -19111,7 +19111,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -19216,7 +19216,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -19310,7 +19310,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -19334,7 +19334,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -19428,7 +19428,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -19733,7 +19733,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.gradingPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -19779,7 +19779,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -20082,7 +20082,7 @@
             "schoolId": [
               {
                 "path": "$.gradingPeriodReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -20251,7 +20251,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.gradingPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -20333,7 +20333,7 @@
                 {
                   "identityJsonPath": "$.sectionReference.schoolId",
                   "referenceJsonPath": "$.studentSectionAssociationReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.sectionReference.schoolYear",
@@ -20660,7 +20660,7 @@
             "schoolId": [
               {
                 "path": "$.gradingPeriodReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -20802,7 +20802,7 @@
             "PeriodSequence": {
               "isReference": false,
               "path": "$.periodSequence",
-              "type": "integer"
+              "type": "number"
             },
             "School": {
               "isDescriptor": false,
@@ -20812,7 +20812,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -20833,7 +20833,7 @@
             "TotalInstructionalDays": {
               "isReference": false,
               "path": "$.totalInstructionalDays",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -20963,13 +20963,13 @@
             "periodSequence": [
               {
                 "path": "$.periodSequence",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -20981,7 +20981,7 @@
             "totalInstructionalDays": [
               {
                 "path": "$.totalInstructionalDays",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -21087,7 +21087,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.creditsByCourses[*].courses[*].courseReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Course"
@@ -21183,7 +21183,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -21653,7 +21653,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "graduationPlanTypeDescriptor": [
@@ -23140,7 +23140,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -23161,12 +23161,12 @@
             "MaxDosage": {
               "isReference": false,
               "path": "$.maxDosage",
-              "type": "integer"
+              "type": "number"
             },
             "MinDosage": {
               "isReference": false,
               "path": "$.minDosage",
-              "type": "integer"
+              "type": "number"
             },
             "Namespace": {
               "isReference": false,
@@ -23410,7 +23410,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "interventionClassDescriptor": [
@@ -23428,13 +23428,13 @@
             "maxDosage": [
               {
                 "path": "$.maxDosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "minDosage": [
               {
                 "path": "$.minDosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -23506,7 +23506,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -23538,7 +23538,7 @@
             "InterventionEffectiveness.ImprovementIndex": {
               "isReference": false,
               "path": "$.interventionEffectivenesses[*].improvementIndex",
-              "type": "integer"
+              "type": "number"
             },
             "InterventionEffectiveness.InterventionEffectivenessRatingDescriptor": {
               "isDescriptor": true,
@@ -23564,7 +23564,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.interventionPrescriptionReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.interventionPrescriptionIdentificationCode",
@@ -23582,7 +23582,7 @@
             "Participants": {
               "isReference": false,
               "path": "$.participants",
-              "type": "integer"
+              "type": "number"
             },
             "PopulationServedDescriptor": {
               "isDescriptor": true,
@@ -23876,7 +23876,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "interventionClassDescriptor": [
@@ -23900,7 +23900,7 @@
             "participants": [
               {
                 "path": "$.participants",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -23979,7 +23979,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -24010,7 +24010,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.interventionPrescriptions[*].interventionPrescriptionReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.interventionPrescriptionIdentificationCode",
@@ -24023,7 +24023,7 @@
             "MaxDosage": {
               "isReference": false,
               "path": "$.maxDosage",
-              "type": "integer"
+              "type": "number"
             },
             "MeetingTime.EndTime": {
               "isReference": false,
@@ -24038,7 +24038,7 @@
             "MinDosage": {
               "isReference": false,
               "path": "$.minDosage",
-              "type": "integer"
+              "type": "number"
             },
             "Namespace": {
               "isReference": false,
@@ -24401,7 +24401,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -24425,13 +24425,13 @@
             "maxDosage": [
               {
                 "path": "$.maxDosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "minDosage": [
               {
                 "path": "$.minDosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -25138,7 +25138,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -25151,7 +25151,7 @@
             "ContentStandard.PublicationDateChoice.PublicationYear": {
               "isReference": false,
               "path": "$.contentStandard.publicationYear",
-              "type": "integer"
+              "type": "number"
             },
             "ContentStandard.PublicationStatusDescriptor": {
               "isDescriptor": true,
@@ -25524,7 +25524,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -25578,7 +25578,7 @@
             "publicationYear": [
               {
                 "path": "$.contentStandard.publicationYear",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "successCriteria": [
@@ -25960,12 +25960,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.chartOfAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.chartOfAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ChartOfAccount"
@@ -25978,7 +25978,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -25986,7 +25986,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTag.ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -26140,13 +26140,13 @@
             "educationOrganizationId": [
               {
                 "path": "$.chartOfAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "fiscalYear": [
               {
                 "path": "$.chartOfAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -26188,12 +26188,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.localAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.localAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalAccount"
@@ -26298,7 +26298,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.localAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "financialCollectionDescriptor": [
@@ -26310,7 +26310,7 @@
             "fiscalYear": [
               {
                 "path": "$.localAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -26352,12 +26352,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.localAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.localAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalAccount"
@@ -26462,7 +26462,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.localAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "financialCollectionDescriptor": [
@@ -26474,7 +26474,7 @@
             "fiscalYear": [
               {
                 "path": "$.localAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -26516,12 +26516,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.localAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.localAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalAccount"
@@ -26656,7 +26656,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.localAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "financialCollectionDescriptor": [
@@ -26668,7 +26668,7 @@
             "fiscalYear": [
               {
                 "path": "$.localAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "staffUniqueId": [
@@ -26856,7 +26856,7 @@
                 {
                   "identityJsonPath": "$.educationServiceCenterId",
                   "referenceJsonPath": "$.educationServiceCenterReference.educationServiceCenterId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationServiceCenter"
@@ -26970,7 +26970,7 @@
             "LocalEducationAgencyFederalFunds.FiscalYear": {
               "isReference": false,
               "path": "$.federalFunds[*].fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "LocalEducationAgencyFederalFunds.InnovativeDollarsSpent": {
               "isReference": false,
@@ -27015,7 +27015,7 @@
             "LocalEducationAgencyId": {
               "isReference": false,
               "path": "$.localEducationAgencyId",
-              "type": "integer"
+              "type": "number"
             },
             "NameOfInstitution": {
               "isReference": false,
@@ -27038,7 +27038,7 @@
                 {
                   "identityJsonPath": "$.localEducationAgencyId",
                   "referenceJsonPath": "$.parentLocalEducationAgencyReference.localEducationAgencyId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalEducationAgency"
@@ -27056,7 +27056,7 @@
                 {
                   "identityJsonPath": "$.stateEducationAgencyId",
                   "referenceJsonPath": "$.stateEducationAgencyReference.stateEducationAgencyId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "StateEducationAgency"
@@ -27588,7 +27588,7 @@
             "educationServiceCenterId": [
               {
                 "path": "$.educationServiceCenterReference.educationServiceCenterId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "localEducationAgencyCategoryDescriptor": [
@@ -27600,7 +27600,7 @@
             "localEducationAgencyId": [
               {
                 "path": "$.parentLocalEducationAgencyReference.localEducationAgencyId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nameOfInstitution": [
@@ -27624,7 +27624,7 @@
             "stateEducationAgencyId": [
               {
                 "path": "$.stateEducationAgencyReference.stateEducationAgencyId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "webSite": [
@@ -27757,12 +27757,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.localAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.localAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalAccount"
@@ -27867,7 +27867,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.localAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "financialCollectionDescriptor": [
@@ -27879,7 +27879,7 @@
             "fiscalYear": [
               {
                 "path": "$.localAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -27921,12 +27921,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.localAccountReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.fiscalYear",
                   "referenceJsonPath": "$.localAccountReference.fiscalYear",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalAccount"
@@ -28061,7 +28061,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.localAccountReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "financialCollectionDescriptor": [
@@ -28073,7 +28073,7 @@
             "fiscalYear": [
               {
                 "path": "$.localAccountReference.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "staffUniqueId": [
@@ -28179,12 +28179,12 @@
             "MaximumNumberOfSeats": {
               "isReference": false,
               "path": "$.maximumNumberOfSeats",
-              "type": "integer"
+              "type": "number"
             },
             "OptimalNumberOfSeats": {
               "isReference": false,
               "path": "$.optimalNumberOfSeats",
-              "type": "integer"
+              "type": "number"
             },
             "School": {
               "isDescriptor": false,
@@ -28194,7 +28194,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -28271,19 +28271,19 @@
             "maximumNumberOfSeats": [
               {
                 "path": "$.maximumNumberOfSeats",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "optimalNumberOfSeats": [
               {
                 "path": "$.optimalNumberOfSeats",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -29117,7 +29117,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -29211,7 +29211,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -29759,7 +29759,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -29952,7 +29952,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "employmentStatusDescriptor": [
@@ -30093,7 +30093,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -30187,7 +30187,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -30446,7 +30446,7 @@
             "OrganizationDepartmentId": {
               "isReference": false,
               "path": "$.organizationDepartmentId",
-              "type": "integer"
+              "type": "number"
             },
             "ParentEducationOrganization": {
               "isDescriptor": false,
@@ -30456,7 +30456,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.parentEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -30863,7 +30863,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.parentEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nameOfInstitution": [
@@ -30881,7 +30881,7 @@
             "organizationDepartmentId": [
               {
                 "path": "$.organizationDepartmentId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "shortNameOfInstitution": [
@@ -31734,7 +31734,7 @@
                 {
                   "identityJsonPath": "$.postSecondaryInstitutionId",
                   "referenceJsonPath": "$.postSecondaryInstitutionReference.postSecondaryInstitutionId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "PostSecondaryInstitution"
@@ -31840,7 +31840,7 @@
             "postSecondaryInstitutionId": [
               {
                 "path": "$.postSecondaryInstitutionReference.postSecondaryInstitutionId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "studentUniqueId": [
@@ -32194,7 +32194,7 @@
             "PostSecondaryInstitutionId": {
               "isReference": false,
               "path": "$.postSecondaryInstitutionId",
-              "type": "integer"
+              "type": "number"
             },
             "PostSecondaryInstitutionLevelDescriptor": {
               "isDescriptor": true,
@@ -32626,7 +32626,7 @@
             "postSecondaryInstitutionId": [
               {
                 "path": "$.postSecondaryInstitutionId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "postSecondaryInstitutionLevelDescriptor": [
@@ -33239,7 +33239,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -33333,7 +33333,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -33375,7 +33375,7 @@
             "ElementSortOrder": {
               "isReference": false,
               "path": "$.elementSortOrder",
-              "type": "integer"
+              "type": "number"
             },
             "ProgramEvaluation": {
               "isDescriptor": false,
@@ -33400,7 +33400,7 @@
                 {
                   "identityJsonPath": "$.programReference.educationOrganizationId",
                   "referenceJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programReference.programName",
@@ -33438,7 +33438,7 @@
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
                   "referenceJsonPath": "$.programEvaluationObjectiveReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEvaluationPeriodDescriptor",
@@ -33692,13 +33692,13 @@
             "elementSortOrder": [
               {
                 "path": "$.elementSortOrder",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEducationOrganizationId": [
               {
                 "path": "$.programEvaluationObjectiveReference.programEducationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEvaluationElementDescription": [
@@ -33788,7 +33788,7 @@
             "ObjectiveSortOrder": {
               "isReference": false,
               "path": "$.objectiveSortOrder",
-              "type": "integer"
+              "type": "number"
             },
             "ProgramEvaluation": {
               "isDescriptor": false,
@@ -33813,7 +33813,7 @@
                 {
                   "identityJsonPath": "$.programReference.educationOrganizationId",
                   "referenceJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programReference.programName",
@@ -33988,13 +33988,13 @@
             "objectiveSortOrder": [
               {
                 "path": "$.objectiveSortOrder",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEducationOrganizationId": [
               {
                 "path": "$.programEvaluationReference.programEducationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEvaluationObjectiveDescription": [
@@ -34227,7 +34227,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -34411,7 +34411,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.programReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "evaluationMaxNumericRating": [
@@ -34640,7 +34640,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -34824,7 +34824,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programId": [
@@ -35028,7 +35028,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -35122,7 +35122,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -36114,7 +36114,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -36157,7 +36157,7 @@
                 {
                   "identityJsonPath": "$.studentSectionAssociationReference.schoolId",
                   "referenceJsonPath": "$.grades[*].gradeReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.studentSectionAssociationReference.schoolYear",
@@ -36223,7 +36223,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.gradingPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -36246,7 +36246,7 @@
             "NumberOfDaysTardy": {
               "isReference": false,
               "path": "$.numberOfDaysTardy",
-              "type": "integer"
+              "type": "number"
             },
             "Student": {
               "isDescriptor": false,
@@ -36279,7 +36279,7 @@
                 {
                   "identityJsonPath": "$.gradingPeriodReference.schoolId",
                   "referenceJsonPath": "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.gradingPeriodSchoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.gradingPeriodReference.schoolYear",
@@ -36289,7 +36289,7 @@
                 {
                   "identityJsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
                   "referenceJsonPath": "$.studentCompetencyObjectives[*].studentCompetencyObjectiveReference.objectiveEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.objectiveCompetencyObjectiveReference.objective",
@@ -36670,7 +36670,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "gradingPeriodDescriptor": [
@@ -36700,13 +36700,13 @@
             "numberOfDaysTardy": [
               {
                 "path": "$.numberOfDaysTardy",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolId": [
               {
                 "path": "$.gradingPeriodReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -37236,7 +37236,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programs[*].programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -37272,7 +37272,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -37449,7 +37449,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "studentUniqueId": [
@@ -38398,7 +38398,7 @@
                 {
                   "identityJsonPath": "$.localEducationAgencyId",
                   "referenceJsonPath": "$.localEducationAgencyReference.localEducationAgencyId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "LocalEducationAgency"
@@ -38435,7 +38435,7 @@
             "SchoolId": {
               "isReference": false,
               "path": "$.schoolId",
-              "type": "integer"
+              "type": "number"
             },
             "SchoolTypeDescriptor": {
               "isDescriptor": true,
@@ -38950,7 +38950,7 @@
             "localEducationAgencyId": [
               {
                 "path": "$.localEducationAgencyReference.localEducationAgencyId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "magnetSpecialProgramEmphasisSchoolDescriptor": [
@@ -38974,7 +38974,7 @@
             "schoolId": [
               {
                 "path": "$.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolTypeDescriptor": [
@@ -39032,7 +39032,7 @@
                 {
                   "identityJsonPath": "$.calendarReference.schoolId",
                   "referenceJsonPath": "$.calendarDateReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.calendarReference.schoolYear",
@@ -39065,7 +39065,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -39272,7 +39272,7 @@
             "schoolId": [
               {
                 "path": "$.calendarDateReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -39501,7 +39501,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ClassPeriod"
@@ -39527,12 +39527,12 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.courseOfferingReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.sessionReference.schoolId",
                   "referenceJsonPath": "$.courseOfferingReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.sessionReference.schoolYear",
@@ -39576,7 +39576,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.locationReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Location"
@@ -39589,7 +39589,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.locationSchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -39631,7 +39631,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programs[*].programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -39675,7 +39675,7 @@
             "SequenceOfCourse": {
               "isReference": false,
               "path": "$.sequenceOfCourse",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -40040,7 +40040,7 @@
             "schoolId": [
               {
                 "path": "$.locationReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -40070,7 +40070,7 @@
             "sequenceOfCourse": [
               {
                 "path": "$.sequenceOfCourse",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "sessionName": [
@@ -40338,7 +40338,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.weekIdentifier",
@@ -40376,7 +40376,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -40394,7 +40394,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -40428,7 +40428,7 @@
             "TotalInstructionalDays": {
               "isReference": false,
               "path": "$.totalInstructionalDays",
-              "type": "integer"
+              "type": "number"
             }
           },
           "equalityConstraints": [
@@ -40636,7 +40636,7 @@
             "schoolId": [
               {
                 "path": "$.schoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -40660,7 +40660,7 @@
             "totalInstructionalDays": [
               {
                 "path": "$.totalInstructionalDays",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -40765,7 +40765,7 @@
             "FiscalYear": {
               "isReference": false,
               "path": "$.fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "ReportingTagDescriptor": {
               "isDescriptor": true,
@@ -40859,7 +40859,7 @@
             "fiscalYear": [
               {
                 "path": "$.fiscalYear",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -41437,7 +41437,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.cohortReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Cohort"
@@ -41566,7 +41566,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.cohortReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -41608,7 +41608,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.disciplineIncidentReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "DisciplineIncident"
@@ -41732,7 +41732,7 @@
             "schoolId": [
               {
                 "path": "$.disciplineIncidentReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "staffUniqueId": [
@@ -41780,7 +41780,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -41798,7 +41798,7 @@
             "OrderOfAssignment": {
               "isReference": false,
               "path": "$.orderOfAssignment",
-              "type": "integer"
+              "type": "number"
             },
             "PositionTitle": {
               "isReference": false,
@@ -41834,7 +41834,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.employmentStaffEducationOrganizationEmploymentAssociationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.employmentStatusDescriptor",
@@ -42009,7 +42009,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.employmentStaffEducationOrganizationEmploymentAssociationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "employmentStatusDescriptor": [
@@ -42033,7 +42033,7 @@
             "orderOfAssignment": [
               {
                 "path": "$.orderOfAssignment",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "positionTitle": [
@@ -42181,7 +42181,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -42212,7 +42212,7 @@
             "Telephone.OrderOfPriority": {
               "isReference": false,
               "path": "$.telephones[*].orderOfPriority",
-              "type": "integer"
+              "type": "number"
             },
             "Telephone.TelephoneNumber": {
               "isReference": false,
@@ -42518,7 +42518,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "electronicMailAddress": [
@@ -42619,7 +42619,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -42839,7 +42839,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "employmentStatusDescriptor": [
@@ -43250,7 +43250,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -43384,7 +43384,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.programReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -43446,7 +43446,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.calendarReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -43480,7 +43480,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -43683,7 +43683,7 @@
             "schoolId": [
               {
                 "path": "$.calendarReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -43749,7 +43749,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -43951,7 +43951,7 @@
             "schoolId": [
               {
                 "path": "$.sectionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -44555,7 +44555,7 @@
             "Telephone.OrderOfPriority": {
               "isReference": false,
               "path": "$.telephones[*].orderOfPriority",
-              "type": "integer"
+              "type": "number"
             },
             "Telephone.TelephoneNumber": {
               "isReference": false,
@@ -45863,12 +45863,12 @@
             "StateEducationAgencyFederalFunds.FiscalYear": {
               "isReference": false,
               "path": "$.federalFunds[*].fiscalYear",
-              "type": "integer"
+              "type": "number"
             },
             "StateEducationAgencyId": {
               "isReference": false,
               "path": "$.stateEducationAgencyId",
-              "type": "integer"
+              "type": "number"
             },
             "WebSite": {
               "isReference": false,
@@ -46319,7 +46319,7 @@
             "stateEducationAgencyId": [
               {
                 "path": "$.stateEducationAgencyId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "webSite": [
@@ -46416,7 +46416,7 @@
             "ClassRanking.ClassRank": {
               "isReference": false,
               "path": "$.classRanking.classRank",
-              "type": "integer"
+              "type": "number"
             },
             "ClassRanking.ClassRankingDate": {
               "isReference": false,
@@ -46426,12 +46426,12 @@
             "ClassRanking.PercentageRanking": {
               "isReference": false,
               "path": "$.classRanking.percentageRanking",
-              "type": "integer"
+              "type": "number"
             },
             "ClassRanking.TotalNumberInClass": {
               "isReference": false,
               "path": "$.classRanking.totalNumberInClass",
-              "type": "integer"
+              "type": "number"
             },
             "CumulativeAttemptedCredits.CreditConversion": {
               "isReference": false,
@@ -46561,7 +46561,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -46673,7 +46673,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.reportCards[*].reportCardReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
@@ -46688,7 +46688,7 @@
                 {
                   "identityJsonPath": "$.gradingPeriodReference.schoolId",
                   "referenceJsonPath": "$.reportCards[*].reportCardReference.gradingPeriodSchoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.gradingPeriodReference.schoolYear",
@@ -47306,7 +47306,7 @@
             "classRank": [
               {
                 "path": "$.classRanking.classRank",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "classRankingDate": [
@@ -47354,13 +47354,13 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "percentageRanking": [
               {
                 "path": "$.classRanking.percentageRanking",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "projectedGraduationDate": [
@@ -47426,7 +47426,7 @@
             "totalNumberInClass": [
               {
                 "path": "$.classRanking.totalNumberInClass",
-                "type": "integer"
+                "type": "number"
               }
             ]
           },
@@ -47445,7 +47445,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -47623,7 +47623,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -47695,7 +47695,7 @@
             "AssessedMinutes": {
               "isReference": false,
               "path": "$.assessedMinutes",
-              "type": "integer"
+              "type": "number"
             },
             "Assessment": {
               "isDescriptor": false,
@@ -47791,7 +47791,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.reportedSchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -47910,7 +47910,7 @@
             "StudentAssessmentItem.ItemNumber": {
               "isReference": false,
               "path": "$.items[*].itemNumber",
-              "type": "integer"
+              "type": "number"
             },
             "StudentAssessmentItem.RawScoreResult": {
               "isReference": false,
@@ -47943,7 +47943,7 @@
             "StudentObjectiveAssessment.AssessedMinutes": {
               "isReference": false,
               "path": "$.studentObjectiveAssessments[*].assessedMinutes",
-              "type": "integer"
+              "type": "number"
             },
             "StudentObjectiveAssessment.ObjectiveAssessment": {
               "isDescriptor": false,
@@ -48523,7 +48523,7 @@
             "assessedMinutes": [
               {
                 "path": "$.assessedMinutes",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "assessmentIdentifier": [
@@ -48595,7 +48595,7 @@
             "schoolId": [
               {
                 "path": "$.reportedSchoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -48681,7 +48681,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -48709,7 +48709,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -48985,7 +48985,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -49152,7 +49152,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.cohortReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Cohort"
@@ -49175,7 +49175,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sections[*].sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -49362,7 +49362,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.cohortReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -49401,7 +49401,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.objective",
@@ -49439,7 +49439,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.gradingPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -49475,12 +49475,12 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programReference.educationOrganizationId",
                   "referenceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programReference.programName",
@@ -49518,7 +49518,7 @@
                 {
                   "identityJsonPath": "$.sectionReference.schoolId",
                   "referenceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.sectionReference.schoolYear",
@@ -49803,7 +49803,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "gradingPeriodDescriptor": [
@@ -49833,7 +49833,7 @@
             "schoolId": [
               {
                 "path": "$.gradingPeriodReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -49876,7 +49876,7 @@
             "ContactPriority": {
               "isReference": false,
               "path": "$.contactPriority",
-              "type": "integer"
+              "type": "number"
             },
             "ContactRestrictions": {
               "isReference": false,
@@ -50020,7 +50020,7 @@
             "contactPriority": [
               {
                 "path": "$.contactPriority",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "contactRestrictions": [
@@ -50105,7 +50105,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.disciplineIncidentReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "DisciplineIncident"
@@ -50251,7 +50251,7 @@
             "schoolId": [
               {
                 "path": "$.disciplineIncidentReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "studentUniqueId": [
@@ -50281,7 +50281,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.disciplineIncidentReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "DisciplineIncident"
@@ -50404,7 +50404,7 @@
             "schoolId": [
               {
                 "path": "$.disciplineIncidentReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "studentUniqueId": [
@@ -50595,7 +50595,7 @@
             "Disability.OrderOfDisability": {
               "isReference": false,
               "path": "$.disabilities[*].orderOfDisability",
-              "type": "integer"
+              "type": "number"
             },
             "DisplacedStudent.CrisisEvent": {
               "isDescriptor": false,
@@ -50641,7 +50641,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -50930,7 +50930,7 @@
             "Telephone.OrderOfPriority": {
               "isReference": false,
               "path": "$.telephones[*].orderOfPriority",
-              "type": "integer"
+              "type": "number"
             },
             "Telephone.TelephoneNumber": {
               "isReference": false,
@@ -51706,7 +51706,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "genderIdentity": [
@@ -51814,7 +51814,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -51934,7 +51934,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -52265,7 +52265,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -52491,7 +52491,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "nonMedicalImmunizationExemptionDate": [
@@ -52542,7 +52542,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -52596,7 +52596,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -52865,7 +52865,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -53021,7 +53021,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.cohortReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Cohort"
@@ -53034,7 +53034,7 @@
             "Dosage": {
               "isReference": false,
               "path": "$.dosage",
-              "type": "integer"
+              "type": "number"
             },
             "Intervention": {
               "isDescriptor": false,
@@ -53044,7 +53044,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.interventionReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.interventionIdentificationCode",
@@ -53073,7 +53073,7 @@
             "InterventionEffectiveness.ImprovementIndex": {
               "isReference": false,
               "path": "$.interventionEffectivenesses[*].improvementIndex",
-              "type": "integer"
+              "type": "number"
             },
             "InterventionEffectiveness.InterventionEffectivenessRatingDescriptor": {
               "isDescriptor": true,
@@ -53258,13 +53258,13 @@
             "dosage": [
               {
                 "path": "$.dosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "educationOrganizationId": [
               {
                 "path": "$.cohortReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "interventionIdentificationCode": [
@@ -53326,7 +53326,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.interventionReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.interventionIdentificationCode",
@@ -53339,7 +53339,7 @@
             "InterventionDuration": {
               "isReference": false,
               "path": "$.interventionDuration",
-              "type": "integer"
+              "type": "number"
             },
             "Student": {
               "isDescriptor": false,
@@ -53471,7 +53471,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.interventionReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "educationalEnvironmentDescriptor": [
@@ -53495,7 +53495,7 @@
             "interventionDuration": [
               {
                 "path": "$.interventionDuration",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "interventionIdentificationCode": [
@@ -53529,7 +53529,7 @@
             "Dosage": {
               "isReference": false,
               "path": "$.dosage",
-              "type": "integer"
+              "type": "number"
             },
             "EducationOrganization": {
               "isDescriptor": false,
@@ -53539,7 +53539,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -53630,7 +53630,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -53936,13 +53936,13 @@
             "dosage": [
               {
                 "path": "$.dosage",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -54022,7 +54022,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -54078,7 +54078,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -54405,7 +54405,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "eligibilityExpirationDate": [
@@ -54526,7 +54526,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -54583,7 +54583,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -54846,7 +54846,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "elaProgressLevelDescriptor": [
@@ -55010,7 +55010,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -55028,7 +55028,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -55302,7 +55302,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -55391,7 +55391,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -55404,7 +55404,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -55422,7 +55422,7 @@
             "ProgramAttendanceDuration": {
               "isReference": false,
               "path": "$.programAttendanceDuration",
-              "type": "integer"
+              "type": "number"
             },
             "Student": {
               "isDescriptor": false,
@@ -55576,7 +55576,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.programReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "educationalEnvironmentDescriptor": [
@@ -55600,7 +55600,7 @@
             "programAttendanceDuration": [
               {
                 "path": "$.programAttendanceDuration",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programName": [
@@ -55637,7 +55637,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -55650,7 +55650,7 @@
             "EvaluationDuration": {
               "isReference": false,
               "path": "$.evaluationDuration",
-              "type": "integer"
+              "type": "number"
             },
             "ExternalEvaluator": {
               "isReference": false,
@@ -55680,7 +55680,7 @@
                 {
                   "identityJsonPath": "$.programReference.educationOrganizationId",
                   "referenceJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programReference.programName",
@@ -55747,7 +55747,7 @@
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
                   "referenceJsonPath": "$.studentEvaluationElements[*].programEvaluationElementReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEvaluationPeriodDescriptor",
@@ -55803,7 +55803,7 @@
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEducationOrganizationId",
                   "referenceJsonPath": "$.studentEvaluationObjectives[*].programEvaluationObjectiveReference.programEducationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programEvaluationReference.programEvaluationPeriodDescriptor",
@@ -56219,7 +56219,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "evaluationDate": [
@@ -56231,13 +56231,13 @@
             "evaluationDuration": [
               {
                 "path": "$.evaluationDuration",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEducationOrganizationId": [
               {
                 "path": "$.programEvaluationReference.programEducationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "programEvaluationPeriodDescriptor": [
@@ -56322,7 +56322,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.alternativeGraduationPlans[*].alternativeGraduationPlanReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.graduationPlanTypeDescriptor",
@@ -56350,7 +56350,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.calendarReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -56449,7 +56449,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.graduationPlanReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.graduationPlanTypeDescriptor",
@@ -56480,7 +56480,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.nextYearSchoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -56511,7 +56511,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -56879,7 +56879,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.graduationPlanReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "employedWhileEnrolled": [
@@ -56993,7 +56993,7 @@
             "schoolId": [
               {
                 "path": "$.nextYearSchoolReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -57071,7 +57071,7 @@
                 {
                   "identityJsonPath": "$.schoolId",
                   "referenceJsonPath": "$.schoolReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "School"
@@ -57079,7 +57079,7 @@
             "SchoolAttendanceDuration": {
               "isReference": false,
               "path": "$.schoolAttendanceDuration",
-              "type": "integer"
+              "type": "number"
             },
             "Session": {
               "isDescriptor": false,
@@ -57089,7 +57089,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.sessionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -57303,13 +57303,13 @@
             "schoolAttendanceDuration": [
               {
                 "path": "$.schoolAttendanceDuration",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolId": [
               {
                 "path": "$.sessionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -57359,7 +57359,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -57377,7 +57377,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -57661,7 +57661,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -57744,7 +57744,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programs[*].programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -57780,7 +57780,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -58020,7 +58020,7 @@
             "schoolId": [
               {
                 "path": "$.sectionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -58110,7 +58110,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "ClassPeriod"
@@ -58133,7 +58133,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -58156,7 +58156,7 @@
             "SectionAttendanceDuration": {
               "isReference": false,
               "path": "$.sectionAttendanceDuration",
-              "type": "integer"
+              "type": "number"
             },
             "Student": {
               "isDescriptor": false,
@@ -58398,7 +58398,7 @@
             "schoolId": [
               {
                 "path": "$.sectionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -58410,7 +58410,7 @@
             "sectionAttendanceDuration": [
               {
                 "path": "$.sectionAttendanceDuration",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "sectionIdentifier": [
@@ -58483,7 +58483,7 @@
             "Disability.OrderOfDisability": {
               "isReference": false,
               "path": "$.disabilities[*].orderOfDisability",
-              "type": "integer"
+              "type": "number"
             },
             "EducationOrganization": {
               "isDescriptor": false,
@@ -58493,7 +58493,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -58546,7 +58546,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -59068,7 +59068,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -59216,7 +59216,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -59260,7 +59260,7 @@
             "EvaluationDelayDays": {
               "isReference": false,
               "path": "$.evaluationDelayDays",
-              "type": "integer"
+              "type": "number"
             },
             "EvaluationDelayReasonDescriptor": {
               "isDescriptor": true,
@@ -59301,7 +59301,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -59527,7 +59527,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.programReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "eligibilityConferenceDate": [
@@ -59569,7 +59569,7 @@
             "evaluationDelayDays": [
               {
                 "path": "$.evaluationDelayDays",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "evaluationDelayReasonDescriptor": [
@@ -59655,7 +59655,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -59673,7 +59673,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -59960,7 +59960,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "endDate": [
@@ -60076,7 +60076,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.transportationEducationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -60248,7 +60248,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.transportationEducationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "mileage": [
@@ -61221,7 +61221,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.courseReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "Course"
@@ -61332,7 +61332,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.courseReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -61444,7 +61444,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
                   "referenceJsonPath": "$.programReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.programName",
@@ -61565,7 +61565,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.programReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -61643,12 +61643,12 @@
             "SurveyQuestionMatrixElementResponse.MaxNumericResponse": {
               "isReference": false,
               "path": "$.surveyQuestionMatrixElementResponses[*].maxNumericResponse",
-              "type": "integer"
+              "type": "number"
             },
             "SurveyQuestionMatrixElementResponse.MinNumericResponse": {
               "isReference": false,
               "path": "$.surveyQuestionMatrixElementResponses[*].minNumericResponse",
-              "type": "integer"
+              "type": "number"
             },
             "SurveyQuestionMatrixElementResponse.NoResponse": {
               "isReference": false,
@@ -61658,7 +61658,7 @@
             "SurveyQuestionMatrixElementResponse.NumericResponse": {
               "isReference": false,
               "path": "$.surveyQuestionMatrixElementResponses[*].numericResponse",
-              "type": "integer"
+              "type": "number"
             },
             "SurveyQuestionMatrixElementResponse.TextResponse": {
               "isReference": false,
@@ -61668,12 +61668,12 @@
             "SurveyQuestionResponseValue.NumericResponse": {
               "isReference": false,
               "path": "$.values[*].numericResponse",
-              "type": "integer"
+              "type": "number"
             },
             "SurveyQuestionResponseValue.SurveyQuestionResponseValueIdentifier": {
               "isReference": false,
               "path": "$.values[*].surveyQuestionResponseValueIdentifier",
-              "type": "integer"
+              "type": "number"
             },
             "SurveyQuestionResponseValue.TextResponse": {
               "isReference": false,
@@ -61946,12 +61946,12 @@
             "Matrix.MaxRawScore": {
               "isReference": false,
               "path": "$.matrices[*].maxRawScore",
-              "type": "integer"
+              "type": "number"
             },
             "Matrix.MinRawScore": {
               "isReference": false,
               "path": "$.matrices[*].minRawScore",
-              "type": "integer"
+              "type": "number"
             },
             "QuestionCode": {
               "isReference": false,
@@ -61974,12 +61974,12 @@
             "ResponseChoice.NumericValue": {
               "isReference": false,
               "path": "$.responseChoices[*].numericValue",
-              "type": "integer"
+              "type": "number"
             },
             "ResponseChoice.SortOrder": {
               "isReference": false,
               "path": "$.responseChoices[*].sortOrder",
-              "type": "integer"
+              "type": "number"
             },
             "ResponseChoice.TextValue": {
               "isReference": false,
@@ -62253,7 +62253,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -62363,7 +62363,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -62563,7 +62563,7 @@
             "ResponseTime": {
               "isReference": false,
               "path": "$.responseTime",
-              "type": "integer"
+              "type": "number"
             },
             "Survey": {
               "isDescriptor": false,
@@ -62818,7 +62818,7 @@
             "responseTime": [
               {
                 "path": "$.responseTime",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "staffUniqueId": [
@@ -62866,7 +62866,7 @@
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolId",
                   "referenceJsonPath": "$.sectionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.courseOfferingReference.schoolYear",
@@ -63023,7 +63023,7 @@
             "schoolId": [
               {
                 "path": "$.sectionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [
@@ -63066,7 +63066,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -63189,7 +63189,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -63710,7 +63710,7 @@
                 {
                   "identityJsonPath": "$.educationOrganizationId",
                   "referenceJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                  "type": "integer"
+                  "type": "number"
                 }
               ],
               "resourceName": "EducationOrganization"
@@ -63723,7 +63723,7 @@
             "NumberAdministered": {
               "isReference": false,
               "path": "$.numberAdministered",
-              "type": "integer"
+              "type": "number"
             },
             "SchoolYear": {
               "isDescriptor": false,
@@ -63746,7 +63746,7 @@
                 {
                   "identityJsonPath": "$.schoolReference.schoolId",
                   "referenceJsonPath": "$.sessionReference.schoolId",
-                  "type": "integer"
+                  "type": "number"
                 },
                 {
                   "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
@@ -63908,7 +63908,7 @@
             "educationOrganizationId": [
               {
                 "path": "$.educationOrganizationReference.educationOrganizationId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "namespace": [
@@ -63920,13 +63920,13 @@
             "numberAdministered": [
               {
                 "path": "$.numberAdministered",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolId": [
               {
                 "path": "$.sessionReference.schoolId",
-                "type": "integer"
+                "type": "number"
               }
             ],
             "schoolYear": [

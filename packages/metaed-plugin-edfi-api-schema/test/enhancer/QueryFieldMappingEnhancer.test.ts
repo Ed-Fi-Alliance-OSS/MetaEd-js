@@ -127,13 +127,13 @@ describe('when building simple domain entity with all the simple non-collections
         "optionalShortProperty": Array [
           Object {
             "path": "$.optionalShortProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "optionalYear": Array [
           Object {
             "path": "$.optionalYear",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "requiredCurrencyProperty": Array [
@@ -163,7 +163,7 @@ describe('when building simple domain entity with all the simple non-collections
         "requiredIntegerProperty": Array [
           Object {
             "path": "$.requiredIntegerProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "requiredTimeProperty": Array [
@@ -732,7 +732,7 @@ describe('when building domain entity with a simple common collection', () => {
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -790,7 +790,7 @@ describe('when building domain entity subclass with common collection and descri
         "communityOrganizationId": Array [
           Object {
             "path": "$.communityOrganizationId",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -880,7 +880,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -923,7 +923,7 @@ describe('when building domain entity with a descriptor collection with role nam
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -975,7 +975,7 @@ describe('when building domain entity with a common with a choice', () => {
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "publicationDate": Array [
@@ -1042,7 +1042,7 @@ describe('when building domain entity with a common and a common collection with
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "beginDate": Array [
@@ -1084,7 +1084,7 @@ describe('when building domain entity with an all-caps property', () => {
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "uri": Array [
@@ -1140,13 +1140,13 @@ describe('when building domain entity with a common with a domain entity referen
         "assessmentIdentifier": Array [
           Object {
             "path": "$.assessmentIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "educationOrganizationId": Array [
           Object {
             "path": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "title": Array [
@@ -1337,7 +1337,7 @@ describe('when building a domain entity with an inline common property with a de
         "sectionIdentifier": Array [
           Object {
             "path": "$.sectionIdentifier",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -1381,19 +1381,19 @@ describe('when building a Domain Entity subclass', () => {
         "schoolId": Array [
           Object {
             "path": "$.schoolId",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "subclassProperty": Array [
           Object {
             "path": "$.subclassProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "superclassProperty": Array [
           Object {
             "path": "$.superclassProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
@@ -1452,7 +1452,7 @@ describe('when building an Association subclass', () => {
         "programId": Array [
           Object {
             "path": "$.programReference.programId",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "programName": Array [
@@ -1464,7 +1464,7 @@ describe('when building an Association subclass', () => {
         "schoolId": Array [
           Object {
             "path": "$.schoolReference.schoolId",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "schoolName": Array [
@@ -1476,13 +1476,13 @@ describe('when building an Association subclass', () => {
         "subclassProperty": Array [
           Object {
             "path": "$.subclassProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
         "superclassProperty": Array [
           Object {
             "path": "$.superclassProperty",
-            "type": "integer",
+            "type": "number",
           },
         ],
       }
