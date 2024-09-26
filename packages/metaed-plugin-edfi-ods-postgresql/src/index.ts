@@ -3,6 +3,7 @@ import { generate as odsGenerator } from './generator/OdsGenerator';
 import { generate as schemaGenerator } from './generator/SchemaGenerator';
 import { generate as idIndexesGenerator } from './generator/IdIndexesGenerator';
 import { generate as educationOrganizationAuthorizationIndexesGenerator } from './generator/EducationOrganizationAuthorizationIndexesGenerator';
+import { generate as aggregateIdColumnGenerator } from './generator/AggregateIdColumnGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
 import { enhance as templateSpecificTablePropertyEnhancerV6x } from './enhancer/TemplateSpecificTablePropertyEnhancerV6x';
@@ -36,7 +37,13 @@ export function initialize(): MetaEdPlugin {
       postgreSqlForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
     ],
-    generator: [schemaGenerator, odsGenerator, idIndexesGenerator, educationOrganizationAuthorizationIndexesGenerator],
+    generator: [
+      schemaGenerator,
+      odsGenerator,
+      idIndexesGenerator,
+      educationOrganizationAuthorizationIndexesGenerator,
+      aggregateIdColumnGenerator,
+    ],
     shortName: 'edfiOdsPostgresql',
   };
 }
