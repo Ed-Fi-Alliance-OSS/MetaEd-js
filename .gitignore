@@ -34,7 +34,7 @@ Transcript-0004-Extension-extension-Tables.sql
 0040-IdColumnUniqueIndexes.sql
 0050-ExtendedProperties.sql
 1410-CreateIndex-EdOrgIdsRelationship-AuthPerformance.sql
-1500-AggregateIdColumns.sql
+1460-AggregateIdColumns.sql
 
 Simple-0004-Extension-Extension-Tables.sql
 Transcript-0004-Extension-Extension-Tables.sql

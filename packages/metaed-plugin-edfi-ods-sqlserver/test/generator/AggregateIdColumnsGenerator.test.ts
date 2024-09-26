@@ -109,7 +109,7 @@ describe('when generating aggregateId columns for core namespace table with no t
     expect(result.generatorName).toEqual('edfiOdsSqlServer.AggregateIdColumnGenerator');
     expect(result.generatedOutput[0]).toMatchInlineSnapshot(`
       Object {
-        "fileName": "1500-AggregateIdColumns.sql",
+        "fileName": "1460-AggregateIdColumns.sql",
         "folderName": "/Database/SQLServer/ODS/Structure/",
         "name": "ODS SQL Server AggregateIdColumns",
         "namespace": "EdFi",
@@ -157,7 +157,7 @@ describe('when generating aggregateId columns for core namespace table with type
     expect(result.generatorName).toEqual('edfiOdsSqlServer.AggregateIdColumnGenerator');
     expect(result.generatedOutput[0]).toMatchInlineSnapshot(`
       Object {
-        "fileName": "1500-AggregateIdColumns.sql",
+        "fileName": "1460-AggregateIdColumns.sql",
         "folderName": "/Database/SQLServer/ODS/Structure/",
         "name": "ODS SQL Server AggregateIdColumns",
         "namespace": "EdFi",
@@ -210,7 +210,7 @@ describe('when generating aggregateId columns for extension namespace table with
     expect(result.generatorName).toEqual('edfiOdsSqlServer.AggregateIdColumnGenerator');
     expect(result.generatedOutput[0]).toMatchInlineSnapshot(`
       Object {
-        "fileName": "1500-EXTENSION-Extension-AggregateIdColumns.sql",
+        "fileName": "1460-EXTENSION-Extension-AggregateIdColumns.sql",
         "folderName": "/Database/SQLServer/ODS/Structure/",
         "name": "ODS SQL Server AggregateIdColumns",
         "namespace": "Extension",

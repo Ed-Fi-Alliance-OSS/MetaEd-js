@@ -15,7 +15,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   if (versionSatisfies(targetTechnologyVersion, '>=7.3.0')) {
-    const prefix: string = '1500';
+    const prefix: string = '1460';
     const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
     metaEd.namespace.forEach((namespace) => {
