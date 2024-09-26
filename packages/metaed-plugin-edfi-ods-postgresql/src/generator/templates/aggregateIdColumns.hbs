@@ -6,8 +6,8 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 
 {{/if}}{{/if}}{{#tables}}
-CREATE SEQUENCE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}}_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('{{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}}_aggseq');
-CREATE INDEX ix_{{{data.edfiOdsPostgresql.tableName}}}_aggid ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (AggregateId);
+CREATE SEQUENCE {{{schema}}}.{{{sequenceName}}} START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE {{{schema}}}.{{{tableName}}} ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('{{{schema}}}.{{{sequenceName}}}');
+CREATE INDEX {{{indexName}}} ON {{{schema}}}.{{{tableName}}} (AggregateId);
 
 {{/tables}}

@@ -129,9 +129,9 @@ ALTER TABLE edfi.EducationOrganization ADD COLUMN AggregateId int NOT NULL DEFAU
 CREATE INDEX ix_EducationOrganization_aggid ON edfi.EducationOrganization (AggregateId);
 
 
-CREATE SEQUENCE edfi.EducationOrganizationInterventionPrescriptionAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-ALTER TABLE edfi.EducationOrganizationInterventionPrescriptionAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.EducationOrganizationInterventionPrescriptionAssociation_aggseq');
-CREATE INDEX ix_EducationOrganizationInterventionPrescriptionAssociation_aggid ON edfi.EducationOrganizationInterventionPrescriptionAssociation (AggregateId);
+CREATE SEQUENCE edfi.EducationOrganizationInterventionPrescriptionAs_e670ae_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.EducationOrganizationInterventionPrescriptionAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.EducationOrganizationInterventionPrescriptionAs_e670ae_aggseq');
+CREATE INDEX ix_EducationOrganizationInterventionPrescriptionAs_e670ae_aggid ON edfi.EducationOrganizationInterventionPrescriptionAssociation (AggregateId);
 
 
 CREATE SEQUENCE edfi.EducationOrganizationNetworkAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
@@ -569,9 +569,9 @@ ALTER TABLE edfi.SurveySectionResponse ADD COLUMN AggregateId int NOT NULL DEFAU
 CREATE INDEX ix_SurveySectionResponse_aggid ON edfi.SurveySectionResponse (AggregateId);
 
 
-CREATE SEQUENCE edfi.SurveySectionResponseEducationOrganizationTargetAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-ALTER TABLE edfi.SurveySectionResponseEducationOrganizationTargetAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.SurveySectionResponseEducationOrganizationTargetAssociation_aggseq');
-CREATE INDEX ix_SurveySectionResponseEducationOrganizationTargetAssociation_aggid ON edfi.SurveySectionResponseEducationOrganizationTargetAssociation (AggregateId);
+CREATE SEQUENCE edfi.SurveySectionResponseEducationOrganizationTarge_730be1_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.SurveySectionResponseEducationOrganizationTargetAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.SurveySectionResponseEducationOrganizationTarge_730be1_aggseq');
+CREATE INDEX ix_SurveySectionResponseEducationOrganizationTarge_730be1_aggid ON edfi.SurveySectionResponseEducationOrganizationTargetAssociation (AggregateId);
 
 
 CREATE SEQUENCE edfi.SurveySectionResponseStaffTargetAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
