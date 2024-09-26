@@ -1,0 +1,15 @@
+{{#if useLicenseHeader}}
+{{#if tables}}
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+{{/if}}
+{{/if}}
+{{#tables}}
+CREATE SEQUENCE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}_AggSeq] START WITH -2147483648 INCREMENT BY 1;
+ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}_AggSeq];
+CREATE INDEX [IX_{{{data.edfiOdsSqlServer.tableName}}}_AggregateId] ON [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] (AggregateId);
+
+{{/tables}}
