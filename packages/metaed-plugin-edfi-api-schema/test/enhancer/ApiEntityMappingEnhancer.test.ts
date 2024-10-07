@@ -840,3 +840,167 @@ describe('when a role named merge follows a role named merge with school year en
     `);
   });
 });
+
+describe('when a role named resource has a schoolid', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespace = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespace)
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withDomainEntityProperty('Grade', 'doc', false, true)
+      .withMergeDirective('Grade.GradingPeriod', 'GradingPeriod')
+      .withMergeDirective('Grade.StudentSectionAssociation.Student', 'Student')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'StudentSectionAssociation.Section.CourseOffering.Session.School')
+      .withMergeDirective('GradingPeriod.SchoolYear', 'StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear')
+      .withAssociationIdentity('StudentSectionAssociation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('School', 'Session.School')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withEndDomainEntity()
+
+      .withStartAssociation('StudentSectionAssociation')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Section', 'doc')
+      .withEndAssociation()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have correct ReportCard reference groups', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.referenceGroups).toHaveLength(2);
+    expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
+    expect(apiMapping?.referenceGroups[0].sourceProperty.fullPropertyName).toBe('Grade');
+    expect(apiMapping?.referenceGroups[1].isGroup).toBe(true);
+    expect(apiMapping?.referenceGroups[1].sourceProperty.fullPropertyName).toBe('GradingPeriod');
+  });
+
+  it('should have correct ReportCard flattened identity properties omitting merges', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(4);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
+      'GradingPeriodIdentity',
+    );
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].identityProperty.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].identityProperty.fullPropertyName).toBe(
+      'ReportCardIdentity',
+    );
+  });
+
+  it('should have correct property paths in ReportCard flattened identity properties omitting merges', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "GradingPeriod.GradingPeriodIdentity",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "GradingPeriod.School",
+        "GradingPeriod.School.SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "GradingPeriod.SchoolYear",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "ReportCardIdentity",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in ReportCard flattened identity properties omitting merges', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
+      .toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "GradingPeriodIdentity",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
+      .toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "School",
+        "SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyChain.map((x) => x.fullPropertyName))
+      .toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "SchoolYear",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyChain.map((x) => x.fullPropertyName))
+      .toMatchInlineSnapshot(`
+      Array [
+        "ReportCardIdentity",
+      ]
+    `);
+  });
+});

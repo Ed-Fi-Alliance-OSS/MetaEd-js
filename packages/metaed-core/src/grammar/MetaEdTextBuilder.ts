@@ -1658,6 +1658,17 @@ export class MetaEdTextBuilder {
   /**
    *
    */
+  withAssociationIdentity(
+    propertyIdentifier: string,
+    documentation: string,
+    context: string | null = null,
+  ): MetaEdTextBuilder {
+    return this.withIdentityProperty('association', propertyIdentifier, documentation, context);
+  }
+
+  /**
+   *
+   */
   withStringIdentity(
     propertyIdentifier: string,
     documentation: string,
