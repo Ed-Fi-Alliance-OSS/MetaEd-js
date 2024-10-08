@@ -4,13 +4,16 @@ import {
   DomainEntityBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
+  AssociationBuilder,
   DescriptorBuilder,
   CommonBuilder,
 } from '@edfi/metaed-core';
 import {
+  associationReferenceEnhancer,
   domainEntityReferenceEnhancer,
   inlineCommonReferenceEnhancer,
   enumerationReferenceEnhancer,
+  mergeDirectiveEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -902,21 +905,24 @@ describe('when a role named resource has a schoolid', () => {
 
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     domainEntityReferenceEnhancer(metaEd);
+    associationReferenceEnhancer(metaEd);
     enumerationReferenceEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should have correct ReportCard reference groups', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+    const reportCardEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = reportCardEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(2);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
