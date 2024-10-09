@@ -52,7 +52,7 @@ function appendNextJsonPathName(
  * Adds a JsonPath to the JsonPathsMapping for a given list of PropertyPaths. Handles array initialization when needed.
  */
 function addJsonPathTo(
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   propertyPaths: MetaEdPropertyPath[],
   jsonPath: JsonPath,
   isTopLevel: boolean,
@@ -60,17 +60,17 @@ function addJsonPathTo(
 ) {
   propertyPaths.forEach((propertyPath) => {
     // initialize if necessary
-    if (mergeJsonPathsMapping[propertyPath] == null) {
+    if (jsonPathsMapping[propertyPath] == null) {
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
         ? { jsonPathPropertyPairs: [], isTopLevel, terminalProperty }
         : { jsonPathPropertyPairs: [], isTopLevel };
-      mergeJsonPathsMapping[propertyPath] = initialJsonPathsInfo;
+      jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
     // Avoid duplicates
-    if (mergeJsonPathsMapping[propertyPath].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
+    if (jsonPathsMapping[propertyPath].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
 
-    mergeJsonPathsMapping[propertyPath].jsonPathPropertyPairs.push({
+    jsonPathsMapping[propertyPath].jsonPathPropertyPairs.push({
       jsonPath,
       sourceProperty: terminalProperty,
     });
@@ -78,12 +78,25 @@ function addJsonPathTo(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given referential property.
+ * Builds new property paths from the current path and the new identities.
+ */
+function propertyPathsFromIdentityProperty(
+  currentPropertyPath: MetaEdPropertyPath,
+  flattenedIdentityProperty: FlattenedIdentityProperty,
+): MetaEdPropertyPath[] {
+  const result: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
+    (propertyPath) => `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath,
+  );
+
+  return result;
+}
+/**
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given referential property.
  */
 function jsonPathsForReferentialProperty(
   property: ReferentialProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -103,9 +116,7 @@ function jsonPathsForReferentialProperty(
     jsonPathsForNonReference(
       flattenedIdentityProperty.identityProperty,
       jsonPathsMappingForThisProperty,
-      flattenedIdentityProperty.propertyPaths.map(
-        (propertyPath) => `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath,
-      ),
+      propertyPathsFromIdentityProperty(currentPropertyPath, flattenedIdentityProperty),
       appendNextJsonPathName(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
@@ -116,8 +127,8 @@ function jsonPathsForReferentialProperty(
       false,
     );
 
-    // Take the JsonPaths for entire property and apply to mergeJsonPathsMapping for the property,
-    // then add those collected results individually to mergeJsonPathsMapping
+    // Take the JsonPaths for entire property and apply to jsonPathsMapping for the property,
+    // then add those collected results individually to jsonPathsMapping
     Object.values(jsonPathsMappingForThisProperty)
       .flat()
       .forEach((jsonPathsInfo: JsonPathsInfo) => {
@@ -125,20 +136,20 @@ function jsonPathsForReferentialProperty(
           .map((jppp) => jppp.jsonPath)
           .forEach((jsonPath: JsonPath) => {
             // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-            addJsonPathTo(mergeJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+            addJsonPathTo(jsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
           });
       });
-    Object.assign(mergeJsonPathsMapping, jsonPathsMappingForThisProperty);
+    Object.assign(jsonPathsMapping, jsonPathsMappingForThisProperty);
   });
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given scalar common property.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given scalar common property.
  */
 function jsonPathsForScalarCommonProperty(
   property: CommonProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -156,7 +167,7 @@ function jsonPathsForScalarCommonProperty(
     jsonPathsFor(
       allProperty.property,
       concatenatedPropertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
       appendNextJsonPathName(
         currentJsonPath,
@@ -170,13 +181,13 @@ function jsonPathsForScalarCommonProperty(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given
  * choice or inline common property.
  */
 function jsonPathsForChoiceAndInlineCommonProperty(
   property: ChoiceProperty | InlineCommonProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -200,7 +211,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
     jsonPathsFor(
       allProperty.property,
       concatenatedPropertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
       appendNextJsonPathName(
         currentJsonPath,
@@ -214,11 +225,11 @@ function jsonPathsForChoiceAndInlineCommonProperty(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given non-reference property.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given non-reference property.
  */
 function jsonPathsForNonReference(
   property: EntityProperty,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPaths: MetaEdPropertyPath[],
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -227,25 +238,19 @@ function jsonPathsForNonReference(
 
   if (property.type === 'schoolYearEnumeration' && property.parentEntity.type === 'common') {
     // For a common, the school year ends up being nested under a reference object
-    addJsonPathTo(
-      mergeJsonPathsMapping,
-      currentPropertyPaths,
-      `${currentJsonPath}.schoolYear` as JsonPath,
-      isTopLevel,
-      property,
-    );
+    addJsonPathTo(jsonPathsMapping, currentPropertyPaths, `${currentJsonPath}.schoolYear` as JsonPath, isTopLevel, property);
   } else {
-    addJsonPathTo(mergeJsonPathsMapping, currentPropertyPaths, currentJsonPath, isTopLevel, property);
+    addJsonPathTo(jsonPathsMapping, currentPropertyPaths, currentJsonPath, isTopLevel, property);
   }
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given reference collection property.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given reference collection property.
  */
 function jsonPathsForReferenceCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -258,7 +263,7 @@ function jsonPathsForReferenceCollection(
       ...propertyModifier,
       parentPrefixes: [], // reset prefixes inside the reference
     },
-    mergeJsonPathsMapping,
+    jsonPathsMapping,
     currentPropertyPath,
     appendNextJsonPathName(
       `${currentJsonPath}[*]` as JsonPath,
@@ -271,12 +276,12 @@ function jsonPathsForReferenceCollection(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given descriptor collection property.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given descriptor collection property.
  */
 function jsonPathsForDescriptorCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -284,7 +289,7 @@ function jsonPathsForDescriptorCollection(
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   addJsonPathTo(
-    mergeJsonPathsMapping,
+    jsonPathsMapping,
     [currentPropertyPath],
     appendNextJsonPathName(
       `${currentJsonPath}[*]` as JsonPath,
@@ -298,13 +303,13 @@ function jsonPathsForDescriptorCollection(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given non-reference
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given non-reference
  * collection property.
  */
 function jsonPathsForNonReferenceCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -313,7 +318,7 @@ function jsonPathsForNonReferenceCollection(
 
   jsonPathsForNonReference(
     property,
-    mergeJsonPathsMapping,
+    jsonPathsMapping,
     [currentPropertyPath],
     appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier),
     isTopLevel,
@@ -321,33 +326,27 @@ function jsonPathsForNonReferenceCollection(
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to a given school year enumeration reference.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to a given school year enumeration reference.
  */
 function jsonPathsForSchoolYearEnumeration(
   property: EntityProperty,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
 ) {
   invariant(property.type === 'schoolYearEnumeration');
 
-  addJsonPathTo(
-    mergeJsonPathsMapping,
-    [currentPropertyPath],
-    `${currentJsonPath}.schoolYear` as JsonPath,
-    isTopLevel,
-    property,
-  );
+  addJsonPathTo(jsonPathsMapping, [currentPropertyPath], `${currentJsonPath}.schoolYear` as JsonPath, isTopLevel, property);
 }
 
 /**
- * Adds JSON Paths to the mergeJsonPathsMapping for the API body shape corresponding to the given property
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given property
  */
 function jsonPathsFor(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  mergeJsonPathsMapping: JsonPathsMapping,
+  jsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
@@ -358,7 +357,7 @@ function jsonPathsFor(
     jsonPathsForReferenceCollection(
       property,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -369,7 +368,7 @@ function jsonPathsFor(
     jsonPathsForReferentialProperty(
       property as ReferentialProperty,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -380,7 +379,7 @@ function jsonPathsFor(
     jsonPathsForDescriptorCollection(
       property,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -391,7 +390,7 @@ function jsonPathsFor(
     jsonPathsForScalarCommonProperty(
       property as CommonProperty,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       `${currentJsonPath}[*]` as JsonPath,
       isTopLevel,
@@ -402,7 +401,7 @@ function jsonPathsFor(
     jsonPathsForScalarCommonProperty(
       property as CommonProperty,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -413,7 +412,7 @@ function jsonPathsFor(
     jsonPathsForChoiceAndInlineCommonProperty(
       property as ChoiceProperty | InlineCommonProperty,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -424,7 +423,7 @@ function jsonPathsFor(
     jsonPathsForNonReferenceCollection(
       property,
       propertyModifier,
-      mergeJsonPathsMapping,
+      jsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
       isTopLevel,
@@ -432,11 +431,11 @@ function jsonPathsFor(
     return;
   }
 
-  jsonPathsForNonReference(property, mergeJsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
+  jsonPathsForNonReference(property, jsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
 }
 
 /**
- * Builds the mergeJsonPathsMapping for an entity.
+ * Builds the jsonPathsMapping for an entity.
  */
 function buildJsonPathsMapping(entity: TopLevelEntity) {
   const { allProperties, mergeJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
