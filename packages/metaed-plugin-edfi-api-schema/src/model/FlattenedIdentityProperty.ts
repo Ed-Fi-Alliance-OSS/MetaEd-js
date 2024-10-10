@@ -18,9 +18,14 @@ import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
  * Section.CourseOffering.Session
  * Section.CourseOffering
  * Section
+ *
+ * mergedAwayBy indicates that this flattened identity property is merged away due to a merge
+ * directive. A merged away property is still visible in the document that it belongs to,
+ * but is not expressed in a reference to that document.
  */
 export type FlattenedIdentityProperty = {
   identityProperty: EntityProperty;
   propertyPaths: MetaEdPropertyPath[];
   propertyChain: EntityProperty[];
+  mergedAwayBy: EntityProperty | null;
 };

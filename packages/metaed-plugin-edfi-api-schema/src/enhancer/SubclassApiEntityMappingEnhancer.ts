@@ -40,14 +40,7 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
   );
 
   return {
-    flattenedIdentityProperties: flattenIdentityPropertiesFrom({
-      identityProperties: combinedIdentityProperties,
-      omitMergedAwayProperties: false,
-    }),
-    flattenedIdentityPropertiesOmittingMerges: flattenIdentityPropertiesFrom({
-      identityProperties: combinedIdentityProperties,
-      omitMergedAwayProperties: true,
-    }),
+    flattenedIdentityProperties: flattenIdentityPropertiesFrom(combinedIdentityProperties),
     referenceGroups: referenceGroupsFrom(combinedProperties),
     descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),

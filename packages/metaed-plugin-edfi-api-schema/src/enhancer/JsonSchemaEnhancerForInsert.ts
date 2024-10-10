@@ -138,39 +138,42 @@ function schemaObjectForReferentialProperty(
 
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
-  referencedEntityApiMapping.flattenedIdentityPropertiesOmittingMerges.forEach(
-    (flattenedIdentityProperty: FlattenedIdentityProperty) => {
-      const identityPropertyApiMapping = (
-        flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
-      ).apiMapping;
-
-      const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
-
-      const adjustedName =
-        specialPrefix === ''
-          ? identityPropertyApiMapping.fullName
-          : prependPrefixWithCollapse(identityPropertyApiMapping.fullName, specialPrefix);
-
-      const schemaPropertyName: string = uncapitalize(prefixedName(adjustedName, propertyModifier));
-
-      // Because these are flattened, we know they are non-reference properties
-      const schemaProperty: SchemaProperty = schemaPropertyForNonReference(
-        flattenedIdentityProperty.identityProperty,
-        schoolYearSchemas,
-      );
-
-      // Note that this key/value usage of Object implictly merges by overwrite if there is more than one scalar property
-      // with the same name sourced from different identity reference properties. There is no need to check
-      // properties for merge directive annotations because MetaEd has already validated merges and any scalar identity
-      // property name duplication _must_ be a merge.
-      schemaProperties[schemaPropertyName] = schemaProperty;
-
-      if (isSchemaPropertyRequired(flattenedIdentityProperty.identityProperty, propertyModifier)) {
-        // As above, this usage of Set this implictly merges by overwrite
-        required.add(schemaPropertyName);
-      }
-    },
+  // Ignore merges on references
+  const flattenedIdentityPropertiesOmittingMerges = referencedEntityApiMapping.flattenedIdentityProperties.filter(
+    (flattenedIdentityProperty: FlattenedIdentityProperty) => flattenedIdentityProperty.mergedAwayBy == null,
   );
+
+  flattenedIdentityPropertiesOmittingMerges.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
+    const identityPropertyApiMapping = (
+      flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
+    ).apiMapping;
+
+    const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
+
+    const adjustedName =
+      specialPrefix === ''
+        ? identityPropertyApiMapping.fullName
+        : prependPrefixWithCollapse(identityPropertyApiMapping.fullName, specialPrefix);
+
+    const schemaPropertyName: string = uncapitalize(prefixedName(adjustedName, propertyModifier));
+
+    // Because these are flattened, we know they are non-reference properties
+    const schemaProperty: SchemaProperty = schemaPropertyForNonReference(
+      flattenedIdentityProperty.identityProperty,
+      schoolYearSchemas,
+    );
+
+    // Note that this key/value usage of Object implictly merges by overwrite if there is more than one scalar property
+    // with the same name sourced from different identity reference properties. There is no need to check
+    // properties for merge directive annotations because MetaEd has already validated merges and any scalar identity
+    // property name duplication _must_ be a merge.
+    schemaProperties[schemaPropertyName] = schemaProperty;
+
+    if (isSchemaPropertyRequired(flattenedIdentityProperty.identityProperty, propertyModifier)) {
+      // As above, this usage of Set this implictly merges by overwrite
+      required.add(schemaPropertyName);
+    }
+  });
 
   return schemaObjectFrom(schemaProperties, Array.from(required.values()));
 }

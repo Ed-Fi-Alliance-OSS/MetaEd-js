@@ -114,44 +114,47 @@ function jsonPathsForReferentialProperty(
 
   const jsonPathsMappingForThisProperty: JsonPathsMapping = {};
 
-  referencedEntityApiMapping.flattenedIdentityPropertiesOmittingMerges.forEach(
-    (flattenedIdentityProperty: FlattenedIdentityProperty) => {
-      const identityPropertyApiMapping = (
-        flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
-      ).apiMapping;
-
-      const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
-
-      // Because these are flattened, we know they are non-reference properties
-      jsonPathsForNonReference(
-        flattenedIdentityProperty.identityProperty,
-        jsonPathsMappingForThisProperty,
-        propertyPathsFromIdentityProperty(currentPropertyPath, flattenedIdentityProperty),
-        appendNextJsonPathName(
-          currentJsonPath,
-          identityPropertyApiMapping.fullName,
-          flattenedIdentityProperty.identityProperty,
-          propertyModifier,
-          { specialPrefix },
-        ),
-        false,
-      );
-
-      // Take the JsonPaths for entire property and apply to jsonPathsMapping for the property,
-      // then add those collected results individually to jsonPathsMapping
-      Object.values(jsonPathsMappingForThisProperty)
-        .flat()
-        .forEach((jsonPathsInfo: JsonPathsInfo) => {
-          jsonPathsInfo.jsonPathPropertyPairs
-            .map((jppp) => jppp.jsonPath)
-            .forEach((jsonPath: JsonPath) => {
-              // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-              addJsonPathTo(jsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
-            });
-        });
-      Object.assign(jsonPathsMapping, jsonPathsMappingForThisProperty);
-    },
+  // Ignore merges...for now
+  const flattenedIdentityPropertiesOmittingMerges = referencedEntityApiMapping.flattenedIdentityProperties.filter(
+    (flattenedIdentityProperty: FlattenedIdentityProperty) => flattenedIdentityProperty.mergedAwayBy == null,
   );
+
+  flattenedIdentityPropertiesOmittingMerges.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
+    const identityPropertyApiMapping = (
+      flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
+    ).apiMapping;
+
+    const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
+
+    // Because these are flattened, we know they are non-reference properties
+    jsonPathsForNonReference(
+      flattenedIdentityProperty.identityProperty,
+      jsonPathsMappingForThisProperty,
+      propertyPathsFromIdentityProperty(currentPropertyPath, flattenedIdentityProperty),
+      appendNextJsonPathName(
+        currentJsonPath,
+        identityPropertyApiMapping.fullName,
+        flattenedIdentityProperty.identityProperty,
+        propertyModifier,
+        { specialPrefix },
+      ),
+      false,
+    );
+
+    // Take the JsonPaths for entire property and apply to jsonPathsMapping for the property,
+    // then add those collected results individually to jsonPathsMapping
+    Object.values(jsonPathsMappingForThisProperty)
+      .flat()
+      .forEach((jsonPathsInfo: JsonPathsInfo) => {
+        jsonPathsInfo.jsonPathPropertyPairs
+          .map((jppp) => jppp.jsonPath)
+          .forEach((jsonPath: JsonPath) => {
+            // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
+            addJsonPathTo(jsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+          });
+      });
+    Object.assign(jsonPathsMapping, jsonPathsMappingForThisProperty);
+  });
 }
 
 /**

@@ -17,14 +17,7 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
   );
   const properties = [...entity.properties].sort((a, b) => a.fullPropertyName.localeCompare(b.fullPropertyName));
   return {
-    flattenedIdentityProperties: flattenIdentityPropertiesFrom({
-      identityProperties,
-      omitMergedAwayProperties: false,
-    }),
-    flattenedIdentityPropertiesOmittingMerges: flattenIdentityPropertiesFrom({
-      identityProperties,
-      omitMergedAwayProperties: true,
-    }),
+    flattenedIdentityProperties: flattenIdentityPropertiesFrom(identityProperties),
     referenceGroups: referenceGroupsFrom(properties),
     descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),
