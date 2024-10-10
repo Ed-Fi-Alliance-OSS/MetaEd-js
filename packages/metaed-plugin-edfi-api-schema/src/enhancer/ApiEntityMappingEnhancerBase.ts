@@ -60,7 +60,8 @@ function mergedAwayProperty(property: EntityProperty, propertyChain: EntityPrope
   ) {
     return null;
   }
-  return propertyChain.some((propertyAlongChain) => property.mergeSourcedBy.includes(propertyAlongChain)) ? property : null;
+  const x = propertyChain.find((propertyAlongChain) => property.mergeSourcedBy.includes(propertyAlongChain));
+  return x ?? null;
 }
 
 /**
@@ -77,7 +78,7 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator,
   propertyChainAccumulator,
   referenceElementsAccumulator,
-  mergedAwayProp,
+  mergedAwayByProp,
 }: {
   referenceComponent: ReferenceComponent;
   currentPropertyPath: MetaEdPropertyPath;
@@ -85,11 +86,13 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator: MetaEdPropertyPath[];
   propertyChainAccumulator: EntityProperty[];
   referenceElementsAccumulator: ReferenceElementsWithPaths;
-  mergedAwayProp: EntityProperty | null;
+  mergedAwayByProp: EntityProperty | null;
 }) {
   if (isReferenceElement(referenceComponent)) {
     const mergedAwayBy: EntityProperty | null =
-      mergedAwayProp == null ? mergedAwayProperty(referenceComponent.sourceProperty, currentPropertyChain) : mergedAwayProp;
+      mergedAwayByProp == null
+        ? mergedAwayProperty(referenceComponent.sourceProperty, currentPropertyChain)
+        : mergedAwayByProp;
 
     referenceElementsAccumulator.set(referenceComponent, {
       propertyPaths: propertyPathAccumulator.concat(
@@ -101,9 +104,9 @@ function flattenReferenceElementsFromComponent({
   } else {
     (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
       const mergedAwayBy: EntityProperty | null =
-        mergedAwayProp == null
+        mergedAwayByProp == null
           ? mergedAwayProperty(subReferenceComponent.sourceProperty, currentPropertyChain)
-          : mergedAwayProp;
+          : mergedAwayByProp;
 
       if (isReferenceElement(subReferenceComponent)) {
         const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
@@ -130,7 +133,7 @@ function flattenReferenceElementsFromComponent({
           propertyPathAccumulator: propertyPathAccumulator.concat(nextPropertyPath),
           propertyChainAccumulator,
           referenceElementsAccumulator,
-          mergedAwayProp: mergedAwayBy,
+          mergedAwayByProp: mergedAwayBy,
         });
       }
     });
@@ -165,7 +168,7 @@ export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty
       propertyPathAccumulator: initialPropertyPath === '' ? [] : [initialPropertyPath],
       propertyChainAccumulator: initialPropertyChain,
       referenceElementsAccumulator: referenceElementsWithPaths,
-      mergedAwayProp: null,
+      mergedAwayByProp: null,
     });
   });
 

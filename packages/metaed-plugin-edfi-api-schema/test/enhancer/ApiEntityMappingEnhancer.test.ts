@@ -902,8 +902,8 @@ describe('when a role named resource has a schoolid merged away', () => {
 
     expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
     expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.parentEntityName).toBe('School');
-    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.fullPropertyName).toBe('School');
-    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.parentEntityName).toBe('GradingPeriod');
+    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.fullPropertyName).toBe('GradingPeriod');
+    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.parentEntityName).toBe('Grade');
 
     expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SchoolYear');
     expect(apiMapping?.flattenedIdentityProperties[2].mergedAwayBy).toBeNull();
