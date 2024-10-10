@@ -80,65 +80,58 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.referenceGroups[1].sourceProperty.fullPropertyName).toBe(courseOffering);
   });
 
-  it('should have LocalCourseCode, SchoolId, and SectionIdentifier in Section flattened identity properties omitting merges', () => {
+  it('should have LocalCourseCode, SchoolId, and SectionIdentifier in Section flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(3);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
-      'LocalCourseCode',
-    );
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].identityProperty.fullPropertyName).toBe(
-      'SectionIdentifier',
-    );
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(3);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('LocalCourseCode');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SectionIdentifier');
   });
 
-  it('should have correct property paths in Section flattened identity properties omitting merges', () => {
+  it('should have correct property paths in Section flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "CourseOffering",
         "CourseOffering.LocalCourseCode",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "CourseOffering",
         "CourseOffering.School",
         "CourseOffering.School.SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
     `);
   });
 
-  it('should have correct property chain in Section flattened identity properties omitting merges', () => {
+  it('should have correct property chain in Section flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "CourseOffering",
         "LocalCourseCode",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "CourseOffering",
         "School",
         "SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
@@ -160,15 +153,13 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.referenceGroups[0].sourceProperty.fullPropertyName).toBe(school);
   });
 
-  it('should have LocalCourseCode and SchoolId in CourseOffering flattened identity properties omitting merges', () => {
+  it('should have LocalCourseCode and SchoolId in CourseOffering flattened identity properties ', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
     const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(2);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
-      'LocalCourseCode',
-    );
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('LocalCourseCode');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should not have any descriptor property mappings in CourseOffering', () => {
@@ -177,16 +168,16 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 
-  it('should have correct property paths in CourseOffering flattened identity properties omitting merges', () => {
+  it('should have correct property paths in CourseOffering flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "LocalCourseCode",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "School",
         "School.SchoolId",
@@ -194,18 +185,16 @@ describe('when demonstrating key unification via entity referencing two entities
     `);
   });
 
-  it('should have correct property chain in CourseOffering flattened identity properties omitting merges', () => {
+  it('should have correct property chain in CourseOffering flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "LocalCourseCode",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "School",
         "SchoolId",
@@ -222,15 +211,13 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.referenceGroups[0].sourceProperty.fullPropertyName).toBe(school);
   });
 
-  it('should have ClassPeriodName and SchoolId in ClassPeriod flattened identity properties omitting merges', () => {
+  it('should have ClassPeriodName and SchoolId in ClassPeriod flattened identity properties ', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(2);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
-      'ClassPeriodName',
-    );
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('ClassPeriodName');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should not have any descriptor property mappings in ClassPeriod', () => {
@@ -239,16 +226,16 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 
-  it('should have correct property paths in ClassPeriod flattened identity properties omitting merges', () => {
+  it('should have correct property paths in ClassPeriod flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "ClassPeriodName",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "School",
         "School.SchoolId",
@@ -256,18 +243,16 @@ describe('when demonstrating key unification via entity referencing two entities
     `);
   });
 
-  it('should have correct property chain in ClassPeriod flattened identity properties omitting merges', () => {
+  it('should have correct property chain in ClassPeriod flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "ClassPeriodName",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "School",
         "SchoolId",
@@ -281,31 +266,30 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.referenceGroups).toHaveLength(0);
   });
 
-  it('should have SchoolId in School flattened identity properties omitting merges', () => {
+  it('should have SchoolId in School flattened identity properties ', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(1);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(1);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
-  it('should have correct property paths in School flattened identity properties omitting merges', () => {
+  it('should have correct property paths in School flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
     `);
   });
 
-  it('should have correct property chain in School flattened identity properties omitting merges', () => {
+  it('should have correct property chain in School flattened identity properties ', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
@@ -364,15 +348,15 @@ describe('when building domain entity with reference to domain entity with schoo
   it('should have correct flattened identity properties for DomainEntityName', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(domainEntityName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(1);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(1);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should have correct property paths in flattened identity properties for DomainEntityName', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(domainEntityName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
@@ -383,8 +367,7 @@ describe('when building domain entity with reference to domain entity with schoo
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(domainEntityName);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
@@ -400,21 +383,21 @@ describe('when building domain entity with reference to domain entity with schoo
   it('should have correct flattened identity properties for Calendar', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(calendar);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(2);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe('SchoolId');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolYear');
   });
 
   it('should have correct property paths in flattened identity properties for Calendar', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(calendar);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SchoolYear",
       ]
@@ -425,14 +408,12 @@ describe('when building domain entity with reference to domain entity with schoo
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(calendar);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolYear",
       ]
@@ -504,23 +485,22 @@ describe('when demonstrating descriptor collections and scalar descriptors on on
     expect(collectedApiProperties[1].propertyModifier.parentPrefixes).toHaveLength(0);
   });
 
-  it('should have correct property paths in flattened identity properties omitting merges', () => {
+  it('should have correct property paths in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
     `);
   });
 
-  it('should have correct property chain in flattened identity properties omitting merges', () => {
+  it('should have correct property chain in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
@@ -588,23 +568,22 @@ describe('when one entity has a descriptor on an inline common reference', () =>
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe('');
   });
 
-  it('should have correct property paths in flattened identity properties omitting merges', () => {
+  it('should have correct property paths in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
     `);
   });
 
-  it('should have correct property chain in flattened identity properties omitting merges', () => {
+  it('should have correct property chain in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
@@ -673,23 +652,22 @@ describe('when one entity has a descriptor on an inline common reference which i
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe(inlineCommonRoleName);
   });
 
-  it('should have correct property paths in flattened identity properties omitting merges', () => {
+  it('should have correct property paths in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
     `);
   });
 
-  it('should have correct property chain in flattened identity properties omitting merges', () => {
+  it('should have correct property chain in flattened identity properties ', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
       ]
@@ -754,8 +732,8 @@ describe('when a role named merge follows a role named merge with school year en
   });
 
   it('should have correct ReportCard reference groups', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(2);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
@@ -764,79 +742,71 @@ describe('when a role named merge follows a role named merge with school year en
     expect(apiMapping?.referenceGroups[1].sourceProperty.fullPropertyName).toBe('GradingPeriod');
   });
 
-  it('should have correct ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct ReportCard flattened identity properties ', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(4);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
-      'GradingPeriodIdentity',
-    );
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].identityProperty.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].identityProperty.fullPropertyName).toBe(
-      'ReportCardIdentity',
-    );
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(4);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('GradingPeriodIdentity');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping?.flattenedIdentityProperties[3].identityProperty.fullPropertyName).toBe('ReportCardIdentity');
   });
 
-  it('should have correct property paths in ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct property paths in ReportCard flattened identity properties ', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.GradingPeriodIdentity",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.School",
         "GradingPeriod.School.SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.SchoolYear",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[3].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "ReportCardIdentity",
       ]
     `);
   });
 
-  it('should have correct property chain in ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct property chain in ReportCard flattened identity properties ', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriodIdentity",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "School",
         "SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "SchoolYear",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[3].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "ReportCardIdentity",
       ]
@@ -844,22 +814,13 @@ describe('when a role named merge follows a role named merge with school year en
   });
 });
 
-describe('when a role named resource has a schoolid', () => {
+describe('when a role named resource has a schoolid merged away', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespace)
-      .withStartDomainEntity('ReportCard')
-      .withDocumentation('doc')
-      .withIntegerIdentity('ReportCardIdentity', 'doc')
-      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
-      .withDomainEntityProperty('Grade', 'doc', false, true)
-      .withMergeDirective('Grade.GradingPeriod', 'GradingPeriod')
-      .withMergeDirective('Grade.StudentSectionAssociation.Student', 'Student')
-      .withEndDomainEntity()
-
       .withStartDomainEntity('Grade')
       .withDocumentation('doc')
       .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
@@ -920,92 +881,119 @@ describe('when a role named resource has a schoolid', () => {
     enhance(metaEd);
   });
 
-  it('should have correct ReportCard reference groups', () => {
-    const reportCardEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = reportCardEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct Grade reference groups', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Grade');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(2);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
-    expect(apiMapping?.referenceGroups[0].sourceProperty.fullPropertyName).toBe('Grade');
+    expect(apiMapping?.referenceGroups[0].sourceProperty.fullPropertyName).toBe('GradingPeriod');
     expect(apiMapping?.referenceGroups[1].isGroup).toBe(true);
-    expect(apiMapping?.referenceGroups[1].sourceProperty.fullPropertyName).toBe('GradingPeriod');
+    expect(apiMapping?.referenceGroups[1].sourceProperty.fullPropertyName).toBe('StudentSectionAssociation');
   });
 
-  it('should have correct ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have Grade flattened identity properties with one of two SchoolIds merged away', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Grade');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges).toHaveLength(4);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].identityProperty.fullPropertyName).toBe(
-      'GradingPeriodIdentity',
-    );
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].identityProperty.fullPropertyName).toBe('SchoolId');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].identityProperty.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].identityProperty.fullPropertyName).toBe(
-      'ReportCardIdentity',
-    );
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(5);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('GradingPeriodIdentity');
+    expect(apiMapping?.flattenedIdentityProperties[0].mergedAwayBy).toBeNull();
+
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.parentEntityName).toBe('School');
+    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.fullPropertyName).toBe('School');
+    expect(apiMapping?.flattenedIdentityProperties[1].mergedAwayBy.parentEntityName).toBe('GradingPeriod');
+
+    expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping?.flattenedIdentityProperties[2].mergedAwayBy).toBeNull();
+
+    expect(apiMapping?.flattenedIdentityProperties[3].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[3].identityProperty.parentEntityName).toBe('School');
+    expect(apiMapping?.flattenedIdentityProperties[3].mergedAwayBy).toBeNull();
+
+    expect(apiMapping?.flattenedIdentityProperties[4].identityProperty.fullPropertyName).toBe('StudentId');
+    expect(apiMapping?.flattenedIdentityProperties[4].mergedAwayBy).toBeNull();
   });
 
-  it('should have correct property paths in ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct property paths in Grade flattened identity properties ', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Grade');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.GradingPeriodIdentity",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.School",
         "GradingPeriod.School.SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriod.SchoolYear",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyPaths).toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[3].propertyPaths).toMatchInlineSnapshot(`
       Array [
-        "ReportCardIdentity",
+        "StudentSectionAssociation",
+        "StudentSectionAssociation.Section",
+        "StudentSectionAssociation.Section.CourseOffering",
+        "StudentSectionAssociation.Section.CourseOffering.School",
+        "StudentSectionAssociation.Section.CourseOffering.School.SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[4].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "StudentSectionAssociation.Student",
+        "StudentSectionAssociation.Student.StudentId",
       ]
     `);
   });
 
-  it('should have correct property chain in ReportCard flattened identity properties omitting merges', () => {
-    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('ReportCard');
-    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+  it('should have correct property chain in Grade flattened identity properties ', () => {
+    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Grade');
+    const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[0].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "GradingPeriodIdentity",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[1].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "School",
         "SchoolId",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[2].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "GradingPeriod",
         "SchoolYear",
       ]
     `);
-    expect(apiMapping?.flattenedIdentityPropertiesOmittingMerges[3].propertyChain.map((x) => x.fullPropertyName))
-      .toMatchInlineSnapshot(`
+    expect(apiMapping?.flattenedIdentityProperties[3].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
-        "ReportCardIdentity",
+        "StudentSectionAssociation",
+        "Section",
+        "CourseOffering",
+        "School",
+        "SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[4].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "Student",
+        "StudentId",
       ]
     `);
   });

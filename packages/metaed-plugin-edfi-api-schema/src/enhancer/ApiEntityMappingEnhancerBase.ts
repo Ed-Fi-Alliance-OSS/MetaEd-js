@@ -77,6 +77,7 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator,
   propertyChainAccumulator,
   referenceElementsAccumulator,
+  mergedAwayProp,
 }: {
   referenceComponent: ReferenceComponent;
   currentPropertyPath: MetaEdPropertyPath;
@@ -84,9 +85,11 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator: MetaEdPropertyPath[];
   propertyChainAccumulator: EntityProperty[];
   referenceElementsAccumulator: ReferenceElementsWithPaths;
+  mergedAwayProp: EntityProperty | null;
 }) {
   if (isReferenceElement(referenceComponent)) {
-    const mergedAwayBy: EntityProperty | null = mergedAwayProperty(referenceComponent.sourceProperty, currentPropertyChain);
+    const mergedAwayBy: EntityProperty | null =
+      mergedAwayProp == null ? mergedAwayProperty(referenceComponent.sourceProperty, currentPropertyChain) : mergedAwayProp;
 
     referenceElementsAccumulator.set(referenceComponent, {
       propertyPaths: propertyPathAccumulator.concat(
@@ -97,10 +100,11 @@ function flattenReferenceElementsFromComponent({
     });
   } else {
     (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
-      const mergedAwayBy: EntityProperty | null = mergedAwayProperty(
-        subReferenceComponent.sourceProperty,
-        currentPropertyChain,
-      );
+      const mergedAwayBy: EntityProperty | null =
+        mergedAwayProp == null
+          ? mergedAwayProperty(subReferenceComponent.sourceProperty, currentPropertyChain)
+          : mergedAwayProp;
+
       if (isReferenceElement(subReferenceComponent)) {
         const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
         referenceElementsAccumulator.set(subReferenceElement, {
@@ -126,6 +130,7 @@ function flattenReferenceElementsFromComponent({
           propertyPathAccumulator: propertyPathAccumulator.concat(nextPropertyPath),
           propertyChainAccumulator,
           referenceElementsAccumulator,
+          mergedAwayProp: mergedAwayBy,
         });
       }
     });
@@ -160,6 +165,7 @@ export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty
       propertyPathAccumulator: initialPropertyPath === '' ? [] : [initialPropertyPath],
       propertyChainAccumulator: initialPropertyChain,
       referenceElementsAccumulator: referenceElementsWithPaths,
+      mergedAwayProp: null,
     });
   });
 
