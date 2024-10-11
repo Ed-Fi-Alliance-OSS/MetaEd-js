@@ -90,7 +90,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         mergeDirective.sourceMap.sourceProperty = mergeDirective.sourceMap.sourcePropertyPathStrings;
         mergeDirective.sourcePropertyChain = sourcePropertyChain;
         mergeDirective.sourceMap.sourcePropertyChain = mergeDirective.sourceMap.sourcePropertyPathStrings;
-        if (mergeDirective.sourceProperty) mergeDirective.sourceProperty.mergeSourcedBy.push(property);
+        if (mergeDirective.sourceProperty) {
+          mergeDirective.sourceProperty.mergeSourcedBy.push({ mergeDirective, parentProperty: property });
+        }
 
         mergeDirective.targetProperty = findProperty(
           property.parentEntity,
@@ -100,7 +102,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         mergeDirective.sourceMap.targetProperty = mergeDirective.sourceMap.targetPropertyPathStrings;
         mergeDirective.targetPropertyChain = targetPropertyChain;
         mergeDirective.sourceMap.targetPropertyChain = mergeDirective.sourceMap.targetPropertyPathStrings;
-        if (mergeDirective.targetProperty) mergeDirective.targetProperty.mergeTargetedBy.push(property);
+        if (mergeDirective.targetProperty) {
+          mergeDirective.targetProperty.mergeTargetedBy.push({ mergeDirective, parentProperty: property });
+        }
       });
     });
 

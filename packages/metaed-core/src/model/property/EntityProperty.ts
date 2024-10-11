@@ -8,6 +8,7 @@ import { NoSourceMap } from '../SourceMap';
 import { PropertyType } from './PropertyType';
 import { ReferentialProperty } from './ReferentialProperty';
 import { SimpleProperty } from './SimpleProperty';
+import { MergeDirectiveInfo } from './MergeDirectiveInfo';
 
 /**
  *
@@ -133,9 +134,9 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  *
  * **referencedNamespaceName** is the name of the namespace of the entity this property references, if any.
  *
- * **mergeSourcedBy** is the list of all EntityProperties that are sourcing this property for a merge.
+ * **mergeSourcedBy** is the list of all MergeDirectives that are sourcing this property for a merge.
  *
- * **mergeTargetedBy** is the list of all EntityProperties that are targeting this property for a merge.
+ * **mergeTargetedBy** is the list of all MergeDirectives that are targeting this property for a merge.
  *
  * **sourceMap** annotates where in the .metaed files each piece of data for this property derives from.
  *
@@ -168,8 +169,8 @@ export interface EntityProperty {
   hasRestriction: boolean;
   referencedType: string;
   referencedNamespaceName: string;
-  mergeSourcedBy: EntityProperty[];
-  mergeTargetedBy: EntityProperty[];
+  mergeSourcedBy: MergeDirectiveInfo[];
+  mergeTargetedBy: MergeDirectiveInfo[];
   sourceMap: EntityPropertySourceMap;
   data: any;
 }

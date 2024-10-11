@@ -115,8 +115,20 @@ describe('when enhancing top level entity with nested reference to top level ref
     expect(property.mergeDirectives[0].sourcePropertyChain).toHaveLength(2);
     expect(property.mergeDirectives[0].sourcePropertyChain[0]).toBe(domainEntity1Referencing3);
     expect(property.mergeDirectives[0].sourcePropertyChain[1]).toBe(domainEntity3Referencing2);
-    expect(property.mergeDirectives[0].sourceMap.sourceProperty).toMatchSnapshot();
-    expect(property.mergeDirectives[0].sourceMap.sourcePropertyChain).toMatchSnapshot();
+    expect(property.mergeDirectives[0].sourceMap.sourceProperty).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
+    expect(property.mergeDirectives[0].sourceMap.sourcePropertyChain).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 
   it('should have correct target property', (): void => {
@@ -125,20 +137,32 @@ describe('when enhancing top level entity with nested reference to top level ref
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity1Referencing2);
     expect(property.mergeDirectives[0].targetPropertyChain).toHaveLength(1);
     expect(property.mergeDirectives[0].targetPropertyChain[0]).toBe(domainEntity1Referencing2);
-    expect(property.mergeDirectives[0].sourceMap.targetProperty).toMatchSnapshot();
-    expect(property.mergeDirectives[0].sourceMap.targetPropertyChain).toMatchSnapshot();
+    expect(property.mergeDirectives[0].sourceMap.targetProperty).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
+    expect(property.mergeDirectives[0].sourceMap.targetPropertyChain).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity1Referencing2.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity3Referencing2.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity3Referencing2.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity3Referencing2.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntity3Referencing2.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity1Referencing2.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity1Referencing2.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity1Referencing2.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -224,13 +248,13 @@ describe('when enhancing top level entity with top level reference to nested ref
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity2Referencing3.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity1Referencing3.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity1Referencing3.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity1Referencing3.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntity1Referencing3.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity2Referencing3.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity2Referencing3.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity2Referencing3.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -331,13 +355,13 @@ describe('when enhancing top level entity with nested reference to nested refere
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity2Referencing4.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity3Referencing4.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity3Referencing4.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity3Referencing4.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntity3Referencing4.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity2Referencing4.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity2Referencing4.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity2Referencing4.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -468,13 +492,13 @@ describe('when enhancing top level entity with deep nested reference to deep nes
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity5Referencing6.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity4Referencing6.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity4Referencing6.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity4Referencing6.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntity4Referencing6.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity5Referencing6.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity5Referencing6.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity5Referencing6.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -574,13 +598,13 @@ describe('when enhancing top level entity with nested reference through an exten
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity1Referencing2.mergeSourcedBy).toHaveLength(0);
     expect(domainEntityExtension3Referencing2.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntityExtension3Referencing2.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntityExtension3Referencing2.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntityExtension3Referencing2.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity1Referencing2.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity1Referencing2.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity1Referencing2.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -653,8 +677,20 @@ describe('when enhancing top level entity with extraneous target property refere
     expect(property.mergeDirectives[0].sourcePropertyChain).toHaveLength(2);
     expect(property.mergeDirectives[0].sourcePropertyChain[0]).toBe(domainEntity1Referencing3);
     expect(property.mergeDirectives[0].sourcePropertyChain[1]).toBe(domainEntity3Referencing2);
-    expect(property.mergeDirectives[0].sourceMap.sourceProperty).toMatchSnapshot();
-    expect(property.mergeDirectives[0].sourceMap.sourcePropertyChain).toMatchSnapshot();
+    expect(property.mergeDirectives[0].sourceMap.sourceProperty).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
+    expect(property.mergeDirectives[0].sourceMap.sourcePropertyChain).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 
   it('should have null target property', (): void => {
@@ -666,7 +702,7 @@ describe('when enhancing top level entity with extraneous target property refere
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity1Referencing2.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity3Referencing2.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity3Referencing2.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity3Referencing2.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have no merge targeted by property', (): void => {
@@ -748,8 +784,20 @@ describe('when enhancing top level entity with extraneous source property refere
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity1Referencing2);
     expect(property.mergeDirectives[0].targetPropertyChain).toHaveLength(1);
     expect(property.mergeDirectives[0].targetPropertyChain[0]).toBe(domainEntity1Referencing2);
-    expect(property.mergeDirectives[0].sourceMap.targetProperty).toMatchSnapshot();
-    expect(property.mergeDirectives[0].sourceMap.targetPropertyChain).toMatchSnapshot();
+    expect(property.mergeDirectives[0].sourceMap.targetProperty).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
+    expect(property.mergeDirectives[0].sourceMap.targetPropertyChain).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 
   it('should have no source targeted by property', (): void => {
@@ -760,7 +808,7 @@ describe('when enhancing top level entity with extraneous source property refere
   it('should have correct merge targeted by property', (): void => {
     expect(domainEntity3Referencing2.mergeTargetedBy).toHaveLength(0);
     expect(domainEntity1Referencing2.mergeTargetedBy).toHaveLength(1);
-    expect(domainEntity1Referencing2.mergeTargetedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity1Referencing2.mergeTargetedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 });
 
@@ -889,7 +937,7 @@ describe('when enhancing top level entity with non-reference property in middle 
   it('should have correct source targeted by property', (): void => {
     expect(domainEntity5Referencing6.mergeSourcedBy).toHaveLength(0);
     expect(domainEntity4Referencing6.mergeSourcedBy).toHaveLength(1);
-    expect(domainEntity4Referencing6.mergeSourcedBy[0]).toBe(domainEntity1Referencing3);
+    expect(domainEntity4Referencing6.mergeSourcedBy[0].parentProperty).toBe(domainEntity1Referencing3);
   });
 
   it('should have no merge targeted by property', (): void => {

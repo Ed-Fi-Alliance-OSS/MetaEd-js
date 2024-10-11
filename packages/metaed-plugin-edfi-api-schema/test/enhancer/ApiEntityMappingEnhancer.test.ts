@@ -846,6 +846,12 @@ describe('when a role named resource has a schoolid merged away', () => {
       .withDomainEntityIdentity('CourseOffering', 'doc')
       .withEndDomainEntity()
 
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
+
       .withStartAssociation('StudentSectionAssociation')
       .withDocumentation('doc')
       .withDomainEntityIdentity('Student', 'doc')
@@ -896,7 +902,7 @@ describe('when a role named resource has a schoolid merged away', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Grade');
     const apiMapping = entity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(5);
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(7);
     expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('GradingPeriodIdentity');
     expect(apiMapping?.flattenedIdentityProperties[0].mergedAwayBy).toBeNull();
 
@@ -912,8 +918,14 @@ describe('when a role named resource has a schoolid merged away', () => {
     expect(apiMapping?.flattenedIdentityProperties[3].identityProperty.parentEntityName).toBe('School');
     expect(apiMapping?.flattenedIdentityProperties[3].mergedAwayBy).toBeNull();
 
-    expect(apiMapping?.flattenedIdentityProperties[4].identityProperty.fullPropertyName).toBe('StudentId');
+    expect(apiMapping?.flattenedIdentityProperties[4].identityProperty.fullPropertyName).toBe('SchoolId');
     expect(apiMapping?.flattenedIdentityProperties[4].mergedAwayBy).toBeNull();
+
+    expect(apiMapping?.flattenedIdentityProperties[5].identityProperty.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping?.flattenedIdentityProperties[5].mergedAwayBy).toBeNull();
+
+    expect(apiMapping?.flattenedIdentityProperties[6].identityProperty.fullPropertyName).toBe('StudentId');
+    expect(apiMapping?.flattenedIdentityProperties[6].mergedAwayBy).toBeNull();
   });
 
   it('should have correct property paths in Grade flattened identity properties ', () => {
@@ -949,6 +961,25 @@ describe('when a role named resource has a schoolid merged away', () => {
       ]
     `);
     expect(apiMapping?.flattenedIdentityProperties[4].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "StudentSectionAssociation.Section",
+        "StudentSectionAssociation.Section.CourseOffering",
+        "StudentSectionAssociation.Section.CourseOffering.Session",
+        "StudentSectionAssociation.Section.CourseOffering.Session.School",
+        "StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[5].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "StudentSectionAssociation.Section",
+        "StudentSectionAssociation.Section.CourseOffering",
+        "StudentSectionAssociation.Section.CourseOffering.Session",
+        "StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[6].propertyPaths).toMatchInlineSnapshot(`
       Array [
         "StudentSectionAssociation",
         "StudentSectionAssociation.Student",
@@ -990,6 +1021,25 @@ describe('when a role named resource has a schoolid merged away', () => {
       ]
     `);
     expect(apiMapping?.flattenedIdentityProperties[4].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "Section",
+        "CourseOffering",
+        "Session",
+        "School",
+        "SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[5].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "Section",
+        "CourseOffering",
+        "Session",
+        "SchoolYear",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[6].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "StudentSectionAssociation",
         "Student",

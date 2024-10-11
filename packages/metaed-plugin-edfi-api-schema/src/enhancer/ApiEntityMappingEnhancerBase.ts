@@ -60,7 +60,9 @@ function mergedAwayProperty(property: EntityProperty, propertyChain: EntityPrope
   ) {
     return null;
   }
-  const x = propertyChain.find((propertyAlongChain) => property.mergeSourcedBy.includes(propertyAlongChain));
+  const x = propertyChain.find((propertyAlongChain) =>
+    property.mergeSourcedBy.map((mergeDirectiveInfo) => mergeDirectiveInfo.parentProperty).includes(propertyAlongChain),
+  );
   return x ?? null;
 }
 
