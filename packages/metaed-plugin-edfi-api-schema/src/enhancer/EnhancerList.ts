@@ -9,6 +9,7 @@ import { enhance as apiEntityMappingEnhancer } from './ApiEntityMappingEnhancer'
 import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
+import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from './MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from './MergeJsonPathsMappingEnhancer';
@@ -35,6 +36,7 @@ export function enhancerList(): Enhancer[] {
     subclassPropertyCollectingEnhancer,
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
+    mergeCoveringFlattenedIdentityPropertyEnhancer,
     jsonSchemaEnhancerForInsert,
     allJsonPathsMappingEnhancer,
     mergeJsonPathsMappingEnhancer,

@@ -120,6 +120,7 @@ export { EnumerationProperty, EnumerationPropertySourceMap } from './model/prope
 export { InlineCommonProperty, InlineCommonPropertySourceMap } from './model/property/InlineCommonProperty';
 export { IntegerProperty, IntegerPropertySourceMap } from './model/property/IntegerProperty';
 export { MergeDirective, MergeDirectiveSourceMap } from './model/property/MergeDirective';
+export { MergeDirectiveInfo } from './model/property/MergeDirectiveInfo';
 export { PercentProperty, PercentPropertySourceMap } from './model/property/PercentProperty';
 export { PropertyIndex } from './model/property/PropertyRepository';
 export { PropertyType } from './model/property/PropertyType';

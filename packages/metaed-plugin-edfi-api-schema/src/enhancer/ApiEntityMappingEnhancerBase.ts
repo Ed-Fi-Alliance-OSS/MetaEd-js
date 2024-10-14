@@ -1,4 +1,4 @@
-import type { EntityProperty, TopLevelEntity, MetaEdPropertyPath } from '@edfi/metaed-core';
+import type { EntityProperty, TopLevelEntity, MetaEdPropertyPath, MergeDirectiveInfo } from '@edfi/metaed-core';
 import {
   ReferenceElement,
   ReferenceComponent,
@@ -18,7 +18,7 @@ import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProper
 type PathsAndProperties = {
   propertyPaths: MetaEdPropertyPath[];
   propertyChain: EntityProperty[];
-  mergedAwayBy: EntityProperty | null;
+  mergedAwayBy: MergeDirectiveInfo | null;
 };
 
 /**
@@ -50,7 +50,7 @@ function joinPropertyPaths(
  * Returns the given property if it should be "merged away" due to its being marked as a
  * merge directive source along the given property chain. Otherwise returns null.
  */
-function mergedAwayProperty(property: EntityProperty, propertyChain: EntityProperty[]): EntityProperty | null {
+function mergedAwayProperty(property: EntityProperty, propertyChain: EntityProperty[]): MergeDirectiveInfo | null {
   // Some property types are never merged away
   if (
     property.type === 'choice' ||
@@ -60,10 +60,14 @@ function mergedAwayProperty(property: EntityProperty, propertyChain: EntityPrope
   ) {
     return null;
   }
-  const x = propertyChain.find((propertyAlongChain) =>
-    property.mergeSourcedBy.map((mergeDirectiveInfo) => mergeDirectiveInfo.parentProperty).includes(propertyAlongChain),
-  );
-  return x ?? null;
+
+  let result: MergeDirectiveInfo | null = null;
+
+  property.mergeSourcedBy.forEach((mergeDirectiveInfo) => {
+    if (propertyChain.includes(mergeDirectiveInfo.parentProperty)) result = mergeDirectiveInfo;
+  });
+
+  return result;
 }
 
 /**
@@ -80,7 +84,7 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator,
   propertyChainAccumulator,
   referenceElementsAccumulator,
-  mergedAwayByProp,
+  mergedAwayByDirectiveInfo: mergedAwayByProp,
 }: {
   referenceComponent: ReferenceComponent;
   currentPropertyPath: MetaEdPropertyPath;
@@ -88,10 +92,10 @@ function flattenReferenceElementsFromComponent({
   propertyPathAccumulator: MetaEdPropertyPath[];
   propertyChainAccumulator: EntityProperty[];
   referenceElementsAccumulator: ReferenceElementsWithPaths;
-  mergedAwayByProp: EntityProperty | null;
+  mergedAwayByDirectiveInfo: MergeDirectiveInfo | null;
 }) {
   if (isReferenceElement(referenceComponent)) {
-    const mergedAwayBy: EntityProperty | null =
+    const mergedAwayBy: MergeDirectiveInfo | null =
       mergedAwayByProp == null
         ? mergedAwayProperty(referenceComponent.sourceProperty, currentPropertyChain)
         : mergedAwayByProp;
@@ -105,7 +109,7 @@ function flattenReferenceElementsFromComponent({
     });
   } else {
     (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
-      const mergedAwayBy: EntityProperty | null =
+      const mergedAwayBy: MergeDirectiveInfo | null =
         mergedAwayByProp == null
           ? mergedAwayProperty(subReferenceComponent.sourceProperty, currentPropertyChain)
           : mergedAwayByProp;
@@ -135,7 +139,7 @@ function flattenReferenceElementsFromComponent({
           propertyPathAccumulator: propertyPathAccumulator.concat(nextPropertyPath),
           propertyChainAccumulator,
           referenceElementsAccumulator,
-          mergedAwayByProp: mergedAwayBy,
+          mergedAwayByDirectiveInfo: mergedAwayBy,
         });
       }
     });
@@ -170,7 +174,7 @@ export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty
       propertyPathAccumulator: initialPropertyPath === '' ? [] : [initialPropertyPath],
       propertyChainAccumulator: initialPropertyChain,
       referenceElementsAccumulator: referenceElementsWithPaths,
-      mergedAwayByProp: null,
+      mergedAwayByDirectiveInfo: null,
     });
   });
 
@@ -183,6 +187,7 @@ export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty
       propertyPaths: pathsAndProperties.propertyPaths,
       propertyChain: pathsAndProperties.propertyChain,
       mergedAwayBy: pathsAndProperties.mergedAwayBy,
+      mergeCoveredBy: null,
     });
   }
 
