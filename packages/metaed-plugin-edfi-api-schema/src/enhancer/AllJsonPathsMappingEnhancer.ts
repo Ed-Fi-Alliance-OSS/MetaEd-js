@@ -116,12 +116,7 @@ function jsonPathsForReferentialProperty(
 
   const jsonPathsMappingForThisProperty: JsonPathsMapping = {};
 
-  // Ignore merges. They will be accounted for via the flattenedIdentityProperty reference on JsonPathsInfo
-  const flattenedIdentityPropertiesOmittingMerges = referencedEntityApiMapping.flattenedIdentityProperties.filter(
-    (flattenedIdentityProperty: FlattenedIdentityProperty) => flattenedIdentityProperty.mergedAwayBy == null,
-  );
-
-  flattenedIdentityPropertiesOmittingMerges.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
+  referencedEntityApiMapping.flattenedIdentityProperties.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
     const identityPropertyApiMapping = (
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
     ).apiMapping;
@@ -141,6 +136,7 @@ function jsonPathsForReferentialProperty(
         { specialPrefix },
       ),
       false,
+      flattenedIdentityProperty,
     );
 
     // Take the JsonPaths for entire property and apply to jsonPathsMapping for the property,
@@ -256,6 +252,7 @@ function jsonPathsForNonReference(
   currentPropertyPaths: MetaEdPropertyPath[],
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
+  flattenedIdentityProperty: FlattenedIdentityProperty,
 ) {
   invariant(property.type !== 'association' && property.type !== 'common' && property.type !== 'domainEntity');
 
@@ -267,17 +264,10 @@ function jsonPathsForNonReference(
       `${currentJsonPath}.schoolYear` as JsonPath,
       isTopLevel,
       property,
-      NoFlattenedIdentityProperty,
+      flattenedIdentityProperty,
     );
   } else {
-    addJsonPathTo(
-      jsonPathsMapping,
-      currentPropertyPaths,
-      currentJsonPath,
-      isTopLevel,
-      property,
-      NoFlattenedIdentityProperty,
-    );
+    addJsonPathTo(jsonPathsMapping, currentPropertyPaths, currentJsonPath, isTopLevel, property, flattenedIdentityProperty);
   }
 }
 
@@ -360,6 +350,7 @@ function jsonPathsForNonReferenceCollection(
     [currentPropertyPath],
     appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier),
     isTopLevel,
+    NoFlattenedIdentityProperty,
   );
 }
 
@@ -482,11 +473,19 @@ function jsonPathsFor(
       [`${currentPropertyPath}Descriptor` as MetaEdPropertyPath],
       currentJsonPath,
       isTopLevel,
+      NoFlattenedIdentityProperty,
     );
     return;
   }
 
-  jsonPathsForNonReference(property, jsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
+  jsonPathsForNonReference(
+    property,
+    jsonPathsMapping,
+    [currentPropertyPath],
+    currentJsonPath,
+    isTopLevel,
+    NoFlattenedIdentityProperty,
+  );
 }
 
 /**

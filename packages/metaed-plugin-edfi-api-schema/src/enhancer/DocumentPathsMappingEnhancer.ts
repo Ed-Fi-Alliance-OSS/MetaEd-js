@@ -94,6 +94,10 @@ function getPathType(propertyType: PropertyType): PathType {
   }
 }
 
+function doSomething() {
+  return;
+}
+
 function matchupJsonPaths(
   fromReferencingEntity: JsonPathsMapping,
   fromReferencedEntity: JsonPathsMapping,
@@ -103,6 +107,10 @@ function matchupJsonPaths(
   Object.entries(fromReferencingEntity).forEach(([referencingPropertyPath, referencingJsonPathsInfo]) => {
     invariant(fromReferencedEntity[referencingPropertyPath] != null);
     invariant(referencingJsonPathsInfo.jsonPathPropertyPairs.length === 1);
+
+    if (referencingJsonPathsInfo.jsonPathPropertyPairs[0].flattenedIdentityProperty.mergedAwayBy != null) {
+      doSomething();
+    }
 
     const matchingJsonPathsInfo: JsonPathsInfo = fromReferencedEntity[referencingPropertyPath];
 
