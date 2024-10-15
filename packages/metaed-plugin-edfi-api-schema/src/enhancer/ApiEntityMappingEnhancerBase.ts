@@ -187,7 +187,9 @@ export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty
       propertyPaths: pathsAndProperties.propertyPaths,
       propertyChain: pathsAndProperties.propertyChain,
       mergedAwayBy: pathsAndProperties.mergedAwayBy,
+      // These are set by a follow-on enhancer
       mergeCoveredBy: null,
+      mergeCovers: null,
     });
   }
 

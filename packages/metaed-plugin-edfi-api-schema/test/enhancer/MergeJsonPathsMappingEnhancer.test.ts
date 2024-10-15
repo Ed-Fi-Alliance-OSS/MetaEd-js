@@ -11,6 +11,7 @@ import {
   TopLevelEntity,
   EnumerationBuilder,
   MetaEdPropertyPath,
+  AssociationBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -20,6 +21,8 @@ import {
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
+  associationReferenceEnhancer,
+  mergeDirectiveEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -30,6 +33,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
+import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { JsonPath } from '../../src/model/api-schema/JsonPath';
 
@@ -105,6 +109,7 @@ describe('when building simple domain entity with all the simple non-collections
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -282,6 +287,7 @@ describe('when building simple domain entity with all the simple collections', (
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -474,6 +480,7 @@ describe('when building a domain entity referencing another referencing another 
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -626,6 +633,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -984,6 +992,7 @@ describe('when building domain entity with nested choice and inline commons', ()
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1113,6 +1122,7 @@ describe('when building domain entity with scalar collection named with prefix o
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1185,6 +1195,7 @@ describe('when building domain entity with Association/DomainEntity collection n
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1260,6 +1271,7 @@ describe('when building domain entity with acronym property name', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1339,6 +1351,7 @@ describe('when building domain entity with a simple common collection', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1438,6 +1451,7 @@ describe('when building domain entity subclass with common collection and descri
     subclassPropertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     subclassApiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1526,6 +1540,7 @@ describe('when building association with a common collection in a common collect
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1616,6 +1631,7 @@ describe('when building domain entity with a descriptor with role name', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1688,6 +1704,7 @@ describe('when building domain entity with a descriptor collection with role nam
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1769,6 +1786,7 @@ describe('when building domain entity with a common with a choice', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1865,6 +1883,7 @@ describe('when building domain entity with a common and a common collection with
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -1938,6 +1957,7 @@ describe('when building domain entity with an all-caps property', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2017,6 +2037,7 @@ describe('when building domain entity with a common with a domain entity referen
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2107,6 +2128,7 @@ describe('when building domain entity with two school year enumerations, one rol
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2189,6 +2211,7 @@ describe('when building domain entity with reference to domain entity with schoo
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2271,6 +2294,7 @@ describe('when building a descriptor', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2307,6 +2331,7 @@ describe('when building a school year enumeration', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2367,6 +2392,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2445,6 +2471,7 @@ describe('when building a domain entity with an inline common property with a de
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
 
     namespace = metaEd.namespace.get(namespaceName);
@@ -2526,6 +2553,7 @@ describe('when building a domain entity referencing another using a shortenTo di
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2607,6 +2635,7 @@ describe('when building domain entity with role named and pluralized inline comm
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -2644,4 +2673,319 @@ describe('when building domain entity with role named and pluralized inline comm
       }
     `);
   });
+});
+
+describe('when a collection reference is to a role named resource that has a schoolid merged away', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'ReportCard';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityProperty('Grade', 'doc', true, true)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'StudentSectionAssociation.Section.CourseOffering.Session.School')
+      .withMergeDirective('GradingPeriod.SchoolYear', 'StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear')
+      .withAssociationIdentity('StudentSectionAssociation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('School', 'Session.School')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
+
+      .withStartAssociation('StudentSectionAssociation')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Section', 'doc')
+      .withEndAssociation()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    associationReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct mergeJsonPathsMapping', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Grade": Array [
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodIdentity",
+            "propertyName": "Grade",
+          },
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+            "propertyName": "Grade",
+          },
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+            "propertyName": "Grade",
+          },
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "Grade",
+          },
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "Grade",
+          },
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.studentId",
+            "propertyName": "Grade",
+          },
+        ],
+        "Grade.GradingPeriod": Array [
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodIdentity",
+            "propertyName": "GradingPeriodIdentity",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.GradingPeriod.GradingPeriodIdentity": Array [
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodIdentity",
+            "propertyName": "GradingPeriodIdentity",
+          },
+        ],
+        "Grade.GradingPeriod.School": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.GradingPeriod.School.SchoolId": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.GradingPeriod.SchoolYear": Array [
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.StudentSectionAssociation": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.grades[*].gradeReference.studentId",
+            "propertyName": "StudentId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.grades[*].gradeReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.grades[*].gradeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Student": Array [
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.grades[*].gradeReference.studentId",
+            "propertyName": "StudentId",
+          },
+        ],
+        "Grade.StudentSectionAssociation.Student.StudentId": Array [
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.grades[*].gradeReference.studentId",
+            "propertyName": "StudentId",
+          },
+        ],
+        "ReportCardIdentity": Array [
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.reportCardIdentity",
+            "propertyName": "ReportCardIdentity",
+          },
+        ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Grade": true,
+        "Grade.GradingPeriod": false,
+        "Grade.GradingPeriod.GradingPeriodIdentity": false,
+        "Grade.GradingPeriod.School": false,
+        "Grade.GradingPeriod.School.SchoolId": false,
+        "Grade.GradingPeriod.SchoolYear": false,
+        "Grade.StudentSectionAssociation": false,
+        "Grade.StudentSectionAssociation.Section": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": false,
+        "Grade.StudentSectionAssociation.Student": false,
+        "Grade.StudentSectionAssociation.Student.StudentId": false,
+        "ReportCardIdentity": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Grade": "Grade",
+        "ReportCardIdentity": "ReportCardIdentity",
+      }
+    `);
+  });
+
+  // it('should have correct merge coveredBy/covers info', () => {
+  //   const entity = namespace.entity.domainEntity.get(domainEntityName);
+  //   const { mergeJsonPathsMapping } = entity.data.edfiApiSchema;
+  // });
 });

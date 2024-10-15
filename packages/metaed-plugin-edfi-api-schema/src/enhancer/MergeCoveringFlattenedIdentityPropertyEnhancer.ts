@@ -29,6 +29,7 @@ function findMergeCoveringFlattenedIdentityProperties(entity: TopLevelEntity): v
 
       if (isChainPrefix(possibleMergeCoverer.propertyChain, mergedAway.mergedAwayBy.mergeDirective.targetPropertyChain)) {
         mergedAway.mergeCoveredBy = possibleMergeCoverer;
+        possibleMergeCoverer.mergeCovers = mergedAway;
       }
     });
   });

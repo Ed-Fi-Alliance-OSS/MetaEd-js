@@ -1,4 +1,5 @@
-import { EntityProperty, MergeDirectiveInfo, MetaEdPropertyPath } from '@edfi/metaed-core';
+import deepFreeze from 'deep-freeze';
+import { EntityProperty, MergeDirectiveInfo, MetaEdPropertyPath, NoEntityProperty } from '@edfi/metaed-core';
 
 /**
  * A flattened identity property is a simple property that is part of a reference identity for an
@@ -32,4 +33,18 @@ export type FlattenedIdentityProperty = {
   propertyChain: EntityProperty[];
   mergedAwayBy: MergeDirectiveInfo | null;
   mergeCoveredBy: FlattenedIdentityProperty | null;
+  mergeCovers: FlattenedIdentityProperty | null;
 };
+
+export function newFlattenedIdentityProperty(): FlattenedIdentityProperty {
+  return {
+    identityProperty: NoEntityProperty,
+    propertyPaths: [],
+    propertyChain: [],
+    mergedAwayBy: null,
+    mergeCoveredBy: null,
+    mergeCovers: null,
+  };
+}
+
+export const NoFlattenedIdentityProperty = deepFreeze(newFlattenedIdentityProperty());

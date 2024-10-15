@@ -1,5 +1,6 @@
 import type { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import type { JsonPath } from './api-schema/JsonPath';
+import { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
 
 /**
  * A pairing of a JsonPath for the API document for a resource along with the source property
@@ -23,6 +24,11 @@ type BaseJsonPathsInfo = {
    * The JsonPathPropertyPairs for a MetaEdPropertyPath, in JsonPath sorted order
    */
   jsonPathPropertyPairs: JsonPathPropertyPair[];
+
+  /**
+   * The FlattenedIdentityProperty this JsonPathsInfo is derived from. Used for tracking merges.
+   */
+  flattenedIdentityProperty: FlattenedIdentityProperty;
 };
 
 /**

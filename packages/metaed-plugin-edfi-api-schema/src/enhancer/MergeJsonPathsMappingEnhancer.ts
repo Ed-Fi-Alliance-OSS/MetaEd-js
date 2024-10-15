@@ -23,7 +23,7 @@ import {
   topLevelApiNameOnEntity,
   uncapitalize,
 } from '../Utility';
-import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
+import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
 const enhancerName = 'MergeJsonPathsMappingEnhancer';
@@ -57,13 +57,14 @@ function addJsonPathTo(
   jsonPath: JsonPath,
   isTopLevel: boolean,
   terminalProperty: EntityProperty,
+  flattenedIdentityProperty: FlattenedIdentityProperty,
 ) {
   propertyPaths.forEach((propertyPath) => {
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
-        ? { jsonPathPropertyPairs: [], isTopLevel, terminalProperty }
-        : { jsonPathPropertyPairs: [], isTopLevel };
+        ? { jsonPathPropertyPairs: [], isTopLevel, terminalProperty, flattenedIdentityProperty }
+        : { jsonPathPropertyPairs: [], isTopLevel, flattenedIdentityProperty };
       jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
@@ -136,7 +137,14 @@ function jsonPathsForReferentialProperty(
           .map((jppp) => jppp.jsonPath)
           .forEach((jsonPath: JsonPath) => {
             // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-            addJsonPathTo(jsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+            addJsonPathTo(
+              jsonPathsMapping,
+              [currentPropertyPath],
+              jsonPath,
+              isTopLevel,
+              property,
+              flattenedIdentityProperty,
+            );
           });
       });
     Object.assign(jsonPathsMapping, jsonPathsMappingForThisProperty);
@@ -238,9 +246,23 @@ function jsonPathsForNonReference(
 
   if (property.type === 'schoolYearEnumeration' && property.parentEntity.type === 'common') {
     // For a common, the school year ends up being nested under a reference object
-    addJsonPathTo(jsonPathsMapping, currentPropertyPaths, `${currentJsonPath}.schoolYear` as JsonPath, isTopLevel, property);
+    addJsonPathTo(
+      jsonPathsMapping,
+      currentPropertyPaths,
+      `${currentJsonPath}.schoolYear` as JsonPath,
+      isTopLevel,
+      property,
+      NoFlattenedIdentityProperty,
+    );
   } else {
-    addJsonPathTo(jsonPathsMapping, currentPropertyPaths, currentJsonPath, isTopLevel, property);
+    addJsonPathTo(
+      jsonPathsMapping,
+      currentPropertyPaths,
+      currentJsonPath,
+      isTopLevel,
+      property,
+      NoFlattenedIdentityProperty,
+    );
   }
 }
 
@@ -299,6 +321,7 @@ function jsonPathsForDescriptorCollection(
     ),
     isTopLevel,
     property,
+    NoFlattenedIdentityProperty,
   );
 }
 
@@ -337,7 +360,14 @@ function jsonPathsForSchoolYearEnumeration(
 ) {
   invariant(property.type === 'schoolYearEnumeration');
 
-  addJsonPathTo(jsonPathsMapping, [currentPropertyPath], `${currentJsonPath}.schoolYear` as JsonPath, isTopLevel, property);
+  addJsonPathTo(
+    jsonPathsMapping,
+    [currentPropertyPath],
+    `${currentJsonPath}.schoolYear` as JsonPath,
+    isTopLevel,
+    property,
+    NoFlattenedIdentityProperty,
+  );
 }
 
 /**
