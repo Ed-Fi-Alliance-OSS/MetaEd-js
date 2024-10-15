@@ -9,6 +9,11 @@ import { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
 export type JsonPathPropertyPair = {
   jsonPath: JsonPath;
   sourceProperty: EntityProperty;
+
+  /**
+   * The FlattenedIdentityProperty this JsonPathsInfo is derived from. Used for tracking merges.
+   */
+  flattenedIdentityProperty: FlattenedIdentityProperty;
 };
 
 /**
@@ -24,11 +29,6 @@ type BaseJsonPathsInfo = {
    * The JsonPathPropertyPairs for a MetaEdPropertyPath, in JsonPath sorted order
    */
   jsonPathPropertyPairs: JsonPathPropertyPair[];
-
-  /**
-   * The FlattenedIdentityProperty this JsonPathsInfo is derived from. Used for tracking merges.
-   */
-  flattenedIdentityProperty: FlattenedIdentityProperty;
 };
 
 /**

@@ -36,18 +36,17 @@ import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhance
 import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { JsonPath } from '../../src/model/api-schema/JsonPath';
+import { JsonPathsMapping } from '../../src/model/JsonPathsMapping';
 
 type SimpleJsonPathsInfo = { jsonPath: JsonPath; entityName: string; propertyName: string };
 
-export type Snapshotable = {
+type Snapshotable = {
   jsonPaths: { [key: MetaEdPropertyPath]: SimpleJsonPathsInfo };
   isTopLevel: { [key: MetaEdPropertyPath]: boolean };
   terminalPropertyFullName: { [key: MetaEdPropertyPath]: string };
 };
 
-export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
-  const { mergeJsonPathsMapping } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-
+function snapshotify(mergeJsonPathsMapping: JsonPathsMapping): Snapshotable {
   const jsonPaths = {} as { [key: MetaEdPropertyPath]: SimpleJsonPathsInfo };
   const isTopLevel = {} as { [key: MetaEdPropertyPath]: boolean };
   const terminalPropertyFullName = {} as { [key: MetaEdPropertyPath]: string };
@@ -69,6 +68,11 @@ export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
     isTopLevel,
     terminalPropertyFullName,
   };
+}
+
+function snapshotifyEntity(entity: TopLevelEntity): Snapshotable {
+  const { mergeJsonPathsMapping } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+  return snapshotify(mergeJsonPathsMapping);
 }
 
 describe('when building simple domain entity with all the simple non-collections', () => {
@@ -115,7 +119,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
@@ -293,7 +297,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
@@ -486,7 +490,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ClassPeriod": Array [
@@ -639,7 +643,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct mergeJsonPathsMapping for DomainEntityName', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CourseOffering": Array [
@@ -763,7 +767,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct mergeJsonPathsMapping for CourseOffering', () => {
     const entity = namespace.entity.domainEntity.get('CourseOffering');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "LocalCourseCode": Array [
@@ -857,7 +861,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct mergeJsonPathsMapping for Session', () => {
     const entity = namespace.entity.domainEntity.get('Session');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "School": Array [
@@ -909,7 +913,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct mergeJsonPathsMapping for School', () => {
     const entity = namespace.entity.domainEntity.get('School');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "SchoolId": Array [
@@ -998,7 +1002,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
@@ -1128,7 +1132,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
@@ -1201,7 +1205,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
@@ -1277,7 +1281,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
@@ -1357,7 +1361,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentificationCode.AssessmentIdentificationSystem": Array [
@@ -1457,7 +1461,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CommunityOrganizationId": Array [
@@ -1546,7 +1550,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Address.Period.BeginDate": Array [
@@ -1637,7 +1641,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
@@ -1710,7 +1714,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
@@ -1792,7 +1796,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
@@ -1889,7 +1893,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
@@ -1963,7 +1967,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
@@ -2043,7 +2047,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
@@ -2134,7 +2138,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ClassOfSchoolYear": Array [
@@ -2217,7 +2221,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Calendar": Array [
@@ -2300,7 +2304,7 @@ describe('when building a descriptor', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`Object {}`);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`Object {}`);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`Object {}`);
@@ -2337,7 +2341,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`Object {}`);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`Object {}`);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`Object {}`);
@@ -2398,7 +2402,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CohortYear.SchoolYear": Array [
@@ -2479,7 +2483,7 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Section');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AvailableCredits.CreditType": Array [
@@ -2559,7 +2563,7 @@ describe('when building a domain entity referencing another using a shortenTo di
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CompetencyObjective": Array [
@@ -2641,7 +2645,7 @@ describe('when building domain entity with role named and pluralized inline comm
 
   it('should be correct allJsonPathsMapping with "availableCreditConversion" not pluralized', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AvailableCredits.CreditConversion": Array [
@@ -2763,7 +2767,7 @@ describe('when a collection reference is to a role named resource that has a sch
 
   it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    const mappings: Snapshotable = snapshotify(entity);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Grade": Array [
@@ -2984,8 +2988,139 @@ describe('when a collection reference is to a role named resource that has a sch
     `);
   });
 
-  // it('should have correct merge coveredBy/covers info', () => {
-  //   const entity = namespace.entity.domainEntity.get(domainEntityName);
-  //   const { mergeJsonPathsMapping } = entity.data.edfiApiSchema;
-  // });
+  it('should have correct merge coveredBy/covers info', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mergeJsonPathsMapping: JsonPathsMapping = entity.data.edfiApiSchema.mergeJsonPathsMapping as JsonPathsMapping;
+
+    const coveredBy: JsonPathsMapping = {};
+    const covers: JsonPathsMapping = {};
+
+    // Get only the mergeJsonPathsMappings with flattenedIdentityProperties with merge annotations
+    Object.entries(mergeJsonPathsMapping).forEach(([path, jsonPathsInfo]) => {
+      coveredBy[path] = {
+        jsonPathPropertyPairs: jsonPathsInfo.jsonPathPropertyPairs.filter(
+          (jppp) => jppp.flattenedIdentityProperty.mergeCoveredBy != null,
+        ),
+        isTopLevel: jsonPathsInfo.isTopLevel,
+        terminalProperty: jsonPathsInfo.isTopLevel ? jsonPathsInfo.terminalProperty : undefined,
+      };
+      covers[path] = {
+        jsonPathPropertyPairs: jsonPathsInfo.jsonPathPropertyPairs.filter(
+          (jppp) => jppp.flattenedIdentityProperty.mergeCovers != null,
+        ),
+        isTopLevel: jsonPathsInfo.isTopLevel,
+        terminalProperty: jsonPathsInfo.isTopLevel ? jsonPathsInfo.terminalProperty : undefined,
+      };
+    });
+
+    const coveredByMappings: Snapshotable = snapshotify(coveredBy);
+    expect(coveredByMappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Grade": Array [
+          Object {
+            "entityName": "ReportCard",
+            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+            "propertyName": "Grade",
+          },
+        ],
+        "Grade.GradingPeriod": Array [],
+        "Grade.GradingPeriod.GradingPeriodIdentity": Array [],
+        "Grade.GradingPeriod.School": Array [],
+        "Grade.GradingPeriod.School.SchoolId": Array [],
+        "Grade.GradingPeriod.SchoolYear": Array [],
+        "Grade.StudentSectionAssociation": Array [],
+        "Grade.StudentSectionAssociation.Section": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [],
+        "Grade.StudentSectionAssociation.Student": Array [],
+        "Grade.StudentSectionAssociation.Student.StudentId": Array [],
+        "ReportCardIdentity": Array [],
+      }
+    `);
+    expect(coveredByMappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Grade": true,
+        "Grade.GradingPeriod": false,
+        "Grade.GradingPeriod.GradingPeriodIdentity": false,
+        "Grade.GradingPeriod.School": false,
+        "Grade.GradingPeriod.School.SchoolId": false,
+        "Grade.GradingPeriod.SchoolYear": false,
+        "Grade.StudentSectionAssociation": false,
+        "Grade.StudentSectionAssociation.Section": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": false,
+        "Grade.StudentSectionAssociation.Student": false,
+        "Grade.StudentSectionAssociation.Student.StudentId": false,
+        "ReportCardIdentity": true,
+      }
+    `);
+    expect(coveredByMappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Grade": "Grade",
+        "ReportCardIdentity": "ReportCardIdentity",
+      }
+    `);
+
+    const coversMappings: Snapshotable = snapshotify(covers);
+    expect(coversMappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Grade": Array [],
+        "Grade.GradingPeriod": Array [],
+        "Grade.GradingPeriod.GradingPeriodIdentity": Array [],
+        "Grade.GradingPeriod.School": Array [],
+        "Grade.GradingPeriod.School.SchoolId": Array [],
+        "Grade.GradingPeriod.SchoolYear": Array [],
+        "Grade.StudentSectionAssociation": Array [],
+        "Grade.StudentSectionAssociation.Section": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [],
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [],
+        "Grade.StudentSectionAssociation.Student": Array [],
+        "Grade.StudentSectionAssociation.Student.StudentId": Array [],
+        "ReportCardIdentity": Array [],
+      }
+    `);
+    expect(coversMappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Grade": true,
+        "Grade.GradingPeriod": false,
+        "Grade.GradingPeriod.GradingPeriodIdentity": false,
+        "Grade.GradingPeriod.School": false,
+        "Grade.GradingPeriod.School.SchoolId": false,
+        "Grade.GradingPeriod.SchoolYear": false,
+        "Grade.StudentSectionAssociation": false,
+        "Grade.StudentSectionAssociation.Section": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": false,
+        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": false,
+        "Grade.StudentSectionAssociation.Student": false,
+        "Grade.StudentSectionAssociation.Student.StudentId": false,
+        "ReportCardIdentity": true,
+      }
+    `);
+    expect(coversMappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Grade": "Grade",
+        "ReportCardIdentity": "ReportCardIdentity",
+      }
+    `);
+  });
 });
