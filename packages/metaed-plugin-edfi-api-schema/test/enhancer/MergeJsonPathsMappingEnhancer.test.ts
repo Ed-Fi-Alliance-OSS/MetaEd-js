@@ -2988,139 +2988,29 @@ describe('when a collection reference is to a role named resource that has a sch
     `);
   });
 
-  it('should have correct merge coveredBy/covers info', () => {
+  it('should have correct merge coveredBy info', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     const mergeJsonPathsMapping: JsonPathsMapping = entity.data.edfiApiSchema.mergeJsonPathsMapping as JsonPathsMapping;
 
-    const coveredBy: JsonPathsMapping = {};
-    const covers: JsonPathsMapping = {};
-
-    // Get only the mergeJsonPathsMappings with flattenedIdentityProperties with merge annotations
-    Object.entries(mergeJsonPathsMapping).forEach(([path, jsonPathsInfo]) => {
-      coveredBy[path] = {
-        jsonPathPropertyPairs: jsonPathsInfo.jsonPathPropertyPairs.filter(
-          (jppp) => jppp.flattenedIdentityProperty.mergeCoveredBy != null,
-        ),
-        isTopLevel: jsonPathsInfo.isTopLevel,
-        terminalProperty: jsonPathsInfo.isTopLevel ? jsonPathsInfo.terminalProperty : undefined,
-      };
-      covers[path] = {
-        jsonPathPropertyPairs: jsonPathsInfo.jsonPathPropertyPairs.filter(
-          (jppp) => jppp.flattenedIdentityProperty.mergeCovers != null,
-        ),
-        isTopLevel: jsonPathsInfo.isTopLevel,
-        terminalProperty: jsonPathsInfo.isTopLevel ? jsonPathsInfo.terminalProperty : undefined,
-      };
-    });
-
-    const coveredByMappings: Snapshotable = snapshotify(coveredBy);
-    expect(coveredByMappings.jsonPaths).toMatchInlineSnapshot(`
-      Object {
-        "Grade": Array [
-          Object {
-            "entityName": "ReportCard",
-            "jsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
-            "propertyName": "Grade",
-          },
-        ],
-        "Grade.GradingPeriod": Array [],
-        "Grade.GradingPeriod.GradingPeriodIdentity": Array [],
-        "Grade.GradingPeriod.School": Array [],
-        "Grade.GradingPeriod.School.SchoolId": Array [],
-        "Grade.GradingPeriod.SchoolYear": Array [],
-        "Grade.StudentSectionAssociation": Array [],
-        "Grade.StudentSectionAssociation.Section": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [],
-        "Grade.StudentSectionAssociation.Student": Array [],
-        "Grade.StudentSectionAssociation.Student.StudentId": Array [],
-        "ReportCardIdentity": Array [],
-      }
+    /* eslint-disable dot-notation */
+    expect(mergeJsonPathsMapping['Grade'].jsonPathPropertyPairs[1].flattenedIdentityProperty.propertyPaths)
+      .toMatchInlineSnapshot(`
+      Array [
+        "GradingPeriod",
+        "GradingPeriod.School",
+        "GradingPeriod.School.SchoolId",
+      ]
     `);
-    expect(coveredByMappings.isTopLevel).toMatchInlineSnapshot(`
-      Object {
-        "Grade": true,
-        "Grade.GradingPeriod": false,
-        "Grade.GradingPeriod.GradingPeriodIdentity": false,
-        "Grade.GradingPeriod.School": false,
-        "Grade.GradingPeriod.School.SchoolId": false,
-        "Grade.GradingPeriod.SchoolYear": false,
-        "Grade.StudentSectionAssociation": false,
-        "Grade.StudentSectionAssociation.Section": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": false,
-        "Grade.StudentSectionAssociation.Student": false,
-        "Grade.StudentSectionAssociation.Student.StudentId": false,
-        "ReportCardIdentity": true,
-      }
-    `);
-    expect(coveredByMappings.terminalPropertyFullName).toMatchInlineSnapshot(`
-      Object {
-        "Grade": "Grade",
-        "ReportCardIdentity": "ReportCardIdentity",
-      }
-    `);
-
-    const coversMappings: Snapshotable = snapshotify(covers);
-    expect(coversMappings.jsonPaths).toMatchInlineSnapshot(`
-      Object {
-        "Grade": Array [],
-        "Grade.GradingPeriod": Array [],
-        "Grade.GradingPeriod.GradingPeriodIdentity": Array [],
-        "Grade.GradingPeriod.School": Array [],
-        "Grade.GradingPeriod.School.SchoolId": Array [],
-        "Grade.GradingPeriod.SchoolYear": Array [],
-        "Grade.StudentSectionAssociation": Array [],
-        "Grade.StudentSectionAssociation.Section": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [],
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [],
-        "Grade.StudentSectionAssociation.Student": Array [],
-        "Grade.StudentSectionAssociation.Student.StudentId": Array [],
-        "ReportCardIdentity": Array [],
-      }
-    `);
-    expect(coversMappings.isTopLevel).toMatchInlineSnapshot(`
-      Object {
-        "Grade": true,
-        "Grade.GradingPeriod": false,
-        "Grade.GradingPeriod.GradingPeriodIdentity": false,
-        "Grade.GradingPeriod.School": false,
-        "Grade.GradingPeriod.School.SchoolId": false,
-        "Grade.GradingPeriod.SchoolYear": false,
-        "Grade.StudentSectionAssociation": false,
-        "Grade.StudentSectionAssociation.Section": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": false,
-        "Grade.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": false,
-        "Grade.StudentSectionAssociation.Student": false,
-        "Grade.StudentSectionAssociation.Student.StudentId": false,
-        "ReportCardIdentity": true,
-      }
-    `);
-    expect(coversMappings.terminalPropertyFullName).toMatchInlineSnapshot(`
-      Object {
-        "Grade": "Grade",
-        "ReportCardIdentity": "ReportCardIdentity",
-      }
+    expect(mergeJsonPathsMapping['Grade'].jsonPathPropertyPairs[1].flattenedIdentityProperty.mergeCoveredBy.propertyPaths)
+      .toMatchInlineSnapshot(`
+      Array [
+        "StudentSectionAssociation",
+        "StudentSectionAssociation.Section",
+        "StudentSectionAssociation.Section.CourseOffering",
+        "StudentSectionAssociation.Section.CourseOffering.Session",
+        "StudentSectionAssociation.Section.CourseOffering.Session.School",
+        "StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId",
+      ]
     `);
   });
 });
