@@ -24,6 +24,8 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   associationSubclassBaseClassEnhancer,
+  associationReferenceEnhancer,
+  mergeDirectiveEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -33,10 +35,12 @@ import { enhance as referenceComponentEnhancer } from '../../src/enhancer/Refere
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
+import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaEnhancerForInsert';
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
+import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
@@ -57,8 +61,10 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   subclassPropertyCollectingEnhancer(metaEd);
   apiEntityMappingEnhancer(metaEd);
   subclassApiEntityMappingEnhancer(metaEd);
+  mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
   jsonSchemaEnhancerForInsert(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
+  mergeJsonPathsMappingEnhancer(metaEd);
   mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
@@ -1691,6 +1697,131 @@ describe('when building an Association subclass', () => {
         "SuperclassProperty": Object {
           "isReference": false,
           "path": "$.superclassProperty",
+          "type": "number",
+        },
+      }
+    `);
+  });
+});
+
+describe('when a collection reference is to a role named resource that has a schoolid merged away', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'ReportCard';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityProperty('Grade', 'doc', true, true)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'StudentSectionAssociation.Section.CourseOffering.Session.School')
+      .withMergeDirective('GradingPeriod.SchoolYear', 'StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear')
+      .withAssociationIdentity('StudentSectionAssociation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('School', 'Session.School')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
+
+      .withStartAssociation('StudentSectionAssociation')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Section', 'doc')
+      .withEndAssociation()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    associationReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct documentPathsMapping for ReportCard', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "Grade": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
+              "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.gradingPeriodReference.schoolYear",
+              "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+              "type": "string",
+            },
+            Object {
+              "identityJsonPath": "$.studentSectionAssociationReference.schoolId",
+              "referenceJsonPath": "$.grades[*].gradeReference.schoolId",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.studentSectionAssociationReference.schoolYear",
+              "referenceJsonPath": "$.grades[*].gradeReference.schoolYear",
+              "type": "string",
+            },
+            Object {
+              "identityJsonPath": "$.studentSectionAssociationReference.studentId",
+              "referenceJsonPath": "$.grades[*].gradeReference.studentId",
+              "type": "number",
+            },
+          ],
+          "resourceName": "Grade",
+        },
+        "ReportCardIdentity": Object {
+          "isReference": false,
+          "path": "$.reportCardIdentity",
           "type": "number",
         },
       }
