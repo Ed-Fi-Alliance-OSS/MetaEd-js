@@ -35978,6 +35978,11 @@
                   "type": "string"
                 },
                 {
+                  "identityJsonPath": "$.gradingPeriodReference.schoolId",
+                  "referenceJsonPath": "$.grades[*].gradeReference.schoolId",
+                  "type": "number"
+                },
+                {
                   "identityJsonPath": "$.gradingPeriodReference.schoolYear",
                   "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
                   "type": "string"
@@ -62644,6 +62649,16 @@
               "projectName": "Ed-Fi",
               "referenceJsonPaths": [
                 {
+                  "identityJsonPath": "$.surveyResponseReference.namespace",
+                  "referenceJsonPath": "$.surveySectionResponseReference.namespace",
+                  "type": "string"
+                },
+                {
+                  "identityJsonPath": "$.surveyResponseReference.surveyIdentifier",
+                  "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier",
+                  "type": "string"
+                },
+                {
                   "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
                   "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier",
                   "type": "string"
@@ -62812,6 +62827,16 @@
               "isReference": true,
               "projectName": "Ed-Fi",
               "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.surveyResponseReference.namespace",
+                  "referenceJsonPath": "$.surveySectionResponseReference.namespace",
+                  "type": "string"
+                },
+                {
+                  "identityJsonPath": "$.surveyResponseReference.surveyIdentifier",
+                  "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier",
+                  "type": "string"
+                },
                 {
                   "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
                   "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier",

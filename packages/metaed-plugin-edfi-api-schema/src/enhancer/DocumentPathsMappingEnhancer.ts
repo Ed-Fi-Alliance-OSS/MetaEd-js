@@ -94,8 +94,29 @@ function getPathType(propertyType: PropertyType): PathType {
   }
 }
 
-function doSomething() {
-  return;
+/**
+ * If the path is being merged away, we need to use the covering reference path instead
+ */
+function adjustForMerges(referencingJsonPathsInfo: JsonPathsInfo, fromReferencingEntity: JsonPathsMapping): JsonPathsInfo {
+  const { mergeCoveredBy } = referencingJsonPathsInfo.jsonPathPropertyPairs[0].flattenedIdentityProperty;
+
+  // If not being merged away, nothing to do
+  if (mergeCoveredBy == null) {
+    return referencingJsonPathsInfo;
+  }
+
+  // If merged away, find the JsonPathsInfo representing the covering merge path, because the
+  // original doesn't exist in the document reference. Instead, the same path as the covering
+  // path will be used, as it actually exists and obviously must have the same value.
+  //
+  // Take the last property path, as it is the deepest level path for the property
+  // (e.g. Session.School.SchoolId as opposed to Session at the first level)
+  const coveringMergePropertyPath: string | undefined = mergeCoveredBy.propertyPaths.at(-1);
+
+  // There should always be a property path, but need to handle
+  if (coveringMergePropertyPath == null) return referencingJsonPathsInfo;
+
+  return fromReferencingEntity[coveringMergePropertyPath];
 }
 
 function matchupJsonPaths(
@@ -108,9 +129,10 @@ function matchupJsonPaths(
     invariant(fromReferencedEntity[referencingPropertyPath] != null);
     invariant(referencingJsonPathsInfo.jsonPathPropertyPairs.length === 1);
 
-    if (referencingJsonPathsInfo.jsonPathPropertyPairs[0].flattenedIdentityProperty.mergedAwayBy != null) {
-      doSomething();
-    }
+    const mergeAdjustedReferencingJsonPathsInfo: JsonPathsInfo = adjustForMerges(
+      referencingJsonPathsInfo,
+      fromReferencingEntity,
+    );
 
     const matchingJsonPathsInfo: JsonPathsInfo = fromReferencedEntity[referencingPropertyPath];
 
@@ -120,9 +142,9 @@ function matchupJsonPaths(
       scalarPropertyTypes.includes(matchingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type)
     ) {
       result.push({
-        referenceJsonPath: referencingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
+        referenceJsonPath: mergeAdjustedReferencingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: matchingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
-        type: getPathType(referencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type),
+        type: getPathType(mergeAdjustedReferencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type),
       });
     }
   });

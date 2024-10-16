@@ -1797,6 +1797,11 @@ describe('when a collection reference is to a role named resource that has a sch
               "type": "number",
             },
             Object {
+              "identityJsonPath": "$.gradingPeriodReference.schoolId",
+              "referenceJsonPath": "$.grades[*].gradeReference.schoolId",
+              "type": "number",
+            },
+            Object {
               "identityJsonPath": "$.gradingPeriodReference.schoolYear",
               "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
               "type": "string",

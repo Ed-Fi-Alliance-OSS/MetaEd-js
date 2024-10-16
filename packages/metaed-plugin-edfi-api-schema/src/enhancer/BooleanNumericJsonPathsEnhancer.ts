@@ -29,6 +29,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       Object.entries(allJsonPathsMapping).forEach(([, jsonPathsInfo]) => {
         jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
+          // Ignore merged away entries
+          if (jppp.flattenedIdentityProperty.mergedAwayBy != null) return;
+
           if (jppp.sourceProperty.type === 'boolean') {
             booleanResult.add(jppp.jsonPath);
           } else if (numericTypes.includes(jppp.sourceProperty.type)) {
