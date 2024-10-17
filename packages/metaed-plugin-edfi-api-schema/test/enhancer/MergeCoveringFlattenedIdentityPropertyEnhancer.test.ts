@@ -118,3 +118,180 @@ describe('when a role named resource has a schoolid merged away', () => {
     `);
   });
 });
+
+describe('when a reference is to a resource that has a reference with two identity properties merged away', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'SurveySectionResponse';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('SSRIdentity', 'doc')
+      .withDomainEntityIdentity('SurveySection', 'doc')
+      .withDomainEntityIdentity('SurveyResponse', 'doc')
+      .withMergeDirective('SurveyResponse.Survey', 'SurveySection.Survey')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveySection')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveySectionIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveyResponse')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyResponseIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Survey')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyIdentifier', 'doc')
+      .withIntegerIdentity('Namespace', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have SurveySectionResponse.SurveyResponse FIP pointing to merge covering FIP', () => {
+    const entity: any = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const { apiMapping } = entity.data.edfiApiSchema;
+
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveyResponse",
+        "SurveyResponse.Survey",
+        "SurveyResponse.Survey.Namespace",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[1].mergeCoveredBy.propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveySection",
+        "SurveySection.Survey",
+        "SurveySection.Survey.Namespace",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveyResponse",
+        "SurveyResponse.Survey",
+        "SurveyResponse.Survey.SurveyIdentifier",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[2].mergeCoveredBy.propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveySection",
+        "SurveySection.Survey",
+        "SurveySection.Survey.SurveyIdentifier",
+      ]
+    `);
+  });
+});
+
+describe('when a reference is to a resource that has two identity properties directly merged away', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'SurveySectionResponse';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('SSRIdentity', 'doc')
+      .withDomainEntityIdentity('SurveySection', 'doc')
+      .withDomainEntityIdentity('SurveyResponse', 'doc')
+      .withMergeDirective('SurveyResponse.Survey.SurveyIdentifier', 'SurveySection.Survey.SurveyIdentifier')
+      .withMergeDirective('SurveyResponse.Survey.Namespace', 'SurveySection.Survey.Namespace')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveySection')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveySectionIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveyResponse')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyResponseIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Survey')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyIdentifier', 'doc')
+      .withIntegerIdentity('Namespace', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have SurveySectionResponse.SurveyResponse FIP pointing to merge covering FIP', () => {
+    const entity: any = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const { apiMapping } = entity.data.edfiApiSchema;
+
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveyResponse",
+        "SurveyResponse.Survey",
+        "SurveyResponse.Survey.Namespace",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[1].mergeCoveredBy.propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveySection",
+        "SurveySection.Survey",
+        "SurveySection.Survey.Namespace",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveyResponse",
+        "SurveyResponse.Survey",
+        "SurveyResponse.Survey.SurveyIdentifier",
+      ]
+    `);
+
+    expect(apiMapping?.flattenedIdentityProperties[2].mergeCoveredBy.propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SurveySection",
+        "SurveySection.Survey",
+        "SurveySection.Survey.SurveyIdentifier",
+      ]
+    `);
+  });
+});
