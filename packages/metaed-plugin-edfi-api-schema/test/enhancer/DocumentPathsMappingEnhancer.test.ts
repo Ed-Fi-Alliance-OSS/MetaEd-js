@@ -1834,7 +1834,7 @@ describe('when a collection reference is to a role named resource that has a sch
   });
 });
 
-describe('when a reference is to a resource that has two identity properties merged away', () => {
+describe('when a reference is to a resource that has a reference with two identity properties merged away', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -1885,7 +1885,117 @@ describe('when a reference is to a resource that has two identity properties mer
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct documentPathsMapping for ReportCard', () => {
+  it('should be correct documentPathsMapping', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "SSREOTAIdentity": Object {
+          "isReference": false,
+          "path": "$.ssreotaIdentity",
+          "type": "number",
+        },
+        "SurveySectionResponse": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.ssrIdentity",
+              "referenceJsonPath": "$.surveySectionResponseReference.ssrIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveyResponseReference.namespace",
+              "referenceJsonPath": "$.surveySectionResponseReference.namespace",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveyResponseReference.surveyIdentifier",
+              "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentity",
+              "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveySectionReference.namespace",
+              "referenceJsonPath": "$.surveySectionResponseReference.namespace",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveySectionReference.surveyIdentifier",
+              "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.surveySectionReference.surveySectionIdentity",
+              "referenceJsonPath": "$.surveySectionResponseReference.surveySectionIdentity",
+              "type": "number",
+            },
+          ],
+          "resourceName": "SurveySectionResponse",
+        },
+      }
+    `);
+  });
+});
+
+describe('when a reference is to a resource that has two identity properties directly merged away', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'SurveySectionResponseEducationOrganizationTargetAssociation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('SSREOTAIdentity', 'doc')
+      .withDomainEntityProperty('SurveySectionResponse', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveySectionResponse')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SSRIdentity', 'doc')
+      .withDomainEntityIdentity('SurveySection', 'doc')
+      .withDomainEntityIdentity('SurveyResponse', 'doc')
+      .withMergeDirective('SurveyResponse.Survey.SurveyIdentifier', 'SurveySection.Survey.SurveyIdentifier')
+      .withMergeDirective('SurveyResponse.Survey.Namespace', 'SurveySection.Survey.Namespace')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveySection')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveySectionIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('SurveyResponse')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyResponseIdentity', 'doc')
+      .withDomainEntityIdentity('Survey', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Survey')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyIdentifier', 'doc')
+      .withIntegerIdentity('Namespace', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct documentPathsMapping', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
