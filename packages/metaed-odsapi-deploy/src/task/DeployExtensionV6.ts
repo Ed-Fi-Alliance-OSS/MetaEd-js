@@ -57,6 +57,9 @@ function deployExtensionArtifacts(
 
   if (_additionalMssqlScriptsDirectory) {
     try {
+      Logger.info(
+        `Deploy ${_additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`)}`,
+      );
       fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`));
     } catch (err) {
       deployResult = {
@@ -69,6 +72,12 @@ function deployExtensionArtifacts(
 
   if (_additionalPostgresScriptsDirectory) {
     try {
+      Logger.info(
+        `Deploy ${_additionalPostgresScriptsDirectory} to ${path.resolve(
+          deployDirectory,
+          `${extensionPath}/PgSql/Data/Ods`,
+        )}`,
+      );
       fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/PgSql/Data/Ods`));
     } catch (err) {
       deployResult = {

@@ -60,6 +60,9 @@ function deployCoreArtifacts(
 
   if (_additionalMssqlScriptsDirectory) {
     try {
+      Logger.info(
+        `Deploy ${_additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, `${corePath}/MsSql/Data/Ods`)}`,
+      );
       fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${corePath}/MsSql/Data/Ods`));
     } catch (err) {
       deployResult = {
@@ -72,6 +75,9 @@ function deployCoreArtifacts(
 
   if (_additionalPostgresScriptsDirectory) {
     try {
+      Logger.info(
+        `Deploy ${_additionalPostgresScriptsDirectory} to ${path.resolve(deployDirectory, `${corePath}/PgSql/Data/Ods`)}`,
+      );
       fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${corePath}/PgSql/Data/Ods`));
     } catch (err) {
       deployResult = {

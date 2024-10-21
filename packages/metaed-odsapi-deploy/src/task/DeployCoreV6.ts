@@ -53,6 +53,7 @@ function deployCoreArtifacts(
 
   if (_additionalMssqlScriptsDirectory) {
     try {
+      Logger.info(`Deploy ${_additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, '/MsSql/Data/Ods')}`);
       fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, '/MsSql/Data/Ods'));
     } catch (err) {
       deployResult = {
