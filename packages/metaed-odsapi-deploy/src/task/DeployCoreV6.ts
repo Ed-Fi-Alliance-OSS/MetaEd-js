@@ -51,7 +51,7 @@ function deployCoreArtifacts(
     }
   });
 
-  if (_additionalMssqlScriptsDirectory && fs.pathExistsSync(_additionalMssqlScriptsDirectory)) {
+  if (_additionalMssqlScriptsDirectory) {
     try {
       fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, '/MsSql/Data/Ods'));
     } catch (err) {
@@ -63,7 +63,7 @@ function deployCoreArtifacts(
     }
   }
 
-  if (_additionalPostgresScriptsDirectory && fs.pathExistsSync(_additionalPostgresScriptsDirectory)) {
+  if (_additionalPostgresScriptsDirectory) {
     try {
       fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, '/PgSql/Data/Ods'));
     } catch (err) {
