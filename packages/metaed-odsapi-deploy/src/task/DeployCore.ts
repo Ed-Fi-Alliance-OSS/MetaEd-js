@@ -17,7 +17,12 @@ function deployPaths(corePath: string): CopyOptions[] {
   ];
 }
 
-function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): DeployResult {
+function deployCoreArtifacts(
+  metaEdConfiguration: MetaEdConfiguration,
+  dataStandardVersion: SemVer,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
+): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
   const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
@@ -53,6 +58,30 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
     }
   });
 
+  if (_additionalMssqlScriptsDirectory && fs.pathExistsSync(_additionalMssqlScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${corePath}/MsSql/Data/Ods`));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
+  if (_additionalPostgresScriptsDirectory && fs.pathExistsSync(_additionalPostgresScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${corePath}/PgSql/Data/Ods`));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
   return deployResult;
 }
 
@@ -61,11 +90,18 @@ export async function execute(
   dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!deployCore) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=7.0.0')) {
     return { success: true };
   }
 
-  return deployCoreArtifacts(metaEdConfiguration, dataStandardVersion);
+  return deployCoreArtifacts(
+    metaEdConfiguration,
+    dataStandardVersion,
+    _additionalMssqlScriptsDirectory,
+    _additionalPostgresScriptsDirectory,
+  );
 }

@@ -103,6 +103,14 @@ export async function metaEdDeploy() {
       type: 'boolean',
       default: true,
     })
+    .option('additionalMssqlScriptsDirectory', {
+      describe: 'Full path to optional folder for post deploy MSSQL database scripts',
+      type: 'string',
+    })
+    .option('additionalPostgresScriptsDirectory', {
+      describe: 'Full path to optional folder for post deploy Postgres database scripts',
+      type: 'string',
+    })
     .help()
     .alias('help', 'h')
     .version()
@@ -165,6 +173,8 @@ export async function metaEdDeploy() {
     dataStandardVersionFor(metaEdConfiguration.projects),
     yargs.argv['core'],
     yargs.argv['suppressDelete'],
+    yargs.argv['additionalMssqlScriptsDirectory'],
+    yargs.argv['additionalPostgresScriptsDirectory'],
   );
   if (!deploySuccess.success) process.exitCode = 1;
 

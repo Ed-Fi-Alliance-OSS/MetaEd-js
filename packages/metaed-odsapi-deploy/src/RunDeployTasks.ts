@@ -20,6 +20,8 @@ import { DeployTask } from './task/DeployTask';
  * @param metaEdConfiguration the MetaEdConfiguration for the deployment
  * @param deployCore whether the core data model should be deployed along with an extension
  * @param suppressDelete whether deletion of the existing ODS/API configuration should be suppressed
+ * @param additionalMssqlScriptsDirectory Full path to optional folder for post deploy MSSQL database scripts. This folder will be copied to the corresponding Data directory.
+ * @param additionalPostgresScriptsDirectory Full path to optional folder for post deploy PostgreSql database scripts This folder will be copied to the corresponding Data directory.
  * @returns deploy result with success indicating if the deploy was successful and a failureMessage if it was not
  */
 export async function runDeployTasks(
@@ -27,6 +29,8 @@ export async function runDeployTasks(
   dataStandardVersion: SemVer,
   deployCore: boolean,
   suppressDelete: boolean,
+  additionalMssqlScriptsDirectory?: string,
+  additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   try {
     const tasks: DeployTask[] = [
@@ -50,7 +54,14 @@ export async function runDeployTasks(
 
     // eslint-disable-next-line no-restricted-syntax
     for (const task of tasks) {
-      const deployResult: DeployResult = await task(metaEdConfiguration, dataStandardVersion, deployCore, suppressDelete);
+      const deployResult: DeployResult = await task(
+        metaEdConfiguration,
+        dataStandardVersion,
+        deployCore,
+        suppressDelete,
+        additionalMssqlScriptsDirectory,
+        additionalPostgresScriptsDirectory,
+      );
       if (!deployResult.success) return deployResult;
     }
   } catch (error) {

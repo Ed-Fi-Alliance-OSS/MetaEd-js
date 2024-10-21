@@ -6,4 +6,6 @@ export type DeployTask = (
   dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
 ) => Promise<DeployResult>;

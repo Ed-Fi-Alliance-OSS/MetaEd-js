@@ -16,7 +16,11 @@ const artifacts: CopyOptions[] = [
   { src: 'XSD/', dest: `${corePath}/Schemas/` },
 ];
 
-function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
+function deployCoreArtifacts(
+  metaEdConfiguration: MetaEdConfiguration,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
+): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
   let deployResult: DeployResult = {
@@ -47,6 +51,30 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployRe
     }
   });
 
+  if (_additionalMssqlScriptsDirectory && fs.pathExistsSync(_additionalMssqlScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, '/MsSql/Data/Ods'));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
+  if (_additionalPostgresScriptsDirectory && fs.pathExistsSync(_additionalPostgresScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, '/PgSql/Data/Ods'));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
   return deployResult;
 }
 
@@ -55,6 +83,8 @@ export async function execute(
   _dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!deployCore) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0 <7.0.0')) {

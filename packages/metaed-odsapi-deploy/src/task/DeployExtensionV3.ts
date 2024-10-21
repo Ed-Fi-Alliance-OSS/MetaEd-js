@@ -15,7 +15,11 @@ const artifacts: CopyOptions[] = [
   { src: 'XSD/', dest: `${extensionPath}/Schemas/` },
 ];
 
-function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
+function deployExtensionArtifacts(
+  metaEdConfiguration: MetaEdConfiguration,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
+): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
   let deployResult: DeployResult = {
@@ -48,6 +52,30 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): Dep
     }),
   );
 
+  if (_additionalMssqlScriptsDirectory && fs.pathExistsSync(_additionalMssqlScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
+  if (_additionalPostgresScriptsDirectory && fs.pathExistsSync(_additionalPostgresScriptsDirectory)) {
+    try {
+      fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/PgSql/Data/Ods`));
+    } catch (err) {
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${_additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
+    }
+  }
+
   return deployResult;
 }
 
@@ -56,6 +84,8 @@ export async function execute(
   _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '<5.3.0')) {
     return { success: true };

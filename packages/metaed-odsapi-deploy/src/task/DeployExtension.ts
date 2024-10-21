@@ -24,7 +24,12 @@ function deployPaths(extensionPath: string): CopyOptions[] {
   ];
 }
 
-function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): DeployResult {
+function deployExtensionArtifacts(
+  metaEdConfiguration: MetaEdConfiguration,
+  dataStandardVersion: SemVer,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
+): DeployResult {
   const { artifactDirectory, deployDirectory, projects } = metaEdConfiguration;
   const projectsToDeploy: MetaEdProject[] = projects.filter((p: MetaEdProject) => !isDataStandard(p));
   let deployResult: DeployResult = {
@@ -38,7 +43,7 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
       : dataStandardVersion;
     const extensionPath: string = `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectToDeploy.projectName}/Versions/${projectToDeploy.projectVersion}/Standard/${dataStandardVersionFormatted}/Artifacts`;
 
-    return deployPaths(extensionPath).every((deployPath: CopyOptions) => {
+    deployPaths(extensionPath).every((deployPath: CopyOptions) => {
       const resolvedArtifact: CopyOptions = {
         ...deployPath,
         src: path.resolve(artifactDirectory, projectToDeploy.projectName, deployPath.src),
@@ -60,6 +65,32 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
         return false;
       }
     });
+
+    if (_additionalMssqlScriptsDirectory && fs.pathExistsSync(_additionalMssqlScriptsDirectory)) {
+      try {
+        fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`));
+      } catch (err) {
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${_additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
+      }
+    }
+
+    if (_additionalPostgresScriptsDirectory && fs.pathExistsSync(_additionalPostgresScriptsDirectory)) {
+      try {
+        fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/PgSql/Data/Ods`));
+      } catch (err) {
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${_additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
+      }
+    }
+
+    return true;
   });
 
   return deployResult;
@@ -70,6 +101,8 @@ export async function execute(
   dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
+  _additionalMssqlScriptsDirectory?: string,
+  _additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=7.0.0')) {
     return { success: true };
