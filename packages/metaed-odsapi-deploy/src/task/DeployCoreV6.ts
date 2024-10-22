@@ -18,8 +18,8 @@ const artifacts: CopyOptions[] = [
 
 function deployCoreArtifacts(
   metaEdConfiguration: MetaEdConfiguration,
-  _additionalMssqlScriptsDirectory?: string,
-  _additionalPostgresScriptsDirectory?: string,
+  additionalMssqlScriptsDirectory?: string,
+  additionalPostgresScriptsDirectory?: string,
 ): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
@@ -51,26 +51,26 @@ function deployCoreArtifacts(
     }
   });
 
-  if (_additionalMssqlScriptsDirectory) {
+  if (additionalMssqlScriptsDirectory) {
     try {
-      Logger.info(`Deploy ${_additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, '/MsSql/Data/Ods')}`);
-      fs.copySync(_additionalMssqlScriptsDirectory, path.resolve(deployDirectory, '/MsSql/Data/Ods'));
+      Logger.info(`Deploy ${additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, '/MsSql/Data/Ods')}`);
+      fs.copySync(additionalMssqlScriptsDirectory, path.resolve(deployDirectory, '/MsSql/Data/Ods'));
     } catch (err) {
       deployResult = {
         success: false,
-        failureMessage: `Attempted deploy of ${_additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+        failureMessage: `Attempted deploy of ${additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
       };
       Logger.error(deployResult.failureMessage);
     }
   }
 
-  if (_additionalPostgresScriptsDirectory) {
+  if (additionalPostgresScriptsDirectory) {
     try {
-      fs.copySync(_additionalPostgresScriptsDirectory, path.resolve(deployDirectory, '/PgSql/Data/Ods'));
+      fs.copySync(additionalPostgresScriptsDirectory, path.resolve(deployDirectory, '/PgSql/Data/Ods'));
     } catch (err) {
       deployResult = {
         success: false,
-        failureMessage: `Attempted deploy of ${_additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+        failureMessage: `Attempted deploy of ${additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
       };
       Logger.error(deployResult.failureMessage);
     }
@@ -84,13 +84,13 @@ export async function execute(
   _dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
-  _additionalMssqlScriptsDirectory?: string,
-  _additionalPostgresScriptsDirectory?: string,
+  additionalMssqlScriptsDirectory?: string,
+  additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!deployCore) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0 <7.0.0')) {
     return { success: true };
   }
 
-  return deployCoreArtifacts(metaEdConfiguration);
+  return deployCoreArtifacts(metaEdConfiguration, additionalMssqlScriptsDirectory, additionalPostgresScriptsDirectory);
 }
