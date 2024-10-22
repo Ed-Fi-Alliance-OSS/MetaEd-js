@@ -15,6 +15,9 @@ describe('when deploying 6.1 extension artifacts', (): void => {
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/v6Extension');
+    const additionalMssqlScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/MsSql');
+    const additionalPostgresScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/Postgres');
+
     fs.removeSync(deployDirectory);
 
     const metaEdConfiguration: MetaEdConfiguration = {
@@ -24,7 +27,14 @@ describe('when deploying 6.1 extension artifacts', (): void => {
       defaultPluginTechVersion: '6.1.0',
     };
 
-    deployResult = await deployExtensionV6(metaEdConfiguration, '4.0.0', true, false);
+    deployResult = await deployExtensionV6(
+      metaEdConfiguration,
+      '4.0.0',
+      true,
+      false,
+      additionalMssqlScriptsDirectory,
+      additionalPostgresScriptsDirectory,
+    );
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
@@ -40,11 +50,15 @@ describe('when deploying 6.1 extension artifacts', (): void => {
   it('should have correct directory paths', (): void => {
     expect(result).toMatchInlineSnapshot(`
       Array [
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.AdditionalScripts/Artifacts/MsSql/Data/Ods/999-additional-mssql.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.AdditionalScripts/Artifacts/PgSql/Data/Ods/999-additional-postgres.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Metadata/ApiModel-EXTENSION.json",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Metadata/InterchangeOrderMetadata-EXTENSION.xml",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/MsSql/Data/Ods/0010-SampleExtensionsData.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/MsSql/Data/Ods/999-additional-mssql.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/MsSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/PgSql/Data/Ods/0010-SampleExtensionsData.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/PgSql/Data/Ods/999-additional-postgres.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/PgSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Schemas/EXTENSION-Ed-Fi-Extended-Core.xsd",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Schemas/EXTENSION-Interchange-Descriptors-Extension.xsd",

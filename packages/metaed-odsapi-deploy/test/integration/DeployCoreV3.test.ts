@@ -15,6 +15,9 @@ describe('when deploying 3.0 core artifacts', (): void => {
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/v3Core');
+    const additionalMssqlScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/MsSql');
+    const additionalPostgresScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/Postgres');
+
     fs.removeSync(deployDirectory);
 
     const metaEdConfiguration: MetaEdConfiguration = {
@@ -23,7 +26,14 @@ describe('when deploying 3.0 core artifacts', (): void => {
       deployDirectory,
     };
 
-    deployResult = await DeployCoreV3(metaEdConfiguration, '3.2.0-c', true, false);
+    deployResult = await DeployCoreV3(
+      metaEdConfiguration,
+      '3.2.0-c',
+      true,
+      false,
+      additionalMssqlScriptsDirectory,
+      additionalPostgresScriptsDirectory,
+    );
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
@@ -41,6 +51,8 @@ describe('when deploying 3.0 core artifacts', (): void => {
       Array [
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Standard/SupportingArtifacts/Metadata/ApiModel.json",
         "Ed-Fi-ODS/Database/Data/EdFi/0020-SchoolYears.sql",
+        "Ed-Fi-ODS/Database/Data/EdFi/999-additional-mssql.sql",
+        "Ed-Fi-ODS/Database/Data/EdFi/999-additional-postgres.sql",
         "Ed-Fi-ODS/Database/Structure/EdFi/0010-Schemas.sql",
         "Ed-Fi-ODS/Standard/Metadata/InterchangeOrderMetadata.xml",
         "Ed-Fi-ODS/Standard/Schemas/Ed-Fi-Core.xsd",

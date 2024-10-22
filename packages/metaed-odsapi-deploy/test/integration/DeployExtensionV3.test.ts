@@ -15,6 +15,9 @@ describe('when deploying 3.0 extension artifacts', (): void => {
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/v3Extension');
+    const additionalMssqlScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/MsSql');
+    const additionalPostgresScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/Postgres');
+
     fs.removeSync(deployDirectory);
 
     const metaEdConfiguration: MetaEdConfiguration = {
@@ -23,7 +26,14 @@ describe('when deploying 3.0 extension artifacts', (): void => {
       deployDirectory,
     };
 
-    deployResult = await DeployExtensionV3(metaEdConfiguration, '3.2.0-c', true, false);
+    deployResult = await DeployExtensionV3(
+      metaEdConfiguration,
+      '3.2.0-c',
+      true,
+      false,
+      additionalMssqlScriptsDirectory,
+      additionalPostgresScriptsDirectory,
+    );
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
@@ -39,7 +49,11 @@ describe('when deploying 3.0 extension artifacts', (): void => {
   it('should have correct directory paths', (): void => {
     expect(result).toMatchInlineSnapshot(`
       Array [
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.AdditionalScripts/SupportingArtifacts/Database/Data/EdFi/999-additional-mssql.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.AdditionalScripts/SupportingArtifacts/Database/Data/EdFi/999-additional-postgres.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Database/Data/EdFi/0010-SampleExtensionsData.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Database/Data/EdFi/999-additional-mssql.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Database/Data/EdFi/999-additional-postgres.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Database/Structure/EdFi/0010-EXTENSION-Sample-Schemas.sql",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Metadata/ApiModel-EXTENSION.json",
         "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/SupportingArtifacts/Metadata/InterchangeOrderMetadata-EXTENSION.xml",

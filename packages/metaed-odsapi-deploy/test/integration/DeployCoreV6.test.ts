@@ -15,6 +15,9 @@ describe('when deploying 6.1 core artifacts', (): void => {
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/v6Core');
+    const additionalMssqlScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/MsSql');
+    const additionalPostgresScriptsDirectory: string = path.resolve(__dirname, './artifact/AdditionalScripts/Postgres');
+
     fs.removeSync(deployDirectory);
 
     const metaEdConfiguration: MetaEdConfiguration = {
@@ -24,7 +27,14 @@ describe('when deploying 6.1 core artifacts', (): void => {
       defaultPluginTechVersion: '6.1.0',
     };
 
-    deployResult = await deployCoreV6(metaEdConfiguration, '4.0.0', true, false);
+    deployResult = await deployCoreV6(
+      metaEdConfiguration,
+      '4.0.0',
+      true,
+      false,
+      additionalMssqlScriptsDirectory,
+      additionalPostgresScriptsDirectory,
+    );
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
@@ -43,8 +53,10 @@ describe('when deploying 6.1 core artifacts', (): void => {
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/Metadata/ApiModel.json",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/Metadata/InterchangeOrderMetadata.xml",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/MsSql/Data/Ods/0020-SchoolYears.sql",
+        "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/MsSql/Data/Ods/999-additional-mssql.sql",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/MsSql/Structure/Ods/0010-Schemas.sql",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/PgSql/Data/Ods/0020-Pg-SchoolYears.sql",
+        "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/PgSql/Data/Ods/999-additional-postgres.sql",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/PgSql/Structure/Ods/0010-Pg-Schemas.sql",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/Schemas/Ed-Fi-Core.xsd",
         "Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/Schemas/Interchange-AssessmentMetadata.xsd",

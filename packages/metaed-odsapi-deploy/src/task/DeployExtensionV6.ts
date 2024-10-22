@@ -29,8 +29,8 @@ function deployExtensionArtifacts(
     success: true,
   };
 
-  projectsNames.every((projectName: string) =>
-    artifacts.every((artifact: CopyOptions) => {
+  projectsNames.forEach((projectName: string) => {
+    artifacts.forEach((artifact: CopyOptions) => {
       const dest = Sugar.String.format(artifact.dest, { projectName });
       const resolvedArtifact: CopyOptions = {
         ...artifact,
@@ -52,41 +52,40 @@ function deployExtensionArtifacts(
         Logger.error(deployResult.failureMessage);
         return false;
       }
-    }),
-  );
+    });
 
-  if (additionalMssqlScriptsDirectory) {
-    try {
-      Logger.info(
-        `Deploy ${additionalMssqlScriptsDirectory} to ${path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`)}`,
-      );
-      fs.copySync(additionalMssqlScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/MsSql/Data/Ods`));
-    } catch (err) {
-      deployResult = {
-        success: false,
-        failureMessage: `Attempted deploy of ${additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
-      };
-      Logger.error(deployResult.failureMessage);
-    }
-  }
+    if (additionalMssqlScriptsDirectory) {
+      try {
+        const extPath = Sugar.String.format(extensionPath, { projectName });
+        const dataPath = path.resolve(deployDirectory, `${extPath}/MsSql/Data/Ods`);
+        Logger.info(`Deploy ${additionalMssqlScriptsDirectory} to ${dataPath}`);
 
-  if (additionalPostgresScriptsDirectory) {
-    try {
-      Logger.info(
-        `Deploy ${additionalPostgresScriptsDirectory} to ${path.resolve(
-          deployDirectory,
-          `${extensionPath}/PgSql/Data/Ods`,
-        )}`,
-      );
-      fs.copySync(additionalPostgresScriptsDirectory, path.resolve(deployDirectory, `${extensionPath}/PgSql/Data/Ods`));
-    } catch (err) {
-      deployResult = {
-        success: false,
-        failureMessage: `Attempted deploy of ${additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
-      };
-      Logger.error(deployResult.failureMessage);
+        fs.copySync(additionalMssqlScriptsDirectory, dataPath);
+      } catch (err) {
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${additionalMssqlScriptsDirectory} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
+      }
     }
-  }
+
+    if (additionalPostgresScriptsDirectory) {
+      try {
+        const extPath = Sugar.String.format(extensionPath, { projectName });
+        const dataPath = path.resolve(deployDirectory, `${extPath}/PgSql/Data/Ods`);
+        Logger.info(`Deploy ${additionalPostgresScriptsDirectory} to ${dataPath}`);
+
+        fs.copySync(additionalPostgresScriptsDirectory, dataPath);
+      } catch (err) {
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${additionalPostgresScriptsDirectory} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
+      }
+    }
+  });
 
   return deployResult;
 }
