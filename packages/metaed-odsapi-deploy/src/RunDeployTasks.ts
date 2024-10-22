@@ -1,9 +1,7 @@
 import { Logger, MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
 import { execute as deployCoreTask } from './task/DeployCore';
-import { execute as deployCoreV3Task } from './task/DeployCoreV3';
 import { execute as deployCoreV6Task } from './task/DeployCoreV6';
 import { execute as deployExtensionTask } from './task/DeployExtension';
-import { execute as deployExtensionV3Task } from './task/DeployExtensionV3';
 import { execute as deployExtensionV6Task } from './task/DeployExtensionV6';
 import { execute as extensionProjectsExistsTask } from './task/ExtensionProjectsExists';
 import { execute as legacyDirectoryExistsTask } from './task/LegacyDirectoryExists';
@@ -39,11 +37,9 @@ export async function runDeployTasks(
       removeExtensionArtifactsV2andV3Task,
       removeExtensionArtifactsTask,
 
-      deployCoreV3Task,
       deployCoreV6Task,
       deployCoreTask,
 
-      deployExtensionV3Task,
       deployExtensionV6Task,
       deployExtensionTask,
 

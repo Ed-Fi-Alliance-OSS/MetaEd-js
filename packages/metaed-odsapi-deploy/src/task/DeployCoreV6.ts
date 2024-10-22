@@ -93,7 +93,7 @@ export async function execute(
   additionalPostgresScriptsDirectory?: string,
 ): Promise<DeployResult> {
   if (!deployCore) return { success: true };
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0 <7.0.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=5.4.0 <7.0.0')) {
     return { success: true };
   }
 
