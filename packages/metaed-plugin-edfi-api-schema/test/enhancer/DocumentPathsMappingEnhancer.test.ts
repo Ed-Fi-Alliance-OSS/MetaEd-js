@@ -2052,3 +2052,141 @@ describe('when a reference is to a resource that has two identity properties dir
     `);
   });
 });
+
+describe('when a reference is to a resource that is like TPDMs merge aways', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'EvaluationObjectiveRating';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EvaluationObjectiveRatingIdentity', 'doc')
+      .withDomainEntityProperty('EvaluationRating', 'doc', true, false)
+      .withMergeDirective('EvaluationRating.Evaluation.EvaluationTitle', 'EvaluationObjective.Evaluation.EvaluationTitle')
+      .withDomainEntityProperty('EvaluationObjective', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EvaluationRating')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EvaluationRatingIdentity', 'doc')
+      .withDomainEntityIdentity('Evaluation', 'doc')
+      .withDomainEntityIdentity('PerformanceEvaluationRating', 'doc')
+      .withMergeDirective(
+        'PerformanceEvaluationRating.PerformanceEvaluation.PerformanceEvaluationType',
+        'Evaluation.PerformanceEvaluation.PerformanceEvaluationType',
+      )
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Evaluation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EvaluationTitle', 'doc')
+      .withDomainEntityIdentity('PerformanceEvaluation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('PerformanceEvaluationRating')
+      .withDocumentation('doc')
+      .withIntegerIdentity('PerformanceEvaluationRatingIdentity', 'doc')
+      .withDomainEntityIdentity('PerformanceEvaluation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('PerformanceEvaluation')
+      .withDocumentation('doc')
+      .withDescriptorIdentity('PerformanceEvaluationType', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EvaluationObjective')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EvaluationObjectiveIdentity', 'doc')
+      .withDomainEntityIdentity('Evaluation', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDescriptor('PerformanceEvaluationType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct documentPathsMapping', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "EvaluationObjective": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.evaluationObjectiveIdentity",
+              "referenceJsonPath": "$.evaluationObjectiveReference.evaluationObjectiveIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.evaluationReference.evaluationTitle",
+              "referenceJsonPath": "$.evaluationObjectiveReference.evaluationTitle",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.evaluationReference.performanceEvaluationType",
+              "referenceJsonPath": "$.evaluationObjectiveReference.performanceEvaluationType",
+              "type": "number",
+            },
+          ],
+          "resourceName": "EvaluationObjective",
+        },
+        "EvaluationObjectiveRatingIdentity": Object {
+          "isReference": false,
+          "path": "$.evaluationObjectiveRatingIdentity",
+          "type": "number",
+        },
+        "EvaluationRating": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.evaluationRatingIdentity",
+              "referenceJsonPath": "$.evaluationRatingReference.evaluationRatingIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.evaluationReference.evaluationTitle",
+              "referenceJsonPath": "$.evaluationRatingReference.evaluationTitle",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.evaluationReference.performanceEvaluationType",
+              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationType",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.performanceEvaluationRatingReference.performanceEvaluationRatingIdentity",
+              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationRatingIdentity",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.performanceEvaluationRatingReference.performanceEvaluationType",
+              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationType",
+              "type": "number",
+            },
+          ],
+          "resourceName": "EvaluationRating",
+        },
+      }
+    `);
+  });
+});

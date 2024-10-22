@@ -234,8 +234,9 @@ export function isTableNameComponent(nameElement: TableNameElement): nameElement
 function addColumnConflictPaths(table: Table, firstColumn: Column, secondColumn: Column) {
   // Ignore synthetic USI columns
   if (
-    firstColumn.sourceEntityProperties.length === 1 &&
-    firstColumn.sourceEntityProperties[0].data.edfiOdsRelational.isUsiProperty
+    firstColumn.sourceEntityProperties.some(
+      (sourceEntityProperty) => sourceEntityProperty.data.edfiOdsRelational.isUsiProperty,
+    )
   ) {
     return;
   }

@@ -4,6 +4,7 @@ import { ColumnConflictPath, Table, tableEntities } from '@edfi/metaed-plugin-ed
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EqualityConstraint } from '../model/EqualityConstraint';
+import { JsonPathsInfo } from '../model/JsonPathsMapping';
 
 /**
  * Returns all the relational Table objects
@@ -65,21 +66,20 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { equalityConstraints, mergeJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
         .edfiApiSchema as EntityApiSchemaData;
 
-      const sourceJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
-        columnConflictPath.firstPath
-      ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
-      const targetJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
-        columnConflictPath.secondPath
-      ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+      const firstPathInMapping: JsonPathsInfo | undefined = mergeJsonPathsMapping[columnConflictPath.firstPath];
+      const secondPathInMapping: JsonPathsInfo | undefined = mergeJsonPathsMapping[columnConflictPath.secondPath];
 
       invariant(
-        sourceJsonPaths != null && targetJsonPaths != null,
-        'Invariant failed in ColumnConflictEqualityConstraintEnhancer: source or target JsonPaths are undefined',
+        firstPathInMapping != null,
+        `Invariant failed in ColumnConflictEqualityConstraintEnhancer: Table '${table.tableId}' has columnConflictPath.firstPath '${columnConflictPath.firstPath}' not found in mergeJsonPathsMapping for entity '${columnConflictPath.firstOriginalEntity.metaEdName}'`,
       );
       invariant(
-        sourceJsonPaths.length === targetJsonPaths.length,
-        'Invariant failed in ColumnConflictEqualityConstraintEnhancer: source and target JsonPath lengths not equal',
+        secondPathInMapping != null,
+        `Invariant failed in ColumnConflictEqualityConstraintEnhancer: Table '${table.tableId}' has columnConflictPath.secondPath '${columnConflictPath.secondPath}' not found in mergeJsonPathsMapping for entity '${columnConflictPath.firstOriginalEntity.metaEdName}'`,
       );
+
+      const sourceJsonPaths: JsonPath[] = firstPathInMapping.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+      const targetJsonPaths: JsonPath[] = secondPathInMapping.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
       sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
         const targetJsonPath: JsonPath = targetJsonPaths[matchingTargetJsonPathIndex];
