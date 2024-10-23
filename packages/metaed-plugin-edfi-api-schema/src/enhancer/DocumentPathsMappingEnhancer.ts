@@ -111,10 +111,16 @@ function adjustForMerges(referencingJsonPathsInfo: JsonPathsInfo, fromReferencin
   //
   // Take the last property path, as it is the deepest level path for the property
   // (e.g. Session.School.SchoolId as opposed to Session at the first level)
-  const coveringMergePropertyPath: string | undefined = mergeCoveredBy.propertyPaths.at(-1);
+  let coveringMergePropertyPath: string | undefined = mergeCoveredBy.propertyPaths.at(-1);
 
-  // There should always be a property path, but need to handle
+  // There should always be a property path, but need to handle for TypeScript
   if (coveringMergePropertyPath == null) return referencingJsonPathsInfo;
+
+  // Append "Descriptor" to propertyPath if terminal property is a descriptor, to match descriptor paths
+  // in fromReferencingEntity, which derives from an allJsonPathsMapping
+  if (mergeCoveredBy.propertyChain.at(-1)?.type === 'descriptor') {
+    coveringMergePropertyPath += 'Descriptor';
+  }
 
   return fromReferencingEntity[coveringMergePropertyPath];
 }

@@ -2053,7 +2053,7 @@ describe('when a reference is to a resource that has two identity properties dir
   });
 });
 
-describe('when a reference is to a resource that is like TPDMs merge aways', () => {
+describe('when a reference is to a resource that merges on a descriptor (TPDM example)', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -2141,9 +2141,9 @@ describe('when a reference is to a resource that is like TPDMs merge aways', () 
               "type": "number",
             },
             Object {
-              "identityJsonPath": "$.evaluationReference.performanceEvaluationType",
-              "referenceJsonPath": "$.evaluationObjectiveReference.performanceEvaluationType",
-              "type": "number",
+              "identityJsonPath": "$.evaluationReference.performanceEvaluationTypeDescriptor",
+              "referenceJsonPath": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
+              "type": "string",
             },
           ],
           "resourceName": "EvaluationObjective",
@@ -2169,9 +2169,9 @@ describe('when a reference is to a resource that is like TPDMs merge aways', () 
               "type": "number",
             },
             Object {
-              "identityJsonPath": "$.evaluationReference.performanceEvaluationType",
-              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationType",
-              "type": "number",
+              "identityJsonPath": "$.evaluationReference.performanceEvaluationTypeDescriptor",
+              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationTypeDescriptor",
+              "type": "string",
             },
             Object {
               "identityJsonPath": "$.performanceEvaluationRatingReference.performanceEvaluationRatingIdentity",
@@ -2179,9 +2179,9 @@ describe('when a reference is to a resource that is like TPDMs merge aways', () 
               "type": "number",
             },
             Object {
-              "identityJsonPath": "$.performanceEvaluationRatingReference.performanceEvaluationType",
-              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationType",
-              "type": "number",
+              "identityJsonPath": "$.performanceEvaluationRatingReference.performanceEvaluationTypeDescriptor",
+              "referenceJsonPath": "$.evaluationRatingReference.performanceEvaluationTypeDescriptor",
+              "type": "string",
             },
           ],
           "resourceName": "EvaluationRating",
