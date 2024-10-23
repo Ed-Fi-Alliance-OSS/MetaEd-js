@@ -812,3 +812,55 @@ describe('when model has an association extension', () => {
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
   });
 });
+
+describe('when a reference has a merge on a UniqueId property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentAssessmentRegistration')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('StudentEducationOrganizationAssessmentAccommodation', 'doc')
+      .withMergeDirective(
+        'StudentEducationOrganizationAssessmentAccommodation.Student.StudentUniqueId',
+        'StudentSchoolAssociation.Student.StudentUniqueId',
+      )
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StudentEducationOrganizationAssessmentAccommodation')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StudentSchoolAssociation')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not crash - no column conflicts though due to merge directives', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessmentRegistration');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
