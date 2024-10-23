@@ -122,6 +122,10 @@ function adjustForMerges(referencingJsonPathsInfo: JsonPathsInfo, fromReferencin
     coveringMergePropertyPath += 'Descriptor';
   }
 
+  invariant(
+    fromReferencingEntity[coveringMergePropertyPath] != null,
+    `coveringMergePropertyPath "${coveringMergePropertyPath}" not found in fromReferencingEntity JsonPathsMapping`,
+  );
   return fromReferencingEntity[coveringMergePropertyPath];
 }
 
@@ -132,8 +136,14 @@ function matchupJsonPaths(
   const result: ReferenceJsonPaths[] = [];
 
   Object.entries(fromReferencingEntity).forEach(([referencingPropertyPath, referencingJsonPathsInfo]) => {
-    invariant(fromReferencedEntity[referencingPropertyPath] != null);
-    invariant(referencingJsonPathsInfo.jsonPathPropertyPairs.length === 1);
+    invariant(
+      fromReferencedEntity[referencingPropertyPath] != null,
+      `referencingPropertyPath "${referencingPropertyPath}" not found in fromReferencedEntity JsonPathsMapping`,
+    );
+    invariant(
+      referencingJsonPathsInfo.jsonPathPropertyPairs.length === 1,
+      `referencingJsonPathsInfo.jsonPathPropertyPairs should have a single entry but had ${referencingJsonPathsInfo.jsonPathPropertyPairs.length}`,
+    );
 
     const mergeAdjustedReferencingJsonPathsInfo: JsonPathsInfo = adjustForMerges(
       referencingJsonPathsInfo,
