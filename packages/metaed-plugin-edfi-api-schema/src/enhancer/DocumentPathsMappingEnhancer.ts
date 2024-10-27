@@ -312,12 +312,18 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
  * that follow references.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-      edfiApiSchemaData.documentPathsMapping = documentPathsMappingFor(entity as TopLevelEntity);
-    },
-  );
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'domainEntityExtension',
+    'associationExtension',
+  ).forEach((entity) => {
+    const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    edfiApiSchemaData.documentPathsMapping = documentPathsMappingFor(entity as TopLevelEntity);
+  });
 
   // Descriptors have no document paths
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {

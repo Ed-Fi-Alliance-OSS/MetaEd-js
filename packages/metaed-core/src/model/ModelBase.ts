@@ -41,7 +41,6 @@ export interface ModelBase {
   metaEdName: string;
   namespace: Namespace;
   data: any;
-  config: any;
 }
 
 /**
@@ -57,7 +56,6 @@ export function newModelBase(): ModelBase {
     metaEdName: '',
     namespace: NoNamespace,
     data: {},
-    config: {},
   };
 }
 

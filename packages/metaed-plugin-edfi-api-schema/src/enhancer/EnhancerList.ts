@@ -1,7 +1,7 @@
 import { Enhancer } from '@edfi/metaed-core';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../model/EntityApiSchemaData';
-import { enhance as pluginEnvironmentSetupEnhancer } from '../model/PluginEnvironment';
+import { enhance as namespaceSetupEnhancer } from '../model/Namespace';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from './SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from './ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from './ApiPropertyMappingEnhancer';
@@ -26,9 +26,9 @@ import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhance
 
 export function enhancerList(): Enhancer[] {
   return [
+    namespaceSetupEnhancer,
     entityPropertyApiSchemaDataSetupEnhancer,
     entityApiSchemaDataSetupEnhancer,
-    pluginEnvironmentSetupEnhancer,
     subclassPropertyNamingCollisionEnhancer,
     referenceComponentEnhancer,
     apiPropertyMappingEnhancer,

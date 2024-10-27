@@ -13,9 +13,6 @@ export interface PluginEnvironment {
   // the plugin's target technology version
   targetTechnologyVersion: SemVer;
 
-  // plugin-wide configuration data
-  config: any;
-
   // plugin-wide additional data
   data?: any;
 }
@@ -27,6 +24,5 @@ export const newPluginEnvironment: () => PluginEnvironment = () => ({
   shortName: '',
   namespace: new Map(),
   targetTechnologyVersion: '0.0.0',
-  config: {},
   data: {},
 });

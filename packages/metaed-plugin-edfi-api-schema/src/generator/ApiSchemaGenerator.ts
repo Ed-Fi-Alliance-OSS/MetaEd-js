@@ -1,24 +1,31 @@
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, PluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, Namespace } from '@edfi/metaed-core';
 import stringify from 'json-stable-stringify';
 
-import { PluginEnvironmentEdfiApiSchema } from '../model/PluginEnvironment';
+import { NamespaceEdfiApiSchema } from '../model/Namespace';
+
+function fileName(projectPrefix: string): string {
+  const prefix: string = projectPrefix === '' ? '' : `-${projectPrefix}`;
+  return `ApiSchema${prefix}.json`;
+}
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  const { apiSchema } = (metaEd.plugin.get('edfiApiSchema') as PluginEnvironment).data as PluginEnvironmentEdfiApiSchema;
+  const results: GeneratedOutput[] = [];
 
-  const generatedOutput: GeneratedOutput[] = [
-    {
-      name: 'Meadowlark API Schema',
-      namespace: 'ApiSchema',
+  metaEd.namespace.forEach((namespace: Namespace) => {
+    const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+
+    results.push({
+      name: 'DMS API Schema',
+      namespace: namespace.namespaceName,
       folderName: 'ApiSchema',
-      fileName: 'ApiSchema.json',
+      fileName: fileName(namespace.projectExtension),
       resultString: stringify(apiSchema, { space: 2 }),
       resultStream: null,
-    },
-  ];
+    });
+  });
 
   return {
     generatorName: 'edfiApiSchema.ApiSchemaGenerator',
-    generatedOutput,
+    generatedOutput: results,
   };
 }

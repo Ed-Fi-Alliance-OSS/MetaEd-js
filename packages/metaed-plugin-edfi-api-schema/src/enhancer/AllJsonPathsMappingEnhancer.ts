@@ -530,11 +530,17 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Build schemas for each domain entity and association
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      buildJsonPathsMapping(entity as TopLevelEntity);
-    },
-  );
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'associationExtension',
+    'domainEntityExtension',
+  ).forEach((entity) => {
+    buildJsonPathsMapping(entity as TopLevelEntity);
+  });
 
   return {
     enhancerName,

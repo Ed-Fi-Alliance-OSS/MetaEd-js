@@ -7,11 +7,13 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newPluginEnvironment,
+  newNamespace,
+  DomainEntityExtensionBuilder,
 } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
-import { enhance as pluginEnvironmentSetupEnhancer } from '../../src/model/PluginEnvironment';
+import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
@@ -33,9 +35,9 @@ const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
+  namespaceSetupEnhancer(metaEd);
   entityPropertyApiSchemaDataSetupEnhancer(metaEd);
   entityApiSchemaDataSetupEnhancer(metaEd);
-  pluginEnvironmentSetupEnhancer(metaEd);
   subclassPropertyNamingCollisionEnhancer(metaEd);
   referenceComponentEnhancer(metaEd);
   apiPropertyMappingEnhancer(metaEd);
@@ -161,6 +163,83 @@ describe('when building domain entity with collections', () => {
         Array [
           "$.learningStandards[*].learningStandardReference.learningStandardId",
           "$.scoreRangeId",
+        ]
+      `);
+  });
+});
+
+describe('when building domain entity extension with all the simple non-collections', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'Extension';
+  const domainEntityName = 'DomainEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(domainEntityName)
+      .withStringIdentity('StringIdentity', 'doc', '30', '20')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntityExtension(domainEntityName)
+      .withBooleanProperty('OptionalBooleanProperty', 'doc', false, false)
+      .withCurrencyProperty('RequiredCurrencyProperty', 'doc', true, false)
+      .withDecimalProperty('OptionalDecimalProperty', 'doc', false, false, '2', '1')
+      .withDurationProperty('RequiredDurationProperty', 'doc', true, false)
+      .withPercentProperty('OptionalPercentProperty', 'doc', false, false)
+      .withDateProperty('RequiredDateProperty', 'doc', true, false)
+      .withDatetimeProperty('RequiredDatetimeProperty', 'doc', true, false)
+      .withIntegerProperty('RequiredIntegerProperty', 'doc', true, false, '10', '5')
+      .withShortProperty('OptionalShortProperty', 'doc', false, false)
+      .withStringProperty('StringIdentity', 'doc', false, false, '30')
+      .withTimeProperty('RequiredTimeProperty', 'doc', true, false)
+      .withEnumerationProperty('SchoolYear', 'doc', false, false)
+      .withYearProperty('OptionalYear', 'doc', false, false)
+      .withSharedDecimalProperty('OptionalSharedDecimalProperty', null, 'doc', false, false)
+      .withSharedIntegerProperty('OptionalSharedIntegerProperty', null, 'doc', false, false)
+      .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc', false, false)
+      .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc', true, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEd.namespace.get(namespaceName)?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct booleanJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
+    const booleanJsonPaths = entity?.data.edfiApiSchema.booleanJsonPaths;
+    expect(booleanJsonPaths).toMatchInlineSnapshot(`
+        Array [
+          "$.optionalBooleanProperty",
+        ]
+      `);
+  });
+
+  it('should be correct numericJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
+    const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
+    expect(numericJsonPaths).toMatchInlineSnapshot(`
+        Array [
+          "$.optionalDecimalProperty",
+          "$.optionalPercentProperty",
+          "$.optionalSharedDecimalProperty",
+          "$.optionalSharedIntegerProperty",
+          "$.optionalSharedShortProperty",
+          "$.optionalShortProperty",
+          "$.optionalYear",
+          "$.requiredCurrencyProperty",
+          "$.requiredDurationProperty",
+          "$.requiredIntegerProperty",
+          "$.schoolYearTypeReference.schoolYear",
         ]
       `);
   });

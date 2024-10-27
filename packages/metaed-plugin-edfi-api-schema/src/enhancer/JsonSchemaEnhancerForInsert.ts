@@ -492,15 +492,21 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   };
 
   // Build schemas for each domain entity and association
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-      entityApiSchemaData.jsonSchemaForInsert = buildJsonSchema(entity as TopLevelEntity, {
-        schoolYearSchema,
-        schoolYearEnumerationSchema,
-      });
-    },
-  );
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'associationExtension',
+    'domainEntityExtension',
+  ).forEach((entity) => {
+    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    entityApiSchemaData.jsonSchemaForInsert = buildJsonSchema(entity as TopLevelEntity, {
+      schoolYearSchema,
+      schoolYearEnumerationSchema,
+    });
+  });
 
   // Attach descriptor schema to each descriptor
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {

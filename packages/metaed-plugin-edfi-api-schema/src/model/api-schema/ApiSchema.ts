@@ -3,8 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ProjectNameMapping } from './ProjectNameMapping';
-import { ProjectSchemaMapping } from './ProjectSchemaMapping';
+import type { SemVer } from '@edfi/metaed-core';
+import type { ProjectNameMapping } from './ProjectNameMapping';
+import type { ProjectSchemaMapping } from './ProjectSchemaMapping';
 
 /**
  * API information
@@ -19,8 +20,14 @@ export type ApiSchema = {
    * A collection of MetaEdProjectNames mapped to ProjectNamespaces.
    */
   projectNameMapping: ProjectNameMapping;
+
+  /**
+   * The version of ApiSchema being generated, used by consumers of the ApiSchema to determine
+   * whether this is an ApiSchema version they support.
+   */
+  apiSchemaVersion: SemVer;
 };
 
 export function newApiSchema(): ApiSchema {
-  return { projectSchemas: {}, projectNameMapping: {} };
+  return { projectSchemas: {}, projectNameMapping: {}, apiSchemaVersion: '1.0.0' as SemVer };
 }

@@ -80,6 +80,7 @@ export function buildSchoolYearResourceSchema(
     booleanJsonPaths: ['$.currentSchoolYear'] as JsonPath[],
     numericJsonPaths: ['$.schoolYear'] as JsonPath[],
     isSubclass: false,
+    isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
     queryFieldMapping: buildQueryFieldMapping(documentObjectPaths),
   } as ResourceSchema;

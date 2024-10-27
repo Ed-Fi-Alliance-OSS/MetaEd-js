@@ -3,7 +3,7 @@ import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from '
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 
 function fileName(projectPrefix: string): string {
-  const prefix: string = !projectPrefix ? '' : `-${projectPrefix}`;
+  const prefix: string = projectPrefix === '' ? '' : `-${projectPrefix}`;
   return `ApiModel${prefix}.json`;
 }
 

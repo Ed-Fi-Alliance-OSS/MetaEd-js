@@ -738,7 +738,6 @@ describe('when model has a domain entity extension', () => {
 
       .withBeginNamespace('Extension')
       .withStartDomainEntityExtension('StudentAssessment')
-      .withDocumentation('doc')
       .withIntegerProperty('NewProperty', 'doc', false, false)
       .withEndDomainEntity()
       .withEndNamespace()

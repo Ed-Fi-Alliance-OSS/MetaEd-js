@@ -1,0 +1,24 @@
+Association CandidateEducatorPreparationProgramAssociation
+  documentation "Information about the association between the Teacher Candidate and the EducatorPreparationProgram"
+  domain entity Candidate
+    documentation "Candidate for the association."
+  domain entity EducatorPreparationProgram
+    documentation "The Program associated to the Candidate."
+  date BeginDate
+    documentation "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines."
+    is part of identity
+  date EndDate
+    documentation "The end date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines."
+    is optional
+  descriptor EdFi.ReasonExited
+    documentation "Reason exited for the association."
+    is optional
+  descriptor EPPProgramPathway
+    documentation "The program pathway the candidate is following; for example: Residency, Internship, Traditional"
+    is optional
+  common DegreeSpecialization
+      documentation "Information around the area(s) of specialization for an individual."
+      is optional collection
+  common EdFi.CohortYear
+      documentation "The type and year of a cohort the student belongs to as determined by the year that student entered a specific grade."
+      is optional collection

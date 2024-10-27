@@ -4,7 +4,6 @@ import {
   EnhancerResult,
   getEntitiesOfTypeForNamespaces,
   Namespace,
-  PluginEnvironment,
   DomainEntity,
   TopLevelEntity,
   EntityProperty,
@@ -13,10 +12,9 @@ import {
   MetaEdProjectName,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { PluginEnvironmentEdfiApiSchema } from '../model/PluginEnvironment';
 import { ProjectSchema } from '../model/api-schema/ProjectSchema';
 import { SemVer } from '../model/api-schema/SemVer';
-import { ResourceSchema } from '../model/api-schema/ResourceSchema';
+import { ResourceSchema, NonExtensionResourceSchema, ResourceExtensionSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
@@ -25,11 +23,12 @@ import { AbstractResourceMapping } from '../model/api-schema/AbstractResourceMap
 import { CaseInsensitiveEndpointNameMapping } from '../model/api-schema/CaseInsensitiveEndpointNameMapping';
 import { buildSchoolYearResourceSchema } from './SchoolYearHardCodedSchemaBuilder';
 import { JsonPath } from '../model/api-schema/JsonPath';
+import { NamespaceEdfiApiSchema } from '../model/Namespace';
 
 /**
  *
  */
-function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
+function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema {
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   return {
     resourceName: entityApiSchemaData.resourceName,
@@ -43,14 +42,31 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
-    isSubclass: false,
+    isResourceExtension: false,
   };
 }
+
+/**
+ *
+ */
+function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtensionSchema {
+  const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+  return {
+    resourceName: entityApiSchemaData.resourceName,
+    jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
+    equalityConstraints: entityApiSchemaData.equalityConstraints,
+    documentPathsMapping: entityApiSchemaData.documentPathsMapping,
+    booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
+    numericJsonPaths: entityApiSchemaData.numericJsonPaths,
+    isResourceExtension: true,
+  };
+}
+
 /**
  * Includes DomainEntity superclass information in the ResourceSchema
  */
 function buildDomainEntitySubclassResourceSchema(entity: DomainEntitySubclass): ResourceSchema {
-  const baseResourceSchema: ResourceSchema = buildResourceSchema(entity);
+  const baseResourceSchema: NonExtensionResourceSchema = buildResourceSchema(entity);
 
   invariant(entity.baseEntity != null, `Domain Entity Subclass ${entity.metaEdName} must have a base entity`);
   const superclassEntityApiSchemaData = entity.baseEntity.data.edfiApiSchema as EntityApiSchemaData;
@@ -75,7 +91,7 @@ function buildDomainEntitySubclassResourceSchema(entity: DomainEntitySubclass): 
  * Includes Association superclass information in the ResourceSchema
  */
 function buildAssociationSubclassResourceSchema(entity: AssociationSubclass): ResourceSchema {
-  const baseResourceSchema: ResourceSchema = buildResourceSchema(entity);
+  const baseResourceSchema: NonExtensionResourceSchema = buildResourceSchema(entity);
 
   invariant(entity.baseEntity != null, `Association Subclass ${entity.metaEdName} must have a base entity`);
   const superclassEntityApiSchemaData = entity.baseEntity.data.edfiApiSchema as EntityApiSchemaData;
@@ -93,26 +109,34 @@ function buildAssociationSubclassResourceSchema(entity: AssociationSubclass): Re
  * This enhancer uses the results of the other enhancers to build the API Schema object
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const { apiSchema } = (metaEd.plugin.get('edfiApiSchema') as PluginEnvironment).data as PluginEnvironmentEdfiApiSchema;
-
-  Array.from(metaEd.namespace.values()).forEach((namespace: Namespace) => {
+  metaEd.namespace.forEach((namespace: Namespace) => {
     const resourceSchemas: ResourceSchemaMapping = {};
     const resourceNameMapping: ResourceNameMapping = {};
     const caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping = {};
     const abstractResources: AbstractResourceMapping = {};
 
-    const projectSchema: ProjectSchema = {
+    let projectSchema: ProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
-      isExtensionProject: namespace.isExtension,
       description: namespace.projectDescription,
       resourceSchemas,
       resourceNameMapping,
       caseInsensitiveEndpointNameMapping,
       abstractResources,
+      isExtensionProject: false,
+      compatibleDsRange: null,
     };
 
+    if (namespace.isExtension) {
+      projectSchema = {
+        ...projectSchema,
+        isExtensionProject: true,
+        compatibleDsRange: metaEd.dataStandardVersion as SemVer,
+      };
+    }
+
     const projectNamespace: ProjectNamespace = projectSchema.projectName.toLowerCase() as ProjectNamespace;
+    const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
     apiSchema.projectSchemas[projectNamespace] = projectSchema;
     apiSchema.projectNameMapping[projectSchema.projectName] = projectNamespace;
 
@@ -127,7 +151,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[domainEntity.metaEdName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = buildResourceSchema(domainEntity as TopLevelEntity);
+      resourceSchemas[endpointName] = { ...buildResourceSchema(domainEntity as TopLevelEntity), isSubclass: false };
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'association').forEach((association) => {
@@ -142,14 +166,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName } = association.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[association.metaEdName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = buildResourceSchema(association as TopLevelEntity);
+      resourceSchemas[endpointName] = { ...buildResourceSchema(association as TopLevelEntity), isSubclass: false };
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity) => {
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[entity.metaEdName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = buildResourceSchema(entity as TopLevelEntity);
+      resourceSchemas[endpointName] = { ...buildResourceSchema(entity as TopLevelEntity), isSubclass: false };
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {
@@ -166,7 +190,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       resourceSchemas[endpointName] = buildAssociationSubclassResourceSchema(entity as TopLevelEntity);
     });
 
-    buildSchoolYearResourceSchema(resourceNameMapping, caseInsensitiveEndpointNameMapping, resourceSchemas);
+    getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach((entity) => {
+      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceSchemas[endpointName] = buildResourceExtensionSchema(entity as TopLevelEntity);
+    });
+
+    if (!projectSchema.isExtensionProject) {
+      buildSchoolYearResourceSchema(resourceNameMapping, caseInsensitiveEndpointNameMapping, resourceSchemas);
+    }
   });
   return {
     enhancerName: 'ApiSchemaBuildingEnhancer',

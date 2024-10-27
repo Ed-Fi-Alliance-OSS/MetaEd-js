@@ -1,0 +1,4 @@
+Domain Entity EdFi.SurveyResponse additions
+    domain entity EdFi.Person
+        documentation "Relates the survey response to a generic person."
+        is optional

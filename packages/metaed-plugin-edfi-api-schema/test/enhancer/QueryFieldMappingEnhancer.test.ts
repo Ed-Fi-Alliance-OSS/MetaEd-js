@@ -27,7 +27,7 @@ import {
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
-import { enhance as pluginEnvironmentSetupEnhancer } from '../../src/model/PluginEnvironment';
+import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
@@ -48,9 +48,9 @@ const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
+  namespaceSetupEnhancer(metaEd);
   entityPropertyApiSchemaDataSetupEnhancer(metaEd);
   entityApiSchemaDataSetupEnhancer(metaEd);
-  pluginEnvironmentSetupEnhancer(metaEd);
   subclassPropertyNamingCollisionEnhancer(metaEd);
   referenceComponentEnhancer(metaEd);
   apiPropertyMappingEnhancer(metaEd);

@@ -1,4 +1,5 @@
 {
+  "apiSchemaVersion": "1.0.0",
   "projectNameMapping": {
     "Ed-Fi": "ed-fi"
   },
@@ -363,6 +364,7 @@
         "visadescriptors": "visaDescriptors",
         "weapondescriptors": "weaponDescriptors"
       },
+      "compatibleDsRange": null,
       "description": "The Ed-Fi Data Standard v5.1",
       "isExtensionProject": false,
       "projectName": "Ed-Fi",
@@ -720,6 +722,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -801,6 +804,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -882,6 +886,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -998,6 +1003,7 @@
             "$.weekIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1107,6 +1113,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1188,6 +1195,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1323,6 +1331,7 @@
             "$.schoolYearTypeReference.schoolYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1463,6 +1472,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1544,6 +1554,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1625,6 +1636,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1706,6 +1718,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1787,6 +1800,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1868,6 +1882,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -1949,6 +1964,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2030,6 +2046,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2111,6 +2128,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2192,6 +2210,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2361,6 +2380,7 @@
             "$.identificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2571,6 +2591,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2652,6 +2673,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -2821,6 +2843,7 @@
             "$.scoreRangeId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -3333,6 +3356,7 @@
             "$.namespace"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -3937,6 +3961,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4018,6 +4043,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4099,6 +4125,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4205,6 +4232,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4298,6 +4326,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4379,6 +4408,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4535,6 +4565,7 @@
             "$.schoolReference.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4723,6 +4754,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4804,6 +4836,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -4925,6 +4958,7 @@
             "$.date"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -5041,6 +5075,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -5122,6 +5157,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -5253,6 +5289,7 @@
             "$.schoolYearTypeReference.schoolYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -5376,6 +5413,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -5685,6 +5723,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6005,6 +6044,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6086,6 +6126,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6167,6 +6208,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6284,6 +6326,7 @@
             "$.schoolReference.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6390,6 +6433,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6471,6 +6515,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6552,6 +6597,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6633,6 +6679,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -6786,6 +6833,7 @@
             "$.educationOrganizationReference.educationOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -7192,6 +7240,7 @@
             "$.communityOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -7668,6 +7717,7 @@
             "$.communityProviderReference.communityProviderId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -8142,6 +8192,7 @@
             "$.communityProviderId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -8620,6 +8671,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -8745,6 +8797,7 @@
             "$.objectiveGradeLevelDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -8860,6 +8913,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -9325,6 +9379,7 @@
             "$.contactUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -9922,6 +9977,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10003,6 +10059,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10084,6 +10141,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10165,6 +10223,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10246,6 +10305,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10327,6 +10387,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10408,6 +10469,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10489,6 +10551,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10570,6 +10633,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10753,6 +10817,7 @@
             "$.sessionReference.sessionName"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -10977,6 +11042,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -11388,6 +11454,7 @@
             "$.studentAcademicRecordReference.termDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -12146,6 +12213,7 @@
             "$.educationOrganizationReference.educationOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -12532,6 +12600,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -12613,6 +12682,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -12782,6 +12852,7 @@
             "$.stateOfIssueStateAbbreviationDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -12987,6 +13058,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13068,6 +13140,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13178,6 +13251,7 @@
             "$.crisisEventName"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13272,6 +13346,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13353,6 +13428,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13434,6 +13510,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13547,6 +13624,7 @@
             "$.value"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13656,6 +13734,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13737,6 +13816,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13818,6 +13898,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13899,6 +13980,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -13980,6 +14062,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14061,6 +14144,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14142,6 +14226,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14358,6 +14443,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14624,6 +14710,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14705,6 +14792,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -14897,6 +14985,7 @@
             "$.schoolReference.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -15138,6 +15227,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -15375,6 +15465,7 @@
             "$.contentIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -15750,6 +15841,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -15831,6 +15923,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -15912,6 +16005,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -16037,6 +16131,7 @@
             "$.interventionPrescriptionReference.interventionPrescriptionIdentificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -16183,6 +16278,7 @@
             "$.memberEducationOrganizationReference.educationOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -16545,6 +16641,7 @@
             "$.educationOrganizationNetworkId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -16990,6 +17087,7 @@
             "$.peerEducationOrganizationReference.educationOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -17063,6 +17161,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -17410,6 +17509,7 @@
             "$.educationServiceCenterId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -17836,6 +17936,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -17917,6 +18018,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -17998,6 +18100,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18079,6 +18182,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18160,6 +18264,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18241,6 +18346,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18322,6 +18428,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18403,6 +18510,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18484,6 +18592,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18639,6 +18748,7 @@
             "$.programEvaluationElementReference.programTypeDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18815,6 +18925,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -18896,6 +19007,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19021,6 +19133,7 @@
             "$.schoolReference.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19128,6 +19241,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19234,6 +19348,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19352,6 +19467,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19445,6 +19561,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19526,6 +19643,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19607,6 +19725,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -19825,6 +19944,7 @@
             "$.namespace"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -20129,6 +20249,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -20384,6 +20505,7 @@
             "$.studentSectionAssociationReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -20701,6 +20823,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -20845,6 +20968,7 @@
             "$.schoolYearTypeReference.schoolYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -20998,6 +21122,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -21324,6 +21449,7 @@
             "$.graduationSchoolYearTypeReference.schoolYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -21706,6 +21832,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -21787,6 +21914,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -21868,6 +21996,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -21949,6 +22078,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22030,6 +22160,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22111,6 +22242,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22192,6 +22324,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22273,6 +22406,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22354,6 +22488,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22435,6 +22570,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22516,6 +22652,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22597,6 +22734,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22678,6 +22816,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22759,6 +22898,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22840,6 +22980,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -22921,6 +23062,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -23002,6 +23144,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -23189,6 +23332,7 @@
             "$.interventionPrescriptionIdentificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -23608,6 +23752,7 @@
             "$.interventionStudyIdentificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24074,6 +24219,7 @@
             "$.interventionIdentificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24454,6 +24600,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24535,6 +24682,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24616,6 +24764,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24697,6 +24846,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24830,6 +24980,7 @@
             "$.targetLearningStandardReference.learningStandardId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -24951,6 +25102,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25032,6 +25184,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25265,6 +25418,7 @@
             "$.learningStandardId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25619,6 +25773,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25700,6 +25855,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25781,6 +25937,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -25862,6 +26019,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -26014,6 +26172,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -26208,6 +26367,7 @@
             "$.localAccountReference.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -26372,6 +26532,7 @@
             "$.localAccountReference.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -26550,6 +26711,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -27073,6 +27235,7 @@
             "$.localEducationAgencyId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -27651,6 +27814,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -27777,6 +27941,7 @@
             "$.localAccountReference.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -27955,6 +28120,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28096,6 +28262,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28207,6 +28374,7 @@
             "$.schoolReference.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28300,6 +28468,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28381,6 +28550,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28462,6 +28632,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28543,6 +28714,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28624,6 +28796,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28705,6 +28878,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28786,6 +28960,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28867,6 +29042,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -28948,6 +29124,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -29029,6 +29206,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -29135,6 +29313,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -29422,6 +29601,7 @@
             "$.identificationCode"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -29822,6 +30002,7 @@
             "$.requisitionNumber"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -30005,6 +30186,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -30111,6 +30293,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -30478,6 +30661,7 @@
             "$.organizationDepartmentId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -30914,6 +31098,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -30995,6 +31180,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31076,6 +31262,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31172,6 +31359,7 @@
             "$.sourceSystemDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31233,6 +31421,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31314,6 +31503,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31395,6 +31585,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31476,6 +31667,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31557,6 +31749,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31638,6 +31831,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31761,6 +31955,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -31863,6 +32058,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -32221,6 +32417,7 @@
             "$.postSecondaryInstitutionId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -32665,6 +32862,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -32746,6 +32944,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -32827,6 +33026,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -32908,6 +33108,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -32989,6 +33190,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -33070,6 +33272,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -33151,6 +33354,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -33257,6 +33461,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -33505,6 +33710,7 @@
             "$.programEvaluationReference.programTypeDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -33851,6 +34057,7 @@
             "$.programEvaluationReference.programTypeDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34053,6 +34260,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34134,6 +34342,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34298,6 +34507,7 @@
             "$.programReference.programTypeDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34476,6 +34686,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34557,6 +34768,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34701,6 +34913,7 @@
             "$.programTypeDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34859,6 +35072,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -34940,6 +35154,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35046,6 +35261,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35139,6 +35355,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35220,6 +35437,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35301,6 +35519,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35382,6 +35601,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35463,6 +35683,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35544,6 +35765,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35625,6 +35847,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35706,6 +35929,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35787,6 +36011,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35868,6 +36093,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -35949,6 +36175,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36030,6 +36257,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36366,6 +36594,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36740,6 +36969,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36821,6 +37051,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36902,6 +37133,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -36983,6 +37215,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37064,6 +37297,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37145,6 +37379,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37304,6 +37539,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37477,6 +37713,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37558,6 +37795,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37639,6 +37877,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37720,6 +37959,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37801,6 +38041,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37882,6 +38123,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -37963,6 +38205,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -38058,6 +38301,7 @@
             "$.schoolYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": true,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -38475,6 +38719,7 @@
             "$.schoolId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -39126,6 +39371,7 @@
             "$.sectionReference.sessionName"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -39318,6 +39564,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -39399,6 +39646,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -39701,6 +39949,7 @@
             "$.sectionIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40098,6 +40347,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40179,6 +40429,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40260,6 +40511,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40456,6 +40708,7 @@
             "$.sessionName"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40682,6 +40935,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40788,6 +41042,7 @@
             "$.fiscalYear"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40881,6 +41136,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -40962,6 +41218,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41043,6 +41300,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41124,6 +41382,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41244,6 +41503,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41348,6 +41608,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41480,6 +41741,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41648,6 +41910,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -41868,6 +42131,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -42246,6 +42510,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -42700,6 +42965,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -42921,6 +43187,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -43002,6 +43269,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -43128,6 +43396,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -43299,6 +43568,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -43533,6 +43803,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -43805,6 +44076,7 @@
             "$.staffReference.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -44605,6 +44877,7 @@
             "$.staffUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -45524,6 +45797,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -45887,6 +46161,7 @@
             "$.stateEducationAgencyId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -46796,6 +47071,7 @@
             "$.termDescriptor"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -47516,6 +47792,7 @@
             "$.studentAssessmentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -48049,6 +48326,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -48798,6 +49076,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -49064,6 +49343,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -49223,6 +49503,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -49570,6 +49851,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -49937,6 +50219,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -50146,6 +50429,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -50321,6 +50605,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -50971,6 +51256,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -51860,6 +52146,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -52062,6 +52349,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -52332,6 +52620,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -52677,6 +52966,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -52938,6 +53228,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -53118,6 +53409,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -53368,6 +53660,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -53711,6 +54004,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -54184,6 +54478,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -54664,6 +54959,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -54925,6 +55221,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -55132,6 +55429,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -55453,6 +55751,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -55918,6 +56217,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -56587,6 +56887,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -57137,6 +57438,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -57481,6 +57783,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -57836,6 +58139,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -58192,6 +58496,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -58722,6 +59027,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -59360,6 +59666,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -59785,6 +60092,7 @@
             "$.studentReference.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": true,
           "jsonSchemaForInsert": {
@@ -60110,6 +60418,7 @@
             "$.transportationEducationOrganizationReference.educationOrganizationId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -60551,6 +60860,7 @@
             "$.studentUniqueId"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -60976,6 +61286,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61057,6 +61368,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61138,6 +61450,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61259,6 +61572,7 @@
             "$.surveyReference.surveyIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61366,6 +61680,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61493,6 +61808,7 @@
             "$.surveyReference.surveyIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -61728,6 +62044,7 @@
             "$.surveyResponseReference.surveyResponseIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -62049,6 +62366,7 @@
             "$.surveyReference.surveyIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -62296,6 +62614,7 @@
             "$.surveyResponseReference.surveyResponseIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -62443,6 +62762,7 @@
             "$.surveyResponseReference.surveyResponseIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -62649,6 +62969,7 @@
             "$.surveyResponseIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -62922,6 +63243,7 @@
             "$.surveyReference.surveyIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63125,6 +63447,7 @@
             "$.surveySectionResponseReference.surveySectionTitle"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63301,6 +63624,7 @@
             "$.surveySectionResponseReference.surveySectionTitle"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63487,6 +63811,7 @@
             "$.surveySectionReference.surveySectionTitle"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63647,6 +63972,7 @@
             "$.surveySectionTitle"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63816,6 +64142,7 @@
             "$.surveyIdentifier"
           ],
           "isDescriptor": false,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -63998,6 +64325,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64079,6 +64407,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64160,6 +64489,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64241,6 +64571,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64322,6 +64653,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64403,6 +64735,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64484,6 +64817,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64565,6 +64899,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64646,6 +64981,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64727,6 +65063,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64808,6 +65145,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64889,6 +65227,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -64970,6 +65309,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -65051,6 +65391,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {
@@ -65132,6 +65473,7 @@
           "identityJsonPaths": [
           ],
           "isDescriptor": true,
+          "isResourceExtension": false,
           "isSchoolYearEnumeration": false,
           "isSubclass": false,
           "jsonSchemaForInsert": {

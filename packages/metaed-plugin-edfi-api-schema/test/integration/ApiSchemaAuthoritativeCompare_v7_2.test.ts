@@ -20,17 +20,19 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating ods and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.2', (): void => {
+describe('when generating ApiSchema for data standard 5.1 and TPDM 1.1 for ODS/API 7.2', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_2/');
   const authoritativeCoreFilename = 'ds-5.1-api-schema-authoritative.json';
   const generatedCoreFilename = 'ds-5.1-api-schema-generated.json';
+  const authoritativeExtensionFilename = 'tpdm-api-schema-authoritative.json';
+  const generatedExtensionFilename = 'tpdm-api-schema-generated.json';
 
   beforeAll(async () => {
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.2.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/', path.resolve(__dirname, './tpdm-project')],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -38,6 +40,13 @@ describe('when generating ods and comparing it to data standard 5.1 authoritativ
           projectExtension: '',
           projectVersion: '5.1.0',
           description: 'The Ed-Fi Data Standard v5.1',
+        },
+        {
+          projectName: 'TPDM',
+          namespaceName: 'TPDM',
+          projectExtension: 'TPDM',
+          projectVersion: '1.1.0',
+          description: 'TPDM-Core',
         },
       ],
     };
@@ -64,15 +73,27 @@ describe('when generating ods and comparing it to data standard 5.1 authoritativ
     const generatorResult: GeneratorResult = state.generatorResults.filter(
       (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
     )[0];
-    const [generatedCoreOutput] = generatorResult.generatedOutput;
+    const [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
-  it('should have no core file differences', async () => {
+  it('should have no DS file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no TPDM file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
 
     const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings

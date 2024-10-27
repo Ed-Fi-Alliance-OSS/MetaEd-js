@@ -5,8 +5,14 @@ import {
   DescriptorBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
+  newNamespace,
+  DomainEntityExtensionBuilder,
 } from '@edfi/metaed-core';
-import { domainEntityReferenceEnhancer, descriptorReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
+import {
+  domainEntityReferenceEnhancer,
+  descriptorReferenceEnhancer,
+  domainEntityExtensionBaseClassEnhancer,
+} from '@edfi/metaed-plugin-edfi-unified';
 import {
   enhance as entityPropertyApiSchemaDataSetupEnhancer,
   EntityPropertyApiSchemaData,
@@ -206,6 +212,102 @@ describe('when building simple domain entity referencing another referencing ano
     expect(isReferenceElement((referenceComponent2 as ReferenceGroup).referenceComponents[0])).toBe(true);
     expect((referenceComponent2 as ReferenceGroup).referenceComponents[0].sourceProperty.metaEdName).toBe(
       booleanIdentityPropertyName,
+    );
+  });
+});
+
+describe('when building simple domain entity referencing another in different namespace', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+  const identityPropertyName = 'IdentityPropertyName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity(identityPropertyName, 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withDomainEntityIdentity(`EdFi.${referencedEntityName}`, 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEd.namespace.get('Extension')?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have the referenced domain entitys identity property', () => {
+    const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    expect(isReferenceGroup(referenceComponent)).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
+    expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents[0].sourceProperty.metaEdName).toBe(
+      identityPropertyName,
+    );
+  });
+});
+
+describe('when domain entity extension references domain entity in different namespace', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReferencedIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntityExtension(entityName)
+      .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEd.namespace.get('Extension')?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have the referenced domain entitys identity property', () => {
+    const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    expect(isReferenceGroup(referenceComponent)).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
+    expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents[0].sourceProperty.metaEdName).toBe(
+      'ReferencedIdentity',
     );
   });
 });

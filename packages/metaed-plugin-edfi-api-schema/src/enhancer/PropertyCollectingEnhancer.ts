@@ -8,7 +8,17 @@ import { collectAllProperties, collectApiProperties } from './BasePropertyCollec
  * Accumulates properties that belong under an entity in the API body.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'common', 'choice').forEach((entity) => {
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'domainEntitySubclass',
+    'domainEntityExtension',
+    'association',
+    'associationSubclass',
+    'associationExtension',
+    'common',
+    'choice',
+  ).forEach((entity) => {
     const collectedApiProperties: CollectedProperty[] = [];
     const allProperties: CollectedProperty[] = [];
 

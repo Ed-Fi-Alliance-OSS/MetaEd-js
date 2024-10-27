@@ -1,0 +1,59 @@
+Domain Entity Candidate
+  documentation "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator."
+  shared string CandidateIdentifier
+      documentation "A unique alphanumeric code assigned to a candidate."
+      is part of identity
+  inline common EdFi.Name
+      documentation "Full legal name of the person."
+      is required
+  common EdFi.OtherName
+      documentation "Other names (e.g., alias, nickname, previous legal name) associated with a person."
+      is optional collection
+  descriptor EdFi.Sex
+      documentation "The sex of the candidate."
+      is optional
+  inline common EdFi.BirthData
+      documentation "The set of elements that capture relevant data regarding a person's birth, including birth date and place of birth."
+      is required
+  common EdFi.Address
+      documentation "The set of elements that describes an address, including the street address, city, state, and ZIP code."
+      is optional collection
+  common EdFi.Telephone
+      documentation "The 10-digit telephone number, including the area code, for the person."
+      is optional collection
+  common EdFi.ElectronicMail
+      documentation "The numbers, letters, and symbols used to identify an electronic mail (e-mail) user within the network to which the individual or organization belongs."
+      is optional collection
+  bool HispanicLatinoEthnicity
+      documentation "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, ""Spanish origin,"" can be used in addition to ""Hispanic or Latino."""
+      is optional
+  descriptor EdFi.Race
+      documentation "The general racial category which most clearly reflects the individual's recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races."
+      is optional collection
+  bool EconomicDisadvantaged
+      documentation "An indication of inadequate financial condition of an individual's family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy."
+      is optional
+  descriptor EdFi.LimitedEnglishProficiency
+      documentation "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient."
+      is optional
+  common EdFi.Language
+      documentation "The language(s) the individual uses to communicate."
+      is optional collection
+  common EdFi.Disability
+      documentation "The disability condition(s) that best describes an individual's impairment."
+      is optional collection
+  shared string DisplacementStatus
+      documentation "Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services."
+      is optional
+  descriptor Gender
+    documentation "The gender of the candidate."
+    is optional
+  descriptor EnglishLanguageExam
+    documentation "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL)."
+    is optional
+  bool FirstGenerationStudent
+    documentation "Indicator of whether individual is a first generation college student."
+    is optional
+  domain entity EdFi.Person
+      documentation "Relates the candidate to a generic person."
+      is optional

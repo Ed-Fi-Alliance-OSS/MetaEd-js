@@ -21,12 +21,18 @@ function endpointNameFrom(metaEdName: string): EndpointName {
  * This enhancer determines the API resource and endpoint names for each entity
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      (entity.data.edfiApiSchema as EntityApiSchemaData).endpointName = endpointNameFrom(entity.metaEdName);
-      (entity.data.edfiApiSchema as EntityApiSchemaData).resourceName = entity.metaEdName as MetaEdResourceName;
-    },
-  );
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'associationExtension',
+    'domainEntityExtension',
+  ).forEach((entity) => {
+    (entity.data.edfiApiSchema as EntityApiSchemaData).endpointName = endpointNameFrom(entity.metaEdName);
+    (entity.data.edfiApiSchema as EntityApiSchemaData).resourceName = entity.metaEdName as MetaEdResourceName;
+  });
 
   // Descriptors are special because they have a descriptor suffix
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((descriptor) => {

@@ -1,0 +1,2 @@
+Descriptor PerformanceEvaluationType
+  documentation "The type of performance evaluation conducted (e.g., walkthrough, summative)."

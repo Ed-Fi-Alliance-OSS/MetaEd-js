@@ -3,7 +3,9 @@ import { EntityRepository } from './EntityRepository';
 import { newEntityRepository } from './EntityRepository';
 
 /**
- *
+ * A Namespace is the highest level of organization of entities, and maps to
+ * a single MetaEd project. There is a namespace for the Data Standard
+ * project and one for each extension project.
  */
 export interface Namespace {
   entity: EntityRepository;
@@ -17,11 +19,6 @@ export interface Namespace {
   projectDescription: string;
   extensionEntitySuffix: string;
   data: any;
-  config: any;
-
-  // remove these
-  type: boolean;
-  sourceMap: boolean;
 }
 
 /**
@@ -44,10 +41,6 @@ export function newNamespace(): Namespace {
     projectDescription: '',
     extensionEntitySuffix: DefaultExtensionEntitySuffix,
     data: {},
-    config: {},
-
-    type: false,
-    sourceMap: false,
   };
 }
 

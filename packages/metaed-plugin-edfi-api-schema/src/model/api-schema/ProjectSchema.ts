@@ -11,11 +11,31 @@ import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNam
  */
 export type ProjectSchema = {
   /**
-   * The MetaEd project name the referenced API resource is defined in e.g. "EdFi" for a data standard entity.
+   * The MetaEd project name the referenced API resource is defined in e.g. "EdFi"
+   * for the data standard.
    */
   projectName: MetaEdProjectName;
+
+  /**
+   * The MetaEd project version the referenced API resource is defined in. For
+   * example, "5.2.0" for a data standard version.
+   */
   projectVersion: SemVer;
+
+  /**
+   * Whether this is an extension project or a Data Standard project
+   */
   isExtensionProject: boolean;
+
+  /**
+   * If this is an extension project, provides compatible Data Standards as a semver range.
+   * ApiSchema consumers use this to validate extension compatibility.
+   */
+  compatibleDsRange: SemVer | null;
+
+  /**
+   * MetaEd Project description
+   */
   description: string;
 
   /**
@@ -50,6 +70,7 @@ export const NoProjectSchema: ProjectSchema = {
   projectName: 'NoProjectName' as MetaEdProjectName,
   projectVersion: '0.0.0' as SemVer,
   isExtensionProject: false,
+  compatibleDsRange: null,
   description: 'NoProjectSchema',
   resourceSchemas: {},
   resourceNameMapping: {},
