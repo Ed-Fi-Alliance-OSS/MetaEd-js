@@ -53,6 +53,7 @@
     "sqlcmd",
     "sqlserver",
     "teamcity",
+    "totalcount",
     "unmock",
     "vsix",
     "yarnpkg"
