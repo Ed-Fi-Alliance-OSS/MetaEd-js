@@ -13,7 +13,6 @@ describe('when generating output for namespace', (): void => {
       targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
     const namespace: Namespace = {
       ...newNamespace(),
@@ -87,7 +86,6 @@ describe('when generating output for core namespace', (): void => {
       targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     const namespace: Namespace = {

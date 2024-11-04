@@ -25,7 +25,6 @@ describe('when generating id indexes for core namespace table with no id', (): v
       targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     initializeEdFiOdsRelationalEntityRepository(metaEd);
@@ -137,7 +136,6 @@ describe('when generating id indexes for extension namespace table with no type'
       targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     initializeEdFiOdsRelationalEntityRepository(metaEd);

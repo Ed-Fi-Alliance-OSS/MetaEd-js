@@ -17,7 +17,6 @@ describe('when generating schemas for core namespace', (): void => {
       targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     result = await generate(metaEd);

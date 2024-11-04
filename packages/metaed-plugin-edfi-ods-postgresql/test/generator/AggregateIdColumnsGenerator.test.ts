@@ -17,7 +17,6 @@ describe('when generating aggregateId columns for core namespace table that is n
       targetTechnologyVersion: '7.3.0',
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -51,7 +50,6 @@ describe('when generating aggregateId columns for core namespace table for ODS/A
       targetTechnologyVersion: '7.0.0',
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -85,7 +83,6 @@ describe('when generating aggregateId columns for core namespace table for ODS/A
       targetTechnologyVersion: '7.3.0',
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -134,7 +131,6 @@ describe('when generating aggregateId columns for core namespace table with a lo
       targetTechnologyVersion: '7.3.0',
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -187,7 +183,6 @@ describe('when generating aggregateId columns for extension namespace table', ()
       targetTechnologyVersion: '7.3.0',
       shortName: '',
       namespace: new Map(),
-      config: {},
     });
 
     metaEd.namespace.set(namespace.namespaceName, namespace);
