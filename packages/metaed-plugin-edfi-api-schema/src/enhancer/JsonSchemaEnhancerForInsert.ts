@@ -432,14 +432,29 @@ function addRequired(isRequired: boolean, schemaObject: SchemaObject, schemaProp
  * Builds an API JSON document schema that corresponds to a given MetaEd entity.
  */
 function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: SchoolYearSchemas): SchemaRoot {
+  let schemaProperties: SchemaProperties = {};
+
   const schemaRoot: SchemaRoot = {
     ...newSchemaRoot(),
     type: 'object',
     title: `${entityForSchema.namespace.projectName}.${entityForSchema.metaEdName}`,
     description: entityForSchema.documentation,
-    properties: {},
+    properties: schemaProperties,
     additionalProperties: false,
   };
+
+  // DE/Association extension entity properties go under _ext
+  if (entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension') {
+    // New schemaProperties to go under _ext
+    schemaProperties = {};
+    // eslint-disable-next-line no-underscore-dangle
+    schemaRoot.properties._ext = {
+      description: 'optional extension collection',
+      type: 'object',
+      properties: schemaProperties,
+      additionalProperties: true,
+    };
+  }
 
   const { collectedApiProperties } = entityForSchema.data.edfiApiSchema as EntityApiSchemaData;
 
@@ -452,17 +467,9 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
         ? schemaPropertyForSchoolYearEnumeration(property, schoolYearSchemas.schoolYearEnumerationSchema)
         : schemaPropertyFor(property, propertyModifier, schoolYearSchemas);
 
-    schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
+    schemaProperties[schemaObjectBaseName] = schemaProperty;
     addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
   });
-
-  // eslint-disable-next-line no-underscore-dangle
-  schemaRoot.properties._ext = {
-    description: 'optional extension collection',
-    type: 'object',
-    properties: {},
-    additionalProperties: true,
-  };
 
   return schemaRoot;
 }

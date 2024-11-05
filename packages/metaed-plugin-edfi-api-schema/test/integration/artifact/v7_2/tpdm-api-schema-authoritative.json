@@ -386,13 +386,6 @@
             "additionalProperties": false,
             "description": "Information about the association between the Teacher Candidate and the EducatorPreparationProgram",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "beginDate": {
                 "description": "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                 "format": "date",
@@ -1062,13 +1055,6 @@
             "additionalProperties": false,
             "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "addresses": {
                 "items": {
                   "additionalProperties": false,
@@ -2120,101 +2106,101 @@
                 "additionalProperties": true,
                 "description": "optional extension collection",
                 "properties": {
-                },
-                "type": "object"
-              },
-              "boardCertificationIndicator": {
-                "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
-                "type": "boolean"
-              },
-              "certificationRouteDescriptor": {
-                "description": "The process, program, or pathway used to obtain certification.",
-                "type": "string"
-              },
-              "certificationTitle": {
-                "description": "The title of the certification obtained by the educator.",
-                "maxLength": 64,
-                "minLength": 1,
-                "type": "string"
-              },
-              "credentialStatusDate": {
-                "description": "The month, day, and year on which the credential status was effective.",
-                "format": "date",
-                "type": "string"
-              },
-              "credentialStatusDescriptor": {
-                "description": "The current status of the credential (e.g., active, suspended, etc.).",
-                "type": "string"
-              },
-              "educatorRoleDescriptor": {
-                "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
-                "type": "string"
-              },
-              "personReference": {
-                "additionalProperties": false,
-                "properties": {
-                  "personId": {
-                    "description": "A unique alphanumeric code assigned to a person.",
-                    "maxLength": 32,
-                    "pattern": "^(?!\\s)(.*\\S)$",
+                  "boardCertificationIndicator": {
+                    "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
+                    "type": "boolean"
+                  },
+                  "certificationRouteDescriptor": {
+                    "description": "The process, program, or pathway used to obtain certification.",
                     "type": "string"
                   },
-                  "sourceSystemDescriptor": {
-                    "description": "This descriptor defines the originating record source system for the person.",
+                  "certificationTitle": {
+                    "description": "The title of the certification obtained by the educator.",
+                    "maxLength": 64,
+                    "minLength": 1,
                     "type": "string"
-                  }
-                },
-                "required": [
-                  "personId",
-                  "sourceSystemDescriptor"
-                ],
-                "type": "object"
-              },
-              "studentAcademicRecords": {
-                "items": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "studentAcademicRecordReference": {
+                  },
+                  "credentialStatusDate": {
+                    "description": "The month, day, and year on which the credential status was effective.",
+                    "format": "date",
+                    "type": "string"
+                  },
+                  "credentialStatusDescriptor": {
+                    "description": "The current status of the credential (e.g., active, suspended, etc.).",
+                    "type": "string"
+                  },
+                  "educatorRoleDescriptor": {
+                    "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
+                    "type": "string"
+                  },
+                  "personReference": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "personId": {
+                        "description": "A unique alphanumeric code assigned to a person.",
+                        "maxLength": 32,
+                        "pattern": "^(?!\\s)(.*\\S)$",
+                        "type": "string"
+                      },
+                      "sourceSystemDescriptor": {
+                        "description": "This descriptor defines the originating record source system for the person.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "personId",
+                      "sourceSystemDescriptor"
+                    ],
+                    "type": "object"
+                  },
+                  "studentAcademicRecords": {
+                    "items": {
                       "additionalProperties": false,
                       "properties": {
-                        "educationOrganizationId": {
-                          "description": "The identifier assigned to an education organization.",
-                          "type": "integer"
-                        },
-                        "schoolYear": {
-                          "description": "A school year between 1900 and 2100",
-                          "maximum": 2100,
-                          "minimum": 1900,
-                          "type": "integer"
-                        },
-                        "studentUniqueId": {
-                          "description": "A unique alphanumeric code assigned to a student.",
-                          "maxLength": 32,
-                          "pattern": "^(?!\\s)(.*\\S)$",
-                          "type": "string"
-                        },
-                        "termDescriptor": {
-                          "description": "The term for the session during the school year.",
-                          "type": "string"
+                        "studentAcademicRecordReference": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "educationOrganizationId": {
+                              "description": "The identifier assigned to an education organization.",
+                              "type": "integer"
+                            },
+                            "schoolYear": {
+                              "description": "A school year between 1900 and 2100",
+                              "maximum": 2100,
+                              "minimum": 1900,
+                              "type": "integer"
+                            },
+                            "studentUniqueId": {
+                              "description": "A unique alphanumeric code assigned to a student.",
+                              "maxLength": 32,
+                              "pattern": "^(?!\\s)(.*\\S)$",
+                              "type": "string"
+                            },
+                            "termDescriptor": {
+                              "description": "The term for the session during the school year.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "educationOrganizationId",
+                            "schoolYear",
+                            "studentUniqueId",
+                            "termDescriptor"
+                          ],
+                          "type": "object"
                         }
                       },
                       "required": [
-                        "educationOrganizationId",
-                        "schoolYear",
-                        "studentUniqueId",
-                        "termDescriptor"
+                        "studentAcademicRecordReference"
                       ],
                       "type": "object"
-                    }
-                  },
-                  "required": [
-                    "studentAcademicRecordReference"
-                  ],
-                  "type": "object"
+                    },
+                    "minItems": 0,
+                    "type": "array",
+                    "uniqueItems": false
+                  }
                 },
-                "minItems": 0,
-                "type": "array",
-                "uniqueItems": false
+                "type": "object"
               }
             },
             "title": "TPDM.Credential",
@@ -2377,13 +2363,6 @@
             "additionalProperties": false,
             "description": "The Educator Preparation Program is designed to prepare students to become licensed educators.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "accreditationStatusDescriptor": {
                 "description": "The current accreditation status of the Educator Preparation Program.",
                 "type": "string"
@@ -2995,13 +2974,6 @@
             "additionalProperties": false,
             "description": "The lowest-level rating for an Evaluation Element for an individual educator.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "areaOfRefinement": {
                 "description": "Area identified for person to refine or improve as part of the evaluation.",
                 "maxLength": 1024,
@@ -3448,13 +3420,6 @@
             "additionalProperties": false,
             "description": "The lowest-level Elements or criterion of performance being evaluated by rubric, quantitative measure, or aggregate survey response.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "evaluationElementTitle": {
                 "description": "The name or title of the evaluation element.",
                 "maxLength": 255,
@@ -3894,13 +3859,6 @@
             "additionalProperties": false,
             "description": "The rating for the component Evaluation Objective for an individual educator.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "comments": {
                 "description": "Any comments about the performance evaluation to be captured.",
                 "maxLength": 1024,
@@ -4288,13 +4246,6 @@
             "additionalProperties": false,
             "description": "A subcomponent of an Evaluation, a specific educator Objective or domain of performance that is being evaluated.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "evaluationObjectiveDescription": {
                 "description": "The long description of the Evaluation Objective.",
                 "maxLength": 255,
@@ -5023,13 +4974,6 @@
             "additionalProperties": false,
             "description": "The summary weighting for the Evaluation instrument for an individual educator.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "actualDuration": {
                 "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
                 "minimum": 1,
@@ -5623,13 +5567,6 @@
             "additionalProperties": false,
             "description": "An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "evaluationDescription": {
                 "description": "The long description of the Evaluation.",
                 "maxLength": 255,
@@ -5889,13 +5826,6 @@
             "additionalProperties": false,
             "description": "This entity represents the financial aid a person is awarded.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "aidAmount": {
                 "description": "The amount of financial aid awarded to a person for the term/year.",
                 "type": "number"
@@ -6428,13 +6358,6 @@
             "additionalProperties": false,
             "description": "The summary rating for a Performance Evaluation across all Evaluation instruments for an individual educator.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "actualDate": {
                 "description": "The month, day, and year on which the performance evaluation was conducted.",
                 "format": "date",
@@ -6946,13 +6869,6 @@
             "additionalProperties": false,
             "description": "A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "academicSubjectDescriptor": {
                 "description": "The description of the content or subject area of a performance evaluation.",
                 "type": "string"
@@ -7228,13 +7144,6 @@
             "additionalProperties": false,
             "description": "The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "criterionDescription": {
                 "description": "The criterion description for the rubric dimension.",
                 "maxLength": 1024,
@@ -7529,20 +7438,20 @@
                 "additionalProperties": true,
                 "description": "optional extension collection",
                 "properties": {
-                },
-                "type": "object"
-              },
-              "postSecondaryInstitutionReference": {
-                "additionalProperties": false,
-                "properties": {
-                  "postSecondaryInstitutionId": {
-                    "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
-                    "type": "integer"
+                  "postSecondaryInstitutionReference": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "postSecondaryInstitutionId": {
+                        "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "postSecondaryInstitutionId"
+                    ],
+                    "type": "object"
                   }
                 },
-                "required": [
-                  "postSecondaryInstitutionId"
-                ],
                 "type": "object"
               }
             },
@@ -7619,13 +7528,6 @@
             "additionalProperties": false,
             "description": "The association provides information about the survey being taken and who the survey is about.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "personReference": {
                 "additionalProperties": false,
                 "properties": {
@@ -7755,27 +7657,27 @@
                 "additionalProperties": true,
                 "description": "optional extension collection",
                 "properties": {
-                },
-                "type": "object"
-              },
-              "personReference": {
-                "additionalProperties": false,
-                "properties": {
-                  "personId": {
-                    "description": "A unique alphanumeric code assigned to a person.",
-                    "maxLength": 32,
-                    "pattern": "^(?!\\s)(.*\\S)$",
-                    "type": "string"
-                  },
-                  "sourceSystemDescriptor": {
-                    "description": "This descriptor defines the originating record source system for the person.",
-                    "type": "string"
+                  "personReference": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "personId": {
+                        "description": "A unique alphanumeric code assigned to a person.",
+                        "maxLength": 32,
+                        "pattern": "^(?!\\s)(.*\\S)$",
+                        "type": "string"
+                      },
+                      "sourceSystemDescriptor": {
+                        "description": "This descriptor defines the originating record source system for the person.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "personId",
+                      "sourceSystemDescriptor"
+                    ],
+                    "type": "object"
                   }
                 },
-                "required": [
-                  "personId",
-                  "sourceSystemDescriptor"
-                ],
                 "type": "object"
               }
             },
@@ -7867,13 +7769,6 @@
             "additionalProperties": false,
             "description": "This association provides information about the survey section and the person the survey section is about.",
             "properties": {
-              "_ext": {
-                "additionalProperties": true,
-                "description": "optional extension collection",
-                "properties": {
-                },
-                "type": "object"
-              },
               "personReference": {
                 "additionalProperties": false,
                 "properties": {
