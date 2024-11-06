@@ -12,6 +12,8 @@ import {
   EnumerationBuilder,
   MetaEdPropertyPath,
   AssociationBuilder,
+  DomainEntityExtensionBuilder,
+  newNamespace,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -3011,6 +3013,72 @@ describe('when a collection reference is to a role named resource that has a sch
         "StudentSectionAssociation.Section.CourseOffering.Session.School",
         "StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId",
       ]
+    `);
+  });
+});
+
+describe('when building simple domain entity extension', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Extension';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('IntegerIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntityExtension(domainEntityName)
+      .withStringProperty('StringProperty', 'doc', false, false, '30', '20')
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+    namespace.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping', () => {
+    const entity = namespace.entity.domainEntityExtension.get(domainEntityName);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "StringProperty": Array [
+          Object {
+            "entityName": "DomainEntityName",
+            "jsonPath": "$._ext.stringProperty",
+            "propertyName": "StringProperty",
+          },
+        ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "StringProperty": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "StringProperty": "StringProperty",
+      }
     `);
   });
 });

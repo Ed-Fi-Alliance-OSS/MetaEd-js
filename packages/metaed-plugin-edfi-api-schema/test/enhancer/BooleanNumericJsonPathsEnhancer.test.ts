@@ -218,29 +218,29 @@ describe('when building domain entity extension with all the simple non-collecti
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
     const booleanJsonPaths = entity?.data.edfiApiSchema.booleanJsonPaths;
     expect(booleanJsonPaths).toMatchInlineSnapshot(`
-        Array [
-          "$.optionalBooleanProperty",
-        ]
-      `);
+      Array [
+        "$._ext.optionalBooleanProperty",
+      ]
+    `);
   });
 
   it('should be correct numericJsonPaths for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
     expect(numericJsonPaths).toMatchInlineSnapshot(`
-        Array [
-          "$.optionalDecimalProperty",
-          "$.optionalPercentProperty",
-          "$.optionalSharedDecimalProperty",
-          "$.optionalSharedIntegerProperty",
-          "$.optionalSharedShortProperty",
-          "$.optionalShortProperty",
-          "$.optionalYear",
-          "$.requiredCurrencyProperty",
-          "$.requiredDurationProperty",
-          "$.requiredIntegerProperty",
-          "$.schoolYearTypeReference.schoolYear",
-        ]
-      `);
+      Array [
+        "$._ext.optionalDecimalProperty",
+        "$._ext.optionalPercentProperty",
+        "$._ext.optionalSharedDecimalProperty",
+        "$._ext.optionalSharedIntegerProperty",
+        "$._ext.optionalSharedShortProperty",
+        "$._ext.optionalShortProperty",
+        "$._ext.optionalYear",
+        "$._ext.requiredCurrencyProperty",
+        "$._ext.requiredDurationProperty",
+        "$._ext.requiredIntegerProperty",
+        "$._ext.schoolYearTypeReference.schoolYear",
+      ]
+    `);
   });
 });

@@ -2800,7 +2800,7 @@ describe('when building simple domain entity extension', () => {
         "StringProperty": Array [
           Object {
             "entityName": "DomainEntityName",
-            "jsonPath": "$.stringProperty",
+            "jsonPath": "$._ext.stringProperty",
             "propertyName": "StringProperty",
           },
         ],

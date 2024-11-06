@@ -496,7 +496,14 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
 
   allProperties.forEach(({ property, propertyModifier }) => {
     const topLevelName = topLevelApiNameOnEntity(entity, property);
-    const schemaObjectBaseName = appendNextJsonPathName('$' as JsonPath, topLevelName, property, propertyModifier);
+    const jsonPathRootString =
+      entity.type === 'associationExtension' || entity.type === 'domainEntityExtension' ? '$._ext' : '$';
+    const schemaObjectBaseName = appendNextJsonPathName(
+      jsonPathRootString as JsonPath,
+      topLevelName,
+      property,
+      propertyModifier,
+    );
 
     if (property.type === 'schoolYearEnumeration')
       jsonPathsForSchoolYearEnumeration(

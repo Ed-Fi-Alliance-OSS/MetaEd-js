@@ -137,12 +137,6 @@ describe('when building simple domain entity with all the simple non-collections
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "optionalBooleanProperty": Object {
             "description": "doc1",
             "type": "boolean",
@@ -300,12 +294,6 @@ describe('when building simple domain entity with all the simple collections', (
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "optionalBooleanProperties": Object {
             "items": Object {
               "additionalProperties": false,
@@ -646,12 +634,6 @@ describe('when building a domain entity referencing another referencing another 
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "classPeriods": Object {
             "items": Object {
               "additionalProperties": false,
@@ -809,12 +791,6 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "courseOfferingReference": Object {
             "additionalProperties": false,
             "properties": Object {
@@ -907,12 +883,6 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "localCourseCode": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1012,12 +982,6 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "schoolReference": Object {
             "additionalProperties": false,
             "properties": Object {
@@ -1101,12 +1065,6 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "schoolId": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1212,12 +1170,6 @@ describe('when building domain entity with nested choice and inline commons', ()
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "contentClassDescriptor": Object {
             "description": "doc",
             "type": "string",
@@ -1379,12 +1331,6 @@ describe('when building domain entity with scalar collection named with prefix o
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "contentIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1485,12 +1431,6 @@ describe('when building domain entity with Association/DomainEntity collection n
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "contentIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1597,12 +1537,6 @@ describe('when building domain entity with acronym property name', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "contentIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1695,12 +1629,6 @@ describe('when building domain entity with a simple common collection', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
@@ -1818,12 +1746,6 @@ describe('when building domain entity subclass with common collection and descri
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "communityOrganizationId": Object {
             "description": "doc",
             "type": "integer",
@@ -1933,12 +1855,6 @@ describe('when building association with a common collection in a common collect
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "addresses": Object {
             "items": Object {
               "additionalProperties": false,
@@ -2058,12 +1974,6 @@ describe('when building domain entity with a descriptor with role name', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessedGradeLevelDescriptor": Object {
             "description": "doc",
             "type": "string",
@@ -2145,12 +2055,6 @@ describe('when building domain entity with a descriptor collection with role nam
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessedGradeLevels": Object {
             "items": Object {
               "additionalProperties": false,
@@ -2255,12 +2159,6 @@ describe('when building domain entity with a common with a choice', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
@@ -2367,12 +2265,6 @@ describe('when building domain entity with a common and a common collection with
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
@@ -2475,12 +2367,6 @@ describe('when building domain entity with an all-caps property', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
@@ -2570,12 +2456,6 @@ describe('when building domain entity with a common with a domain entity referen
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
@@ -2678,12 +2558,6 @@ describe('when building domain entity with two school year enumerations, one rol
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "classOfSchoolYearTypeReference": Object {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "additionalProperties": false,
@@ -2792,12 +2666,6 @@ describe('when building domain entity with reference to domain entity with schoo
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "calendarReference": Object {
             "additionalProperties": false,
             "properties": Object {
@@ -2910,12 +2778,6 @@ describe('when building a schema for StudentCohort', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "studentUniqueId": Object {
             "description": "",
             "maxLength": 100,
@@ -3032,12 +2894,6 @@ describe('when building a domain entity with an inline common property with a de
         "additionalProperties": false,
         "description": "Documentation",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "availableCreditTypeDescriptor": Object {
             "description": "Documentation",
             "type": "string",
@@ -3120,12 +2976,6 @@ describe('when building a Domain Entity subclass', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "schoolId": Object {
             "description": "doc",
             "type": "integer",
@@ -3299,12 +3149,6 @@ describe('when building an Association subclass', () => {
         "additionalProperties": false,
         "description": "doc",
         "properties": Object {
-          "_ext": Object {
-            "additionalProperties": true,
-            "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
           "programReference": Object {
             "additionalProperties": false,
             "properties": Object {
@@ -3527,20 +3371,21 @@ describe('when domain entity extension references domain entity in different nam
           "_ext": Object {
             "additionalProperties": true,
             "description": "optional extension collection",
-            "properties": Object {},
-            "type": "object",
-          },
-          "referencedEntityNameReference": Object {
-            "additionalProperties": false,
             "properties": Object {
-              "referencedIdentity": Object {
-                "description": "doc",
-                "type": "integer",
+              "referencedEntityNameReference": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "referencedIdentity": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                },
+                "required": Array [
+                  "referencedIdentity",
+                ],
+                "type": "object",
               },
             },
-            "required": Array [
-              "referencedIdentity",
-            ],
             "type": "object",
           },
         },
@@ -3566,7 +3411,7 @@ describe('when domain entity extension references domain entity in different nam
     expect(extensionNamespace.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas.entityNames.numericJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "$.referencedEntityNameReference.referencedIdentity",
+        "$._ext.referencedEntityNameReference.referencedIdentity",
       ]
     `);
   });
@@ -3583,7 +3428,7 @@ describe('when domain entity extension references domain entity in different nam
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.referencedIdentity",
-              "referenceJsonPath": "$.referencedEntityNameReference.referencedIdentity",
+              "referenceJsonPath": "$._ext.referencedEntityNameReference.referencedIdentity",
               "type": "number",
             },
           ],
