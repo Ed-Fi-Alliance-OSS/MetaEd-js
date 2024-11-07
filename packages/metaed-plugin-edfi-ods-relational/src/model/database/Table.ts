@@ -113,9 +113,13 @@ export interface Table {
   alternateKeys: Column[];
   uniqueIndexes: Column[];
 
-  // The educationOrganizationId columns that are is part of the PK of this table, if there are any.
+  // The educationOrganizationId columns that are part of this table, if there are any.
   educationOrganizationIdColumns: Column[];
   hasEducationOrganizationIdColumns: boolean;
+
+  // The USI columns that are part of this table, if there are any.
+  usiColumns: Column[];
+  hasUsiColumns: boolean;
 
   // not all tables have a parentEntity
   parentEntity: TopLevelEntity;
@@ -156,6 +160,9 @@ export function newTable(): Table {
 
     educationOrganizationIdColumns: [],
     hasEducationOrganizationIdColumns: false,
+
+    usiColumns: [],
+    hasUsiColumns: false,
 
     parentEntity: NoTopLevelEntity,
     isAggregateRootTable: false,

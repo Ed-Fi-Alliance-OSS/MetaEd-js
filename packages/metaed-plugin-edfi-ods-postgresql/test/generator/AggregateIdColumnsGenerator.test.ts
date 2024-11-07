@@ -111,7 +111,7 @@ describe('when generating aggregateId columns for core namespace table for ODS/A
         "resultStream": null,
         "resultString": "
       CREATE SEQUENCE edfi.TableName_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-      ALTER TABLE edfi.TableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.TableName_aggseq');
+      ALTER TABLE edfi.TableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.TableName_aggseq'), ADD COLUMN AggregateData bytea;
       CREATE INDEX ix_TableName_aggid ON edfi.TableName (AggregateId);
 
       ",
@@ -159,7 +159,7 @@ describe('when generating aggregateId columns for core namespace table with a lo
         "resultStream": null,
         "resultString": "
       CREATE SEQUENCE edfi.TableNameTableNameTableNameTableNameTableNameTa_123456_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-      ALTER TABLE edfi.TableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.TableNameTableNameTableNameTableNameTableNameTa_123456_aggseq');
+      ALTER TABLE edfi.TableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.TableNameTableNameTableNameTableNameTableNameTa_123456_aggseq'), ADD COLUMN AggregateData bytea;
       CREATE INDEX ix_TableNameTableNameTableNameTableNameTableNameTa_123456_aggid ON edfi.TableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableNameTableName (AggregateId);
 
       ",
@@ -211,7 +211,7 @@ describe('when generating aggregateId columns for extension namespace table', ()
         "resultStream": null,
         "resultString": "
       CREATE SEQUENCE extension.TableName_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-      ALTER TABLE extension.TableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('extension.TableName_aggseq');
+      ALTER TABLE extension.TableName ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('extension.TableName_aggseq'), ADD COLUMN AggregateData bytea;
       CREATE INDEX ix_TableName_aggid ON extension.TableName (AggregateId);
 
       ",

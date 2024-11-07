@@ -110,7 +110,7 @@ describe('when generating aggregateId columns for core namespace table for ODS/A
         "namespace": "EdFi",
         "resultStream": null,
         "resultString": "CREATE SEQUENCE [edfi].[TableName_AggSeq] START WITH -2147483648 INCREMENT BY 1;
-      ALTER TABLE [edfi].[TableName] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [edfi].[TableName_AggSeq];
+      ALTER TABLE [edfi].[TableName] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [edfi].[TableName_AggSeq], AggregateData varbinary(8000);
       CREATE INDEX [IX_TableName_AggregateId] ON [edfi].[TableName] (AggregateId);
 
       ",
@@ -161,7 +161,7 @@ describe('when generating aggregateId columns for extension namespace table', ()
         "namespace": "Extension",
         "resultStream": null,
         "resultString": "CREATE SEQUENCE [extension].[TableName_AggSeq] START WITH -2147483648 INCREMENT BY 1;
-      ALTER TABLE [extension].[TableName] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [extension].[TableName_AggSeq];
+      ALTER TABLE [extension].[TableName] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [extension].[TableName_AggSeq], AggregateData varbinary(8000);
       CREATE INDEX [IX_TableName_AggregateId] ON [extension].[TableName] (AggregateId);
 
       ",

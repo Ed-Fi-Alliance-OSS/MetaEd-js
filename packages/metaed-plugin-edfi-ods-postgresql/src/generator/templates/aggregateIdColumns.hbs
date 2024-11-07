@@ -7,7 +7,7 @@
 
 {{/if}}{{/if}}{{#tables}}
 CREATE SEQUENCE {{{schema}}}.{{{sequenceName}}} START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
-ALTER TABLE {{{schema}}}.{{{tableName}}} ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('{{{schema}}}.{{{sequenceName}}}');
+ALTER TABLE {{{schema}}}.{{{tableName}}} ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('{{{schema}}}.{{{sequenceName}}}'), ADD COLUMN AggregateData bytea;
 CREATE INDEX {{{indexName}}} ON {{{schema}}}.{{{tableName}}} (AggregateId);
 
 {{/tables}}

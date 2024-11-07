@@ -40,6 +40,7 @@ import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer'
 
 import { enhance as foreignKeyIsIdentifyingEnhancer } from './ForeignKeyIsIdentifyingEnhancer';
 import { enhance as educationOrganizationIdColumnEnhancer } from './EducationOrganizationIdColumnEnhancer';
+import { enhance as usiColumnEnhancer } from './UsiColumnEnhancer';
 
 export function preTableCreationEnhancerList(): Enhancer[] {
   return [
@@ -100,6 +101,7 @@ export function enhancerList(): Enhancer[] {
     foreignKeyForeignTableReferenceEnhancer,
     foreignKeyIsIdentifyingEnhancer,
     educationOrganizationIdColumnEnhancer,
+    usiColumnEnhancer,
 
     foreignKeyReverseIndexEnhancerV6x,
     foreignKeyReverseIndexEnhancerV7,

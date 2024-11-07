@@ -9,7 +9,7 @@
 {{/if}}
 {{#tables}}
 CREATE SEQUENCE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}_AggSeq] START WITH -2147483648 INCREMENT BY 1;
-ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}_AggSeq];
+ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD AggregateId int NOT NULL DEFAULT NEXT VALUE FOR [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}_AggSeq], AggregateData varbinary(8000);
 CREATE INDEX [IX_{{{data.edfiOdsSqlServer.tableName}}}_AggregateId] ON [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] (AggregateId);
 
 {{/tables}}

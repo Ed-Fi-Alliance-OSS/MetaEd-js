@@ -6,5 +6,7 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 
 {{/if}}{{/if}}{{#tables}}{{#if hasEducationOrganizationIdColumns}}{{#educationOrganizationIdColumns}}
-CREATE INDEX IF NOT EXISTS IX_{{{../data.edfiOdsPostgresql.tableName}}}_{{{data.edfiOdsPostgresql.columnName}}} ON {{{../schema}}}.{{{../data.edfiOdsPostgresql.tableName}}}({{{data.edfiOdsPostgresql.columnName}}}) INCLUDE (Id);
-{{/educationOrganizationIdColumns}}{{/if}}{{/tables}}
+CREATE INDEX IF NOT EXISTS IX_{{{../data.edfiOdsPostgresql.tableName}}}_{{{data.edfiOdsPostgresql.columnName}}} ON {{{../schema}}}.{{{../data.edfiOdsPostgresql.tableName}}}({{{data.edfiOdsPostgresql.columnName}}}) INCLUDE ({{#if @root.useAggregateId}}AggregateId{{else}}Id{{/if}});
+{{/educationOrganizationIdColumns}}{{/if}}{{#if hasUsiColumns}}{{#usiColumns}}
+CREATE INDEX IF NOT EXISTS IX_{{{../data.edfiOdsPostgresql.tableName}}}_{{{data.edfiOdsPostgresql.columnName}}} ON {{{../schema}}}.{{{../data.edfiOdsPostgresql.tableName}}}({{{data.edfiOdsPostgresql.columnName}}}) INCLUDE (AggregateId);
+{{/usiColumns}}{{/if}}{{/tables}}

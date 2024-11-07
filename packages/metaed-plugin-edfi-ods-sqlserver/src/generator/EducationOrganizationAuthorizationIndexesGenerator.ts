@@ -24,6 +24,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
         const generatedResult: string = template().educationOrganizationAuthorizationIndexesGenerator({
           tables,
           useLicenseHeader,
+          useAggregateId: versionSatisfies(targetTechnologyVersion, '>=7.3.0'),
         });
 
         results.push({
