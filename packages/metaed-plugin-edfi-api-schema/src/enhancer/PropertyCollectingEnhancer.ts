@@ -17,6 +17,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'associationSubclass',
     'associationExtension',
     'common',
+    'commonSubclass',
+    'commonExtension',
     'choice',
   ).forEach((entity) => {
     const collectedApiProperties: CollectedProperty[] = [];

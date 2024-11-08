@@ -142,6 +142,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'associationExtension',
     'descriptor',
     'common',
+    'commonSubclass',
+    'commonExtension',
     'choice',
     'schoolYearEnumeration',
   ).forEach((entity) => {
