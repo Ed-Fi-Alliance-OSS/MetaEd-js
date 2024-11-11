@@ -47,7 +47,7 @@ import { enhance as identityFullnameEnhancer } from '../../src/enhancer/Identity
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
-import { enhance as booleanNumericJsonPathsEnhancer } from '../../src/enhancer/BooleanNumericJsonPathsEnhancer';
+import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
@@ -72,7 +72,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   subclassIdentityFullnameEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   documentPathsMappingEnhancer(metaEd);
-  booleanNumericJsonPathsEnhancer(metaEd);
+  typeCoercionJsonPathsEnhancer(metaEd);
   enhance(metaEd);
 }
 

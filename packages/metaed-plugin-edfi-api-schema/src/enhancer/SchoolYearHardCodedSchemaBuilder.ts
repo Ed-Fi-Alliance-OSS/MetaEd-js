@@ -79,6 +79,7 @@ export function buildSchoolYearResourceSchema(
     identityJsonPaths: ['$.schoolYear'] as JsonPath[],
     booleanJsonPaths: ['$.currentSchoolYear'] as JsonPath[],
     numericJsonPaths: ['$.schoolYear'] as JsonPath[],
+    dateTimeJsonPaths: [] as JsonPath[],
     isSubclass: false,
     isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),

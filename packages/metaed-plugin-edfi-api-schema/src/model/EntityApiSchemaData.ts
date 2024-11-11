@@ -97,6 +97,11 @@ export type EntityApiSchemaData = {
   numericJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that are date-time for use in type coercion.
+   */
+  dateTimeJsonPaths: JsonPath[];
+
+  /**
    * A mapping of PropertyFullNames to DocumentPaths, which are JsonPaths in an API document for a specific MetaEd
    * property.
    */

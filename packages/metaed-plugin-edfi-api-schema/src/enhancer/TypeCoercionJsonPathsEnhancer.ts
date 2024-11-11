@@ -3,7 +3,7 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
 /**
- * Accumulates the booleanJsonPaths and numericJsonPaths for an entity for use in type coercion
+ * Accumulates the booleanJsonPaths, dateTimeJsonPaths and numericJsonPaths for an entity for use in type coercion
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(
@@ -17,6 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     // Using Set to remove duplicates
     const booleanResult: Set<JsonPath> = new Set();
+    const dateTimeResult: Set<JsonPath> = new Set();
     const numericResult: Set<JsonPath> = new Set();
     const numericTypes = [
       'currency',
@@ -41,6 +42,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
         if (jppp.sourceProperty.type === 'boolean') {
           booleanResult.add(jppp.jsonPath);
+        } else if (jppp.sourceProperty.type === 'datetime') {
+          dateTimeResult.add(jppp.jsonPath);
         } else if (numericTypes.includes(jppp.sourceProperty.type)) {
           numericResult.add(jppp.jsonPath);
         }
@@ -48,6 +51,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     });
 
     (entity.data.edfiApiSchema as EntityApiSchemaData).booleanJsonPaths = [...booleanResult].sort();
+    (entity.data.edfiApiSchema as EntityApiSchemaData).dateTimeJsonPaths = [...dateTimeResult].sort();
     (entity.data.edfiApiSchema as EntityApiSchemaData).numericJsonPaths = [...numericResult].sort();
   });
 
@@ -55,11 +59,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.booleanJsonPaths = [];
+    edfiApiSchemaData.dateTimeJsonPaths = [];
     edfiApiSchemaData.numericJsonPaths = [];
   });
 
   return {
-    enhancerName: 'BooleanNumericJsonPathsEnhancer',
+    enhancerName: 'TypeCoercionJsonPathsEnhancer',
     success: true,
   };
 }

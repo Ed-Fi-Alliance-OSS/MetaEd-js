@@ -20,7 +20,7 @@ import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer'
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
 import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhancer';
-import { enhance as booleanNumericJsonPathsEnhancer } from './BooleanNumericJsonPathsEnhancer';
+import { enhance as typeCoercionJsonPathsEnhancer } from './TypeCoercionJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
 
@@ -48,7 +48,7 @@ export function enhancerList(): Enhancer[] {
     documentPathsMappingEnhancer,
     queryFieldMappingEnhancer,
     identityJsonPathsEnhancer,
-    booleanNumericJsonPathsEnhancer,
+    typeCoercionJsonPathsEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

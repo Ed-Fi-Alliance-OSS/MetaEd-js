@@ -37,6 +37,11 @@ export type BaseResourceSchema = {
   numericJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that are numeric for use in type coercion.
+   */
+  dateTimeJsonPaths: JsonPath[];
+
+  /**
    * A collection of MetaEd property fullnames mapped to DocumentPaths objects,
    * which provide JsonPaths to the corresponding values in a resource document.
    */

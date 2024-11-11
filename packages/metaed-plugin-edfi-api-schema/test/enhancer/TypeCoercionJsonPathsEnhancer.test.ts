@@ -28,7 +28,7 @@ import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceName
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
-import { enhance as booleanNumericJsonPathsEnhancer } from '../../src/enhancer/BooleanNumericJsonPathsEnhancer';
+import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
@@ -52,7 +52,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
   documentPathsMappingEnhancer(metaEd);
-  booleanNumericJsonPathsEnhancer(metaEd);
+  typeCoercionJsonPathsEnhancer(metaEd);
   enhance(metaEd);
 }
 
@@ -84,6 +84,9 @@ describe('when building simple domain entity with all the simple non-collections
       .withSharedIntegerProperty('OptionalSharedIntegerProperty', null, 'doc15', false, false)
       .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc16', false, false)
       .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc17', true, false)
+      .withDatetimeProperty('OptionalDateTimeProperty', '', false, false)
+      .withDatetimeProperty('RequiredDateTimeProperty', '', true, false)
+      .withDatetimeIdentity('DateTimeIdentity', '')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -122,6 +125,19 @@ describe('when building simple domain entity with all the simple non-collections
         ]
       `);
   });
+
+  it('should be correct dateTimeJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const dateTimeJsonPaths = entity?.data.edfiApiSchema.dateTimeJsonPaths;
+    expect(dateTimeJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.dateTimeIdentity",
+        "$.optionalDateTimeProperty",
+        "$.requiredDateTimeProperty",
+        "$.requiredDatetimeProperty",
+      ]
+    `);
+  });
 });
 
 describe('when building domain entity with collections', () => {
@@ -141,6 +157,7 @@ describe('when building domain entity with collections', () => {
       .withStartDomainEntity('LearningStandard')
       .withDocumentation('doc')
       .withIntegerIdentity('LearningStandardId', 'doc')
+      .withDatetimeIdentity('SomeDateTime', 'doc')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -155,9 +172,16 @@ describe('when building domain entity with collections', () => {
   it('should be correct booleanJsonPaths and numericJsonPaths for AssessmentScoreRangeLearningStandard', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('AssessmentScoreRangeLearningStandard');
     const booleanJsonPaths = entity?.data.edfiApiSchema.booleanJsonPaths;
+    const dateTimeJsonPaths = entity?.data.edfiApiSchema.dateTimeJsonPaths;
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
 
     expect(booleanJsonPaths).toMatchInlineSnapshot(`Array []`);
+
+    expect(dateTimeJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.learningStandards[*].learningStandardReference.someDateTime",
+      ]
+    `);
 
     expect(numericJsonPaths).toMatchInlineSnapshot(`
         Array [
@@ -201,6 +225,9 @@ describe('when building domain entity extension with all the simple non-collecti
       .withSharedIntegerProperty('OptionalSharedIntegerProperty', null, 'doc', false, false)
       .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc', false, false)
       .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc', true, false)
+      .withDatetimeProperty('OptionalDateTimeProperty', '', false, false)
+      .withDatetimeProperty('RequiredDateTimeProperty', '', true, false)
+      .withDatetimeIdentity('DateTimeIdentity', '')
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
@@ -220,6 +247,19 @@ describe('when building domain entity extension with all the simple non-collecti
     expect(booleanJsonPaths).toMatchInlineSnapshot(`
       Array [
         "$._ext.optionalBooleanProperty",
+      ]
+    `);
+  });
+
+  it('should be correct dateTimeJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
+    const dateTimeJsonPaths = entity?.data.edfiApiSchema.dateTimeJsonPaths;
+    expect(dateTimeJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$._ext.dateTimeIdentity",
+        "$._ext.optionalDateTimeProperty",
+        "$._ext.requiredDateTimeProperty",
+        "$._ext.requiredDatetimeProperty",
       ]
     `);
   });

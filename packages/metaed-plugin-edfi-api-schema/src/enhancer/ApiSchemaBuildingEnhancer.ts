@@ -42,6 +42,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
+    dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
     isResourceExtension: false,
   };
 }
@@ -58,6 +59,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
+    dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
     isResourceExtension: true,
   };
 }

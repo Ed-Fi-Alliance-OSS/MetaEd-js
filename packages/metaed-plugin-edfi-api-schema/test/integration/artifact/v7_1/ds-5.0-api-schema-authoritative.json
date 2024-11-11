@@ -691,6 +691,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -772,6 +774,8 @@
         "academicHonorCategoryDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -855,6 +859,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -936,6 +942,8 @@
         "academicWeeks": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -1075,6 +1083,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -1157,6 +1167,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -1238,6 +1250,8 @@
         "accountabilityRatings": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationOrganization": {
@@ -1431,6 +1445,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -1512,6 +1528,8 @@
         "additionalCreditTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -1595,6 +1613,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -1676,6 +1696,8 @@
         "administrationEnvironmentDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -1759,6 +1781,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -1840,6 +1864,8 @@
         "ancestryEthnicOriginDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -1923,6 +1949,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -2004,6 +2032,8 @@
         "assessmentIdentificationSystemDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -2087,6 +2117,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -2168,6 +2200,8 @@
         "assessmentItemResultDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -2251,6 +2285,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.possibleResponses[*].correctResponse"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Assessment": {
@@ -2550,6 +2586,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -2632,6 +2670,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -2713,6 +2753,8 @@
         "assessmentScoreRangeLearningStandards": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Assessment": {
@@ -2991,6 +3033,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.adaptiveAssessment"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -3932,6 +3976,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -4013,6 +4059,8 @@
         "attemptStatusDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -4096,6 +4144,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -4177,6 +4227,8 @@
         "balanceSheetDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -4292,6 +4344,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -4374,6 +4428,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -4455,6 +4511,8 @@
         "bellSchedules": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AlternateDayName": {
@@ -4716,6 +4774,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -4797,6 +4857,8 @@
         "calendarDates": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Calendar": {
@@ -4949,6 +5011,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -5031,6 +5095,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -5112,6 +5178,8 @@
         "calendars": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "CalendarCode": {
@@ -5281,6 +5349,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -5362,6 +5432,8 @@
         "chartOfAccounts": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AccountIdentifier": {
@@ -5915,6 +5987,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -5996,6 +6070,8 @@
         "charterStatusDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -6079,6 +6155,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -6161,6 +6239,8 @@
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
             "$.officialAttendancePeriod"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ClassPeriodName": {
@@ -6298,6 +6378,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -6379,6 +6461,8 @@
         "cohortScopeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -6462,6 +6546,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -6544,6 +6630,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -6625,6 +6713,8 @@
         "cohorts": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -6848,6 +6938,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -7521,6 +7613,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "CommunityProvider": {
               "isDescriptor": false,
@@ -7760,6 +7854,8 @@
             "$.addresses[*].doNotPublishIndicator",
             "$.licenseExemptIndicator",
             "$.schoolIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -8552,6 +8648,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -8633,6 +8731,8 @@
         "competencyObjectives": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "CompetencyObjectiveId": {
@@ -8791,6 +8891,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -8877,6 +8979,8 @@
             "$.electronicMails[*].primaryEmailAddressIndicator",
             "$.telephones[*].doNotPublishIndicator",
             "$.telephones[*].textMessageCapabilityIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -9882,6 +9986,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -9963,6 +10069,8 @@
         "continuationOfServicesReasonDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -10046,6 +10154,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -10127,6 +10237,8 @@
         "countryDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -10210,6 +10322,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -10291,6 +10405,8 @@
         "courseDefinedByDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -10374,6 +10490,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -10455,6 +10573,8 @@
         "courseIdentificationSystemDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -10538,6 +10658,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -10619,6 +10741,8 @@
         "courseOfferings": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Course": {
@@ -10944,6 +11068,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -11025,6 +11151,8 @@
         "courseTranscripts": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -11941,6 +12069,8 @@
           "booleanJsonPaths": [
             "$.highSchoolCourseRequirement"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
               "isDescriptor": true,
@@ -12510,6 +12640,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -12592,6 +12724,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -12673,6 +12807,8 @@
         "credentials": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -12963,6 +13099,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13044,6 +13182,8 @@
         "creditTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -13127,6 +13267,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13209,6 +13351,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13290,6 +13434,8 @@
         "descriptorMappings": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "MappedNamespace": {
@@ -13428,6 +13574,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13509,6 +13657,8 @@
         "diplomaLevelDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -13592,6 +13742,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13673,6 +13825,8 @@
         "disabilityDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -13756,6 +13910,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13838,6 +13994,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -13919,6 +14077,8 @@
         "disciplineActionLengthDifferenceReasonDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -14003,6 +14163,8 @@
           "booleanJsonPaths": [
             "$.iepPlacementMeetingIndicator",
             "$.relatedToZeroTolerancePolicy"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ActualDisciplineActionLength": {
@@ -14402,6 +14564,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -14483,6 +14647,8 @@
         "disciplineIncidentParticipationCodeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -14566,6 +14732,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.reportedToLawEnforcement"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Behavior.BehaviorDescriptor": {
@@ -14919,6 +15087,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.additionalAuthorsIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ContentIdentifier": {
@@ -15452,6 +15622,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -15533,6 +15705,8 @@
         "educationOrganizationCategoryDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -15616,6 +15790,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -15697,6 +15873,8 @@
         "educationOrganizationInterventionPrescriptionAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -15845,6 +16023,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BeginDate": {
               "isReference": false,
@@ -15978,6 +16158,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -16670,6 +16852,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "EducationOrganization": {
               "isDescriptor": false,
@@ -16765,6 +16949,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -16847,6 +17033,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -17553,6 +17741,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -17634,6 +17824,8 @@
         "electronicMailTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -17717,6 +17909,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -17798,6 +17992,8 @@
         "eligibilityEvaluationTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -17881,6 +18077,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -17962,6 +18160,8 @@
         "enrollmentTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -18045,6 +18245,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -18126,6 +18328,8 @@
         "entryTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -18209,6 +18413,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -18290,6 +18496,8 @@
         "evaluationRubricDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EvaluationCriterionDescription": {
@@ -18537,6 +18745,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -18619,6 +18829,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -18700,6 +18912,8 @@
         "feederSchoolAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -18847,6 +19061,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -18928,6 +19144,8 @@
         "functionDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -19043,6 +19261,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Code": {
               "isReference": false,
@@ -19157,6 +19377,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -19238,6 +19460,8 @@
         "gradePointAverageTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -19321,6 +19545,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -19402,6 +19628,8 @@
         "gradebookEntries": {
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "DateAssigned": {
@@ -19846,6 +20074,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -19928,6 +20158,8 @@
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
             "$.currentGradeIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "CurrentGradeAsOfDate": {
@@ -20424,6 +20656,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -20505,6 +20739,8 @@
         "gradingPeriods": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -20717,6 +20953,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -20799,6 +21037,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.individualPlan"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "CreditsByCourse.Course": {
@@ -21428,6 +21668,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -21509,6 +21751,8 @@
         "homelessPrimaryNighttimeResidenceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -21592,6 +21836,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -21673,6 +21919,8 @@
         "iDEAPartDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -21756,6 +22004,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -21837,6 +22087,8 @@
         "incidentLocationDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -21920,6 +22172,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22001,6 +22255,8 @@
         "indicatorGroupDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -22084,6 +22340,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22165,6 +22423,8 @@
         "institutionTelephoneNumberTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -22248,6 +22508,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22329,6 +22591,8 @@
         "internetAccessDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -22412,6 +22676,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22493,6 +22759,8 @@
         "internetPerformanceInResidenceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -22576,6 +22844,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22658,6 +22928,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -22739,6 +23011,8 @@
         "interventionPrescriptions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AppropriateGradeLevelDescriptor": {
@@ -23109,6 +23383,8 @@
         "interventionStudies": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AppropriateGradeLevelDescriptor": {
@@ -23566,6 +23842,8 @@
         "interventions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AppropriateGradeLevelDescriptor": {
@@ -24102,6 +24380,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -24183,6 +24463,8 @@
         "languageInstructionProgramServiceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -24266,6 +24548,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -24348,6 +24632,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -24429,6 +24715,8 @@
         "learningStandardEquivalenceAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EffectiveDate": {
@@ -24600,6 +24888,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -24682,6 +24972,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -24763,6 +25055,8 @@
         "learningStandards": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -25275,6 +25569,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -25356,6 +25652,8 @@
         "licenseStatusDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -25439,6 +25737,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -25521,6 +25821,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -25602,6 +25904,8 @@
         "localAccounts": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AccountIdentifier": {
@@ -25820,6 +26124,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Amount": {
               "isReference": false,
@@ -25979,6 +26285,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Amount": {
               "isReference": false,
@@ -26137,6 +26445,8 @@
         "localContractedStaffs": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Amount": {
@@ -26334,6 +26644,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -27308,6 +27620,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -27389,6 +27703,8 @@
         "localEncumbrances": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Amount": {
@@ -27548,6 +27864,8 @@
         "localPayrolls": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Amount": {
@@ -27745,6 +28063,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -27826,6 +28146,8 @@
         "locations": {
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ClassroomIdentificationCode": {
@@ -27945,6 +28267,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -28026,6 +28350,8 @@
         "mediumOfInstructionDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -28109,6 +28435,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -28190,6 +28518,8 @@
         "migrantEducationProgramServiceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -28273,6 +28603,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -28354,6 +28686,8 @@
         "monitoredDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -28437,6 +28771,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -28518,6 +28854,8 @@
         "neglectedOrDelinquentProgramServiceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -28601,6 +28939,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -28682,6 +29022,8 @@
         "objectDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -28796,6 +29138,8 @@
         "objectiveAssessments": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -29316,6 +29660,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
               "isDescriptor": true,
@@ -29578,6 +29924,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -29659,6 +30007,8 @@
         "operationalUnitDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -29774,6 +30124,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -30498,6 +30850,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -30579,6 +30933,8 @@
         "participationDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -30662,6 +31018,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -30744,6 +31102,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "PersonId": {
               "isReference": false,
@@ -30814,6 +31174,8 @@
         "performanceBaseConversionDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -30897,6 +31259,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -30978,6 +31342,8 @@
         "personalInformationVerificationDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -31061,6 +31427,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -31142,6 +31510,8 @@
         "populationServedDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -31225,6 +31595,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -31306,6 +31678,8 @@
         "postSecondaryEvents": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EventDate": {
@@ -31446,6 +31820,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -31528,6 +31904,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -32263,6 +32641,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -32344,6 +32724,8 @@
         "primaryLearningDeviceAccessDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -32427,6 +32809,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -32508,6 +32892,8 @@
         "primaryLearningDeviceProviderDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -32591,6 +32977,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -32672,6 +33060,8 @@
         "programAssignmentDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -32755,6 +33145,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -32836,6 +33228,8 @@
         "programDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -32950,6 +33344,8 @@
         "programEvaluationElements": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ElementMaxNumericRating": {
@@ -33360,6 +33756,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "ObjectiveMaxNumericRating": {
               "isReference": false,
@@ -33645,6 +34043,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -33727,6 +34127,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -33808,6 +34210,8 @@
         "programEvaluations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EvaluationMaxNumericRating": {
@@ -34065,6 +34469,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34147,6 +34553,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34228,6 +34636,8 @@
         "programs": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationOrganization": {
@@ -34447,6 +34857,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34529,6 +34941,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34610,6 +35024,8 @@
         "projectDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -34725,6 +35141,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34806,6 +35224,8 @@
         "providerProfitabilityDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -34889,6 +35309,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -34970,6 +35392,8 @@
         "publicationStatusDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -35053,6 +35477,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -35134,6 +35560,8 @@
         "raceDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -35217,6 +35645,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -35298,6 +35728,8 @@
         "reasonExitedDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -35381,6 +35813,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -35462,6 +35896,8 @@
         "recognitionTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -35545,6 +35981,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -35626,6 +36064,8 @@
         "repeatIdentifierDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -35709,6 +36149,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.gradePointAverages[*].isCumulative"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationOrganization": {
@@ -36342,6 +36784,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -36423,6 +36867,8 @@
         "reportingTagDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -36506,6 +36952,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -36587,6 +37035,8 @@
         "responseIndicatorDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -36670,6 +37120,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -36752,6 +37204,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -36833,6 +37287,8 @@
         "restraintEvents": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationalEnvironmentDescriptor": {
@@ -37082,6 +37538,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -37163,6 +37621,8 @@
         "retestIndicatorDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -37246,6 +37706,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -37327,6 +37789,8 @@
         "schoolChoiceBasisDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -37410,6 +37874,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -37492,6 +37958,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -37573,6 +38041,8 @@
         "schoolTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -37657,6 +38127,8 @@
           "booleanJsonPaths": [
             "$.currentSchoolYear"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "CurrentSchoolYear": {
               "isReference": false,
@@ -37737,6 +38209,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -38657,6 +39131,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "CalendarDate": {
               "isDescriptor": false,
@@ -38944,6 +39420,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -39025,6 +39503,8 @@
         "sectionTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -39108,6 +39588,8 @@
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
             "$.officialAttendancePeriod"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AvailableCredits.CreditConversion": {
@@ -39727,6 +40209,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -39808,6 +40292,8 @@
         "separationReasonDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -39891,6 +40377,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -39972,6 +40460,8 @@
         "sessions": {
           "allowIdentityUpdates": true,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicWeek": {
@@ -40310,6 +40800,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -40391,6 +40883,8 @@
         "sourceDimensions": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Code": {
@@ -40506,6 +41000,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -40587,6 +41083,8 @@
         "specialEducationExitReasonDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -40670,6 +41168,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -40752,6 +41252,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -40833,6 +41335,8 @@
         "staffAbsenceEvents": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AbsenceEventCategoryDescriptor": {
@@ -40973,6 +41477,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -41055,6 +41561,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.studentRecordAccess"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -41228,6 +41736,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "DisciplineIncident": {
               "isDescriptor": false,
@@ -41377,6 +41887,8 @@
         "staffEducationOrganizationAssignmentAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -41697,6 +42209,8 @@
             "$.address.doNotPublishIndicator",
             "$.telephones[*].doNotPublishIndicator",
             "$.telephones[*].textMessageCapabilityIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -42215,6 +42729,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AnnualWage": {
               "isReference": false,
@@ -42539,6 +43055,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -42620,6 +43138,8 @@
         "staffLeaveEventCategoryDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -42703,6 +43223,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.substituteAssigned"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -42858,6 +43380,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.studentRecordAccess"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -43047,6 +43571,8 @@
         "staffSchoolAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
@@ -43326,6 +43852,8 @@
           "booleanJsonPaths": [
             "$.highlyQualifiedTeacher",
             "$.teacherStudentDataLinkExclusion"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -43615,6 +44143,8 @@
             "$.hispanicLatinoEthnicity",
             "$.telephones[*].doNotPublishIndicator",
             "$.telephones[*].textMessageCapabilityIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -45170,6 +45700,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -45253,6 +45785,8 @@
           "booleanJsonPaths": [
             "$.accountabilities[*].cteGraduationRateInclusion",
             "$.addresses[*].doNotPublishIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -46013,6 +46547,8 @@
           "booleanJsonPaths": [
             "$.diplomas[*].cteCompleter",
             "$.gradePointAverages[*].isCumulative"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AcademicHonor.AcademicHonorCategoryDescriptor": {
@@ -47124,6 +47660,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "EducationOrganization": {
               "isDescriptor": false,
@@ -47341,6 +47879,12 @@
         "studentAssessments": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
+            "$.administrationDate",
+            "$.administrationEndDate",
+            "$.studentObjectiveAssessments[*].administrationDate",
+            "$.studentObjectiveAssessments[*].administrationEndDate"
           ],
           "documentPathsMapping": {
             "AccommodationDescriptor": {
@@ -48334,6 +48878,8 @@
             "$.privateCTEProgram",
             "$.servedOutsideOfRegularSession"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BeginDate": {
               "isReference": false,
@@ -48745,6 +49291,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -48826,6 +49374,8 @@
         "studentCohortAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -49076,6 +49626,8 @@
         "studentCompetencyObjectives": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "CompetencyLevelDescriptor": {
@@ -49556,6 +50108,8 @@
             "$.livesWith",
             "$.primaryContactStatus"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Contact": {
               "isDescriptor": false,
@@ -49772,6 +50326,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BehaviorDescriptor": {
               "isDescriptor": true,
@@ -49958,6 +50514,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "DisciplineIncident": {
               "isDescriptor": false,
@@ -50113,6 +50671,8 @@
             "$.internetAccessInResidence",
             "$.telephones[*].doNotPublishIndicator",
             "$.telephones[*].textMessageCapabilityIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
@@ -51422,6 +51982,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BeginDate": {
               "isReference": false,
@@ -51578,6 +52140,8 @@
         "studentGradebookEntries": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AssignmentLateStatusDescriptor": {
@@ -51859,6 +52423,8 @@
             "$.homelessProgramServices[*].primaryIndicator",
             "$.homelessUnaccompaniedYouth",
             "$.servedOutsideOfRegularSession"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AwaitingFosterCare": {
@@ -52260,6 +52826,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -52341,6 +52909,8 @@
         "studentInterventionAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Cohort": {
@@ -52619,6 +53189,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
@@ -52849,6 +53421,8 @@
             "$.englishLearnerParticipation",
             "$.languageInstructionProgramServices[*].primaryIndicator",
             "$.servedOutsideOfRegularSession"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -53326,6 +53900,8 @@
             "$.migrantEducationProgramServices[*].primaryIndicator",
             "$.priorityForServices",
             "$.servedOutsideOfRegularSession"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -53828,6 +54404,8 @@
             "$.neglectedOrDelinquentProgramServices[*].primaryIndicator",
             "$.servedOutsideOfRegularSession"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BeginDate": {
               "isReference": false,
@@ -54234,6 +54812,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -54317,6 +54897,8 @@
           "booleanJsonPaths": [
             "$.servedOutsideOfRegularSession",
             "$.services[*].primaryIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -54670,6 +55252,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
@@ -54943,6 +55527,8 @@
         "studentProgramEvaluations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationOrganization": {
@@ -55628,6 +56214,8 @@
             "$.schoolChoice",
             "$.schoolChoiceTransfer",
             "$.termCompletionIndicator"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "AlternativeGraduationPlan": {
@@ -56333,6 +56921,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "ArrivalTime": {
               "isReference": false,
@@ -56648,6 +57238,8 @@
             "$.directCertification",
             "$.schoolFoodServiceProgramServices[*].primaryIndicator",
             "$.servedOutsideOfRegularSession"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -57018,6 +57610,8 @@
             "$.homeroomIndicator",
             "$.teacherStudentDataLinkExclusion"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "AttemptStatusDescriptor": {
               "isDescriptor": true,
@@ -57364,6 +57958,8 @@
         "studentSectionAttendanceEvents": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ArrivalTime": {
@@ -57749,6 +58345,8 @@
             "$.serviceProviders[*].primaryProvider",
             "$.specialEducationProgramServices[*].primaryIndicator",
             "$.specialEducationProgramServices[*].providers[*].primaryProvider"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BeginDate": {
@@ -58502,6 +59100,8 @@
             "$.evaluationCompleteIndicator",
             "$.ideaIndicator"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "ConsentToEvaluationDate": {
               "isReference": false,
@@ -58943,6 +59543,8 @@
             "$.servedOutsideOfRegularSession",
             "$.titleIPartAProgramServices[*].primaryIndicator"
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "BeginDate": {
               "isReference": false,
@@ -59314,6 +59916,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
             "$.multipleBirthStatus"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "BirthData.BirthCity": {
@@ -60006,6 +60610,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -60087,6 +60693,8 @@
         "supporterMilitaryConnectionDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -60170,6 +60778,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -60251,6 +60861,8 @@
         "surveyCourseAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Course": {
@@ -60395,6 +61007,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -60476,6 +61090,8 @@
         "surveyProgramAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Program": {
@@ -60638,6 +61254,8 @@
           "booleanJsonPaths": [
             "$.noResponse",
             "$.surveyQuestionMatrixElementResponses[*].noResponse"
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Comment": {
@@ -60977,6 +61595,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Matrix.MatrixElement": {
               "isReference": false,
@@ -61285,6 +61905,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "EducationOrganization": {
               "isDescriptor": false,
@@ -61427,6 +62049,8 @@
         "surveyResponseStaffTargetAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Staff": {
@@ -61572,6 +62196,8 @@
         "surveyResponses": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "ElectronicMailAddress": {
@@ -61886,6 +62512,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Section": {
               "isDescriptor": false,
@@ -62089,6 +62717,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "EducationOrganization": {
               "isDescriptor": false,
@@ -62261,6 +62891,8 @@
         "surveySectionResponseStaffTargetAssociations": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "Staff": {
@@ -62436,6 +63068,8 @@
         "surveySectionResponses": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "SectionRating": {
@@ -62634,6 +63268,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
             "Survey": {
               "isDescriptor": false,
@@ -62741,6 +63377,8 @@
         "surveys": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
             "EducationOrganization": {
@@ -63004,6 +63642,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63085,6 +63725,8 @@
         "teachingCredentialDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -63168,6 +63810,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63249,6 +63893,8 @@
         "telephoneNumberTypeDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -63332,6 +63978,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63413,6 +64061,8 @@
         "titleIPartAParticipantDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -63496,6 +64146,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63577,6 +64229,8 @@
         "titleIPartASchoolDesignationDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },
@@ -63660,6 +64314,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63742,6 +64398,8 @@
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
           ],
+          "dateTimeJsonPaths": [
+          ],
           "documentPathsMapping": {
           },
           "equalityConstraints": [
@@ -63823,6 +64481,8 @@
         "weaponDescriptors": {
           "allowIdentityUpdates": false,
           "booleanJsonPaths": [
+          ],
+          "dateTimeJsonPaths": [
           ],
           "documentPathsMapping": {
           },

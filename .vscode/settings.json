@@ -29,6 +29,7 @@
     "changeversion",
     "copyfiles",
     "createdbjs",
+    "datetime",
     "diminisher",
     "dismissable",
     "Dlanguage",
