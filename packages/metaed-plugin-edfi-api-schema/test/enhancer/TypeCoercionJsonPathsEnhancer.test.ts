@@ -85,7 +85,6 @@ describe('when building simple domain entity with all the simple non-collections
       .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc16', false, false)
       .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc17', true, false)
       .withDatetimeProperty('OptionalDateTimeProperty', '', false, false)
-      .withDatetimeProperty('RequiredDateTimeProperty', '', true, false)
       .withDatetimeIdentity('DateTimeIdentity', '')
       .withEndDomainEntity()
       .withEndNamespace()
@@ -133,7 +132,6 @@ describe('when building simple domain entity with all the simple non-collections
       Array [
         "$.dateTimeIdentity",
         "$.optionalDateTimeProperty",
-        "$.requiredDateTimeProperty",
         "$.requiredDatetimeProperty",
       ]
     `);
@@ -226,7 +224,6 @@ describe('when building domain entity extension with all the simple non-collecti
       .withSharedShortProperty('OptionalSharedShortProperty', null, 'doc', false, false)
       .withSharedStringProperty('RequiredSharedStringProperty', null, 'doc', true, false)
       .withDatetimeProperty('OptionalDateTimeProperty', '', false, false)
-      .withDatetimeProperty('RequiredDateTimeProperty', '', true, false)
       .withDatetimeIdentity('DateTimeIdentity', '')
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -258,7 +255,6 @@ describe('when building domain entity extension with all the simple non-collecti
       Array [
         "$._ext.dateTimeIdentity",
         "$._ext.optionalDateTimeProperty",
-        "$._ext.requiredDateTimeProperty",
         "$._ext.requiredDatetimeProperty",
       ]
     `);
