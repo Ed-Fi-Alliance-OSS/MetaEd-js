@@ -138,7 +138,7 @@ function RunMetaEd {
 
 function CopyMetaEdFiles {
     # Copy the MetaEd Files into the ApiSchema Folder
-    Copy-Item -Path ./MetaEdOutput/ApiSchema/ApiSchema/ApiSchema.json -Destination $solutionRoot
+    Copy-Item -Path ./MetaEdOutput/EdFi/ApiSchema/ApiSchema.json -Destination $solutionRoot
 
     Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
 }
