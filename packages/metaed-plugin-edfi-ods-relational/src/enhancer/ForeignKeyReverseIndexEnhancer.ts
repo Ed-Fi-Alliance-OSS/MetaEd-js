@@ -63,8 +63,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           .filter((fk: ForeignKey) => !fk.sourceReference.isSubtableRelationship)
           .forEach((fk: ForeignKey) => {
             fk.withReverseForeignKeyIndex = true;
-
-            // TODO: Put indicator on each column too
           });
       });
     });
