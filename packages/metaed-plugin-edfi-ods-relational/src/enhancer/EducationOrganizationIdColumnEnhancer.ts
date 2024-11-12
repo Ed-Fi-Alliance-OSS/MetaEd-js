@@ -34,6 +34,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
                   p.metaEdName === 'EducationOrganizationId' || p.baseKeyName === 'EducationOrganizationId',
               )
             ) {
+              column.isEducationOrganizationIdColumn = true;
               table.educationOrganizationIdColumns.push(column);
               table.hasEducationOrganizationIdColumns = true;
             }

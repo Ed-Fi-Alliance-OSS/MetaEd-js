@@ -80,6 +80,9 @@ export interface Column {
   /** is the column derived from an usi column */
   isFromUsiProperty: boolean;
 
+  /** is the column an educationOrganizationId or one of its subclass renames (e.g. schoolId) */
+  isEducationOrganizationIdColumn: boolean;
+
   data: any;
 }
 
@@ -116,6 +119,7 @@ export function newColumn(): Column {
     deprecationReasons: [],
     isFromUniqueIdProperty: false,
     isFromUsiProperty: false,
+    isEducationOrganizationIdColumn: false,
     data: {},
   };
 }

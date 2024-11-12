@@ -21,6 +21,18 @@ function fkColumnsDifferFromPkColumns(fk: ForeignKey, primaryKeyColumnIds: strin
 }
 
 /**
+ * Checks whether a foreign key is solely that of an USI column.
+ */
+function fkIsOfUsiColumn(fk: ForeignKey): boolean {
+  const fkColumnIds: string[] = getParentTableColumnIds(fk);
+  if (fkColumnIds.length !== 1) return false;
+
+  if (fk.parentTable.usiColumns.length !== 1) return false;
+
+  return fk.parentTable.usiColumns[0].columnId === fkColumnIds[0];
+}
+
+/**
  * Checks whether a foreign key reverse index is unnecessary because one will already be
  * created for its table's education organization id column elsewhere.
  */
@@ -47,9 +59,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         table.foreignKeys
           .filter((fk: ForeignKey) => fkColumnsDifferFromPkColumns(fk, primaryKeyColumnIds))
           .filter((fk: ForeignKey) => !fkIndexCoveredByEducationOrganizationIdColumn(fk))
+          .filter((fk: ForeignKey) => !fkIsOfUsiColumn(fk))
           .filter((fk: ForeignKey) => !fk.sourceReference.isSubtableRelationship)
           .forEach((fk: ForeignKey) => {
             fk.withReverseForeignKeyIndex = true;
+
+            // TODO: Put indicator on each column too
           });
       });
     });
