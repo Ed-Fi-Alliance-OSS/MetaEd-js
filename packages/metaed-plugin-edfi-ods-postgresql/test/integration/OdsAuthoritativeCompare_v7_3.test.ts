@@ -27,7 +27,7 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating ods and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating ods and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const outputDirectory = `${artifactPath}`;
   let coreResult: GeneratedOutput;
@@ -43,13 +43,13 @@ describe('when generating ods and comparing it to data standard 5.1 authoritativ
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -60,7 +60,7 @@ describe('when generating ods and comparing it to data standard 5.1 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -130,7 +130,7 @@ describe('when generating ods and comparing it to data standard 5.1 authoritativ
   });
 });
 
-describe('when generating EducationOrganizationAuthorizationIndexes and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating EducationOrganizationAuthorizationIndexes and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const outputDirectory = `${artifactPath}`;
   let coreResult: GeneratedOutput;
@@ -143,13 +143,13 @@ describe('when generating EducationOrganizationAuthorizationIndexes and comparin
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -160,7 +160,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes and comparin
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -202,7 +202,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes and comparin
   });
 });
 
-describe('when generating AggregateIdColumns and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating AggregateIdColumns and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const outputDirectory = `${artifactPath}`;
   let coreResult: GeneratedOutput;
@@ -215,13 +215,13 @@ describe('when generating AggregateIdColumns and comparing it to data standard 5
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -232,7 +232,7 @@ describe('when generating AggregateIdColumns and comparing it to data standard 5
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -271,7 +271,7 @@ describe('when generating AggregateIdColumns and comparing it to data standard 5
   });
 });
 
-describe('when generating ods with simple extensions and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating ods with simple extensions and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-extension-project');
 
@@ -288,13 +288,13 @@ describe('when generating ods with simple extensions and comparing it to data st
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
         {
@@ -312,7 +312,7 @@ describe('when generating ods with simple extensions and comparing it to data st
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -364,7 +364,7 @@ describe('when generating ods with simple extensions and comparing it to data st
   });
 });
 
-describe('when generating ods with student transcript extensions and comparing it to data standard 5.1 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating ods with student transcript extensions and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
 
@@ -381,13 +381,13 @@ describe('when generating ods with student transcript extensions and comparing i
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
         {
@@ -405,7 +405,7 @@ describe('when generating ods with student transcript extensions and comparing i
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

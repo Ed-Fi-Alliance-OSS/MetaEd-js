@@ -32,13 +32,13 @@ describe('when generating change event scripts and comparing to ODS/API 7.3 auth
       ...newMetaEdConfiguration(),
       defaultPluginTechVersion: '7.3.0',
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -49,7 +49,7 @@ describe('when generating change event scripts and comparing to ODS/API 7.3 auth
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -94,13 +94,13 @@ describe('when generating change event scripts and comparing to ODS/API 7.3 auth
       ...newMetaEdConfiguration(),
       defaultPluginTechVersion: '7.3.0',
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.1.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -112,7 +112,7 @@ describe('when generating change event scripts and comparing to ODS/API 7.3 auth
       metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '5.1.0';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

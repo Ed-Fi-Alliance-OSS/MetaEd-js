@@ -5,6 +5,8 @@ CREATE INDEX IF NOT EXISTS IX_AccountabilityRating_EducationOrganizationId ON ed
 
 CREATE INDEX IF NOT EXISTS IX_Assessment_EducationOrganizationId ON edfi.Assessment(EducationOrganizationId) INCLUDE (AggregateId);
 
+CREATE INDEX IF NOT EXISTS IX_AssessmentAdministrationParticipation_AssigningEducationOrganizationId ON edfi.AssessmentAdministrationParticipation(AssigningEducationOrganizationId) INCLUDE (AggregateId);
+
 CREATE INDEX IF NOT EXISTS IX_BellSchedule_SchoolId ON edfi.BellSchedule(SchoolId) INCLUDE (AggregateId);
 
 CREATE INDEX IF NOT EXISTS IX_Calendar_SchoolId ON edfi.Calendar(SchoolId) INCLUDE (AggregateId);
@@ -165,6 +167,20 @@ CREATE INDEX IF NOT EXISTS IX_StudentAssessmentEducationOrganizationAssociation_
 
 CREATE INDEX IF NOT EXISTS IX_StudentAssessmentEducationOrganizationAssociation_StudentUSI ON edfi.StudentAssessmentEducationOrganizationAssociation(StudentUSI) INCLUDE (AggregateId);
 
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistration_AssigningEducationOrganizationId ON edfi.StudentAssessmentRegistration(AssigningEducationOrganizationId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistration_EducationOrganizationId ON edfi.StudentAssessmentRegistration(EducationOrganizationId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistration_SchoolId ON edfi.StudentAssessmentRegistration(SchoolId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistration_StudentUSI ON edfi.StudentAssessmentRegistration(StudentUSI) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistrationBatteryPartAssociation_AssigningEducationOrganizationId ON edfi.StudentAssessmentRegistrationBatteryPartAssociation(AssigningEducationOrganizationId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistrationBatteryPartAssociation_EducationOrganizationId ON edfi.StudentAssessmentRegistrationBatteryPartAssociation(EducationOrganizationId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentAssessmentRegistrationBatteryPartAssociation_StudentUSI ON edfi.StudentAssessmentRegistrationBatteryPartAssociation(StudentUSI) INCLUDE (AggregateId);
+
 CREATE INDEX IF NOT EXISTS IX_StudentCohortAssociation_EducationOrganizationId ON edfi.StudentCohortAssociation(EducationOrganizationId) INCLUDE (AggregateId);
 
 CREATE INDEX IF NOT EXISTS IX_StudentCohortAssociation_StudentUSI ON edfi.StudentCohortAssociation(StudentUSI) INCLUDE (AggregateId);
@@ -182,6 +198,10 @@ CREATE INDEX IF NOT EXISTS IX_StudentDisciplineIncidentBehaviorAssociation_Stude
 CREATE INDEX IF NOT EXISTS IX_StudentDisciplineIncidentNonOffenderAssociation_SchoolId ON edfi.StudentDisciplineIncidentNonOffenderAssociation(SchoolId) INCLUDE (AggregateId);
 
 CREATE INDEX IF NOT EXISTS IX_StudentDisciplineIncidentNonOffenderAssociation_StudentUSI ON edfi.StudentDisciplineIncidentNonOffenderAssociation(StudentUSI) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentEducationOrganizationAssessmentAccommodation_EducationOrganizationId ON edfi.StudentEducationOrganizationAssessmentAccommodation(EducationOrganizationId) INCLUDE (AggregateId);
+
+CREATE INDEX IF NOT EXISTS IX_StudentEducationOrganizationAssessmentAccommodation_StudentUSI ON edfi.StudentEducationOrganizationAssessmentAccommodation(StudentUSI) INCLUDE (AggregateId);
 
 CREATE INDEX IF NOT EXISTS IX_StudentEducationOrganizationAssociation_EducationOrganizationId ON edfi.StudentEducationOrganizationAssociation(EducationOrganizationId) INCLUDE (AggregateId);
 

@@ -14,6 +14,21 @@ ALTER TABLE edfi.Assessment ADD COLUMN AggregateId int NOT NULL DEFAULT nextval(
 CREATE INDEX ix_Assessment_aggid ON edfi.Assessment (AggregateId);
 
 
+CREATE SEQUENCE edfi.AssessmentAdministration_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.AssessmentAdministration ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.AssessmentAdministration_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_AssessmentAdministration_aggid ON edfi.AssessmentAdministration (AggregateId);
+
+
+CREATE SEQUENCE edfi.AssessmentAdministrationParticipation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.AssessmentAdministrationParticipation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.AssessmentAdministrationParticipation_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_AssessmentAdministrationParticipation_aggid ON edfi.AssessmentAdministrationParticipation (AggregateId);
+
+
+CREATE SEQUENCE edfi.AssessmentBatteryPart_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.AssessmentBatteryPart ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.AssessmentBatteryPart_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_AssessmentBatteryPart_aggid ON edfi.AssessmentBatteryPart (AggregateId);
+
+
 CREATE SEQUENCE edfi.AssessmentItem_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
 ALTER TABLE edfi.AssessmentItem ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.AssessmentItem_aggseq'), ADD COLUMN AggregateData bytea;
 CREATE INDEX ix_AssessmentItem_aggid ON edfi.AssessmentItem (AggregateId);
@@ -419,6 +434,16 @@ ALTER TABLE edfi.StudentAssessmentEducationOrganizationAssociation ADD COLUMN Ag
 CREATE INDEX ix_StudentAssessmentEducationOrganizationAssociation_aggid ON edfi.StudentAssessmentEducationOrganizationAssociation (AggregateId);
 
 
+CREATE SEQUENCE edfi.StudentAssessmentRegistration_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.StudentAssessmentRegistration ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.StudentAssessmentRegistration_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_StudentAssessmentRegistration_aggid ON edfi.StudentAssessmentRegistration (AggregateId);
+
+
+CREATE SEQUENCE edfi.StudentAssessmentRegistrationBatteryPartAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.StudentAssessmentRegistrationBatteryPartAssociation_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_StudentAssessmentRegistrationBatteryPartAssociation_aggid ON edfi.StudentAssessmentRegistrationBatteryPartAssociation (AggregateId);
+
+
 CREATE SEQUENCE edfi.StudentCohortAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
 ALTER TABLE edfi.StudentCohortAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.StudentCohortAssociation_aggseq'), ADD COLUMN AggregateData bytea;
 CREATE INDEX ix_StudentCohortAssociation_aggid ON edfi.StudentCohortAssociation (AggregateId);
@@ -442,6 +467,11 @@ CREATE INDEX ix_StudentDisciplineIncidentBehaviorAssociation_aggid ON edfi.Stude
 CREATE SEQUENCE edfi.StudentDisciplineIncidentNonOffenderAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
 ALTER TABLE edfi.StudentDisciplineIncidentNonOffenderAssociation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.StudentDisciplineIncidentNonOffenderAssociation_aggseq'), ADD COLUMN AggregateData bytea;
 CREATE INDEX ix_StudentDisciplineIncidentNonOffenderAssociation_aggid ON edfi.StudentDisciplineIncidentNonOffenderAssociation (AggregateId);
+
+
+CREATE SEQUENCE edfi.StudentEducationOrganizationAssessmentAccommodation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;
+ALTER TABLE edfi.StudentEducationOrganizationAssessmentAccommodation ADD COLUMN AggregateId int NOT NULL DEFAULT nextval('edfi.StudentEducationOrganizationAssessmentAccommodation_aggseq'), ADD COLUMN AggregateData bytea;
+CREATE INDEX ix_StudentEducationOrganizationAssessmentAccommodation_aggid ON edfi.StudentEducationOrganizationAssessmentAccommodation (AggregateId);
 
 
 CREATE SEQUENCE edfi.StudentEducationOrganizationAssociation_aggseq START WITH -2147483648 INCREMENT BY 1 MINVALUE -2147483648;

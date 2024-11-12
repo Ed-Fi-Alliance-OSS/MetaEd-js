@@ -134,6 +134,81 @@ CREATE TABLE edfi.AssessmentAcademicSubject (
 );
 ALTER TABLE edfi.AssessmentAcademicSubject ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
+-- Table edfi.AssessmentAdministration --
+CREATE TABLE edfi.AssessmentAdministration (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT AssessmentAdministration_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, Namespace)
+);
+ALTER TABLE edfi.AssessmentAdministration ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.AssessmentAdministration ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.AssessmentAdministration ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentAdministrationAssessmentBatteryPart --
+CREATE TABLE edfi.AssessmentAdministrationAssessmentBatteryPart (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    AssessmentBatteryPartName VARCHAR(65) NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT AssessmentAdministrationAssessmentBatteryPart_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, Namespace, AssessmentBatteryPartName)
+);
+ALTER TABLE edfi.AssessmentAdministrationAssessmentBatteryPart ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentAdministrationParticipation --
+CREATE TABLE edfi.AssessmentAdministrationParticipation (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    ParticipatingEducationOrganizationId BIGINT NOT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT AssessmentAdministrationParticipation_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, Namespace, ParticipatingEducationOrganizationId)
+);
+ALTER TABLE edfi.AssessmentAdministrationParticipation ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.AssessmentAdministrationParticipation ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.AssessmentAdministrationParticipation ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentAdministrationParticipationAdministrationPoint_c63833 --
+CREATE TABLE edfi.AssessmentAdministrationParticipationAdministrationPoint_c63833 (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    ParticipatingEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    ElectronicMailAddress VARCHAR(128) NOT NULL,
+    FirstName VARCHAR(75) NOT NULL,
+    LastSurname VARCHAR(75) NOT NULL,
+    LoginId VARCHAR(60) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT AssessmentAdministrationParticipationAdministratio_c63833_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, Namespace, ParticipatingEducationOrganizationId, EducationOrganizationId, ElectronicMailAddress)
+);
+ALTER TABLE edfi.AssessmentAdministrationParticipationAdministrationPoint_c63833 ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentAdministrationPeriod --
+CREATE TABLE edfi.AssessmentAdministrationPeriod (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    BeginDate DATE NOT NULL,
+    EndDate DATE NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT AssessmentAdministrationPeriod_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, Namespace, BeginDate)
+);
+ALTER TABLE edfi.AssessmentAdministrationPeriod ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
 -- Table edfi.AssessmentAssessedGradeLevel --
 CREATE TABLE edfi.AssessmentAssessedGradeLevel (
     AssessmentIdentifier VARCHAR(60) NOT NULL,
@@ -143,6 +218,32 @@ CREATE TABLE edfi.AssessmentAssessedGradeLevel (
     CONSTRAINT AssessmentAssessedGradeLevel_PK PRIMARY KEY (AssessmentIdentifier, Namespace, GradeLevelDescriptorId)
 );
 ALTER TABLE edfi.AssessmentAssessedGradeLevel ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentBatteryPart --
+CREATE TABLE edfi.AssessmentBatteryPart (
+    AssessmentBatteryPartName VARCHAR(65) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT AssessmentBatteryPart_PK PRIMARY KEY (AssessmentBatteryPartName, AssessmentIdentifier, Namespace)
+);
+ALTER TABLE edfi.AssessmentBatteryPart ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.AssessmentBatteryPart ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.AssessmentBatteryPart ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.AssessmentBatteryPartObjectiveAssessment --
+CREATE TABLE edfi.AssessmentBatteryPartObjectiveAssessment (
+    AssessmentBatteryPartName VARCHAR(65) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    IdentificationCode VARCHAR(60) NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT AssessmentBatteryPartObjectiveAssessment_PK PRIMARY KEY (AssessmentBatteryPartName, AssessmentIdentifier, Namespace, IdentificationCode)
+);
+ALTER TABLE edfi.AssessmentBatteryPartObjectiveAssessment ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
 -- Table edfi.AssessmentCategoryDescriptor --
 CREATE TABLE edfi.AssessmentCategoryDescriptor (
@@ -1628,6 +1729,18 @@ ALTER TABLE edfi.DisciplineIncidentWeapon ALTER COLUMN CreateDate SET DEFAULT cu
 CREATE TABLE edfi.DisplacedStudentStatusDescriptor (
     DisplacedStudentStatusDescriptorId INT NOT NULL,
     CONSTRAINT DisplacedStudentStatusDescriptor_PK PRIMARY KEY (DisplacedStudentStatusDescriptorId)
+);
+
+-- Table edfi.DualCreditInstitutionDescriptor --
+CREATE TABLE edfi.DualCreditInstitutionDescriptor (
+    DualCreditInstitutionDescriptorId INT NOT NULL,
+    CONSTRAINT DualCreditInstitutionDescriptor_PK PRIMARY KEY (DualCreditInstitutionDescriptorId)
+);
+
+-- Table edfi.DualCreditTypeDescriptor --
+CREATE TABLE edfi.DualCreditTypeDescriptor (
+    DualCreditTypeDescriptorId INT NOT NULL,
+    CONSTRAINT DualCreditTypeDescriptor_PK PRIMARY KEY (DualCreditTypeDescriptorId)
 );
 
 -- Table edfi.EducationalEnvironmentDescriptor --
@@ -3984,6 +4097,7 @@ CREATE TABLE edfi.RestraintEvent (
     StudentUSI INT NOT NULL,
     EducationalEnvironmentDescriptorId INT NULL,
     EventDate DATE NOT NULL,
+    IncidentIdentifier VARCHAR(36) NULL,
     Discriminator VARCHAR(128) NULL,
     CreateDate TIMESTAMP NOT NULL,
     LastModifiedDate TIMESTAMP NOT NULL,
@@ -4142,6 +4256,12 @@ CREATE TABLE edfi.Section (
 ALTER TABLE edfi.Section ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 ALTER TABLE edfi.Section ALTER COLUMN Id SET DEFAULT gen_random_uuid();
 ALTER TABLE edfi.Section ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.Section504DisabilityDescriptor --
+CREATE TABLE edfi.Section504DisabilityDescriptor (
+    Section504DisabilityDescriptorId INT NOT NULL,
+    CONSTRAINT Section504DisabilityDescriptor_PK PRIMARY KEY (Section504DisabilityDescriptorId)
+);
 
 -- Table edfi.SectionAttendanceTakenEvent --
 CREATE TABLE edfi.SectionAttendanceTakenEvent (
@@ -5235,6 +5355,93 @@ CREATE TABLE edfi.StudentAssessmentPeriod (
 );
 ALTER TABLE edfi.StudentAssessmentPeriod ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
+-- Table edfi.StudentAssessmentRegistration --
+CREATE TABLE edfi.StudentAssessmentRegistration (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    StudentUSI INT NOT NULL,
+    AssessmentGradeLevelDescriptorId INT NULL,
+    EntryDate DATE NOT NULL,
+    PlatformTypeDescriptorId INT NULL,
+    ReportingEducationOrganizationId BIGINT NULL,
+    SchoolId BIGINT NOT NULL,
+    TestingEducationOrganizationId BIGINT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT StudentAssessmentRegistration_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, EducationOrganizationId, Namespace, StudentUSI)
+);
+ALTER TABLE edfi.StudentAssessmentRegistration ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.StudentAssessmentRegistration ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.StudentAssessmentRegistration ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentAssessmentRegistrationAssessmentAccommodation --
+CREATE TABLE edfi.StudentAssessmentRegistrationAssessmentAccommodation (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    StudentUSI INT NOT NULL,
+    AccommodationDescriptorId INT NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT StudentAssessmentRegistrationAssessmentAccommodation_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, EducationOrganizationId, Namespace, StudentUSI, AccommodationDescriptorId)
+);
+ALTER TABLE edfi.StudentAssessmentRegistrationAssessmentAccommodation ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentAssessmentRegistrationAssessmentCustomization --
+CREATE TABLE edfi.StudentAssessmentRegistrationAssessmentCustomization (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    StudentUSI INT NOT NULL,
+    CustomizationKey VARCHAR(60) NOT NULL,
+    CustomizationValue VARCHAR(1024) NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT StudentAssessmentRegistrationAssessmentCustomization_PK PRIMARY KEY (AdministrationIdentifier, AssessmentIdentifier, AssigningEducationOrganizationId, EducationOrganizationId, Namespace, StudentUSI, CustomizationKey)
+);
+ALTER TABLE edfi.StudentAssessmentRegistrationAssessmentCustomization ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentAssessmentRegistrationBatteryPartAssociation --
+CREATE TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociation (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentBatteryPartName VARCHAR(65) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    StudentUSI INT NOT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT StudentAssessmentRegistrationBatteryPartAssociation_PK PRIMARY KEY (AdministrationIdentifier, AssessmentBatteryPartName, AssessmentIdentifier, AssigningEducationOrganizationId, EducationOrganizationId, Namespace, StudentUSI)
+);
+ALTER TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociation ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociation ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociation ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentAssessmentRegistrationBatteryPartAssociationAccom_c87694 --
+CREATE TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociationAccom_c87694 (
+    AdministrationIdentifier VARCHAR(255) NOT NULL,
+    AssessmentBatteryPartName VARCHAR(65) NOT NULL,
+    AssessmentIdentifier VARCHAR(60) NOT NULL,
+    AssigningEducationOrganizationId BIGINT NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    Namespace VARCHAR(255) NOT NULL,
+    StudentUSI INT NOT NULL,
+    AccommodationDescriptorId INT NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT StudentAssessmentRegistrationBatteryPartAssociatio_c87694_PK PRIMARY KEY (AdministrationIdentifier, AssessmentBatteryPartName, AssessmentIdentifier, AssigningEducationOrganizationId, EducationOrganizationId, Namespace, StudentUSI, AccommodationDescriptorId)
+);
+ALTER TABLE edfi.StudentAssessmentRegistrationBatteryPartAssociationAccom_c87694 ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
 -- Table edfi.StudentAssessmentScoreResult --
 CREATE TABLE edfi.StudentAssessmentScoreResult (
     AssessmentIdentifier VARCHAR(60) NOT NULL,
@@ -5503,6 +5710,30 @@ CREATE TABLE edfi.StudentDisciplineIncidentNonOffenderAssociationDisciplin_4c979
     CONSTRAINT StudentDisciplineIncidentNonOffenderAssociationDis_4c979a_PK PRIMARY KEY (IncidentIdentifier, SchoolId, StudentUSI, DisciplineIncidentParticipationCodeDescriptorId)
 );
 ALTER TABLE edfi.StudentDisciplineIncidentNonOffenderAssociationDisciplin_4c979a ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentEducationOrganizationAssessmentAccommodation --
+CREATE TABLE edfi.StudentEducationOrganizationAssessmentAccommodation (
+    EducationOrganizationId BIGINT NOT NULL,
+    StudentUSI INT NOT NULL,
+    Discriminator VARCHAR(128) NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    LastModifiedDate TIMESTAMP NOT NULL,
+    Id UUID NOT NULL,
+    CONSTRAINT StudentEducationOrganizationAssessmentAccommodation_PK PRIMARY KEY (EducationOrganizationId, StudentUSI)
+);
+ALTER TABLE edfi.StudentEducationOrganizationAssessmentAccommodation ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+ALTER TABLE edfi.StudentEducationOrganizationAssessmentAccommodation ALTER COLUMN Id SET DEFAULT gen_random_uuid();
+ALTER TABLE edfi.StudentEducationOrganizationAssessmentAccommodation ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentEducationOrganizationAssessmentAccommodationGener_d1d10a --
+CREATE TABLE edfi.StudentEducationOrganizationAssessmentAccommodationGener_d1d10a (
+    EducationOrganizationId BIGINT NOT NULL,
+    StudentUSI INT NOT NULL,
+    AccommodationDescriptorId INT NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT StudentEducationOrganizationAssessmentAccommodatio_d1d10a_PK PRIMARY KEY (EducationOrganizationId, StudentUSI, AccommodationDescriptorId)
+);
+ALTER TABLE edfi.StudentEducationOrganizationAssessmentAccommodationGener_d1d10a ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
 -- Table edfi.StudentEducationOrganizationAssociation --
 CREATE TABLE edfi.StudentEducationOrganizationAssociation (
@@ -6117,12 +6348,6 @@ CREATE TABLE edfi.StudentOtherName (
 );
 ALTER TABLE edfi.StudentOtherName ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
--- Table edfi.StudentParticipationCodeDescriptor --
-CREATE TABLE edfi.StudentParticipationCodeDescriptor (
-    StudentParticipationCodeDescriptorId INT NOT NULL,
-    CONSTRAINT StudentParticipationCodeDescriptor_PK PRIMARY KEY (StudentParticipationCodeDescriptorId)
-);
-
 -- Table edfi.StudentPersonalIdentificationDocument --
 CREATE TABLE edfi.StudentPersonalIdentificationDocument (
     StudentUSI INT NOT NULL,
@@ -6382,6 +6607,22 @@ CREATE TABLE edfi.StudentSchoolFoodServiceProgramAssociationSchoolFoodServ_85a0e
 );
 ALTER TABLE edfi.StudentSchoolFoodServiceProgramAssociationSchoolFoodServ_85a0eb ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
+-- Table edfi.StudentSection504ProgramAssociation --
+CREATE TABLE edfi.StudentSection504ProgramAssociation (
+    BeginDate DATE NOT NULL,
+    EducationOrganizationId BIGINT NOT NULL,
+    ProgramEducationOrganizationId BIGINT NOT NULL,
+    ProgramName VARCHAR(60) NOT NULL,
+    ProgramTypeDescriptorId INT NOT NULL,
+    StudentUSI INT NOT NULL,
+    AccommodationPlan BOOLEAN NULL,
+    Section504DisabilityDescriptorId INT NULL,
+    Section504Eligibility BOOLEAN NOT NULL,
+    Section504EligibilityDecisionDate DATE NULL,
+    Section504MeetingDate DATE NULL,
+    CONSTRAINT StudentSection504ProgramAssociation_PK PRIMARY KEY (BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI)
+);
+
 -- Table edfi.StudentSectionAssociation --
 CREATE TABLE edfi.StudentSectionAssociation (
     BeginDate DATE NOT NULL,
@@ -6392,6 +6633,11 @@ CREATE TABLE edfi.StudentSectionAssociation (
     SessionName VARCHAR(60) NOT NULL,
     StudentUSI INT NOT NULL,
     AttemptStatusDescriptorId INT NULL,
+    DualCreditEducationOrganizationId BIGINT NULL,
+    DualCreditIndicator BOOLEAN NULL,
+    DualCreditInstitutionDescriptorId INT NULL,
+    DualCreditTypeDescriptorId INT NULL,
+    DualHighSchoolCreditIndicator BOOLEAN NULL,
     EndDate DATE NULL,
     HomeroomIndicator BOOLEAN NULL,
     RepeatIdentifierDescriptorId INT NULL,
@@ -6480,7 +6726,9 @@ CREATE TABLE edfi.StudentSpecialEducationProgramAssociation (
     LastEvaluationDate DATE NULL,
     MedicallyFragile BOOLEAN NULL,
     MultiplyDisabled BOOLEAN NULL,
+    ReductionInHoursPerWeekComparedToPeers DECIMAL(5, 2) NULL,
     SchoolHoursPerWeek DECIMAL(5, 2) NULL,
+    ShortenedSchoolDayIndicator BOOLEAN NULL,
     SpecialEducationExitDate DATE NULL,
     SpecialEducationExitExplained VARCHAR(1024) NULL,
     SpecialEducationExitReasonDescriptorId INT NULL,
@@ -6573,6 +6821,7 @@ ALTER TABLE edfi.StudentSpecialEducationProgramAssociationSpecialEducatio_bcba5c
 CREATE TABLE edfi.StudentSpecialEducationProgramEligibilityAssociation (
     ConsentToEvaluationReceivedDate DATE NOT NULL,
     EducationOrganizationId BIGINT NOT NULL,
+    ProgramEducationOrganizationId BIGINT NOT NULL,
     ProgramName VARCHAR(60) NOT NULL,
     ProgramTypeDescriptorId INT NOT NULL,
     StudentUSI INT NOT NULL,
@@ -6595,7 +6844,7 @@ CREATE TABLE edfi.StudentSpecialEducationProgramEligibilityAssociation (
     CreateDate TIMESTAMP NOT NULL,
     LastModifiedDate TIMESTAMP NOT NULL,
     Id UUID NOT NULL,
-    CONSTRAINT StudentSpecialEducationProgramEligibilityAssociation_PK PRIMARY KEY (ConsentToEvaluationReceivedDate, EducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI)
+    CONSTRAINT StudentSpecialEducationProgramEligibilityAssociation_PK PRIMARY KEY (ConsentToEvaluationReceivedDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI)
 );
 ALTER TABLE edfi.StudentSpecialEducationProgramEligibilityAssociation ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 ALTER TABLE edfi.StudentSpecialEducationProgramEligibilityAssociation ALTER COLUMN Id SET DEFAULT gen_random_uuid();
