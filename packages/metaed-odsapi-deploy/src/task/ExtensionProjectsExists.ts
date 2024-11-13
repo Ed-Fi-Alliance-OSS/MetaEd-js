@@ -14,6 +14,10 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
     success: true,
   };
 
+  if (projectsNames.length === 0 && metaEdConfiguration.allianceMode) {
+    return deployResult;
+  }
+
   if (projectsNames.length === 0) {
     deployResult = {
       success: false,
