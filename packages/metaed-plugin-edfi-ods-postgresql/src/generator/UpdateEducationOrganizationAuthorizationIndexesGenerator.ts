@@ -21,7 +21,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       const tables: Table[] = orderByProp('tableId')([...tableEntities(metaEd, namespace).values()]);
 
       if (tables.length > 0) {
-        const generatedResult: string = template().createEducationOrganizationAuthorizationIndexesGenerator({
+        const generatedResult: string = template().updateEducationOrganizationAuthorizationIndexesGenerator({
           tables,
           useLicenseHeader,
           useAggregateId: versionSatisfies(targetTechnologyVersion, '>=7.3.0'),
