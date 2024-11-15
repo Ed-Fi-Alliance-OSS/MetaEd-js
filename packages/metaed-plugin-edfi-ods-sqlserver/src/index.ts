@@ -2,7 +2,8 @@ import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as odsGenerator } from './generator/OdsGenerator';
 import { generate as schemaGenerator } from './generator/SchemaGenerator';
 import { generate as idIndexesGenerator } from './generator/IdIndexesGenerator';
-import { generate as educationOrganizationAuthorizationIndexesGenerator } from './generator/EducationOrganizationAuthorizationIndexesGenerator';
+import { generate as createEducationOrganizationAuthorizationIndexesGenerator } from './generator/CreateEducationOrganizationAuthorizationIndexesGenerator';
+import { generate as updateEducationOrganizationAuthorizationIndexesGenerator } from './generator/UpdateEducationOrganizationAuthorizationIndexesGenerator';
 import { generate as aggregateIdColumnGenerator } from './generator/AggregateIdColumnGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
@@ -37,8 +38,9 @@ export function initialize(): MetaEdPlugin {
       schemaGenerator,
       odsGenerator,
       idIndexesGenerator,
-      educationOrganizationAuthorizationIndexesGenerator,
+      createEducationOrganizationAuthorizationIndexesGenerator,
       aggregateIdColumnGenerator,
+      updateEducationOrganizationAuthorizationIndexesGenerator,
     ],
     shortName: 'edfiOdsSqlServer',
   };

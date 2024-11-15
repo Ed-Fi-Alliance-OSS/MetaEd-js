@@ -14,24 +14,24 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   if (versionSatisfies(targetTechnologyVersion, '>=7.1.0')) {
-    const prefix: string = '1410';
+    const prefix: string = '1465';
     const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
     metaEd.namespace.forEach((namespace) => {
       const tables: Table[] = orderByProp('tableId')([...tableEntities(metaEd, namespace).values()]);
 
       if (tables.length > 0) {
-        const generatedResult: string = template().educationOrganizationAuthorizationIndexesGenerator({
+        const generatedResult: string = template().updateEducationOrganizationAuthorizationIndexesGenerator({
           tables,
           useLicenseHeader,
           useAggregateId: versionSatisfies(targetTechnologyVersion, '>=7.3.0'),
         });
 
         results.push({
-          name: 'ODS SQL Server EducationOrganization Authorization Indexes Generator',
+          name: 'ODS SQL Server Update EducationOrganization Authorization Indexes Generator',
           namespace: namespace.namespaceName,
           folderName: structurePath,
-          fileName: fileNameFor(prefix, namespace, 'CreateIndex-EdOrgIdsRelationship-AuthPerformance'),
+          fileName: fileNameFor(prefix, namespace, 'UpdateIndex-EdOrgIdsRelationship-AuthPerformance'),
           resultString: generatedResult,
           resultStream: null,
         });
@@ -39,7 +39,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     });
   }
   return {
-    generatorName: 'edfiOdsSqlServer.EducationOrganizationAuthorizationIndexesGenerator',
+    generatorName: 'edfiOdsSqlServer.UpdateEducationOrganizationAuthorizationIndexesGenerator',
     generatedOutput: results,
   };
 }

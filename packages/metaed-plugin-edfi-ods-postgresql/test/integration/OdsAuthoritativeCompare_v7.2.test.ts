@@ -117,7 +117,7 @@ describe('when generating ods and comparing it to data standard 5.0 authoritativ
     )[0].generatedOutput;
 
     [educationOrganizationAuthorizationIndexesResult] = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsPostgresql.EducationOrganizationAuthorizationIndexesGenerator',
+      (x) => x.generatorName === 'edfiOdsPostgresql.CreateEducationOrganizationAuthorizationIndexesGenerator',
     )[0].generatedOutput;
 
     const tableFileBaseName = path.basename(tablesResult.fileName, '.sql');

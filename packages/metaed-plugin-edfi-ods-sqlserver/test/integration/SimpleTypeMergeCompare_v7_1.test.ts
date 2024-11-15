@@ -261,7 +261,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes with simple 
     }
 
     const generatorResult: GeneratorResult = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsSqlServer.EducationOrganizationAuthorizationIndexesGenerator',
+      (x) => x.generatorName === 'edfiOdsSqlServer.CreateEducationOrganizationAuthorizationIndexesGenerator',
     )[0];
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 

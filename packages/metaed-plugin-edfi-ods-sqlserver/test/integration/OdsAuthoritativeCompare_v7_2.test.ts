@@ -179,7 +179,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes and comparin
     coreResult = R.head(
       R.head(
         state.generatorResults.filter(
-          (x) => x.generatorName === 'edfiOdsSqlServer.EducationOrganizationAuthorizationIndexesGenerator',
+          (x) => x.generatorName === 'edfiOdsSqlServer.CreateEducationOrganizationAuthorizationIndexesGenerator',
         ),
       ).generatedOutput,
     );

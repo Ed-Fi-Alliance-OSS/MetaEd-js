@@ -130,7 +130,7 @@ describe('when generating ods and comparing it to data standard 5.2 authoritativ
   });
 });
 
-describe('when generating EducationOrganizationAuthorizationIndexes and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
+describe('when generating CreateEducationOrganizationAuthorizationIndexes and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
   const outputDirectory = `${artifactPath}`;
   let coreResult: GeneratedOutput;
@@ -179,7 +179,79 @@ describe('when generating EducationOrganizationAuthorizationIndexes and comparin
     coreResult = R.head(
       R.head(
         state.generatorResults.filter(
-          (x) => x.generatorName === 'edfiOdsPostgresql.EducationOrganizationAuthorizationIndexesGenerator',
+          (x) => x.generatorName === 'edfiOdsPostgresql.CreateEducationOrganizationAuthorizationIndexesGenerator',
+        ),
+      ).generatedOutput,
+    );
+    coreFileBaseName = path.basename(coreResult.fileName, '.sql');
+    generatedCoreOds = `${outputDirectory}/${coreFileBaseName}.sql`;
+    authoritativeCoreOds = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+
+    expect(coreResult).toBeDefined();
+    await fs.writeFile(generatedCoreOds, coreResult.resultString);
+  });
+
+  it('should have core with no differences', async () => {
+    expect(coreResult).toBeDefined();
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOds} ${generatedCoreOds}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+describe('when generating UpdateEducationOrganizationAuthorizationIndexes and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const outputDirectory = `${artifactPath}`;
+  let coreResult: GeneratedOutput;
+  let coreFileBaseName: string;
+  let authoritativeCoreOds: string;
+  let generatedCoreOds: string;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '5.2.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '5.2.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    fileMapForValidationFailure(state);
+
+    coreResult = R.head(
+      R.head(
+        state.generatorResults.filter(
+          (x) => x.generatorName === 'edfiOdsPostgresql.UpdateEducationOrganizationAuthorizationIndexesGenerator',
         ),
       ).generatedOutput,
     );
