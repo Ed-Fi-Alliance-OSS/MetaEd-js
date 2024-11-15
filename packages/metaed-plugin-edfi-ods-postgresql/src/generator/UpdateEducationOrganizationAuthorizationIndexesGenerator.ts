@@ -13,7 +13,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
   const results: GeneratedOutput[] = [];
 
-  if (versionSatisfies(targetTechnologyVersion, '>=7.1.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '>=7.3.0')) {
     const prefix: string = '1465';
     const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
@@ -24,7 +24,6 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
         const generatedResult: string = template().updateEducationOrganizationAuthorizationIndexesGenerator({
           tables,
           useLicenseHeader,
-          useAggregateId: versionSatisfies(targetTechnologyVersion, '>=7.3.0'),
         });
 
         results.push({
