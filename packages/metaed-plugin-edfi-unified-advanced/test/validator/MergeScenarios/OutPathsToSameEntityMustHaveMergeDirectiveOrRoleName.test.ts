@@ -8,6 +8,8 @@ import {
   NamespaceBuilder,
   ValidationFailure,
   SharedStringBuilder,
+  Namespace,
+  NoNamespace,
 } from '@edfi/metaed-core';
 import {
   outReferencePathEnhancer,
@@ -772,5 +774,115 @@ describe('when domain entity has reference to entity with identity of shared str
         "tokenText": "DE2b",
       }
     `);
+  });
+});
+
+describe('when domain entity in extension namespace has two identity out paths to different entities in core namespace that share an identity element', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let failures: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntity('ExtensionEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityId', 'doc')
+      .withDomainEntityIdentity('EdFi.Session', 'doc')
+      .withDomainEntityIdentity('EdFi.ClassPeriod', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace: Namespace = metaEd.namespace.get('EdFi') ?? NoNamespace;
+    const extensionNamespace: Namespace = metaEd.namespace.get('Extension') ?? NoNamespace;
+    extensionNamespace.dependencies = [coreNamespace];
+
+    domainEntityReferenceEnhancer(metaEd);
+    outReferencePathEnhancer(metaEd);
+
+    failures = validate(metaEd);
+  });
+
+  it('should have two validation failures', (): void => {
+    expect(failures).toHaveLength(2);
+    expect(failures[0].validatorName).toBe('OutPathsToSameEntityMustHaveMergeDirectiveOrRoleName');
+    expect(failures[0].category).toBe('error');
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Ambiguous merge paths exist from ExtensionEntity.Session to School. Paths are [Session.School] [ClassPeriod.School].  Either add a merge directive, use 'role name', or change the model."`,
+    );
+    expect(failures[1].validatorName).toBe('OutPathsToSameEntityMustHaveMergeDirectiveOrRoleName');
+    expect(failures[1].category).toBe('error');
+    expect(failures[1].message).toMatchInlineSnapshot(
+      `"Ambiguous merge paths exist from ExtensionEntity.ClassPeriod to School. Paths are [Session.School] [ClassPeriod.School].  Either add a merge directive, use 'role name', or change the model."`,
+    );
+  });
+});
+
+describe('when domain entity in extension namespace has two non-identity out paths to different entities in core namespace that share an identity element', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let failures: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntity('ExtensionEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityId', 'doc')
+      .withDomainEntityProperty('EdFi.Session', 'doc', false, false)
+      .withDomainEntityProperty('EdFi.ClassPeriod', 'doc', false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace: Namespace = metaEd.namespace.get('EdFi') ?? NoNamespace;
+    const extensionNamespace: Namespace = metaEd.namespace.get('Extension') ?? NoNamespace;
+    extensionNamespace.dependencies = [coreNamespace];
+
+    domainEntityReferenceEnhancer(metaEd);
+    outReferencePathEnhancer(metaEd);
+
+    failures = validate(metaEd);
+  });
+
+  it('should have no validation failures', (): void => {
+    expect(failures).toHaveLength(0);
   });
 });

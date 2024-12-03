@@ -104,7 +104,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
     'domainEntityExtension',
     'domainEntitySubclass',
   ).forEach((entity) => {
-    // combine outReferenceEntitiesMap if this entity has a base
+    // combine outReferenceEntityEndpointsMaps if this entity has a base
     const outReferenceEntityEndpointsMap: Map<ModelBase, (ReferentialProperty | SimpleProperty)[][]> = new Map(
       (entity as TopLevelEntity).outReferenceEntityEndpointsMap,
     );
