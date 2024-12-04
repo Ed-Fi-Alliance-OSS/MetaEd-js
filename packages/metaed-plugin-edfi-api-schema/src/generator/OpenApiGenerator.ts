@@ -10,26 +10,14 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const swagger = {
-      openapi: '3.0.1',
-      info: {
-        title: 'Ed-Fi Alliance Data Management Service',
-        description: 'Ed-Fi Alliance Data Management Service',
-        version: '0',
-      },
-      servers: [
-        {
-          url: 'http://localhost:5198/',
-        },
-      ],
-    };
+    const openApiSpec = namespace.data.openApiSpecification;
 
     results.push({
       name: 'DMS OpenApi Specification',
       namespace: namespace.namespaceName,
       folderName: 'OpenApi',
       fileName: fileName(namespace.projectExtension),
-      resultString: stringify(swagger, { space: 2 }),
+      resultString: stringify(openApiSpec, { space: 2 }),
       resultStream: null,
     });
   });

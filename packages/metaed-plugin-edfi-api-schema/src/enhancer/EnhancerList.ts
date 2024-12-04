@@ -25,6 +25,7 @@ import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhance
 import { enhance as typeCoercionJsonPathsEnhancer } from './TypeCoercionJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
+import { enhance as openApiSpecificationEnhancer } from './OpenApiSpecificationEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -54,5 +55,6 @@ export function enhancerList(): Enhancer[] {
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
     apiSchemaBuildingEnhancer,
+    openApiSpecificationEnhancer,
   ];
 }
