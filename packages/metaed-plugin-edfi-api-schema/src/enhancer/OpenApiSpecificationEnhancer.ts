@@ -1,8 +1,9 @@
 import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { OpenAPIV3 } from 'openapi-types';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const swagger = {
-    openapi: '3.0.1',
+  const swaggerDocument: OpenAPIV3.Document = {
+    openapi: '3.0.0',
     info: {
       title: 'Ed-Fi Alliance Data Management Service',
       description: 'Ed-Fi Alliance Data Management Service',
@@ -13,10 +14,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         url: 'http://localhost:5198/',
       },
     ],
+    paths: {},
   };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.data.openApiSpecification = swagger;
+    namespace.data.openApiSpecification = swaggerDocument;
   });
 
   return {
