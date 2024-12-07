@@ -6,6 +6,1689 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/tpdm/accreditationstatusdescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-accreditationstatusdescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_accreditationstatusdescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the accreditationstatusdescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "accreditationstatusdescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "accreditationstatusdescriptors"
+        ]
+      }
+    },
+    "/tpdm/aidtypedescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-aidtypedescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_aidtypedescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the aidtypedescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "aidtypedescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "aidtypedescriptors"
+        ]
+      }
+    },
+    "/tpdm/candidateeducatorpreparationprogramassociations": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-candidateeducatorpreparationprogramassociations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_candidateeducatorpreparationprogramassociations"
+              }
+            }
+          },
+          "description": "The JSON representation of the candidateeducatorpreparationprogramassociations resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "candidateeducatorpreparationprogramassociations"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "candidateeducatorpreparationprogramassociations"
+        ]
+      }
+    },
+    "/tpdm/candidates": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-candidates",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_candidates"
+              }
+            }
+          },
+          "description": "The JSON representation of the candidates resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "candidates"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "candidates"
+        ]
+      }
+    },
+    "/tpdm/certificationroutedescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-certificationroutedescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_certificationroutedescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the certificationroutedescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "certificationroutedescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "certificationroutedescriptors"
+        ]
+      }
+    },
+    "/tpdm/coteachingstyleobserveddescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-coteachingstyleobserveddescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_coteachingstyleobserveddescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the coteachingstyleobserveddescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "coteachingstyleobserveddescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "coteachingstyleobserveddescriptors"
+        ]
+      }
+    },
+    "/tpdm/credentialstatusdescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-credentialstatusdescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_credentialstatusdescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the credentialstatusdescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "credentialstatusdescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "credentialstatusdescriptors"
+        ]
+      }
+    },
+    "/tpdm/educatorpreparationprograms": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-educatorpreparationprograms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_educatorpreparationprograms"
+              }
+            }
+          },
+          "description": "The JSON representation of the educatorpreparationprograms resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "educatorpreparationprograms"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "educatorpreparationprograms"
+        ]
+      }
+    },
+    "/tpdm/educatorroledescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-educatorroledescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_educatorroledescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the educatorroledescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "educatorroledescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "educatorroledescriptors"
+        ]
+      }
+    },
+    "/tpdm/englishlanguageexamdescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-englishlanguageexamdescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_englishlanguageexamdescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the englishlanguageexamdescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "englishlanguageexamdescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "englishlanguageexamdescriptors"
+        ]
+      }
+    },
+    "/tpdm/eppprogrampathwaydescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-eppprogrampathwaydescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_eppprogrampathwaydescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the eppprogrampathwaydescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "eppprogrampathwaydescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "eppprogrampathwaydescriptors"
+        ]
+      }
+    },
+    "/tpdm/evaluationelementratingleveldescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationelementratingleveldescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationelementratingleveldescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationelementratingleveldescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationelementratingleveldescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationelementratingleveldescriptors"
+        ]
+      }
+    },
+    "/tpdm/evaluationelementratings": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationelementratings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationelementratings"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationelementratings resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationelementratings"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationelementratings"
+        ]
+      }
+    },
+    "/tpdm/evaluationelements": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationelements",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationelements"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationelements resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationelements"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationelements"
+        ]
+      }
+    },
+    "/tpdm/evaluationobjectiveratings": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationobjectiveratings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationobjectiveratings"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationobjectiveratings resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationobjectiveratings"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationobjectiveratings"
+        ]
+      }
+    },
+    "/tpdm/evaluationobjectives": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationobjectives",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationobjectives"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationobjectives resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationobjectives"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationobjectives"
+        ]
+      }
+    },
+    "/tpdm/evaluationperioddescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationperioddescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationperioddescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationperioddescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationperioddescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationperioddescriptors"
+        ]
+      }
+    },
+    "/tpdm/evaluationratingleveldescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationratingleveldescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationratingleveldescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationratingleveldescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationratingleveldescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationratingleveldescriptors"
+        ]
+      }
+    },
+    "/tpdm/evaluationratings": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationratings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationratings"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationratings resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationratings"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationratings"
+        ]
+      }
+    },
+    "/tpdm/evaluationratingstatusdescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationratingstatusdescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationratingstatusdescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationratingstatusdescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationratingstatusdescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationratingstatusdescriptors"
+        ]
+      }
+    },
+    "/tpdm/evaluations": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluations"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluations resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluations"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluations"
+        ]
+      }
+    },
+    "/tpdm/evaluationtypedescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-evaluationtypedescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_evaluationtypedescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the evaluationtypedescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "evaluationtypedescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "evaluationtypedescriptors"
+        ]
+      }
+    },
+    "/tpdm/financialaids": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-financialaids",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_financialaids"
+              }
+            }
+          },
+          "description": "The JSON representation of the financialaids resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "financialaids"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "financialaids"
+        ]
+      }
+    },
+    "/tpdm/genderdescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-genderdescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_genderdescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the genderdescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "genderdescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "genderdescriptors"
+        ]
+      }
+    },
+    "/tpdm/objectiveratingleveldescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-objectiveratingleveldescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_objectiveratingleveldescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the objectiveratingleveldescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "objectiveratingleveldescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "objectiveratingleveldescriptors"
+        ]
+      }
+    },
+    "/tpdm/performanceevaluationratingleveldescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-performanceevaluationratingleveldescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_performanceevaluationratingleveldescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the performanceevaluationratingleveldescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "performanceevaluationratingleveldescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "performanceevaluationratingleveldescriptors"
+        ]
+      }
+    },
+    "/tpdm/performanceevaluationratings": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-performanceevaluationratings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_performanceevaluationratings"
+              }
+            }
+          },
+          "description": "The JSON representation of the performanceevaluationratings resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "performanceevaluationratings"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "performanceevaluationratings"
+        ]
+      }
+    },
+    "/tpdm/performanceevaluations": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-performanceevaluations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_performanceevaluations"
+              }
+            }
+          },
+          "description": "The JSON representation of the performanceevaluations resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "performanceevaluations"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "performanceevaluations"
+        ]
+      }
+    },
+    "/tpdm/performanceevaluationtypedescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-performanceevaluationtypedescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_performanceevaluationtypedescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the performanceevaluationtypedescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "performanceevaluationtypedescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "performanceevaluationtypedescriptors"
+        ]
+      }
+    },
+    "/tpdm/rubricdimensions": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-rubricdimensions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_rubricdimensions"
+              }
+            }
+          },
+          "description": "The JSON representation of the rubricdimensions resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "rubricdimensions"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "rubricdimensions"
+        ]
+      }
+    },
+    "/tpdm/rubricratingleveldescriptors": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-rubricratingleveldescriptors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_rubricratingleveldescriptors"
+              }
+            }
+          },
+          "description": "The JSON representation of the rubricratingleveldescriptors resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "rubricratingleveldescriptors"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "rubricratingleveldescriptors"
+        ]
+      }
+    },
+    "/tpdm/surveyresponsepersontargetassociations": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-surveyresponsepersontargetassociations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_surveyresponsepersontargetassociations"
+              }
+            }
+          },
+          "description": "The JSON representation of the surveyresponsepersontargetassociations resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "surveyresponsepersontargetassociations"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "surveyresponsepersontargetassociations"
+        ]
+      }
+    },
+    "/tpdm/surveysectionresponsepersontargetassociations": {
+      "post": {
+        "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+        "operationId": "post-surveysectionresponsepersontargetassociations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edFi_surveysectionresponsepersontargetassociations"
+              }
+            }
+          },
+          "description": "The JSON representation of the surveysectionresponsepersontargetassociations resource to be created or updated.",
+          "required": true,
+          "x-bodyName": "surveysectionresponsepersontargetassociations"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+        "tags": [
+          "surveysectionresponsepersontargetassociations"
+        ]
+      }
+    }
   },
   "servers": [
     {
