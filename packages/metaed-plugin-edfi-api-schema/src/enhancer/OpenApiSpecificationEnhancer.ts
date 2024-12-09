@@ -65,6 +65,65 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       ]),
     );
 
+    const components: OpenAPIV3.ComponentsObject = {
+      schemas: {},
+      responses: {
+        Created: {
+          description:
+            'The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.',
+        },
+        Updated: {
+          description: 'The resource was updated.  An updated ETag value is available in the ETag header of the response.',
+        },
+        Deleted: {
+          description: 'The resource was successfully deleted.',
+        },
+        NotModified: {
+          description:
+            "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+        },
+        BadRequest: {
+          description:
+            'Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.',
+          content: {
+            'application/json': {},
+          },
+        },
+        Unauthorized: {
+          description:
+            'Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.',
+        },
+        Forbidden: {
+          description:
+            'Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.',
+        },
+        NotFound: {
+          description: 'The resource could not be found.',
+        },
+        NotFoundUseSnapshot: {
+          description:
+            'The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.',
+        },
+        Conflict: {
+          description:
+            'Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.',
+          content: {
+            'application/json': {},
+          },
+        },
+        PreconditionFailed: {
+          description:
+            "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+        },
+        Error: {
+          description: 'An unhandled error occurred on the server. See the response body for details.',
+          content: {
+            'application/json': {},
+          },
+        },
+      },
+    };
+
     const swaggerDocument: OpenAPIV3.Document = {
       openapi: '3.0.0',
       info: {
@@ -78,6 +137,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         },
       ],
       paths,
+      components,
     };
     namespace.data.openApiSpecification = swaggerDocument;
   });

@@ -16,7 +16,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
-import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaEnhancerForInsert';
+import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
@@ -92,6 +92,56 @@ describe('when building open api specification', () => {
 
     expect(openApiSpec).toMatchInlineSnapshot(`
       Object {
+        "components": Object {
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
         "info": Object {
           "description": "Ed-Fi Alliance Data Management Service",
           "title": "Ed-Fi Alliance Data Management Service",
