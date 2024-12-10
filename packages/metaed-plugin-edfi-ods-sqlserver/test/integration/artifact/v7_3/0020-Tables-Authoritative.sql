@@ -8030,6 +8030,8 @@ CREATE TABLE [edfi].[StudentAssessmentRegistration] (
     [EntryDate] [DATE] NOT NULL,
     [PlatformTypeDescriptorId] [INT] NULL,
     [ReportingEducationOrganizationId] [BIGINT] NULL,
+    [ScheduledEducationOrganizationId] [BIGINT] NULL,
+    [ScheduledStudentUSI] [INT] NULL,
     [SchoolId] [BIGINT] NOT NULL,
     [TestingEducationOrganizationId] [BIGINT] NULL,
     [Discriminator] [NVARCHAR](128) NULL,
@@ -8547,6 +8549,26 @@ CREATE TABLE [edfi].[StudentDisciplineIncidentBehaviorAssociationDisciplineIncid
 ) ON [PRIMARY]
 GO
 ALTER TABLE [edfi].[StudentDisciplineIncidentBehaviorAssociationDisciplineIncidentParticipationCode] ADD CONSTRAINT [StudentDisciplineIncidentBehaviorAssociationDisciplineIncidentParticipationCode_DF_CreateDate] DEFAULT (getutcdate()) FOR [CreateDate]
+GO
+
+-- Table [edfi].[StudentDisciplineIncidentBehaviorAssociationWeapon] --
+CREATE TABLE [edfi].[StudentDisciplineIncidentBehaviorAssociationWeapon] (
+    [BehaviorDescriptorId] [INT] NOT NULL,
+    [IncidentIdentifier] [NVARCHAR](36) NOT NULL,
+    [SchoolId] [BIGINT] NOT NULL,
+    [StudentUSI] [INT] NOT NULL,
+    [WeaponDescriptorId] [INT] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    CONSTRAINT [StudentDisciplineIncidentBehaviorAssociationWeapon_PK] PRIMARY KEY CLUSTERED (
+        [BehaviorDescriptorId] ASC,
+        [IncidentIdentifier] ASC,
+        [SchoolId] ASC,
+        [StudentUSI] ASC,
+        [WeaponDescriptorId] ASC
+    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [edfi].[StudentDisciplineIncidentBehaviorAssociationWeapon] ADD CONSTRAINT [StudentDisciplineIncidentBehaviorAssociationWeapon_DF_CreateDate] DEFAULT (getutcdate()) FOR [CreateDate]
 GO
 
 -- Table [edfi].[StudentDisciplineIncidentNonOffenderAssociation] --

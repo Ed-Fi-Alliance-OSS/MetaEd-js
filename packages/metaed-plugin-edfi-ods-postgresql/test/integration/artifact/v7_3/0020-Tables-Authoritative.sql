@@ -5367,6 +5367,8 @@ CREATE TABLE edfi.StudentAssessmentRegistration (
     EntryDate DATE NOT NULL,
     PlatformTypeDescriptorId INT NULL,
     ReportingEducationOrganizationId BIGINT NULL,
+    ScheduledEducationOrganizationId BIGINT NULL,
+    ScheduledStudentUSI INT NULL,
     SchoolId BIGINT NOT NULL,
     TestingEducationOrganizationId BIGINT NULL,
     Discriminator VARCHAR(128) NULL,
@@ -5684,6 +5686,18 @@ CREATE TABLE edfi.StudentDisciplineIncidentBehaviorAssociationDisciplineIn_ae6a2
     CONSTRAINT StudentDisciplineIncidentBehaviorAssociationDiscip_ae6a21_PK PRIMARY KEY (BehaviorDescriptorId, IncidentIdentifier, SchoolId, StudentUSI, DisciplineIncidentParticipationCodeDescriptorId)
 );
 ALTER TABLE edfi.StudentDisciplineIncidentBehaviorAssociationDisciplineIn_ae6a21 ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
+
+-- Table edfi.StudentDisciplineIncidentBehaviorAssociationWeapon --
+CREATE TABLE edfi.StudentDisciplineIncidentBehaviorAssociationWeapon (
+    BehaviorDescriptorId INT NOT NULL,
+    IncidentIdentifier VARCHAR(36) NOT NULL,
+    SchoolId BIGINT NOT NULL,
+    StudentUSI INT NOT NULL,
+    WeaponDescriptorId INT NOT NULL,
+    CreateDate TIMESTAMP NOT NULL,
+    CONSTRAINT StudentDisciplineIncidentBehaviorAssociationWeapon_PK PRIMARY KEY (BehaviorDescriptorId, IncidentIdentifier, SchoolId, StudentUSI, WeaponDescriptorId)
+);
+ALTER TABLE edfi.StudentDisciplineIncidentBehaviorAssociationWeapon ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 
 -- Table edfi.StudentDisciplineIncidentNonOffenderAssociation --
 CREATE TABLE edfi.StudentDisciplineIncidentNonOffenderAssociation (
