@@ -34,7 +34,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
-import { enhance } from '../../src/enhancer/JsonSchemaEnhancerForInsert';
+import { enhance } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);

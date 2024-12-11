@@ -10,7 +10,9 @@ import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntity
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from './MergeCoveringFlattenedIdentityPropertyEnhancer';
-import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
+import { enhance as jsonSchemaForInsertEnhancer } from './JsonSchemaForInsertEnhancer';
+import { enhance as openApiReferenceComponentEnhancer } from './OpenApiReferenceComponentEnhancer';
+import { enhance as openApiRequestBodyComponentEnhancer } from './OpenApiRequestBodyComponentEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from './MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
@@ -37,7 +39,9 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     mergeCoveringFlattenedIdentityPropertyEnhancer,
-    jsonSchemaEnhancerForInsert,
+    jsonSchemaForInsertEnhancer,
+    openApiReferenceComponentEnhancer,
+    openApiRequestBodyComponentEnhancer,
     allJsonPathsMappingEnhancer,
     mergeJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,

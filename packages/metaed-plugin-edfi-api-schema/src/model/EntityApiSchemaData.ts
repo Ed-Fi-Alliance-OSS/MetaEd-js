@@ -15,16 +15,28 @@ import { EndpointName } from './api-schema/EndpointName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { JsonPath } from './api-schema/JsonPath';
 import { QueryFieldMapping } from './api-schema/QueryFieldMapping';
+import { NoOpenApiObject, OpenApiObject } from './OpenApi';
 
 export type EntityApiSchemaData = {
   /**
    * API shape metadata for this entity.
    */
   apiMapping: ApiEntityMapping;
+
   /**
    * The API document JSON schema that corresponds to this MetaEd entity.
    */
   jsonSchemaForInsert: SchemaRoot;
+
+  /**
+   * The Open API request body definition that corresponds to this MetaEd entity.
+   */
+  openApiRequestBodyComponent: OpenApiObject;
+
+  /**
+   * The Open API reference definition that corresponds to this MetaEd entity.
+   */
+  openApiReferenceComponent: OpenApiObject;
 
   /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
@@ -122,6 +134,8 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
   Object.assign(entity.data.edfiApiSchema, {
     apiMapping: NoApiEntityMapping,
     jsonSchemaForInsert: NoSchemaRoot,
+    openApiRequestBodyComponent: NoOpenApiObject,
+    openApiReferenceComponent: NoOpenApiObject,
     collectedApiProperties: [],
     allJsonPathsMapping: {},
     mergeJsonPathsMapping: {},
