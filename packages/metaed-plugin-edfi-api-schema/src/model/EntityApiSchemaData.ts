@@ -29,14 +29,24 @@ export type EntityApiSchemaData = {
   jsonSchemaForInsert: SchemaRoot;
 
   /**
-   * The Open API request body definition that corresponds to this MetaEd entity.
+   * The Open API request body component for this MetaEd entity.
    */
   openApiRequestBodyComponent: OpenApiObject;
 
   /**
-   * The Open API reference definition that corresponds to this MetaEd entity.
+   * The property name for the Open API request body component.
+   */
+  openApiRequestBodyComponentPropertyName: string;
+
+  /**
+   * The Open API reference component for this MetaEd entity.
    */
   openApiReferenceComponent: OpenApiObject;
+
+  /**
+   * The property name for the  Open API reference componenty.
+   */
+  openApiReferenceComponentPropertyName: string;
 
   /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
@@ -135,7 +145,9 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     apiMapping: NoApiEntityMapping,
     jsonSchemaForInsert: NoSchemaRoot,
     openApiRequestBodyComponent: NoOpenApiObject,
+    openApiRequestBodyComponentPropertyName: '',
     openApiReferenceComponent: NoOpenApiObject,
+    openApiReferenceComponentPropertyName: '',
     collectedApiProperties: [],
     allJsonPathsMapping: {},
     mergeJsonPathsMapping: {},
