@@ -519,7 +519,7 @@ describe('when building a domain entity referencing another referencing another 
             "items": Object {
               "properties": Object {
                 "classPeriodReference": Object {
-                  "$ref": "#/components/schemas/EdFi_ClassPeriod",
+                  "$ref": "#/components/schemas/EdFi_ClassPeriod_Reference",
                 },
               },
               "required": Array [
@@ -532,7 +532,7 @@ describe('when building a domain entity referencing another referencing another 
             "uniqueItems": false,
           },
           "courseOfferingReference": Object {
-            "$ref": "#/components/schemas/EdFi_CourseOffering",
+            "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
           },
           "sectionIdentifier": Object {
             "description": "doc",
@@ -563,7 +563,7 @@ describe('when building a domain entity referencing another referencing another 
             "type": "string",
           },
           "schoolReference": Object {
-            "$ref": "#/components/schemas/EdFi_School",
+            "$ref": "#/components/schemas/EdFi_School_Reference",
           },
         },
         "required": Array [
@@ -588,7 +588,7 @@ describe('when building a domain entity referencing another referencing another 
             "type": "string",
           },
           "schoolReference": Object {
-            "$ref": "#/components/schemas/EdFi_School",
+            "$ref": "#/components/schemas/EdFi_School_Reference",
           },
         },
         "required": Array [
@@ -679,7 +679,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "description": "doc",
         "properties": Object {
           "courseOfferingReference": Object {
-            "$ref": "#/components/schemas/EdFi_CourseOffering",
+            "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
           },
           "sectionIdentifier": Object {
             "description": "doc",
@@ -709,10 +709,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "type": "string",
           },
           "schoolReference": Object {
-            "$ref": "#/components/schemas/EdFi_School",
+            "$ref": "#/components/schemas/EdFi_School_Reference",
           },
           "sessionReference": Object {
-            "$ref": "#/components/schemas/EdFi_Session",
+            "$ref": "#/components/schemas/EdFi_Session_Reference",
           },
         },
         "required": Array [
@@ -733,7 +733,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "description": "doc",
         "properties": Object {
           "schoolReference": Object {
-            "$ref": "#/components/schemas/EdFi_School",
+            "$ref": "#/components/schemas/EdFi_School_Reference",
           },
           "schoolYearTypeReference": Object {
             "description": "A school year enumeration",
@@ -865,7 +865,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "items": Object {
               "properties": Object {
                 "derivativeSourceEducationContentReference": Object {
-                  "$ref": "#/components/schemas/EdFi_EducationContent",
+                  "$ref": "#/components/schemas/EdFi_EducationContent_Reference",
                 },
               },
               "required": Array [
@@ -1061,7 +1061,7 @@ describe('when building domain entity with Association/DomainEntity collection n
             "items": Object {
               "properties": Object {
                 "educationContentSuffixNameReference": Object {
-                  "$ref": "#/components/schemas/EdFi_EducationContentSuffixName",
+                  "$ref": "#/components/schemas/EdFi_EducationContentSuffixName_Reference",
                 },
               },
               "required": Array [
@@ -1845,7 +1845,7 @@ describe('when building domain entity with a common with a domain entity referen
           "contentStandard": Object {
             "properties": Object {
               "mandatingEducationOrganizationReference": Object {
-                "$ref": "#/components/schemas/EdFi_EducationOrganization",
+                "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
               },
               "title": Object {
                 "description": "doc",
@@ -1990,7 +1990,7 @@ describe('when building domain entity with reference to domain entity with schoo
         "description": "doc",
         "properties": Object {
           "calendarReference": Object {
-            "$ref": "#/components/schemas/EdFi_Calendar",
+            "$ref": "#/components/schemas/EdFi_Calendar_Reference",
           },
           "schoolId": Object {
             "description": "doc",
@@ -2355,7 +2355,7 @@ describe('when building a domain entity referencing another using a shortenTo di
             "type": "string",
           },
           "objectiveCompetencyObjectiveReference": Object {
-            "$ref": "#/components/schemas/EdFi_CompetencyObjective",
+            "$ref": "#/components/schemas/EdFi_CompetencyObjective_Reference",
           },
         },
         "required": Array [
@@ -2483,7 +2483,7 @@ describe('when domain entity extension references domain entity in different nam
         "description": "",
         "properties": Object {
           "referencedEntityNameReference": Object {
-            "$ref": "#/components/schemas/EdFi_ReferencedEntityName",
+            "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
           },
         },
         "type": "object",

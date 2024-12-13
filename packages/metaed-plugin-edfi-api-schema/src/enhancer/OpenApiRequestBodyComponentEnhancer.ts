@@ -73,7 +73,7 @@ const descriptorOpenApi: OpenApiObject = {
  */
 function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
   return {
-    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}`,
+    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
   };
 }
 
