@@ -1,72 +1,105 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
-import { OpenAPIV3 } from 'openapi-types';
-import { NamespaceEdfiApiSchema } from '../model/Namespace';
-import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
+import type { OpenAPIV3 } from 'openapi-types';
+import {
+  type MetaEdEnvironment,
+  type EnhancerResult,
+  type TopLevelEntity,
+  type Namespace,
+  getEntitiesOfTypeForNamespaces,
+} from '@edfi/metaed-core';
+import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
+import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import type { EndpointName } from '../model/api-schema/EndpointName';
+
+type Schemas = { [key: string]: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject };
+
+/**
+ * Returns the "post" section of "path" for the given entity
+ */
+function createPostFor(entity: TopLevelEntity, endpointName: EndpointName): any {
+  return {
+    description:
+      'The POST operation can be used to create or update resources. In database terms, this is often referred to as an "upsert" operation (insert + update). Clients should NOT include the resource "id" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.',
+    operationId: `post${entity.metaEdName}`,
+    requestBody: {
+      description: `The JSON representation of the ${entity.metaEdName} resource to be created or updated.`,
+      content: {
+        'application/json': {
+          schema: {
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+          },
+        },
+      },
+      required: true,
+      'x-bodyName': entity.metaEdName,
+    },
+    responses: {
+      200: {
+        $ref: '#/components/responses/Updated',
+      },
+      201: {
+        $ref: '#/components/responses/Created',
+      },
+      400: {
+        $ref: '#/components/responses/BadRequest',
+      },
+      401: {
+        $ref: '#/components/responses/Unauthorized',
+      },
+      403: {
+        $ref: '#/components/responses/Forbidden',
+      },
+      405: {
+        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+      },
+      409: {
+        $ref: '#/components/responses/Conflict',
+      },
+      412: {
+        $ref: '#/components/responses/PreconditionFailed',
+      },
+      500: {
+        $ref: '#/components/responses/Error',
+      },
+    },
+    summary: 'Creates or updates resources based on the natural key values of the supplied resource.',
+    tags: [endpointName],
+  };
+}
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
-    const projectNamespace: ProjectNamespace = namespace.projectName.toLowerCase() as ProjectNamespace;
+    const paths: OpenAPIV3.PathsObject = {};
+    const schemas: Schemas = {};
 
-    const paths: OpenAPIV3.PathsObject = Object.fromEntries(
-      Object.entries(apiSchema.projectSchemas[projectNamespace].caseInsensitiveEndpointNameMapping).map(([k]) => [
-        `/${projectNamespace}/${k}`,
-        {
-          post: {
-            description:
-              'The POST operation can be used to create or update resources. In database terms, this is often referred to as an "upsert" operation (insert + update). Clients should NOT include the resource "id" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.',
-            operationId: `post-${k}`,
-            requestBody: {
-              description: `The JSON representation of the ${k} resource to be created or updated.`,
-              content: {
-                'application/json': {
-                  schema: {
-                    $ref: `#/components/schemas/edFi_${k}`,
-                  },
-                },
-              },
-              required: true,
-              'x-bodyName': k,
-            },
-            responses: {
-              200: {
-                $ref: '#/components/responses/Updated',
-              },
-              201: {
-                $ref: '#/components/responses/Created',
-              },
-              400: {
-                $ref: '#/components/responses/BadRequest',
-              },
-              401: {
-                $ref: '#/components/responses/Unauthorized',
-              },
-              403: {
-                $ref: '#/components/responses/Forbidden',
-              },
-              405: {
-                description:
-                  'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
-              },
-              409: {
-                $ref: '#/components/responses/Conflict',
-              },
-              412: {
-                $ref: '#/components/responses/PreconditionFailed',
-              },
-              500: {
-                $ref: '#/components/responses/Error',
-              },
-            },
-            summary: 'Creates or updates resources based on the natural key values of the supplied resource.',
-            tags: [`${k}`],
-          },
-        },
-      ]),
-    );
+    getEntitiesOfTypeForNamespaces(
+      [namespace],
+      'domainEntity',
+      'association',
+      'domainEntitySubclass',
+      'associationSubclass',
+    ).forEach((entity: TopLevelEntity) => {
+      const projectNamespace: ProjectNamespace = entity.namespace.projectName.toLowerCase() as ProjectNamespace;
+      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+      // Add to Paths
+      paths[`/${projectNamespace}/${endpointName}`] = {
+        post: createPostFor(entity, endpointName),
+      };
+
+      const {
+        openApiReferenceComponent,
+        openApiReferenceComponentPropertyName,
+        openApiRequestBodyComponent,
+        openApiRequestBodyComponentPropertyName,
+      } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+      // Add to Schemas
+      schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+      schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
+    });
 
     const components: OpenAPIV3.ComponentsObject = {
-      schemas: {},
+      schemas,
       responses: {
         Created: {
           description:
@@ -139,9 +172,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       paths,
       components,
     };
-    namespace.data.openApiSpecification = swaggerDocument;
-  });
 
+    namespace.data.edfiApiSchema.openApiSpecification = swaggerDocument;
+  });
   return {
     enhancerName: 'OpenApiSpecificationEnhancer',
     success: true,

@@ -10,14 +10,14 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const openApiSpec = namespace.data.openApiSpecification;
+    const { openApiSpecification } = namespace.data.edfiApiSchema;
 
     results.push({
       name: 'DMS OpenApi Specification',
       namespace: namespace.namespaceName,
       folderName: 'OpenApi',
       fileName: fileName(namespace.projectExtension),
-      resultString: stringify(openApiSpec, { space: 2 }),
+      resultString: stringify(openApiSpecification, { space: 2 }),
       resultStream: null,
     });
   });

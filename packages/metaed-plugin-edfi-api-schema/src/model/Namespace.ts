@@ -1,8 +1,10 @@
+import { OpenAPIV3 } from 'openapi-types';
 import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { ApiSchema, newApiSchema } from './api-schema/ApiSchema';
 
 export interface NamespaceEdfiApiSchema {
   apiSchema: ApiSchema;
+  openApiSpecification: OpenAPIV3.Document;
 }
 
 const enhancerName = 'NamespaceSetupEnhancer';
@@ -12,6 +14,7 @@ export function addNamespaceEdfiApiSchema(namespace: Namespace) {
 
   Object.assign(namespace.data.edfiApiSchema, {
     apiSchema: newApiSchema(),
+    openApiSpecification: {},
   });
 }
 

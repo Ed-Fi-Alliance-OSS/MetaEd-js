@@ -16,16 +16,10 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
-import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
-import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
-import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
-import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
-import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
-import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
-import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
-import { enhance as apiSchemaBuildingEnhancer } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
+import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
+import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
+import { enhance as openApiReferenceComponentEnhancer } from '../../src/enhancer/OpenApiReferenceComponentEnhancer';
 import { enhance } from '../../src/enhancer/OpenApiSpecificationEnhancer';
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
@@ -39,17 +33,10 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   subclassPropertyCollectingEnhancer(metaEd);
   apiEntityMappingEnhancer(metaEd);
   subclassApiEntityMappingEnhancer(metaEd);
-  jsonSchemaEnhancerForInsert(metaEd);
-  allJsonPathsMappingEnhancer(metaEd);
-  mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
-  identityFullnameEnhancer(metaEd);
-  subclassIdentityFullnameEnhancer(metaEd);
-  identityJsonPathsEnhancer(metaEd);
-  documentPathsMappingEnhancer(metaEd);
-  typeCoercionJsonPathsEnhancer(metaEd);
-  apiSchemaBuildingEnhancer(metaEd);
-  enhance(metaEd);
+  jsonSchemaEnhancerForInsert(metaEd);
+  openApiRequestBodyComponentEnhancer(metaEd);
+  openApiReferenceComponentEnhancer(metaEd);
 }
 
 describe('when building open api specification', () => {
@@ -83,14 +70,15 @@ describe('when building open api specification', () => {
 
     domainEntityReferenceEnhancer(metaEd);
     runApiSchemaEnhancers(metaEd);
+    enhance(metaEd);
 
     namespace = metaEd.namespace.get(namespaceName);
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const openApiSpec = namespace.data.openApiSpecification;
+    const { openApiSpecification } = namespace.data.edfiApiSchema;
 
-    expect(openApiSpec).toMatchInlineSnapshot(`
+    expect(openApiSpecification).toMatchInlineSnapshot(`
       Object {
         "components": Object {
           "responses": Object {
@@ -140,7 +128,104 @@ describe('when building open api specification', () => {
               "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
             },
           },
-          "schemas": Object {},
+          "schemas": Object {
+            "EdFi_DomainEntityName": Object {
+              "description": "doc",
+              "properties": Object {
+                "optionalBooleanProperty": Object {
+                  "description": "doc1",
+                  "type": "boolean",
+                },
+                "optionalDecimalProperty": Object {
+                  "description": "doc3",
+                  "type": "number",
+                },
+                "optionalPercentProperty": Object {
+                  "description": "doc5",
+                  "type": "number",
+                },
+                "optionalShortProperty": Object {
+                  "description": "doc9",
+                  "type": "integer",
+                },
+                "optionalYear": Object {
+                  "description": "doc13",
+                  "type": "integer",
+                },
+                "requiredCurrencyProperty": Object {
+                  "description": "doc2",
+                  "type": "number",
+                },
+                "requiredDateProperty": Object {
+                  "description": "doc6",
+                  "format": "date",
+                  "type": "string",
+                },
+                "requiredDatetimeProperty": Object {
+                  "description": "doc7",
+                  "format": "date-time",
+                  "type": "string",
+                },
+                "requiredDurationProperty": Object {
+                  "description": "doc4",
+                  "type": "number",
+                },
+                "requiredIntegerProperty": Object {
+                  "description": "doc8",
+                  "maximum": 10,
+                  "minimum": 5,
+                  "type": "integer",
+                },
+                "requiredTimeProperty": Object {
+                  "description": "doc11",
+                  "format": "time",
+                  "type": "string",
+                },
+                "schoolYearTypeReference": Object {
+                  "description": "A school year enumeration",
+                  "properties": Object {
+                    "schoolYear": Object {
+                      "description": "A school year between 1900 and 2100",
+                      "maximum": 2100,
+                      "minimum": 1900,
+                      "type": "integer",
+                    },
+                  },
+                  "type": "object",
+                },
+                "stringIdentity": Object {
+                  "description": "doc10",
+                  "maxLength": 30,
+                  "minLength": 20,
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "requiredCurrencyProperty",
+                "requiredDurationProperty",
+                "requiredDateProperty",
+                "requiredDatetimeProperty",
+                "requiredIntegerProperty",
+                "stringIdentity",
+                "requiredTimeProperty",
+              ],
+              "type": "object",
+            },
+            "EdFi_DomainEntityName_Reference": Object {
+              "properties": Object {
+                "stringIdentity": Object {
+                  "description": "doc10",
+                  "maxLength": 30,
+                  "minLength": 20,
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "stringIdentity",
+              ],
+              "type": "object",
+            },
+          },
         },
         "info": Object {
           "description": "Ed-Fi Alliance Data Management Service",
@@ -149,21 +234,21 @@ describe('when building open api specification', () => {
         },
         "openapi": "3.0.0",
         "paths": Object {
-          "/edfi/domainentitynames": Object {
+          "/edfi/domainEntityNames": Object {
             "post": Object {
               "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-              "operationId": "post-domainentitynames",
+              "operationId": "postDomainEntityName",
               "requestBody": Object {
                 "content": Object {
                   "application/json": Object {
                     "schema": Object {
-                      "$ref": "#/components/schemas/edFi_domainentitynames",
+                      "$ref": "#/components/schemas/EdFi_DomainEntityName",
                     },
                   },
                 },
-                "description": "The JSON representation of the domainentitynames resource to be created or updated.",
+                "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
                 "required": true,
-                "x-bodyName": "domainentitynames",
+                "x-bodyName": "DomainEntityName",
               },
               "responses": Object {
                 "200": Object {
@@ -196,58 +281,7 @@ describe('when building open api specification', () => {
               },
               "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
               "tags": Array [
-                "domainentitynames",
-              ],
-            },
-          },
-          "/edfi/schoolyeartypes": Object {
-            "post": Object {
-              "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-              "operationId": "post-schoolyeartypes",
-              "requestBody": Object {
-                "content": Object {
-                  "application/json": Object {
-                    "schema": Object {
-                      "$ref": "#/components/schemas/edFi_schoolyeartypes",
-                    },
-                  },
-                },
-                "description": "The JSON representation of the schoolyeartypes resource to be created or updated.",
-                "required": true,
-                "x-bodyName": "schoolyeartypes",
-              },
-              "responses": Object {
-                "200": Object {
-                  "$ref": "#/components/responses/Updated",
-                },
-                "201": Object {
-                  "$ref": "#/components/responses/Created",
-                },
-                "400": Object {
-                  "$ref": "#/components/responses/BadRequest",
-                },
-                "401": Object {
-                  "$ref": "#/components/responses/Unauthorized",
-                },
-                "403": Object {
-                  "$ref": "#/components/responses/Forbidden",
-                },
-                "405": Object {
-                  "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
-                },
-                "409": Object {
-                  "$ref": "#/components/responses/Conflict",
-                },
-                "412": Object {
-                  "$ref": "#/components/responses/PreconditionFailed",
-                },
-                "500": Object {
-                  "$ref": "#/components/responses/Error",
-                },
-              },
-              "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
-              "tags": Array [
-                "schoolyeartypes",
+                "domainEntityNames",
               ],
             },
           },
