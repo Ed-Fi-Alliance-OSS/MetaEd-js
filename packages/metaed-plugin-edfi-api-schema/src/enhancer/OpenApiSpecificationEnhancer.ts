@@ -15,7 +15,7 @@ type Schemas = { [key: string]: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObje
 /**
  * Returns the "post" section of "path" for the given entity
  */
-function createPostFor(entity: TopLevelEntity, endpointName: EndpointName): any {
+function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
   return {
     description:
       'The POST operation can be used to create or update resources. In database terms, this is often referred to as an "upsert" operation (insert + update). Clients should NOT include the resource "id" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.',
@@ -30,7 +30,7 @@ function createPostFor(entity: TopLevelEntity, endpointName: EndpointName): any 
         },
       },
       required: true,
-      'x-bodyName': entity.metaEdName,
+      // 'x-bodyName': entity.metaEdName,  ----- in ODS/API but not part of OpenAPI spec
     },
     responses: {
       200: {
@@ -83,7 +83,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       // Add to Paths
       paths[`/${projectNamespace}/${endpointName}`] = {
-        post: createPostFor(entity, endpointName),
+        post: createPostSectionFor(entity, endpointName),
       };
 
       const {
