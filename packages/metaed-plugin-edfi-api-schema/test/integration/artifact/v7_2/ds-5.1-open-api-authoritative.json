@@ -18739,8 +18739,7 @@
             }
           },
           "description": "The JSON representation of the AcademicWeek resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "AcademicWeek"
+          "required": true
         },
         "responses": {
           "200": {
@@ -18790,8 +18789,7 @@
             }
           },
           "description": "The JSON representation of the AccountabilityRating resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "AccountabilityRating"
+          "required": true
         },
         "responses": {
           "200": {
@@ -18841,8 +18839,7 @@
             }
           },
           "description": "The JSON representation of the AssessmentItem resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "AssessmentItem"
+          "required": true
         },
         "responses": {
           "200": {
@@ -18892,8 +18889,7 @@
             }
           },
           "description": "The JSON representation of the AssessmentScoreRangeLearningStandard resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "AssessmentScoreRangeLearningStandard"
+          "required": true
         },
         "responses": {
           "200": {
@@ -18943,8 +18939,7 @@
             }
           },
           "description": "The JSON representation of the Assessment resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Assessment"
+          "required": true
         },
         "responses": {
           "200": {
@@ -18994,8 +18989,7 @@
             }
           },
           "description": "The JSON representation of the BalanceSheetDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "BalanceSheetDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19045,8 +19039,7 @@
             }
           },
           "description": "The JSON representation of the BellSchedule resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "BellSchedule"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19096,8 +19089,7 @@
             }
           },
           "description": "The JSON representation of the CalendarDate resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CalendarDate"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19147,8 +19139,7 @@
             }
           },
           "description": "The JSON representation of the Calendar resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Calendar"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19198,8 +19189,7 @@
             }
           },
           "description": "The JSON representation of the ChartOfAccount resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ChartOfAccount"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19249,8 +19239,7 @@
             }
           },
           "description": "The JSON representation of the ClassPeriod resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ClassPeriod"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19300,8 +19289,7 @@
             }
           },
           "description": "The JSON representation of the Cohort resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Cohort"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19351,8 +19339,7 @@
             }
           },
           "description": "The JSON representation of the CommunityOrganization resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CommunityOrganization"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19402,8 +19389,7 @@
             }
           },
           "description": "The JSON representation of the CommunityProviderLicense resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CommunityProviderLicense"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19453,8 +19439,7 @@
             }
           },
           "description": "The JSON representation of the CommunityProvider resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CommunityProvider"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19504,8 +19489,7 @@
             }
           },
           "description": "The JSON representation of the CompetencyObjective resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CompetencyObjective"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19555,8 +19539,7 @@
             }
           },
           "description": "The JSON representation of the Contact resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Contact"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19606,8 +19589,7 @@
             }
           },
           "description": "The JSON representation of the CourseOffering resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CourseOffering"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19657,8 +19639,7 @@
             }
           },
           "description": "The JSON representation of the CourseTranscript resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CourseTranscript"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19708,8 +19689,7 @@
             }
           },
           "description": "The JSON representation of the Course resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Course"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19759,8 +19739,7 @@
             }
           },
           "description": "The JSON representation of the Credential resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Credential"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19810,8 +19789,7 @@
             }
           },
           "description": "The JSON representation of the CrisisEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "CrisisEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19861,8 +19839,7 @@
             }
           },
           "description": "The JSON representation of the DescriptorMapping resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "DescriptorMapping"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19912,8 +19889,7 @@
             }
           },
           "description": "The JSON representation of the DisciplineAction resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "DisciplineAction"
+          "required": true
         },
         "responses": {
           "200": {
@@ -19963,8 +19939,7 @@
             }
           },
           "description": "The JSON representation of the DisciplineIncident resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "DisciplineIncident"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20014,8 +19989,7 @@
             }
           },
           "description": "The JSON representation of the EducationContent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationContent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20065,8 +20039,7 @@
             }
           },
           "description": "The JSON representation of the EducationOrganizationInterventionPrescriptionAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationOrganizationInterventionPrescriptionAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20116,8 +20089,7 @@
             }
           },
           "description": "The JSON representation of the EducationOrganizationNetworkAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationOrganizationNetworkAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20167,8 +20139,7 @@
             }
           },
           "description": "The JSON representation of the EducationOrganizationNetwork resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationOrganizationNetwork"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20218,8 +20189,7 @@
             }
           },
           "description": "The JSON representation of the EducationOrganizationPeerAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationOrganizationPeerAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20269,8 +20239,7 @@
             }
           },
           "description": "The JSON representation of the EducationOrganization resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationOrganization"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20320,8 +20289,7 @@
             }
           },
           "description": "The JSON representation of the EducationServiceCenter resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EducationServiceCenter"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20371,8 +20339,7 @@
             }
           },
           "description": "The JSON representation of the EvaluationRubricDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "EvaluationRubricDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20422,8 +20389,7 @@
             }
           },
           "description": "The JSON representation of the FeederSchoolAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "FeederSchoolAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20473,8 +20439,7 @@
             }
           },
           "description": "The JSON representation of the FunctionDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "FunctionDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20524,8 +20489,7 @@
             }
           },
           "description": "The JSON representation of the FundDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "FundDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20575,8 +20539,7 @@
             }
           },
           "description": "The JSON representation of the GeneralStudentProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "GeneralStudentProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20626,8 +20589,7 @@
             }
           },
           "description": "The JSON representation of the GradebookEntry resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "GradebookEntry"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20677,8 +20639,7 @@
             }
           },
           "description": "The JSON representation of the Grade resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Grade"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20728,8 +20689,7 @@
             }
           },
           "description": "The JSON representation of the GradingPeriod resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "GradingPeriod"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20779,8 +20739,7 @@
             }
           },
           "description": "The JSON representation of the GraduationPlan resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "GraduationPlan"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20830,8 +20789,7 @@
             }
           },
           "description": "The JSON representation of the InterventionPrescription resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "InterventionPrescription"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20881,8 +20839,7 @@
             }
           },
           "description": "The JSON representation of the InterventionStudy resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "InterventionStudy"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20932,8 +20889,7 @@
             }
           },
           "description": "The JSON representation of the Intervention resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Intervention"
+          "required": true
         },
         "responses": {
           "200": {
@@ -20983,8 +20939,7 @@
             }
           },
           "description": "The JSON representation of the LearningStandardEquivalenceAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LearningStandardEquivalenceAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21034,8 +20989,7 @@
             }
           },
           "description": "The JSON representation of the LearningStandard resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LearningStandard"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21085,8 +21039,7 @@
             }
           },
           "description": "The JSON representation of the LocalAccount resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalAccount"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21136,8 +21089,7 @@
             }
           },
           "description": "The JSON representation of the LocalActual resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalActual"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21187,8 +21139,7 @@
             }
           },
           "description": "The JSON representation of the LocalBudget resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalBudget"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21238,8 +21189,7 @@
             }
           },
           "description": "The JSON representation of the LocalContractedStaff resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalContractedStaff"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21289,8 +21239,7 @@
             }
           },
           "description": "The JSON representation of the LocalEducationAgency resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalEducationAgency"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21340,8 +21289,7 @@
             }
           },
           "description": "The JSON representation of the LocalEncumbrance resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalEncumbrance"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21391,8 +21339,7 @@
             }
           },
           "description": "The JSON representation of the LocalPayroll resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "LocalPayroll"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21442,8 +21389,7 @@
             }
           },
           "description": "The JSON representation of the Location resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Location"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21493,8 +21439,7 @@
             }
           },
           "description": "The JSON representation of the ObjectDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ObjectDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21544,8 +21489,7 @@
             }
           },
           "description": "The JSON representation of the ObjectiveAssessment resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ObjectiveAssessment"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21595,8 +21539,7 @@
             }
           },
           "description": "The JSON representation of the OpenStaffPosition resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "OpenStaffPosition"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21646,8 +21589,7 @@
             }
           },
           "description": "The JSON representation of the OperationalUnitDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "OperationalUnitDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21697,8 +21639,7 @@
             }
           },
           "description": "The JSON representation of the OrganizationDepartment resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "OrganizationDepartment"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21748,8 +21689,7 @@
             }
           },
           "description": "The JSON representation of the Person resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Person"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21799,8 +21739,7 @@
             }
           },
           "description": "The JSON representation of the PostSecondaryEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "PostSecondaryEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21850,8 +21789,7 @@
             }
           },
           "description": "The JSON representation of the PostSecondaryInstitution resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "PostSecondaryInstitution"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21901,8 +21839,7 @@
             }
           },
           "description": "The JSON representation of the ProgramDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ProgramDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -21952,8 +21889,7 @@
             }
           },
           "description": "The JSON representation of the ProgramEvaluationElement resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ProgramEvaluationElement"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22003,8 +21939,7 @@
             }
           },
           "description": "The JSON representation of the ProgramEvaluationObjective resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ProgramEvaluationObjective"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22054,8 +21989,7 @@
             }
           },
           "description": "The JSON representation of the ProgramEvaluation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ProgramEvaluation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22105,8 +22039,7 @@
             }
           },
           "description": "The JSON representation of the Program resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Program"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22156,8 +22089,7 @@
             }
           },
           "description": "The JSON representation of the ProjectDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ProjectDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22207,8 +22139,7 @@
             }
           },
           "description": "The JSON representation of the ReportCard resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "ReportCard"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22258,8 +22189,7 @@
             }
           },
           "description": "The JSON representation of the RestraintEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "RestraintEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22309,8 +22239,7 @@
             }
           },
           "description": "The JSON representation of the School resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "School"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22360,8 +22289,7 @@
             }
           },
           "description": "The JSON representation of the SectionAttendanceTakenEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SectionAttendanceTakenEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22411,8 +22339,7 @@
             }
           },
           "description": "The JSON representation of the Section resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Section"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22462,8 +22389,7 @@
             }
           },
           "description": "The JSON representation of the Session resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Session"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22513,8 +22439,7 @@
             }
           },
           "description": "The JSON representation of the SourceDimension resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SourceDimension"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22564,8 +22489,7 @@
             }
           },
           "description": "The JSON representation of the StaffAbsenceEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffAbsenceEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22615,8 +22539,7 @@
             }
           },
           "description": "The JSON representation of the StaffCohortAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffCohortAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22666,8 +22589,7 @@
             }
           },
           "description": "The JSON representation of the StaffDisciplineIncidentAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffDisciplineIncidentAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22717,8 +22639,7 @@
             }
           },
           "description": "The JSON representation of the StaffEducationOrganizationAssignmentAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffEducationOrganizationAssignmentAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22768,8 +22689,7 @@
             }
           },
           "description": "The JSON representation of the StaffEducationOrganizationContactAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffEducationOrganizationContactAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22819,8 +22739,7 @@
             }
           },
           "description": "The JSON representation of the StaffEducationOrganizationEmploymentAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffEducationOrganizationEmploymentAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22870,8 +22789,7 @@
             }
           },
           "description": "The JSON representation of the StaffLeave resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffLeave"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22921,8 +22839,7 @@
             }
           },
           "description": "The JSON representation of the StaffProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -22972,8 +22889,7 @@
             }
           },
           "description": "The JSON representation of the StaffSchoolAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffSchoolAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23023,8 +22939,7 @@
             }
           },
           "description": "The JSON representation of the StaffSectionAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StaffSectionAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23074,8 +22989,7 @@
             }
           },
           "description": "The JSON representation of the Staff resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Staff"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23125,8 +23039,7 @@
             }
           },
           "description": "The JSON representation of the StateEducationAgency resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StateEducationAgency"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23176,8 +23089,7 @@
             }
           },
           "description": "The JSON representation of the StudentAcademicRecord resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentAcademicRecord"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23227,8 +23139,7 @@
             }
           },
           "description": "The JSON representation of the StudentAssessmentEducationOrganizationAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentAssessmentEducationOrganizationAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23278,8 +23189,7 @@
             }
           },
           "description": "The JSON representation of the StudentAssessment resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentAssessment"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23329,8 +23239,7 @@
             }
           },
           "description": "The JSON representation of the StudentCTEProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentCTEProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23380,8 +23289,7 @@
             }
           },
           "description": "The JSON representation of the StudentCohortAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentCohortAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23431,8 +23339,7 @@
             }
           },
           "description": "The JSON representation of the StudentCompetencyObjective resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentCompetencyObjective"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23482,8 +23389,7 @@
             }
           },
           "description": "The JSON representation of the StudentContactAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentContactAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23533,8 +23439,7 @@
             }
           },
           "description": "The JSON representation of the StudentDisciplineIncidentBehaviorAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentDisciplineIncidentBehaviorAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23584,8 +23489,7 @@
             }
           },
           "description": "The JSON representation of the StudentDisciplineIncidentNonOffenderAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentDisciplineIncidentNonOffenderAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23635,8 +23539,7 @@
             }
           },
           "description": "The JSON representation of the StudentEducationOrganizationAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentEducationOrganizationAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23686,8 +23589,7 @@
             }
           },
           "description": "The JSON representation of the StudentEducationOrganizationResponsibilityAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentEducationOrganizationResponsibilityAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23737,8 +23639,7 @@
             }
           },
           "description": "The JSON representation of the StudentGradebookEntry resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentGradebookEntry"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23788,8 +23689,7 @@
             }
           },
           "description": "The JSON representation of the StudentHealth resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentHealth"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23839,8 +23739,7 @@
             }
           },
           "description": "The JSON representation of the StudentHomelessProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentHomelessProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23890,8 +23789,7 @@
             }
           },
           "description": "The JSON representation of the StudentInterventionAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentInterventionAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23941,8 +23839,7 @@
             }
           },
           "description": "The JSON representation of the StudentInterventionAttendanceEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentInterventionAttendanceEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -23992,8 +23889,7 @@
             }
           },
           "description": "The JSON representation of the StudentLanguageInstructionProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentLanguageInstructionProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24043,8 +23939,7 @@
             }
           },
           "description": "The JSON representation of the StudentMigrantEducationProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentMigrantEducationProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24094,8 +23989,7 @@
             }
           },
           "description": "The JSON representation of the StudentNeglectedOrDelinquentProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentNeglectedOrDelinquentProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24145,8 +24039,7 @@
             }
           },
           "description": "The JSON representation of the StudentProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24196,8 +24089,7 @@
             }
           },
           "description": "The JSON representation of the StudentProgramAttendanceEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentProgramAttendanceEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24247,8 +24139,7 @@
             }
           },
           "description": "The JSON representation of the StudentProgramEvaluation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentProgramEvaluation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24298,8 +24189,7 @@
             }
           },
           "description": "The JSON representation of the StudentSchoolAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSchoolAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24349,8 +24239,7 @@
             }
           },
           "description": "The JSON representation of the StudentSchoolAttendanceEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSchoolAttendanceEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24400,8 +24289,7 @@
             }
           },
           "description": "The JSON representation of the StudentSchoolFoodServiceProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSchoolFoodServiceProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24451,8 +24339,7 @@
             }
           },
           "description": "The JSON representation of the StudentSectionAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSectionAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24502,8 +24389,7 @@
             }
           },
           "description": "The JSON representation of the StudentSectionAttendanceEvent resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSectionAttendanceEvent"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24553,8 +24439,7 @@
             }
           },
           "description": "The JSON representation of the StudentSpecialEducationProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSpecialEducationProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24604,8 +24489,7 @@
             }
           },
           "description": "The JSON representation of the StudentSpecialEducationProgramEligibilityAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentSpecialEducationProgramEligibilityAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24655,8 +24539,7 @@
             }
           },
           "description": "The JSON representation of the StudentTitleIPartAProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentTitleIPartAProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24706,8 +24589,7 @@
             }
           },
           "description": "The JSON representation of the StudentTransportation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "StudentTransportation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24757,8 +24639,7 @@
             }
           },
           "description": "The JSON representation of the Student resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Student"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24808,8 +24689,7 @@
             }
           },
           "description": "The JSON representation of the SurveyCourseAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyCourseAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24859,8 +24739,7 @@
             }
           },
           "description": "The JSON representation of the SurveyProgramAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyProgramAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24910,8 +24789,7 @@
             }
           },
           "description": "The JSON representation of the SurveyQuestionResponse resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyQuestionResponse"
+          "required": true
         },
         "responses": {
           "200": {
@@ -24961,8 +24839,7 @@
             }
           },
           "description": "The JSON representation of the SurveyQuestion resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyQuestion"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25012,8 +24889,7 @@
             }
           },
           "description": "The JSON representation of the SurveyResponseEducationOrganizationTargetAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyResponseEducationOrganizationTargetAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25063,8 +24939,7 @@
             }
           },
           "description": "The JSON representation of the SurveyResponseStaffTargetAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyResponseStaffTargetAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25114,8 +24989,7 @@
             }
           },
           "description": "The JSON representation of the SurveyResponse resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveyResponse"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25165,8 +25039,7 @@
             }
           },
           "description": "The JSON representation of the SurveySectionAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveySectionAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25216,8 +25089,7 @@
             }
           },
           "description": "The JSON representation of the SurveySectionResponseEducationOrganizationTargetAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveySectionResponseEducationOrganizationTargetAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25267,8 +25139,7 @@
             }
           },
           "description": "The JSON representation of the SurveySectionResponseStaffTargetAssociation resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveySectionResponseStaffTargetAssociation"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25318,8 +25189,7 @@
             }
           },
           "description": "The JSON representation of the SurveySectionResponse resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveySectionResponse"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25369,8 +25239,7 @@
             }
           },
           "description": "The JSON representation of the SurveySection resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "SurveySection"
+          "required": true
         },
         "responses": {
           "200": {
@@ -25420,8 +25289,7 @@
             }
           },
           "description": "The JSON representation of the Survey resource to be created or updated.",
-          "required": true,
-          "x-bodyName": "Survey"
+          "required": true
         },
         "responses": {
           "200": {

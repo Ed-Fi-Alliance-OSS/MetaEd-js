@@ -248,7 +248,6 @@ describe('when building open api specification', () => {
                 },
                 "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
                 "required": true,
-                "x-bodyName": "DomainEntityName",
               },
               "responses": Object {
                 "200": Object {
