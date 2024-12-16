@@ -77,7 +77,9 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(
+      `"EdFi_DomainEntityName"`,
+    );
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -209,7 +211,9 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(
+      `"EdFi_DomainEntityName"`,
+    );
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -510,7 +514,9 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema for top entity', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(
+      `"EdFi_DomainEntityName"`,
+    );
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -552,7 +558,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema for CourseOffering', () => {
     const entity = namespace.entity.domainEntity.get('CourseOffering');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_CourseOffering"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -577,7 +583,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema for ClassPeriod', () => {
     const entity = namespace.entity.domainEntity.get('ClassPeriod');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_ClassPeriod"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -602,7 +608,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema for School', () => {
     const entity = namespace.entity.domainEntity.get('School');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_School"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -673,7 +679,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema for top entity', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(
+      `"EdFi_DomainEntityName"`,
+    );
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -698,7 +706,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema for CourseOffering', () => {
     const entity = namespace.entity.domainEntity.get('CourseOffering');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_CourseOffering"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -727,7 +735,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema for Session', () => {
     const entity = namespace.entity.domainEntity.get('Session');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_Session"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
@@ -765,7 +773,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema for School', () => {
     const entity = namespace.entity.domainEntity.get('School');
-    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(`""`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponentPropertyName).toMatchInlineSnapshot(`"EdFi_School"`);
     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
       Object {
         "description": "doc",
