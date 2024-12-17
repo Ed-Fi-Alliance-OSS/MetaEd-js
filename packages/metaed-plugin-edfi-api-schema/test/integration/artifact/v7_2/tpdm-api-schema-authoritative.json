@@ -154,12 +154,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -238,12 +240,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -557,48 +561,56 @@
           "queryFieldMapping": {
             "beginDate": [
               {
+                "identity": true,
                 "path": "$.beginDate",
                 "type": "date"
               }
             ],
             "candidateIdentifier": [
               {
+                "identity": true,
                 "path": "$.candidateReference.candidateIdentifier",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.educatorPreparationProgramReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "endDate": [
               {
+                "identity": false,
                 "path": "$.endDate",
                 "type": "date"
               }
             ],
             "eppProgramPathwayDescriptor": [
               {
+                "identity": false,
                 "path": "$.eppProgramPathwayDescriptor",
                 "type": "string"
               }
             ],
             "programName": [
               {
+                "identity": true,
                 "path": "$.educatorPreparationProgramReference.programName",
                 "type": "string"
               }
             ],
             "programTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.educatorPreparationProgramReference.programTypeDescriptor",
                 "type": "string"
               }
             ],
             "reasonExitedDescriptor": [
               {
+                "identity": false,
                 "path": "$.reasonExitedDescriptor",
                 "type": "string"
               }
@@ -1687,162 +1699,189 @@
           "queryFieldMapping": {
             "birthCity": [
               {
+                "identity": false,
                 "path": "$.birthCity",
                 "type": "string"
               }
             ],
             "birthCountryDescriptor": [
               {
+                "identity": false,
                 "path": "$.birthCountryDescriptor",
                 "type": "string"
               }
             ],
             "birthDate": [
               {
+                "identity": false,
                 "path": "$.birthDate",
                 "type": "date"
               }
             ],
             "birthInternationalProvince": [
               {
+                "identity": false,
                 "path": "$.birthInternationalProvince",
                 "type": "string"
               }
             ],
             "birthSexDescriptor": [
               {
+                "identity": false,
                 "path": "$.birthSexDescriptor",
                 "type": "string"
               }
             ],
             "birthStateAbbreviationDescriptor": [
               {
+                "identity": false,
                 "path": "$.birthStateAbbreviationDescriptor",
                 "type": "string"
               }
             ],
             "candidateIdentifier": [
               {
+                "identity": true,
                 "path": "$.candidateIdentifier",
                 "type": "string"
               }
             ],
             "dateEnteredUS": [
               {
+                "identity": false,
                 "path": "$.dateEnteredUS",
                 "type": "date"
               }
             ],
             "displacementStatus": [
               {
+                "identity": false,
                 "path": "$.displacementStatus",
                 "type": "string"
               }
             ],
             "economicDisadvantaged": [
               {
+                "identity": false,
                 "path": "$.economicDisadvantaged",
                 "type": "boolean"
               }
             ],
             "englishLanguageExamDescriptor": [
               {
+                "identity": false,
                 "path": "$.englishLanguageExamDescriptor",
                 "type": "string"
               }
             ],
             "firstGenerationStudent": [
               {
+                "identity": false,
                 "path": "$.firstGenerationStudent",
                 "type": "boolean"
               }
             ],
             "firstName": [
               {
+                "identity": false,
                 "path": "$.firstName",
                 "type": "string"
               }
             ],
             "genderDescriptor": [
               {
+                "identity": false,
                 "path": "$.genderDescriptor",
                 "type": "string"
               }
             ],
             "generationCodeSuffix": [
               {
+                "identity": false,
                 "path": "$.generationCodeSuffix",
                 "type": "string"
               }
             ],
             "hispanicLatinoEthnicity": [
               {
+                "identity": false,
                 "path": "$.hispanicLatinoEthnicity",
                 "type": "boolean"
               }
             ],
             "lastSurname": [
               {
+                "identity": false,
                 "path": "$.lastSurname",
                 "type": "string"
               }
             ],
             "limitedEnglishProficiencyDescriptor": [
               {
+                "identity": false,
                 "path": "$.limitedEnglishProficiencyDescriptor",
                 "type": "string"
               }
             ],
             "maidenName": [
               {
+                "identity": false,
                 "path": "$.maidenName",
                 "type": "string"
               }
             ],
             "middleName": [
               {
+                "identity": false,
                 "path": "$.middleName",
                 "type": "string"
               }
             ],
             "multipleBirthStatus": [
               {
+                "identity": false,
                 "path": "$.multipleBirthStatus",
                 "type": "boolean"
               }
             ],
             "personId": [
               {
+                "identity": false,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "personalTitlePrefix": [
               {
+                "identity": false,
                 "path": "$.personalTitlePrefix",
                 "type": "string"
               }
             ],
             "preferredFirstName": [
               {
+                "identity": false,
                 "path": "$.preferredFirstName",
                 "type": "string"
               }
             ],
             "preferredLastSurname": [
               {
+                "identity": false,
                 "path": "$.preferredLastSurname",
                 "type": "string"
               }
             ],
             "sexDescriptor": [
               {
+                "identity": false,
                 "path": "$.sexDescriptor",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": false,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
@@ -1921,12 +1960,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2005,12 +2046,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2089,12 +2132,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2392,12 +2437,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2548,30 +2595,35 @@
           "queryFieldMapping": {
             "accreditationStatusDescriptor": [
               {
+                "identity": false,
                 "path": "$.accreditationStatusDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.educationOrganizationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "programId": [
               {
+                "identity": false,
                 "path": "$.programId",
                 "type": "string"
               }
             ],
             "programName": [
               {
+                "identity": true,
                 "path": "$.programName",
                 "type": "string"
               }
             ],
             "programTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.programTypeDescriptor",
                 "type": "string"
               }
@@ -2650,12 +2702,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2734,12 +2788,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2818,12 +2874,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -3333,102 +3391,119 @@
           "queryFieldMapping": {
             "areaOfRefinement": [
               {
+                "identity": false,
                 "path": "$.areaOfRefinement",
                 "type": "string"
               }
             ],
             "areaOfReinforcement": [
               {
+                "identity": false,
                 "path": "$.areaOfReinforcement",
                 "type": "string"
               }
             ],
             "comments": [
               {
+                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationElementRatingLevelDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationElementRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "evaluationElementTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "feedback": [
               {
+                "identity": false,
                 "path": "$.feedback",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.termDescriptor",
                 "type": "string"
               }
@@ -3697,78 +3772,91 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationElementTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "maxRating": [
               {
+                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
+                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.schoolYear",
                 "type": "string"
               }
             ],
             "sortOrder": [
               {
+                "identity": false,
                 "path": "$.sortOrder",
                 "type": "number"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.termDescriptor",
                 "type": "string"
               }
@@ -4205,78 +4293,91 @@
           "queryFieldMapping": {
             "comments": [
               {
+                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
+                "identity": true,
                 "path": "$.evaluationRatingReference.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationObjectiveTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "objectiveRatingLevelDescriptor": [
               {
+                "identity": false,
                 "path": "$.objectiveRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.evaluationRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveReference.termDescriptor",
                 "type": "string"
               }
@@ -4542,78 +4643,91 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationObjectiveDescription": [
               {
+                "identity": false,
                 "path": "$.evaluationObjectiveDescription",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "maxRating": [
               {
+                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
+                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "sortOrder": [
               {
+                "identity": false,
                 "path": "$.sortOrder",
                 "type": "number"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -4692,12 +4806,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -4776,12 +4892,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -4860,12 +4978,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -5457,108 +5577,126 @@
           "queryFieldMapping": {
             "actualDuration": [
               {
+                "identity": false,
                 "path": "$.actualDuration",
                 "type": "number"
               }
             ],
             "comments": [
               {
+                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
+                "identity": true,
                 "path": "$.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationRatingLevelDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "evaluationRatingStatusDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationRatingStatusDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "localCourseCode": [
               {
+                "identity": false,
                 "path": "$.sectionReference.localCourseCode",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolId": [
               {
+                "identity": false,
                 "path": "$.sectionReference.schoolId",
                 "type": "number"
               }
             ],
             "schoolYear": [
               {
+                "identity": false,
                 "path": "$.sectionReference.schoolYear",
                 "type": "string"
               }
             ],
             "sectionIdentifier": [
               {
+                "identity": false,
                 "path": "$.sectionReference.sectionIdentifier",
                 "type": "string"
               }
             ],
             "sessionName": [
               {
+                "identity": false,
                 "path": "$.sectionReference.sessionName",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -5637,12 +5775,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -5894,72 +6034,84 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDescription": [
               {
+                "identity": false,
                 "path": "$.evaluationDescription",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
+                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "interRaterReliabilityScore": [
               {
+                "identity": false,
                 "path": "$.interRaterReliabilityScore",
                 "type": "number"
               }
             ],
             "maxRating": [
               {
+                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
+                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -6102,42 +6254,49 @@
           "queryFieldMapping": {
             "aidAmount": [
               {
+                "identity": false,
                 "path": "$.aidAmount",
                 "type": "number"
               }
             ],
             "aidConditionDescription": [
               {
+                "identity": false,
                 "path": "$.aidConditionDescription",
                 "type": "string"
               }
             ],
             "aidTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.aidTypeDescriptor",
                 "type": "string"
               }
             ],
             "beginDate": [
               {
+                "identity": true,
                 "path": "$.beginDate",
                 "type": "date"
               }
             ],
             "endDate": [
               {
+                "identity": false,
                 "path": "$.endDate",
                 "type": "date"
               }
             ],
             "pellGrantRecipient": [
               {
+                "identity": false,
                 "path": "$.pellGrantRecipient",
                 "type": "boolean"
               }
             ],
             "studentUniqueId": [
               {
+                "identity": true,
                 "path": "$.studentReference.studentUniqueId",
                 "type": "string"
               }
@@ -6216,12 +6375,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6300,12 +6461,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6384,12 +6547,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6816,96 +6981,112 @@
           "queryFieldMapping": {
             "actualDate": [
               {
+                "identity": false,
                 "path": "$.actualDate",
                 "type": "date"
               }
             ],
             "actualDuration": [
               {
+                "identity": false,
                 "path": "$.actualDuration",
                 "type": "number"
               }
             ],
             "actualTime": [
               {
+                "identity": false,
                 "path": "$.actualTime",
                 "type": "time"
               }
             ],
             "announced": [
               {
+                "identity": false,
                 "path": "$.announced",
                 "type": "boolean"
               }
             ],
             "comments": [
               {
+                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "coteachingStyleObservedDescriptor": [
               {
+                "identity": false,
                 "path": "$.coteachingStyleObservedDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationRatingLevelDescriptor": [
               {
+                "identity": false,
                 "path": "$.performanceEvaluationRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "scheduleDate": [
               {
+                "identity": false,
                 "path": "$.scheduleDate",
                 "type": "date"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -6984,12 +7165,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -7251,48 +7434,56 @@
           "queryFieldMapping": {
             "academicSubjectDescriptor": [
               {
+                "identity": false,
                 "path": "$.academicSubjectDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.educationOrganizationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationDescription": [
               {
+                "identity": false,
                 "path": "$.performanceEvaluationDescription",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.schoolYearTypeReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.termDescriptor",
                 "type": "string"
               }
@@ -7515,78 +7706,91 @@
           "queryFieldMapping": {
             "criterionDescription": [
               {
+                "identity": false,
                 "path": "$.criterionDescription",
                 "type": "string"
               }
             ],
             "dimensionOrder": [
               {
+                "identity": false,
                 "path": "$.dimensionOrder",
                 "type": "number"
               }
             ],
             "educationOrganizationId": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationElementTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "rubricRating": [
               {
+                "identity": true,
                 "path": "$.rubricRating",
                 "type": "number"
               }
             ],
             "rubricRatingLevelDescriptor": [
               {
+                "identity": false,
                 "path": "$.rubricRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
+                "identity": true,
                 "path": "$.evaluationElementReference.termDescriptor",
                 "type": "string"
               }
@@ -7665,12 +7869,14 @@
           "queryFieldMapping": {
             "codeValue": [
               {
+                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
+                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -7868,30 +8074,35 @@
           "queryFieldMapping": {
             "namespace": [
               {
+                "identity": true,
                 "path": "$.surveyResponseReference.namespace",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "surveyIdentifier": [
               {
+                "identity": true,
                 "path": "$.surveyResponseReference.surveyIdentifier",
                 "type": "string"
               }
             ],
             "surveyResponseIdentifier": [
               {
+                "identity": true,
                 "path": "$.surveyResponseReference.surveyResponseIdentifier",
                 "type": "string"
               }
@@ -8123,36 +8334,42 @@
           "queryFieldMapping": {
             "namespace": [
               {
+                "identity": true,
                 "path": "$.surveySectionResponseReference.namespace",
                 "type": "string"
               }
             ],
             "personId": [
               {
+                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
+                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "surveyIdentifier": [
               {
+                "identity": true,
                 "path": "$.surveySectionResponseReference.surveyIdentifier",
                 "type": "string"
               }
             ],
             "surveyResponseIdentifier": [
               {
+                "identity": true,
                 "path": "$.surveySectionResponseReference.surveyResponseIdentifier",
                 "type": "string"
               }
             ],
             "surveySectionTitle": [
               {
+                "identity": true,
                 "path": "$.surveySectionResponseReference.surveySectionTitle",
                 "type": "string"
               }

@@ -108,78 +108,91 @@ describe('when building simple domain entity with all the simple non-collections
       Object {
         "optionalBooleanProperty": Array [
           Object {
+            "identity": false,
             "path": "$.optionalBooleanProperty",
             "type": "boolean",
           },
         ],
         "optionalDecimalProperty": Array [
           Object {
+            "identity": false,
             "path": "$.optionalDecimalProperty",
             "type": "number",
           },
         ],
         "optionalPercentProperty": Array [
           Object {
+            "identity": false,
             "path": "$.optionalPercentProperty",
             "type": "number",
           },
         ],
         "optionalShortProperty": Array [
           Object {
+            "identity": false,
             "path": "$.optionalShortProperty",
             "type": "number",
           },
         ],
         "optionalYear": Array [
           Object {
+            "identity": false,
             "path": "$.optionalYear",
             "type": "number",
           },
         ],
         "requiredCurrencyProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredCurrencyProperty",
             "type": "number",
           },
         ],
         "requiredDateProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredDateProperty",
             "type": "date",
           },
         ],
         "requiredDatetimeProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredDatetimeProperty",
             "type": "date-time",
           },
         ],
         "requiredDurationProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredDurationProperty",
             "type": "number",
           },
         ],
         "requiredIntegerProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredIntegerProperty",
             "type": "number",
           },
         ],
         "requiredTimeProperty": Array [
           Object {
+            "identity": false,
             "path": "$.requiredTimeProperty",
             "type": "time",
           },
         ],
         "schoolYear": Array [
           Object {
+            "identity": false,
             "path": "$.schoolYearTypeReference.schoolYear",
             "type": "string",
           },
         ],
         "stringIdentity": Array [
           Object {
+            "identity": true,
             "path": "$.stringIdentity",
             "type": "string",
           },
@@ -230,12 +243,14 @@ describe('when building simple domain entity with all the simple collections', (
       Object {
         "schoolYear": Array [
           Object {
+            "identity": false,
             "path": "$.schoolYearTypeReference.schoolYear",
             "type": "string",
           },
         ],
         "stringIdentity": Array [
           Object {
+            "identity": true,
             "path": "$.stringIdentity",
             "type": "string",
           },
@@ -292,18 +307,21 @@ describe('when building a domain entity referencing another referencing another 
       Object {
         "localCourseCode": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.localCourseCode",
             "type": "string",
           },
         ],
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.schoolId",
             "type": "string",
           },
         ],
         "sectionIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.sectionIdentifier",
             "type": "string",
           },
@@ -361,30 +379,35 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "localCourseCode": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.localCourseCode",
             "type": "string",
           },
         ],
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.schoolId",
             "type": "string",
           },
         ],
         "schoolYear": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.schoolYear",
             "type": "string",
           },
         ],
         "sectionIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.sectionIdentifier",
             "type": "string",
           },
         ],
         "sessionName": Array [
           Object {
+            "identity": true,
             "path": "$.courseOfferingReference.sessionName",
             "type": "string",
           },
@@ -400,24 +423,28 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "localCourseCode": Array [
           Object {
+            "identity": true,
             "path": "$.localCourseCode",
             "type": "string",
           },
         ],
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.sessionReference.schoolId",
             "type": "string",
           },
         ],
         "schoolYear": Array [
           Object {
+            "identity": true,
             "path": "$.sessionReference.schoolYear",
             "type": "string",
           },
         ],
         "sessionName": Array [
           Object {
+            "identity": true,
             "path": "$.sessionReference.sessionName",
             "type": "string",
           },
@@ -433,18 +460,21 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.schoolReference.schoolId",
             "type": "string",
           },
         ],
         "schoolYear": Array [
           Object {
+            "identity": true,
             "path": "$.schoolYearTypeReference.schoolYear",
             "type": "string",
           },
         ],
         "sessionName": Array [
           Object {
+            "identity": true,
             "path": "$.sessionName",
             "type": "string",
           },
@@ -460,6 +490,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.schoolId",
             "type": "string",
           },
@@ -529,30 +560,35 @@ describe('when building domain entity with nested choice and inline commons', ()
       Object {
         "contentClassDescriptor": Array [
           Object {
+            "identity": false,
             "path": "$.contentClassDescriptor",
             "type": "string",
           },
         ],
         "contentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.contentIdentifier",
             "type": "string",
           },
         ],
         "description": Array [
           Object {
+            "identity": false,
             "path": "$.description",
             "type": "string",
           },
         ],
         "learningResourceMetadataURI": Array [
           Object {
+            "identity": false,
             "path": "$.learningResourceMetadataURI",
             "type": "string",
           },
         ],
         "shortDescription": Array [
           Object {
+            "identity": false,
             "path": "$.shortDescription",
             "type": "string",
           },
@@ -592,6 +628,7 @@ describe('when building domain entity with scalar collection named with prefix o
       Object {
         "contentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.contentIdentifier",
             "type": "string",
           },
@@ -636,6 +673,7 @@ describe('when building domain entity with Association/DomainEntity collection n
       Object {
         "contentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.contentIdentifier",
             "type": "string",
           },
@@ -675,12 +713,14 @@ describe('when building domain entity with acronym property name', () => {
       Object {
         "contentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.contentIdentifier",
             "type": "string",
           },
         ],
         "iepBeginDate": Array [
           Object {
+            "identity": true,
             "path": "$.iepBeginDate",
             "type": "date-time",
           },
@@ -731,6 +771,7 @@ describe('when building domain entity with a simple common collection', () => {
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
@@ -789,6 +830,7 @@ describe('when building domain entity subclass with common collection and descri
       Object {
         "communityOrganizationId": Array [
           Object {
+            "identity": true,
             "path": "$.communityOrganizationId",
             "type": "number",
           },
@@ -873,12 +915,14 @@ describe('when building domain entity with a descriptor with role name', () => {
       Object {
         "assessedGradeLevelDescriptor": Array [
           Object {
+            "identity": false,
             "path": "$.assessedGradeLevelDescriptor",
             "type": "string",
           },
         ],
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
@@ -922,6 +966,7 @@ describe('when building domain entity with a descriptor collection with role nam
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
@@ -974,24 +1019,28 @@ describe('when building domain entity with a common with a choice', () => {
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
         ],
         "publicationDate": Array [
           Object {
+            "identity": false,
             "path": "$.contentStandard.publicationDate",
             "type": "string",
           },
         ],
         "publicationYear": Array [
           Object {
+            "identity": false,
             "path": "$.contentStandard.publicationYear",
             "type": "string",
           },
         ],
         "title": Array [
           Object {
+            "identity": false,
             "path": "$.contentStandard.title",
             "type": "string",
           },
@@ -1041,12 +1090,14 @@ describe('when building domain entity with a common and a common collection with
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
         ],
         "beginDate": Array [
           Object {
+            "identity": false,
             "path": "$.period.beginDate",
             "type": "string",
           },
@@ -1083,12 +1134,14 @@ describe('when building domain entity with an all-caps property', () => {
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
         ],
         "uri": Array [
           Object {
+            "identity": false,
             "path": "$.uri",
             "type": "string",
           },
@@ -1139,18 +1192,21 @@ describe('when building domain entity with a common with a domain entity referen
       Object {
         "assessmentIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.assessmentIdentifier",
             "type": "number",
           },
         ],
         "educationOrganizationId": Array [
           Object {
+            "identity": false,
             "path": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
             "type": "number",
           },
         ],
         "title": Array [
           Object {
+            "identity": false,
             "path": "$.contentStandard.title",
             "type": "string",
           },
@@ -1279,6 +1335,7 @@ describe('when building a schema for StudentCohort', () => {
       Object {
         "studentUniqueId": Array [
           Object {
+            "identity": true,
             "path": "$.studentUniqueId",
             "type": "string",
           },
@@ -1330,12 +1387,14 @@ describe('when building a domain entity with an inline common property with a de
       Object {
         "availableCreditTypeDescriptor": Array [
           Object {
+            "identity": false,
             "path": "$.availableCreditTypeDescriptor",
             "type": "string",
           },
         ],
         "sectionIdentifier": Array [
           Object {
+            "identity": true,
             "path": "$.sectionIdentifier",
             "type": "number",
           },
@@ -1380,18 +1439,21 @@ describe('when building a Domain Entity subclass', () => {
       Object {
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.schoolId",
             "type": "number",
           },
         ],
         "subclassProperty": Array [
           Object {
+            "identity": false,
             "path": "$.subclassProperty",
             "type": "number",
           },
         ],
         "superclassProperty": Array [
           Object {
+            "identity": false,
             "path": "$.superclassProperty",
             "type": "number",
           },
@@ -1451,36 +1513,42 @@ describe('when building an Association subclass', () => {
       Object {
         "programId": Array [
           Object {
+            "identity": true,
             "path": "$.programReference.programId",
             "type": "number",
           },
         ],
         "programName": Array [
           Object {
+            "identity": true,
             "path": "$.programReference.programName",
             "type": "string",
           },
         ],
         "schoolId": Array [
           Object {
+            "identity": true,
             "path": "$.schoolReference.schoolId",
             "type": "number",
           },
         ],
         "schoolName": Array [
           Object {
+            "identity": true,
             "path": "$.schoolReference.schoolName",
             "type": "string",
           },
         ],
         "subclassProperty": Array [
           Object {
+            "identity": false,
             "path": "$.subclassProperty",
             "type": "number",
           },
         ],
         "superclassProperty": Array [
           Object {
+            "identity": false,
             "path": "$.superclassProperty",
             "type": "number",
           },
