@@ -2191,6 +2191,64 @@
   "openapi": "3.0.0",
   "paths": {
     "/tpdm/candidateEducatorPreparationProgramAssociations": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getCandidateEducatorPreparationProgramAssociation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "candidateEducatorPreparationProgramAssociations"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postCandidateEducatorPreparationProgramAssociation",
@@ -2240,7 +2298,73 @@
         ]
       }
     },
+    "/tpdm/candidateEducatorPreparationProgramAssociations/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/candidates": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getCandidate",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_Candidate"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "candidates"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postCandidate",
@@ -2290,7 +2414,73 @@
         ]
       }
     },
+    "/tpdm/candidates/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/educatorPreparationPrograms": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEducatorPreparationProgram",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "educatorPreparationPrograms"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEducatorPreparationProgram",
@@ -2340,7 +2530,73 @@
         ]
       }
     },
+    "/tpdm/educatorPreparationPrograms/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluationElementRatings": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluationElementRating",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluationElementRatings"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluationElementRating",
@@ -2390,7 +2646,73 @@
         ]
       }
     },
+    "/tpdm/evaluationElementRatings/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluationElements": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluationElement",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluationElements"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluationElement",
@@ -2440,7 +2762,73 @@
         ]
       }
     },
+    "/tpdm/evaluationElements/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluationObjectiveRatings": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluationObjectiveRating",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluationObjectiveRatings"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluationObjectiveRating",
@@ -2490,7 +2878,73 @@
         ]
       }
     },
+    "/tpdm/evaluationObjectiveRatings/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluationObjectives": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluationObjective",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluationObjectives"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluationObjective",
@@ -2540,7 +2994,73 @@
         ]
       }
     },
+    "/tpdm/evaluationObjectives/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluationRatings": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluationRating",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluationRatings"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluationRating",
@@ -2590,7 +3110,73 @@
         ]
       }
     },
+    "/tpdm/evaluationRatings/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/evaluations": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getEvaluation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_Evaluation"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "evaluations"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postEvaluation",
@@ -2640,7 +3226,73 @@
         ]
       }
     },
+    "/tpdm/evaluations/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/financialAids": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getFinancialAid",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_FinancialAid"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "financialAids"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postFinancialAid",
@@ -2690,7 +3342,73 @@
         ]
       }
     },
+    "/tpdm/financialAids/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/performanceEvaluationRatings": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getPerformanceEvaluationRating",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "performanceEvaluationRatings"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postPerformanceEvaluationRating",
@@ -2740,7 +3458,73 @@
         ]
       }
     },
+    "/tpdm/performanceEvaluationRatings/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/performanceEvaluations": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getPerformanceEvaluation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "performanceEvaluations"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postPerformanceEvaluation",
@@ -2790,7 +3574,73 @@
         ]
       }
     },
+    "/tpdm/performanceEvaluations/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/rubricDimensions": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getRubricDimension",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_RubricDimension"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "rubricDimensions"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postRubricDimension",
@@ -2840,7 +3690,73 @@
         ]
       }
     },
+    "/tpdm/rubricDimensions/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/surveyResponsePersonTargetAssociations": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getSurveyResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "surveyResponsePersonTargetAssociations"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postSurveyResponsePersonTargetAssociation",
@@ -2890,7 +3806,73 @@
         ]
       }
     },
+    "/tpdm/surveyResponsePersonTargetAssociations/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
+      }
+    },
     "/tpdm/surveySectionResponsePersonTargetAssociations": {
+      "get": {
+        "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+        "operationId": "getSurveySectionResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/MinChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/MaxChangeVersion"
+          },
+          {
+            "$ref": "#/components/parameters/totalCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves specific resources using the resource's property values (using the \"Get\" pattern).",
+        "tags": [
+          "surveySectionResponsePersonTargetAssociations"
+        ]
+      },
       "post": {
         "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
         "operationId": "postSurveySectionResponsePersonTargetAssociation",
@@ -2938,6 +3920,14 @@
         "tags": [
           "surveySectionResponsePersonTargetAssociations"
         ]
+      }
+    },
+    "/tpdm/surveySectionResponsePersonTargetAssociations/{id}": {
+      "delete": {
+      },
+      "get": {
+      },
+      "put": {
       }
     }
   },

@@ -11,7 +11,7 @@ import {
   openApiObjectFrom,
   openApiPropertyForNonReference,
   SchoolYearOpenApis,
-} from './OpenApiEnhancerBase';
+} from './OpenApiComponentEnhancerBase';
 
 const enhancerName = 'OpenApiReferenceComponentEnhancer';
 

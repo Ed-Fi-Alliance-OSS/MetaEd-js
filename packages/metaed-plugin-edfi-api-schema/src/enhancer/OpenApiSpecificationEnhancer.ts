@@ -13,7 +13,7 @@ import type { EndpointName } from '../model/api-schema/EndpointName';
 type Schemas = { [key: string]: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject };
 
 /**
- * Returns the "post" section of "path" for the given entity
+ * Returns the "post" section of non-id "path" for the given entity
  */
 function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
   return {
@@ -33,37 +33,130 @@ function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName
       // 'x-bodyName': entity.metaEdName,  ----- in ODS/API but not part of OpenAPI spec
     },
     responses: {
-      200: {
+      '200': {
         $ref: '#/components/responses/Updated',
       },
-      201: {
+      '201': {
         $ref: '#/components/responses/Created',
       },
-      400: {
+      '400': {
         $ref: '#/components/responses/BadRequest',
       },
-      401: {
+      '401': {
         $ref: '#/components/responses/Unauthorized',
       },
-      403: {
+      '403': {
         $ref: '#/components/responses/Forbidden',
       },
-      405: {
+      '405': {
         description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
       },
-      409: {
+      '409': {
         $ref: '#/components/responses/Conflict',
       },
-      412: {
+      '412': {
         $ref: '#/components/responses/PreconditionFailed',
       },
-      500: {
+      '500': {
         $ref: '#/components/responses/Error',
       },
     },
     summary: 'Creates or updates resources based on the natural key values of the supplied resource.',
     tags: [endpointName],
   };
+}
+
+type Parameters = OpenAPIV3.ReferenceObject | OpenAPIV3.ParameterObject;
+
+function newStaticGetByQueryParameters(): Parameters[] {
+  return [
+    {
+      $ref: '#/components/parameters/offset',
+    },
+    {
+      $ref: '#/components/parameters/limit',
+    },
+    {
+      $ref: '#/components/parameters/MinChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/MaxChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/totalCount',
+    },
+  ];
+}
+
+/**
+ * Returns the "get" section of the non-id "path" for the given entity
+ */
+function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+  return {
+    description:
+      'This GET operation provides access to resources using the "Get" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).',
+    operationId: `get${entity.metaEdName}`,
+    parameters: [...newStaticGetByQueryParameters()],
+    responses: {
+      '200': {
+        description: 'The requested resource was successfully retrieved.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+              },
+            },
+          },
+        },
+      },
+      '304': {
+        $ref: '#/components/responses/NotModified',
+      },
+      '400': {
+        $ref: '#/components/responses/BadRequest',
+      },
+      '401': {
+        $ref: '#/components/responses/Unauthorized',
+      },
+      '403': {
+        $ref: '#/components/responses/Forbidden',
+      },
+      '404': {
+        $ref: '#/components/responses/NotFoundUseSnapshot',
+      },
+      '500': {
+        $ref: '#/components/responses/Error',
+      },
+    },
+    summary: 'Retrieves specific resources using the resource\'s property values (using the "Get" pattern).',
+    tags: [endpointName],
+  };
+}
+
+/**
+ * Returns the "get" section of id "path" for the given entity
+ */
+function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+  // TODO: METAED-1585
+  return {} as any;
+}
+
+/**
+ * Returns the "put" section of id "path" for the given entity
+ */
+function createPutSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+  // TODO: METAED-1541
+  return {} as any;
+}
+
+/**
+ * Returns the "delete" section of id "path" for the given entity
+ */
+function createDeleteSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+  // TODO: METAED-1585
+  return {} as any;
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
@@ -81,9 +174,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const projectNamespace: ProjectNamespace = entity.namespace.projectName.toLowerCase() as ProjectNamespace;
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-      // Add to Paths
+      // Add to paths without "id"
       paths[`/${projectNamespace}/${endpointName}`] = {
         post: createPostSectionFor(entity, endpointName),
+        get: createGetByQuerySectionFor(entity, endpointName),
+      };
+
+      paths[`/${projectNamespace}/${endpointName}/{id}`] = {
+        get: createGetByIdSectionFor(entity, endpointName),
+        put: createPutSectionFor(entity, endpointName),
+        delete: createDeleteSectionFor(entity, endpointName),
       };
 
       const {

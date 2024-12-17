@@ -238,6 +238,64 @@ describe('when building simple domain entity with all the simple non-collections
         "openapi": "3.0.0",
         "paths": Object {
           "/edfi/domainEntityNames": Object {
+            "get": Object {
+              "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+              "operationId": "getDomainEntityName",
+              "parameters": Array [
+                Object {
+                  "$ref": "#/components/parameters/offset",
+                },
+                Object {
+                  "$ref": "#/components/parameters/limit",
+                },
+                Object {
+                  "$ref": "#/components/parameters/MinChangeVersion",
+                },
+                Object {
+                  "$ref": "#/components/parameters/MaxChangeVersion",
+                },
+                Object {
+                  "$ref": "#/components/parameters/totalCount",
+                },
+              ],
+              "responses": Object {
+                "200": Object {
+                  "content": Object {
+                    "application/json": Object {
+                      "schema": Object {
+                        "items": Object {
+                          "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                        },
+                        "type": "array",
+                      },
+                    },
+                  },
+                  "description": "The requested resource was successfully retrieved.",
+                },
+                "304": Object {
+                  "$ref": "#/components/responses/NotModified",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFoundUseSnapshot",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+              "tags": Array [
+                "domainEntityNames",
+              ],
+            },
             "post": Object {
               "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
               "operationId": "postDomainEntityName",
@@ -286,6 +344,11 @@ describe('when building simple domain entity with all the simple non-collections
                 "domainEntityNames",
               ],
             },
+          },
+          "/edfi/domainEntityNames/{id}": Object {
+            "delete": Object {},
+            "get": Object {},
+            "put": Object {},
           },
         },
         "servers": Array [
@@ -340,6 +403,64 @@ describe('when building simple domain entity with all the simple collections', (
     expect(openApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getDomainEntityName",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postDomainEntityName",
@@ -388,6 +509,11 @@ describe('when building simple domain entity with all the simple collections', (
               "domainEntityNames",
             ],
           },
+        },
+        "/edfi/domainEntityNames/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
         },
       }
     `);
@@ -705,6 +831,64 @@ describe('when building a domain entity referencing another referencing another 
     expect(openApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/classPeriods": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getClassPeriod",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_ClassPeriod",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "classPeriods",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postClassPeriod",
@@ -754,7 +938,70 @@ describe('when building a domain entity referencing another referencing another 
             ],
           },
         },
+        "/edfi/classPeriods/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/courseOfferings": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getCourseOffering",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_CourseOffering",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "courseOfferings",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postCourseOffering",
@@ -804,7 +1051,70 @@ describe('when building a domain entity referencing another referencing another 
             ],
           },
         },
+        "/edfi/courseOfferings/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/domainEntityNames": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getDomainEntityName",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postDomainEntityName",
@@ -854,7 +1164,70 @@ describe('when building a domain entity referencing another referencing another 
             ],
           },
         },
+        "/edfi/domainEntityNames/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/schools": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getSchool",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_School",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "schools",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postSchool",
@@ -903,6 +1276,11 @@ describe('when building a domain entity referencing another referencing another 
               "schools",
             ],
           },
+        },
+        "/edfi/schools/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
         },
       }
     `);
@@ -1123,6 +1501,64 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(openApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/courseOfferings": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getCourseOffering",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_CourseOffering",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "courseOfferings",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postCourseOffering",
@@ -1172,7 +1608,70 @@ describe('when building a domain entity referencing CourseOffering with an impli
             ],
           },
         },
+        "/edfi/courseOfferings/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/domainEntityNames": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getDomainEntityName",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postDomainEntityName",
@@ -1222,7 +1721,70 @@ describe('when building a domain entity referencing CourseOffering with an impli
             ],
           },
         },
+        "/edfi/domainEntityNames/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/schools": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getSchool",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_School",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "schools",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postSchool",
@@ -1272,7 +1834,70 @@ describe('when building a domain entity referencing CourseOffering with an impli
             ],
           },
         },
+        "/edfi/schools/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
+        },
         "/edfi/sessions": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getSession",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_Session",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "sessions",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postSession",
@@ -1321,6 +1946,11 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "sessions",
             ],
           },
+        },
+        "/edfi/sessions/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
         },
       }
     `);
@@ -1583,6 +2213,64 @@ describe('when building domain entity with nested choice and inline commons', ()
     expect(openApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getDomainEntityName",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postDomainEntityName",
@@ -1631,6 +2319,11 @@ describe('when building domain entity with nested choice and inline commons', ()
               "domainEntityNames",
             ],
           },
+        },
+        "/edfi/domainEntityNames/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
         },
       }
     `);
@@ -1718,6 +2411,64 @@ describe('when building domain entity with scalar collection named with prefix o
     expect(openApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
+          "get": Object {
+            "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+            "operationId": "getDomainEntityName",
+            "parameters": Array [
+              Object {
+                "$ref": "#/components/parameters/offset",
+              },
+              Object {
+                "$ref": "#/components/parameters/limit",
+              },
+              Object {
+                "$ref": "#/components/parameters/MinChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/MaxChangeVersion",
+              },
+              Object {
+                "$ref": "#/components/parameters/totalCount",
+              },
+            ],
+            "responses": Object {
+              "200": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "items": Object {
+                        "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                      },
+                      "type": "array",
+                    },
+                  },
+                },
+                "description": "The requested resource was successfully retrieved.",
+              },
+              "304": Object {
+                "$ref": "#/components/responses/NotModified",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFoundUseSnapshot",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
             "operationId": "postDomainEntityName",
@@ -1766,6 +2517,11 @@ describe('when building domain entity with scalar collection named with prefix o
               "domainEntityNames",
             ],
           },
+        },
+        "/edfi/domainEntityNames/{id}": Object {
+          "delete": Object {},
+          "get": Object {},
+          "put": Object {},
         },
       }
     `);

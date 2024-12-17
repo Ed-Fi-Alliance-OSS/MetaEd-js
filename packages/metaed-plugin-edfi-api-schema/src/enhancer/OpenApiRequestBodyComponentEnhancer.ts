@@ -19,7 +19,7 @@ import {
   SchoolYearOpenApis,
   openApiPropertyForNonReference,
   newSchoolYearOpenApis,
-} from './OpenApiEnhancerBase';
+} from './OpenApiComponentEnhancerBase';
 
 const enhancerName = 'OpenApiRequestBodyComponentEnhancer';
 
