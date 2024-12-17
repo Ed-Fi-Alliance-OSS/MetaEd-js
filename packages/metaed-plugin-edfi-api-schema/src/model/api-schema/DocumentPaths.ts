@@ -33,6 +33,11 @@ export type DocumentReferencePaths = {
   isDescriptor: false;
 
   /**
+   * Whether this document reference path is part of the identity of the document
+   */
+  isPartOfIdentity: boolean;
+
+  /**
    * JsonPath information for a document reference and it's corresponding identity in the referenced document.
    * This information is used to ensure that construction of a DocumentReference by an API implementation
    * can use the correct naming to match the DocumentIdentity of the document being referenced.
@@ -97,6 +102,11 @@ export type DescriptorReferencePath = {
    * Type of the descriptor reference path
    */
   type: PathType;
+
+  /**
+   * Whether this descriptor reference path is part of the identity of the document
+   */
+  isPartOfIdentity: boolean;
 };
 
 /**
@@ -117,6 +127,11 @@ export type ScalarPath = {
    * Type of the scalar
    */
   type: PathType;
+
+  /**
+   * Whether this scalar path is part of the identity of the document
+   */
+  isPartOfIdentity: boolean;
 };
 
 /**

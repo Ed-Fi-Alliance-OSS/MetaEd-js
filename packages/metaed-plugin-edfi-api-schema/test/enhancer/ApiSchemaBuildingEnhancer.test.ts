@@ -3049,16 +3049,19 @@ describe('when building a Domain Entity subclass', () => {
     ).toMatchInlineSnapshot(`
       Object {
         "SchoolId": Object {
+          "isPartOfIdentity": true,
           "isReference": false,
           "path": "$.schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.superclassProperty",
           "type": "number",
@@ -3253,6 +3256,7 @@ describe('when building an Association subclass', () => {
       Object {
         "Program": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": true,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
@@ -3271,6 +3275,7 @@ describe('when building an Association subclass', () => {
         },
         "School": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": true,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
@@ -3288,11 +3293,13 @@ describe('when building an Association subclass', () => {
           "resourceName": "School",
         },
         "SubclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.superclassProperty",
           "type": "number",
@@ -3423,6 +3430,7 @@ describe('when domain entity extension references domain entity in different nam
       Object {
         "ReferencedEntityName": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": false,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
