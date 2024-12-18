@@ -348,7 +348,76 @@ describe('when building simple domain entity with all the simple non-collections
           "/edfi/domainEntityNames/{id}": Object {
             "delete": Object {},
             "get": Object {},
-            "put": Object {},
+            "put": Object {
+              "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+              "operationId": "putDomainEntityName",
+              "parameters": Array [
+                Object {
+                  "description": "A resource identifier that uniquely identifies the resource.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": Object {
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "$ref": "#/components/parameters/If-None-Match",
+                },
+                Object {
+                  "description": "Indicates if the configured Snapshot should be used.",
+                  "in": "header",
+                  "name": "Use-Snapshot",
+                  "schema": Object {
+                    "default": false,
+                    "type": "boolean",
+                  },
+                },
+              ],
+              "requestBody": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                    },
+                  },
+                },
+                "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+              },
+              "responses": Object {
+                "204": Object {
+                  "$ref": "#/components/responses/Updated",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFound",
+                },
+                "405": Object {
+                  "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+                },
+                "409": Object {
+                  "$ref": "#/components/responses/Conflict",
+                },
+                "412": Object {
+                  "$ref": "#/components/responses/PreconditionFailed",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Updates a resource based on the resource identifier.",
+              "tags": Array [
+                "domainEntityNames",
+              ],
+            },
           },
         },
         "servers": Array [
@@ -513,7 +582,76 @@ describe('when building simple domain entity with all the simple collections', (
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putDomainEntityName",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                  },
+                },
+              },
+              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
         },
       }
     `);
@@ -941,7 +1079,76 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/classPeriods/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putClassPeriod",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_ClassPeriod",
+                  },
+                },
+              },
+              "description": "The JSON representation of the ClassPeriod resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "classPeriods",
+            ],
+          },
         },
         "/edfi/courseOfferings": Object {
           "get": Object {
@@ -1054,7 +1261,76 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/courseOfferings/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putCourseOffering",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_CourseOffering",
+                  },
+                },
+              },
+              "description": "The JSON representation of the CourseOffering resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "courseOfferings",
+            ],
+          },
         },
         "/edfi/domainEntityNames": Object {
           "get": Object {
@@ -1167,7 +1443,76 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putDomainEntityName",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                  },
+                },
+              },
+              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
         },
         "/edfi/schools": Object {
           "get": Object {
@@ -1280,7 +1625,76 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/schools/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putSchool",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_School",
+                  },
+                },
+              },
+              "description": "The JSON representation of the School resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "schools",
+            ],
+          },
         },
       }
     `);
@@ -1611,7 +2025,76 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/courseOfferings/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putCourseOffering",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_CourseOffering",
+                  },
+                },
+              },
+              "description": "The JSON representation of the CourseOffering resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "courseOfferings",
+            ],
+          },
         },
         "/edfi/domainEntityNames": Object {
           "get": Object {
@@ -1724,7 +2207,76 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putDomainEntityName",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                  },
+                },
+              },
+              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
         },
         "/edfi/schools": Object {
           "get": Object {
@@ -1837,7 +2389,76 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/schools/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putSchool",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_School",
+                  },
+                },
+              },
+              "description": "The JSON representation of the School resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "schools",
+            ],
+          },
         },
         "/edfi/sessions": Object {
           "get": Object {
@@ -1950,7 +2571,76 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/sessions/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putSession",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_Session",
+                  },
+                },
+              },
+              "description": "The JSON representation of the Session resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "sessions",
+            ],
+          },
         },
       }
     `);
@@ -2323,7 +3013,76 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putDomainEntityName",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                  },
+                },
+              },
+              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
         },
       }
     `);
@@ -2521,7 +3280,76 @@ describe('when building domain entity with scalar collection named with prefix o
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {},
           "get": Object {},
-          "put": Object {},
+          "put": Object {
+            "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+            "operationId": "putDomainEntityName",
+            "parameters": Array [
+              Object {
+                "description": "A resource identifier that uniquely identifies the resource.",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              Object {
+                "$ref": "#/components/parameters/If-None-Match",
+              },
+              Object {
+                "description": "Indicates if the configured Snapshot should be used.",
+                "in": "header",
+                "name": "Use-Snapshot",
+                "schema": Object {
+                  "default": false,
+                  "type": "boolean",
+                },
+              },
+            ],
+            "requestBody": Object {
+              "content": Object {
+                "application/json": Object {
+                  "schema": Object {
+                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                  },
+                },
+              },
+              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+            },
+            "responses": Object {
+              "204": Object {
+                "$ref": "#/components/responses/Updated",
+              },
+              "400": Object {
+                "$ref": "#/components/responses/BadRequest",
+              },
+              "401": Object {
+                "$ref": "#/components/responses/Unauthorized",
+              },
+              "403": Object {
+                "$ref": "#/components/responses/Forbidden",
+              },
+              "404": Object {
+                "$ref": "#/components/responses/NotFound",
+              },
+              "405": Object {
+                "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+              },
+              "409": Object {
+                "$ref": "#/components/responses/Conflict",
+              },
+              "412": Object {
+                "$ref": "#/components/responses/PreconditionFailed",
+              },
+              "500": Object {
+                "$ref": "#/components/responses/Error",
+              },
+            },
+            "summary": "Updates a resource based on the resource identifier.",
+            "tags": Array [
+              "domainEntityNames",
+            ],
+          },
         },
       }
     `);

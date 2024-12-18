@@ -88,6 +88,23 @@ function newStaticGetByQueryParameters(): Parameters[] {
   ];
 }
 
+function newStaticByIdParameters(): Parameters[] {
+  return [
+    {
+      name: 'id',
+      in: 'path',
+      description: 'A resource identifier that uniquely identifies the resource.',
+      required: true,
+      schema: {
+        type: 'string',
+      },
+    },
+    {
+      $ref: '#/components/parameters/If-None-Match',
+    },
+  ];
+}
+
 /**
  * Returns the "get" section of the non-id "path" for the given entity
  */
@@ -146,9 +163,65 @@ function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: Endpoin
 /**
  * Returns the "put" section of id "path" for the given entity
  */
-function createPutSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
-  // TODO: METAED-1541
-  return {} as any;
+function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+  return {
+    description:
+      'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
+    operationId: `put${entity.metaEdName}`,
+    parameters: [
+      ...newStaticByIdParameters(),
+      {
+        name: 'Use-Snapshot',
+        in: 'header',
+        description: 'Indicates if the configured Snapshot should be used.',
+        schema: {
+          type: 'boolean',
+          default: false,
+        },
+      },
+    ],
+    requestBody: {
+      description: `The JSON representation of the ${entity.metaEdName} resource to be created or updated.`,
+      content: {
+        'application/json': {
+          schema: {
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+          },
+        },
+      },
+    },
+    responses: {
+      '204': {
+        $ref: '#/components/responses/Updated',
+      },
+      '400': {
+        $ref: '#/components/responses/BadRequest',
+      },
+      '401': {
+        $ref: '#/components/responses/Unauthorized',
+      },
+      '403': {
+        $ref: '#/components/responses/Forbidden',
+      },
+      '404': {
+        $ref: '#/components/responses/NotFound',
+      },
+      '405': {
+        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+      },
+      '409': {
+        $ref: '#/components/responses/Conflict',
+      },
+      '412': {
+        $ref: '#/components/responses/PreconditionFailed',
+      },
+      '500': {
+        $ref: '#/components/responses/Error',
+      },
+    },
+    summary: 'Updates a resource based on the resource identifier.',
+    tags: [endpointName],
+  };
 }
 
 /**
