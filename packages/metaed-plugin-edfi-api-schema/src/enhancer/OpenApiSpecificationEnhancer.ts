@@ -227,9 +227,44 @@ function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName)
 /**
  * Returns the "delete" section of id "path" for the given entity
  */
-function createDeleteSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
-  // TODO: METAED-1585
-  return {} as any;
+function createDeleteSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+  return {
+    description:
+      "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+    operationId: `delete${entity.metaEdName}`,
+    parameters: newStaticByIdParameters(),
+    responses: {
+      '204': {
+        $ref: '#/components/responses/Updated',
+      },
+      '400': {
+        $ref: '#/components/responses/BadRequest',
+      },
+      '401': {
+        $ref: '#/components/responses/Unauthorized',
+      },
+      '403': {
+        $ref: '#/components/responses/Forbidden',
+      },
+      '404': {
+        $ref: '#/components/responses/NotFound',
+      },
+      '405': {
+        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+      },
+      '409': {
+        $ref: '#/components/responses/Conflict',
+      },
+      '412': {
+        $ref: '#/components/responses/PreconditionFailed',
+      },
+      '500': {
+        $ref: '#/components/responses/Error',
+      },
+    },
+    summary: 'Deletes an existing resource using the resource identifier.',
+    tags: [endpointName],
+  };
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

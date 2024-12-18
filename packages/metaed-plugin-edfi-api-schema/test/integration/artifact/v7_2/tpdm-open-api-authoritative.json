@@ -2300,6 +2300,55 @@
     },
     "/tpdm/candidateEducatorPreparationProgramAssociations/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteCandidateEducatorPreparationProgramAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "candidateEducatorPreparationProgramAssociations"
+        ]
       },
       "get": {
       },
@@ -2484,6 +2533,55 @@
     },
     "/tpdm/candidates/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteCandidate",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "candidates"
+        ]
       },
       "get": {
       },
@@ -2668,6 +2766,55 @@
     },
     "/tpdm/educatorPreparationPrograms/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEducatorPreparationProgram",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "educatorPreparationPrograms"
+        ]
       },
       "get": {
       },
@@ -2852,6 +2999,55 @@
     },
     "/tpdm/evaluationElementRatings/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluationElementRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluationElementRatings"
+        ]
       },
       "get": {
       },
@@ -3036,6 +3232,55 @@
     },
     "/tpdm/evaluationElements/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluationElement",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluationElements"
+        ]
       },
       "get": {
       },
@@ -3220,6 +3465,55 @@
     },
     "/tpdm/evaluationObjectiveRatings/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluationObjectiveRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluationObjectiveRatings"
+        ]
       },
       "get": {
       },
@@ -3404,6 +3698,55 @@
     },
     "/tpdm/evaluationObjectives/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluationObjective",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluationObjectives"
+        ]
       },
       "get": {
       },
@@ -3588,6 +3931,55 @@
     },
     "/tpdm/evaluationRatings/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluationRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluationRatings"
+        ]
       },
       "get": {
       },
@@ -3772,6 +4164,55 @@
     },
     "/tpdm/evaluations/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteEvaluation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "evaluations"
+        ]
       },
       "get": {
       },
@@ -3956,6 +4397,55 @@
     },
     "/tpdm/financialAids/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteFinancialAid",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "financialAids"
+        ]
       },
       "get": {
       },
@@ -4140,6 +4630,55 @@
     },
     "/tpdm/performanceEvaluationRatings/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deletePerformanceEvaluationRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "performanceEvaluationRatings"
+        ]
       },
       "get": {
       },
@@ -4324,6 +4863,55 @@
     },
     "/tpdm/performanceEvaluations/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deletePerformanceEvaluation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "performanceEvaluations"
+        ]
       },
       "get": {
       },
@@ -4508,6 +5096,55 @@
     },
     "/tpdm/rubricDimensions/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteRubricDimension",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "rubricDimensions"
+        ]
       },
       "get": {
       },
@@ -4692,6 +5329,55 @@
     },
     "/tpdm/surveyResponsePersonTargetAssociations/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteSurveyResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "surveyResponsePersonTargetAssociations"
+        ]
       },
       "get": {
       },
@@ -4876,6 +5562,55 @@
     },
     "/tpdm/surveySectionResponsePersonTargetAssociations/{id}": {
       "delete": {
+        "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+        "operationId": "deleteSurveySectionResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/Updated"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Deletes an existing resource using the resource identifier.",
+        "tags": [
+          "surveySectionResponsePersonTargetAssociations"
+        ]
       },
       "get": {
       },
