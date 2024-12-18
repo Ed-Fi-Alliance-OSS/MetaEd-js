@@ -2261,7 +2261,8 @@
             }
           },
           "description": "The JSON representation of the CandidateEducatorPreparationProgramAssociation resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "CandidateEducatorPreparationProgramAssociation"
         },
         "responses": {
           "200": {
@@ -2494,7 +2495,8 @@
             }
           },
           "description": "The JSON representation of the Candidate resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "Candidate"
         },
         "responses": {
           "200": {
@@ -2727,7 +2729,8 @@
             }
           },
           "description": "The JSON representation of the EducatorPreparationProgram resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EducatorPreparationProgram"
         },
         "responses": {
           "200": {
@@ -2960,7 +2963,8 @@
             }
           },
           "description": "The JSON representation of the EvaluationElementRating resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EvaluationElementRating"
         },
         "responses": {
           "200": {
@@ -3193,7 +3197,8 @@
             }
           },
           "description": "The JSON representation of the EvaluationElement resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EvaluationElement"
         },
         "responses": {
           "200": {
@@ -3426,7 +3431,8 @@
             }
           },
           "description": "The JSON representation of the EvaluationObjectiveRating resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EvaluationObjectiveRating"
         },
         "responses": {
           "200": {
@@ -3659,7 +3665,8 @@
             }
           },
           "description": "The JSON representation of the EvaluationObjective resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EvaluationObjective"
         },
         "responses": {
           "200": {
@@ -3892,7 +3899,8 @@
             }
           },
           "description": "The JSON representation of the EvaluationRating resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "EvaluationRating"
         },
         "responses": {
           "200": {
@@ -4125,7 +4133,8 @@
             }
           },
           "description": "The JSON representation of the Evaluation resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "Evaluation"
         },
         "responses": {
           "200": {
@@ -4358,7 +4367,8 @@
             }
           },
           "description": "The JSON representation of the FinancialAid resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "FinancialAid"
         },
         "responses": {
           "200": {
@@ -4591,7 +4601,8 @@
             }
           },
           "description": "The JSON representation of the PerformanceEvaluationRating resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "PerformanceEvaluationRating"
         },
         "responses": {
           "200": {
@@ -4824,7 +4835,8 @@
             }
           },
           "description": "The JSON representation of the PerformanceEvaluation resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "PerformanceEvaluation"
         },
         "responses": {
           "200": {
@@ -5057,7 +5069,8 @@
             }
           },
           "description": "The JSON representation of the RubricDimension resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "RubricDimension"
         },
         "responses": {
           "200": {
@@ -5290,7 +5303,8 @@
             }
           },
           "description": "The JSON representation of the SurveyResponsePersonTargetAssociation resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "SurveyResponsePersonTargetAssociation"
         },
         "responses": {
           "200": {
@@ -5523,7 +5537,8 @@
             }
           },
           "description": "The JSON representation of the SurveySectionResponsePersonTargetAssociation resource to be created or updated.",
-          "required": true
+          "required": true,
+          "x-bodyName": "SurveySectionResponsePersonTargetAssociation"
         },
         "responses": {
           "200": {

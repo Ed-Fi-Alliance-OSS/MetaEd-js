@@ -3,9 +3,10 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { JsonPath } from './JsonPath';
-import { ReferenceJsonPaths } from './ReferenceJsonPaths';
-import { PathType } from './PathType';
+import type { EntityProperty } from '@edfi/metaed-core';
+import type { JsonPath } from './JsonPath';
+import type { ReferenceJsonPaths } from './ReferenceJsonPaths';
+import type { PathType } from './PathType';
 
 /**
  * JsonPath information for a reference MetaEd property
@@ -33,9 +34,10 @@ export type DocumentReferencePaths = {
   isDescriptor: false;
 
   /**
-   * Whether this document reference path is part of the identity of the document
+   * The source property of this document reference path. This must be stripped out before the DocumentReferencePaths
+   * can be stringified to JSON.
    */
-  isPartOfIdentity: boolean;
+  sourceProperty?: EntityProperty;
 
   /**
    * JsonPath information for a document reference and it's corresponding identity in the referenced document.
@@ -104,9 +106,10 @@ export type DescriptorReferencePath = {
   type: PathType;
 
   /**
-   * Whether this descriptor reference path is part of the identity of the document
+   * The source property of this descriptor reference path. This must be stripped out before the DescriptorReferencePath
+   * can be stringified to JSON.
    */
-  isPartOfIdentity: boolean;
+  sourceProperty?: EntityProperty;
 };
 
 /**
@@ -129,9 +132,10 @@ export type ScalarPath = {
   type: PathType;
 
   /**
-   * Whether this scalar path is part of the identity of the document
+   * The source property of this scalar path. This must be stripped out before the ScalarPath
+   * can be stringified to JSON.
    */
-  isPartOfIdentity: boolean;
+  sourceProperty?: EntityProperty;
 };
 
 /**

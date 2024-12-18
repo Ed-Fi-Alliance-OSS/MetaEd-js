@@ -24,6 +24,43 @@ import { CaseInsensitiveEndpointNameMapping } from '../model/api-schema/CaseInse
 import { buildSchoolYearResourceSchema } from './SchoolYearHardCodedSchemaBuilder';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
+import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
+import { DocumentPaths } from '../model/api-schema/DocumentPaths';
+import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
+import { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
+
+/**
+ * Removes the sourceProperty attributes from DocumentPathsMapping, which are not needed for stringification
+ * and in fact prevent it due to circular references.
+ */
+export function removeSourcePropertyFromDocumentPathsMapping(
+  documentPathsMapping: DocumentPathsMapping,
+): DocumentPathsMapping {
+  const result: DocumentPathsMapping = {};
+  Object.entries(documentPathsMapping).forEach(([propertyFullName, documentPaths]) => {
+    const updatedDocumentPaths: DocumentPaths = { ...documentPaths };
+    delete updatedDocumentPaths.sourceProperty;
+    result[propertyFullName] = updatedDocumentPaths;
+  });
+  return result;
+}
+
+/**
+ * Removes the sourceProperty attributes from QueryFieldMapping, which are not needed for stringification
+ * and in fact prevent it due to circular references.
+ */
+export function removeSourcePropertyFromQueryFieldMapping(queryFieldMapping: QueryFieldMapping): QueryFieldMapping {
+  const result: QueryFieldMapping = {};
+  Object.entries(queryFieldMapping).forEach(([queryField, queryFieldPathInfoArray]) => {
+    const updateQueryFieldPathInfoArray: QueryFieldPathInfo[] = queryFieldPathInfoArray.map((queryFieldPathInfo) => {
+      const updatedQueryFieldPathInfo: QueryFieldPathInfo = { ...queryFieldPathInfo };
+      delete updatedQueryFieldPathInfo.sourceProperty;
+      return updatedQueryFieldPathInfo;
+    });
+    result[queryField] = updateQueryFieldPathInfoArray;
+  });
+  return result;
+}
 
 /**
  *
@@ -37,8 +74,8 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
-    documentPathsMapping: entityApiSchemaData.documentPathsMapping,
-    queryFieldMapping: entityApiSchemaData.queryFieldMapping,
+    documentPathsMapping: removeSourcePropertyFromDocumentPathsMapping(entityApiSchemaData.documentPathsMapping),
+    queryFieldMapping: removeSourcePropertyFromQueryFieldMapping(entityApiSchemaData.queryFieldMapping),
     identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
@@ -56,7 +93,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     resourceName: entityApiSchemaData.resourceName,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
-    documentPathsMapping: entityApiSchemaData.documentPathsMapping,
+    documentPathsMapping: removeSourcePropertyFromDocumentPathsMapping(entityApiSchemaData.documentPathsMapping),
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,

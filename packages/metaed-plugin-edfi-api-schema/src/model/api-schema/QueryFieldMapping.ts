@@ -1,8 +1,7 @@
-import { JsonPath } from './JsonPath';
-import { PathType } from './PathType';
+import type { QueryFieldPathInfo } from './QueryFieldPathInfo';
 
 /**
- * A mapping from a query field string to a list of JsonPaths in the document that
+ * A mapping from a query field string to a list of QueryFieldPathInfo, providing JsonPaths in the document that
  * should be part of the query.
  */
-export type QueryFieldMapping = { [key: string]: [{ path: JsonPath; type: PathType; identity: boolean }] };
+export type QueryFieldMapping = { [queryField: string]: QueryFieldPathInfo[] };

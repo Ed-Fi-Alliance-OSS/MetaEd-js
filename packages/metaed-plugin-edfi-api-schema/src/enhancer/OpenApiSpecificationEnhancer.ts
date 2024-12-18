@@ -1,4 +1,3 @@
-import type { OpenAPIV3 } from 'openapi-types';
 import {
   type MetaEdEnvironment,
   type EnhancerResult,
@@ -9,13 +8,12 @@ import {
 import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
-
-type Schemas = { [key: string]: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject };
+import { Operation, PathsObject, ComponentsObject, Parameter, Document, Schemas } from '../model/OpenApiTypes';
 
 /**
  * Returns the "post" section of non-id "path" for the given entity
  */
-function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
   return {
     description:
       'The POST operation can be used to create or update resources. In database terms, this is often referred to as an "upsert" operation (insert + update). Clients should NOT include the resource "id" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.',
@@ -30,7 +28,7 @@ function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName
         },
       },
       required: true,
-      // 'x-bodyName': entity.metaEdName,  ----- in ODS/API but not part of OpenAPI spec
+      'x-bodyName': entity.metaEdName,
     },
     responses: {
       '200': {
@@ -66,9 +64,10 @@ function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName
   };
 }
 
-type Parameters = OpenAPIV3.ReferenceObject | OpenAPIV3.ParameterObject;
-
-function newStaticGetByQueryParameters(): Parameters[] {
+/**
+ * Returns the hardcoded set of get by query parameters common to all resources.
+ */
+function newStaticGetByQueryParameters(): Parameter[] {
   return [
     {
       $ref: '#/components/parameters/offset',
@@ -106,14 +105,36 @@ function newStaticByIdParameters(): Parameters[] {
 }
 
 /**
+ * Returns the set of get by query parameters for the given entity
+ */
+function getByQueryParametersFor(_entity: TopLevelEntity): Parameter[] {
+  const result: Parameter[] = [];
+  // const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+  // Object.entries(edfiApiSchemaData.queryFieldMapping).forEach(([fieldName, pathInfo]) => {
+  //   result.push({
+  //     name: fieldName,
+  //     in: 'query',
+  //     description: 'TBD',
+  //     pathInfo.id
+
+  //     *&^(*&()*) need the whole property to get description and type information and identity
+
+
+  //   })
+  // });
+  return result;
+}
+
+
+/**
  * Returns the "get" section of the non-id "path" for the given entity
  */
-function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
   return {
     description:
       'This GET operation provides access to resources using the "Get" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).',
     operationId: `get${entity.metaEdName}`,
-    parameters: [...newStaticGetByQueryParameters()],
+    parameters: [...newStaticGetByQueryParameters(), ...getByQueryParametersFor(entity)],
     responses: {
       '200': {
         description: 'The requested resource was successfully retrieved.',
@@ -155,7 +176,7 @@ function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: Endpoi
 /**
  * Returns the "get" section of id "path" for the given entity
  */
-function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): Operation {
   // TODO: METAED-1585
   return {} as any;
 }
@@ -163,7 +184,7 @@ function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: Endpoin
 /**
  * Returns the "put" section of id "path" for the given entity
  */
-function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createPutSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
   return {
     description:
       'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
@@ -227,7 +248,7 @@ function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName)
 /**
  * Returns the "delete" section of id "path" for the given entity
  */
-function createDeleteSectionFor(entity: TopLevelEntity, endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createDeleteSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
   return {
     description:
       "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
@@ -269,7 +290,7 @@ function createDeleteSectionFor(entity: TopLevelEntity, endpointName: EndpointNa
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const paths: OpenAPIV3.PathsObject = {};
+    const paths: PathsObject = {};
     const schemas: Schemas = {};
 
     getEntitiesOfTypeForNamespaces(
@@ -306,7 +327,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
     });
 
-    const components: OpenAPIV3.ComponentsObject = {
+    const components: ComponentsObject = {
       schemas,
       responses: {
         Created: {
@@ -365,7 +386,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       },
     };
 
-    const swaggerDocument: OpenAPIV3.Document = {
+    const swaggerDocument: Document = {
       openapi: '3.0.0',
       info: {
         title: 'Ed-Fi Alliance Data Management Service',

@@ -1,4 +1,4 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, EntityProperty } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
@@ -26,16 +26,21 @@ function isNotCollectionPath(jsonPath: JsonPath): boolean {
 /**
  * Add a JsonPath to a QueryFieldMapping
  */
-function addTo(queryFieldMapping: QueryFieldMapping, jsonPath: JsonPath, pathType: PathType, isPartOfIdentity: boolean) {
+function addTo(
+  queryFieldMapping: QueryFieldMapping,
+  jsonPath: JsonPath,
+  pathType: PathType,
+  sourceProperty?: EntityProperty,
+) {
   const queryField = endOfPath(jsonPath);
 
   // Initialize array if not exists
   if (queryFieldMapping[queryField] == null) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, identity: isPartOfIdentity }];
+    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
   }
   // Avoid duplicates
   if (queryFieldMapping[queryField][0].path !== jsonPath) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, identity: isPartOfIdentity }];
+    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
   }
 }
 
@@ -48,7 +53,7 @@ function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): Quer
     // ScalarPath
     if (!documentPaths.isReference) {
       if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.isPartOfIdentity);
+        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
       }
       return;
     }
@@ -56,7 +61,7 @@ function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): Quer
     // DescriptorReferencePath
     if (documentPaths.isDescriptor) {
       if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.isPartOfIdentity);
+        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
       }
       return;
     }
@@ -64,7 +69,7 @@ function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): Quer
     // DocumentReferencePaths
     documentPaths.referenceJsonPaths.forEach((referenceJsonPaths: ReferenceJsonPaths) => {
       if (isNotCollectionPath(referenceJsonPaths.referenceJsonPath)) {
-        addTo(result, referenceJsonPaths.referenceJsonPath, referenceJsonPaths.type, documentPaths.isPartOfIdentity);
+        addTo(result, referenceJsonPaths.referenceJsonPath, referenceJsonPaths.type, documentPaths.sourceProperty);
       }
     });
   });
@@ -86,8 +91,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.queryFieldMapping = {
-      codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string', identity: false }],
-      namespace: [{ path: '$.namespace' as JsonPath, type: 'string', identity: false }],
+      codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
+      namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
     };
   });
 

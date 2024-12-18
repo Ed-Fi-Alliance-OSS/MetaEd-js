@@ -154,14 +154,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -240,14 +238,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -263,14 +259,12 @@
           ],
           "documentPathsMapping": {
             "BeginDate": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.beginDate",
               "type": "date"
             },
             "Candidate": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -284,7 +278,6 @@
             },
             "CohortYear.CohortYearTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.cohortYears[*].cohortYearTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -293,7 +286,6 @@
             },
             "CohortYear.SchoolYear": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "Ed-Fi",
               "referenceJsonPaths": [
@@ -307,7 +299,6 @@
             },
             "CohortYear.TermDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.cohortYears[*].termDescriptor",
               "projectName": "Ed-Fi",
@@ -315,32 +306,27 @@
               "type": "string"
             },
             "DegreeSpecialization.BeginDate": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.degreeSpecializations[*].beginDate",
               "type": "date"
             },
             "DegreeSpecialization.EndDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.degreeSpecializations[*].endDate",
               "type": "date"
             },
             "DegreeSpecialization.MajorSpecialization": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.degreeSpecializations[*].majorSpecialization",
               "type": "string"
             },
             "DegreeSpecialization.MinorSpecialization": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.degreeSpecializations[*].minorSpecialization",
               "type": "string"
             },
             "EPPProgramPathwayDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.eppProgramPathwayDescriptor",
               "projectName": "TPDM",
@@ -349,7 +335,6 @@
             },
             "EducatorPreparationProgram": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -372,14 +357,12 @@
               "resourceName": "EducatorPreparationProgram"
             },
             "EndDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.endDate",
               "type": "date"
             },
             "ReasonExitedDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.reasonExitedDescriptor",
               "projectName": "TPDM",
@@ -561,56 +544,48 @@
           "queryFieldMapping": {
             "beginDate": [
               {
-                "identity": true,
                 "path": "$.beginDate",
                 "type": "date"
               }
             ],
             "candidateIdentifier": [
               {
-                "identity": true,
                 "path": "$.candidateReference.candidateIdentifier",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.educatorPreparationProgramReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "endDate": [
               {
-                "identity": false,
                 "path": "$.endDate",
                 "type": "date"
               }
             ],
             "eppProgramPathwayDescriptor": [
               {
-                "identity": false,
                 "path": "$.eppProgramPathwayDescriptor",
                 "type": "string"
               }
             ],
             "programName": [
               {
-                "identity": true,
                 "path": "$.educatorPreparationProgramReference.programName",
                 "type": "string"
               }
             ],
             "programTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.educatorPreparationProgramReference.programTypeDescriptor",
                 "type": "string"
               }
             ],
             "reasonExitedDescriptor": [
               {
-                "identity": false,
                 "path": "$.reasonExitedDescriptor",
                 "type": "string"
               }
@@ -636,7 +611,6 @@
           "documentPathsMapping": {
             "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.addresses[*].addressTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -644,50 +618,42 @@
               "type": "string"
             },
             "Address.ApartmentRoomSuiteNumber": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].apartmentRoomSuiteNumber",
               "type": "string"
             },
             "Address.BuildingSiteNumber": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].buildingSiteNumber",
               "type": "string"
             },
             "Address.City": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.addresses[*].city",
               "type": "string"
             },
             "Address.CongressionalDistrict": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].congressionalDistrict",
               "type": "string"
             },
             "Address.CountyFIPSCode": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].countyFIPSCode",
               "type": "string"
             },
             "Address.DoNotPublishIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].doNotPublishIndicator",
               "type": "boolean"
             },
             "Address.Latitude": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].latitude",
               "type": "string"
             },
             "Address.LocaleDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.addresses[*].localeDescriptor",
               "projectName": "Ed-Fi",
@@ -695,38 +661,32 @@
               "type": "string"
             },
             "Address.Longitude": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].longitude",
               "type": "string"
             },
             "Address.NameOfCounty": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].nameOfCounty",
               "type": "string"
             },
             "Address.Period.BeginDate": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.addresses[*].periods[*].beginDate",
               "type": "date"
             },
             "Address.Period.EndDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.addresses[*].periods[*].endDate",
               "type": "date"
             },
             "Address.PostalCode": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.addresses[*].postalCode",
               "type": "string"
             },
             "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.addresses[*].stateAbbreviationDescriptor",
               "projectName": "Ed-Fi",
@@ -734,20 +694,17 @@
               "type": "string"
             },
             "Address.StreetNumberName": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.addresses[*].streetNumberName",
               "type": "string"
             },
             "BirthData.BirthCity": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.birthCity",
               "type": "string"
             },
             "BirthData.BirthCountryDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.birthCountryDescriptor",
               "projectName": "Ed-Fi",
@@ -755,20 +712,17 @@
               "type": "string"
             },
             "BirthData.BirthDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.birthDate",
               "type": "date"
             },
             "BirthData.BirthInternationalProvince": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.birthInternationalProvince",
               "type": "string"
             },
             "BirthData.BirthSexDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.birthSexDescriptor",
               "projectName": "Ed-Fi",
@@ -777,7 +731,6 @@
             },
             "BirthData.BirthStateAbbreviationDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.birthStateAbbreviationDescriptor",
               "projectName": "Ed-Fi",
@@ -785,26 +738,22 @@
               "type": "string"
             },
             "BirthData.DateEnteredUS": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.dateEnteredUS",
               "type": "date"
             },
             "BirthData.MultipleBirthStatus": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.multipleBirthStatus",
               "type": "boolean"
             },
             "CandidateIdentifier": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.candidateIdentifier",
               "type": "string"
             },
             "Disability.DisabilityDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.disabilities[*].disabilityDescriptor",
               "projectName": "Ed-Fi",
@@ -813,7 +762,6 @@
             },
             "Disability.DisabilityDesignationDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.disabilities[*].designations[*].disabilityDesignationDescriptor",
               "projectName": "Ed-Fi",
@@ -822,7 +770,6 @@
             },
             "Disability.DisabilityDeterminationSourceTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.disabilities[*].disabilityDeterminationSourceTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -830,44 +777,37 @@
               "type": "string"
             },
             "Disability.DisabilityDiagnosis": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.disabilities[*].disabilityDiagnosis",
               "type": "string"
             },
             "Disability.OrderOfDisability": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.disabilities[*].orderOfDisability",
               "type": "number"
             },
             "DisplacementStatus": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.displacementStatus",
               "type": "string"
             },
             "EconomicDisadvantaged": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.economicDisadvantaged",
               "type": "boolean"
             },
             "ElectronicMail.DoNotPublishIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.electronicMails[*].doNotPublishIndicator",
               "type": "boolean"
             },
             "ElectronicMail.ElectronicMailAddress": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.electronicMails[*].electronicMailAddress",
               "type": "string"
             },
             "ElectronicMail.ElectronicMailTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.electronicMails[*].electronicMailTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -875,14 +815,12 @@
               "type": "string"
             },
             "ElectronicMail.PrimaryEmailAddressIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.electronicMails[*].primaryEmailAddressIndicator",
               "type": "boolean"
             },
             "EnglishLanguageExamDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.englishLanguageExamDescriptor",
               "projectName": "TPDM",
@@ -890,14 +828,12 @@
               "type": "string"
             },
             "FirstGenerationStudent": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.firstGenerationStudent",
               "type": "boolean"
             },
             "GenderDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.genderDescriptor",
               "projectName": "TPDM",
@@ -905,14 +841,12 @@
               "type": "string"
             },
             "HispanicLatinoEthnicity": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.hispanicLatinoEthnicity",
               "type": "boolean"
             },
             "Language.LanguageDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.languages[*].languageDescriptor",
               "projectName": "Ed-Fi",
@@ -921,7 +855,6 @@
             },
             "Language.LanguageUseDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.languages[*].uses[*].languageUseDescriptor",
               "projectName": "Ed-Fi",
@@ -930,7 +863,6 @@
             },
             "LimitedEnglishProficiencyDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.limitedEnglishProficiencyDescriptor",
               "projectName": "TPDM",
@@ -938,50 +870,42 @@
               "type": "string"
             },
             "Name.FirstName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.firstName",
               "type": "string"
             },
             "Name.GenerationCodeSuffix": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.generationCodeSuffix",
               "type": "string"
             },
             "Name.LastSurname": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.lastSurname",
               "type": "string"
             },
             "Name.MaidenName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.maidenName",
               "type": "string"
             },
             "Name.MiddleName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.middleName",
               "type": "string"
             },
             "Name.PersonalIdentificationDocument.DocumentExpirationDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.personalIdentificationDocuments[*].documentExpirationDate",
               "type": "date"
             },
             "Name.PersonalIdentificationDocument.DocumentTitle": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.personalIdentificationDocuments[*].documentTitle",
               "type": "string"
             },
             "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
               "projectName": "Ed-Fi",
@@ -990,7 +914,6 @@
             },
             "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.personalIdentificationDocuments[*].issuerCountryDescriptor",
               "projectName": "Ed-Fi",
@@ -998,20 +921,17 @@
               "type": "string"
             },
             "Name.PersonalIdentificationDocument.IssuerDocumentIdentificationCode": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
               "type": "string"
             },
             "Name.PersonalIdentificationDocument.IssuerName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.personalIdentificationDocuments[*].issuerName",
               "type": "string"
             },
             "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor",
               "projectName": "Ed-Fi",
@@ -1019,50 +939,42 @@
               "type": "string"
             },
             "Name.PersonalTitlePrefix": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.personalTitlePrefix",
               "type": "string"
             },
             "Name.PreferredFirstName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.preferredFirstName",
               "type": "string"
             },
             "Name.PreferredLastSurname": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.preferredLastSurname",
               "type": "string"
             },
             "OtherName.FirstName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.otherNames[*].firstName",
               "type": "string"
             },
             "OtherName.GenerationCodeSuffix": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.otherNames[*].generationCodeSuffix",
               "type": "string"
             },
             "OtherName.LastSurname": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.otherNames[*].lastSurname",
               "type": "string"
             },
             "OtherName.MiddleName": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.otherNames[*].middleName",
               "type": "string"
             },
             "OtherName.OtherNameTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.otherNames[*].otherNameTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -1070,14 +982,12 @@
               "type": "string"
             },
             "OtherName.PersonalTitlePrefix": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.otherNames[*].personalTitlePrefix",
               "type": "string"
             },
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -1096,7 +1006,6 @@
             },
             "RaceDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.races[*].raceDescriptor",
               "projectName": "TPDM",
@@ -1105,7 +1014,6 @@
             },
             "SexDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.sexDescriptor",
               "projectName": "TPDM",
@@ -1113,26 +1021,22 @@
               "type": "string"
             },
             "Telephone.DoNotPublishIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.telephones[*].doNotPublishIndicator",
               "type": "boolean"
             },
             "Telephone.OrderOfPriority": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.telephones[*].orderOfPriority",
               "type": "number"
             },
             "Telephone.TelephoneNumber": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.telephones[*].telephoneNumber",
               "type": "string"
             },
             "Telephone.TelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.telephones[*].telephoneNumberTypeDescriptor",
               "projectName": "Ed-Fi",
@@ -1140,7 +1044,6 @@
               "type": "string"
             },
             "Telephone.TextMessageCapabilityIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.telephones[*].textMessageCapabilityIndicator",
               "type": "boolean"
@@ -1699,189 +1602,162 @@
           "queryFieldMapping": {
             "birthCity": [
               {
-                "identity": false,
                 "path": "$.birthCity",
                 "type": "string"
               }
             ],
             "birthCountryDescriptor": [
               {
-                "identity": false,
                 "path": "$.birthCountryDescriptor",
                 "type": "string"
               }
             ],
             "birthDate": [
               {
-                "identity": false,
                 "path": "$.birthDate",
                 "type": "date"
               }
             ],
             "birthInternationalProvince": [
               {
-                "identity": false,
                 "path": "$.birthInternationalProvince",
                 "type": "string"
               }
             ],
             "birthSexDescriptor": [
               {
-                "identity": false,
                 "path": "$.birthSexDescriptor",
                 "type": "string"
               }
             ],
             "birthStateAbbreviationDescriptor": [
               {
-                "identity": false,
                 "path": "$.birthStateAbbreviationDescriptor",
                 "type": "string"
               }
             ],
             "candidateIdentifier": [
               {
-                "identity": true,
                 "path": "$.candidateIdentifier",
                 "type": "string"
               }
             ],
             "dateEnteredUS": [
               {
-                "identity": false,
                 "path": "$.dateEnteredUS",
                 "type": "date"
               }
             ],
             "displacementStatus": [
               {
-                "identity": false,
                 "path": "$.displacementStatus",
                 "type": "string"
               }
             ],
             "economicDisadvantaged": [
               {
-                "identity": false,
                 "path": "$.economicDisadvantaged",
                 "type": "boolean"
               }
             ],
             "englishLanguageExamDescriptor": [
               {
-                "identity": false,
                 "path": "$.englishLanguageExamDescriptor",
                 "type": "string"
               }
             ],
             "firstGenerationStudent": [
               {
-                "identity": false,
                 "path": "$.firstGenerationStudent",
                 "type": "boolean"
               }
             ],
             "firstName": [
               {
-                "identity": false,
                 "path": "$.firstName",
                 "type": "string"
               }
             ],
             "genderDescriptor": [
               {
-                "identity": false,
                 "path": "$.genderDescriptor",
                 "type": "string"
               }
             ],
             "generationCodeSuffix": [
               {
-                "identity": false,
                 "path": "$.generationCodeSuffix",
                 "type": "string"
               }
             ],
             "hispanicLatinoEthnicity": [
               {
-                "identity": false,
                 "path": "$.hispanicLatinoEthnicity",
                 "type": "boolean"
               }
             ],
             "lastSurname": [
               {
-                "identity": false,
                 "path": "$.lastSurname",
                 "type": "string"
               }
             ],
             "limitedEnglishProficiencyDescriptor": [
               {
-                "identity": false,
                 "path": "$.limitedEnglishProficiencyDescriptor",
                 "type": "string"
               }
             ],
             "maidenName": [
               {
-                "identity": false,
                 "path": "$.maidenName",
                 "type": "string"
               }
             ],
             "middleName": [
               {
-                "identity": false,
                 "path": "$.middleName",
                 "type": "string"
               }
             ],
             "multipleBirthStatus": [
               {
-                "identity": false,
                 "path": "$.multipleBirthStatus",
                 "type": "boolean"
               }
             ],
             "personId": [
               {
-                "identity": false,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "personalTitlePrefix": [
               {
-                "identity": false,
                 "path": "$.personalTitlePrefix",
                 "type": "string"
               }
             ],
             "preferredFirstName": [
               {
-                "identity": false,
                 "path": "$.preferredFirstName",
                 "type": "string"
               }
             ],
             "preferredLastSurname": [
               {
-                "identity": false,
                 "path": "$.preferredLastSurname",
                 "type": "string"
               }
             ],
             "sexDescriptor": [
               {
-                "identity": false,
                 "path": "$.sexDescriptor",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": false,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
@@ -1960,14 +1836,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2046,14 +1920,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2132,14 +2004,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2155,14 +2025,12 @@
           ],
           "documentPathsMapping": {
             "BoardCertificationIndicator": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$._ext.boardCertificationIndicator",
               "type": "boolean"
             },
             "CertificationRouteDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$._ext.certificationRouteDescriptor",
               "projectName": "TPDM",
@@ -2170,20 +2038,17 @@
               "type": "string"
             },
             "CertificationTitle": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$._ext.certificationTitle",
               "type": "string"
             },
             "CredentialStatusDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$._ext.credentialStatusDate",
               "type": "date"
             },
             "CredentialStatusDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$._ext.credentialStatusDescriptor",
               "projectName": "TPDM",
@@ -2192,7 +2057,6 @@
             },
             "EducatorRoleDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$._ext.educatorRoleDescriptor",
               "projectName": "TPDM",
@@ -2201,7 +2065,6 @@
             },
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -2220,7 +2083,6 @@
             },
             "StudentAcademicRecord": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -2437,14 +2299,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2461,7 +2321,6 @@
           "documentPathsMapping": {
             "AccreditationStatusDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.accreditationStatusDescriptor",
               "projectName": "TPDM",
@@ -2470,7 +2329,6 @@
             },
             "EducationOrganization": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -2484,7 +2342,6 @@
             },
             "GradeLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.gradeLevels[*].gradeLevelDescriptor",
               "projectName": "TPDM",
@@ -2492,20 +2349,17 @@
               "type": "string"
             },
             "ProgramId": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.programId",
               "type": "string"
             },
             "ProgramName": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.programName",
               "type": "string"
             },
             "ProgramTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.programTypeDescriptor",
               "projectName": "TPDM",
@@ -2595,35 +2449,30 @@
           "queryFieldMapping": {
             "accreditationStatusDescriptor": [
               {
-                "identity": false,
                 "path": "$.accreditationStatusDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.educationOrganizationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "programId": [
               {
-                "identity": false,
                 "path": "$.programId",
                 "type": "string"
               }
             ],
             "programName": [
               {
-                "identity": true,
                 "path": "$.programName",
                 "type": "string"
               }
             ],
             "programTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.programTypeDescriptor",
                 "type": "string"
               }
@@ -2702,14 +2551,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2788,14 +2635,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2874,14 +2719,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -2898,38 +2741,32 @@
           ],
           "documentPathsMapping": {
             "AreaOfRefinement": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.areaOfRefinement",
               "type": "string"
             },
             "AreaOfReinforcement": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.areaOfReinforcement",
               "type": "string"
             },
             "Comments": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.comments",
               "type": "string"
             },
             "ElementRatingResult.Rating": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.elementRatingResults[*].rating",
               "type": "number"
             },
             "ElementRatingResult.RatingResultTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.elementRatingResults[*].ratingResultTitle",
               "type": "string"
             },
             "ElementRatingResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.elementRatingResults[*].resultDatatypeTypeDescriptor",
               "projectName": "TPDM",
@@ -2938,7 +2775,6 @@
             },
             "EvaluationElement": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -2992,7 +2828,6 @@
             },
             "EvaluationElementRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationElementRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -3001,7 +2836,6 @@
             },
             "EvaluationObjectiveRating": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -3099,7 +2933,6 @@
               "resourceName": "EvaluationObjectiveRating"
             },
             "Feedback": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.feedback",
               "type": "string"
@@ -3391,119 +3224,102 @@
           "queryFieldMapping": {
             "areaOfRefinement": [
               {
-                "identity": false,
                 "path": "$.areaOfRefinement",
                 "type": "string"
               }
             ],
             "areaOfReinforcement": [
               {
-                "identity": false,
                 "path": "$.areaOfReinforcement",
                 "type": "string"
               }
             ],
             "comments": [
               {
-                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationElementRatingLevelDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationElementRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "evaluationElementTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "feedback": [
               {
-                "identity": false,
                 "path": "$.feedback",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.termDescriptor",
                 "type": "string"
               }
@@ -3520,7 +3336,6 @@
           "documentPathsMapping": {
             "ElementRatingLevel.EvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -3528,26 +3343,22 @@
               "type": "string"
             },
             "ElementRatingLevel.MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].maxRating",
               "type": "number"
             },
             "ElementRatingLevel.MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].minRating",
               "type": "number"
             },
             "EvaluationElementTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.evaluationElementTitle",
               "type": "string"
             },
             "EvaluationObjective": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -3596,7 +3407,6 @@
             },
             "EvaluationTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationTypeDescriptor",
               "projectName": "TPDM",
@@ -3604,19 +3414,16 @@
               "type": "string"
             },
             "MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.maxRating",
               "type": "number"
             },
             "MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.minRating",
               "type": "number"
             },
             "SortOrder": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.sortOrder",
               "type": "number"
@@ -3772,91 +3579,78 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationElementTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "maxRating": [
               {
-                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
-                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.schoolYear",
                 "type": "string"
               }
             ],
             "sortOrder": [
               {
-                "identity": false,
                 "path": "$.sortOrder",
                 "type": "number"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.termDescriptor",
                 "type": "string"
               }
@@ -3873,14 +3667,12 @@
           ],
           "documentPathsMapping": {
             "Comments": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.comments",
               "type": "string"
             },
             "EvaluationObjective": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -3929,7 +3721,6 @@
             },
             "EvaluationRating": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -4018,7 +3809,6 @@
             },
             "ObjectiveRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.objectiveRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -4026,20 +3816,17 @@
               "type": "string"
             },
             "ObjectiveRatingResult.Rating": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.objectiveRatingResults[*].rating",
               "type": "number"
             },
             "ObjectiveRatingResult.RatingResultTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.objectiveRatingResults[*].ratingResultTitle",
               "type": "string"
             },
             "ObjectiveRatingResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.objectiveRatingResults[*].resultDatatypeTypeDescriptor",
               "projectName": "TPDM",
@@ -4293,91 +4080,78 @@
           "queryFieldMapping": {
             "comments": [
               {
-                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
-                "identity": true,
                 "path": "$.evaluationRatingReference.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationObjectiveTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "objectiveRatingLevelDescriptor": [
               {
-                "identity": false,
                 "path": "$.objectiveRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.evaluationRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveReference.termDescriptor",
                 "type": "string"
               }
@@ -4394,7 +4168,6 @@
           "documentPathsMapping": {
             "Evaluation": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -4437,20 +4210,17 @@
               "resourceName": "Evaluation"
             },
             "EvaluationObjectiveDescription": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.evaluationObjectiveDescription",
               "type": "string"
             },
             "EvaluationObjectiveTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.evaluationObjectiveTitle",
               "type": "string"
             },
             "EvaluationTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationTypeDescriptor",
               "projectName": "TPDM",
@@ -4458,20 +4228,17 @@
               "type": "string"
             },
             "MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.maxRating",
               "type": "number"
             },
             "MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.minRating",
               "type": "number"
             },
             "ObjectiveRatingLevel.EvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -4479,19 +4246,16 @@
               "type": "string"
             },
             "ObjectiveRatingLevel.MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].maxRating",
               "type": "number"
             },
             "ObjectiveRatingLevel.MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].minRating",
               "type": "number"
             },
             "SortOrder": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.sortOrder",
               "type": "number"
@@ -4643,91 +4407,78 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationObjectiveDescription": [
               {
-                "identity": false,
                 "path": "$.evaluationObjectiveDescription",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "maxRating": [
               {
-                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
-                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "sortOrder": [
               {
-                "identity": false,
                 "path": "$.sortOrder",
                 "type": "number"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -4806,14 +4557,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -4892,14 +4641,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -4978,14 +4725,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -5002,20 +4747,17 @@
           ],
           "documentPathsMapping": {
             "ActualDuration": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.actualDuration",
               "type": "number"
             },
             "Comments": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.comments",
               "type": "string"
             },
             "Evaluation": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -5058,14 +4800,12 @@
               "resourceName": "Evaluation"
             },
             "EvaluationDate": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.evaluationDate",
               "type": "date-time"
             },
             "EvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -5073,20 +4813,17 @@
               "type": "string"
             },
             "EvaluationRatingResult.Rating": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.results[*].rating",
               "type": "number"
             },
             "EvaluationRatingResult.RatingResultTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.results[*].ratingResultTitle",
               "type": "string"
             },
             "EvaluationRatingResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.results[*].resultDatatypeTypeDescriptor",
               "projectName": "TPDM",
@@ -5095,7 +4832,6 @@
             },
             "EvaluationRatingStatusDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationRatingStatusDescriptor",
               "projectName": "TPDM",
@@ -5104,7 +4840,6 @@
             },
             "PerformanceEvaluationRating": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -5152,32 +4887,27 @@
               "resourceName": "PerformanceEvaluationRating"
             },
             "Reviewer.FirstName": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.reviewers[*].firstName",
               "type": "string"
             },
             "Reviewer.LastSurname": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.reviewers[*].lastSurname",
               "type": "string"
             },
             "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
               "type": "number"
             },
             "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
               "type": "date"
             },
             "Reviewer.ReviewerPerson": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -5196,7 +4926,6 @@
             },
             "Section": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -5577,126 +5306,108 @@
           "queryFieldMapping": {
             "actualDuration": [
               {
-                "identity": false,
                 "path": "$.actualDuration",
                 "type": "number"
               }
             ],
             "comments": [
               {
-                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDate": [
               {
-                "identity": true,
                 "path": "$.evaluationDate",
                 "type": "date-time"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationRatingLevelDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "evaluationRatingStatusDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationRatingStatusDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "localCourseCode": [
               {
-                "identity": false,
                 "path": "$.sectionReference.localCourseCode",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationRatingReference.personId",
                 "type": "string"
               }
             ],
             "schoolId": [
               {
-                "identity": false,
                 "path": "$.sectionReference.schoolId",
                 "type": "number"
               }
             ],
             "schoolYear": [
               {
-                "identity": false,
                 "path": "$.sectionReference.schoolYear",
                 "type": "string"
               }
             ],
             "sectionIdentifier": [
               {
-                "identity": false,
                 "path": "$.sectionReference.sectionIdentifier",
                 "type": "string"
               }
             ],
             "sessionName": [
               {
-                "identity": false,
                 "path": "$.sectionReference.sessionName",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationRatingReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -5775,14 +5486,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -5798,14 +5507,12 @@
           ],
           "documentPathsMapping": {
             "EvaluationDescription": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.evaluationDescription",
               "type": "string"
             },
             "EvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -5813,26 +5520,22 @@
               "type": "string"
             },
             "EvaluationRatingLevel.MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].maxRating",
               "type": "number"
             },
             "EvaluationRatingLevel.MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].minRating",
               "type": "number"
             },
             "EvaluationTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.evaluationTitle",
               "type": "string"
             },
             "EvaluationTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.evaluationTypeDescriptor",
               "projectName": "TPDM",
@@ -5840,26 +5543,22 @@
               "type": "string"
             },
             "InterRaterReliabilityScore": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.interRaterReliabilityScore",
               "type": "number"
             },
             "MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.maxRating",
               "type": "number"
             },
             "MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.minRating",
               "type": "number"
             },
             "PerformanceEvaluation": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -6034,84 +5733,72 @@
           "queryFieldMapping": {
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationDescription": [
               {
-                "identity": false,
                 "path": "$.evaluationDescription",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationTitle",
                 "type": "string"
               }
             ],
             "evaluationTypeDescriptor": [
               {
-                "identity": false,
                 "path": "$.evaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "interRaterReliabilityScore": [
               {
-                "identity": false,
                 "path": "$.interRaterReliabilityScore",
                 "type": "number"
               }
             ],
             "maxRating": [
               {
-                "identity": false,
                 "path": "$.maxRating",
                 "type": "number"
               }
             ],
             "minRating": [
               {
-                "identity": false,
                 "path": "$.minRating",
                 "type": "number"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -6128,20 +5815,17 @@
           ],
           "documentPathsMapping": {
             "AidAmount": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.aidAmount",
               "type": "number"
             },
             "AidConditionDescription": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.aidConditionDescription",
               "type": "string"
             },
             "AidTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.aidTypeDescriptor",
               "projectName": "TPDM",
@@ -6149,26 +5833,22 @@
               "type": "string"
             },
             "BeginDate": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.beginDate",
               "type": "date"
             },
             "EndDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.endDate",
               "type": "date"
             },
             "PellGrantRecipient": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.pellGrantRecipient",
               "type": "boolean"
             },
             "Student": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -6254,49 +5934,42 @@
           "queryFieldMapping": {
             "aidAmount": [
               {
-                "identity": false,
                 "path": "$.aidAmount",
                 "type": "number"
               }
             ],
             "aidConditionDescription": [
               {
-                "identity": false,
                 "path": "$.aidConditionDescription",
                 "type": "string"
               }
             ],
             "aidTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.aidTypeDescriptor",
                 "type": "string"
               }
             ],
             "beginDate": [
               {
-                "identity": true,
                 "path": "$.beginDate",
                 "type": "date"
               }
             ],
             "endDate": [
               {
-                "identity": false,
                 "path": "$.endDate",
                 "type": "date"
               }
             ],
             "pellGrantRecipient": [
               {
-                "identity": false,
                 "path": "$.pellGrantRecipient",
                 "type": "boolean"
               }
             ],
             "studentUniqueId": [
               {
-                "identity": true,
                 "path": "$.studentReference.studentUniqueId",
                 "type": "string"
               }
@@ -6375,14 +6048,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6461,14 +6132,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6547,14 +6216,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -6571,38 +6238,32 @@
           ],
           "documentPathsMapping": {
             "ActualDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.actualDate",
               "type": "date"
             },
             "ActualDuration": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.actualDuration",
               "type": "number"
             },
             "ActualTime": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.actualTime",
               "type": "time"
             },
             "Announced": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.announced",
               "type": "boolean"
             },
             "Comments": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.comments",
               "type": "string"
             },
             "CoteachingStyleObservedDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.coteachingStyleObservedDescriptor",
               "projectName": "TPDM",
@@ -6611,7 +6272,6 @@
             },
             "PerformanceEvaluation": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -6650,7 +6310,6 @@
             },
             "PerformanceEvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.performanceEvaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -6658,20 +6317,17 @@
               "type": "string"
             },
             "PerformanceEvaluationRatingResult.Rating": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.results[*].rating",
               "type": "number"
             },
             "PerformanceEvaluationRatingResult.RatingResultTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.results[*].ratingResultTitle",
               "type": "string"
             },
             "PerformanceEvaluationRatingResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.results[*].resultDatatypeTypeDescriptor",
               "projectName": "TPDM",
@@ -6680,7 +6336,6 @@
             },
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -6698,32 +6353,27 @@
               "resourceName": "Person"
             },
             "Reviewer.FirstName": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.reviewers[*].firstName",
               "type": "string"
             },
             "Reviewer.LastSurname": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.reviewers[*].lastSurname",
               "type": "string"
             },
             "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
               "type": "number"
             },
             "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
               "type": "date"
             },
             "Reviewer.ReviewerPerson": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -6741,7 +6391,6 @@
               "resourceName": "Person"
             },
             "ScheduleDate": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.scheduleDate",
               "type": "date"
@@ -6981,112 +6630,96 @@
           "queryFieldMapping": {
             "actualDate": [
               {
-                "identity": false,
                 "path": "$.actualDate",
                 "type": "date"
               }
             ],
             "actualDuration": [
               {
-                "identity": false,
                 "path": "$.actualDuration",
                 "type": "number"
               }
             ],
             "actualTime": [
               {
-                "identity": false,
                 "path": "$.actualTime",
                 "type": "time"
               }
             ],
             "announced": [
               {
-                "identity": false,
                 "path": "$.announced",
                 "type": "boolean"
               }
             ],
             "comments": [
               {
-                "identity": false,
                 "path": "$.comments",
                 "type": "string"
               }
             ],
             "coteachingStyleObservedDescriptor": [
               {
-                "identity": false,
                 "path": "$.coteachingStyleObservedDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationRatingLevelDescriptor": [
               {
-                "identity": false,
                 "path": "$.performanceEvaluationRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "scheduleDate": [
               {
-                "identity": false,
                 "path": "$.scheduleDate",
                 "type": "date"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.schoolYear",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationReference.termDescriptor",
                 "type": "string"
               }
@@ -7165,14 +6798,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -7189,7 +6820,6 @@
           "documentPathsMapping": {
             "AcademicSubjectDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.academicSubjectDescriptor",
               "projectName": "TPDM",
@@ -7198,7 +6828,6 @@
             },
             "EducationOrganization": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -7212,7 +6841,6 @@
             },
             "EvaluationPeriodDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.evaluationPeriodDescriptor",
               "projectName": "TPDM",
@@ -7221,7 +6849,6 @@
             },
             "GradeLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.gradeLevels[*].gradeLevelDescriptor",
               "projectName": "TPDM",
@@ -7229,14 +6856,12 @@
               "type": "string"
             },
             "PerformanceEvaluationDescription": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.performanceEvaluationDescription",
               "type": "string"
             },
             "PerformanceEvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -7244,26 +6869,22 @@
               "type": "string"
             },
             "PerformanceEvaluationRatingLevel.MaxRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].maxRating",
               "type": "number"
             },
             "PerformanceEvaluationRatingLevel.MinRating": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.ratingLevels[*].minRating",
               "type": "number"
             },
             "PerformanceEvaluationTitle": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.performanceEvaluationTitle",
               "type": "string"
             },
             "PerformanceEvaluationTypeDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.performanceEvaluationTypeDescriptor",
               "projectName": "TPDM",
@@ -7272,7 +6893,6 @@
             },
             "SchoolYear": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "Ed-Fi",
               "referenceJsonPaths": [
@@ -7286,7 +6906,6 @@
             },
             "TermDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": true,
               "isReference": true,
               "path": "$.termDescriptor",
               "projectName": "TPDM",
@@ -7434,56 +7053,48 @@
           "queryFieldMapping": {
             "academicSubjectDescriptor": [
               {
-                "identity": false,
                 "path": "$.academicSubjectDescriptor",
                 "type": "string"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.educationOrganizationReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "performanceEvaluationDescription": [
               {
-                "identity": false,
                 "path": "$.performanceEvaluationDescription",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.schoolYearTypeReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.termDescriptor",
                 "type": "string"
               }
@@ -7499,20 +7110,17 @@
           ],
           "documentPathsMapping": {
             "CriterionDescription": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.criterionDescription",
               "type": "string"
             },
             "DimensionOrder": {
-              "isPartOfIdentity": false,
               "isReference": false,
               "path": "$.dimensionOrder",
               "type": "number"
             },
             "EvaluationElement": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -7565,14 +7173,12 @@
               "resourceName": "EvaluationElement"
             },
             "RubricRating": {
-              "isPartOfIdentity": true,
               "isReference": false,
               "path": "$.rubricRating",
               "type": "number"
             },
             "RubricRatingLevelDescriptor": {
               "isDescriptor": true,
-              "isPartOfIdentity": false,
               "isReference": true,
               "path": "$.rubricRatingLevelDescriptor",
               "projectName": "TPDM",
@@ -7706,91 +7312,78 @@
           "queryFieldMapping": {
             "criterionDescription": [
               {
-                "identity": false,
                 "path": "$.criterionDescription",
                 "type": "string"
               }
             ],
             "dimensionOrder": [
               {
-                "identity": false,
                 "path": "$.dimensionOrder",
                 "type": "number"
               }
             ],
             "educationOrganizationId": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.educationOrganizationId",
                 "type": "number"
               }
             ],
             "evaluationElementTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationElementTitle",
                 "type": "string"
               }
             ],
             "evaluationObjectiveTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationObjectiveTitle",
                 "type": "string"
               }
             ],
             "evaluationPeriodDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationPeriodDescriptor",
                 "type": "string"
               }
             ],
             "evaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.evaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTitle": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTitle",
                 "type": "string"
               }
             ],
             "performanceEvaluationTypeDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.performanceEvaluationTypeDescriptor",
                 "type": "string"
               }
             ],
             "rubricRating": [
               {
-                "identity": true,
                 "path": "$.rubricRating",
                 "type": "number"
               }
             ],
             "rubricRatingLevelDescriptor": [
               {
-                "identity": false,
                 "path": "$.rubricRatingLevelDescriptor",
                 "type": "string"
               }
             ],
             "schoolYear": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.schoolYear",
                 "type": "string"
               }
             ],
             "termDescriptor": [
               {
-                "identity": true,
                 "path": "$.evaluationElementReference.termDescriptor",
                 "type": "string"
               }
@@ -7869,14 +7462,12 @@
           "queryFieldMapping": {
             "codeValue": [
               {
-                "identity": false,
                 "path": "$.codeValue",
                 "type": "string"
               }
             ],
             "namespace": [
               {
-                "identity": false,
                 "path": "$.namespace",
                 "type": "string"
               }
@@ -7892,7 +7483,6 @@
           "documentPathsMapping": {
             "PostSecondaryInstitution": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -7951,7 +7541,6 @@
           "documentPathsMapping": {
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -7970,7 +7559,6 @@
             },
             "SurveyResponse": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -8074,35 +7662,30 @@
           "queryFieldMapping": {
             "namespace": [
               {
-                "identity": true,
                 "path": "$.surveyResponseReference.namespace",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "surveyIdentifier": [
               {
-                "identity": true,
                 "path": "$.surveyResponseReference.surveyIdentifier",
                 "type": "string"
               }
             ],
             "surveyResponseIdentifier": [
               {
-                "identity": true,
                 "path": "$.surveyResponseReference.surveyResponseIdentifier",
                 "type": "string"
               }
@@ -8118,7 +7701,6 @@
           "documentPathsMapping": {
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": false,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -8188,7 +7770,6 @@
           "documentPathsMapping": {
             "Person": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -8207,7 +7788,6 @@
             },
             "SurveySectionResponse": {
               "isDescriptor": false,
-              "isPartOfIdentity": true,
               "isReference": true,
               "projectName": "TPDM",
               "referenceJsonPaths": [
@@ -8334,42 +7914,36 @@
           "queryFieldMapping": {
             "namespace": [
               {
-                "identity": true,
                 "path": "$.surveySectionResponseReference.namespace",
                 "type": "string"
               }
             ],
             "personId": [
               {
-                "identity": true,
                 "path": "$.personReference.personId",
                 "type": "string"
               }
             ],
             "sourceSystemDescriptor": [
               {
-                "identity": true,
                 "path": "$.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
             "surveyIdentifier": [
               {
-                "identity": true,
                 "path": "$.surveySectionResponseReference.surveyIdentifier",
                 "type": "string"
               }
             ],
             "surveyResponseIdentifier": [
               {
-                "identity": true,
                 "path": "$.surveySectionResponseReference.surveyResponseIdentifier",
                 "type": "string"
               }
             ],
             "surveySectionTitle": [
               {
-                "identity": true,
                 "path": "$.surveySectionResponseReference.surveySectionTitle",
                 "type": "string"
               }

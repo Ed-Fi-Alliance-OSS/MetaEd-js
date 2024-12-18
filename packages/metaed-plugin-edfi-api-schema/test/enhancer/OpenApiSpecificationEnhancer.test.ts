@@ -309,6 +309,7 @@ describe('when building simple domain entity with all the simple non-collections
                 },
                 "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
                 "required": true,
+                "x-bodyName": "DomainEntityName",
               },
               "responses": Object {
                 "200": Object {
@@ -593,6 +594,7 @@ describe('when building simple domain entity with all the simple collections', (
               },
               "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
               "required": true,
+              "x-bodyName": "DomainEntityName",
             },
             "responses": Object {
               "200": Object {
@@ -1140,6 +1142,7 @@ describe('when building a domain entity referencing another referencing another 
               },
               "description": "The JSON representation of the ClassPeriod resource to be created or updated.",
               "required": true,
+              "x-bodyName": "ClassPeriod",
             },
             "responses": Object {
               "200": Object {
@@ -1372,6 +1375,7 @@ describe('when building a domain entity referencing another referencing another 
               },
               "description": "The JSON representation of the CourseOffering resource to be created or updated.",
               "required": true,
+              "x-bodyName": "CourseOffering",
             },
             "responses": Object {
               "200": Object {
@@ -1604,6 +1608,7 @@ describe('when building a domain entity referencing another referencing another 
               },
               "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
               "required": true,
+              "x-bodyName": "DomainEntityName",
             },
             "responses": Object {
               "200": Object {
@@ -1836,6 +1841,7 @@ describe('when building a domain entity referencing another referencing another 
               },
               "description": "The JSON representation of the School resource to be created or updated.",
               "required": true,
+              "x-bodyName": "School",
             },
             "responses": Object {
               "200": Object {
@@ -2286,6 +2292,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               },
               "description": "The JSON representation of the CourseOffering resource to be created or updated.",
               "required": true,
+              "x-bodyName": "CourseOffering",
             },
             "responses": Object {
               "200": Object {
@@ -2518,6 +2525,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               },
               "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
               "required": true,
+              "x-bodyName": "DomainEntityName",
             },
             "responses": Object {
               "200": Object {
@@ -2750,6 +2758,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               },
               "description": "The JSON representation of the School resource to be created or updated.",
               "required": true,
+              "x-bodyName": "School",
             },
             "responses": Object {
               "200": Object {
@@ -2982,6 +2991,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               },
               "description": "The JSON representation of the Session resource to be created or updated.",
               "required": true,
+              "x-bodyName": "Session",
             },
             "responses": Object {
               "200": Object {
@@ -3474,6 +3484,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               },
               "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
               "required": true,
+              "x-bodyName": "DomainEntityName",
             },
             "responses": Object {
               "200": Object {
@@ -3791,6 +3802,7 @@ describe('when building domain entity with scalar collection named with prefix o
               },
               "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
               "required": true,
+              "x-bodyName": "DomainEntityName",
             },
             "responses": Object {
               "200": Object {

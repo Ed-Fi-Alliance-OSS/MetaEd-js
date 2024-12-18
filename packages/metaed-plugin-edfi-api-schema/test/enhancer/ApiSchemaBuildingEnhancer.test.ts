@@ -48,7 +48,7 @@ import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/
 import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
-import { enhance } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
+import { enhance, removeSourcePropertyFromDocumentPathsMapping } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
@@ -3044,24 +3044,23 @@ describe('when building a Domain Entity subclass', () => {
 
   it('should have correct documentPathsMapping for School', () => {
     expect(
-      metaEd.namespace.get(namespaceName)?.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas.schools
-        .documentPathsMapping,
+      removeSourcePropertyFromDocumentPathsMapping(
+        metaEd.namespace.get(namespaceName)?.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas.schools
+          .documentPathsMapping,
+      ),
     ).toMatchInlineSnapshot(`
       Object {
         "SchoolId": Object {
-          "isPartOfIdentity": true,
           "isReference": false,
           "path": "$.schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
-          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
-          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.superclassProperty",
           "type": "number",
@@ -3250,13 +3249,14 @@ describe('when building an Association subclass', () => {
 
   it('should have correct documentPathsMapping for StudentProgramAssociation', () => {
     expect(
-      metaEd.namespace.get(namespaceName)?.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas
-        .studentProgramAssociations.documentPathsMapping,
+      removeSourcePropertyFromDocumentPathsMapping(
+        metaEd.namespace.get(namespaceName)?.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas
+          .studentProgramAssociations.documentPathsMapping,
+      ),
     ).toMatchInlineSnapshot(`
       Object {
         "Program": Object {
           "isDescriptor": false,
-          "isPartOfIdentity": true,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
@@ -3275,7 +3275,6 @@ describe('when building an Association subclass', () => {
         },
         "School": Object {
           "isDescriptor": false,
-          "isPartOfIdentity": true,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
@@ -3293,13 +3292,11 @@ describe('when building an Association subclass', () => {
           "resourceName": "School",
         },
         "SubclassProperty": Object {
-          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
-          "isPartOfIdentity": false,
           "isReference": false,
           "path": "$.superclassProperty",
           "type": "number",
@@ -3425,12 +3422,13 @@ describe('when domain entity extension references domain entity in different nam
 
   it('should have correct documentPathsMapping', () => {
     expect(
-      extensionNamespace.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas.entityNames.documentPathsMapping,
+      removeSourcePropertyFromDocumentPathsMapping(
+        extensionNamespace.data.edfiApiSchema.apiSchema.projectSchemas.edfi.resourceSchemas.entityNames.documentPathsMapping,
+      ),
     ).toMatchInlineSnapshot(`
       Object {
         "ReferencedEntityName": Object {
           "isDescriptor": false,
-          "isPartOfIdentity": false,
           "isReference": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [

@@ -227,7 +227,7 @@ function buildDocumentReferencePaths(
       referenceProperty.referencedEntity,
       allJsonPathsMapping,
     ),
-    isPartOfIdentity: referenceProperty.isPartOfIdentity,
+    sourceProperty: referenceProperty,
   };
 }
 
@@ -247,7 +247,7 @@ function buildDescriptorPath(
     resourceName: referencedEntityApiSchemaData.resourceName,
     path: jsonPathPropertyPairs[0].jsonPath,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
-    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
   };
 }
 
@@ -266,7 +266,7 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
         type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
       },
     ],
-    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
   };
 }
 
@@ -276,7 +276,7 @@ function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarP
     path: jsonPathPropertyPairs[0].jsonPath,
     isReference: false,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
-    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
   };
 }
 
