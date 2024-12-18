@@ -320,7 +320,7 @@ function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName)
 /**
  * Returns the "delete" section of id "path" for the given entity
  */
-function createDeleteSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createDeleteSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
   return {
     description:
       "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",

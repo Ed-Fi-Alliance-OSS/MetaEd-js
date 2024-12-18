@@ -3906,7 +3906,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/edfi/educationContents/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteEducationContent",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3952,7 +3952,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             },
             "summary": "Deletes an existing resource using the resource identifier.",
             "tags": Array [
-              "domainEntityNames",
+              "educationContents",
             ],
           },
           "get": Object {},
