@@ -3958,7 +3958,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           "get": Object {},
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "putEducationContent",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3986,11 +3986,11 @@ describe('when building domain entity with nested choice and inline commons', ()
               "content": Object {
                 "application/json": Object {
                   "schema": Object {
-                    "$ref": "#/components/schemas/EdFi_DomainEntityName",
+                    "$ref": "#/components/schemas/EdFi_EducationContent",
                   },
                 },
               },
-              "description": "The JSON representation of the DomainEntityName resource to be created or updated.",
+              "description": "The JSON representation of the EducationContent resource to be created or updated.",
             },
             "responses": Object {
               "204": Object {
@@ -4023,7 +4023,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             },
             "summary": "Updates a resource based on the resource identifier.",
             "tags": Array [
-              "domainEntityNames",
+              "educationContents",
             ],
           },
         },

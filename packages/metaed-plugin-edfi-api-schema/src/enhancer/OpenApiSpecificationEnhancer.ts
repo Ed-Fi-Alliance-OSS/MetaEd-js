@@ -99,7 +99,7 @@ function newStaticGetByQueryParameters(): Parameter[] {
   ];
 }
 
-function newStaticByIdParameters(): Parameters[] {
+function newStaticByIdParameters(): Parameter[] {
   return [
     {
       name: 'id',
@@ -256,7 +256,7 @@ function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: Endpoin
 /**
  * Returns the "put" section of id "path" for the given entity
  */
-function createPutSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): OpenAPIV3.OperationObject {
+function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
   return {
     description:
       'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
