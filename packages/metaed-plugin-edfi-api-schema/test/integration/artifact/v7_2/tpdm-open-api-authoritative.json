@@ -2209,6 +2209,51 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+            "in": "query",
+            "name": "beginDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The end date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Reason exited for the association.",
+            "in": "query",
+            "name": "reasonExitedDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The program pathway the candidate is following; for example: Residency, Internship, Traditional",
+            "in": "query",
+            "name": "eppProgramPathwayDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2443,6 +2488,239 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A unique alphanumeric code assigned to a candidate.",
+            "in": "query",
+            "name": "candidateIdentifier",
+            "schema": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
+            "in": "query",
+            "name": "personalTitlePrefix",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+            "in": "query",
+            "name": "firstName",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
+            "in": "query",
+            "name": "middleName",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name borne in common by members of a family.",
+            "in": "query",
+            "name": "lastSurname",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
+            "in": "query",
+            "name": "generationCodeSuffix",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The individual's maiden name.",
+            "in": "query",
+            "name": "maidenName",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The first name the individual prefers, if different from their legal first name",
+            "in": "query",
+            "name": "preferredFirstName",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The last name the individual prefers, if different from their legal last name",
+            "in": "query",
+            "name": "preferredLastSurname",
+            "schema": {
+              "maxLength": 75,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The sex of the candidate.",
+            "in": "query",
+            "name": "sexDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The month, day, and year on which an individual was born.",
+            "in": "query",
+            "name": "birthDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The city the student was born in.",
+            "in": "query",
+            "name": "birthCity",
+            "schema": {
+              "maxLength": 30,
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.",
+            "in": "query",
+            "name": "birthStateAbbreviationDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "For students born outside of the U.S., the Province or jurisdiction in which an individual is born.",
+            "in": "query",
+            "name": "birthInternationalProvince",
+            "schema": {
+              "maxLength": 150,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+            "in": "query",
+            "name": "birthCountryDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "For students born outside of the U.S., the date the student entered the U.S.",
+            "in": "query",
+            "name": "dateEnteredUS",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Indicator of whether the student was born with other siblings (i.e., twins, triplets, etc.)",
+            "in": "query",
+            "name": "multipleBirthStatus",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "A person's sex at birth.",
+            "in": "query",
+            "name": "birthSexDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, \"Spanish origin,\" can be used in addition to \"Hispanic or Latino.\"",
+            "in": "query",
+            "name": "hispanicLatinoEthnicity",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "An indication of inadequate financial condition of an individual's family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy.",
+            "in": "query",
+            "name": "economicDisadvantaged",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.",
+            "in": "query",
+            "name": "limitedEnglishProficiencyDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services.",
+            "in": "query",
+            "name": "displacementStatus",
+            "schema": {
+              "maxLength": 30,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The gender of the candidate.",
+            "in": "query",
+            "name": "genderDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).",
+            "in": "query",
+            "name": "englishLanguageExamDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Indicator of whether individual is a first generation college student.",
+            "in": "query",
+            "name": "firstGenerationStudent",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -2677,6 +2955,53 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.",
+            "in": "query",
+            "name": "programId",
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the Educator Preparation Program.",
+            "in": "query",
+            "name": "programName",
+            "schema": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The type of program.",
+            "in": "query",
+            "name": "programTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The current accreditation status of the Educator Preparation Program.",
+            "in": "query",
+            "name": "accreditationStatusDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2911,6 +3236,63 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The rating level achieved based upon the rating or score.",
+            "in": "query",
+            "name": "evaluationElementRatingLevelDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Area identified for person to refine or improve as part of the evaluation.",
+            "in": "query",
+            "name": "areaOfRefinement",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Area identified for reinforcement or positive feedback as part of the evaluation.",
+            "in": "query",
+            "name": "areaOfReinforcement",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Any comments about the performance evaluation to be captured.",
+            "in": "query",
+            "name": "comments",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Feedback provided to the evaluated person.",
+            "in": "query",
+            "name": "feedback",
+            "schema": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3145,6 +3527,61 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name or title of the evaluation element.",
+            "in": "query",
+            "name": "evaluationElementTitle",
+            "schema": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The sort order of this Evaluation Element.",
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
+            "in": "query",
+            "name": "minRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The maximum summary numerical rating or score for the evaluation element.",
+            "in": "query",
+            "name": "maxRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+            "in": "query",
+            "name": "evaluationTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3379,6 +3816,33 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The rating level achieved based upon the rating or score.",
+            "in": "query",
+            "name": "objectiveRatingLevelDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Any comments about the performance evaluation to be captured.",
+            "in": "query",
+            "name": "comments",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3613,6 +4077,70 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name or title of the evaluation Objective.",
+            "in": "query",
+            "name": "evaluationObjectiveTitle",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The long description of the Evaluation Objective.",
+            "in": "query",
+            "name": "evaluationObjectiveDescription",
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The sort order of this Evaluation Objective.",
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
+            "in": "query",
+            "name": "minRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The maximum summary numerical rating or score for the evaluation Objective.",
+            "in": "query",
+            "name": "maxRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
+            "in": "query",
+            "name": "evaluationTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3847,6 +4375,61 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The date for the person's evaluation.",
+            "in": "query",
+            "name": "evaluationDate",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The rating level achieved based upon the rating or score.",
+            "in": "query",
+            "name": "evaluationRatingLevelDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Status of the poerformance evaluation.",
+            "in": "query",
+            "name": "evaluationRatingStatusDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Any comments about the evaluation to be captured.",
+            "in": "query",
+            "name": "comments",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
+            "in": "query",
+            "name": "actualDuration",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -4081,6 +4664,70 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name or title of the evaluation.",
+            "in": "query",
+            "name": "evaluationTitle",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The long description of the Evaluation.",
+            "in": "query",
+            "name": "evaluationDescription",
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
+            "in": "query",
+            "name": "minRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The maximum summary numerical rating or score for the evaluation.",
+            "in": "query",
+            "name": "maxRating",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+            "in": "query",
+            "name": "evaluationTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+            "in": "query",
+            "name": "interRaterReliabilityScore",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -4315,6 +4962,69 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The date the award was designated.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+            "in": "query",
+            "name": "beginDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The date the award was removed.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The description of the condition (e.g., placement in a high need school) under which the aid was given.",
+            "in": "query",
+            "name": "aidConditionDescription",
+            "schema": {
+              "maxLength": 1024,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The classification of financial aid awarded to a person for the academic term/year.",
+            "in": "query",
+            "name": "aidTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The amount of financial aid awarded to a person for the term/year.",
+            "in": "query",
+            "name": "aidAmount",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "Indicates a person who receives Pell Grant aid.",
+            "in": "query",
+            "name": "pellGrantRecipient",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -4549,6 +5259,85 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The month, day, and year on which the performance evaluation was conducted.",
+            "in": "query",
+            "name": "actualDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An indicator of whether the performance evaluation was announced or not.",
+            "in": "query",
+            "name": "announced",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Any comments about the performance evaluation to be captured.",
+            "in": "query",
+            "name": "comments",
+            "schema": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "A type of co-teaching observed as part of the performance evaluation.",
+            "in": "query",
+            "name": "coteachingStyleObservedDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The actual or estimated number of clock minutes during which the performance evaluation was conducted.",
+            "in": "query",
+            "name": "actualDuration",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The rating level achieved based upon the rating or score.",
+            "in": "query",
+            "name": "performanceEvaluationRatingLevelDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The month, day, and year on which the performance evaluation was scheduled.",
+            "in": "query",
+            "name": "scheduleDate",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An indication of the the time at which the performance evaluation was conducted.",
+            "in": "query",
+            "name": "actualTime",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4783,6 +5572,83 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "An assigned unique identifier for the performance evaluation.",
+            "in": "query",
+            "name": "performanceEvaluationTitle",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The long description of the Performance Evaluation.",
+            "in": "query",
+            "name": "performanceEvaluationDescription",
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The term for the session during the school year.",
+            "in": "query",
+            "name": "termDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The type of performance evaluation conducted.",
+            "in": "query",
+            "name": "performanceEvaluationTypeDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The identifier for the school year.",
+            "in": "query",
+            "name": "schoolYear",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The period for the evaluation.",
+            "in": "query",
+            "name": "evaluationPeriodDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The description of the content or subject area of a performance evaluation.",
+            "in": "query",
+            "name": "academicSubjectDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5017,6 +5883,51 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The rating achieved for the rubric dimension.",
+            "in": "query",
+            "name": "rubricRating",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-Ed-Fi-isIdentity": true
+          },
+          {
+            "description": "The rating level achieved for the rubric dimension.",
+            "in": "query",
+            "name": "rubricRatingLevelDescriptor",
+            "schema": {
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The criterion description for the rubric dimension.",
+            "in": "query",
+            "name": "criterionDescription",
+            "schema": {
+              "maxLength": 1024,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The order for the rubric dimension.",
+            "in": "query",
+            "name": "dimensionOrder",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -5251,6 +6162,14 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5485,6 +6404,14 @@
           },
           {
             "$ref": "#/components/parameters/totalCount"
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

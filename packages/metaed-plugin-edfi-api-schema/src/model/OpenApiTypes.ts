@@ -125,6 +125,7 @@ export interface ExternalDocumentationObject {
 export interface ParameterObject extends ParameterBaseObject {
   name: string;
   in: string;
+  'x-Ed-Fi-isIdentity'?: boolean;
 }
 
 export interface HeaderObject extends ParameterBaseObject {}

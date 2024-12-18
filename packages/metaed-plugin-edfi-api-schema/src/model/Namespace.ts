@@ -1,10 +1,10 @@
-import { OpenAPIV3 } from 'openapi-types';
 import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { ApiSchema, newApiSchema } from './api-schema/ApiSchema';
+import type { Document } from './OpenApiTypes';
 
 export interface NamespaceEdfiApiSchema {
   apiSchema: ApiSchema;
-  openApiSpecification: OpenAPIV3.Document;
+  openApiSpecification: Document;
 }
 
 const enhancerName = 'NamespaceSetupEnhancer';
