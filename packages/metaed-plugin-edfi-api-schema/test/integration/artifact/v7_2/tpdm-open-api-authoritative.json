@@ -2397,6 +2397,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getCandidateEducatorPreparationProgramAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "candidateEducatorPreparationProgramAssociations"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -2864,6 +2923,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getCandidate",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_Candidate"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "candidates"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -3145,6 +3263,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEducatorPreparationProgram",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "educatorPreparationPrograms"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -3436,6 +3613,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluationElementRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluationElementRatings"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -3725,6 +3961,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluationElement",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluationElements"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -3986,6 +4281,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluationObjectiveRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluationObjectiveRatings"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -4284,6 +4638,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluationObjective",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluationObjectives"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -4573,6 +4986,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluationRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluationRatings"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -4871,6 +5343,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getEvaluation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_Evaluation"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "evaluations"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -5168,6 +5699,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getFinancialAid",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_FinancialAid"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "financialAids"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -5481,6 +6071,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getPerformanceEvaluationRating",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "performanceEvaluationRatings"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -5792,6 +6441,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getPerformanceEvaluation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "performanceEvaluations"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -6071,6 +6779,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getRubricDimension",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_RubricDimension"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "rubricDimensions"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -6313,6 +7080,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getSurveyResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "surveyResponsePersonTargetAssociations"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
@@ -6555,6 +7381,65 @@
         ]
       },
       "get": {
+        "description": "This GET operation retrieves a resource by the specified resource identifier.",
+        "operationId": "getSurveySectionResponsePersonTargetAssociation",
+        "parameters": [
+          {
+            "description": "A resource identifier that uniquely identifies the resource.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "description": "Indicates if the configured Snapshot should be used.",
+            "in": "header",
+            "name": "Use-Snapshot",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                }
+              }
+            },
+            "description": "The requested resource was successfully retrieved."
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundUseSnapshot"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Retrieves a specific resource using the resource's identifier (using the \"Get By Id\" pattern).",
+        "tags": [
+          "surveySectionResponsePersonTargetAssociations"
+        ]
       },
       "put": {
         "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",

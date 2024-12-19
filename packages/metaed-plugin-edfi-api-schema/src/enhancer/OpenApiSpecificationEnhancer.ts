@@ -248,9 +248,55 @@ function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: Endpoi
 /**
  * Returns the "get" section of id "path" for the given entity
  */
-function createGetByIdSectionFor(_entity: TopLevelEntity, _endpointName: EndpointName): Operation {
-  // TODO: METAED-1585
-  return {} as any;
+function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
+  return {
+    description: 'This GET operation retrieves a resource by the specified resource identifier.',
+    operationId: `get${entity.metaEdName}`,
+    parameters: [
+      ...newStaticByIdParameters(),
+      {
+        name: 'Use-Snapshot',
+        in: 'header',
+        description: 'Indicates if the configured Snapshot should be used.',
+        schema: {
+          type: 'boolean',
+          default: false,
+        },
+      },
+    ],
+    responses: {
+      '200': {
+        description: 'The requested resource was successfully retrieved.',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+            },
+          },
+        },
+      },
+      '304': {
+        $ref: '#/components/responses/NotModified',
+      },
+      '400': {
+        $ref: '#/components/responses/BadRequest',
+      },
+      '401': {
+        $ref: '#/components/responses/Unauthorized',
+      },
+      '403': {
+        $ref: '#/components/responses/Forbidden',
+      },
+      '404': {
+        $ref: '#/components/responses/NotFoundUseSnapshot',
+      },
+      '500': {
+        $ref: '#/components/responses/Error',
+      },
+    },
+    summary: 'Retrieves a specific resource using the resource\'s identifier (using the "Get By Id" pattern).',
+    tags: [endpointName],
+  };
 }
 
 /**
