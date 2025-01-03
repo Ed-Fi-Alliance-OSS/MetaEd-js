@@ -12,7 +12,7 @@ import {
   MetaEdProjectName,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { ProjectSchema } from '../model/api-schema/ProjectSchema';
+import { BaseProjectSchema, ProjectSchema } from '../model/api-schema/ProjectSchema';
 import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema, NonExtensionResourceSchema, ResourceExtensionSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
@@ -154,7 +154,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping = {};
     const abstractResources: AbstractResourceMapping = {};
 
-    let projectSchema: ProjectSchema = {
+    const baseProjectSchema: BaseProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
       description: namespace.projectDescription,
@@ -162,15 +162,23 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       resourceNameMapping,
       caseInsensitiveEndpointNameMapping,
       abstractResources,
-      isExtensionProject: false,
       compatibleDsRange: null,
     };
 
+    let projectSchema: ProjectSchema;
+
     if (namespace.isExtension) {
       projectSchema = {
-        ...projectSchema,
+        ...baseProjectSchema,
         isExtensionProject: true,
         compatibleDsRange: metaEd.dataStandardVersion as SemVer,
+        extensionOpenApiFragments: namespace.data.edfiApiSchema.extensionOpenApiFragments,
+      };
+    } else {
+      projectSchema = {
+        ...baseProjectSchema,
+        isExtensionProject: false,
+        coreOpenApiSpecification: namespace.data.edfiApiSchema.coreOpenApiSpecification,
       };
     }
 

@@ -97,9 +97,9 @@ describe('when building simple domain entity with all the simple non-collections
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
 
-    expect(openApiSpecification).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification).toMatchInlineSnapshot(`
       Object {
         "components": Object {
           "responses": Object {
@@ -249,9 +249,9 @@ describe('when building simple domain entity with all the simple non-collections
           },
         },
         "info": Object {
-          "description": "Ed-Fi Alliance Data Management Service",
-          "title": "Ed-Fi Alliance Data Management Service",
-          "version": "0",
+          "description": "",
+          "title": "",
+          "version": "",
         },
         "openapi": "3.0.0",
         "paths": Object {
@@ -676,7 +676,7 @@ describe('when building simple domain entity with all the simple non-collections
         },
         "servers": Array [
           Object {
-            "url": "http://localhost:5198/",
+            "url": "",
           },
         ],
       }
@@ -722,8 +722,8 @@ describe('when building simple domain entity with all the simple collections', (
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
-    expect(openApiSpecification.paths).toMatchInlineSnapshot(`
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
+    expect(coreOpenApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
           "get": Object {
@@ -1048,7 +1048,7 @@ describe('when building simple domain entity with all the simple collections', (
         },
       }
     `);
-    expect(openApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
       Object {
         "EdFi_DomainEntityName": Object {
           "description": "doc",
@@ -1358,8 +1358,8 @@ describe('when building a domain entity referencing another referencing another 
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
-    expect(openApiSpecification.paths).toMatchInlineSnapshot(`
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
+    expect(coreOpenApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/classPeriods": Object {
           "get": Object {
@@ -2607,7 +2607,7 @@ describe('when building a domain entity referencing another referencing another 
         },
       }
     `);
-    expect(openApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
       Object {
         "EdFi_ClassPeriod": Object {
           "description": "doc",
@@ -2820,8 +2820,8 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
-    expect(openApiSpecification.paths).toMatchInlineSnapshot(`
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
+    expect(coreOpenApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/courseOfferings": Object {
           "get": Object {
@@ -4079,7 +4079,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
       }
     `);
-    expect(openApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
       Object {
         "EdFi_CourseOffering": Object {
           "description": "doc",
@@ -4337,8 +4337,8 @@ describe('when building domain entity with nested choice and inline commons', ()
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
-    expect(openApiSpecification.paths).toMatchInlineSnapshot(`
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
+    expect(coreOpenApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/educationContents": Object {
           "get": Object {
@@ -4689,7 +4689,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         },
       }
     `);
-    expect(openApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
       Object {
         "EdFi_EducationContent": Object {
           "description": "doc",
@@ -4822,8 +4822,8 @@ describe('when building domain entity with scalar collection named with prefix o
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiSpecification } = namespace.data.edfiApiSchema;
-    expect(openApiSpecification.paths).toMatchInlineSnapshot(`
+    const { coreOpenApiSpecification } = namespace.data.edfiApiSchema;
+    expect(coreOpenApiSpecification.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
           "get": Object {
@@ -5138,7 +5138,7 @@ describe('when building domain entity with scalar collection named with prefix o
         },
       }
     `);
-    expect(openApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
       Object {
         "EdFi_DomainEntityName": Object {
           "description": "doc",

@@ -379,3 +379,9 @@ export interface IJsonSchema {
   not?: IJsonSchema;
   $ref?: string;
 }
+
+export const noDocument: Document = Object.freeze({
+  openapi: '',
+  info: { title: '', version: '' },
+  paths: {},
+});

@@ -54,7 +54,7 @@ export function enhancerList(): Enhancer[] {
     queryFieldMappingEnhancer,
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
-    apiSchemaBuildingEnhancer,
     openApiSpecificationEnhancer,
+    apiSchemaBuildingEnhancer,
   ];
 }

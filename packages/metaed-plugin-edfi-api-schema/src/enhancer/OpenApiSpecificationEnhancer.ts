@@ -13,6 +13,7 @@ import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
 import { Operation, PathsObject, ComponentsObject, Parameter, Document, Schemas, SchemaObject } from '../model/OpenApiTypes';
+import { NamespaceEdfiApiSchema } from '../model/Namespace';
 
 /**
  * Returns the "post" section of non-id "path" for the given entity
@@ -507,20 +508,20 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const swaggerDocument: Document = {
       openapi: '3.0.0',
       info: {
-        title: 'Ed-Fi Alliance Data Management Service',
-        description: 'Ed-Fi Alliance Data Management Service',
-        version: '0',
+        title: '',
+        description: '',
+        version: '',
       },
       servers: [
         {
-          url: 'http://localhost:5198/',
+          url: '',
         },
       ],
       paths,
       components,
     };
 
-    namespace.data.edfiApiSchema.openApiSpecification = swaggerDocument;
+    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).coreOpenApiSpecification = swaggerDocument;
   });
   return {
     enhancerName: 'OpenApiSpecificationEnhancer',

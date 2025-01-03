@@ -5,11 +5,12 @@ import { ResourceSchema } from './ResourceSchema';
 import { ResourceSchemaMapping } from './ResourceSchemaMapping';
 import { SemVer } from './SemVer';
 import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNameMapping';
+import { noDocument, type Document } from '../OpenApiTypes';
 
 /**
  * API project information
  */
-export type ProjectSchema = {
+export type BaseProjectSchema = {
   /**
    * The MetaEd project name the referenced API resource is defined in e.g. "EdFi"
    * for the data standard.
@@ -21,11 +22,6 @@ export type ProjectSchema = {
    * example, "5.2.0" for a data standard version.
    */
   projectVersion: SemVer;
-
-  /**
-   * Whether this is an extension project or a Data Standard project
-   */
-  isExtensionProject: boolean;
 
   /**
    * If this is an extension project, provides compatible Data Standards as a semver range.
@@ -66,10 +62,37 @@ export type ProjectSchema = {
   abstractResources: AbstractResourceMapping;
 };
 
+type CoreProjectSchema = BaseProjectSchema & {
+  /**
+   * Whether this is an extension project or a Data Standard project
+   */
+  isExtensionProject: false;
+
+  /**
+   * The core OpenApi specification DMS will use as a starting point
+   */
+  coreOpenApiSpecification: Document;
+};
+
+type ExtensionProjectSchema = BaseProjectSchema & {
+  /**
+   * Whether this is an extension project or a Data Standard project
+   */
+  isExtensionProject: true;
+
+  /**
+   * The extension OpenApi fragments DMS will incorporate into the final OpenApi spec
+   */
+  extensionOpenApiFragments: any;
+};
+
+export type ProjectSchema = CoreProjectSchema | ExtensionProjectSchema;
+
 export const NoProjectSchema: ProjectSchema = {
   projectName: 'NoProjectName' as MetaEdProjectName,
   projectVersion: '0.0.0' as SemVer,
   isExtensionProject: false,
+  coreOpenApiSpecification: noDocument,
   compatibleDsRange: null,
   description: 'NoProjectSchema',
   resourceSchemas: {},
