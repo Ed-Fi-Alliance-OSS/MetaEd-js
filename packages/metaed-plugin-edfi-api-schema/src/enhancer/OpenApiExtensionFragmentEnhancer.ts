@@ -7,7 +7,7 @@ import {
 } from '@edfi/metaed-core';
 import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { PathsObject, ComponentsObject, Document, Schemas } from '../model/OpenApiTypes';
+import { PathsObject, Schemas } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import {
   createDeleteSectionFor,
@@ -15,19 +15,22 @@ import {
   createGetByQuerySectionFor,
   createPostSectionFor,
   createPutSectionFor,
-  createResponses,
 } from './OpenApiSpecificationEnhancerBase';
+import { ExtensionOpenApiFragments, Exts } from '../model/ExtensionOpenApiFragments';
 
 /**
- * Enhancer that creates the OpenApi spec for a data standard.
+ * Enhancer that creates the OpenApi spec for an extension.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
-    if (namespace.isExtension) return;
+    if (!namespace.isExtension) return;
 
     const paths: PathsObject = {};
-    const schemas: Schemas = {};
+    const newSchemas: Schemas = {};
 
+    /**
+     * Paths and schemas for new extension endpoints
+     */
     getEntitiesOfTypeForNamespaces(
       [namespace],
       'domainEntity',
@@ -58,35 +61,36 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // Add to Schemas
-      schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
-      schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
+      newSchemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+      newSchemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
     });
 
-    const components: ComponentsObject = {
-      schemas,
-      responses: createResponses(),
-    };
+    const exts: Exts = {};
+    const extSchemas: Schemas = {};
 
-    const swaggerDocument: Document = {
-      openapi: '3.0.0',
-      info: {
-        title: '',
-        description: '',
-        version: '',
+    getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach(
+      (entity: TopLevelEntity) => {
+        const { openApiReferenceComponent, openApiReferenceComponentPropertyName, openApiRequestBodyComponent } = entity.data
+          .edfiApiSchema as EntityApiSchemaData;
+
+        // Add references - might be duplicates of what is already in data standard OpenApi
+        extSchemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+
+        exts[entity.metaEdName] = openApiRequestBodyComponent;
       },
-      servers: [
-        {
-          url: '',
-        },
-      ],
+    );
+
+    const extensionOpenApiFragments: ExtensionOpenApiFragments = {
       paths,
-      components,
+      newSchemas,
+      exts,
+      extSchemas,
     };
 
-    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).coreOpenApiSpecification = swaggerDocument;
+    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).extensionOpenApiFragments = extensionOpenApiFragments;
   });
   return {
-    enhancerName: 'OpenApiSpecificationEnhancer',
+    enhancerName: 'OpenApiExtensionFragmentEnhancer',
     success: true,
   };
 }
