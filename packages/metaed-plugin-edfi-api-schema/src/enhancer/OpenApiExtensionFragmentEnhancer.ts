@@ -16,7 +16,7 @@ import {
   createPostSectionFor,
   createPutSectionFor,
 } from './OpenApiSpecificationEnhancerBase';
-import { ExtensionOpenApiFragments, Exts } from '../model/ExtensionOpenApiFragments';
+import { OpenApiExtensionFragments, Exts } from '../model/OpenApiExtensionFragments';
 
 /**
  * Enhancer that creates the OpenApi spec for an extension.
@@ -25,12 +25,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     if (!namespace.isExtension) return;
 
-    const paths: PathsObject = {};
+    const newPaths: PathsObject = {};
     const newSchemas: Schemas = {};
 
-    /**
-     * Paths and schemas for new extension endpoints
-     */
+    // Paths and schemas for new extension endpoints
     getEntitiesOfTypeForNamespaces(
       [namespace],
       'domainEntity',
@@ -42,12 +40,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // Add to paths without "id"
-      paths[`/${projectNamespace}/${endpointName}`] = {
+      newPaths[`/${projectNamespace}/${endpointName}`] = {
         post: createPostSectionFor(entity, endpointName),
         get: createGetByQuerySectionFor(entity, endpointName),
       };
 
-      paths[`/${projectNamespace}/${endpointName}/{id}`] = {
+      newPaths[`/${projectNamespace}/${endpointName}/{id}`] = {
         get: createGetByIdSectionFor(entity, endpointName),
         put: createPutSectionFor(entity, endpointName),
         delete: createDeleteSectionFor(entity, endpointName),
@@ -66,28 +64,21 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     });
 
     const exts: Exts = {};
-    const extSchemas: Schemas = {};
 
+    // Schemas for extensions to existing endpoints
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach(
       (entity: TopLevelEntity) => {
-        const { openApiReferenceComponent, openApiReferenceComponentPropertyName, openApiRequestBodyComponent } = entity.data
-          .edfiApiSchema as EntityApiSchemaData;
-
-        // Add references - might be duplicates of what is already in data standard OpenApi
-        extSchemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
-
-        exts[entity.metaEdName] = openApiRequestBodyComponent;
+        exts[entity.metaEdName] = (entity.data.edfiApiSchema as EntityApiSchemaData).openApiRequestBodyComponent;
       },
     );
 
-    const extensionOpenApiFragments: ExtensionOpenApiFragments = {
-      paths,
+    const openApiExtensionFragments: OpenApiExtensionFragments = {
+      newPaths,
       newSchemas,
       exts,
-      extSchemas,
     };
 
-    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).extensionOpenApiFragments = extensionOpenApiFragments;
+    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiExtensionFragments = openApiExtensionFragments;
   });
   return {
     enhancerName: 'OpenApiExtensionFragmentEnhancer',

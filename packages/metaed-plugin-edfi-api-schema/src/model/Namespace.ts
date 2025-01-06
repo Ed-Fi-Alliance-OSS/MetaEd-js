@@ -5,7 +5,7 @@ import { noDocument, type Document } from './OpenApiTypes';
 export interface NamespaceEdfiApiSchema {
   apiSchema: ApiSchema;
   coreOpenApiSpecification: Document;
-  extensionOpenApiFragments: any;
+  openApiExtensionFragments: any;
 }
 
 const enhancerName = 'NamespaceSetupEnhancer';
@@ -16,7 +16,7 @@ export function addNamespaceEdfiApiSchema(namespace: Namespace) {
   Object.assign(namespace.data.edfiApiSchema, {
     apiSchema: newApiSchema(),
     coreOpenApiSpecification: noDocument,
-    extensionOpenApiFragments: {},
+    openApiExtensionFragments: {},
   });
 }
 

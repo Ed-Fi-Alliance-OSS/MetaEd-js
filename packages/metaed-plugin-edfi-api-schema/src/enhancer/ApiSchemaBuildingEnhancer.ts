@@ -172,7 +172,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         ...baseProjectSchema,
         isExtensionProject: true,
         compatibleDsRange: metaEd.dataStandardVersion as SemVer,
-        extensionOpenApiFragments: namespace.data.edfiApiSchema.extensionOpenApiFragments,
+        openApiExtensionFragments: namespace.data.edfiApiSchema.openApiExtensionFragments,
       };
     } else {
       projectSchema = {

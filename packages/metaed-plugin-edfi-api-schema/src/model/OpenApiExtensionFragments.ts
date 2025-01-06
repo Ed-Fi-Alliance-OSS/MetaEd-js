@@ -6,11 +6,11 @@ export type Exts = { [key: MetaEdResourceName]: SchemaObject };
 /**
  * Pieces of OpenApi spec for an extension, to be assembled by DMS
  */
-export type ExtensionOpenApiFragments = {
+export type OpenApiExtensionFragments = {
   /**
    * Paths for new extension endpoints
    */
-  paths: PathsObject;
+  newPaths: PathsObject;
   /**
    * Schemas for new extension endpoints
    */
@@ -19,17 +19,4 @@ export type ExtensionOpenApiFragments = {
    * Exts for extensions to existing data standard entities
    */
   exts: Exts;
-  /**
-   * Schemas for extensions to existing data standard entities - might be duplicates of what is already in DS OpenApi
-   */
-  extSchemas: Schemas;
 };
-
-export function newExtensionOpenApiFragment(): ExtensionOpenApiFragments {
-  return {
-    paths: {},
-    newSchemas: {},
-    exts: {},
-    extSchemas: {},
-  };
-}

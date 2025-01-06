@@ -83,7 +83,7 @@ type ExtensionProjectSchema = BaseProjectSchema & {
   /**
    * The extension OpenApi fragments DMS will incorporate into the final OpenApi spec
    */
-  extensionOpenApiFragments: any;
+  openApiExtensionFragments: any;
 };
 
 export type ProjectSchema = CoreProjectSchema | ExtensionProjectSchema;
