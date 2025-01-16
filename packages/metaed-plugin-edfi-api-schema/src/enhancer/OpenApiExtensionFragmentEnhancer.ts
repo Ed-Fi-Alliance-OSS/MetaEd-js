@@ -68,7 +68,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     // Schemas for extensions to existing endpoints
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach(
       (entity: TopLevelEntity) => {
-        exts[entity.metaEdName] = (entity.data.edfiApiSchema as EntityApiSchemaData).openApiRequestBodyComponent;
+        exts[`${entity.baseEntityNamespaceName}_${entity.metaEdName}`] = (
+          entity.data.edfiApiSchema as EntityApiSchemaData
+        ).openApiRequestBodyComponent;
       },
     );
 

@@ -3,16 +3,20 @@ import {
   CommonBuilder,
   DescriptorBuilder,
   DomainEntityBuilder,
+  DomainEntityExtensionBuilder,
   MetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newNamespace,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
   choiceReferenceEnhancer,
   inlineCommonReferenceEnhancer,
   descriptorReferenceEnhancer,
+  domainEntityExtensionBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -34,6 +38,7 @@ import { enhance as identityFullnameEnhancer } from '../../src/enhancer/Identity
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from '../../src/enhancer/QueryFieldMappingEnhancer';
+import { enhance as openApiSpecificationEnhancer } from '../../src/enhancer/OpenApiSpecificationEnhancer';
 import { enhance } from '../../src/enhancer/OpenApiExtensionFragmentEnhancer';
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
@@ -5133,5 +5138,125 @@ describe('when building domain entity with scalar collection named with prefix o
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+  });
+});
+
+describe('when domain entity extension references domain entity in different namespace', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReferencedIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntityExtension(`EdFi.${entityName}`)
+      .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get('EdFi') ?? newNamespace();
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(coreNamespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema for core namespace', () => {
+    expect(coreNamespace.data.edfiApiSchema.coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
+        Object {
+          "EdFi_EntityName": Object {
+            "description": "doc",
+            "properties": Object {
+              "entityIdentity": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "entityIdentity",
+            ],
+            "type": "object",
+          },
+          "EdFi_EntityName_Reference": Object {
+            "properties": Object {
+              "entityIdentity": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "entityIdentity",
+            ],
+            "type": "object",
+          },
+          "EdFi_ReferencedEntityName": Object {
+            "description": "doc",
+            "properties": Object {
+              "referencedIdentity": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "referencedIdentity",
+            ],
+            "type": "object",
+          },
+          "EdFi_ReferencedEntityName_Reference": Object {
+            "properties": Object {
+              "referencedIdentity": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "referencedIdentity",
+            ],
+            "type": "object",
+          },
+        }
+      `);
+  });
+
+  it('should be a correct ext for extension namespace that references core schema', () => {
+    const { openApiExtensionFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`
+        Object {
+          "EdFi_EntityName": Object {
+            "description": "",
+            "properties": Object {
+              "referencedEntityNameReference": Object {
+                "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
+              },
+            },
+            "type": "object",
+          },
+        }
+      `);
   });
 });

@@ -47,7 +47,7 @@
       "isExtensionProject": true,
       "openApiExtensionFragments": {
         "exts": {
-          "Credential": {
+          "EdFi_Credential": {
             "description": "",
             "properties": {
               "boardCertificationIndicator": {
@@ -99,7 +99,7 @@
             },
             "type": "object"
           },
-          "School": {
+          "EdFi_School": {
             "description": "",
             "properties": {
               "postSecondaryInstitutionReference": {
@@ -108,7 +108,7 @@
             },
             "type": "object"
           },
-          "SurveyResponse": {
+          "EdFi_SurveyResponse": {
             "description": "",
             "properties": {
               "personReference": {
