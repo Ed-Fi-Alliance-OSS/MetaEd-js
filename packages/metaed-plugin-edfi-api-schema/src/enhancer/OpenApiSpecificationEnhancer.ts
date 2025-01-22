@@ -92,6 +92,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       ],
       paths,
       components,
+      tags,
     };
 
     (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).coreOpenApiSpecification = swaggerDocument;

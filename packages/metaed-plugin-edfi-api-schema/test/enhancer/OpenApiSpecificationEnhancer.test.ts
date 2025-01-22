@@ -790,6 +790,12 @@ describe('when building simple domain entity with all the simple non-collections
             "url": "",
           },
         ],
+        "tags": Array [
+          Object {
+            "description": "doc",
+            "name": "domainEntityNames",
+          },
+        ],
       }
     `);
   });
