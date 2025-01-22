@@ -276,7 +276,7 @@
           "/tpdm/candidateEducatorPreparationProgramAssociations/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteCandidateEducatorPreparationProgramAssociation",
+              "operationId": "deleteCandidateEducatorPreparationProgramAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -327,7 +327,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getCandidateEducatorPreparationProgramAssociation",
+              "operationId": "getCandidateEducatorPreparationProgramAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -802,7 +802,7 @@
           "/tpdm/candidates/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteCandidate",
+              "operationId": "deleteCandidatesById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -853,7 +853,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getCandidate",
+              "operationId": "getCandidatesById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1142,7 +1142,7 @@
           "/tpdm/educatorPreparationPrograms/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEducatorPreparationProgram",
+              "operationId": "deleteEducatorPreparationProgramsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1193,7 +1193,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEducatorPreparationProgram",
+              "operationId": "getEducatorPreparationProgramsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1492,7 +1492,7 @@
           "/tpdm/evaluationElementRatings/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluationElementRating",
+              "operationId": "deleteEvaluationElementRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1543,7 +1543,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluationElementRating",
+              "operationId": "getEvaluationElementRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1840,7 +1840,7 @@
           "/tpdm/evaluationElements/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluationElement",
+              "operationId": "deleteEvaluationElementsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -1891,7 +1891,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluationElement",
+              "operationId": "getEvaluationElementsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2160,7 +2160,7 @@
           "/tpdm/evaluationObjectiveRatings/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluationObjectiveRating",
+              "operationId": "deleteEvaluationObjectiveRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2211,7 +2211,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluationObjectiveRating",
+              "operationId": "getEvaluationObjectiveRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2517,7 +2517,7 @@
           "/tpdm/evaluationObjectives/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluationObjective",
+              "operationId": "deleteEvaluationObjectivesById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2568,7 +2568,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluationObjective",
+              "operationId": "getEvaluationObjectivesById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2865,7 +2865,7 @@
           "/tpdm/evaluationRatings/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluationRating",
+              "operationId": "deleteEvaluationRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -2916,7 +2916,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluationRating",
+              "operationId": "getEvaluationRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -3222,7 +3222,7 @@
           "/tpdm/evaluations/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteEvaluation",
+              "operationId": "deleteEvaluationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -3273,7 +3273,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getEvaluation",
+              "operationId": "getEvaluationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -3578,7 +3578,7 @@
           "/tpdm/financialAids/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteFinancialAid",
+              "operationId": "deleteFinancialAidsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -3629,7 +3629,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getFinancialAid",
+              "operationId": "getFinancialAidsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -3950,7 +3950,7 @@
           "/tpdm/performanceEvaluationRatings/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deletePerformanceEvaluationRating",
+              "operationId": "deletePerformanceEvaluationRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4001,7 +4001,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getPerformanceEvaluationRating",
+              "operationId": "getPerformanceEvaluationRatingsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4320,7 +4320,7 @@
           "/tpdm/performanceEvaluations/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deletePerformanceEvaluation",
+              "operationId": "deletePerformanceEvaluationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4371,7 +4371,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getPerformanceEvaluation",
+              "operationId": "getPerformanceEvaluationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4658,7 +4658,7 @@
           "/tpdm/rubricDimensions/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteRubricDimension",
+              "operationId": "deleteRubricDimensionsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4709,7 +4709,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getRubricDimension",
+              "operationId": "getRubricDimensionsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -4959,7 +4959,7 @@
           "/tpdm/surveyResponsePersonTargetAssociations/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteSurveyResponsePersonTargetAssociation",
+              "operationId": "deleteSurveyResponsePersonTargetAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -5010,7 +5010,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getSurveyResponsePersonTargetAssociation",
+              "operationId": "getSurveyResponsePersonTargetAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -5260,7 +5260,7 @@
           "/tpdm/surveySectionResponsePersonTargetAssociations/{id}": {
             "delete": {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteSurveySectionResponsePersonTargetAssociation",
+              "operationId": "deleteSurveySectionResponsePersonTargetAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -5311,7 +5311,7 @@
             },
             "get": {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getSurveySectionResponsePersonTargetAssociation",
+              "operationId": "getSurveySectionResponsePersonTargetAssociationsById",
               "parameters": [
                 {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -7573,7 +7573,69 @@
             ],
             "type": "object"
           }
-        }
+        },
+        "newTags": [
+          {
+            "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
+            "name": "candidates"
+          },
+          {
+            "description": "The Educator Preparation Program is designed to prepare students to become licensed educators.",
+            "name": "educatorPreparationPrograms"
+          },
+          {
+            "description": "An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.",
+            "name": "evaluations"
+          },
+          {
+            "description": "The lowest-level Elements or criterion of performance being evaluated by rubric, quantitative measure, or aggregate survey response.",
+            "name": "evaluationElements"
+          },
+          {
+            "description": "The lowest-level rating for an Evaluation Element for an individual educator.",
+            "name": "evaluationElementRatings"
+          },
+          {
+            "description": "A subcomponent of an Evaluation, a specific educator Objective or domain of performance that is being evaluated.",
+            "name": "evaluationObjectives"
+          },
+          {
+            "description": "The rating for the component Evaluation Objective for an individual educator.",
+            "name": "evaluationObjectiveRatings"
+          },
+          {
+            "description": "The summary weighting for the Evaluation instrument for an individual educator.",
+            "name": "evaluationRatings"
+          },
+          {
+            "description": "This entity represents the financial aid a person is awarded.",
+            "name": "financialAids"
+          },
+          {
+            "description": "A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.",
+            "name": "performanceEvaluations"
+          },
+          {
+            "description": "The summary rating for a Performance Evaluation across all Evaluation instruments for an individual educator.",
+            "name": "performanceEvaluationRatings"
+          },
+          {
+            "description": "The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.",
+            "name": "rubricDimensions"
+          },
+          {
+            "description": "Information about the association between the Teacher Candidate and the EducatorPreparationProgram",
+            "name": "candidateEducatorPreparationProgramAssociations"
+          },
+          {
+            "description": "The association provides information about the survey being taken and who the survey is about.",
+            "name": "surveyResponsePersonTargetAssociations"
+          },
+          {
+            "description": "This association provides information about the survey section and the person the survey section is about.",
+            "name": "surveySectionResponsePersonTargetAssociations"
+          }
+        ]
       },
       "projectName": "TPDM",
       "projectVersion": "1.1.0",

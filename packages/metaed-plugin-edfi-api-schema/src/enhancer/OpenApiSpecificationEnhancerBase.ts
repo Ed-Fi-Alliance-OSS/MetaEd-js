@@ -2,9 +2,20 @@ import { invariant } from 'ts-invariant';
 import { type TopLevelEntity, EntityProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
-import { Operation, Parameter, SchemaObject, ResponsesObject } from '../model/OpenApiTypes';
+import {
+  Operation,
+  Parameter,
+  SchemaObject,
+  ResponsesObject,
+  ParameterObject,
+  ReferenceObject,
+} from '../model/OpenApiTypes';
+import { pluralize } from '../Utility';
 
-export function createResponses(): ResponsesObject {
+/**
+ * Creates the set of hardcoded component parameters
+ */
+export function createHardcodedParameterResponses(): ResponsesObject {
   return {
     Created: {
       description:
@@ -57,6 +68,122 @@ export function createResponses(): ResponsesObject {
       description: 'An unhandled error occurred on the server. See the response body for details.',
       content: {
         'application/json': {},
+      },
+    },
+  };
+}
+
+/**
+ * Creates the set of hardcoded component parameters
+ */
+export function createHardcodedComponentParameters(): { [key: string]: ReferenceObject | ParameterObject } {
+  return {
+    offset: {
+      name: 'offset',
+      in: 'query',
+      description: 'Indicates how many items should be skipped before returning results.',
+      schema: {
+        type: 'integer',
+        format: 'int32',
+      },
+    },
+    limit: {
+      name: 'limit',
+      in: 'query',
+      description: 'Indicates the maximum number of items that should be returned in the results.',
+      schema: {
+        maximum: 500,
+        minimum: 0,
+        type: 'integer',
+        format: 'int32',
+        default: 25,
+      },
+    },
+    MinChangeVersion: {
+      name: 'minChangeVersion',
+      in: 'query',
+      description: 'Used in synchronization to set sequence minimum ChangeVersion',
+      schema: {
+        type: 'integer',
+        format: 'int64',
+      },
+    },
+    MaxChangeVersion: {
+      name: 'maxChangeVersion',
+      in: 'query',
+      description: 'Used in synchronization to set sequence maximum ChangeVersion',
+      schema: {
+        type: 'integer',
+        format: 'int64',
+      },
+    },
+    'If-None-Match': {
+      name: 'If-None-Match',
+      in: 'header',
+      description:
+        'The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.',
+      schema: {
+        type: 'string',
+      },
+    },
+    fields: {
+      name: 'fields',
+      in: 'query',
+      description:
+        'Specifies a subset of properties that should be returned for each entity (e.g. "property1,collection1(collProp1,collProp2)").',
+      schema: {
+        type: 'string',
+      },
+    },
+    queryExpression: {
+      name: 'q',
+      in: 'query',
+      description:
+        'Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. "schoolId:[255901000...255901002]" and "BeginDate:[2016-03-07...2016-03-10]").',
+      schema: {
+        type: 'string',
+      },
+    },
+    totalCount: {
+      name: 'totalCount',
+      in: 'query',
+      description:
+        "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+      schema: {
+        type: 'boolean',
+        default: false,
+      },
+    },
+    pageToken: {
+      name: 'pageToken',
+      in: 'query',
+      description:
+        'The token of the page to retrieve, obtained either from the "Next-Page-Token" header of the previous request, or from the "partitions" endpoint for the resource. Cannot be used with limit/offset paging.',
+      schema: {
+        type: 'string',
+      },
+    },
+    pageSize: {
+      name: 'pageSize',
+      in: 'query',
+      description: 'The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.',
+      schema: {
+        minimum: 0,
+        type: 'integer',
+        format: 'int32',
+        default: 25,
+      },
+    },
+    numberOfPartitions: {
+      name: 'number',
+      in: 'query',
+      description:
+        'The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.',
+      schema: {
+        maximum: 200,
+        minimum: 1,
+        type: 'integer',
+        format: 'int32',
       },
     },
   };
@@ -299,7 +426,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
 export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
   return {
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
-    operationId: `get${entity.metaEdName}`,
+    operationId: `get${pluralize(entity.metaEdName)}ById`,
     parameters: [
       ...newStaticByIdParameters(),
       {
@@ -418,7 +545,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
   return {
     description:
       "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-    operationId: `delete${entity.metaEdName}`,
+    operationId: `delete${pluralize(entity.metaEdName)}ById`,
     parameters: newStaticByIdParameters(),
     responses: {
       '204': {

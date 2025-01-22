@@ -7,7 +7,7 @@ import {
 } from '@edfi/metaed-core';
 import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { PathsObject, Schemas } from '../model/OpenApiTypes';
+import { PathsObject, Schemas, TagObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import {
   createDeleteSectionFor,
@@ -27,6 +27,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const newPaths: PathsObject = {};
     const newSchemas: Schemas = {};
+    const newTags: TagObject[] = [];
 
     // Paths and schemas for new extension endpoints
     getEntitiesOfTypeForNamespaces(
@@ -61,6 +62,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Add to Schemas
       newSchemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
       newSchemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
+
+      // Add to global tags
+      newTags.push({
+        name: endpointName,
+        description: entity.documentation,
+      });
     });
 
     const exts: Exts = {};
@@ -78,6 +85,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       newPaths,
       newSchemas,
       exts,
+      newTags,
     };
 
     (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiExtensionFragments = openApiExtensionFragments;

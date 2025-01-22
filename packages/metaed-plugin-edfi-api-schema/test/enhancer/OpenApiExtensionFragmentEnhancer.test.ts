@@ -342,7 +342,7 @@ describe('when building simple domain entity with all the simple non-collections
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -393,7 +393,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -626,6 +626,14 @@ describe('when building simple domain entity with all the simple non-collections
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "domainEntityNames",
+        },
+      ]
+    `);
   });
 });
 
@@ -810,7 +818,7 @@ describe('when building simple domain entity with all the simple collections', (
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -861,7 +869,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1257,6 +1265,14 @@ describe('when building simple domain entity with all the simple collections', (
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "domainEntityNames",
+        },
+      ]
+    `);
   });
 });
 
@@ -1437,7 +1453,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/classPeriods/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteClassPeriod",
+            "operationId": "deleteClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1488,7 +1504,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getClassPeriod",
+            "operationId": "getClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1748,7 +1764,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOffering",
+            "operationId": "deleteCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1799,7 +1815,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2059,7 +2075,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2110,7 +2126,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2370,7 +2386,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchool",
+            "operationId": "deleteSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2421,7 +2437,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchool",
+            "operationId": "getSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2719,6 +2735,26 @@ describe('when building a domain entity referencing another referencing another 
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "domainEntityNames",
+        },
+        Object {
+          "description": "doc",
+          "name": "courseOfferings",
+        },
+        Object {
+          "description": "doc",
+          "name": "classPeriods",
+        },
+        Object {
+          "description": "doc",
+          "name": "schools",
+        },
+      ]
+    `);
   });
 });
 
@@ -2900,7 +2936,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOffering",
+            "operationId": "deleteCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2951,7 +2987,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3211,7 +3247,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3262,7 +3298,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3522,7 +3558,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchool",
+            "operationId": "deleteSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3573,7 +3609,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchool",
+            "operationId": "getSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3843,7 +3879,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/sessions/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSession",
+            "operationId": "deleteSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3894,7 +3930,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSession",
+            "operationId": "getSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4225,6 +4261,26 @@ describe('when building a domain entity referencing CourseOffering with an impli
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "domainEntityNames",
+        },
+        Object {
+          "description": "doc",
+          "name": "courseOfferings",
+        },
+        Object {
+          "description": "doc",
+          "name": "sessions",
+        },
+        Object {
+          "description": "doc",
+          "name": "schools",
+        },
+      ]
+    `);
   });
 });
 
@@ -4454,7 +4510,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/extension/educationContents/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEducationContent",
+            "operationId": "deleteEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4505,7 +4561,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEducationContent",
+            "operationId": "getEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4741,6 +4797,14 @@ describe('when building domain entity with nested choice and inline commons', ()
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "educationContents",
+        },
+      ]
+    `);
   });
 });
 
@@ -4904,7 +4968,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4955,7 +5019,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5138,6 +5202,14 @@ describe('when building domain entity with scalar collection named with prefix o
       }
     `);
     expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "description": "doc",
+          "name": "domainEntityNames",
+        },
+      ]
+    `);
   });
 });
 
@@ -5258,5 +5330,6 @@ describe('when domain entity extension references domain entity in different nam
           },
         }
       `);
+    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`Array []`);
   });
 });

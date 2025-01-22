@@ -1,5 +1,5 @@
 import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
-import { Schemas, PathsObject, SchemaObject } from './OpenApiTypes';
+import { Schemas, PathsObject, SchemaObject, TagObject } from './OpenApiTypes';
 
 export type Exts = { [key: MetaEdResourceName]: SchemaObject };
 
@@ -19,4 +19,8 @@ export type OpenApiExtensionFragments = {
    * Exts for extensions to existing data standard entities
    */
   exts: Exts;
+  /**
+   * Tags for new extension endpoints
+   */
+  newTags: TagObject[];
 };

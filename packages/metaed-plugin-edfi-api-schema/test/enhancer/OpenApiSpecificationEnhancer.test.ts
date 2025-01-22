@@ -102,6 +102,110 @@ describe('when building simple domain entity with all the simple non-collections
     expect(coreOpenApiSpecification).toMatchInlineSnapshot(`
       Object {
         "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
           "responses": Object {
             "BadRequest": Object {
               "content": Object {
@@ -249,9 +353,16 @@ describe('when building simple domain entity with all the simple non-collections
           },
         },
         "info": Object {
-          "description": "",
-          "title": "",
-          "version": "",
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
         },
         "openapi": "3.0.0",
         "paths": Object {
@@ -492,7 +603,7 @@ describe('when building simple domain entity with all the simple non-collections
           "/edfi/domainEntityNames/{id}": Object {
             "delete": Object {
               "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-              "operationId": "deleteDomainEntityName",
+              "operationId": "deleteDomainEntityNamesById",
               "parameters": Array [
                 Object {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -543,7 +654,7 @@ describe('when building simple domain entity with all the simple non-collections
             },
             "get": Object {
               "description": "This GET operation retrieves a resource by the specified resource identifier.",
-              "operationId": "getDomainEntityName",
+              "operationId": "getDomainEntityNamesById",
               "parameters": Array [
                 Object {
                   "description": "A resource identifier that uniquely identifies the resource.",
@@ -865,7 +976,7 @@ describe('when building simple domain entity with all the simple collections', (
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -916,7 +1027,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1491,7 +1602,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/classPeriods/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteClassPeriod",
+            "operationId": "deleteClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1542,7 +1653,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getClassPeriod",
+            "operationId": "getClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1802,7 +1913,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOffering",
+            "operationId": "deleteCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1853,7 +1964,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2113,7 +2224,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2164,7 +2275,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2424,7 +2535,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchool",
+            "operationId": "deleteSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2475,7 +2586,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchool",
+            "operationId": "getSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2953,7 +3064,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOffering",
+            "operationId": "deleteCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3004,7 +3115,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3264,7 +3375,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3315,7 +3426,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3575,7 +3686,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchool",
+            "operationId": "deleteSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3626,7 +3737,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchool",
+            "operationId": "getSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3896,7 +4007,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/sessions/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSession",
+            "operationId": "deleteSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3947,7 +4058,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSession",
+            "operationId": "getSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4506,7 +4617,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/edfi/educationContents/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEducationContent",
+            "operationId": "deleteEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4557,7 +4668,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEducationContent",
+            "operationId": "getEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4955,7 +5066,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "/edfi/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityName",
+            "operationId": "deleteDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5006,7 +5117,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
