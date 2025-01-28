@@ -27,6 +27,7 @@ import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhance
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
 import { enhance as openApiSpecificationEnhancer } from './OpenApiSpecificationEnhancer';
 import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
+import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -57,6 +58,7 @@ export function enhancerList(): Enhancer[] {
     typeCoercionJsonPathsEnhancer,
     openApiSpecificationEnhancer,
     openApiExtensionFragmentEnhancer,
+    namespaceSecurityElementEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

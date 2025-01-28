@@ -18,17 +18,17 @@ import { JsonPathPropertyPair, JsonPathsInfo, JsonPathsMapping } from '../model/
 import { PathType } from '../model/api-schema/PathType';
 
 /**
- * Returns a stripped down copy of the given mergeJsonPathsMapping, with the only properties being those
+ * Returns a stripped down copy of the given allJsonPathsMapping, with the only properties being those
  * property paths that descend below the given starting path and end at a single scalar value.
  *
  * Note this can return entries that are effectively duplicates. For example, both
  * CourseOffering.School and CourseOffering.School.SchoolId, which both resolve to the same
  * JsonPath and same terminalProperty of School.SchoolId
  */
-function findDeepScalarPaths(mergeJsonPathsMapping: JsonPathsMapping, startOfPropertyPath: string): JsonPathsMapping {
+function findDeepScalarPaths(allJsonPathsMapping: JsonPathsMapping, startOfPropertyPath: string): JsonPathsMapping {
   const result: JsonPathsMapping = {};
 
-  Object.entries(mergeJsonPathsMapping).forEach(([k, v]) => {
+  Object.entries(allJsonPathsMapping).forEach(([k, v]) => {
     if (k === startOfPropertyPath) return;
     if (!k.startsWith(`${startOfPropertyPath}.`)) return;
     if (v.jsonPathPropertyPairs.length !== 1) return;

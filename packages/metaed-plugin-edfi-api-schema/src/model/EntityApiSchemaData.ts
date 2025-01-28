@@ -68,7 +68,7 @@ export type EntityApiSchemaData = {
    * scalars have a single JsonPath, while PropertyPaths ending in references may have multiple
    * JsonPaths, as document references are often composed of multiple elements.
    *
-   * The JsonPaths array is always is sorted order.
+   * The JsonPaths array is always in sorted order.
    */
   allJsonPathsMapping: JsonPathsMapping;
 
@@ -133,6 +133,11 @@ export type EntityApiSchemaData = {
    * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
    */
   queryFieldMapping: QueryFieldMapping;
+
+  /**
+   * A list of the namespace-based security elements for this entity
+   */
+  namespaceSecurityElements: JsonPath[];
 };
 
 /**

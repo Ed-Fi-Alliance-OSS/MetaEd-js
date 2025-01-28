@@ -1,4 +1,11 @@
-import { MetaEdEnvironment, GeneratorResult, SemVer, PluginEnvironment, newPluginEnvironment } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  GeneratorResult,
+  SemVer,
+  PluginEnvironment,
+  newPluginEnvironment,
+  SharedStringBuilder,
+} from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -28,6 +35,11 @@ describe('when generating HTML version of handbook', (): void => {
 
       .withBeginNamespace('EdFi')
 
+      .withStartSharedString('URI')
+      .withDocumentation('doc')
+      .withStringRestrictions('30')
+      .withEndSharedString()
+
       .withStartDomainEntity('Entity1')
       .withDocumentation('Entity1 doc')
       .withIntegerIdentity('Entity1Integer', 'Entity1Integer doc')
@@ -46,6 +58,7 @@ describe('when generating HTML version of handbook', (): void => {
 
       .sendToListener(namespaceBuilder)
       .sendToListener(enumerationBuilder)
+      .sendToListener(new SharedStringBuilder(metaEd, []))
       .sendToListener(domainEntityBuilder);
 
     initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));

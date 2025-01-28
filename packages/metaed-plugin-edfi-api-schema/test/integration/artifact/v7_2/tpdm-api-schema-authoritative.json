@@ -7757,7 +7757,12 @@
               }
             ]
           },
-          "resourceName": "AccreditationStatusDescriptor"
+          "resourceName": "AccreditationStatusDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "aidTypeDescriptors": {
           "allowIdentityUpdates": false,
@@ -7841,7 +7846,12 @@
               }
             ]
           },
-          "resourceName": "AidTypeDescriptor"
+          "resourceName": "AidTypeDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "candidateEducatorPreparationProgramAssociations": {
           "allowIdentityUpdates": false,
@@ -8183,7 +8193,11 @@
               }
             ]
           },
-          "resourceName": "CandidateEducatorPreparationProgramAssociation"
+          "resourceName": "CandidateEducatorPreparationProgramAssociation",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "candidates": {
           "allowIdentityUpdates": false,
@@ -9355,7 +9369,11 @@
               }
             ]
           },
-          "resourceName": "Candidate"
+          "resourceName": "Candidate",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "certificationRouteDescriptors": {
           "allowIdentityUpdates": false,
@@ -9439,7 +9457,12 @@
               }
             ]
           },
-          "resourceName": "CertificationRouteDescriptor"
+          "resourceName": "CertificationRouteDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "coteachingStyleObservedDescriptors": {
           "allowIdentityUpdates": false,
@@ -9523,7 +9546,12 @@
               }
             ]
           },
-          "resourceName": "CoteachingStyleObservedDescriptor"
+          "resourceName": "CoteachingStyleObservedDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "credentialStatusDescriptors": {
           "allowIdentityUpdates": false,
@@ -9607,7 +9635,12 @@
               }
             ]
           },
-          "resourceName": "CredentialStatusDescriptor"
+          "resourceName": "CredentialStatusDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "credentials": {
           "booleanJsonPaths": [
@@ -9818,7 +9851,11 @@
             "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
             "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear"
           ],
-          "resourceName": "Credential"
+          "resourceName": "Credential",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "ePPProgramPathwayDescriptors": {
           "allowIdentityUpdates": false,
@@ -9902,7 +9939,12 @@
               }
             ]
           },
-          "resourceName": "EPPProgramPathwayDescriptor"
+          "resourceName": "EPPProgramPathwayDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "educatorPreparationPrograms": {
           "allowIdentityUpdates": false,
@@ -10070,7 +10112,11 @@
               }
             ]
           },
-          "resourceName": "EducatorPreparationProgram"
+          "resourceName": "EducatorPreparationProgram",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "educatorRoleDescriptors": {
           "allowIdentityUpdates": false,
@@ -10154,7 +10200,12 @@
               }
             ]
           },
-          "resourceName": "EducatorRoleDescriptor"
+          "resourceName": "EducatorRoleDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "englishLanguageExamDescriptors": {
           "allowIdentityUpdates": false,
@@ -10238,7 +10289,12 @@
               }
             ]
           },
-          "resourceName": "EnglishLanguageExamDescriptor"
+          "resourceName": "EnglishLanguageExamDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluationElementRatingLevelDescriptors": {
           "allowIdentityUpdates": false,
@@ -10322,7 +10378,12 @@
               }
             ]
           },
-          "resourceName": "EvaluationElementRatingLevelDescriptor"
+          "resourceName": "EvaluationElementRatingLevelDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluationElementRatings": {
           "allowIdentityUpdates": false,
@@ -10917,7 +10978,11 @@
               }
             ]
           },
-          "resourceName": "EvaluationElementRating"
+          "resourceName": "EvaluationElementRating",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "evaluationElements": {
           "allowIdentityUpdates": false,
@@ -11248,7 +11313,11 @@
               }
             ]
           },
-          "resourceName": "EvaluationElement"
+          "resourceName": "EvaluationElement",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "evaluationObjectiveRatings": {
           "allowIdentityUpdates": false,
@@ -11749,7 +11818,11 @@
               }
             ]
           },
-          "resourceName": "EvaluationObjectiveRating"
+          "resourceName": "EvaluationObjectiveRating",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "evaluationObjectives": {
           "allowIdentityUpdates": false,
@@ -12076,7 +12149,11 @@
               }
             ]
           },
-          "resourceName": "EvaluationObjective"
+          "resourceName": "EvaluationObjective",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "evaluationPeriodDescriptors": {
           "allowIdentityUpdates": false,
@@ -12160,7 +12237,12 @@
               }
             ]
           },
-          "resourceName": "EvaluationPeriodDescriptor"
+          "resourceName": "EvaluationPeriodDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluationRatingLevelDescriptors": {
           "allowIdentityUpdates": false,
@@ -12244,7 +12326,12 @@
               }
             ]
           },
-          "resourceName": "EvaluationRatingLevelDescriptor"
+          "resourceName": "EvaluationRatingLevelDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluationRatingStatusDescriptors": {
           "allowIdentityUpdates": false,
@@ -12328,7 +12415,12 @@
               }
             ]
           },
-          "resourceName": "EvaluationRatingStatusDescriptor"
+          "resourceName": "EvaluationRatingStatusDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluationRatings": {
           "allowIdentityUpdates": false,
@@ -13005,7 +13097,11 @@
               }
             ]
           },
-          "resourceName": "EvaluationRating"
+          "resourceName": "EvaluationRating",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "evaluationTypeDescriptors": {
           "allowIdentityUpdates": false,
@@ -13089,7 +13185,12 @@
               }
             ]
           },
-          "resourceName": "EvaluationTypeDescriptor"
+          "resourceName": "EvaluationTypeDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "evaluations": {
           "allowIdentityUpdates": false,
@@ -13396,7 +13497,11 @@
               }
             ]
           },
-          "resourceName": "Evaluation"
+          "resourceName": "Evaluation",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "financialAids": {
           "allowIdentityUpdates": false,
@@ -13567,7 +13672,11 @@
               }
             ]
           },
-          "resourceName": "FinancialAid"
+          "resourceName": "FinancialAid",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "genderDescriptors": {
           "allowIdentityUpdates": false,
@@ -13651,7 +13760,12 @@
               }
             ]
           },
-          "resourceName": "GenderDescriptor"
+          "resourceName": "GenderDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "objectiveRatingLevelDescriptors": {
           "allowIdentityUpdates": false,
@@ -13735,7 +13849,12 @@
               }
             ]
           },
-          "resourceName": "ObjectiveRatingLevelDescriptor"
+          "resourceName": "ObjectiveRatingLevelDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "performanceEvaluationRatingLevelDescriptors": {
           "allowIdentityUpdates": false,
@@ -13819,7 +13938,12 @@
               }
             ]
           },
-          "resourceName": "PerformanceEvaluationRatingLevelDescriptor"
+          "resourceName": "PerformanceEvaluationRatingLevelDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "performanceEvaluationRatings": {
           "allowIdentityUpdates": false,
@@ -14317,7 +14441,11 @@
               }
             ]
           },
-          "resourceName": "PerformanceEvaluationRating"
+          "resourceName": "PerformanceEvaluationRating",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "performanceEvaluationTypeDescriptors": {
           "allowIdentityUpdates": false,
@@ -14401,7 +14529,12 @@
               }
             ]
           },
-          "resourceName": "PerformanceEvaluationTypeDescriptor"
+          "resourceName": "PerformanceEvaluationTypeDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "performanceEvaluations": {
           "allowIdentityUpdates": false,
@@ -14692,7 +14825,11 @@
               }
             ]
           },
-          "resourceName": "PerformanceEvaluation"
+          "resourceName": "PerformanceEvaluation",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "rubricDimensions": {
           "allowIdentityUpdates": false,
@@ -14981,7 +15118,11 @@
               }
             ]
           },
-          "resourceName": "RubricDimension"
+          "resourceName": "RubricDimension",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "rubricRatingLevelDescriptors": {
           "allowIdentityUpdates": false,
@@ -15065,7 +15206,12 @@
               }
             ]
           },
-          "resourceName": "RubricRatingLevelDescriptor"
+          "resourceName": "RubricRatingLevelDescriptor",
+          "securityElements": {
+            "Namespace": [
+              "$.namespace"
+            ]
+          }
         },
         "schools": {
           "booleanJsonPaths": [
@@ -15122,7 +15268,11 @@
           "numericJsonPaths": [
             "$._ext.postSecondaryInstitutionReference.postSecondaryInstitutionId"
           ],
-          "resourceName": "School"
+          "resourceName": "School",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "surveyResponsePersonTargetAssociations": {
           "allowIdentityUpdates": false,
@@ -15283,7 +15433,12 @@
               }
             ]
           },
-          "resourceName": "SurveyResponsePersonTargetAssociation"
+          "resourceName": "SurveyResponsePersonTargetAssociation",
+          "securityElements": {
+            "Namespace": [
+              "$.surveyResponseReference.namespace"
+            ]
+          }
         },
         "surveyResponses": {
           "booleanJsonPaths": [
@@ -15351,7 +15506,11 @@
           },
           "numericJsonPaths": [
           ],
-          "resourceName": "SurveyResponse"
+          "resourceName": "SurveyResponse",
+          "securityElements": {
+            "Namespace": [
+            ]
+          }
         },
         "surveySectionResponsePersonTargetAssociations": {
           "allowIdentityUpdates": false,
@@ -15541,7 +15700,12 @@
               }
             ]
           },
-          "resourceName": "SurveySectionResponsePersonTargetAssociation"
+          "resourceName": "SurveySectionResponsePersonTargetAssociation",
+          "securityElements": {
+            "Namespace": [
+              "$.surveySectionResponseReference.namespace"
+            ]
+          }
         }
       }
     }

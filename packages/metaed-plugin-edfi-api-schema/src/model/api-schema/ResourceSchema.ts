@@ -5,6 +5,7 @@ import { SchemaRoot } from './JsonSchema';
 import { MetaEdResourceName } from './MetaEdResourceName';
 import { JsonPath } from './JsonPath';
 import { QueryFieldMapping } from './QueryFieldMapping';
+import { SecurityElements } from './SecurityElements';
 
 /**
  * API resource schema information common between all resources
@@ -46,6 +47,11 @@ export type BaseResourceSchema = {
    * which provide JsonPaths to the corresponding values in a resource document.
    */
   documentPathsMapping: { [key: MetaEdPropertyFullName]: DocumentPaths };
+
+  /**
+   * A list of the elements this resource can be secured on.
+   */
+  securityElements: SecurityElements;
 };
 
 /**
