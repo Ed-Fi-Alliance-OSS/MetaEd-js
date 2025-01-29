@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: "18"
           cache: "npm"
@@ -32,7 +32,7 @@ jobs:
 
       - name: Node modules cache
         id: modules-cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 #v4.0.0
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
@@ -50,10 +50,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: "18"
           cache: "npm"
@@ -61,7 +61,7 @@ jobs:
 
       - name: Node modules cache
         id: modules-cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 #v4.0.0
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
@@ -78,7 +78,7 @@ jobs:
       # Enable tmate debugging if the input option was provided (cd )
       - name: Setup tmate session
         if: always() && inputs.debug_enabled == 'true'
-        uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # v3.17
+        uses: mxschmitt/action-tmate@e5c7151931ca95bad1c6f4190c730ecf8c7dde48 # v3.19
         timeout-minutes: 10
 
       - name: Unit Test Report
@@ -111,10 +111,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: "18"
           cache: "npm"
@@ -122,7 +122,7 @@ jobs:
 
       - name: Node modules cache
         id: modules-cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 #v4.0.0
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
@@ -163,7 +163,7 @@ jobs:
       SA_PASSWORD: abcdefgh1!
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
@@ -174,7 +174,7 @@ jobs:
 
       - name: Node modules cache
         id: modules-cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 #v4.0.0
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
