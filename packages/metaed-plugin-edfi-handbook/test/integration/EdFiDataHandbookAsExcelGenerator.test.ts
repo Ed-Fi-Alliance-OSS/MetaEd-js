@@ -38,6 +38,11 @@ describe('when generating excel version of handbook', (): void => {
 
       .withBeginNamespace('EdFi')
 
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
       .withStartSharedString('URI')
       .withDocumentation('doc')
       .withStringRestrictions('30')
@@ -121,6 +126,24 @@ describe('when generating excel version of handbook', (): void => {
           "Used By:
       Entity2.Entity2DateCollection (as optional collection)",
           "Entity2DateCollection [DATE]",
+        ],
+        Array [
+          "EducationOrganization (EdFi)",
+          "doc",
+          "Class",
+          null,
+          null,
+          "Contains:
+      EducationOrganizationId (identity)",
+          "edfi.EducationOrganization
+
+      EducationOrganizationId [INT] NOT NULL
+      CreateDate [DATETIME] NOT NULL
+      LastModifiedDate [DATETIME] NOT NULL
+      Id [UNIQUEIDENTIFIER] NOT NULL
+
+      Primary Keys:
+      EducationOrganizationId",
         ],
         Array [
           "Entity1 (EdFi)",

@@ -10,4 +10,5 @@ import { JsonPath } from './JsonPath';
  */
 export type SecurityElements = {
   Namespace: JsonPath[];
+  EducationOrganization: JsonPath[];
 };

@@ -138,6 +138,11 @@ export type EntityApiSchemaData = {
    * A list of the namespace-based security elements for this entity
    */
   namespaceSecurityElements: JsonPath[];
+
+  /**
+   * A list of the EducationOrganization-based security elements for this entity
+   */
+  educationOrganizationSecurityElements: JsonPath[];
 };
 
 /**
@@ -161,6 +166,8 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     resourceName: '' as MetaEdResourceName,
     identityFullnames: [],
     queryFieldMapping: {},
+    namespaceSecurityElements: [],
+    educationOrganizationSecurityElements: [],
   });
 }
 

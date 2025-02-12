@@ -82,6 +82,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
     securityElements: {
       Namespace: entityApiSchemaData.namespaceSecurityElements,
+      EducationOrganization: entityApiSchemaData.educationOrganizationSecurityElements,
     },
     isResourceExtension: false,
   };
@@ -102,6 +103,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
     securityElements: {
       Namespace: [],
+      EducationOrganization: [],
     },
     isResourceExtension: true,
   };

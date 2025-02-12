@@ -32,8 +32,12 @@ describe('when generating HTML version of handbook', (): void => {
     const domainEntityBuilder = new DomainEntityBuilder(metaEd, []);
     const enumerationBuilder = new EnumerationBuilder(metaEd, []);
     MetaEdTextBuilder.build()
-
       .withBeginNamespace('EdFi')
+
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
 
       .withStartSharedString('URI')
       .withDocumentation('doc')

@@ -28,6 +28,7 @@ import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhance
 import { enhance as openApiSpecificationEnhancer } from './OpenApiSpecificationEnhancer';
 import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
 import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
+import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -59,6 +60,7 @@ export function enhancerList(): Enhancer[] {
     openApiSpecificationEnhancer,
     openApiExtensionFragmentEnhancer,
     namespaceSecurityElementEnhancer,
+    educationOrganizationSecurityElementEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
