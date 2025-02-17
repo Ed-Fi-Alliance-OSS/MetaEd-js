@@ -4,22 +4,16 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import type { SemVer } from '@edfi/metaed-core';
-import type { ProjectNameMapping } from './ProjectNameMapping';
-import type { ProjectSchemaMapping } from './ProjectSchemaMapping';
+import { ProjectSchema } from './ProjectSchema';
 
 /**
  * API information
  */
 export type ApiSchema = {
   /**
-   * A collection of ProjectNamespaces mapped to ProjectSchema objects
+   * The single ProjectSchema for this ApiSchema file
    */
-  projectSchemas: ProjectSchemaMapping;
-
-  /**
-   * A collection of MetaEdProjectNames mapped to ProjectNamespaces.
-   */
-  projectNameMapping: ProjectNameMapping;
+  projectSchema: ProjectSchema;
 
   /**
    * The version of ApiSchema being generated, used by consumers of the ApiSchema to determine
@@ -29,5 +23,5 @@ export type ApiSchema = {
 };
 
 export function newApiSchema(): ApiSchema {
-  return { projectSchemas: {}, projectNameMapping: {}, apiSchemaVersion: '1.0.0' as SemVer };
+  return { projectSchema: {} as any, apiSchemaVersion: '1.0.0' as SemVer };
 }

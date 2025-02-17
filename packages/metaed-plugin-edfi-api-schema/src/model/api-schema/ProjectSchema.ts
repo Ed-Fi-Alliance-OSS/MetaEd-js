@@ -6,6 +6,7 @@ import { ResourceSchemaMapping } from './ResourceSchemaMapping';
 import { SemVer } from './SemVer';
 import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNameMapping';
 import { noDocument, type Document } from '../OpenApiTypes';
+import { ProjectEndpointName } from './ProjectEndpointName';
 
 /**
  * API project information
@@ -22,6 +23,12 @@ export type BaseProjectSchema = {
    * example, "5.2.0" for a data standard version.
    */
   projectVersion: SemVer;
+
+  /**
+   * The URL path component for API endpoints of this project
+   * e.g. "ed-fi" for an Ed-Fi data standard version, "tpdm" for a TPDM extension
+   */
+  projectEndpointName: ProjectEndpointName;
 
   /**
    * If this is an extension project, provides compatible Data Standards as a semver range.
@@ -91,6 +98,7 @@ export type ProjectSchema = CoreProjectSchema | ExtensionProjectSchema;
 export const NoProjectSchema: ProjectSchema = {
   projectName: 'NoProjectName' as MetaEdProjectName,
   projectVersion: '0.0.0' as SemVer,
+  projectEndpointName: 'NoProjectEndpointName' as ProjectEndpointName,
   isExtensionProject: false,
   coreOpenApiSpecification: noDocument,
   compatibleDsRange: null,

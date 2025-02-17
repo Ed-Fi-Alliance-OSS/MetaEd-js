@@ -16,7 +16,6 @@ import { BaseProjectSchema, ProjectSchema } from '../model/api-schema/ProjectSch
 import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema, NonExtensionResourceSchema, ResourceExtensionSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
-import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
 import { uncapitalize } from '../Utility';
 import { AbstractResourceMapping } from '../model/api-schema/AbstractResourceMapping';
@@ -28,6 +27,7 @@ import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DocumentPaths } from '../model/api-schema/DocumentPaths';
 import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
+import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 
 /**
  * Removes the sourceProperty attributes from DocumentPathsMapping, which are not needed for stringification
@@ -165,6 +165,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const baseProjectSchema: BaseProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
+      projectEndpointName: namespace.projectName.toLowerCase() as ProjectEndpointName,
       description: namespace.projectDescription,
       resourceSchemas,
       resourceNameMapping,
@@ -190,10 +191,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       };
     }
 
-    const projectNamespace: ProjectNamespace = projectSchema.projectName.toLowerCase() as ProjectNamespace;
     const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
-    apiSchema.projectSchemas[projectNamespace] = projectSchema;
-    apiSchema.projectNameMapping[projectSchema.projectName] = projectNamespace;
+    apiSchema.projectSchema = projectSchema;
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntity').forEach((domainEntity) => {
       // Abstract entities are not resources (e.g. EducationOrganization)

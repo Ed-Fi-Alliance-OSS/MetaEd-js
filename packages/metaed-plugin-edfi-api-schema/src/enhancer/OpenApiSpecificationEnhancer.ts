@@ -5,7 +5,7 @@ import {
   type Namespace,
   getEntitiesOfTypeForNamespaces,
 } from '@edfi/metaed-core';
-import type { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
+import type { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { PathsObject, ComponentsObject, Document, Schemas, TagObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
@@ -37,16 +37,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'domainEntitySubclass',
       'associationSubclass',
     ).forEach((entity: TopLevelEntity) => {
-      const projectNamespace: ProjectNamespace = entity.namespace.projectName.toLowerCase() as ProjectNamespace;
+      const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // Add to paths without "id"
-      paths[`/${projectNamespace}/${endpointName}`] = {
+      paths[`/${projectEndpointName}/${endpointName}`] = {
         post: createPostSectionFor(entity, endpointName),
         get: createGetByQuerySectionFor(entity, endpointName),
       };
 
-      paths[`/${projectNamespace}/${endpointName}/{id}`] = {
+      paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
         get: createGetByIdSectionFor(entity, endpointName),
         put: createPutSectionFor(entity, endpointName),
         delete: createDeleteSectionFor(entity, endpointName),
