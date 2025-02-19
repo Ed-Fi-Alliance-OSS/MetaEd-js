@@ -7,7 +7,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     ?.entity.domainEntity.get('EducationOrganization');
   if (edfiEducationOrganization == null) {
     throw new Error(
-      'EducationOrganizationHierarchyElementEnhancer: Fatal Error: EducationOrganization not found in EdFi Data Standard project',
+      'EducationOrganizationHierarchyEnhancer: Fatal Error: EducationOrganization not found in EdFi Data Standard project',
     );
   }
 
@@ -31,7 +31,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     });
   });
   return {
-    enhancerName: 'EducationOrganizationHierarchyElementEnhancer',
+    enhancerName: 'EducationOrganizationHierarchyEnhancer',
     success: true,
   };
 }

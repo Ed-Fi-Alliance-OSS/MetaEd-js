@@ -20,7 +20,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../../src/enhanc
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance } from '../../../src/enhancer/security/EducationOrganizationHierarchyElementEnhancer';
+import { enhance } from '../../../src/enhancer/security/EducationOrganizationHierarchyEnhancer';
 
 function runEnhancers(metaEd: MetaEdEnvironment) {
   domainEntityReferenceEnhancer(metaEd);
