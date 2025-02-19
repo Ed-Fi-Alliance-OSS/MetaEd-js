@@ -29,6 +29,7 @@ import { enhance as openApiSpecificationEnhancer } from './OpenApiSpecificationE
 import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
 import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
 import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
+import { enhance as educationOrganizationHierarchyElementEnhancer } from './security/EducationOrganizationHierarchyElementEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -61,6 +62,7 @@ export function enhancerList(): Enhancer[] {
     openApiExtensionFragmentEnhancer,
     namespaceSecurityElementEnhancer,
     educationOrganizationSecurityElementEnhancer,
+    educationOrganizationHierarchyElementEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

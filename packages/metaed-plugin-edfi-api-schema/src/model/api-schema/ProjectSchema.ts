@@ -7,6 +7,7 @@ import { SemVer } from './SemVer';
 import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNameMapping';
 import { noDocument, type Document } from '../OpenApiTypes';
 import { ProjectEndpointName } from './ProjectEndpointName';
+import { EducationOrganizationHierarchy } from '../EducationOrganizationHierarchy';
 
 /**
  * API project information
@@ -67,6 +68,11 @@ export type BaseProjectSchema = {
    * AbstractResourceInfos
    */
   abstractResources: AbstractResourceMapping;
+
+  /**
+   * The EducationOrganization resource hierarchy
+   */
+  educationOrganizationHierarchy: EducationOrganizationHierarchy;
 };
 
 type CoreProjectSchema = BaseProjectSchema & {
@@ -107,4 +113,5 @@ export const NoProjectSchema: ProjectSchema = {
   resourceNameMapping: {},
   caseInsensitiveEndpointNameMapping: {},
   abstractResources: {},
+  educationOrganizationHierarchy: {},
 };
