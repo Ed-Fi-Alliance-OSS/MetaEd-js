@@ -40,6 +40,35 @@
     },
     "compatibleDsRange": "5.1.0",
     "description": "TPDM-Core",
+    "educationOrganizationHierarchy": {
+      "CommunityOrganization": [
+        "CommunityProvider"
+      ],
+      "EducationOrganization": [
+        "CommunityOrganization",
+        "CommunityProvider",
+        "EducationOrganizationNetwork",
+        "EducationServiceCenter",
+        "LocalEducationAgency",
+        "OrganizationDepartment",
+        "PostSecondaryInstitution",
+        "School",
+        "StateEducationAgency",
+        "EducationOrganization",
+        "OrganizationDepartment"
+      ],
+      "EducationServiceCenter": [
+        "LocalEducationAgency"
+      ],
+      "LocalEducationAgency": [
+        "LocalEducationAgency",
+        "School"
+      ],
+      "StateEducationAgency": [
+        "EducationServiceCenter",
+        "LocalEducationAgency"
+      ]
+    },
     "isExtensionProject": true,
     "openApiExtensionFragments": {
       "exts": {
