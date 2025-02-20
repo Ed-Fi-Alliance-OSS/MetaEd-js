@@ -7,8 +7,9 @@
         <NoWarn>NU5110,NU5111</NoWarn>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <NuspecProperties>version=$(PackageVersion)</NuspecProperties>
-        <id>EdFi.DataStandard51.ApiSchema</id>
+        <PackageId>EdFi.DataStandard51.ApiSchema</PackageId>        
+        <Id>EdFi.DataStandard51.ApiSchema</Id>
+        <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
         <title>Ed-Fi API Schema definition for Data Standard 5.1.0</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
@@ -23,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="*.json" Exclude="ApiSchemaPackaging-GitHub.json" />
+      <EmbeddedResource Include="*.json" />
       <EmbeddedResource Include="xsd/*.xsd" />
     </ItemGroup>
 

@@ -16,27 +16,70 @@ env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
   ARTIFACTS_FEED_URL: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json
   VSS_NUGET_EXTERNAL_FEED_ENDPOINTS: '{"endpointCredentials": [{"endpoint": "${{ vars.AZURE_ARTIFACTS_FEED_URL }}","password": "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}"}]}'
+  TPDM_DATASTANDARD_VERSION: "main"
+  PROJECT_VERSION: "5.1.0"
+  PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.1.0"
+  DATASTANDARD_VERSION:  "DS-5.1-ME-3.x-7.2.0"
+  TECHNOLOGY_VERSION: "7.2.0"
 
 jobs:
   run-metaed-project:
-    name: Run MetaEd Project
+    name: Run MetaEd Project 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config: [ "Core", "TPDM" ]
     defaults:
       run:
         shell: pwsh
     steps:
-      - name: Checkout repository
+      - name: Checkout MetaEd-js
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Ed-Fi-Closed/MetaEd-js
+          path: MetaEd-js/
+
+      - name: Checkout Ed-Fi-TPDM-Model (for TPDM only)
+        if: matrix.config == 'tpdm'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Ed-Fi-Closed/Ed-Fi-TPDM-Model
+          path: MetaEdExtensionSource/
+          ref: ${{env.TPDM_DATASTANDARD_VERSION}}
+          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
+
+      - name: Create MetaEdConfig
+        working-directory: ./MetaEd-js/   
+        run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -ProjectVersion ${{ env.PROJECT_VERSION }} -ProjectDescription "${{ env.PROJECT_DESCRIPTION }}" -TechnologyVersion ${{ env.TECHNOLOGY_VERSION }} -MetaEdExtensionName ${{ matrix.config  }}
+        shell: pwsh
+
+      - name: Print the created MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json config
+        shell: pwsh
+        run: |
+          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json"
+          
+          # Check if the file exists
+          if (Test-Path $configFilePath) {
+              # Read the JSON file content
+              $jsonContent = Get-Content -Path $configFilePath | Out-String
+              # Print the JSON content
+              Write-Host "MetaEd Configuration JSON Content:"
+              Write-Host $jsonContent
+          } else {
+              Write-Host "MetaEd configuration file does not exist at: $configFilePath"
+              exit 1
+          }
 
       - name: Run MetaEd Project
-        run: ./eng/ApiSchema/build.ps1 RunMetaEd
+        working-directory: ./MetaEd-js/      
+        run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json"
 
       - name: Upload MetaEdOutput as Artifact
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: "MetaEdOutput"
-          path: ./MetaEdOutput
+          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-${{ env.TECHNOLOGY_VERSION }}
+          path: ${{ github.workspace }}/MetaEd-js/MetaEdOutput/**/*.* 
           if-no-files-found: error
           retention-days: 5
 
@@ -44,49 +87,64 @@ jobs:
     name: API Schema Packaging
     runs-on: ubuntu-latest
     needs: run-metaed-project
+    strategy:
+      matrix:
+        config: [ "Core", "TPDM" ]    
     defaults:
       run:
         shell: pwsh
     steps:
-      - name: Checkout repository
+      - name: Checkout MetaEd-js
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Ed-Fi-Closed/MetaEd-js
+          path: MetaEd-js/
 
       - name: Get Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: MetaEdOutput
-          path: ./MetaEdOutput
+          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-${{ env.TECHNOLOGY_VERSION }}
+          path: ./MetaEd-js/MetaEdOutput
 
       - name: Display structure of downloaded files
         run: ls -R ./
 
       - name: Download and Unzip files
+        if: matrix.config == 'Core'
+        working-directory: ./MetaEd-js/          
         run: ./eng/ApiSchema/build.ps1 Unzip
 
       - name: Move MetaEd ApiSchema Files
-        run: ./eng/ApiSchema/build.ps1 MoveMetaEdSchema
+        working-directory: ./MetaEd-js/  
+        run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ApiSchemaPackageType "${{ matrix.config  }}"
 
       - name: Run Build
-        run: ./eng/ApiSchema/build.ps1 Build
-      
+        working-directory: ./MetaEd-js/
+        run: ./eng/ApiSchema/build.ps1 Build -Version "1.0.${{ github.run_number }}"
+
       - name: API Schema Package - Create NuGet File
-        run: ./eng/ApiSchema/build.ps1 Package "1.0.${{ github.run_number }}"
-      
+        working-directory: ./MetaEd-js/      
+        run: ./eng/ApiSchema/build.ps1 Package -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType ".${{ matrix.config }}"
+
       - name: Publish Package
-        run: ./eng/ApiSchema/build.ps1 BuildAndPublish "1.0.${{ github.run_number }}"
+        working-directory: ./MetaEd-js/      
+        run: ./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.${{ github.run_number }}"
 
       - name: Upload Package as Artifact
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: "EdFi.ApiSchema-NuGet.1.0.${{ github.run_number }}"
-          path: ./eng/ApiSchema/*.nupkg
+          name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-1.0.${{ github.run_number }}"
+          path: ./MetaEd-js/eng/ApiSchema/*${{ matrix.config }}*.nupkg
           if-no-files-found: error
           retention-days: 30
 
   publish-package:
     name: Publish NuGet Package
     needs: api-schema-packaging
+    strategy:
+      matrix:
+        config: [ "Core", "TPDM" ]     
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -97,7 +155,7 @@ jobs:
       - name: Get Artifact
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: EdFi.ApiSchema-NuGet.1.0.${{ github.run_number }}
+          name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
@@ -105,10 +163,10 @@ jobs:
       - name: Push Package to Azure Artifacts
         run: |
          $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
-         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
+         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *${{ matrix.config }}*.nupkg)
          
-          echo "Artifacts List"
-          echo $artifacts
+         echo "Artifacts List"
+         echo $artifacts
 
          $arguments = @{
            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
@@ -126,5 +184,3 @@ jobs:
                 ./eng/ApiSchema/build.ps1 PushPackage @arguments
               }
          }
-
-         

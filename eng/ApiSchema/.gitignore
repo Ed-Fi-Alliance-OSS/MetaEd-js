@@ -1,5 +1,4 @@
 *.json
-!ApiSchemaPackaging-GitHub.json
 *.xsd
 *.nupkg
 
