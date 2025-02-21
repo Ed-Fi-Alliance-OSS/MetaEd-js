@@ -50,21 +50,13 @@ function DotNetClean {
 }
 
 function Compile {
-    dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
+    dotnet build $defaultSolution -c $Configuration -p:Version=$Version /p:ApiSchemaPackageType=$ApiSchemaPackageType --nologo --no-restore
 }
 
 function PublishApi {
     $project = $applicationRoot
     $outputPath = "$project/publish"
     dotnet publish $project -c $Configuration -o $outputPath --nologo
-}
-
-function Invoke-UnzipFile {
-    Invoke-WebRequest "https://odsassets.blob.core.windows.net/public/project-tanager/5.1.0-xsd-and-metadata.zip" `
-        -OutFile json-and-xsd-$Version.zip
-    Expand-Archive json-and-xsd-$Version.zip
-    Move-Item -Path ./json-and-xsd-$Version/* -Destination $solutionRoot
-    Remove-Item -Path ./json-and-xsd-$Version/
 }
 
 function PushPackage {
@@ -117,8 +109,17 @@ function Invoke-Build {
 
 function BuildPackage {
     $projectPath = "$applicationRoot/$projectName.csproj"
-    $PackageName = "$projectName$ApiSchemaPackageType"
-    dotnet pack $projectPath -c release  -p:PackageId=$PackageName -p:PackageVersion=$Version --output $PSScriptRoot
+    $arguments = @("-c", "release", "-p:PackageVersion=$Version", "--output", $PSScriptRoot)
+
+    if ($ApiSchemaPackageType) {
+        $PackageName = "$projectName.$ApiSchemaPackageType"
+        $arguments += "-p:ApiSchemaPackageType=$ApiSchemaPackageType"
+    } else {
+        $PackageName = "$projectName"
+    }
+
+    $arguments += "-p:PackageId=$PackageName"
+    dotnet pack $projectPath @arguments
 }
 
 function RunMetaEd {
@@ -143,17 +144,18 @@ function RunMetaEd {
 function CopyMetaEdFiles {
     # Copy the MetaEd Files into the ApiSchema Folder
 
+    $destinationPath = "$solutionRoot/xsd/"
+    if (!(Test-Path -Path $destinationPath)) {
+        New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
+    }
+
     if($ApiSchemaPackageType -eq 'Core'){
         Copy-Item -Path ./MetaEdOutput/EdFi/ApiSchema/ApiSchema.json -Destination $solutionRoot
-        Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/        
+        Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
+        Copy-Item -Path ./MetaEdOutput/EdFi/Interchange/* -Destination $solutionRoot/xsd/    
     }
     if($ApiSchemaPackageType -eq 'TPDM'){
         Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
-
-        $destinationPath = "$solutionRoot/xsd/"
-        if (!(Test-Path -Path $destinationPath)) {
-            New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
-        }
         Copy-Item -Path ./MetaEdOutput/TPDM/XSD/* -Destination $solutionRoot/xsd/   
         Copy-Item -Path ./MetaEdOutput/TPDM/Interchange/* -Destination $solutionRoot/xsd/                
     }
@@ -162,7 +164,6 @@ function CopyMetaEdFiles {
 switch ($Command) {
     DotNetClean { DotNetClean }
     Build { Invoke-Build }
-    Unzip { Invoke-UnzipFile }
     BuildAndPublish {
         Invoke-Build
         PublishApi
