@@ -50,7 +50,7 @@ function DotNetClean {
 }
 
 function Compile {
-    dotnet build $defaultSolution -c $Configuration -p:Version=$Version /p:ApiSchemaPackageType=$ApiSchemaPackageType --nologo --no-restore
+    dotnet build $defaultSolution -c $Configuration -p:Version=$Version -p:ApiSchemaPackageType=$ApiSchemaPackageType --nologo --no-restore
 }
 
 function PublishApi {
@@ -149,16 +149,23 @@ function CopyMetaEdFiles {
         New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
     }
 
+    Write-Output "ApiSchemaPackageType is $ApiSchemaPackageType Outside"
+
     if($ApiSchemaPackageType -eq 'Core'){
+        Write-Output "ApiSchemaPackageType is $ApiSchemaPackageType Inside Core"
         Copy-Item -Path ./MetaEdOutput/EdFi/ApiSchema/ApiSchema.json -Destination $solutionRoot
         Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
         Copy-Item -Path ./MetaEdOutput/EdFi/Interchange/* -Destination $solutionRoot/xsd/    
     }
     if($ApiSchemaPackageType -eq 'TPDM'){
+         Write-Output "ApiSchemaPackageType is $ApiSchemaPackageType Inside TPDM"
         Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
         Copy-Item -Path ./MetaEdOutput/TPDM/XSD/* -Destination $solutionRoot/xsd/   
         Copy-Item -Path ./MetaEdOutput/TPDM/Interchange/* -Destination $solutionRoot/xsd/                
     }
+
+    Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.json", "xsd\*.xsd" | Select-Object FullName
+
 }
 
 switch ($Command) {
