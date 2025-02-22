@@ -165,7 +165,8 @@ function CopyMetaEdFiles {
     }
 
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.json", "xsd\*.xsd" | Select-Object FullName
-
+    Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.xsd" | Select-Object FullName
+    Get-ChildItem -Path "$solutionRoot/xsd/" -Recurse -Include "*.xsd" | Select-Object FullName
 }
 
 switch ($Command) {

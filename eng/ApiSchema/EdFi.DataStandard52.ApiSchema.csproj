@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == ''">Core</ApiSchemaPackageType>
-	</PropertyGroup>
+	    <PropertyGroup>
+		    <ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == ''">Core</ApiSchemaPackageType>
+	    </PropertyGroup>
     <PropertyGroup>
         <ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == '' ">Core</ApiSchemaPackageType>
     </PropertyGroup>
