@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == ''">Core</ApiSchemaPackageType>
-	</PropertyGroup>
+	    <PropertyGroup>
+		    <ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == ''">Core</ApiSchemaPackageType>
+	    </PropertyGroup>
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>true</IsPackable>
@@ -26,8 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="*.json" Condition="'$(ApiSchemaPackageType)' != 'TPDM'" />
-      <EmbeddedResource Include="*.json" Exclude="resources-swagger.json" Condition="'$(ApiSchemaPackageType)' == 'TPDM'" />    
+      <EmbeddedResource Include="*.json" Condition="'$(ApiSchemaPackageType) == 'Core'" />
+      <EmbeddedResource Include="*.json" Exclude="resources-swagger.json;descriptors-swagger.json;discovery-spec.json;xsd.json;dependencies.json" Condition="'$(ApiSchemaPackageType)' == 'TPDM'" />    
 
       <EmbeddedResource Include="xsd/*.xsd" />
     </ItemGroup>
