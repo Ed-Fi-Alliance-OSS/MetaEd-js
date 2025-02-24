@@ -1,20 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <ApiSchemaPackageType Condition="'$(ApiSchemaPackageType)' == '' ">Core</ApiSchemaPackageType>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>true</IsPackable>
-        <RootNamespace>EdFi.DataStandard51.ApiSchema</RootNamespace>
+        <RootNamespace>EdFi.DataStandard52.ApiSchema</RootNamespace>
         <NoWarn>NU5110,NU5111</NoWarn>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.DataStandard51.ApiSchema</PackageId>        
-        <Id>EdFi.DataStandard51.ApiSchema</Id>
+        <PackageId>EdFi.DataStandard52.ApiSchema</PackageId>        
+        <Id>EdFi.DataStandard52.ApiSchema</Id>
         <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
-        <title>Ed-Fi API Schema definition for Data Standard 5.1.0</title>
+        <title>Ed-Fi API Schema definition for Data Standard 5.2.0</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
         <copyright>Copyright © 2024, Ed-Fi Alliance, LLC and contributors.</copyright>
-        <summary>API Schema definition file representing the core Ed-Fi Data Standard 5.1.0, without extensions.</summary>
+        <summary>API Schema definition file representing the core Ed-Fi Data Standard 5.2.0, without extensions.</summary>
         <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.1.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
 
     </PropertyGroup>
@@ -24,7 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="*.json" />
+      <EmbeddedResource Include="*.json" Condition="'$(ApiSchemaPackageType)' = 'Core'" />
+      <EmbeddedResource Include="*.json" Exclude="resources-swagger.json;descriptors-swagger.json;discovery-spec.json;xsd.json;dependencies.json" Condition="'$(ApiSchemaPackageType)' = 'TPDM'" />
       <EmbeddedResource Include="xsd/*.xsd" />
     </ItemGroup>
 

@@ -16,10 +16,10 @@ env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
   ARTIFACTS_FEED_URL: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json
   VSS_NUGET_EXTERNAL_FEED_ENDPOINTS: '{"endpointCredentials": [{"endpoint": "${{ vars.AZURE_ARTIFACTS_FEED_URL }}","password": "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}"}]}'
-  TPDM_DATASTANDARD_VERSION: "main"
-  PROJECT_VERSION: "5.1.0"
-  PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.1.0"
-  DATASTANDARD_VERSION:  "DS-5.1-ME-3.x-7.2.0"
+  TPDM_REPO_TAG: "Data-Standard-v5.2.0"
+  PROJECT_VERSION: "5.2.0"
+  PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.2.0"
+  DATASTANDARD_REPO_TAG:  "DS-5.2.0-ME-3.0.0"
   TECHNOLOGY_VERSION: "7.2.0"
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
         with:
           repository: Ed-Fi-Closed/Ed-Fi-TPDM-Model
           path: MetaEdExtensionSource/
-          ref: ${{env.TPDM_DATASTANDARD_VERSION}}
+          ref: ${{env.TPDM_REPO_TAG}}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Create MetaEdConfig
@@ -53,10 +53,10 @@ jobs:
         run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -ProjectVersion ${{ env.PROJECT_VERSION }} -ProjectDescription "${{ env.PROJECT_DESCRIPTION }}" -TechnologyVersion ${{ env.TECHNOLOGY_VERSION }} -MetaEdExtensionName ${{ matrix.config  }}
         shell: pwsh
 
-      - name: Print the created MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json config
+      - name: Print the created MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json config
         shell: pwsh
         run: |
-          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json"
+          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json"
           
           # Check if the file exists
           if (Test-Path $configFilePath) {
@@ -72,13 +72,13 @@ jobs:
 
       - name: Run MetaEd Project
         working-directory: ./MetaEd-js/      
-        run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.1-${{ matrix.config  }}.json"
+        run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json"
 
       - name: Upload MetaEdOutput as Artifact
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-${{ env.TECHNOLOGY_VERSION }}
+          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-${{ env.TECHNOLOGY_VERSION }}
           path: ${{ github.workspace }}/MetaEd-js/MetaEdOutput/**/*.* 
           if-no-files-found: error
           retention-days: 5
@@ -103,7 +103,7 @@ jobs:
       - name: Get Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-${{ env.TECHNOLOGY_VERSION }}
+          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-${{ env.TECHNOLOGY_VERSION }}
           path: ./MetaEd-js/MetaEdOutput
 
       - name: Display structure of downloaded files
@@ -134,7 +134,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-1.0.${{ github.run_number }}"
+          name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-1.0.${{ github.run_number }}"
           path: ./MetaEd-js/eng/ApiSchema/*${{ matrix.config }}*.nupkg
           if-no-files-found: error
           retention-days: 30
@@ -155,7 +155,7 @@ jobs:
       - name: Get Artifact
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_VERSION }}-1.0.${{ github.run_number }}
+          name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"

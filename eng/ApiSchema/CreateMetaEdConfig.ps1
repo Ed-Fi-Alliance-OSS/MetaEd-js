@@ -22,7 +22,7 @@ $metaEdConfig = @{
             }
         )
         "projectPaths" = @(
-            "$Workspace/MetaEd-js/node_modules/@edfi/ed-fi-model-5.1"
+            "$Workspace/MetaEd-js/node_modules/@edfi/ed-fi-model-5.2"
         )
         "pluginConfigDirectories" = @()
         "defaultPluginTechVersion" = $TechnologyVersion
@@ -45,7 +45,7 @@ if ($MetaEdExtensionName -eq "TPDM") {
 }
 
 # Define the file path for the new configuration file
-$FilePath = "$Workspace/MetaEd-js/eng/ApiSchema/MetaEdConfig-$TechnologyVersion-DS-5.1-$MetaEdExtensionName.json"
+$FilePath = "$Workspace/MetaEd-js/eng/ApiSchema/MetaEdConfig-$TechnologyVersion-DS-5.2-$MetaEdExtensionName.json"
 
 # Save the JSON to a file
 $metaEdConfig | ConvertTo-Json -Depth 100 | Out-File -FilePath $FilePath -NoNewline -Encoding Ascii

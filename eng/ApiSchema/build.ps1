@@ -37,9 +37,9 @@ param (
 )
 
 $solutionRoot = "$PSScriptRoot"
-$defaultSolution = "$solutionRoot/EdFi.DataStandard51.ApiSchema.sln"
+$defaultSolution = "$solutionRoot/EdFi.DataStandard52.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
-$projectName = "EdFi.DataStandard51.ApiSchema"
+$projectName = "EdFi.DataStandard52.ApiSchema"
 
 function Restore {
     dotnet restore $defaultSolution
