@@ -50,7 +50,7 @@ function DotNetClean {
 }
 
 function Compile {
-    dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
+    dotnet build $defaultSolution -c $Configuration -p:Version=$Version -p:ApiSchemaPackageType=$ApiSchemaPackageType --nologo --no-restore
 }
 
 function PublishApi {

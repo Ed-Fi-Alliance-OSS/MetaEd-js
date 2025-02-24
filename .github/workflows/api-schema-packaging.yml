@@ -120,7 +120,7 @@ jobs:
 
       - name: Run Build
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 Build -Version "1.0.${{ github.run_number }}"
+        run: ./eng/ApiSchema/build.ps1 Build -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType "${{ matrix.config }}"
 
       - name: API Schema Package - Create NuGet File
         working-directory: ./MetaEd-js/      
