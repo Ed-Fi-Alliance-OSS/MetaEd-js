@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-namespace EdFi.DataStandard51.ApiSchema;
+namespace EdFi.DataStandard52.ApiSchema;
 
 /// <summary>
 /// The only purpose for this class is to enable creation of a DLL, so that
