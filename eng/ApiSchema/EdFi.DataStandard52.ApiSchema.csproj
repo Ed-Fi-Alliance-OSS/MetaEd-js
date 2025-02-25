@@ -29,7 +29,7 @@
 
     <ItemGroup>
       <EmbeddedResource Include="*.json" Condition="'$(ApiSchemaPackageType)' == 'Core'" />
-		  <EmbeddedResource Include="*.json" Exclude="resources-swagger.json;descriptors-swagger.json;discovery-spec.json;xsd.json;dependencies.json" Condition="'$(ApiSchemaPackageType)' == 'TPDM'" />
+		  <EmbeddedResource Include="*.json" Exclude="discovery-spec.json;xsd.json;dependencies.json" Condition="'$(ApiSchemaPackageType)' == 'TPDM'" />
       <EmbeddedResource Include="xsd/*.xsd" />
     </ItemGroup>
 
