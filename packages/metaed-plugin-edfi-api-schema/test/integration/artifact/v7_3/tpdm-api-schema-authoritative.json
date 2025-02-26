@@ -10171,7 +10171,10 @@
         "resourceName": "EducatorPreparationProgram",
         "securityElements": {
           "EducationOrganization": [
-            "$.educationOrganizationReference.educationOrganizationId"
+            {
+              "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
+              "metaEdName": "EducationOrganization"
+            }
           ],
           "Namespace": [
           ]
@@ -14925,7 +14928,10 @@
         "resourceName": "PerformanceEvaluation",
         "securityElements": {
           "EducationOrganization": [
-            "$.educationOrganizationReference.educationOrganizationId"
+            {
+              "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
+              "metaEdName": "EducationOrganization"
+            }
           ],
           "Namespace": [
           ]

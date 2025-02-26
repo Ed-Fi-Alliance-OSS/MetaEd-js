@@ -138,7 +138,10 @@ describe('when building domain entity with EducationOrganization property', () =
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$.educationOrganizationReference.educationOrganizationId",
+        Object {
+          "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
+          "metaEdName": "EducationOrganization",
+        },
       ]
     `);
   });
@@ -216,7 +219,10 @@ describe('when building domain entity with EducationOrganization subclass proper
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$.schoolReference.schoolId",
+        Object {
+          "jsonPath": "$.schoolReference.schoolId",
+          "metaEdName": "School",
+        },
       ]
     `);
   });
@@ -266,7 +272,10 @@ describe('when building domain entity in extension namespace with EducationOrgan
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$.schoolReference.schoolId",
+        Object {
+          "jsonPath": "$.schoolReference.schoolId",
+          "metaEdName": "School",
+        },
       ]
     `);
   });

@@ -16,6 +16,7 @@ import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { JsonPath } from './api-schema/JsonPath';
 import { QueryFieldMapping } from './api-schema/QueryFieldMapping';
 import { NoOpenApiObject, OpenApiObject } from './OpenApi';
+import { EducationOrganizationSecurityElement } from './api-schema/EducationOrganizationSecurityElement';
 
 export type EntityApiSchemaData = {
   /**
@@ -142,7 +143,7 @@ export type EntityApiSchemaData = {
   /**
    * A list of the EducationOrganization-based security elements for this entity
    */
-  educationOrganizationSecurityElements: JsonPath[];
+  educationOrganizationSecurityElements: EducationOrganizationSecurityElement[];
 };
 
 /**

@@ -27,7 +27,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       if (educationOrganizationReferenceProperty.roleName !== '') return;
 
       // Using Set to remove duplicates
-      const result: Set<JsonPath> = new Set();
+      const result: Set<{ metaEdName: string; jsonPath: JsonPath }> = new Set();
 
       const { allJsonPathsMapping } = educationOrganizationReferenceProperty.parentEntity.data
         .edfiApiSchema as EntityApiSchemaData;
@@ -36,13 +36,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
         jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
           if (jsonPathPropertyPair.sourceProperty !== educationOrganizationReferenceProperty) return;
-          result.add(jsonPathPropertyPair.jsonPath);
+          result.add({
+            metaEdName: educationOrganizationReferenceProperty.metaEdName,
+            jsonPath: jsonPathPropertyPair.jsonPath,
+          });
         });
       });
 
       (
         educationOrganizationReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData
-      ).educationOrganizationSecurityElements = [...result].sort();
+      ).educationOrganizationSecurityElements = [...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName));
     });
   });
 
