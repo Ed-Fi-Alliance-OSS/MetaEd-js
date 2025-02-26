@@ -8,6 +8,7 @@ import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNam
 import { noDocument, type Document } from '../OpenApiTypes';
 import { ProjectEndpointName } from './ProjectEndpointName';
 import { EducationOrganizationHierarchy } from '../EducationOrganizationHierarchy';
+import { MetaEdResourceName } from './MetaEdResourceName';
 
 /**
  * API project information
@@ -70,6 +71,11 @@ export type BaseProjectSchema = {
   abstractResources: AbstractResourceMapping;
 
   /**
+   * A collection of ResourceNames of the EducationOrganization types
+   */
+  educationOrganizationTypes: MetaEdResourceName[];
+
+  /**
    * The EducationOrganization resource hierarchy
    */
   educationOrganizationHierarchy: EducationOrganizationHierarchy;
@@ -113,5 +119,6 @@ export const NoProjectSchema: ProjectSchema = {
   resourceNameMapping: {},
   caseInsensitiveEndpointNameMapping: {},
   abstractResources: {},
+  educationOrganizationTypes: [],
   educationOrganizationHierarchy: {},
 };

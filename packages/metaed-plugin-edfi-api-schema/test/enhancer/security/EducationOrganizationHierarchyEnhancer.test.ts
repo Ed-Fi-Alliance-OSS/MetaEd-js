@@ -61,13 +61,20 @@ describe('when building an EdOrg hierarchy with only EducationOrganization', () 
     runEnhancers(metaEd);
   });
 
-  it('should have EducationOrganizationHierarchy root element', () => {
+  it('should have EducationOrganizationTypes', () => {
+    const educationOrganizationTypes = metaEd.namespace.get(namespaceName)?.data.educationOrganizationTypes;
+    expect(educationOrganizationTypes).toMatchInlineSnapshot(`
+      Array [
+        "EducationOrganization",
+      ]
+    `);
+  });
+
+  it('should have EducationOrganizationHierarchy', () => {
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [
-          "EducationOrganization",
-        ],
+        "EducationOrganization": Array [],
       }
     `);
   });
@@ -100,14 +107,22 @@ describe('when building an EdOrg hierarchy with EducationOrganization subclasses
     runEnhancers(metaEd);
   });
 
-  it('should have EducationOrganizationHierarchy root element', () => {
+  it('should have EducationOrganizationTypes', () => {
+    const educationOrganizationTypes = metaEd.namespace.get(namespaceName)?.data.educationOrganizationTypes;
+    expect(educationOrganizationTypes).toMatchInlineSnapshot(`
+      Array [
+        "School",
+        "EducationOrganization",
+      ]
+    `);
+  });
+
+  it('should have EducationOrganizationHierarchy', () => {
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [
-          "School",
-          "EducationOrganization",
-        ],
+        "EducationOrganization": Array [],
+        "School": Array [],
       }
     `);
   });
@@ -146,17 +161,25 @@ describe('when building an EdOrg hierarchy with EducationOrganization subclasses
     runEnhancers(metaEd);
   });
 
-  it('should have EducationOrganizationHierarchy root element', () => {
+  it('should have EducationOrganizationTypes', () => {
+    const educationOrganizationTypes = metaEd.namespace.get(namespaceName)?.data.educationOrganizationTypes;
+    expect(educationOrganizationTypes).toMatchInlineSnapshot(`
+      Array [
+        "LocalEducationAgency",
+        "School",
+        "EducationOrganization",
+      ]
+    `);
+  });
+
+  it('should have EducationOrganizationHierarchy', () => {
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [
+        "EducationOrganization": Array [],
+        "LocalEducationAgency": Array [],
+        "School": Array [
           "LocalEducationAgency",
-          "School",
-          "EducationOrganization",
-        ],
-        "LocalEducationAgency": Array [
-          "School",
         ],
       }
     `);

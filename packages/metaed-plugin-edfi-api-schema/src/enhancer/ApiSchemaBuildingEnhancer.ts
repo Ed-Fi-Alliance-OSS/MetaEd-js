@@ -29,6 +29,7 @@ import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { EducationOrganizationHierarchy } from '../model/EducationOrganizationHierarchy';
+import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
 
 /**
  * Removes the sourceProperty attributes from DocumentPathsMapping, which are not needed for stringification
@@ -173,6 +174,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       caseInsensitiveEndpointNameMapping,
       abstractResources,
       compatibleDsRange: null,
+      educationOrganizationTypes: namespace.data.educationOrganizationTypes as MetaEdResourceName[],
       educationOrganizationHierarchy: namespace.data.educationOrganizationHierarchy as EducationOrganizationHierarchy,
     };
 

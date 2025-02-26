@@ -14,21 +14,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const allEducationOrganizations: TopLevelEntity[] = [...edfiEducationOrganization.subclassedBy, edfiEducationOrganization];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.data.educationOrganizationHierarchy = {
-      EducationOrganization: allEducationOrganizations.map((edOrg) => edOrg.metaEdName),
-    };
+    namespace.data.educationOrganizationTypes = allEducationOrganizations.map((edOrg) => edOrg.metaEdName);
 
-    allEducationOrganizations.forEach((edOrgType) => {
-      edOrgType.properties
+    namespace.data.educationOrganizationHierarchy = {};
+
+    namespace.data.educationOrganizationHierarchy = allEducationOrganizations.reduce((acc, edOrgType) => {
+      acc[edOrgType.metaEdName] = edOrgType.properties
         .filter((p) => p.type === 'domainEntity' && p.parentEntity.baseEntity === edfiEducationOrganization)
-        .forEach((p) => {
-          if (namespace.data.educationOrganizationHierarchy[p.metaEdName] === undefined) {
-            namespace.data.educationOrganizationHierarchy[p.metaEdName] = [edOrgType.metaEdName];
-          } else {
-            namespace.data.educationOrganizationHierarchy[p.metaEdName].push(edOrgType.metaEdName);
-          }
-        });
-    });
+        .sort((a, b) => a.metaEdName.localeCompare(b.metaEdName))
+        .map((p) => p.metaEdName);
+      return acc;
+    }, {});
   });
   return {
     enhancerName: 'EducationOrganizationHierarchyEnhancer',
