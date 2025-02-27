@@ -3408,7 +3408,7 @@ describe('when domain entity extension references domain entity in different nam
     expect(extensionNamespace.data.edfiApiSchema.apiSchema.projectSchema.resourceSchemas.entityNames.numericJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "$._ext.referencedEntityNameReference.referencedIdentity",
+        "$._ext.edfi.referencedEntityNameReference.referencedIdentity",
       ]
     `);
   });
@@ -3427,7 +3427,7 @@ describe('when domain entity extension references domain entity in different nam
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.referencedIdentity",
-              "referenceJsonPath": "$._ext.referencedEntityNameReference.referencedIdentity",
+              "referenceJsonPath": "$._ext.edfi.referencedEntityNameReference.referencedIdentity",
               "type": "number",
             },
           ],

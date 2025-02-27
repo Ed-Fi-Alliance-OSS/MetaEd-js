@@ -3064,7 +3064,7 @@ describe('when building simple domain entity extension', () => {
         "StringProperty": Array [
           Object {
             "entityName": "DomainEntityName",
-            "jsonPath": "$._ext.stringProperty",
+            "jsonPath": "$._ext.edfi.stringProperty",
             "propertyName": "StringProperty",
           },
         ],

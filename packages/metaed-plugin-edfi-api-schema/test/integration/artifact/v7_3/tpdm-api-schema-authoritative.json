@@ -9696,38 +9696,38 @@
       },
       "credentials": {
         "booleanJsonPaths": [
-          "$._ext.boardCertificationIndicator"
+          "$._ext.tpdm.boardCertificationIndicator"
         ],
         "dateTimeJsonPaths": [
         ],
         "documentPathsMapping": {
           "BoardCertificationIndicator": {
             "isReference": false,
-            "path": "$._ext.boardCertificationIndicator",
+            "path": "$._ext.tpdm.boardCertificationIndicator",
             "type": "boolean"
           },
           "CertificationRouteDescriptor": {
             "isDescriptor": true,
             "isReference": true,
-            "path": "$._ext.certificationRouteDescriptor",
+            "path": "$._ext.tpdm.certificationRouteDescriptor",
             "projectName": "TPDM",
             "resourceName": "CertificationRouteDescriptor",
             "type": "string"
           },
           "CertificationTitle": {
             "isReference": false,
-            "path": "$._ext.certificationTitle",
+            "path": "$._ext.tpdm.certificationTitle",
             "type": "string"
           },
           "CredentialStatusDate": {
             "isReference": false,
-            "path": "$._ext.credentialStatusDate",
+            "path": "$._ext.tpdm.credentialStatusDate",
             "type": "date"
           },
           "CredentialStatusDescriptor": {
             "isDescriptor": true,
             "isReference": true,
-            "path": "$._ext.credentialStatusDescriptor",
+            "path": "$._ext.tpdm.credentialStatusDescriptor",
             "projectName": "TPDM",
             "resourceName": "CredentialStatusDescriptor",
             "type": "string"
@@ -9735,7 +9735,7 @@
           "EducatorRoleDescriptor": {
             "isDescriptor": true,
             "isReference": true,
-            "path": "$._ext.educatorRoleDescriptor",
+            "path": "$._ext.tpdm.educatorRoleDescriptor",
             "projectName": "TPDM",
             "resourceName": "EducatorRoleDescriptor",
             "type": "string"
@@ -9747,12 +9747,12 @@
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
-                "referenceJsonPath": "$._ext.personReference.personId",
+                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.sourceSystemDescriptor",
-                "referenceJsonPath": "$._ext.personReference.sourceSystemDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],
@@ -9765,22 +9765,22 @@
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                "referenceJsonPath": "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
                 "type": "number"
               },
               {
                 "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
-                "referenceJsonPath": "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.studentReference.studentUniqueId",
-                "referenceJsonPath": "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.studentUniqueId",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.studentUniqueId",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.termDescriptor",
-                "referenceJsonPath": "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.termDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.termDescriptor",
                 "type": "string"
               }
             ],
@@ -9900,8 +9900,8 @@
           "type": "object"
         },
         "numericJsonPaths": [
-          "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
-          "$._ext.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear"
+          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
+          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear"
         ],
         "resourceName": "Credential",
         "securityElements": {
@@ -15336,7 +15336,7 @@
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.postSecondaryInstitutionId",
-                "referenceJsonPath": "$._ext.postSecondaryInstitutionReference.postSecondaryInstitutionId",
+                "referenceJsonPath": "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId",
                 "type": "number"
               }
             ],
@@ -15376,7 +15376,7 @@
           "type": "object"
         },
         "numericJsonPaths": [
-          "$._ext.postSecondaryInstitutionReference.postSecondaryInstitutionId"
+          "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId"
         ],
         "resourceName": "School",
         "securityElements": {
@@ -15567,12 +15567,12 @@
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
-                "referenceJsonPath": "$._ext.personReference.personId",
+                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.sourceSystemDescriptor",
-                "referenceJsonPath": "$._ext.personReference.sourceSystemDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
                 "type": "string"
               }
             ],

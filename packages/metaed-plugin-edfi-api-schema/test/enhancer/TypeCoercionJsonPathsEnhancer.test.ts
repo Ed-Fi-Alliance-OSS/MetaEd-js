@@ -243,7 +243,7 @@ describe('when building domain entity extension with all the simple non-collecti
     const booleanJsonPaths = entity?.data.edfiApiSchema.booleanJsonPaths;
     expect(booleanJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$._ext.optionalBooleanProperty",
+        "$._ext.edfi.optionalBooleanProperty",
       ]
     `);
   });
@@ -253,9 +253,9 @@ describe('when building domain entity extension with all the simple non-collecti
     const dateTimeJsonPaths = entity?.data.edfiApiSchema.dateTimeJsonPaths;
     expect(dateTimeJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$._ext.dateTimeIdentity",
-        "$._ext.optionalDateTimeProperty",
-        "$._ext.requiredDatetimeProperty",
+        "$._ext.edfi.dateTimeIdentity",
+        "$._ext.edfi.optionalDateTimeProperty",
+        "$._ext.edfi.requiredDatetimeProperty",
       ]
     `);
   });
@@ -265,17 +265,17 @@ describe('when building domain entity extension with all the simple non-collecti
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
     expect(numericJsonPaths).toMatchInlineSnapshot(`
       Array [
-        "$._ext.optionalDecimalProperty",
-        "$._ext.optionalPercentProperty",
-        "$._ext.optionalSharedDecimalProperty",
-        "$._ext.optionalSharedIntegerProperty",
-        "$._ext.optionalSharedShortProperty",
-        "$._ext.optionalShortProperty",
-        "$._ext.optionalYear",
-        "$._ext.requiredCurrencyProperty",
-        "$._ext.requiredDurationProperty",
-        "$._ext.requiredIntegerProperty",
-        "$._ext.schoolYearTypeReference.schoolYear",
+        "$._ext.edfi.optionalDecimalProperty",
+        "$._ext.edfi.optionalPercentProperty",
+        "$._ext.edfi.optionalSharedDecimalProperty",
+        "$._ext.edfi.optionalSharedIntegerProperty",
+        "$._ext.edfi.optionalSharedShortProperty",
+        "$._ext.edfi.optionalShortProperty",
+        "$._ext.edfi.optionalYear",
+        "$._ext.edfi.requiredCurrencyProperty",
+        "$._ext.edfi.requiredDurationProperty",
+        "$._ext.edfi.requiredIntegerProperty",
+        "$._ext.edfi.schoolYearTypeReference.schoolYear",
       ]
     `);
   });

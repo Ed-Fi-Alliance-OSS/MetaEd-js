@@ -476,8 +476,13 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
 
   allProperties.forEach(({ property, propertyModifier }) => {
     const topLevelName = topLevelApiNameOnEntity(entity, property);
-    const jsonPathRootString =
-      entity.type === 'associationExtension' || entity.type === 'domainEntityExtension' ? '$._ext' : '$';
+    let jsonPathRootString = '$';
+    const referenceProperty: ReferentialProperty = property as ReferentialProperty;
+    if (entity.type === 'associationExtension' || entity.type === 'domainEntityExtension') {
+      const endpointName = referenceProperty.namespace.projectName.toLocaleLowerCase() as string;
+      jsonPathRootString += `._ext.${endpointName}`;
+    }
+
     const schemaObjectBaseName = appendNextJsonPathName(
       jsonPathRootString as JsonPath,
       topLevelName,
