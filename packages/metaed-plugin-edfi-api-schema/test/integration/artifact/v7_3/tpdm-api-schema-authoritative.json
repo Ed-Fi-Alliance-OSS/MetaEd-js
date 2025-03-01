@@ -12906,112 +12906,53 @@
         }
       },
       "newSchemas": {
+        "EdFi_Name_PersonalIdentificationDocument": {
+          "properties": {
+            "documentExpirationDate": {
+              "description": "The day when the document  expires, if null then never expires.",
+              "format": "date",
+              "type": "string"
+            },
+            "documentTitle": {
+              "description": "The title of the document given by the issuer.",
+              "maxLength": 60,
+              "type": "string"
+            },
+            "identificationDocumentUseDescriptor": {
+              "description": "The primary function of the document used for establishing identity.",
+              "type": "string"
+            },
+            "issuerCountryDescriptor": {
+              "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+              "type": "string"
+            },
+            "issuerDocumentIdentificationCode": {
+              "description": "The unique identifier on the issuer's identification system.",
+              "maxLength": 60,
+              "type": "string"
+            },
+            "issuerName": {
+              "description": "Name of the entity or institution that issued the document.",
+              "maxLength": 150,
+              "type": "string"
+            },
+            "personalInformationVerificationDescriptor": {
+              "description": "The category of the document relative to its purpose.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "personalInformationVerificationDescriptor",
+            "identificationDocumentUseDescriptor"
+          ],
+          "type": "object"
+        },
         "TPDM_Candidate": {
           "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
           "properties": {
             "addresses": {
               "items": {
-                "properties": {
-                  "addressTypeDescriptor": {
-                    "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
-                    "type": "string"
-                  },
-                  "apartmentRoomSuiteNumber": {
-                    "description": "The apartment, room, or suite number of an address.",
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "buildingSiteNumber": {
-                    "description": "The number of the building on the site, if more than one building shares the same address.",
-                    "maxLength": 20,
-                    "type": "string"
-                  },
-                  "city": {
-                    "description": "The name of the city in which an address is located.",
-                    "maxLength": 30,
-                    "minLength": 2,
-                    "type": "string"
-                  },
-                  "congressionalDistrict": {
-                    "description": "The congressional district in which an address is located.",
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "countyFIPSCode": {
-                    "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
-                    "maxLength": 5,
-                    "minLength": 3,
-                    "type": "string"
-                  },
-                  "doNotPublishIndicator": {
-                    "description": "An indication that the address should not be published.",
-                    "type": "boolean"
-                  },
-                  "latitude": {
-                    "description": "The geographic latitude of the physical address.",
-                    "maxLength": 20,
-                    "type": "string"
-                  },
-                  "localeDescriptor": {
-                    "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
-                    "type": "string"
-                  },
-                  "longitude": {
-                    "description": "The geographic longitude of the physical address.",
-                    "maxLength": 20,
-                    "type": "string"
-                  },
-                  "nameOfCounty": {
-                    "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "periods": {
-                    "items": {
-                      "properties": {
-                        "beginDate": {
-                          "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                          "format": "date",
-                          "type": "string"
-                        },
-                        "endDate": {
-                          "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                          "format": "date",
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "beginDate"
-                      ],
-                      "type": "object"
-                    },
-                    "minItems": 0,
-                    "type": "array",
-                    "uniqueItems": false
-                  },
-                  "postalCode": {
-                    "description": "The five or nine digit zip code or overseas postal code portion of an address.",
-                    "maxLength": 17,
-                    "type": "string"
-                  },
-                  "stateAbbreviationDescriptor": {
-                    "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
-                    "type": "string"
-                  },
-                  "streetNumberName": {
-                    "description": "The street number and street name or post office box number of an address.",
-                    "maxLength": 150,
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "streetNumberName",
-                  "city",
-                  "stateAbbreviationDescriptor",
-                  "postalCode",
-                  "addressTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_Address"
               },
               "minItems": 0,
               "type": "array",
@@ -13058,46 +12999,7 @@
             },
             "disabilities": {
               "items": {
-                "properties": {
-                  "designations": {
-                    "items": {
-                      "properties": {
-                        "disabilityDesignationDescriptor": {
-                          "description": "An Ed-Fi Descriptor",
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "disabilityDesignationDescriptor"
-                      ],
-                      "type": "object"
-                    },
-                    "minItems": 0,
-                    "type": "array",
-                    "uniqueItems": false
-                  },
-                  "disabilityDescriptor": {
-                    "description": "A disability category that describes a individual's impairment.",
-                    "type": "string"
-                  },
-                  "disabilityDeterminationSourceTypeDescriptor": {
-                    "description": "The source that provided the disability determination.",
-                    "type": "string"
-                  },
-                  "disabilityDiagnosis": {
-                    "description": "A description of the disability diagnosis.",
-                    "maxLength": 80,
-                    "type": "string"
-                  },
-                  "orderOfDisability": {
-                    "description": "The order by severity of individual's disabilities: 1- Primary, 2 -  Secondary, 3 - Tertiary, etc.",
-                    "type": "integer"
-                  }
-                },
-                "required": [
-                  "disabilityDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_Disability"
               },
               "minItems": 0,
               "type": "array",
@@ -13115,31 +13017,7 @@
             },
             "electronicMails": {
               "items": {
-                "properties": {
-                  "doNotPublishIndicator": {
-                    "description": "An indication that the electronic email address should not be published.",
-                    "type": "boolean"
-                  },
-                  "electronicMailAddress": {
-                    "description": "The electronic mail (e-mail) address listed for an individual or organization.",
-                    "maxLength": 128,
-                    "minLength": 7,
-                    "type": "string"
-                  },
-                  "electronicMailTypeDescriptor": {
-                    "description": "The type of email listed for an individual or organization. For example: Home/Personal, Work, etc.)",
-                    "type": "string"
-                  },
-                  "primaryEmailAddressIndicator": {
-                    "description": "An indication that the electronic mail address should be used as the principal electronic mail address for an individual or organization.",
-                    "type": "boolean"
-                  }
-                },
-                "required": [
-                  "electronicMailAddress",
-                  "electronicMailTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_ElectronicMail"
               },
               "minItems": 0,
               "type": "array",
@@ -13173,33 +13051,7 @@
             },
             "languages": {
               "items": {
-                "properties": {
-                  "languageDescriptor": {
-                    "description": "A specification of which written or spoken communication is being used.",
-                    "type": "string"
-                  },
-                  "uses": {
-                    "items": {
-                      "properties": {
-                        "languageUseDescriptor": {
-                          "description": "An Ed-Fi Descriptor",
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "languageUseDescriptor"
-                      ],
-                      "type": "object"
-                    },
-                    "minItems": 0,
-                    "type": "array",
-                    "uniqueItems": false
-                  }
-                },
-                "required": [
-                  "languageDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_Language"
               },
               "minItems": 0,
               "type": "array",
@@ -13230,43 +13082,7 @@
             },
             "otherNames": {
               "items": {
-                "properties": {
-                  "firstName": {
-                    "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "generationCodeSuffix": {
-                    "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
-                    "maxLength": 10,
-                    "type": "string"
-                  },
-                  "lastSurname": {
-                    "description": "The name borne in common by members of a family.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "middleName": {
-                    "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "otherNameTypeDescriptor": {
-                    "description": "The types of alternate names for an individual.",
-                    "type": "string"
-                  },
-                  "personalTitlePrefix": {
-                    "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
-                    "maxLength": 30,
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "firstName",
-                  "lastSurname",
-                  "otherNameTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_OtherName"
               },
               "minItems": 0,
               "type": "array",
@@ -13277,45 +13093,7 @@
             },
             "personalIdentificationDocuments": {
               "items": {
-                "properties": {
-                  "documentExpirationDate": {
-                    "description": "The day when the document  expires, if null then never expires.",
-                    "format": "date",
-                    "type": "string"
-                  },
-                  "documentTitle": {
-                    "description": "The title of the document given by the issuer.",
-                    "maxLength": 60,
-                    "type": "string"
-                  },
-                  "identificationDocumentUseDescriptor": {
-                    "description": "The primary function of the document used for establishing identity.",
-                    "type": "string"
-                  },
-                  "issuerCountryDescriptor": {
-                    "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
-                    "type": "string"
-                  },
-                  "issuerDocumentIdentificationCode": {
-                    "description": "The unique identifier on the issuer's identification system.",
-                    "maxLength": 60,
-                    "type": "string"
-                  },
-                  "issuerName": {
-                    "description": "Name of the entity or institution that issued the document.",
-                    "maxLength": 150,
-                    "type": "string"
-                  },
-                  "personalInformationVerificationDescriptor": {
-                    "description": "The category of the document relative to its purpose.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "personalInformationVerificationDescriptor",
-                  "identificationDocumentUseDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/EdFi_Name_PersonalIdentificationDocument"
               },
               "minItems": 0,
               "type": "array",
@@ -13338,16 +13116,7 @@
             },
             "races": {
               "items": {
-                "properties": {
-                  "raceDescriptor": {
-                    "description": "An Ed-Fi Descriptor",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "raceDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_Race"
               },
               "minItems": 0,
               "type": "array",
@@ -13359,35 +13128,7 @@
             },
             "telephones": {
               "items": {
-                "properties": {
-                  "doNotPublishIndicator": {
-                    "description": "An indication that the telephone number should not be published.",
-                    "type": "boolean"
-                  },
-                  "orderOfPriority": {
-                    "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
-                    "minimum": 1,
-                    "type": "integer"
-                  },
-                  "telephoneNumber": {
-                    "description": "The telephone number including the area code, and extension, if applicable.",
-                    "maxLength": 24,
-                    "type": "string"
-                  },
-                  "telephoneNumberTypeDescriptor": {
-                    "description": "The type of communication number listed for an individual or organization.",
-                    "type": "string"
-                  },
-                  "textMessageCapabilityIndicator": {
-                    "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
-                    "type": "boolean"
-                  }
-                },
-                "required": [
-                  "telephoneNumber",
-                  "telephoneNumberTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Candidate_Telephone"
               },
               "minItems": 0,
               "type": "array",
@@ -13415,33 +13156,7 @@
             },
             "cohortYears": {
               "items": {
-                "properties": {
-                  "cohortYearTypeDescriptor": {
-                    "description": "The type of cohort year (9th grade, graduation).",
-                    "type": "string"
-                  },
-                  "schoolYearTypeReference": {
-                    "description": "A school year enumeration",
-                    "properties": {
-                      "schoolYear": {
-                        "description": "A school year between 1900 and 2100",
-                        "maximum": 2100,
-                        "minimum": 1900,
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "termDescriptor": {
-                    "description": "The term associated with the cohort year; for example, the intended term of graduation.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "schoolYearTypeReference",
-                  "cohortYearTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation_CohortYear"
               },
               "minItems": 0,
               "type": "array",
@@ -13449,35 +13164,7 @@
             },
             "degreeSpecializations": {
               "items": {
-                "properties": {
-                  "beginDate": {
-                    "description": "The month, day, and year on which the Teacher Candidate first declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                    "format": "date",
-                    "type": "string"
-                  },
-                  "endDate": {
-                    "description": "The month, day, and year on which the Teacher Candidate exited the declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                    "format": "date",
-                    "type": "string"
-                  },
-                  "majorSpecialization": {
-                    "description": "The major area for a degree or area of specialization for a certificate.",
-                    "maxLength": 255,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "minorSpecialization": {
-                    "description": "The minor area for a degree or area of specialization for a certificate.",
-                    "maxLength": 255,
-                    "minLength": 1,
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "majorSpecialization",
-                  "beginDate"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization"
               },
               "minItems": 0,
               "type": "array",
@@ -13503,6 +13190,66 @@
           "required": [
             "candidateReference",
             "educatorPreparationProgramReference",
+            "beginDate"
+          ],
+          "type": "object"
+        },
+        "TPDM_CandidateEducatorPreparationProgramAssociation_CohortYear": {
+          "properties": {
+            "cohortYearTypeDescriptor": {
+              "description": "The type of cohort year (9th grade, graduation).",
+              "type": "string"
+            },
+            "schoolYearTypeReference": {
+              "description": "A school year enumeration",
+              "properties": {
+                "schoolYear": {
+                  "description": "A school year between 1900 and 2100",
+                  "maximum": 2100,
+                  "minimum": 1900,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "termDescriptor": {
+              "description": "The term associated with the cohort year; for example, the intended term of graduation.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "schoolYearTypeReference",
+            "cohortYearTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year on which the Teacher Candidate first declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year on which the Teacher Candidate exited the declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "majorSpecialization": {
+              "description": "The major area for a degree or area of specialization for a certificate.",
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "minorSpecialization": {
+              "description": "The minor area for a degree or area of specialization for a certificate.",
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "majorSpecialization",
             "beginDate"
           ],
           "type": "object"
@@ -13544,6 +13291,267 @@
           ],
           "type": "object"
         },
+        "TPDM_Candidate_Address": {
+          "properties": {
+            "addressTypeDescriptor": {
+              "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
+              "type": "string"
+            },
+            "apartmentRoomSuiteNumber": {
+              "description": "The apartment, room, or suite number of an address.",
+              "maxLength": 50,
+              "type": "string"
+            },
+            "buildingSiteNumber": {
+              "description": "The number of the building on the site, if more than one building shares the same address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "city": {
+              "description": "The name of the city in which an address is located.",
+              "maxLength": 30,
+              "minLength": 2,
+              "type": "string"
+            },
+            "congressionalDistrict": {
+              "description": "The congressional district in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "countyFIPSCode": {
+              "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
+              "maxLength": 5,
+              "minLength": 3,
+              "type": "string"
+            },
+            "doNotPublishIndicator": {
+              "description": "An indication that the address should not be published.",
+              "type": "boolean"
+            },
+            "latitude": {
+              "description": "The geographic latitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "localeDescriptor": {
+              "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
+              "type": "string"
+            },
+            "longitude": {
+              "description": "The geographic longitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "nameOfCounty": {
+              "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "periods": {
+              "items": {
+                "$ref": "#/components/schemas/TPDM_Candidate_Address_Period"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "postalCode": {
+              "description": "The five or nine digit zip code or overseas postal code portion of an address.",
+              "maxLength": 17,
+              "type": "string"
+            },
+            "stateAbbreviationDescriptor": {
+              "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
+              "type": "string"
+            },
+            "streetNumberName": {
+              "description": "The street number and street name or post office box number of an address.",
+              "maxLength": 150,
+              "type": "string"
+            }
+          },
+          "required": [
+            "streetNumberName",
+            "city",
+            "stateAbbreviationDescriptor",
+            "postalCode",
+            "addressTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Address_Period": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "beginDate"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Disability": {
+          "properties": {
+            "designations": {
+              "items": {
+                "$ref": "#/components/schemas/EdFi_Disability_DisabilityDesignation"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "disabilityDescriptor": {
+              "description": "A disability category that describes a individual's impairment.",
+              "type": "string"
+            },
+            "disabilityDeterminationSourceTypeDescriptor": {
+              "description": "The source that provided the disability determination.",
+              "type": "string"
+            },
+            "disabilityDiagnosis": {
+              "description": "A description of the disability diagnosis.",
+              "maxLength": 80,
+              "type": "string"
+            },
+            "orderOfDisability": {
+              "description": "The order by severity of individual's disabilities: 1- Primary, 2 -  Secondary, 3 - Tertiary, etc.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "disabilityDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Disability_DisabilityDesignation": {
+          "properties": {
+            "disabilityDesignationDescriptor": {
+              "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "disabilityDesignationDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_ElectronicMail": {
+          "properties": {
+            "doNotPublishIndicator": {
+              "description": "An indication that the electronic email address should not be published.",
+              "type": "boolean"
+            },
+            "electronicMailAddress": {
+              "description": "The electronic mail (e-mail) address listed for an individual or organization.",
+              "maxLength": 128,
+              "minLength": 7,
+              "type": "string"
+            },
+            "electronicMailTypeDescriptor": {
+              "description": "The type of email listed for an individual or organization. For example: Home/Personal, Work, etc.)",
+              "type": "string"
+            },
+            "primaryEmailAddressIndicator": {
+              "description": "An indication that the electronic mail address should be used as the principal electronic mail address for an individual or organization.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "electronicMailAddress",
+            "electronicMailTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Language": {
+          "properties": {
+            "languageDescriptor": {
+              "description": "A specification of which written or spoken communication is being used.",
+              "type": "string"
+            },
+            "uses": {
+              "items": {
+                "$ref": "#/components/schemas/EdFi_Language_LanguageUse"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            }
+          },
+          "required": [
+            "languageDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Language_LanguageUse": {
+          "properties": {
+            "languageUseDescriptor": {
+              "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
+              "type": "string"
+            }
+          },
+          "required": [
+            "languageUseDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_OtherName": {
+          "properties": {
+            "firstName": {
+              "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "generationCodeSuffix": {
+              "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
+              "maxLength": 10,
+              "type": "string"
+            },
+            "lastSurname": {
+              "description": "The name borne in common by members of a family.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "middleName": {
+              "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "otherNameTypeDescriptor": {
+              "description": "The types of alternate names for an individual.",
+              "type": "string"
+            },
+            "personalTitlePrefix": {
+              "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          "required": [
+            "firstName",
+            "lastSurname",
+            "otherNameTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Race": {
+          "properties": {
+            "raceDescriptor": {
+              "description": "The general racial category which most clearly reflects the individual's recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "raceDescriptor"
+          ],
+          "type": "object"
+        },
         "TPDM_Candidate_Reference": {
           "properties": {
             "candidateIdentifier": {
@@ -13555,6 +13563,37 @@
           },
           "required": [
             "candidateIdentifier"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Telephone": {
+          "properties": {
+            "doNotPublishIndicator": {
+              "description": "An indication that the telephone number should not be published.",
+              "type": "boolean"
+            },
+            "orderOfPriority": {
+              "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "telephoneNumber": {
+              "description": "The telephone number including the area code, and extension, if applicable.",
+              "maxLength": 24,
+              "type": "string"
+            },
+            "telephoneNumberTypeDescriptor": {
+              "description": "The type of communication number listed for an individual or organization.",
+              "type": "string"
+            },
+            "textMessageCapabilityIndicator": {
+              "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "telephoneNumber",
+            "telephoneNumberTypeDescriptor"
           ],
           "type": "object"
         },
@@ -13570,16 +13609,7 @@
             },
             "gradeLevels": {
               "items": {
-                "properties": {
-                  "gradeLevelDescriptor": {
-                    "description": "An Ed-Fi Descriptor",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "gradeLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram_GradeLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13605,6 +13635,18 @@
             "educationOrganizationReference",
             "programName",
             "programTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_EducatorPreparationProgram_GradeLevel": {
+          "properties": {
+            "gradeLevelDescriptor": {
+              "description": "The grade levels served at the EPP Program.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "gradeLevelDescriptor"
           ],
           "type": "object"
         },
@@ -13667,24 +13709,7 @@
             },
             "ratingLevels": {
               "items": {
-                "properties": {
-                  "evaluationRatingLevelDescriptor": {
-                    "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
-                    "type": "string"
-                  },
-                  "maxRating": {
-                    "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  },
-                  "minRating": {
-                    "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "evaluationRatingLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Evaluation_EvaluationRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13723,24 +13748,7 @@
             },
             "ratingLevels": {
               "items": {
-                "properties": {
-                  "evaluationRatingLevelDescriptor": {
-                    "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
-                    "type": "string"
-                  },
-                  "maxRating": {
-                    "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  },
-                  "minRating": {
-                    "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "evaluationRatingLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationElement_ElementRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13780,28 +13788,7 @@
             },
             "elementRatingResults": {
               "items": {
-                "properties": {
-                  "rating": {
-                    "description": "The numerical summary rating or score for the evaluation.",
-                    "type": "number"
-                  },
-                  "ratingResultTitle": {
-                    "description": "The title of Rating Result.",
-                    "maxLength": 50,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "resultDatatypeTypeDescriptor": {
-                    "description": "The datatype of the result.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "ratingResultTitle",
-                  "rating",
-                  "resultDatatypeTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationElementRating_ElementRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -13827,6 +13814,30 @@
           "required": [
             "evaluationObjectiveRatingReference",
             "evaluationElementReference"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationElementRating_ElementRatingResult": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -13906,6 +13917,26 @@
             "evaluationDate",
             "personId",
             "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationElement_ElementRatingLevel": {
+          "properties": {
+            "evaluationRatingLevelDescriptor": {
+              "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "type": "string"
+            },
+            "maxRating": {
+              "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            },
+            "minRating": {
+              "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "evaluationRatingLevelDescriptor"
           ],
           "type": "object"
         },
@@ -14002,24 +14033,7 @@
             },
             "ratingLevels": {
               "items": {
-                "properties": {
-                  "evaluationRatingLevelDescriptor": {
-                    "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
-                    "type": "string"
-                  },
-                  "maxRating": {
-                    "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  },
-                  "minRating": {
-                    "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "evaluationRatingLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationObjective_ObjectiveRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14057,28 +14071,7 @@
             },
             "objectiveRatingResults": {
               "items": {
-                "properties": {
-                  "rating": {
-                    "description": "The numerical summary rating or score for the evaluation.",
-                    "type": "number"
-                  },
-                  "ratingResultTitle": {
-                    "description": "The title of Rating Result.",
-                    "maxLength": 50,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "resultDatatypeTypeDescriptor": {
-                    "description": "The datatype of the result.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "ratingResultTitle",
-                  "rating",
-                  "resultDatatypeTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating_ObjectiveRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -14088,6 +14081,30 @@
           "required": [
             "evaluationRatingReference",
             "evaluationObjectiveReference"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationObjectiveRating_ObjectiveRatingResult": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -14160,6 +14177,26 @@
             "evaluationDate",
             "personId",
             "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationObjective_ObjectiveRatingLevel": {
+          "properties": {
+            "evaluationRatingLevelDescriptor": {
+              "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "type": "string"
+            },
+            "maxRating": {
+              "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            },
+            "minRating": {
+              "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "evaluationRatingLevelDescriptor"
           ],
           "type": "object"
         },
@@ -14253,28 +14290,7 @@
             },
             "results": {
               "items": {
-                "properties": {
-                  "rating": {
-                    "description": "The numerical summary rating or score for the evaluation.",
-                    "type": "number"
-                  },
-                  "ratingResultTitle": {
-                    "description": "The title of Rating Result.",
-                    "maxLength": 50,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "resultDatatypeTypeDescriptor": {
-                    "description": "The datatype of the result.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "ratingResultTitle",
-                  "rating",
-                  "resultDatatypeTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationRating_EvaluationRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -14282,40 +14298,7 @@
             },
             "reviewers": {
               "items": {
-                "properties": {
-                  "firstName": {
-                    "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "lastSurname": {
-                    "description": "The name borne in common by members of a family.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "receivedTraining": {
-                    "properties": {
-                      "interRaterReliabilityScore": {
-                        "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-                        "type": "integer"
-                      },
-                      "receivedTrainingDate": {
-                        "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "reviewerPersonReference": {
-                    "$ref": "#/components/schemas/EdFi_Person_Reference"
-                  }
-                },
-                "required": [
-                  "firstName",
-                  "lastSurname"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_EvaluationRating_Reviewer"
               },
               "minItems": 0,
               "type": "array",
@@ -14329,6 +14312,30 @@
             "performanceEvaluationRatingReference",
             "evaluationReference",
             "evaluationDate"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationRating_EvaluationRatingResult": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -14394,6 +14401,62 @@
             "evaluationDate",
             "personId",
             "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationRating_Reviewer": {
+          "properties": {
+            "firstName": {
+              "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "lastSurname": {
+              "description": "The name borne in common by members of a family.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "receivedTraining": {
+              "properties": {
+                "interRaterReliabilityScore": {
+                  "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+                  "type": "integer"
+                },
+                "receivedTrainingDate": {
+                  "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+                  "format": "date",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "reviewerPersonReference": {
+              "$ref": "#/components/schemas/EdFi_Person_Reference"
+            }
+          },
+          "required": [
+            "firstName",
+            "lastSurname"
+          ],
+          "type": "object"
+        },
+        "TPDM_Evaluation_EvaluationRatingLevel": {
+          "properties": {
+            "evaluationRatingLevelDescriptor": {
+              "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "type": "string"
+            },
+            "maxRating": {
+              "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            },
+            "minRating": {
+              "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "evaluationRatingLevelDescriptor"
           ],
           "type": "object"
         },
@@ -14526,16 +14589,7 @@
             },
             "gradeLevels": {
               "items": {
-                "properties": {
-                  "gradeLevelDescriptor": {
-                    "description": "An Ed-Fi Descriptor",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "gradeLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_GradeLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14558,24 +14612,7 @@
             },
             "ratingLevels": {
               "items": {
-                "properties": {
-                  "evaluationRatingLevelDescriptor": {
-                    "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
-                    "type": "string"
-                  },
-                  "maxRating": {
-                    "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  },
-                  "minRating": {
-                    "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "evaluationRatingLevelDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14652,28 +14689,7 @@
             },
             "results": {
               "items": {
-                "properties": {
-                  "rating": {
-                    "description": "The numerical summary rating or score for the evaluation.",
-                    "type": "number"
-                  },
-                  "ratingResultTitle": {
-                    "description": "The title of Rating Result.",
-                    "maxLength": 50,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "resultDatatypeTypeDescriptor": {
-                    "description": "The datatype of the result.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "ratingResultTitle",
-                  "rating",
-                  "resultDatatypeTypeDescriptor"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -14681,40 +14697,7 @@
             },
             "reviewers": {
               "items": {
-                "properties": {
-                  "firstName": {
-                    "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "lastSurname": {
-                    "description": "The name borne in common by members of a family.",
-                    "maxLength": 75,
-                    "type": "string"
-                  },
-                  "receivedTraining": {
-                    "properties": {
-                      "interRaterReliabilityScore": {
-                        "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-                        "type": "integer"
-                      },
-                      "receivedTrainingDate": {
-                        "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "reviewerPersonReference": {
-                    "$ref": "#/components/schemas/EdFi_Person_Reference"
-                  }
-                },
-                "required": [
-                  "firstName",
-                  "lastSurname"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Reviewer"
               },
               "minItems": 0,
               "type": "array",
@@ -14730,6 +14713,30 @@
             "personReference",
             "performanceEvaluationReference",
             "actualDate"
+          ],
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -14782,6 +14789,74 @@
             "termDescriptor",
             "personId",
             "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluationRating_Reviewer": {
+          "properties": {
+            "firstName": {
+              "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "lastSurname": {
+              "description": "The name borne in common by members of a family.",
+              "maxLength": 75,
+              "type": "string"
+            },
+            "receivedTraining": {
+              "properties": {
+                "interRaterReliabilityScore": {
+                  "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+                  "type": "integer"
+                },
+                "receivedTrainingDate": {
+                  "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+                  "format": "date",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "reviewerPersonReference": {
+              "$ref": "#/components/schemas/EdFi_Person_Reference"
+            }
+          },
+          "required": [
+            "firstName",
+            "lastSurname"
+          ],
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluation_GradeLevel": {
+          "properties": {
+            "gradeLevelDescriptor": {
+              "description": "The grade levels involved with the performance evaluation.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "gradeLevelDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel": {
+          "properties": {
+            "evaluationRatingLevelDescriptor": {
+              "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "type": "string"
+            },
+            "maxRating": {
+              "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            },
+            "minRating": {
+              "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "evaluationRatingLevelDescriptor"
           ],
           "type": "object"
         },

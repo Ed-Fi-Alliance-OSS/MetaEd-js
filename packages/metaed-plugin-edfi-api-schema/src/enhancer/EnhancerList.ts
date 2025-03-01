@@ -13,6 +13,7 @@ import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from './Mer
 import { enhance as jsonSchemaForInsertEnhancer } from './JsonSchemaForInsertEnhancer';
 import { enhance as openApiReferenceComponentEnhancer } from './OpenApiReferenceComponentEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from './OpenApiRequestBodyComponentEnhancer';
+import { enhance as OpenApiCollectionReferenceComponentEnhancer } from './OpenApiCollectionReferenceComponentEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from './MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
@@ -48,6 +49,7 @@ export function enhancerList(): Enhancer[] {
     jsonSchemaForInsertEnhancer,
     openApiReferenceComponentEnhancer,
     openApiRequestBodyComponentEnhancer,
+    OpenApiCollectionReferenceComponentEnhancer,
     allJsonPathsMappingEnhancer,
     mergeJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,

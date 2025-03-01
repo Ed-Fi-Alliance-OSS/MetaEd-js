@@ -50,6 +50,11 @@ export type EntityApiSchemaData = {
   openApiReferenceComponentPropertyName: string;
 
   /**
+   * The Open API collection reference component list for this MetaEd entity.
+   */
+  openApiCollectionReferenceComponents: [referenceName: string, referenceSchema: OpenApiObject][];
+
+  /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
    * as they have no expression in API body. Instead, the properties on the Choice and Inline Common referenced
    * entities are "pulled-up" to this entity.
@@ -157,6 +162,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     jsonSchemaForInsert: NoSchemaRoot,
     openApiRequestBodyComponent: NoOpenApiObject,
     openApiRequestBodyComponentPropertyName: '',
+    openApiCollectionReferenceComponents: [],
     openApiReferenceComponent: NoOpenApiObject,
     openApiReferenceComponentPropertyName: '',
     collectedApiProperties: [],

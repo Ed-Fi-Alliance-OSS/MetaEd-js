@@ -56,6 +56,13 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
 }
 
 /**
+ * Returns an OpenApi collection reference component name
+ */
+export function openApiCollectionReferenceNameFor(property: EntityProperty): string {
+  return `${property.namespace.namespaceName}_${property.parentEntityName}_${property.fullPropertyName}`;
+}
+
+/**
  * Returns an OpenApi fragment that specifies the API body element shape
  * corresponding to the given property.
  */

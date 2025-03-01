@@ -220,16 +220,7 @@ describe('when building simple domain entity with all the simple collections', (
         "properties": Object {
           "optionalBooleanProperties": Object {
             "items": Object {
-              "properties": Object {
-                "optionalBooleanProperty": Object {
-                  "description": "doc1",
-                  "type": "boolean",
-                },
-              },
-              "required": Array [
-                "optionalBooleanProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalBooleanProperty",
             },
             "minItems": 0,
             "type": "array",
@@ -237,16 +228,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "optionalDecimalProperties": Object {
             "items": Object {
-              "properties": Object {
-                "optionalDecimalProperty": Object {
-                  "description": "doc3",
-                  "type": "number",
-                },
-              },
-              "required": Array [
-                "optionalDecimalProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalDecimalProperty",
             },
             "minItems": 0,
             "type": "array",
@@ -254,16 +236,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "optionalPercentProperties": Object {
             "items": Object {
-              "properties": Object {
-                "optionalPercentProperty": Object {
-                  "description": "doc5",
-                  "type": "number",
-                },
-              },
-              "required": Array [
-                "optionalPercentProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalPercentProperty",
             },
             "minItems": 0,
             "type": "array",
@@ -271,16 +244,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "optionalShortProperties": Object {
             "items": Object {
-              "properties": Object {
-                "optionalShortProperty": Object {
-                  "description": "doc9",
-                  "type": "integer",
-                },
-              },
-              "required": Array [
-                "optionalShortProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalShortProperty",
             },
             "minItems": 0,
             "type": "array",
@@ -288,16 +252,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "optionalYears": Object {
             "items": Object {
-              "properties": Object {
-                "optionalYear": Object {
-                  "description": "doc14",
-                  "type": "integer",
-                },
-              },
-              "required": Array [
-                "optionalYear",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalYear",
             },
             "minItems": 0,
             "type": "array",
@@ -305,16 +260,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredCurrencyProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredCurrencyProperty": Object {
-                  "description": "doc2",
-                  "type": "number",
-                },
-              },
-              "required": Array [
-                "requiredCurrencyProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredCurrencyProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -322,17 +268,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredDateProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredDateProperty": Object {
-                  "description": "doc6",
-                  "format": "date",
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "requiredDateProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredDateProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -340,17 +276,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredDatetimeProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredDatetimeProperty": Object {
-                  "description": "doc7",
-                  "format": "date-time",
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "requiredDatetimeProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredDatetimeProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -358,16 +284,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredDurationProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredDurationProperty": Object {
-                  "description": "doc4",
-                  "type": "number",
-                },
-              },
-              "required": Array [
-                "requiredDurationProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredDurationProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -375,18 +292,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredIntegerProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredIntegerProperty": Object {
-                  "description": "doc8",
-                  "maximum": 10,
-                  "minimum": 5,
-                  "type": "integer",
-                },
-              },
-              "required": Array [
-                "requiredIntegerProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredIntegerProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -394,18 +300,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredStringProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredStringProperty": Object {
-                  "description": "doc11",
-                  "maxLength": 31,
-                  "minLength": 21,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "requiredStringProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredStringProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -413,17 +308,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "requiredTimeProperties": Object {
             "items": Object {
-              "properties": Object {
-                "requiredTimeProperty": Object {
-                  "description": "doc12",
-                  "format": "time",
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "requiredTimeProperty",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_RequiredTimeProperty",
             },
             "minItems": 1,
             "type": "array",
@@ -887,17 +772,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "derivativeSourceURIs": Object {
             "items": Object {
-              "properties": Object {
-                "derivativeSourceURI": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "derivativeSourceURI",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_EducationContentSource_URI",
             },
             "minItems": 0,
             "type": "array",
@@ -915,17 +790,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "requiredURIs": Object {
             "items": Object {
-              "properties": Object {
-                "requiredURI": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "requiredURI",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_EducationContent_RequiredURI",
             },
             "minItems": 1,
             "type": "array",
@@ -991,17 +856,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "suffixNames": Object {
             "items": Object {
-              "properties": Object {
-                "suffixName": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "suffixName",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_EducationContent_EducationContentSuffixName",
             },
             "minItems": 1,
             "type": "array",
@@ -1205,22 +1060,7 @@ describe('when building domain entity with a simple common collection', () => {
           },
           "identificationCodes": Object {
             "items": Object {
-              "properties": Object {
-                "assessmentIdentificationSystemDescriptor": Object {
-                  "description": "doc",
-                  "type": "string",
-                },
-                "identificationCode": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "identificationCode",
-                "assessmentIdentificationSystemDescriptor",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_Assessment_AssessmentIdentificationCode",
             },
             "minItems": 0,
             "type": "array",
@@ -1302,22 +1142,7 @@ describe('when building domain entity subclass with common collection and descri
           },
           "identificationCodes": Object {
             "items": Object {
-              "properties": Object {
-                "educationOrganizationIdentificationSystemDescriptor": Object {
-                  "description": "doc",
-                  "type": "string",
-                },
-                "identificationCode": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "identificationCode",
-                "educationOrganizationIdentificationSystemDescriptor",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
             },
             "minItems": 0,
             "type": "array",
@@ -1384,38 +1209,7 @@ describe('when building association with a common collection in a common collect
         "properties": Object {
           "addresses": Object {
             "items": Object {
-              "properties": Object {
-                "periods": Object {
-                  "items": Object {
-                    "properties": Object {
-                      "beginDate": Object {
-                        "description": "doc",
-                        "type": "integer",
-                      },
-                      "endDate": Object {
-                        "description": "doc",
-                        "type": "integer",
-                      },
-                    },
-                    "required": Array [
-                      "beginDate",
-                    ],
-                    "type": "object",
-                  },
-                  "minItems": 0,
-                  "type": "array",
-                  "uniqueItems": false,
-                },
-                "streetNumberName": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "streetNumberName",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_StudentEducationOrganizationAssociation_Address",
             },
             "minItems": 0,
             "type": "array",
@@ -1539,16 +1333,7 @@ describe('when building domain entity with a descriptor collection with role nam
         "properties": Object {
           "assessedGradeLevels": Object {
             "items": Object {
-              "properties": Object {
-                "gradeLevelDescriptor": Object {
-                  "description": "An Ed-Fi Descriptor",
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "gradeLevelDescriptor",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_Assessment_AssessedGradeLevel",
             },
             "minItems": 0,
             "type": "array",
@@ -1717,19 +1502,9 @@ describe('when building domain entity with a common and a common collection with
           },
           "scores": Object {
             "items": Object {
-              "properties": Object {
-                "minimumScore": Object {
-                  "description": "doc",
-                  "maxLength": 30,
-                  "type": "string",
-                },
-              },
-              "required": Array [
-                "minimumScore",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_Assessment_AssessmentScore",
             },
-            "minItems": 0,
+            "minItems": 1,
             "type": "array",
             "uniqueItems": false,
           },
@@ -2207,24 +1982,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
           },
           "years": Object {
             "items": Object {
-              "properties": Object {
-                "schoolYearTypeReference": Object {
-                  "description": "A school year enumeration",
-                  "properties": Object {
-                    "schoolYear": Object {
-                      "description": "A school year between 1900 and 2100",
-                      "maximum": 2100,
-                      "minimum": 1900,
-                      "type": "integer",
-                    },
-                  },
-                  "type": "object",
-                },
-              },
-              "required": Array [
-                "schoolYearTypeReference",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_StudentCohort_CohortYear",
             },
             "minItems": 0,
             "type": "array",
