@@ -8639,7 +8639,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -9743,7 +9743,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -9761,7 +9761,7 @@
           "StudentAcademicRecord": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
@@ -10020,7 +10020,7 @@
           "EducationOrganization": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.educationOrganizationId",
@@ -12675,7 +12675,7 @@
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -12693,7 +12693,7 @@
           "Section": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.courseOfferingReference.localCourseCode",
@@ -13635,7 +13635,7 @@
           "Student": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.studentUniqueId",
@@ -14149,7 +14149,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -14187,7 +14187,7 @@
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -14654,7 +14654,7 @@
           "EducationOrganization": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.educationOrganizationId",
@@ -15332,7 +15332,7 @@
           "PostSecondaryInstitution": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.postSecondaryInstitutionId",
@@ -15396,7 +15396,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -15414,7 +15414,7 @@
           "SurveyResponse": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.surveyReference.namespace",
@@ -15563,7 +15563,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -15638,7 +15638,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.personId",
@@ -15656,7 +15656,7 @@
           "SurveySectionResponse": {
             "isDescriptor": false,
             "isReference": true,
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
                 "identityJsonPath": "$.surveyResponseReference.namespace",

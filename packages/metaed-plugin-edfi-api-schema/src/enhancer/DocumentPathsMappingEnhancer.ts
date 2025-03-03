@@ -219,7 +219,7 @@ function buildDocumentReferencePaths(
 
   return {
     isReference: true,
-    projectName: referenceProperty.namespace.projectName,
+    projectName: referencedEntity.namespace.projectName,
     isDescriptor: false,
     resourceName: referencedEntityApiSchemaData.resourceName,
     referenceJsonPaths: buildReferenceJsonPaths(
