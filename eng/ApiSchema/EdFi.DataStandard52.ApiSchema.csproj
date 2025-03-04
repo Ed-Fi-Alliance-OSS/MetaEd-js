@@ -20,7 +20,7 @@
         <copyright>Copyright © 2024, Ed-Fi Alliance, LLC and contributors.</copyright>
         <summary>API Schema definition file representing the core Ed-Fi Data Standard 5.2.0, without extensions.</summary>
         <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.1.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
-
+        <AssemblyName>EdFi.DataStandard52.ApiSchema.$(ApiSchemaPackageType)</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
