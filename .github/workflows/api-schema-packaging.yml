@@ -109,10 +109,18 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R ./
 
-
       - name: Move MetaEd ApiSchema Files
         working-directory: ./MetaEd-js/
         run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ApiSchemaPackageType "${{ matrix.config  }}"
+
+      - name: Update Marker.js File
+        shell: pwsh
+        run: |
+          $filePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/Marker.cs"
+          $fileContent = Get-Content -Path $filePath -Raw
+          $updatedContent = $fileContent -replace "EdFi.DataStandard52.ApiSchema", "EdFi.DataStandard52.ApiSchema.${{ matrix.config }}"
+          Set-Content -Path $filePath -Value $updatedContent
+          Write-Output $updatedContent
 
       - name: Run Build
         working-directory: ./MetaEd-js/
