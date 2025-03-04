@@ -243,7 +243,7 @@ function buildDescriptorPath(
   return {
     isReference: true,
     isDescriptor: true,
-    projectName: property.namespace.projectName,
+    projectName: referencedEntity.namespace.projectName,
     resourceName: referencedEntityApiSchemaData.resourceName,
     path: jsonPathPropertyPairs[0].jsonPath,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),

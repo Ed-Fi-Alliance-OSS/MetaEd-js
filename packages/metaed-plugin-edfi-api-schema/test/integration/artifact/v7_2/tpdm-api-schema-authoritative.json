@@ -8009,7 +8009,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.reasonExitedDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ReasonExitedDescriptor",
             "type": "string"
           }
@@ -8515,7 +8515,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.limitedEnglishProficiencyDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "LimitedEnglishProficiencyDescriptor",
             "type": "string"
           },
@@ -8658,7 +8658,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.races[*].raceDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "RaceDescriptor",
             "type": "string"
           },
@@ -8666,7 +8666,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.sexDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "SexDescriptor",
             "type": "string"
           },
@@ -10034,7 +10034,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "GradeLevelDescriptor",
             "type": "string"
           },
@@ -10052,7 +10052,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.programTypeDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ProgramTypeDescriptor",
             "type": "string"
           }
@@ -10490,7 +10490,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.elementRatingResults[*].resultDatatypeTypeDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
             "type": "string"
           },
@@ -11562,7 +11562,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.objectiveRatingResults[*].resultDatatypeTypeDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
             "type": "string"
           }
@@ -12592,7 +12592,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
             "type": "string"
           },
@@ -14142,7 +14142,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
             "type": "string"
           },
@@ -14647,7 +14647,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.academicSubjectDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "AcademicSubjectDescriptor",
             "type": "string"
           },
@@ -14676,7 +14676,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "GradeLevelDescriptor",
             "type": "string"
           },
@@ -14733,7 +14733,7 @@
             "isDescriptor": true,
             "isReference": true,
             "path": "$.termDescriptor",
-            "projectName": "TPDM",
+            "projectName": "Ed-Fi",
             "resourceName": "TermDescriptor",
             "type": "string"
           }
