@@ -9,6 +9,7 @@ import { noDocument, type Document } from '../OpenApiTypes';
 import { ProjectEndpointName } from './ProjectEndpointName';
 import { EducationOrganizationHierarchy } from '../EducationOrganizationHierarchy';
 import { MetaEdResourceName } from './MetaEdResourceName';
+import { OpenApiExtensionFragments } from '../OpenApiExtensionFragments';
 
 /**
  * API project information
@@ -88,9 +89,14 @@ type CoreProjectSchema = BaseProjectSchema & {
   isExtensionProject: false;
 
   /**
-   * The core OpenApi specification DMS will use as a starting point
+   * The core OpenApi specification for resources DMS will use as a starting point
    */
-  coreOpenApiSpecification: Document;
+  openApiCoreResources: Document;
+
+  /**
+   * The core OpenApi specification for descriptors DMS will use as a starting point
+   */
+  openApiCoreDescriptors: Document;
 };
 
 type ExtensionProjectSchema = BaseProjectSchema & {
@@ -100,9 +106,14 @@ type ExtensionProjectSchema = BaseProjectSchema & {
   isExtensionProject: true;
 
   /**
-   * The extension OpenApi fragments DMS will incorporate into the final OpenApi spec
+   * The extension OpenApi fragments DMS will incorporate into the resource OpenApi spec
    */
-  openApiExtensionFragments: any;
+  openApiExtensionResourceFragments: OpenApiExtensionFragments;
+
+  /**
+   * The extension OpenApi fragments DMS will incorporate into the descriptor OpenApi spec
+   */
+  openApiExtensionDescriptorFragments: OpenApiExtensionFragments;
 };
 
 export type ProjectSchema = CoreProjectSchema | ExtensionProjectSchema;
@@ -112,7 +123,8 @@ export const NoProjectSchema: ProjectSchema = {
   projectVersion: '0.0.0' as SemVer,
   projectEndpointName: 'NoProjectEndpointName' as ProjectEndpointName,
   isExtensionProject: false,
-  coreOpenApiSpecification: noDocument,
+  openApiCoreResources: noDocument,
+  openApiCoreDescriptors: noDocument,
   compatibleDsRange: null,
   description: 'NoProjectSchema',
   resourceSchemas: {},

@@ -45,7 +45,7 @@ export type EntityApiSchemaData = {
   openApiReferenceComponent: OpenApiObject;
 
   /**
-   * The property name for the  Open API reference component.
+   * The property name for the Open API reference component.
    */
   openApiReferenceComponentPropertyName: string;
 

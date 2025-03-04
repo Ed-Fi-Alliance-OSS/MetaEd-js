@@ -28,6 +28,10 @@ const descriptorOpenApi: OpenApiObject = {
   type: 'object',
   description: 'An Ed-Fi Descriptor',
   properties: {
+    id: {
+      type: 'string',
+      description: '',
+    },
     namespace: {
       type: 'string',
       description: 'The descriptor namespace as a URI',
@@ -302,12 +306,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = descriptorOpenApi;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}`;
   });
 
   // Attach school year enumeration OpenApiRequestBody
   getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = schoolYearOpenApis.schoolYearEnumerationOpenApi;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}`;
   });
 
   return {

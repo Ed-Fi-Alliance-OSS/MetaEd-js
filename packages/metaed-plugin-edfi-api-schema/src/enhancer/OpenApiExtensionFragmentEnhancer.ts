@@ -81,14 +81,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       },
     );
 
-    const openApiExtensionFragments: OpenApiExtensionFragments = {
+    const openApiExtensionResourceFragments: OpenApiExtensionFragments = {
       newPaths,
       newSchemas,
       exts,
       newTags,
     };
 
-    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiExtensionFragments = openApiExtensionFragments;
+    (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiExtensionResourceFragments =
+      openApiExtensionResourceFragments;
   });
   return {
     enhancerName: 'OpenApiExtensionFragmentEnhancer',

@@ -93,6 +93,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     edfiApiSchemaData.queryFieldMapping = {
       codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
       namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
+      shortDescription: [{ path: '$.shortDescription' as JsonPath, type: 'string' }],
+      description: [{ path: '$.description' as JsonPath, type: 'string' }],
     };
   });
 

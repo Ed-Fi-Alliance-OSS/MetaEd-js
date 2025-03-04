@@ -1,12 +1,6 @@
-import {
-  MetaEdEnvironment,
-  EnhancerResult,
-  getAllEntitiesOfType,
-  normalizeDescriptorSuffix,
-  decapitalize,
-} from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, normalizeDescriptorSuffix } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { pluralize } from '../Utility';
+import { pluralize, uncapitalize } from '../Utility';
 import { EndpointName } from '../model/api-schema/EndpointName';
 import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
 
@@ -14,7 +8,7 @@ import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
  * Converts a MetaEd model name to its endpoint name
  */
 function endpointNameFrom(metaEdName: string): EndpointName {
-  return pluralize(decapitalize(metaEdName)) as EndpointName;
+  return pluralize(uncapitalize(metaEdName)) as EndpointName;
 }
 
 /**
@@ -37,7 +31,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Descriptors are special because they have a descriptor suffix
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((descriptor) => {
     (descriptor.data.edfiApiSchema as EntityApiSchemaData).endpointName = pluralize(
-      normalizeDescriptorSuffix(decapitalize(descriptor.metaEdName)),
+      normalizeDescriptorSuffix(uncapitalize(descriptor.metaEdName)),
     ) as EndpointName;
     (descriptor.data.edfiApiSchema as EntityApiSchemaData).resourceName = normalizeDescriptorSuffix(
       descriptor.metaEdName,

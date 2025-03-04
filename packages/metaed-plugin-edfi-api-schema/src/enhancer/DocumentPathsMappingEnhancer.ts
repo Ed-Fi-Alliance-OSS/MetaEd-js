@@ -228,6 +228,7 @@ function buildDocumentReferencePaths(
       allJsonPathsMapping,
     ),
     sourceProperty: referenceProperty,
+    isRequired: referenceProperty.isRequired || referenceProperty.isPartOfIdentity,
   };
 }
 
@@ -248,6 +249,8 @@ function buildDescriptorPath(
     path: jsonPathPropertyPairs[0].jsonPath,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
+    isRequired:
+      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
@@ -267,6 +270,8 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
       },
     ],
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
+    isRequired:
+      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
@@ -277,6 +282,8 @@ function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarP
     isReference: false,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
+    isRequired:
+      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 

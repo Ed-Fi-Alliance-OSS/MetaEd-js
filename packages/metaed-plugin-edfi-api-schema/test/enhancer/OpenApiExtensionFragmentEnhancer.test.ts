@@ -38,7 +38,7 @@ import { enhance as identityFullnameEnhancer } from '../../src/enhancer/Identity
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from '../../src/enhancer/QueryFieldMappingEnhancer';
-import { enhance as openApiSpecificationEnhancer } from '../../src/enhancer/OpenApiSpecificationEnhancer';
+import { enhance as openApiCoreSpecificationEnhancer } from '../../src/enhancer/OpenApiCoreSpecificationEnhancer';
 import { enhance } from '../../src/enhancer/OpenApiExtensionFragmentEnhancer';
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
@@ -101,9 +101,9 @@ describe('when building simple domain entity with all the simple non-collections
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/domainEntityNames": Object {
           "get": Object {
@@ -525,7 +525,7 @@ describe('when building simple domain entity with all the simple non-collections
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_DomainEntityName": Object {
           "description": "doc",
@@ -625,8 +625,8 @@ describe('when building simple domain entity with all the simple non-collections
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -674,9 +674,9 @@ describe('when building simple domain entity with all the simple collections', (
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/domainEntityNames": Object {
           "get": Object {
@@ -1001,7 +1001,7 @@ describe('when building simple domain entity with all the simple collections', (
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_DomainEntityName": Object {
           "description": "doc",
@@ -1264,8 +1264,8 @@ describe('when building simple domain entity with all the simple collections', (
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -1319,9 +1319,9 @@ describe('when building a domain entity referencing another referencing another 
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/classPeriods": Object {
           "get": Object {
@@ -2569,7 +2569,7 @@ describe('when building a domain entity referencing another referencing another 
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_ClassPeriod": Object {
           "description": "doc",
@@ -2734,8 +2734,8 @@ describe('when building a domain entity referencing another referencing another 
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -2802,9 +2802,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/courseOfferings": Object {
           "get": Object {
@@ -4062,7 +4062,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_CourseOffering": Object {
           "description": "doc",
@@ -4260,8 +4260,8 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -4340,9 +4340,9 @@ describe('when building domain entity with nested choice and inline commons', ()
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/educationContents": Object {
           "get": Object {
@@ -4693,7 +4693,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_EducationContent": Object {
           "description": "doc",
@@ -4796,8 +4796,8 @@ describe('when building domain entity with nested choice and inline commons', ()
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -4834,9 +4834,9 @@ describe('when building domain entity with scalar collection named with prefix o
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct openApiExtensionFragments', () => {
-    const { openApiExtensionFragments } = namespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = namespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`
       Object {
         "/extension/domainEntityNames": Object {
           "get": Object {
@@ -5151,7 +5151,7 @@ describe('when building domain entity with scalar collection named with prefix o
         },
       }
     `);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
         "Extension_DomainEntityName": Object {
           "description": "doc",
@@ -5201,8 +5201,8 @@ describe('when building domain entity with scalar collection named with prefix o
         },
       }
     `);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`
       Array [
         Object {
           "description": "doc",
@@ -5252,12 +5252,12 @@ describe('when domain entity extension references domain entity in different nam
     domainEntityReferenceEnhancer(metaEd);
     domainEntityExtensionBaseClassEnhancer(metaEd);
     runApiSchemaEnhancers(metaEd);
-    openApiSpecificationEnhancer(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema for core namespace', () => {
-    expect(coreNamespace.data.edfiApiSchema.coreOpenApiSpecification.components.schemas).toMatchInlineSnapshot(`
+    expect(coreNamespace.data.edfiApiSchema.openApiCoreResources.components.schemas).toMatchInlineSnapshot(`
         Object {
           "EdFi_EntityName": Object {
             "description": "doc",
@@ -5314,10 +5314,10 @@ describe('when domain entity extension references domain entity in different nam
   });
 
   it('should be a correct ext for extension namespace that references core schema', () => {
-    const { openApiExtensionFragments } = extensionNamespace.data.edfiApiSchema;
-    expect(openApiExtensionFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionFragments.exts).toMatchInlineSnapshot(`
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
         Object {
           "EdFi_EntityName": Object {
             "description": "",
@@ -5330,6 +5330,6 @@ describe('when domain entity extension references domain entity in different nam
           },
         }
       `);
-    expect(openApiExtensionFragments.newTags).toMatchInlineSnapshot(`Array []`);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`Array []`);
   });
 });

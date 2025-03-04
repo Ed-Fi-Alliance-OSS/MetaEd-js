@@ -8,10 +8,23 @@ import type { JsonPath } from './JsonPath';
 import type { ReferenceJsonPaths } from './ReferenceJsonPaths';
 import type { PathType } from './PathType';
 
+type DocumentPathBase = {
+  /**
+   * Whether this path is required
+   */
+  isRequired: boolean;
+
+  /**
+   * The source property of this document reference path. This must be stripped out before the DocumentReferencePaths
+   * can be stringified to JSON.
+   */
+  sourceProperty?: EntityProperty;
+};
+
 /**
  * JsonPath information for a reference MetaEd property
  */
-export type DocumentReferencePaths = {
+export type DocumentReferencePaths = DocumentPathBase & {
   /**
    * Discriminator between reference and scalar path types
    */
@@ -32,12 +45,6 @@ export type DocumentReferencePaths = {
    * Whether this reference is a descriptor. Descriptors are treated differently from other documents
    */
   isDescriptor: false;
-
-  /**
-   * The source property of this document reference path. This must be stripped out before the DocumentReferencePaths
-   * can be stringified to JSON.
-   */
-  sourceProperty?: EntityProperty;
 
   /**
    * JsonPath information for a document reference and it's corresponding identity in the referenced document.
@@ -73,7 +80,7 @@ export type DocumentReferencePaths = {
  * A DocumentPaths for a descriptor MetaEd property
  */
 
-export type DescriptorReferencePath = {
+export type DescriptorReferencePath = DocumentPathBase & {
   /**
    * Discriminator between reference and scalar path types
    */
@@ -104,18 +111,12 @@ export type DescriptorReferencePath = {
    * Type of the descriptor reference path
    */
   type: PathType;
-
-  /**
-   * The source property of this descriptor reference path. This must be stripped out before the DescriptorReferencePath
-   * can be stringified to JSON.
-   */
-  sourceProperty?: EntityProperty;
 };
 
 /**
  * A DocumentPaths for a scalar MetaEd property
  */
-export type ScalarPath = {
+export type ScalarPath = DocumentPathBase & {
   /**
    * Discriminator between reference and scalar path types
    */
@@ -130,12 +131,6 @@ export type ScalarPath = {
    * Type of the scalar
    */
   type: PathType;
-
-  /**
-   * The source property of this scalar path. This must be stripped out before the ScalarPath
-   * can be stringified to JSON.
-   */
-  sourceProperty?: EntityProperty;
 };
 
 /**

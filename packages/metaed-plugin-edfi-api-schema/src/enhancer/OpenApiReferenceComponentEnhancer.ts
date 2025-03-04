@@ -57,7 +57,7 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
     openApiProperties[openApiPropertyName] = openApiProperty;
 
     if (isOpenApiPropertyRequired(flattenedIdentityProperty.identityProperty, defaultPropertyModifier)) {
-      // As above, this usage of Set this implictly merges by overwrite
+      // As above, this usage of Set implictly merges by overwrite
       required.add(openApiPropertyName);
     }
   });

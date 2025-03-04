@@ -3046,16 +3046,19 @@ describe('when building a Domain Entity subclass', () => {
       Object {
         "SchoolId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.superclassProperty",
           "type": "number",
         },
@@ -3252,6 +3255,7 @@ describe('when building an Association subclass', () => {
         "Program": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -3270,6 +3274,7 @@ describe('when building an Association subclass', () => {
         "School": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -3287,11 +3292,13 @@ describe('when building an Association subclass', () => {
         },
         "SubclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.superclassProperty",
           "type": "number",
         },
@@ -3423,6 +3430,7 @@ describe('when domain entity extension references domain entity in different nam
         "ReferencedEntityName": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {

@@ -55,7 +55,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     (entity.data.edfiApiSchema as EntityApiSchemaData).numericJsonPaths = [...numericResult].sort();
   });
 
-  // Descriptors have no boolean or numeric properties
+  // Descriptors have no boolean, numeric, or datetime properties
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.booleanJsonPaths = [];

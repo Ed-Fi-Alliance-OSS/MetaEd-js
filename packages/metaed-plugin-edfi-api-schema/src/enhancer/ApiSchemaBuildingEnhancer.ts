@@ -185,13 +185,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         ...baseProjectSchema,
         isExtensionProject: true,
         compatibleDsRange: metaEd.dataStandardVersion as SemVer,
-        openApiExtensionFragments: namespace.data.edfiApiSchema.openApiExtensionFragments,
+        openApiExtensionResourceFragments: namespace.data.edfiApiSchema.openApiExtensionResourceFragments,
+        openApiExtensionDescriptorFragments: namespace.data.edfiApiSchema.openApiExtensionDescriptorFragments,
       };
     } else {
       projectSchema = {
         ...baseProjectSchema,
         isExtensionProject: false,
-        coreOpenApiSpecification: namespace.data.edfiApiSchema.coreOpenApiSpecification,
+        openApiCoreResources: namespace.data.edfiApiSchema.openApiCoreResources,
+        openApiCoreDescriptors: namespace.data.edfiApiSchema.openApiCoreDescriptors,
       };
     }
 

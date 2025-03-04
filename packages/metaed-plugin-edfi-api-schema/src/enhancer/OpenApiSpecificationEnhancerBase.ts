@@ -347,10 +347,76 @@ function schemaObjectFrom(property: EntityProperty): SchemaObject {
   }
 }
 
+// All descriptor documents have the same OpenAPI get by query parameters
+const descriptorOpenApiParameters: Parameter[] = [
+  {
+    name: 'codeValue',
+    in: 'query',
+    description: 'A code or abbreviation that is used to refer to the descriptor.',
+    schema: {
+      maxLength: 50,
+      type: 'string',
+    },
+    'x-Ed-Fi-isIdentity': true,
+  },
+  {
+    name: 'description',
+    in: 'query',
+    description: 'The description of the descriptor.',
+    schema: {
+      maxLength: 1024,
+      type: 'string',
+    },
+  },
+  {
+    name: 'effectiveBeginDate',
+    in: 'query',
+    description:
+      'The beginning date of the period when the descriptor is in effect. If omitted, the default is immediate effectiveness.',
+    schema: {
+      type: 'string',
+      format: 'date',
+    },
+  },
+  {
+    name: 'effectiveEndDate',
+    in: 'query',
+    description: 'The end date of the period when the descriptor is in effect.',
+    schema: {
+      type: 'string',
+      format: 'date',
+    },
+  },
+  {
+    name: 'namespace',
+    in: 'query',
+    description:
+      'A globally unique namespace that identifies this descriptor set. Author is strongly encouraged to use the Universal Resource Identifier (http, ftp, file, etc.) for the source of the descriptor definition. Best practice is for this source to be the descriptor file itself, so that it can be machine-readable and be fetched in real-time, if necessary.',
+    schema: {
+      maxLength: 255,
+      type: 'string',
+    },
+    'x-Ed-Fi-isIdentity': true,
+  },
+  {
+    name: 'shortDescription',
+    in: 'query',
+    description: 'A shortened description for the descriptor.',
+    schema: {
+      maxLength: 75,
+      type: 'string',
+    },
+  },
+];
+
 /**
  * Returns the set of get by query parameters for the given entity
  */
 function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
+  if (entity.type === 'descriptor') {
+    return descriptorOpenApiParameters;
+  }
+
   const result: Parameter[] = [];
   const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   Object.entries(edfiApiSchemaData.queryFieldMapping).forEach(([fieldName, pathInfo]) => {

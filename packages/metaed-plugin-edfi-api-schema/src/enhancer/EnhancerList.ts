@@ -25,7 +25,7 @@ import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhance
 import { enhance as typeCoercionJsonPathsEnhancer } from './TypeCoercionJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
-import { enhance as openApiSpecificationEnhancer } from './OpenApiSpecificationEnhancer';
+import { enhance as openApiCoreSpecificationEnhancer } from './OpenApiCoreSpecificationEnhancer';
 import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
 import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
 import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
@@ -58,7 +58,7 @@ export function enhancerList(): Enhancer[] {
     queryFieldMappingEnhancer,
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
-    openApiSpecificationEnhancer,
+    openApiCoreSpecificationEnhancer,
     openApiExtensionFragmentEnhancer,
     namespaceSecurityElementEnhancer,
     educationOrganizationSecurityElementEnhancer,

@@ -115,62 +115,74 @@ describe('when building simple domain entity with all the simple non-collections
       Object {
         "OptionalBooleanProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalBooleanProperty",
           "type": "boolean",
         },
         "OptionalDecimalProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalDecimalProperty",
           "type": "number",
         },
         "OptionalPercentProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalPercentProperty",
           "type": "number",
         },
         "OptionalShortProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalShortProperty",
           "type": "number",
         },
         "OptionalYear": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalYear",
           "type": "number",
         },
         "RequiredCurrencyProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredCurrencyProperty",
           "type": "number",
         },
         "RequiredDateProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredDateProperty",
           "type": "date",
         },
         "RequiredDatetimeProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredDatetimeProperty",
           "type": "date-time",
         },
         "RequiredDurationProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredDurationProperty",
           "type": "number",
         },
         "RequiredIntegerProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredIntegerProperty",
           "type": "number",
         },
         "RequiredTimeProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.requiredTimeProperty",
           "type": "time",
         },
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -183,6 +195,7 @@ describe('when building simple domain entity with all the simple non-collections
         },
         "StringIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.stringIdentity",
           "type": "string",
         },
@@ -234,67 +247,80 @@ describe('when building simple domain entity with all the simple collections', (
       Object {
         "OptionalBooleanProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalBooleanProperties[*].optionalBooleanProperty",
           "type": "boolean",
         },
         "OptionalDecimalProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalDecimalProperties[*].optionalDecimalProperty",
           "type": "number",
         },
         "OptionalPercentProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalPercentProperties[*].optionalPercentProperty",
           "type": "number",
         },
         "OptionalShortProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalShortProperties[*].optionalShortProperty",
           "type": "number",
         },
         "OptionalYear": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.optionalYears[*].optionalYear",
           "type": "number",
         },
         "RequiredCurrencyProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredCurrencyProperties[*].requiredCurrencyProperty",
           "type": "number",
         },
         "RequiredDateProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredDateProperties[*].requiredDateProperty",
           "type": "date",
         },
         "RequiredDatetimeProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredDatetimeProperties[*].requiredDatetimeProperty",
           "type": "date-time",
         },
         "RequiredDurationProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredDurationProperties[*].requiredDurationProperty",
           "type": "number",
         },
         "RequiredIntegerProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredIntegerProperties[*].requiredIntegerProperty",
           "type": "number",
         },
         "RequiredStringProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredStringProperties[*].requiredStringProperty",
           "type": "string",
         },
         "RequiredTimeProperty": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredTimeProperties[*].requiredTimeProperty",
           "type": "time",
         },
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -307,6 +333,7 @@ describe('when building simple domain entity with all the simple collections', (
         },
         "StringIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.stringIdentity",
           "type": "string",
         },
@@ -365,6 +392,7 @@ describe('when building a domain entity referencing another referencing another 
         "ClassPeriod": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -383,6 +411,7 @@ describe('when building a domain entity referencing another referencing another 
         "CourseOffering": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -400,6 +429,7 @@ describe('when building a domain entity referencing another referencing another 
         },
         "SectionIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.sectionIdentifier",
           "type": "string",
         },
@@ -459,6 +489,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "CourseOffering": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -491,6 +522,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
         "SectionIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.sectionIdentifier",
           "type": "string",
         },
@@ -507,12 +539,14 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "LocalCourseCode": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.localCourseCode",
           "type": "string",
         },
         "School": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -526,6 +560,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "Session": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -560,6 +595,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "School": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -573,6 +609,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -585,6 +622,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
         "SessionName": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.sessionName",
           "type": "string",
         },
@@ -601,6 +639,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "SchoolId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.schoolId",
           "type": "string",
         },
@@ -671,12 +710,14 @@ describe('when building domain entity with nested choice and inline commons', ()
       Object {
         "ContentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentIdentifier",
           "type": "string",
         },
         "LearningResourceChoice.LearningResource.ContentClassDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": true,
           "path": "$.contentClassDescriptor",
           "projectName": "EdFi",
           "resourceName": "ContentClassDescriptor",
@@ -685,6 +726,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -697,26 +739,31 @@ describe('when building domain entity with nested choice and inline commons', ()
         },
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.derivativeSourceURIs[*].derivativeSourceURI",
           "type": "string",
         },
         "LearningResourceChoice.LearningResource.Description": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.description",
           "type": "string",
         },
         "LearningResourceChoice.LearningResource.ShortDescription": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.shortDescription",
           "type": "string",
         },
         "LearningResourceChoice.LearningResourceMetadataURI": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.learningResourceMetadataURI",
           "type": "string",
         },
         "RequiredURI": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.requiredURIs[*].requiredURI",
           "type": "string",
         },
@@ -757,11 +804,13 @@ describe('when building domain entity with scalar collection named with prefix o
       Object {
         "ContentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentIdentifier",
           "type": "string",
         },
         "EducationContentSuffixName": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.suffixNames[*].suffixName",
           "type": "string",
         },
@@ -807,12 +856,14 @@ describe('when building domain entity with Association/DomainEntity collection n
       Object {
         "ContentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentIdentifier",
           "type": "string",
         },
         "EducationContentSuffixName": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -860,11 +911,13 @@ describe('when building domain entity with acronym property name', () => {
       Object {
         "ContentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentIdentifier",
           "type": "string",
         },
         "IEPBeginDate": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.iepBeginDate",
           "type": "date-time",
         },
@@ -917,6 +970,7 @@ describe('when building domain entity with a simple common collection', () => {
         "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": true,
           "path": "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
           "projectName": "EdFi",
           "resourceName": "AssessmentIdentificationSystemDescriptor",
@@ -924,11 +978,13 @@ describe('when building domain entity with a simple common collection', () => {
         },
         "AssessmentIdentificationCode.IdentificationCode": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.identificationCodes[*].identificationCode",
           "type": "string",
         },
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
@@ -988,12 +1044,14 @@ describe('when building domain entity subclass with common collection and descri
       Object {
         "CommunityOrganizationId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.communityOrganizationId",
           "type": "number",
         },
         "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": true,
           "path": "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
           "projectName": "EdFi",
           "resourceName": "EducationOrganizationIdentificationSystemDescriptor",
@@ -1001,6 +1059,7 @@ describe('when building domain entity subclass with common collection and descri
         },
         "EducationOrganizationIdentificationCode.IdentificationCode": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.identificationCodes[*].identificationCode",
           "type": "string",
         },
@@ -1052,21 +1111,25 @@ describe('when building association with a common collection in a common collect
       Object {
         "Address.Period.BeginDate": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.addresses[*].periods[*].beginDate",
           "type": "number",
         },
         "Address.Period.EndDate": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.addresses[*].periods[*].endDate",
           "type": "number",
         },
         "Address.StreetNumberName": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.addresses[*].streetNumberName",
           "type": "string",
         },
         "StudentId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.studentId",
           "type": "number",
         },
@@ -1112,6 +1175,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "AssessedGradeLevelDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": false,
           "path": "$.assessedGradeLevelDescriptor",
           "projectName": "EdFi",
           "resourceName": "GradeLevelDescriptor",
@@ -1119,6 +1183,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         },
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
@@ -1164,6 +1229,7 @@ describe('when building domain entity with a descriptor collection with role nam
         "AssessedGradeLevelDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": false,
           "path": "$.assessedGradeLevels[*].gradeLevelDescriptor",
           "projectName": "EdFi",
           "resourceName": "GradeLevelDescriptor",
@@ -1171,6 +1237,7 @@ describe('when building domain entity with a descriptor collection with role nam
         },
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
@@ -1224,21 +1291,25 @@ describe('when building domain entity with a common with a choice', () => {
       Object {
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
         "ContentStandard.PublicationDateChoice.PublicationDate": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentStandard.publicationDate",
           "type": "string",
         },
         "ContentStandard.PublicationDateChoice.PublicationYear": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.contentStandard.publicationYear",
           "type": "string",
         },
         "ContentStandard.Title": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.contentStandard.title",
           "type": "string",
         },
@@ -1289,16 +1360,19 @@ describe('when building domain entity with a common and a common collection with
       Object {
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
         "AssessmentPeriod.BeginDate": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.period.beginDate",
           "type": "string",
         },
         "AssessmentScore.MinimumScore": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.scores[*].minimumScore",
           "type": "string",
         },
@@ -1336,11 +1410,13 @@ describe('when building domain entity with an all-caps property', () => {
       Object {
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
         "URI": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.uri",
           "type": "string",
         },
@@ -1392,12 +1468,14 @@ describe('when building domain entity with a common with a domain entity referen
       Object {
         "AssessmentIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.assessmentIdentifier",
           "type": "number",
         },
         "ContentStandard.MandatingEducationOrganization": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -1410,6 +1488,7 @@ describe('when building domain entity with a common with a domain entity referen
         },
         "ContentStandard.Title": Object {
           "isReference": false,
+          "isRequired": false,
           "path": "$.contentStandard.title",
           "type": "string",
         },
@@ -1456,6 +1535,7 @@ describe('when building domain entity with two school year enumerations, one rol
         "ClassOfSchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -1468,12 +1548,14 @@ describe('when building domain entity with two school year enumerations, one rol
         },
         "SchoolId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.schoolId",
           "type": "number",
         },
         "SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -1527,6 +1609,7 @@ describe('when building domain entity with reference to domain entity with schoo
         "Calendar": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -1544,6 +1627,7 @@ describe('when building domain entity with reference to domain entity with schoo
         },
         "SchoolId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.schoolId",
           "type": "number",
         },
@@ -1604,6 +1688,7 @@ describe('when building a schema for StudentCohort', () => {
         "CohortYear.SchoolYear": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "Ed-Fi",
           "referenceJsonPaths": Array [
             Object {
@@ -1616,6 +1701,7 @@ describe('when building a schema for StudentCohort', () => {
         },
         "StudentUniqueId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.studentUniqueId",
           "type": "string",
         },
@@ -1669,6 +1755,7 @@ describe('when building a domain entity with an inline common property with a de
         "AvailableCredits.CreditTypeDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
+          "isRequired": false,
           "path": "$.availableCreditTypeDescriptor",
           "projectName": "EdFi",
           "resourceName": "CreditTypeDescriptor",
@@ -1676,6 +1763,7 @@ describe('when building a domain entity with an inline common property with a de
         },
         "SectionIdentifier": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.sectionIdentifier",
           "type": "number",
         },
@@ -1721,16 +1809,19 @@ describe('when building a Domain Entity subclass', () => {
       Object {
         "SchoolId": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.superclassProperty",
           "type": "number",
         },
@@ -1792,6 +1883,7 @@ describe('when building an Association subclass', () => {
         "Program": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -1810,6 +1902,7 @@ describe('when building an Association subclass', () => {
         "School": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -1827,11 +1920,13 @@ describe('when building an Association subclass', () => {
         },
         "SubclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.superclassProperty",
           "type": "number",
         },
@@ -1927,6 +2022,7 @@ describe('when a collection reference is to a role named resource that has a sch
         "Grade": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": false,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -1964,6 +2060,7 @@ describe('when a collection reference is to a role named resource that has a sch
         },
         "ReportCardIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.reportCardIdentity",
           "type": "number",
         },
@@ -2032,12 +2129,14 @@ describe('when a reference is to a resource that has a reference with two identi
       Object {
         "SSREOTAIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.ssreotaIdentity",
           "type": "number",
         },
         "SurveySectionResponse": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -2144,12 +2243,14 @@ describe('when a reference is to a resource that has two identity properties dir
       Object {
         "SSREOTAIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.ssreotaIdentity",
           "type": "number",
         },
         "SurveySectionResponse": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -2272,6 +2373,7 @@ describe('when a reference is to a resource that merges on a descriptor (TPDM ex
         "EvaluationObjective": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
@@ -2294,12 +2396,14 @@ describe('when a reference is to a resource that merges on a descriptor (TPDM ex
         },
         "EvaluationObjectiveRatingIdentity": Object {
           "isReference": false,
+          "isRequired": true,
           "path": "$.evaluationObjectiveRatingIdentity",
           "type": "number",
         },
         "EvaluationRating": Object {
           "isDescriptor": false,
           "isReference": true,
+          "isRequired": true,
           "projectName": "EdFi",
           "referenceJsonPaths": Array [
             Object {
