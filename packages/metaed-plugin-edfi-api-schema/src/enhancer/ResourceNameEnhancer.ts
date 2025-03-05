@@ -38,6 +38,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     ) as MetaEdResourceName;
   });
 
+  // School year is its own thing
+  getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((schoolYearEnumeration) => {
+    (schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData).endpointName = 'schoolYearTypes' as EndpointName;
+    (schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData).resourceName = 'SchoolYearType' as MetaEdResourceName;
+  });
+
   return {
     enhancerName: 'ResourceNameEnhancer',
     success: true,

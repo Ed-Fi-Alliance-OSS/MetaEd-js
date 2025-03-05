@@ -14,7 +14,7 @@
       "educatorpreparationprograms": "educatorPreparationPrograms",
       "educatorroledescriptors": "educatorRoleDescriptors",
       "englishlanguageexamdescriptors": "englishLanguageExamDescriptors",
-      "eppprogrampathwaydescriptors": "ePPProgramPathwayDescriptors",
+      "eppprogrampathwaydescriptors": "eppProgramPathwayDescriptors",
       "evaluationelementratingleveldescriptors": "evaluationElementRatingLevelDescriptors",
       "evaluationelementratings": "evaluationElementRatings",
       "evaluationelements": "evaluationElements",
@@ -82,7 +82,9 @@
       "EducationOrganization"
     ],
     "isExtensionProject": true,
-    "openApiExtensionFragments": {
+    "openApiExtensionDescriptorFragments": {
+    },
+    "openApiExtensionResourceFragments": {
       "exts": {
         "EdFi_Credential": {
           "description": "",
@@ -7685,7 +7687,7 @@
       "CertificationRoute": "certificationRouteDescriptors",
       "CoteachingStyleObserved": "coteachingStyleObservedDescriptors",
       "CredentialStatus": "credentialStatusDescriptors",
-      "EPPProgramPathway": "ePPProgramPathwayDescriptors",
+      "EPPProgramPathway": "eppProgramPathwayDescriptors",
       "EducatorPreparationProgram": "educatorPreparationPrograms",
       "EducatorRole": "educatorRoleDescriptors",
       "EnglishLanguageExam": "englishLanguageExamDescriptors",
@@ -7788,9 +7790,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -7879,9 +7893,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -7904,12 +7930,14 @@
         "documentPathsMapping": {
           "BeginDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.beginDate",
             "type": "date"
           },
           "Candidate": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -7923,6 +7951,7 @@
           "CohortYear.CohortYearTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.cohortYears[*].cohortYearTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "CohortYearTypeDescriptor",
@@ -7931,6 +7960,7 @@
           "CohortYear.SchoolYear": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -7944,6 +7974,7 @@
           "CohortYear.TermDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.cohortYears[*].termDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "TermDescriptor",
@@ -7951,27 +7982,32 @@
           },
           "DegreeSpecialization.BeginDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.degreeSpecializations[*].beginDate",
             "type": "date"
           },
           "DegreeSpecialization.EndDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.degreeSpecializations[*].endDate",
             "type": "date"
           },
           "DegreeSpecialization.MajorSpecialization": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.degreeSpecializations[*].majorSpecialization",
             "type": "string"
           },
           "DegreeSpecialization.MinorSpecialization": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.degreeSpecializations[*].minorSpecialization",
             "type": "string"
           },
           "EPPProgramPathwayDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.eppProgramPathwayDescriptor",
             "projectName": "TPDM",
             "resourceName": "EPPProgramPathwayDescriptor",
@@ -7980,6 +8016,7 @@
           "EducatorPreparationProgram": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -8002,12 +8039,14 @@
           },
           "EndDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.endDate",
             "type": "date"
           },
           "ReasonExitedDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.reasonExitedDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ReasonExitedDescriptor",
@@ -8262,6 +8301,7 @@
           "Address.AddressTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.addresses[*].addressTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "AddressTypeDescriptor",
@@ -8269,42 +8309,50 @@
           },
           "Address.ApartmentRoomSuiteNumber": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.addresses[*].city",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].latitude",
             "type": "string"
           },
           "Address.LocaleDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.addresses[*].localeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LocaleDescriptor",
@@ -8312,32 +8360,38 @@
           },
           "Address.Longitude": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.Period.BeginDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.addresses[*].postalCode",
             "type": "string"
           },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.addresses[*].stateAbbreviationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "StateAbbreviationDescriptor",
@@ -8345,17 +8399,20 @@
           },
           "Address.StreetNumberName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "BirthData.BirthCity": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.birthCity",
             "type": "string"
           },
           "BirthData.BirthCountryDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.birthCountryDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "CountryDescriptor",
@@ -8363,17 +8420,20 @@
           },
           "BirthData.BirthDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.birthDate",
             "type": "date"
           },
           "BirthData.BirthInternationalProvince": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.birthInternationalProvince",
             "type": "string"
           },
           "BirthData.BirthSexDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.birthSexDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "SexDescriptor",
@@ -8382,6 +8442,7 @@
           "BirthData.BirthStateAbbreviationDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.birthStateAbbreviationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "StateAbbreviationDescriptor",
@@ -8389,22 +8450,26 @@
           },
           "BirthData.DateEnteredUS": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.dateEnteredUS",
             "type": "date"
           },
           "BirthData.MultipleBirthStatus": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.multipleBirthStatus",
             "type": "boolean"
           },
           "CandidateIdentifier": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.candidateIdentifier",
             "type": "string"
           },
           "Disability.DisabilityDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.disabilities[*].disabilityDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "DisabilityDescriptor",
@@ -8413,6 +8478,7 @@
           "Disability.DisabilityDesignationDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.disabilities[*].designations[*].disabilityDesignationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "DisabilityDesignationDescriptor",
@@ -8421,6 +8487,7 @@
           "Disability.DisabilityDeterminationSourceTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.disabilities[*].disabilityDeterminationSourceTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "DisabilityDeterminationSourceTypeDescriptor",
@@ -8428,37 +8495,44 @@
           },
           "Disability.DisabilityDiagnosis": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.disabilities[*].disabilityDiagnosis",
             "type": "string"
           },
           "Disability.OrderOfDisability": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.disabilities[*].orderOfDisability",
             "type": "number"
           },
           "DisplacementStatus": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.displacementStatus",
             "type": "string"
           },
           "EconomicDisadvantaged": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.economicDisadvantaged",
             "type": "boolean"
           },
           "ElectronicMail.DoNotPublishIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.electronicMails[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "ElectronicMail.ElectronicMailAddress": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.electronicMails[*].electronicMailAddress",
             "type": "string"
           },
           "ElectronicMail.ElectronicMailTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.electronicMails[*].electronicMailTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ElectronicMailTypeDescriptor",
@@ -8466,12 +8540,14 @@
           },
           "ElectronicMail.PrimaryEmailAddressIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.electronicMails[*].primaryEmailAddressIndicator",
             "type": "boolean"
           },
           "EnglishLanguageExamDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.englishLanguageExamDescriptor",
             "projectName": "TPDM",
             "resourceName": "EnglishLanguageExamDescriptor",
@@ -8479,12 +8555,14 @@
           },
           "FirstGenerationStudent": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.firstGenerationStudent",
             "type": "boolean"
           },
           "GenderDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.genderDescriptor",
             "projectName": "TPDM",
             "resourceName": "GenderDescriptor",
@@ -8492,12 +8570,14 @@
           },
           "HispanicLatinoEthnicity": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.hispanicLatinoEthnicity",
             "type": "boolean"
           },
           "Language.LanguageDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.languages[*].languageDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LanguageDescriptor",
@@ -8506,6 +8586,7 @@
           "Language.LanguageUseDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.languages[*].uses[*].languageUseDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LanguageUseDescriptor",
@@ -8514,6 +8595,7 @@
           "LimitedEnglishProficiencyDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.limitedEnglishProficiencyDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LimitedEnglishProficiencyDescriptor",
@@ -8521,42 +8603,50 @@
           },
           "Name.FirstName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.firstName",
             "type": "string"
           },
           "Name.GenerationCodeSuffix": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.generationCodeSuffix",
             "type": "string"
           },
           "Name.LastSurname": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.lastSurname",
             "type": "string"
           },
           "Name.MaidenName": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.maidenName",
             "type": "string"
           },
           "Name.MiddleName": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.middleName",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.DocumentExpirationDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].documentExpirationDate",
             "type": "date"
           },
           "Name.PersonalIdentificationDocument.DocumentTitle": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].documentTitle",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "IdentificationDocumentUseDescriptor",
@@ -8565,6 +8655,7 @@
           "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerCountryDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "CountryDescriptor",
@@ -8572,17 +8663,20 @@
           },
           "Name.PersonalIdentificationDocument.IssuerDocumentIdentificationCode": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.IssuerName": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerName",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "PersonalInformationVerificationDescriptor",
@@ -8590,42 +8684,50 @@
           },
           "Name.PersonalTitlePrefix": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.personalTitlePrefix",
             "type": "string"
           },
           "Name.PreferredFirstName": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.preferredFirstName",
             "type": "string"
           },
           "Name.PreferredLastSurname": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.preferredLastSurname",
             "type": "string"
           },
           "OtherName.FirstName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.otherNames[*].firstName",
             "type": "string"
           },
           "OtherName.GenerationCodeSuffix": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.otherNames[*].generationCodeSuffix",
             "type": "string"
           },
           "OtherName.LastSurname": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.otherNames[*].lastSurname",
             "type": "string"
           },
           "OtherName.MiddleName": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.otherNames[*].middleName",
             "type": "string"
           },
           "OtherName.OtherNameTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.otherNames[*].otherNameTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "OtherNameTypeDescriptor",
@@ -8633,12 +8735,14 @@
           },
           "OtherName.PersonalTitlePrefix": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.otherNames[*].personalTitlePrefix",
             "type": "string"
           },
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -8657,6 +8761,7 @@
           "RaceDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.races[*].raceDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "RaceDescriptor",
@@ -8665,6 +8770,7 @@
           "SexDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.sexDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "SexDescriptor",
@@ -8672,22 +8778,26 @@
           },
           "Telephone.DoNotPublishIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.telephones[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Telephone.OrderOfPriority": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.telephones[*].orderOfPriority",
             "type": "number"
           },
           "Telephone.TelephoneNumber": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.telephones[*].telephoneNumber",
             "type": "string"
           },
           "Telephone.TelephoneNumberTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.telephones[*].telephoneNumberTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "TelephoneNumberTypeDescriptor",
@@ -8695,6 +8805,7 @@
           },
           "Telephone.TextMessageCapabilityIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.telephones[*].textMessageCapabilityIndicator",
             "type": "boolean"
           }
@@ -9496,9 +9607,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -9587,9 +9710,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -9678,9 +9813,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -9703,12 +9850,14 @@
         "documentPathsMapping": {
           "BoardCertificationIndicator": {
             "isReference": false,
+            "isRequired": false,
             "path": "$._ext.tpdm.boardCertificationIndicator",
             "type": "boolean"
           },
           "CertificationRouteDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$._ext.tpdm.certificationRouteDescriptor",
             "projectName": "TPDM",
             "resourceName": "CertificationRouteDescriptor",
@@ -9716,17 +9865,20 @@
           },
           "CertificationTitle": {
             "isReference": false,
+            "isRequired": false,
             "path": "$._ext.tpdm.certificationTitle",
             "type": "string"
           },
           "CredentialStatusDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$._ext.tpdm.credentialStatusDate",
             "type": "date"
           },
           "CredentialStatusDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$._ext.tpdm.credentialStatusDescriptor",
             "projectName": "TPDM",
             "resourceName": "CredentialStatusDescriptor",
@@ -9735,6 +9887,7 @@
           "EducatorRoleDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$._ext.tpdm.educatorRoleDescriptor",
             "projectName": "TPDM",
             "resourceName": "EducatorRoleDescriptor",
@@ -9743,6 +9896,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -9761,6 +9915,7 @@
           "StudentAcademicRecord": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -9911,97 +10066,6 @@
           ]
         }
       },
-      "ePPProgramPathwayDescriptors": {
-        "allowIdentityUpdates": false,
-        "booleanJsonPaths": [
-        ],
-        "dateTimeJsonPaths": [
-        ],
-        "documentPathsMapping": {
-        },
-        "equalityConstraints": [
-        ],
-        "identityJsonPaths": [
-        ],
-        "isDescriptor": true,
-        "isResourceExtension": false,
-        "isSchoolYearEnumeration": false,
-        "isSubclass": false,
-        "jsonSchemaForInsert": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "An Ed-Fi Descriptor",
-          "properties": {
-            "codeValue": {
-              "description": "The descriptor code value",
-              "maxLength": 50,
-              "minLength": 1,
-              "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string"
-            },
-            "description": {
-              "description": "The descriptor description",
-              "maxLength": 1024,
-              "type": "string"
-            },
-            "effectiveBeginDate": {
-              "description": "The descriptor effective begin date",
-              "format": "date",
-              "type": "string"
-            },
-            "effectiveEndDate": {
-              "description": "The descriptor effective end date",
-              "format": "date",
-              "type": "string"
-            },
-            "namespace": {
-              "description": "The descriptor namespace as a URI",
-              "maxLength": 255,
-              "minLength": 1,
-              "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string"
-            },
-            "shortDescription": {
-              "description": "The descriptor short description",
-              "maxLength": 75,
-              "minLength": 1,
-              "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string"
-            }
-          },
-          "required": [
-            "namespace",
-            "codeValue",
-            "shortDescription"
-          ],
-          "title": "EdFi.Descriptor",
-          "type": "object"
-        },
-        "numericJsonPaths": [
-        ],
-        "queryFieldMapping": {
-          "codeValue": [
-            {
-              "path": "$.codeValue",
-              "type": "string"
-            }
-          ],
-          "namespace": [
-            {
-              "path": "$.namespace",
-              "type": "string"
-            }
-          ]
-        },
-        "resourceName": "EPPProgramPathwayDescriptor",
-        "securityElements": {
-          "EducationOrganization": [
-          ],
-          "Namespace": [
-            "$.namespace"
-          ]
-        }
-      },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
         "booleanJsonPaths": [
@@ -10012,6 +10076,7 @@
           "AccreditationStatusDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.accreditationStatusDescriptor",
             "projectName": "TPDM",
             "resourceName": "AccreditationStatusDescriptor",
@@ -10020,6 +10085,7 @@
           "EducationOrganization": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -10033,6 +10099,7 @@
           "GradeLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "GradeLevelDescriptor",
@@ -10040,17 +10107,20 @@
           },
           "ProgramId": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.programId",
             "type": "string"
           },
           "ProgramName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.programName",
             "type": "string"
           },
           "ProgramTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.programTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ProgramTypeDescriptor",
@@ -10255,9 +10325,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -10346,14 +10428,129 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
               "type": "string"
             }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
+              "type": "string"
+            }
           ]
         },
         "resourceName": "EnglishLanguageExamDescriptor",
+        "securityElements": {
+          "EducationOrganization": [
+          ],
+          "Namespace": [
+            "$.namespace"
+          ]
+        }
+      },
+      "eppProgramPathwayDescriptors": {
+        "allowIdentityUpdates": false,
+        "booleanJsonPaths": [
+        ],
+        "dateTimeJsonPaths": [
+        ],
+        "documentPathsMapping": {
+        },
+        "equalityConstraints": [
+        ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": true,
+        "isResourceExtension": false,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
+        "jsonSchemaForInsert": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "An Ed-Fi Descriptor",
+          "properties": {
+            "codeValue": {
+              "description": "The descriptor code value",
+              "maxLength": 50,
+              "minLength": 1,
+              "pattern": "^(?!\\s).*(?<!\\s)$",
+              "type": "string"
+            },
+            "description": {
+              "description": "The descriptor description",
+              "maxLength": 1024,
+              "type": "string"
+            },
+            "effectiveBeginDate": {
+              "description": "The descriptor effective begin date",
+              "format": "date",
+              "type": "string"
+            },
+            "effectiveEndDate": {
+              "description": "The descriptor effective end date",
+              "format": "date",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "The descriptor namespace as a URI",
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^(?!\\s).*(?<!\\s)$",
+              "type": "string"
+            },
+            "shortDescription": {
+              "description": "The descriptor short description",
+              "maxLength": 75,
+              "minLength": 1,
+              "pattern": "^(?!\\s).*(?<!\\s)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "namespace",
+            "codeValue",
+            "shortDescription"
+          ],
+          "title": "EdFi.Descriptor",
+          "type": "object"
+        },
+        "numericJsonPaths": [
+        ],
+        "queryFieldMapping": {
+          "codeValue": [
+            {
+              "path": "$.codeValue",
+              "type": "string"
+            }
+          ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
+          "namespace": [
+            {
+              "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
+              "type": "string"
+            }
+          ]
+        },
+        "resourceName": "EPPProgramPathwayDescriptor",
         "securityElements": {
           "EducationOrganization": [
           ],
@@ -10437,9 +10634,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -10463,32 +10672,38 @@
         "documentPathsMapping": {
           "AreaOfRefinement": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.areaOfRefinement",
             "type": "string"
           },
           "AreaOfReinforcement": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.areaOfReinforcement",
             "type": "string"
           },
           "Comments": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.comments",
             "type": "string"
           },
           "ElementRatingResult.Rating": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.elementRatingResults[*].rating",
             "type": "number"
           },
           "ElementRatingResult.RatingResultTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.elementRatingResults[*].ratingResultTitle",
             "type": "string"
           },
           "ElementRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.elementRatingResults[*].resultDatatypeTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
@@ -10497,6 +10712,7 @@
           "EvaluationElement": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -10550,6 +10766,7 @@
           "EvaluationElementRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationElementRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationElementRatingLevelDescriptor",
@@ -10558,6 +10775,7 @@
           "EvaluationObjectiveRating": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -10655,6 +10873,7 @@
           },
           "Feedback": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.feedback",
             "type": "string"
           }
@@ -11064,6 +11283,7 @@
           "ElementRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingLevelDescriptor",
@@ -11071,22 +11291,26 @@
           },
           "ElementRatingLevel.MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "ElementRatingLevel.MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "EvaluationElementTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.evaluationElementTitle",
             "type": "string"
           },
           "EvaluationObjective": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -11135,6 +11359,7 @@
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationTypeDescriptor",
@@ -11142,16 +11367,19 @@
           },
           "MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.minRating",
             "type": "number"
           },
           "SortOrder": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.sortOrder",
             "type": "number"
           }
@@ -11401,12 +11629,14 @@
         "documentPathsMapping": {
           "Comments": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.comments",
             "type": "string"
           },
           "EvaluationObjective": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -11455,6 +11685,7 @@
           "EvaluationRating": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -11543,6 +11774,7 @@
           "ObjectiveRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.objectiveRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "ObjectiveRatingLevelDescriptor",
@@ -11550,17 +11782,20 @@
           },
           "ObjectiveRatingResult.Rating": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.objectiveRatingResults[*].rating",
             "type": "number"
           },
           "ObjectiveRatingResult.RatingResultTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.objectiveRatingResults[*].ratingResultTitle",
             "type": "string"
           },
           "ObjectiveRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.objectiveRatingResults[*].resultDatatypeTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
@@ -11908,6 +12143,7 @@
           "Evaluation": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -11950,17 +12186,20 @@
           },
           "EvaluationObjectiveDescription": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.evaluationObjectiveDescription",
             "type": "string"
           },
           "EvaluationObjectiveTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.evaluationObjectiveTitle",
             "type": "string"
           },
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationTypeDescriptor",
@@ -11968,17 +12207,20 @@
           },
           "MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.minRating",
             "type": "number"
           },
           "ObjectiveRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingLevelDescriptor",
@@ -11986,16 +12228,19 @@
           },
           "ObjectiveRatingLevel.MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "ObjectiveRatingLevel.MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "SortOrder": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.sortOrder",
             "type": "number"
           }
@@ -12306,9 +12551,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -12397,9 +12654,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -12488,9 +12757,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -12514,17 +12795,20 @@
         "documentPathsMapping": {
           "ActualDuration": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.actualDuration",
             "type": "number"
           },
           "Comments": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.comments",
             "type": "string"
           },
           "Evaluation": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -12567,12 +12851,14 @@
           },
           "EvaluationDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.evaluationDate",
             "type": "date-time"
           },
           "EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingLevelDescriptor",
@@ -12580,17 +12866,20 @@
           },
           "EvaluationRatingResult.Rating": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.results[*].rating",
             "type": "number"
           },
           "EvaluationRatingResult.RatingResultTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.results[*].ratingResultTitle",
             "type": "string"
           },
           "EvaluationRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
@@ -12599,6 +12888,7 @@
           "EvaluationRatingStatusDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationRatingStatusDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingStatusDescriptor",
@@ -12607,6 +12897,7 @@
           "PerformanceEvaluationRating": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -12654,27 +12945,32 @@
           },
           "Reviewer.FirstName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.reviewers[*].firstName",
             "type": "string"
           },
           "Reviewer.LastSurname": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.reviewers[*].lastSurname",
             "type": "string"
           },
           "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
             "type": "number"
           },
           "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
             "type": "date"
           },
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -12693,6 +12989,7 @@
           "Section": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -13262,9 +13559,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -13287,12 +13596,14 @@
         "documentPathsMapping": {
           "EvaluationDescription": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.evaluationDescription",
             "type": "string"
           },
           "EvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingLevelDescriptor",
@@ -13300,22 +13611,26 @@
           },
           "EvaluationRatingLevel.MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "EvaluationRatingLevel.MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "EvaluationTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.evaluationTitle",
             "type": "string"
           },
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationTypeDescriptor",
@@ -13323,22 +13638,26 @@
           },
           "InterRaterReliabilityScore": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.interRaterReliabilityScore",
             "type": "number"
           },
           "MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.minRating",
             "type": "number"
           },
           "PerformanceEvaluation": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -13601,17 +13920,20 @@
         "documentPathsMapping": {
           "AidAmount": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.aidAmount",
             "type": "number"
           },
           "AidConditionDescription": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.aidConditionDescription",
             "type": "string"
           },
           "AidTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.aidTypeDescriptor",
             "projectName": "TPDM",
             "resourceName": "AidTypeDescriptor",
@@ -13619,22 +13941,26 @@
           },
           "BeginDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.beginDate",
             "type": "date"
           },
           "EndDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.endDate",
             "type": "date"
           },
           "PellGrantRecipient": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.pellGrantRecipient",
             "type": "boolean"
           },
           "Student": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -13843,9 +14169,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -13934,9 +14272,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -14025,9 +14375,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -14051,32 +14413,38 @@
         "documentPathsMapping": {
           "ActualDate": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.actualDate",
             "type": "date"
           },
           "ActualDuration": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.actualDuration",
             "type": "number"
           },
           "ActualTime": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.actualTime",
             "type": "time"
           },
           "Announced": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.announced",
             "type": "boolean"
           },
           "Comments": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.comments",
             "type": "string"
           },
           "CoteachingStyleObservedDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.coteachingStyleObservedDescriptor",
             "projectName": "TPDM",
             "resourceName": "CoteachingStyleObservedDescriptor",
@@ -14085,6 +14453,7 @@
           "PerformanceEvaluation": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -14123,6 +14492,7 @@
           "PerformanceEvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.performanceEvaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "PerformanceEvaluationRatingLevelDescriptor",
@@ -14130,17 +14500,20 @@
           },
           "PerformanceEvaluationRatingResult.Rating": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.results[*].rating",
             "type": "number"
           },
           "PerformanceEvaluationRatingResult.RatingResultTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.results[*].ratingResultTitle",
             "type": "string"
           },
           "PerformanceEvaluationRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "ResultDatatypeTypeDescriptor",
@@ -14149,6 +14522,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -14166,27 +14540,32 @@
           },
           "Reviewer.FirstName": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.reviewers[*].firstName",
             "type": "string"
           },
           "Reviewer.LastSurname": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.reviewers[*].lastSurname",
             "type": "string"
           },
           "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
             "type": "number"
           },
           "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
             "type": "date"
           },
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -14204,6 +14583,7 @@
           },
           "ScheduleDate": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.scheduleDate",
             "type": "date"
           }
@@ -14620,9 +15000,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -14646,6 +15038,7 @@
           "AcademicSubjectDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.academicSubjectDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "AcademicSubjectDescriptor",
@@ -14654,6 +15047,7 @@
           "EducationOrganization": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -14667,6 +15061,7 @@
           "EvaluationPeriodDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.evaluationPeriodDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationPeriodDescriptor",
@@ -14675,6 +15070,7 @@
           "GradeLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "GradeLevelDescriptor",
@@ -14682,12 +15078,14 @@
           },
           "PerformanceEvaluationDescription": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.performanceEvaluationDescription",
             "type": "string"
           },
           "PerformanceEvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "EvaluationRatingLevelDescriptor",
@@ -14695,22 +15093,26 @@
           },
           "PerformanceEvaluationRatingLevel.MaxRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "PerformanceEvaluationRatingLevel.MinRating": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "PerformanceEvaluationTitle": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.performanceEvaluationTitle",
             "type": "string"
           },
           "PerformanceEvaluationTypeDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.performanceEvaluationTypeDescriptor",
             "projectName": "TPDM",
             "resourceName": "PerformanceEvaluationTypeDescriptor",
@@ -14719,6 +15121,7 @@
           "SchoolYear": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -14732,6 +15135,7 @@
           "TermDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": true,
             "path": "$.termDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "TermDescriptor",
@@ -14946,17 +15350,20 @@
         "documentPathsMapping": {
           "CriterionDescription": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.criterionDescription",
             "type": "string"
           },
           "DimensionOrder": {
             "isReference": false,
+            "isRequired": false,
             "path": "$.dimensionOrder",
             "type": "number"
           },
           "EvaluationElement": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "TPDM",
             "referenceJsonPaths": [
               {
@@ -15009,12 +15416,14 @@
           },
           "RubricRating": {
             "isReference": false,
+            "isRequired": true,
             "path": "$.rubricRating",
             "type": "number"
           },
           "RubricRatingLevelDescriptor": {
             "isDescriptor": true,
             "isReference": true,
+            "isRequired": false,
             "path": "$.rubricRatingLevelDescriptor",
             "projectName": "TPDM",
             "resourceName": "RubricRatingLevelDescriptor",
@@ -15307,9 +15716,21 @@
               "type": "string"
             }
           ],
+          "description": [
+            {
+              "path": "$.description",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
+              "type": "string"
+            }
+          ],
+          "shortDescription": [
+            {
+              "path": "$.shortDescription",
               "type": "string"
             }
           ]
@@ -15332,6 +15753,7 @@
           "PostSecondaryInstitution": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -15396,6 +15818,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -15414,6 +15837,7 @@
           "SurveyResponse": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -15563,6 +15987,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": false,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -15638,6 +16063,7 @@
           "Person": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {
@@ -15656,6 +16082,7 @@
           "SurveySectionResponse": {
             "isDescriptor": false,
             "isReference": true,
+            "isRequired": true,
             "projectName": "Ed-Fi",
             "referenceJsonPaths": [
               {

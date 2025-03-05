@@ -2067,6 +2067,10 @@ describe('when building a descriptor', () => {
             "format": "date",
             "type": "string",
           },
+          "id": Object {
+            "description": "",
+            "type": "string",
+          },
           "namespace": Object {
             "description": "The descriptor namespace as a URI",
             "maxLength": 255,
