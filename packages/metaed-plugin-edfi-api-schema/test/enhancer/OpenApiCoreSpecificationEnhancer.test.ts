@@ -97,7 +97,7 @@ describe('when building simple domain entity with all the simple non-collections
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
 
     expect(openApiCoreResources).toMatchInlineSnapshot(`
       Object {
@@ -798,6 +798,184 @@ describe('when building simple domain entity with all the simple non-collections
         ],
       }
     `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {},
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [],
+      }
+    `);
   });
 });
 
@@ -839,7 +1017,7 @@ describe('when building simple domain entity with all the simple collections', (
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
     expect(openApiCoreResources.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
@@ -1428,6 +1606,184 @@ describe('when building simple domain entity with all the simple collections', (
         },
       }
     `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {},
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [],
+      }
+    `);
   });
 });
 
@@ -1475,7 +1831,7 @@ describe('when building a domain entity referencing another referencing another 
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
     expect(openApiCoreResources.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/classPeriods": Object {
@@ -2889,6 +3245,184 @@ describe('when building a domain entity referencing another referencing another 
         },
       }
     `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {},
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [],
+      }
+    `);
   });
 });
 
@@ -2937,7 +3471,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
     expect(openApiCoreResources.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/courseOfferings": Object {
@@ -4394,6 +4928,184 @@ describe('when building a domain entity referencing CourseOffering with an impli
         },
       }
     `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {},
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [],
+      }
+    `);
   });
 });
 
@@ -4454,7 +5166,7 @@ describe('when building domain entity with nested choice and inline commons', ()
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
     expect(openApiCoreResources.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/educationContents": Object {
@@ -4909,6 +5621,599 @@ describe('when building domain entity with nested choice and inline commons', ()
         },
       }
     `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {
+            "EdFi_ContentClass": Object {
+              "description": "An Ed-Fi Descriptor",
+              "properties": Object {
+                "codeValue": Object {
+                  "description": "The descriptor code value",
+                  "maxLength": 50,
+                  "minLength": 1,
+                  "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
+                  "type": "string",
+                },
+                "description": Object {
+                  "description": "The descriptor description",
+                  "maxLength": 1024,
+                  "type": "string",
+                },
+                "effectiveBeginDate": Object {
+                  "description": "The descriptor effective begin date",
+                  "format": "date",
+                  "type": "string",
+                },
+                "effectiveEndDate": Object {
+                  "description": "The descriptor effective end date",
+                  "format": "date",
+                  "type": "string",
+                },
+                "id": Object {
+                  "description": "",
+                  "type": "string",
+                },
+                "namespace": Object {
+                  "description": "The descriptor namespace as a URI",
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
+                  "type": "string",
+                },
+                "shortDescription": Object {
+                  "description": "The descriptor short description",
+                  "maxLength": 75,
+                  "minLength": 1,
+                  "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "namespace",
+                "codeValue",
+                "shortDescription",
+              ],
+              "type": "object",
+            },
+          },
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {
+          "/edfi/contentClassDescriptors": Object {
+            "get": Object {
+              "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
+              "operationId": "getContentClass",
+              "parameters": Array [
+                Object {
+                  "$ref": "#/components/parameters/offset",
+                },
+                Object {
+                  "$ref": "#/components/parameters/limit",
+                },
+                Object {
+                  "$ref": "#/components/parameters/MinChangeVersion",
+                },
+                Object {
+                  "$ref": "#/components/parameters/MaxChangeVersion",
+                },
+                Object {
+                  "$ref": "#/components/parameters/totalCount",
+                },
+                Object {
+                  "description": "",
+                  "in": "query",
+                  "name": "id",
+                  "schema": Object {
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "description": "A code or abbreviation that is used to refer to the descriptor.",
+                  "in": "query",
+                  "name": "codeValue",
+                  "schema": Object {
+                    "maxLength": 50,
+                    "type": "string",
+                  },
+                  "x-Ed-Fi-isIdentity": true,
+                },
+                Object {
+                  "description": "The description of the descriptor.",
+                  "in": "query",
+                  "name": "description",
+                  "schema": Object {
+                    "maxLength": 1024,
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "description": "The beginning date of the period when the descriptor is in effect. If omitted, the default is immediate effectiveness.",
+                  "in": "query",
+                  "name": "effectiveBeginDate",
+                  "schema": Object {
+                    "format": "date",
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "description": "The end date of the period when the descriptor is in effect.",
+                  "in": "query",
+                  "name": "effectiveEndDate",
+                  "schema": Object {
+                    "format": "date",
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "description": "A globally unique namespace that identifies this descriptor set. Author is strongly encouraged to use the Universal Resource Identifier (http, ftp, file, etc.) for the source of the descriptor definition. Best practice is for this source to be the descriptor file itself, so that it can be machine-readable and be fetched in real-time, if necessary.",
+                  "in": "query",
+                  "name": "namespace",
+                  "schema": Object {
+                    "maxLength": 255,
+                    "type": "string",
+                  },
+                  "x-Ed-Fi-isIdentity": true,
+                },
+                Object {
+                  "description": "A shortened description for the descriptor.",
+                  "in": "query",
+                  "name": "shortDescription",
+                  "schema": Object {
+                    "maxLength": 75,
+                    "type": "string",
+                  },
+                },
+              ],
+              "responses": Object {
+                "200": Object {
+                  "content": Object {
+                    "application/json": Object {
+                      "schema": Object {
+                        "items": Object {
+                          "$ref": "#/components/schemas/EdFi_ContentClass",
+                        },
+                        "type": "array",
+                      },
+                    },
+                  },
+                  "description": "The requested resource was successfully retrieved.",
+                },
+                "304": Object {
+                  "$ref": "#/components/responses/NotModified",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFoundUseSnapshot",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Retrieves specific resources using the resource's property values (using the \\"Get\\" pattern).",
+              "tags": Array [
+                "contentClassDescriptors",
+              ],
+            },
+            "post": Object {
+              "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
+              "operationId": "postContentClass",
+              "requestBody": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "$ref": "#/components/schemas/EdFi_ContentClass",
+                    },
+                  },
+                },
+                "description": "The JSON representation of the ContentClass resource to be created or updated.",
+                "required": true,
+                "x-bodyName": "ContentClass",
+              },
+              "responses": Object {
+                "200": Object {
+                  "$ref": "#/components/responses/Updated",
+                },
+                "201": Object {
+                  "$ref": "#/components/responses/Created",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "405": Object {
+                  "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+                },
+                "409": Object {
+                  "$ref": "#/components/responses/Conflict",
+                },
+                "412": Object {
+                  "$ref": "#/components/responses/PreconditionFailed",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+              "tags": Array [
+                "contentClassDescriptors",
+              ],
+            },
+          },
+          "/edfi/contentClassDescriptors/{id}": Object {
+            "delete": Object {
+              "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
+              "operationId": "deleteContentClassesById",
+              "parameters": Array [
+                Object {
+                  "description": "A resource identifier that uniquely identifies the resource.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": Object {
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "$ref": "#/components/parameters/If-None-Match",
+                },
+              ],
+              "responses": Object {
+                "204": Object {
+                  "$ref": "#/components/responses/Updated",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFound",
+                },
+                "405": Object {
+                  "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+                },
+                "409": Object {
+                  "$ref": "#/components/responses/Conflict",
+                },
+                "412": Object {
+                  "$ref": "#/components/responses/PreconditionFailed",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Deletes an existing resource using the resource identifier.",
+              "tags": Array [
+                "contentClassDescriptors",
+              ],
+            },
+            "get": Object {
+              "description": "This GET operation retrieves a resource by the specified resource identifier.",
+              "operationId": "getContentClassesById",
+              "parameters": Array [
+                Object {
+                  "description": "A resource identifier that uniquely identifies the resource.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": Object {
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "$ref": "#/components/parameters/If-None-Match",
+                },
+                Object {
+                  "description": "Indicates if the configured Snapshot should be used.",
+                  "in": "header",
+                  "name": "Use-Snapshot",
+                  "schema": Object {
+                    "default": false,
+                    "type": "boolean",
+                  },
+                },
+              ],
+              "responses": Object {
+                "200": Object {
+                  "content": Object {
+                    "application/json": Object {
+                      "schema": Object {
+                        "$ref": "#/components/schemas/EdFi_ContentClass",
+                      },
+                    },
+                  },
+                  "description": "The requested resource was successfully retrieved.",
+                },
+                "304": Object {
+                  "$ref": "#/components/responses/NotModified",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFoundUseSnapshot",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Retrieves a specific resource using the resource's identifier (using the \\"Get By Id\\" pattern).",
+              "tags": Array [
+                "contentClassDescriptors",
+              ],
+            },
+            "put": Object {
+              "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
+              "operationId": "putContentClass",
+              "parameters": Array [
+                Object {
+                  "description": "A resource identifier that uniquely identifies the resource.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": Object {
+                    "type": "string",
+                  },
+                },
+                Object {
+                  "$ref": "#/components/parameters/If-None-Match",
+                },
+                Object {
+                  "description": "Indicates if the configured Snapshot should be used.",
+                  "in": "header",
+                  "name": "Use-Snapshot",
+                  "schema": Object {
+                    "default": false,
+                    "type": "boolean",
+                  },
+                },
+              ],
+              "requestBody": Object {
+                "content": Object {
+                  "application/json": Object {
+                    "schema": Object {
+                      "$ref": "#/components/schemas/EdFi_ContentClass",
+                    },
+                  },
+                },
+                "description": "The JSON representation of the ContentClass resource to be created or updated.",
+              },
+              "responses": Object {
+                "204": Object {
+                  "$ref": "#/components/responses/Updated",
+                },
+                "400": Object {
+                  "$ref": "#/components/responses/BadRequest",
+                },
+                "401": Object {
+                  "$ref": "#/components/responses/Unauthorized",
+                },
+                "403": Object {
+                  "$ref": "#/components/responses/Forbidden",
+                },
+                "404": Object {
+                  "$ref": "#/components/responses/NotFound",
+                },
+                "405": Object {
+                  "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.",
+                },
+                "409": Object {
+                  "$ref": "#/components/responses/Conflict",
+                },
+                "412": Object {
+                  "$ref": "#/components/responses/PreconditionFailed",
+                },
+                "500": Object {
+                  "$ref": "#/components/responses/Error",
+                },
+              },
+              "summary": "Updates a resource based on the resource identifier.",
+              "tags": Array [
+                "contentClassDescriptors",
+              ],
+            },
+          },
+        },
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [
+          Object {
+            "description": "doc",
+            "name": "contentClassDescriptors",
+          },
+        ],
+      }
+    `);
   });
 });
 
@@ -4939,7 +6244,7 @@ describe('when building domain entity with scalar collection named with prefix o
   });
 
   it('should be correct OpenApiSpecification', () => {
-    const { openApiCoreResources } = namespace.data.edfiApiSchema;
+    const { openApiCoreResources, openApiCoreDescriptors } = namespace.data.edfiApiSchema;
     expect(openApiCoreResources.paths).toMatchInlineSnapshot(`
       Object {
         "/edfi/domainEntityNames": Object {
@@ -5303,6 +6608,184 @@ describe('when building domain entity with scalar collection named with prefix o
           ],
           "type": "object",
         },
+      }
+    `);
+    expect(openApiCoreDescriptors).toMatchInlineSnapshot(`
+      Object {
+        "components": Object {
+          "parameters": Object {
+            "If-None-Match": Object {
+              "description": "The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.",
+              "in": "header",
+              "name": "If-None-Match",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "MaxChangeVersion": Object {
+              "description": "Used in synchronization to set sequence maximum ChangeVersion",
+              "in": "query",
+              "name": "maxChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "MinChangeVersion": Object {
+              "description": "Used in synchronization to set sequence minimum ChangeVersion",
+              "in": "query",
+              "name": "minChangeVersion",
+              "schema": Object {
+                "format": "int64",
+                "type": "integer",
+              },
+            },
+            "fields": Object {
+              "description": "Specifies a subset of properties that should be returned for each entity (e.g. \\"property1,collection1(collProp1,collProp2)\\").",
+              "in": "query",
+              "name": "fields",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "limit": Object {
+              "description": "Indicates the maximum number of items that should be returned in the results.",
+              "in": "query",
+              "name": "limit",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "maximum": 500,
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "numberOfPartitions": Object {
+              "description": "The number of evenly distributed partitions to provide for client-side parallel processing. If unspecified, a reasonable set of partitions will be determined based on the total number of accessible items.",
+              "in": "query",
+              "name": "number",
+              "schema": Object {
+                "format": "int32",
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer",
+              },
+            },
+            "offset": Object {
+              "description": "Indicates how many items should be skipped before returning results.",
+              "in": "query",
+              "name": "offset",
+              "schema": Object {
+                "format": "int32",
+                "type": "integer",
+              },
+            },
+            "pageSize": Object {
+              "description": "The maximum number of items to retrieve in the page. For use with pageToken (cursor paging) only.",
+              "in": "query",
+              "name": "pageSize",
+              "schema": Object {
+                "default": 25,
+                "format": "int32",
+                "minimum": 0,
+                "type": "integer",
+              },
+            },
+            "pageToken": Object {
+              "description": "The token of the page to retrieve, obtained either from the \\"Next-Page-Token\\" header of the previous request, or from the \\"partitions\\" endpoint for the resource. Cannot be used with limit/offset paging.",
+              "in": "query",
+              "name": "pageToken",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "queryExpression": Object {
+              "description": "Specifies a query filter expression for the request. Currently only supports range-based queries on dates and numbers (e.g. \\"schoolId:[255901000...255901002]\\" and \\"BeginDate:[2016-03-07...2016-03-10]\\").",
+              "in": "query",
+              "name": "q",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+            "totalCount": Object {
+              "description": "Indicates if the total number of items available should be returned in the 'Total-Count' header of the response.  If set to false, 'Total-Count' header will not be provided. Must be false when using cursor paging (with pageToken).",
+              "in": "query",
+              "name": "totalCount",
+              "schema": Object {
+                "default": false,
+                "type": "boolean",
+              },
+            },
+          },
+          "responses": Object {
+            "BadRequest": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Bad Request. The request was invalid and cannot be completed. See the response body for specific validation errors. This will typically be an issue with the query parameters or their values.",
+            },
+            "Conflict": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.",
+            },
+            "Created": Object {
+              "description": "The resource was created.  An ETag value is available in the ETag header, and the location of the resource is available in the Location header of the response.",
+            },
+            "Deleted": Object {
+              "description": "The resource was successfully deleted.",
+            },
+            "Error": Object {
+              "content": Object {
+                "application/json": Object {},
+              },
+              "description": "An unhandled error occurred on the server. See the response body for details.",
+            },
+            "Forbidden": Object {
+              "description": "Forbidden. The request cannot be completed in the current authorization context. Contact your administrator if you believe this operation should be allowed.",
+            },
+            "NotFound": Object {
+              "description": "The resource could not be found.",
+            },
+            "NotFoundUseSnapshot": Object {
+              "description": "The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.",
+            },
+            "NotModified": Object {
+              "description": "The resource's current server-side ETag value matched the If-None-Match header value supplied with the request indicating the resource has not been modified.",
+            },
+            "PreconditionFailed": Object {
+              "description": "The resource's current server-side ETag value does not match the supplied If-Match header value in the request. This indicates the resource has been modified by another consumer.",
+            },
+            "Unauthorized": Object {
+              "description": "Unauthorized. The request requires authentication. The OAuth bearer token was either not provided or is invalid. The operation may succeed once authentication has been successfully completed.",
+            },
+            "Updated": Object {
+              "description": "The resource was updated.  An updated ETag value is available in the ETag header of the response.",
+            },
+          },
+          "schemas": Object {},
+        },
+        "info": Object {
+          "contact": Object {
+            "url": "https://www.ed-fi.org/what-is-ed-fi/contact/",
+          },
+          "description": "The Ed-Fi DMS API enables applications to read and write education data stored in an Ed-Fi DMS through a secure REST interface. 
+      ***
+       > *Note: Consumers of DMS information should sanitize all data for display and storage. DMS provides reasonable safeguards against cross-site scripting attacks and other malicious content, but the platform does not and cannot guarantee that the data it contains is free of all potentially harmful content.* 
+      ***
+      ",
+          "title": "Ed-Fi Data Management Service API",
+          "version": "1",
+        },
+        "openapi": "3.0.0",
+        "paths": Object {},
+        "servers": Array [
+          Object {
+            "url": "",
+          },
+        ],
+        "tags": Array [],
       }
     `);
   });

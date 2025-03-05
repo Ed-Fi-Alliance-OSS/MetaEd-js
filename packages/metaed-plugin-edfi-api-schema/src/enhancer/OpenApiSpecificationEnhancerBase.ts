@@ -9,8 +9,13 @@ import {
   ResponsesObject,
   ParameterObject,
   ReferenceObject,
+  PathsObject,
+  Schemas,
+  TagObject,
 } from '../model/OpenApiTypes';
 import { pluralize } from '../Utility';
+import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
+import { SchemasPathsTags } from '../model/SchemasPathsTags';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -645,4 +650,50 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
     summary: 'Deletes an existing resource using the resource identifier.',
     tags: [endpointName],
   };
+}
+
+/**
+ * Creates the schemas, paths and tags from a given TopLevelEntity
+ */
+export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPathsTags {
+  const schemas: Schemas = {};
+  const paths: PathsObject = {};
+  const tags: TagObject[] = [];
+
+  const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
+  const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+  // Add to paths without "id"
+  paths[`/${projectEndpointName}/${endpointName}`] = {
+    post: createPostSectionFor(entity, endpointName),
+    get: createGetByQuerySectionFor(entity, endpointName),
+  };
+
+  paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
+    get: createGetByIdSectionFor(entity, endpointName),
+    put: createPutSectionFor(entity, endpointName),
+    delete: createDeleteSectionFor(entity, endpointName),
+  };
+
+  const {
+    openApiReferenceComponent,
+    openApiReferenceComponentPropertyName,
+    openApiRequestBodyComponent,
+    openApiRequestBodyComponentPropertyName,
+  } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+  // Add to Schemas
+  if (openApiReferenceComponentPropertyName !== '') {
+    // Not all entities have a reference component (e.g. descriptors, school year enumeration)
+    schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+  }
+  schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
+
+  // Add to global tags
+  tags.push({
+    name: endpointName,
+    description: entity.documentation,
+  });
+
+  return { schemas, paths, tags };
 }
