@@ -7,7 +7,7 @@ import {
 } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
-import { createSchemasPathsTagsFrom } from './OpenApiSpecificationEnhancerBase';
+import { createSchemasPathsTagsFrom, sortTagsByName } from './OpenApiSpecificationEnhancerBase';
 import { Exts } from '../model/OpenApiExtensionFragments';
 import { SchemasPathsTags } from '../model/SchemasPathsTags';
 
@@ -66,7 +66,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       newPaths: descriptorSchemaPathsTags.paths,
       newSchemas: descriptorSchemaPathsTags.schemas,
       exts: {},
-      newTags: descriptorSchemaPathsTags.tags,
+      newTags: sortTagsByName(descriptorSchemaPathsTags.tags),
     };
   });
   return {

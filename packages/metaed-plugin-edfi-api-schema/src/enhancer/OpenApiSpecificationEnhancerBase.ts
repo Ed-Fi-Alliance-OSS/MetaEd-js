@@ -697,3 +697,14 @@ export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPaths
 
   return { schemas, paths, tags };
 }
+
+/**
+ * Sorts tag objects by name, returning a new array.
+ */
+export function sortTagsByName(tags: TagObject[]): TagObject[] {
+  const sortedTags = [...tags];
+
+  sortedTags.sort((a, b) => a.name.localeCompare(b.name));
+
+  return sortedTags;
+}

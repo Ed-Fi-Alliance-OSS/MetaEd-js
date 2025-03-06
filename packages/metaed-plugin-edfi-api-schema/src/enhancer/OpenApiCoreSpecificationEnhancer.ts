@@ -11,6 +11,7 @@ import {
   createHardcodedParameterResponses,
   createHardcodedComponentParameters,
   createSchemasPathsTagsFrom,
+  sortTagsByName,
 } from './OpenApiSpecificationEnhancerBase';
 import { SchemasPathsTags } from '../model/SchemasPathsTags';
 
@@ -40,7 +41,7 @@ function openApiDocumentFrom({ schemas, paths, tags }: SchemasPathsTags): Docume
     ],
     paths,
     components,
-    tags,
+    tags: sortTagsByName(tags),
   };
   return openApiDocument;
 }
