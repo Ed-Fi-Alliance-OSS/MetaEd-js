@@ -33,7 +33,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
-import { enhance } from '../../src/enhancer/OpenApiCollectionReferenceComponentEnhancer';
+import { enhance } from '../../src/enhancer/OpenApiRequestBodyCollectionComponentEnhancer';
 
 describe('when building simple domain entity with all the simple non-collections', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -349,11 +349,11 @@ describe('when building simple domain entity with all the simple collections', (
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_DomainEntityName_OptionalBooleanProperty",
-          Object {
+        Object {
+          "propertyName": "EdFi_DomainEntityName_OptionalBooleanProperty",
+          "schema": Object {
             "properties": Object {
               "optionalBooleanProperty": Object {
                 "description": "doc1",
@@ -365,10 +365,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredCurrencyProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredCurrencyProperty",
+          "schema": Object {
             "properties": Object {
               "requiredCurrencyProperty": Object {
                 "description": "doc2",
@@ -380,10 +380,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_OptionalDecimalProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_OptionalDecimalProperty",
+          "schema": Object {
             "properties": Object {
               "optionalDecimalProperty": Object {
                 "description": "doc3",
@@ -395,10 +395,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredDurationProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredDurationProperty",
+          "schema": Object {
             "properties": Object {
               "requiredDurationProperty": Object {
                 "description": "doc4",
@@ -410,10 +410,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_OptionalPercentProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_OptionalPercentProperty",
+          "schema": Object {
             "properties": Object {
               "optionalPercentProperty": Object {
                 "description": "doc5",
@@ -425,10 +425,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredDateProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredDateProperty",
+          "schema": Object {
             "properties": Object {
               "requiredDateProperty": Object {
                 "description": "doc6",
@@ -441,10 +441,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredDatetimeProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredDatetimeProperty",
+          "schema": Object {
             "properties": Object {
               "requiredDatetimeProperty": Object {
                 "description": "doc7",
@@ -457,10 +457,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredIntegerProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredIntegerProperty",
+          "schema": Object {
             "properties": Object {
               "requiredIntegerProperty": Object {
                 "description": "doc8",
@@ -474,10 +474,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_OptionalShortProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_OptionalShortProperty",
+          "schema": Object {
             "properties": Object {
               "optionalShortProperty": Object {
                 "description": "doc9",
@@ -489,10 +489,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredStringProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredStringProperty",
+          "schema": Object {
             "properties": Object {
               "requiredStringProperty": Object {
                 "description": "doc11",
@@ -506,10 +506,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_RequiredTimeProperty",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RequiredTimeProperty",
+          "schema": Object {
             "properties": Object {
               "requiredTimeProperty": Object {
                 "description": "doc12",
@@ -522,10 +522,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_SchoolYear",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_SchoolYear",
+          "schema": Object {
             "properties": Object {
               "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
@@ -539,10 +539,10 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_DomainEntityName_OptionalYear",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_OptionalYear",
+          "schema": Object {
             "properties": Object {
               "optionalYear": Object {
                 "description": "doc14",
@@ -554,7 +554,7 @@ describe('when building simple domain entity with all the simple collections', (
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1023,11 +1023,11 @@ describe('when building domain entity with nested choice and inline commons', ()
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_EducationContentSource_URI",
-          Object {
+        Object {
+          "propertyName": "EdFi_EducationContentSource_URI",
+          "schema": Object {
             "properties": Object {
               "derivativeSourceURI": Object {
                 "description": "doc",
@@ -1040,10 +1040,10 @@ describe('when building domain entity with nested choice and inline commons', ()
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_EducationContent_RequiredURI",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_EducationContent_RequiredURI",
+          "schema": Object {
             "properties": Object {
               "requiredURI": Object {
                 "description": "doc",
@@ -1056,7 +1056,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1121,11 +1121,11 @@ describe('when building domain entity with scalar collection named with prefix o
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_EducationContent_EducationContentSuffixName",
-          Object {
+        Object {
+          "propertyName": "EdFi_EducationContent_EducationContentSuffixName",
+          "schema": Object {
             "properties": Object {
               "suffixName": Object {
                 "description": "doc",
@@ -1138,7 +1138,7 @@ describe('when building domain entity with scalar collection named with prefix o
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1347,11 +1347,11 @@ describe('when building domain entity with a simple common collection', () => {
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_Assessment_AssessmentIdentificationCode",
-          Object {
+        Object {
+          "propertyName": "EdFi_Assessment_AssessmentIdentificationCode",
+          "schema": Object {
             "properties": Object {
               "assessmentIdentificationSystemDescriptor": Object {
                 "description": "doc",
@@ -1369,7 +1369,7 @@ describe('when building domain entity with a simple common collection', () => {
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1455,11 +1455,11 @@ describe('when building domain entity subclass with common collection and descri
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
-          Object {
+        Object {
+          "propertyName": "EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
+          "schema": Object {
             "properties": Object {
               "educationOrganizationIdentificationSystemDescriptor": Object {
                 "description": "doc",
@@ -1477,7 +1477,7 @@ describe('when building domain entity subclass with common collection and descri
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1552,11 +1552,11 @@ describe('when building association with a common collection in a common collect
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_StudentEducationOrganizationAssociation_Address",
-          Object {
+        Object {
+          "propertyName": "EdFi_StudentEducationOrganizationAssociation_Address",
+          "schema": Object {
             "properties": Object {
               "periods": Object {
                 "items": Object {
@@ -1577,10 +1577,10 @@ describe('when building association with a common collection in a common collect
             ],
             "type": "object",
           },
-        ],
-        Array [
-          "EdFi_StudentEducationOrganizationAssociation_Address_Period",
-          Object {
+        },
+        Object {
+          "propertyName": "EdFi_StudentEducationOrganizationAssociation_Address_Period",
+          "schema": Object {
             "properties": Object {
               "beginDate": Object {
                 "description": "doc",
@@ -1596,7 +1596,7 @@ describe('when building association with a common collection in a common collect
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1725,14 +1725,15 @@ describe('when building domain entity with a descriptor collection with role nam
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_Assessment_AssessedGradeLevel",
-          Object {
+        Object {
+          "propertyName": "EdFi_Assessment_AssessedGradeLevel",
+          "schema": Object {
             "properties": Object {
               "gradeLevelDescriptor": Object {
                 "description": "doc",
+                "maxLength": 306,
                 "type": "string",
               },
             },
@@ -1741,7 +1742,7 @@ describe('when building domain entity with a descriptor collection with role nam
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -1912,11 +1913,11 @@ describe('when building domain entity with a common and a common collection with
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_Assessment_AssessmentScore",
-          Object {
+        Object {
+          "propertyName": "EdFi_Assessment_AssessmentScore",
+          "schema": Object {
             "properties": Object {
               "minimumScore": Object {
                 "description": "doc",
@@ -1929,7 +1930,7 @@ describe('when building domain entity with a common and a common collection with
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });
@@ -2418,11 +2419,11 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiCollectionReferenceComponents).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "EdFi_StudentCohort_CohortYear",
-          Object {
+        Object {
+          "propertyName": "EdFi_StudentCohort_CohortYear",
+          "schema": Object {
             "properties": Object {
               "schoolYearTypeReference": Object {
                 "description": "A school year enumeration",
@@ -2442,7 +2443,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
             ],
             "type": "object",
           },
-        ],
+        },
       ]
     `);
   });

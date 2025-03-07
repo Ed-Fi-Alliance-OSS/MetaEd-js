@@ -29,7 +29,7 @@ import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonS
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
-import { enhance as OpenApiCollectionReferenceComponentEnhancer } from '../../src/enhancer/OpenApiCollectionReferenceComponentEnhancer';
+import { enhance as openApiRequestBodyCollectionComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyCollectionComponentEnhancer';
 import { enhance as openApiReferenceComponentEnhancer } from '../../src/enhancer/OpenApiReferenceComponentEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
@@ -59,7 +59,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   queryFieldMappingEnhancer(metaEd);
   openApiRequestBodyComponentEnhancer(metaEd);
   openApiReferenceComponentEnhancer(metaEd);
-  OpenApiCollectionReferenceComponentEnhancer(metaEd);
+  openApiRequestBodyCollectionComponentEnhancer(metaEd);
 }
 
 describe('when building simple domain entity with all the simple non-collections', () => {

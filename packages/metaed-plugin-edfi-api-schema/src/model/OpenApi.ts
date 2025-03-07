@@ -23,14 +23,6 @@ export type OpenApiReference = {
 };
 
 /**
- * The OpenApiProperty defines both a schema and a reference name for common/ descriptor collection reference
- */
-export type OpenApiCollectionReferenceSchema = {
-  schema: OpenApiObject;
-  referenceName: string;
-};
-
-/**
  * The OpenApiProperty representing an array, which has items
  */
 export type OpenApiArray = {

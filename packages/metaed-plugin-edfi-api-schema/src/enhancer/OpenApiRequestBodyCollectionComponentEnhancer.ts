@@ -9,7 +9,7 @@ import {
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
-import { OpenApiCollectionReferenceSchema, OpenApiObject, OpenApiProperty } from '../model/OpenApi';
+import { OpenApiObject, OpenApiProperty } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { singularize, uncapitalize } from '../Utility';
 import {
@@ -20,8 +20,9 @@ import {
   openApiPropertyForNonReference,
 } from './OpenApiComponentEnhancerBase';
 import { openApiObjectForScalarCommonProperty } from './OpenApiRequestBodyComponentEnhancer';
+import { OpenApiRequestBodyCollectionSchema } from '../model/OpenApiRequestBodyCollectionSchema';
 
-const enhancerName = 'OpenApiCollectionReferenceComponentEnhancer';
+const enhancerName = 'OpenApiRequestBodyCollectionComponentEnhancer';
 
 /**
  * Returns an OpenApi schema that specifies the API body element shape
@@ -69,70 +70,70 @@ export function openApiCollectionReferenceSchemaFor(
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
   generatedReferenceName: string = '',
-): OpenApiCollectionReferenceSchema[] | [] {
+): OpenApiRequestBodyCollectionSchema[] {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  let referenceSchemas: OpenApiCollectionReferenceSchema[] = [];
-  const referenceName: string =
+  let referenceSchemas: OpenApiRequestBodyCollectionSchema[] = [];
+  const propertyName: string =
     generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property);
 
   if (apiMapping.isReferenceCollection) {
     return [];
   }
   if (apiMapping.isDescriptorCollection) {
-    const schemaDetails: OpenApiCollectionReferenceSchema = {
+    const schemaDetails: OpenApiRequestBodyCollectionSchema = {
       schema: openApiDescriptorCollectionReferenceSchemaFor(property, propertyModifier),
-      referenceName,
+      propertyName,
     };
     referenceSchemas.push(schemaDetails);
     return referenceSchemas;
   }
   if (apiMapping.isCommonCollection) {
-    const scalarCommonProperty: OpenApiObject = openApiObjectForScalarCommonProperty(
+    const scalarCommonOpenApiObject: OpenApiObject = openApiObjectForScalarCommonProperty(
       property as CommonProperty,
       propertyModifier,
       schoolYearOpenApis,
     );
-    const schemaDetails: OpenApiCollectionReferenceSchema = {
-      schema: scalarCommonProperty,
-      referenceName,
+    const openApiRequestBodyCollectionSchema: OpenApiRequestBodyCollectionSchema = {
+      schema: scalarCommonOpenApiObject,
+      propertyName,
     };
-    referenceSchemas.push(schemaDetails);
+    referenceSchemas.push(openApiRequestBodyCollectionSchema);
     (property as CommonProperty).referencedEntity.properties.forEach((childProperty) => {
-      const childReferenceName: string = `${referenceName}_${childProperty.fullPropertyName}`;
-      const childSchemaDetails: OpenApiCollectionReferenceSchema[] | [] = openApiCollectionReferenceSchemaFor(
+      const childReferenceName: string = `${propertyName}_${childProperty.fullPropertyName}`;
+      const openApiRequestBodyCollectionSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
         childProperty,
         propertyModifier,
         schoolYearOpenApis,
         childReferenceName,
       );
-      referenceSchemas = referenceSchemas.concat(childSchemaDetails);
+      referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
     });
     return referenceSchemas;
   }
   if (property.isRequiredCollection || property.isOptionalCollection) {
-    const schemaDetails: OpenApiCollectionReferenceSchema = {
+    const openApiRequestBodyCollectionSchema: OpenApiRequestBodyCollectionSchema = {
       schema: openApiNonReferenceCollectionSchemaFor(property, propertyModifier, schoolYearOpenApis),
-      referenceName,
+      propertyName,
     };
-    referenceSchemas.push(schemaDetails);
+    referenceSchemas.push(openApiRequestBodyCollectionSchema);
     return referenceSchemas;
   }
   return [];
 }
 
 /**
- * Builds an array of referenced schemas
+ * Builds an array of collection schemas
  */
-function buildOpenApiReferenceSchemaList(
+function buildOpenApiCollectionSchemaList(
   entityForOpenApi: TopLevelEntity,
   schoolYearOpenApis: SchoolYearOpenApis,
-): OpenApiCollectionReferenceSchema[] {
-  const schemas: OpenApiCollectionReferenceSchema[] = [];
+): OpenApiRequestBodyCollectionSchema[] {
+  const schemas: OpenApiRequestBodyCollectionSchema[] = [];
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedApiProperties.forEach(({ property, propertyModifier }) => {
-    const referenceSchemas: OpenApiCollectionReferenceSchema[] = openApiCollectionReferenceSchemaFor(
+    const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,
       schoolYearOpenApis,
@@ -146,7 +147,7 @@ function buildOpenApiReferenceSchemaList(
 }
 
 /**
- * This enhancer creates a set of schema components for collection references for each MetaEd entity.
+ * This enhancer creates a set of schema components for request body collections for each MetaEd entity.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
@@ -160,14 +161,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'domainEntityExtension',
   ).forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
-    const schemas: OpenApiCollectionReferenceSchema[] = buildOpenApiReferenceSchemaList(
+    entityApiOpenApiData.openApiRequestBodyCollectionComponents = buildOpenApiCollectionSchemaList(
       entity as TopLevelEntity,
       schoolYearOpenApis,
     );
-    schemas.forEach((schemaDetail) => {
-      const referenceItem: [string, OpenApiObject] = [schemaDetail.referenceName, schemaDetail.schema];
-      entityApiOpenApiData.openApiCollectionReferenceComponents.push(referenceItem);
-    });
   });
 
   return {
