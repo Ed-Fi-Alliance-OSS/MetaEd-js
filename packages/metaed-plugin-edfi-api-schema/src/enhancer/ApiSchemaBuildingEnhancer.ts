@@ -208,8 +208,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         };
         return;
       }
-      const { endpointName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceNameMapping[domainEntity.metaEdName] = endpointName;
+      const { endpointName, resourceName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = { ...buildResourceSchema(domainEntity as TopLevelEntity), isSubclass: false };
     });
@@ -223,29 +223,29 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         };
         return;
       }
-      const { endpointName } = association.data.edfiApiSchema as EntityApiSchemaData;
-      resourceNameMapping[association.metaEdName] = endpointName;
+      const { endpointName, resourceName } = association.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = { ...buildResourceSchema(association as TopLevelEntity), isSubclass: false };
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity) => {
-      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceNameMapping[entity.metaEdName] = endpointName;
+      const { endpointName, resourceName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = { ...buildResourceSchema(entity as TopLevelEntity), isSubclass: false };
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {
-      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceNameMapping[entity.metaEdName] = endpointName;
+      const { endpointName, resourceName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = buildDomainEntitySubclassResourceSchema(entity as TopLevelEntity);
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'associationSubclass').forEach((entity) => {
-      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceNameMapping[entity.metaEdName] = endpointName;
+      const { endpointName, resourceName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = buildAssociationSubclassResourceSchema(entity as TopLevelEntity);
     });
