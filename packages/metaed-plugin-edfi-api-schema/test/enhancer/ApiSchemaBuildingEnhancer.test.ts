@@ -3372,7 +3372,7 @@ describe('when domain entity extension references domain entity in different nam
         "additionalProperties": false,
         "description": "",
         "properties": Object {
-          "_ext": Object {
+          "_ext.edfi": Object {
             "additionalProperties": true,
             "description": "optional extension collection",
             "properties": Object {

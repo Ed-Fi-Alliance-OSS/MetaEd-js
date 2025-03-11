@@ -17374,7 +17374,7 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext": {
+            "_ext.tpdm": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
@@ -23197,7 +23197,7 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext": {
+            "_ext.tpdm": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
@@ -23436,7 +23436,7 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext": {
+            "_ext.tpdm": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
