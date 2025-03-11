@@ -65,11 +65,15 @@ export function openApiCollectionReferenceNameFor(
   propertiesChain: EntityProperty[],
 ): string {
   const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
-  const parentEntitiesNameChain =
+  const parentEntitiesNameChain: string =
     propertiesChain.length > 0
       ? propertiesChain.map((chainedProperty) => chainedProperty.parentEntityName).join('_')
       : property.parentEntityName;
-  return `${property.namespace.namespaceName}_${parentEntitiesNameChain}_${propertyName}`;
+  const namespace: string =
+    propertiesChain.length > 0
+      ? propertiesChain[0].parentEntity.namespace.namespaceName
+      : property.parentEntity.namespace.namespaceName;
+  return `${namespace}_${parentEntitiesNameChain}_${propertyName}`;
 }
 
 /**

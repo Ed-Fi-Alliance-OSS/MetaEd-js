@@ -12906,91 +12906,6 @@
         }
       },
       "newSchemas": {
-        "EdFi_Candidate_DisabilityDesignation": {
-          "properties": {
-            "disabilityDesignationDescriptor": {
-              "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
-              "maxLength": 306,
-              "type": "string"
-            }
-          },
-          "required": [
-            "disabilityDesignationDescriptor"
-          ],
-          "type": "object"
-        },
-        "EdFi_Candidate_LanguageUse": {
-          "properties": {
-            "languageUseDescriptor": {
-              "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
-              "maxLength": 306,
-              "type": "string"
-            }
-          },
-          "required": [
-            "languageUseDescriptor"
-          ],
-          "type": "object"
-        },
-        "EdFi_Candidate_Name_PersonalIdentificationDocument": {
-          "properties": {
-            "documentExpirationDate": {
-              "description": "The day when the document  expires, if null then never expires.",
-              "format": "date",
-              "type": "string"
-            },
-            "documentTitle": {
-              "description": "The title of the document given by the issuer.",
-              "maxLength": 60,
-              "type": "string"
-            },
-            "identificationDocumentUseDescriptor": {
-              "description": "The primary function of the document used for establishing identity.",
-              "type": "string"
-            },
-            "issuerCountryDescriptor": {
-              "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
-              "type": "string"
-            },
-            "issuerDocumentIdentificationCode": {
-              "description": "The unique identifier on the issuer's identification system.",
-              "maxLength": 60,
-              "type": "string"
-            },
-            "issuerName": {
-              "description": "Name of the entity or institution that issued the document.",
-              "maxLength": 150,
-              "type": "string"
-            },
-            "personalInformationVerificationDescriptor": {
-              "description": "The category of the document relative to its purpose.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "personalInformationVerificationDescriptor",
-            "identificationDocumentUseDescriptor"
-          ],
-          "type": "object"
-        },
-        "EdFi_Candidate_Period": {
-          "properties": {
-            "beginDate": {
-              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-              "format": "date",
-              "type": "string"
-            },
-            "endDate": {
-              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-              "format": "date",
-              "type": "string"
-            }
-          },
-          "required": [
-            "beginDate"
-          ],
-          "type": "object"
-        },
         "TPDM_Candidate": {
           "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
           "properties": {
@@ -13137,7 +13052,7 @@
             },
             "personalIdentificationDocuments": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Candidate_Name_PersonalIdentificationDocument"
+                "$ref": "#/components/schemas/TPDM_Candidate_Name_PersonalIdentificationDocument"
               },
               "minItems": 0,
               "type": "array",
@@ -13393,7 +13308,7 @@
             },
             "periods": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Candidate_Period"
+                "$ref": "#/components/schemas/TPDM_Candidate_Period"
               },
               "minItems": 0,
               "type": "array",
@@ -13427,7 +13342,7 @@
           "properties": {
             "designations": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Candidate_DisabilityDesignation"
+                "$ref": "#/components/schemas/TPDM_Candidate_DisabilityDesignation"
               },
               "minItems": 0,
               "type": "array",
@@ -13453,6 +13368,19 @@
           },
           "required": [
             "disabilityDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_DisabilityDesignation": {
+          "properties": {
+            "disabilityDesignationDescriptor": {
+              "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          "required": [
+            "disabilityDesignationDescriptor"
           ],
           "type": "object"
         },
@@ -13491,7 +13419,7 @@
             },
             "uses": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Candidate_LanguageUse"
+                "$ref": "#/components/schemas/TPDM_Candidate_LanguageUse"
               },
               "minItems": 0,
               "type": "array",
@@ -13500,6 +13428,60 @@
           },
           "required": [
             "languageDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_LanguageUse": {
+          "properties": {
+            "languageUseDescriptor": {
+              "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          "required": [
+            "languageUseDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Name_PersonalIdentificationDocument": {
+          "properties": {
+            "documentExpirationDate": {
+              "description": "The day when the document  expires, if null then never expires.",
+              "format": "date",
+              "type": "string"
+            },
+            "documentTitle": {
+              "description": "The title of the document given by the issuer.",
+              "maxLength": 60,
+              "type": "string"
+            },
+            "identificationDocumentUseDescriptor": {
+              "description": "The primary function of the document used for establishing identity.",
+              "type": "string"
+            },
+            "issuerCountryDescriptor": {
+              "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+              "type": "string"
+            },
+            "issuerDocumentIdentificationCode": {
+              "description": "The unique identifier on the issuer's identification system.",
+              "maxLength": 60,
+              "type": "string"
+            },
+            "issuerName": {
+              "description": "Name of the entity or institution that issued the document.",
+              "maxLength": 150,
+              "type": "string"
+            },
+            "personalInformationVerificationDescriptor": {
+              "description": "The category of the document relative to its purpose.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "personalInformationVerificationDescriptor",
+            "identificationDocumentUseDescriptor"
           ],
           "type": "object"
         },
@@ -13539,6 +13521,24 @@
             "firstName",
             "lastSurname",
             "otherNameTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_Candidate_Period": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "beginDate"
           ],
           "type": "object"
         },
