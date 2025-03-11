@@ -62,11 +62,14 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
 export function openApiCollectionReferenceNameFor(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  topLevelEntityName: string,
+  propertiesChain: EntityProperty[],
 ): string {
   const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
-  const parentEntityName: string = topLevelEntityName === '' ? property.parentEntityName : topLevelEntityName;
-  return `${property.namespace.namespaceName}_${parentEntityName}_${propertyName}`;
+  const parentEntitiesNameChain =
+    propertiesChain.length > 0
+      ? propertiesChain.map((chainedProperty) => chainedProperty.parentEntityName).join('_')
+      : property.parentEntityName;
+  return `${property.namespace.namespaceName}_${parentEntitiesNameChain}_${propertyName}`;
 }
 
 /**

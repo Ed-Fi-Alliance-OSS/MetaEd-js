@@ -145,13 +145,12 @@ export function openApiObjectForScalarCommonProperty(
   property: CommonProperty,
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
+  propertiesChain: EntityProperty[],
 ): OpenApiObject {
   const openApiProperties: OpenApiProperties = {};
   const required: string[] = [];
 
   const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
-
-  const parentReferenceName: string = openApiCollectionReferenceNameFor(property, propertyModifier, '');
 
   collectedApiProperties.forEach((collectedApiProperty) => {
     const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
@@ -164,14 +163,12 @@ export function openApiObjectForScalarCommonProperty(
     const openApiPropertyName: string = uncapitalize(
       prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier),
     );
-
-    const childReferenceName: string = `${parentReferenceName}_${collectedApiProperty.property.fullPropertyName}`;
     // eslint-disable-next-line no-use-before-define
     const openApiProperty: OpenApiProperty = openApiPropertyFor(
       collectedApiProperty.property,
       concatenatedPropertyModifier,
       schoolYearOpenApis,
-      childReferenceName,
+      propertiesChain,
     );
 
     openApiProperties[openApiPropertyName] = openApiProperty;
@@ -197,9 +194,12 @@ function openApiNonResourceReferenceFor(fullName: string): OpenApiReference {
 function openApiArrayForNonResourceReferenceCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
+  propertiesChain: EntityProperty[],
 ): OpenApiArray {
   return {
-    ...openApiArrayFrom(openApiNonResourceReferenceFor(openApiCollectionReferenceNameFor(property, propertyModifier, ''))),
+    ...openApiArrayFrom(
+      openApiNonResourceReferenceFor(openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain)),
+    ),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
   };
 }
@@ -210,12 +210,9 @@ function openApiArrayForNonResourceReferenceCollection(
 function openApiArrayForCommonCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  generatedReferenceName: string = '',
+  propertiesChain: EntityProperty[],
 ): OpenApiArray {
-  const referenceName: string =
-    generatedReferenceName !== ''
-      ? generatedReferenceName
-      : openApiCollectionReferenceNameFor(property, propertyModifier, '');
+  const referenceName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
   return {
     ...openApiArrayFrom(openApiNonResourceReferenceFor(referenceName)),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
@@ -230,7 +227,7 @@ export function openApiPropertyFor(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
-  generatedReferenceName: string = '',
+  propertiesChain: EntityProperty[],
 ): OpenApiProperty {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -241,16 +238,21 @@ export function openApiPropertyFor(
     return openApiReferenceFor(property as ReferentialProperty);
   }
   if (apiMapping.isDescriptorCollection) {
-    return openApiArrayForNonResourceReferenceCollection(property, propertyModifier);
+    return openApiArrayForNonResourceReferenceCollection(property, propertyModifier, propertiesChain);
   }
   if (apiMapping.isCommonCollection) {
-    return openApiArrayForCommonCollection(property, propertyModifier, generatedReferenceName);
+    return openApiArrayForCommonCollection(property, propertyModifier, propertiesChain);
   }
   if (apiMapping.isScalarCommon) {
-    return openApiObjectForScalarCommonProperty(property as CommonProperty, propertyModifier, schoolYearOpenApis);
+    return openApiObjectForScalarCommonProperty(
+      property as CommonProperty,
+      propertyModifier,
+      schoolYearOpenApis,
+      propertiesChain,
+    );
   }
   if (property.isRequiredCollection || property.isOptionalCollection) {
-    return openApiArrayForNonResourceReferenceCollection(property, propertyModifier);
+    return openApiArrayForNonResourceReferenceCollection(property, propertyModifier, propertiesChain);
   }
   return openApiPropertyForNonReference(property, schoolYearOpenApis);
 }
@@ -269,14 +271,14 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
-  collectedApiProperties.forEach(({ property, propertyModifier }) => {
+  collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
     const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
     const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));
 
     const openApiProperty: OpenApiProperty =
       property.type === 'schoolYearEnumeration'
         ? openApiPropertyForSchoolYearEnumeration(property, schoolYearOpenApis.schoolYearEnumerationOpenApi)
-        : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis);
+        : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis, propertyChain);
 
     openApiProperties[openApiObjectBaseName] = openApiProperty;
     addRequired(isOpenApiPropertyRequired(property, propertyModifier), openApiRoot, openApiObjectBaseName);

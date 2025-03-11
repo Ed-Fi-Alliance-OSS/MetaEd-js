@@ -69,15 +69,11 @@ export function openApiCollectionReferenceSchemaFor(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
-  generatedReferenceName: string = '',
-  topLevelEntityName: string = '',
+  propertiesChain: EntityProperty[],
 ): OpenApiRequestBodyCollectionSchema[] {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   let referenceSchemas: OpenApiRequestBodyCollectionSchema[] = [];
-  const propertyName: string =
-    generatedReferenceName !== ''
-      ? generatedReferenceName
-      : openApiCollectionReferenceNameFor(property, propertyModifier, '');
+  const propertyName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
 
   if (apiMapping.isReferenceCollection) {
     return [];
@@ -95,6 +91,7 @@ export function openApiCollectionReferenceSchemaFor(
       property as CommonProperty,
       propertyModifier,
       schoolYearOpenApis,
+      propertiesChain,
     );
     const openApiRequestBodyCollectionSchema: OpenApiRequestBodyCollectionSchema = {
       schema: scalarCommonOpenApiObject,
@@ -102,13 +99,11 @@ export function openApiCollectionReferenceSchemaFor(
     };
     referenceSchemas.push(openApiRequestBodyCollectionSchema);
     (property as CommonProperty).referencedEntity.properties.forEach((childProperty) => {
-      const childReferenceName: string = `${propertyName}_${childProperty.fullPropertyName}`;
       const openApiRequestBodyCollectionSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
         childProperty,
         propertyModifier,
         schoolYearOpenApis,
-        childReferenceName,
-        topLevelEntityName,
+        propertiesChain,
       );
       referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
     });
@@ -141,6 +136,7 @@ function buildOpenApiCollectionSchemaList(
       property,
       propertyModifier,
       schoolYearOpenApis,
+      propertyChain,
     );
     referenceSchemas.forEach((schemaItem) => {
       schemas.push(schemaItem);

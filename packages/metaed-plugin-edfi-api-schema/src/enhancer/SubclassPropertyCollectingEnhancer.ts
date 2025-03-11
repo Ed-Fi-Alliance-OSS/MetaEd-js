@@ -17,7 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     let renamedPropertyMetaEdName: string | null = null;
     subclass.properties.forEach((property) => {
-      collectApiProperties(collectedApiProperties, property, defaultPropertyModifier);
+      collectApiProperties(collectedApiProperties, property, defaultPropertyModifier, []);
       collectAllProperties(allProperties, property);
 
       // Looking for an identity rename to exclude the superclass property - MetaEd only allows
@@ -29,7 +29,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       subclass.baseEntity.properties
         .filter((p) => p.metaEdName !== renamedPropertyMetaEdName)
         .forEach((property) => {
-          collectApiProperties(collectedApiProperties, property, defaultPropertyModifier);
+          collectApiProperties(collectedApiProperties, property, defaultPropertyModifier, []);
           collectAllProperties(allProperties, property);
         });
     }

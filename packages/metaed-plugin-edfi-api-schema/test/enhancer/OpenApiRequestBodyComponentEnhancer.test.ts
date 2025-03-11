@@ -772,7 +772,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "derivativeSourceURIs": Object {
             "items": Object {
-              "$ref": "#/components/schemas/EdFi_EducationContentSource_URI",
+              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
             },
             "minItems": 0,
             "type": "array",

@@ -4809,7 +4809,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             },
             "derivativeSourceURIs": Object {
               "items": Object {
-                "$ref": "#/components/schemas/Extension_EducationContentSource_URI",
+                "$ref": "#/components/schemas/Extension_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
               },
               "minItems": 0,
               "type": "array",
@@ -4845,7 +4845,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           ],
           "type": "object",
         },
-        "Extension_EducationContentSource_URI": Object {
+        "Extension_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI": Object {
           "properties": Object {
             "derivativeSourceURI": Object {
               "description": "doc",

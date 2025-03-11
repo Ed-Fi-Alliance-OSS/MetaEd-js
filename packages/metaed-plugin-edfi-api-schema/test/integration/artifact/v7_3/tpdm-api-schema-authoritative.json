@@ -12906,7 +12906,33 @@
         }
       },
       "newSchemas": {
-        "EdFi_Name_PersonalIdentificationDocument": {
+        "EdFi_Candidate_DisabilityDesignation": {
+          "properties": {
+            "disabilityDesignationDescriptor": {
+              "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          "required": [
+            "disabilityDesignationDescriptor"
+          ],
+          "type": "object"
+        },
+        "EdFi_Candidate_LanguageUse": {
+          "properties": {
+            "languageUseDescriptor": {
+              "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          "required": [
+            "languageUseDescriptor"
+          ],
+          "type": "object"
+        },
+        "EdFi_Candidate_Name_PersonalIdentificationDocument": {
           "properties": {
             "documentExpirationDate": {
               "description": "The day when the document  expires, if null then never expires.",
@@ -12944,6 +12970,24 @@
           "required": [
             "personalInformationVerificationDescriptor",
             "identificationDocumentUseDescriptor"
+          ],
+          "type": "object"
+        },
+        "EdFi_Candidate_Period": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "beginDate"
           ],
           "type": "object"
         },
@@ -13093,7 +13137,7 @@
             },
             "personalIdentificationDocuments": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Name_PersonalIdentificationDocument"
+                "$ref": "#/components/schemas/EdFi_Candidate_Name_PersonalIdentificationDocument"
               },
               "minItems": 0,
               "type": "array",
@@ -13349,7 +13393,7 @@
             },
             "periods": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Address_Period"
+                "$ref": "#/components/schemas/EdFi_Candidate_Period"
               },
               "minItems": 0,
               "type": "array",
@@ -13379,29 +13423,11 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Address_Period": {
-          "properties": {
-            "beginDate": {
-              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-              "format": "date",
-              "type": "string"
-            },
-            "endDate": {
-              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-              "format": "date",
-              "type": "string"
-            }
-          },
-          "required": [
-            "beginDate"
-          ],
-          "type": "object"
-        },
         "TPDM_Candidate_Disability": {
           "properties": {
             "designations": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Disability_DisabilityDesignation"
+                "$ref": "#/components/schemas/EdFi_Candidate_DisabilityDesignation"
               },
               "minItems": 0,
               "type": "array",
@@ -13427,18 +13453,6 @@
           },
           "required": [
             "disabilityDescriptor"
-          ],
-          "type": "object"
-        },
-        "TPDM_Candidate_Disability_DisabilityDesignation": {
-          "properties": {
-            "disabilityDesignationDescriptor": {
-              "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "disabilityDesignationDescriptor"
           ],
           "type": "object"
         },
@@ -13477,7 +13491,7 @@
             },
             "uses": {
               "items": {
-                "$ref": "#/components/schemas/EdFi_Language_LanguageUse"
+                "$ref": "#/components/schemas/EdFi_Candidate_LanguageUse"
               },
               "minItems": 0,
               "type": "array",
@@ -13486,18 +13500,6 @@
           },
           "required": [
             "languageDescriptor"
-          ],
-          "type": "object"
-        },
-        "TPDM_Candidate_Language_LanguageUse": {
-          "properties": {
-            "languageUseDescriptor": {
-              "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
-              "type": "string"
-            }
-          },
-          "required": [
-            "languageUseDescriptor"
           ],
           "type": "object"
         },
@@ -13544,6 +13546,7 @@
           "properties": {
             "raceDescriptor": {
               "description": "The general racial category which most clearly reflects the individual's recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -13642,6 +13645,7 @@
           "properties": {
             "gradeLevelDescriptor": {
               "description": "The grade levels served at the EPP Program.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -14832,6 +14836,7 @@
           "properties": {
             "gradeLevelDescriptor": {
               "description": "The grade levels involved with the performance evaluation.",
+              "maxLength": 306,
               "type": "string"
             }
           },
