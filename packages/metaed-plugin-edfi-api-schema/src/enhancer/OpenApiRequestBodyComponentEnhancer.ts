@@ -151,7 +151,7 @@ export function openApiObjectForScalarCommonProperty(
 
   const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
 
-  const parentReferenceName: string = openApiCollectionReferenceNameFor(property);
+  const parentReferenceName: string = openApiCollectionReferenceNameFor(property, propertyModifier);
 
   collectedApiProperties.forEach((collectedApiProperty) => {
     const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
@@ -199,7 +199,7 @@ function openApiArrayForNonResourceReferenceCollection(
   propertyModifier: PropertyModifier,
 ): OpenApiArray {
   return {
-    ...openApiArrayFrom(openApiNonResourceReferenceFor(openApiCollectionReferenceNameFor(property))),
+    ...openApiArrayFrom(openApiNonResourceReferenceFor(openApiCollectionReferenceNameFor(property, propertyModifier))),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
   };
 }
@@ -213,7 +213,7 @@ function openApiArrayForCommonCollection(
   generatedReferenceName: string = '',
 ): OpenApiArray {
   const referenceName: string =
-    generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property);
+    generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property, propertyModifier);
   return {
     ...openApiArrayFrom(openApiNonResourceReferenceFor(referenceName)),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,

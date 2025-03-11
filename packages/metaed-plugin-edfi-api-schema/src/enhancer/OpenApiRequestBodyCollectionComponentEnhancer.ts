@@ -74,7 +74,7 @@ export function openApiCollectionReferenceSchemaFor(
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   let referenceSchemas: OpenApiRequestBodyCollectionSchema[] = [];
   const propertyName: string =
-    generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property);
+    generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property, propertyModifier);
 
   if (apiMapping.isReferenceCollection) {
     return [];

@@ -1,7 +1,8 @@
 import { EntityProperty, StringProperty, IntegerProperty, ShortProperty } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import { NoOpenApiProperty, OpenApiObject, OpenApiProperties, OpenApiProperty } from '../model/OpenApi';
-import { PropertyModifier } from '../model/PropertyModifier';
+import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
+import { singularize } from '../Utility';
 
 export type SchoolYearOpenApis = { schoolYearOpenApi: OpenApiProperty; schoolYearEnumerationOpenApi: OpenApiObject };
 
@@ -58,8 +59,9 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
 /**
  * Returns an OpenApi collection reference component name
  */
-export function openApiCollectionReferenceNameFor(property: EntityProperty): string {
-  return `${property.namespace.namespaceName}_${property.parentEntityName}_${property.fullPropertyName}`;
+export function openApiCollectionReferenceNameFor(property: EntityProperty, propertyModifier: PropertyModifier): string {
+  const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
+  return `${property.namespace.namespaceName}_${property.parentEntityName}_${propertyName}`;
 }
 
 /**
