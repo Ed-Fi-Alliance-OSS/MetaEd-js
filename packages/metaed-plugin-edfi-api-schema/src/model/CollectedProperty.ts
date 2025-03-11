@@ -7,4 +7,5 @@ import { PropertyModifier } from './PropertyModifier';
 export type CollectedProperty = {
   property: EntityProperty;
   propertyModifier: PropertyModifier;
+  propertyChain: EntityProperty[];
 };

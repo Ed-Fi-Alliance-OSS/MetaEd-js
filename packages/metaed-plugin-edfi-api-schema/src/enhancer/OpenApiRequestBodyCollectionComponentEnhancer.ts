@@ -11,7 +11,7 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiObject, OpenApiProperty } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, uncapitalize } from '../Utility';
+import { singularize, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
   openApiObjectFrom,
   openApiCollectionReferenceNameFor,
@@ -70,11 +70,14 @@ export function openApiCollectionReferenceSchemaFor(
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
   generatedReferenceName: string = '',
+  topLevelEntityName: string = '',
 ): OpenApiRequestBodyCollectionSchema[] {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   let referenceSchemas: OpenApiRequestBodyCollectionSchema[] = [];
   const propertyName: string =
-    generatedReferenceName !== '' ? generatedReferenceName : openApiCollectionReferenceNameFor(property, propertyModifier);
+    generatedReferenceName !== ''
+      ? generatedReferenceName
+      : openApiCollectionReferenceNameFor(property, propertyModifier, '');
 
   if (apiMapping.isReferenceCollection) {
     return [];
@@ -105,6 +108,7 @@ export function openApiCollectionReferenceSchemaFor(
         propertyModifier,
         schoolYearOpenApis,
         childReferenceName,
+        topLevelEntityName,
       );
       referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
     });
@@ -132,7 +136,17 @@ function buildOpenApiCollectionSchemaList(
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
-  collectedApiProperties.forEach(({ property, propertyModifier }) => {
+  collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
+    const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
+    const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));
+    const chain: EntityProperty[] = propertyChain;
+    const topEntityName = property.parentEntity.baseEntityName;
+    // eslint-disable-next-line no-console
+    console.log(chain);
+    // eslint-disable-next-line no-console
+    console.log(openApiObjectBaseName);
+    // eslint-disable-next-line no-console
+    console.log(topEntityName);
     const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,

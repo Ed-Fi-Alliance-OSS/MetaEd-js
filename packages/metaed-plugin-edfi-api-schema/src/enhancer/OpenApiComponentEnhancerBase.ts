@@ -59,9 +59,14 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
 /**
  * Returns an OpenApi collection reference component name
  */
-export function openApiCollectionReferenceNameFor(property: EntityProperty, propertyModifier: PropertyModifier): string {
+export function openApiCollectionReferenceNameFor(
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+  topLevelEntityName: string,
+): string {
   const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
-  return `${property.namespace.namespaceName}_${property.parentEntityName}_${propertyName}`;
+  const parentEntityName: string = topLevelEntityName === '' ? property.parentEntityName : topLevelEntityName;
+  return `${property.namespace.namespaceName}_${parentEntityName}_${propertyName}`;
 }
 
 /**
