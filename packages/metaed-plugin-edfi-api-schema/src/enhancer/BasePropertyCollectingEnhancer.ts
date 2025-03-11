@@ -20,9 +20,9 @@ export function collectApiProperties(
   currentCollection: CollectedProperty[],
   currentProperty: EntityProperty,
   propertyModifier: PropertyModifier,
-  propertyChain: EntityProperty[] = [],
+  currentPropertyChain: EntityProperty[],
 ) {
-  propertyChain.push(currentProperty);
+  const propertyChain: EntityProperty[] = [...currentPropertyChain, currentProperty];
   // InlineCommon and Choice are never objects in the API document. Instead pull up their property collections.
   if (currentProperty.type === 'inlineCommon' || currentProperty.type === 'choice') {
     const optionalDueToParent =
@@ -34,15 +34,15 @@ export function collectApiProperties(
       currentProperty.roleName === currentProperty.metaEdName
         ? [...propertyModifier.parentPrefixes]
         : [...propertyModifier.parentPrefixes, currentProperty.roleName];
-    // propertyChain.push(currentProperty);
     (currentProperty as InlineCommonProperty | ChoiceProperty).referencedEntity.properties.forEach((property) => {
-      // propertyChain.push(currentProperty);
       collectApiProperties(currentCollection, property, { optionalDueToParent, parentPrefixes }, propertyChain);
     });
   } else {
-    const tempPropertyChain: EntityProperty[] = [...propertyChain];
-    currentCollection.push({ property: currentProperty, propertyModifier, propertyChain: tempPropertyChain });
-    propertyChain.length = 0;
+    currentCollection.push({
+      property: currentProperty,
+      propertyModifier,
+      propertyChain,
+    });
   }
 }
 

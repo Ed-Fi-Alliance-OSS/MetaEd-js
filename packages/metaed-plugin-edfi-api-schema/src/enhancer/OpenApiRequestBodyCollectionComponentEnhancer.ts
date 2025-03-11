@@ -11,7 +11,7 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiObject, OpenApiProperty } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import { singularize, uncapitalize } from '../Utility';
 import {
   openApiObjectFrom,
   openApiCollectionReferenceNameFor,
@@ -137,16 +137,6 @@ function buildOpenApiCollectionSchemaList(
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
-    const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
-    const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));
-    const chain: EntityProperty[] = propertyChain;
-    const topEntityName = property.parentEntity.baseEntityName;
-    // eslint-disable-next-line no-console
-    console.log(chain);
-    // eslint-disable-next-line no-console
-    console.log(openApiObjectBaseName);
-    // eslint-disable-next-line no-console
-    console.log(topEntityName);
     const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,

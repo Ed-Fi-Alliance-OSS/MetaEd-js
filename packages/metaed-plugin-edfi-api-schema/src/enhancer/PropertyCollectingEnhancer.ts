@@ -25,7 +25,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const allProperties: CollectedProperty[] = [];
 
     (entity as TopLevelEntity).properties.forEach((property) => {
-      collectApiProperties(collectedApiProperties, property, defaultPropertyModifier);
+      collectApiProperties(collectedApiProperties, property, defaultPropertyModifier, []);
       collectAllProperties(allProperties, property);
     });
 
