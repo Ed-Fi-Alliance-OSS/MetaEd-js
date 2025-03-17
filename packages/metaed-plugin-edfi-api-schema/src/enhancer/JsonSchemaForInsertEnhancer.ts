@@ -449,7 +449,6 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
     schemaProperties = {};
     const extensionSchemaName = entityForSchema.namespace.projectName.toLocaleLowerCase() as string;
 
-    // eslint-disable-next-line no-underscore-dangle
     schemaRoot.properties[`_ext.${extensionSchemaName}`] = {
       description: 'optional extension collection',
       type: 'object',
