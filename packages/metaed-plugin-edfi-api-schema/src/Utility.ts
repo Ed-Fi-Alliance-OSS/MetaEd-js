@@ -1,8 +1,10 @@
-import { EntityProperty, NoEntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, NoEntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import * as inflection from 'inflection';
 import { invariant } from 'ts-invariant';
 import { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
 import { FlattenedIdentityProperty } from './model/FlattenedIdentityProperty';
+import { EntityApiSchemaData } from './model/EntityApiSchemaData';
+import { JsonPathsInfo } from './model/JsonPathsMapping';
 
 /**
  * Simplified MetaEd top level reference checking, supporting
@@ -159,4 +161,19 @@ export function findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty: Fl
   invariant(flattenedIdentityProperty.propertyChain.length > 0, 'propertyChain should not be empty');
 
   return flattenedIdentityProperty.propertyChain.reduce(identicalRoleNamePatternPrefixReducer, '');
+}
+
+/**
+ * Searches the given path in the entity's mergeJsonPathsMapping.
+ * Recursively searches the baseEntity if not found.
+ */
+export function findMergeJsonPathsMapping(entity: TopLevelEntity | null, path: MetaEdPropertyPath): JsonPathsInfo | null {
+  if (!entity) {
+    // Reached the top of the entity hierarchy without finding the path
+    return null;
+  }
+
+  const { mergeJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
+  const result = mergeJsonPathsMapping[path];
+  return result || findMergeJsonPathsMapping(entity.baseEntity, path);
 }

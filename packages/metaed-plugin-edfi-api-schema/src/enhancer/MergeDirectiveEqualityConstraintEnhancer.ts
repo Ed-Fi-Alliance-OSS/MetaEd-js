@@ -12,6 +12,7 @@ import {
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
+import { findMergeJsonPathsMapping } from '../Utility';
 
 function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath {
   return segments.join('.') as MetaEdPropertyPath;
@@ -22,45 +23,53 @@ function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath
  * target JsonPaths.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      const { mergeJsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'associationExtension',
+    'domainEntityExtension',
+  ).forEach((entity: TopLevelEntity) => {
+    const { equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-      // find properties on entity with merge directives
-      (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
-        if (isReferentialProperty(property)) {
-          const referentialProperty: ReferentialProperty = property as ReferentialProperty;
+    // find properties on entity with merge directives
+    entity.properties.forEach((property: EntityProperty) => {
+      if (isReferentialProperty(property)) {
+        const referentialProperty: ReferentialProperty = property as ReferentialProperty;
 
-          referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
-            const sourceJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
-              mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)
-            ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+        referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
+          const sourceJsonPaths: JsonPath[] | undefined = findMergeJsonPathsMapping(
+            entity,
+            mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings),
+          )?.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
-            const targetJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
-              mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)
-            ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+          const targetJsonPaths: JsonPath[] | undefined = findMergeJsonPathsMapping(
+            entity,
+            mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings),
+          )?.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
-            invariant(
-              sourceJsonPaths != null && targetJsonPaths != null,
-              'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source or target JsonPaths are undefined',
-            );
+          invariant(
+            sourceJsonPaths != null && targetJsonPaths != null,
+            'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source or target JsonPaths are undefined',
+          );
 
-            if (sourceJsonPaths.length !== targetJsonPaths.length) {
-              // Occurs when property path has been merged away
-              return;
-            }
+          if (sourceJsonPaths.length !== targetJsonPaths.length) {
+            // Occurs when property path has been merged away
+            return;
+          }
 
-            sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
-              equalityConstraints.push({
-                sourceJsonPath,
-                targetJsonPath: targetJsonPaths[matchingTargetJsonPathIndex],
-              });
+          sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
+            equalityConstraints.push({
+              sourceJsonPath,
+              targetJsonPath: targetJsonPaths[matchingTargetJsonPathIndex],
             });
           });
-        }
-      });
-    },
-  );
+        });
+      }
+    });
+  });
 
   return {
     enhancerName: 'MergeDirectiveEqualityConstraintEnhancer',

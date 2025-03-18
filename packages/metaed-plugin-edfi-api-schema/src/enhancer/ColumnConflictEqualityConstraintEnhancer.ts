@@ -5,6 +5,7 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EqualityConstraint } from '../model/EqualityConstraint';
 import { JsonPathsInfo } from '../model/JsonPathsMapping';
+import { findMergeJsonPathsMapping } from '../Utility';
 
 /**
  * Returns all the relational Table objects
@@ -49,25 +50,20 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   tables.forEach((table: Table) => {
     table.columnConflictPaths.forEach((columnConflictPath: ColumnConflictPath) => {
-      // We don't support extension tables at this time
-      if (
-        columnConflictPath.firstOriginalEntity.type === 'associationExtension' ||
-        columnConflictPath.secondOriginalEntity.type === 'associationExtension' ||
-        columnConflictPath.firstOriginalEntity.type === 'domainEntityExtension' ||
-        columnConflictPath.secondOriginalEntity.type === 'domainEntityExtension'
-      ) {
-        return;
-      }
-
       if (columnConflictPath.firstOriginalEntity !== columnConflictPath.secondOriginalEntity)
         // Must be on same resource to be a resource equality constraint
         return;
 
-      const { equalityConstraints, mergeJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
-        .edfiApiSchema as EntityApiSchemaData;
+      const { equalityConstraints } = columnConflictPath.firstOriginalEntity.data.edfiApiSchema as EntityApiSchemaData;
 
-      const firstPathInMapping: JsonPathsInfo | undefined = mergeJsonPathsMapping[columnConflictPath.firstPath];
-      const secondPathInMapping: JsonPathsInfo | undefined = mergeJsonPathsMapping[columnConflictPath.secondPath];
+      const firstPathInMapping: JsonPathsInfo | null = findMergeJsonPathsMapping(
+        columnConflictPath.firstOriginalEntity,
+        columnConflictPath.firstPath,
+      );
+      const secondPathInMapping: JsonPathsInfo | null = findMergeJsonPathsMapping(
+        columnConflictPath.firstOriginalEntity,
+        columnConflictPath.secondPath,
+      );
 
       invariant(
         firstPathInMapping != null,

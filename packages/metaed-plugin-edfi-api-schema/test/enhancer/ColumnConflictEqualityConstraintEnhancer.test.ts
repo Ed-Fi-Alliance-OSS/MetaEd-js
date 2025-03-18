@@ -8,6 +8,8 @@ import {
   ChoiceBuilder,
   CommonBuilder,
   EnumerationBuilder,
+  DomainEntityExtensionBuilder,
+  AssociationExtensionBuilder,
 } from '@edfi/metaed-core';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -725,24 +727,44 @@ describe('when a reference through a common collection has a column conflict', (
 
 describe('when model has a domain entity extension', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespaceName = 'EdFi';
+  metaEd.dataStandardVersion = '5.0.0';
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Extension';
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-      .withStartDomainEntity('StudentAssessment')
+      .withBeginNamespace(coreNamespaceName)
+      .withStartDomainEntity('School')
       .withDocumentation('doc')
-      .withIntegerIdentity('AssessmentId', 'doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace('Extension')
-      .withStartDomainEntityExtension('StudentAssessment')
-      .withIntegerProperty('NewProperty', 'doc', false, false)
+      .withBeginNamespace(extensionNamespaceName, extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.CourseOffering`)
+      .withDomainEntityElement(`${coreNamespaceName}.Session`)
+      .withDocumentation('doc')
+      .withOptionalPropertyIndicator()
       .withEndDomainEntity()
       .withEndNamespace()
+
       .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    const extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+    extensionNamespace?.dependencies.push(coreNamespace!);
 
     metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
@@ -755,19 +777,28 @@ describe('when model has a domain entity extension', () => {
     enhance(metaEd);
   });
 
-  it('should not crash', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  it('should create the correct equality constraints', () => {
+    const entity = metaEd.namespace.get(extensionNamespaceName)?.entity.domainEntityExtension.get('CourseOffering');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
+          "targetJsonPath": "$.schoolReference.schoolId",
+        },
+      ]
+    `);
   });
 });
 
 describe('when model has an association extension', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespaceName = 'EdFi';
+  metaEd.dataStandardVersion = '5.0.0';
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Extension';
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
+      .withBeginNamespace(coreNamespaceName)
       .withStartAssociation('StudentSchoolAssociation')
       .withDocumentation('doc')
       .withAssociationDomainEntityProperty('Student', 'doc')
@@ -783,17 +814,29 @@ describe('when model has an association extension', () => {
       .withDocumentation('doc')
       .withIntegerIdentity('SchoolId', 'doc')
       .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace('Extension')
-      .withStartAssociationExtension('StudentSchoolAssociation')
+      .withBeginNamespace(extensionNamespaceName, extensionNamespaceName)
+      .withStartAssociationExtension(`${coreNamespaceName}.StudentSchoolAssociation`)
+      .withDomainEntityElement(`${coreNamespaceName}.Session`)
       .withDocumentation('doc')
-      .withIntegerProperty('NewProperty', 'doc', false, false)
+      .withOptionalPropertyIndicator()
       .withEndAssociationExtension()
       .withEndNamespace()
+
       .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationExtensionBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    const extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+    extensionNamespace?.dependencies.push(coreNamespace!);
 
     metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
@@ -806,9 +849,16 @@ describe('when model has an association extension', () => {
     enhance(metaEd);
   });
 
-  it('should not crash', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentSchoolAssociation');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  it('should create the correct equality constraints', () => {
+    const entity = metaEd.namespace.get(extensionNamespaceName)?.entity.associationExtension.get('StudentSchoolAssociation');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
+          "targetJsonPath": "$.schoolReference.schoolId",
+        },
+      ]
+    `);
   });
 });
 

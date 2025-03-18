@@ -7,6 +7,8 @@ import {
   AssociationBuilder,
   ChoiceBuilder,
   CommonBuilder,
+  DomainEntityExtensionBuilder,
+  AssociationExtensionBuilder,
 } from '@edfi/metaed-core';
 import {
   associationReferenceEnhancer,
@@ -24,6 +26,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 
 import { enhance } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
+import { metaEdPluginEnhancers } from '../integration/PluginHelper';
 
 describe('when building domain entity with DomainEntity collection and single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -121,6 +124,145 @@ describe('when building domain entity with single merge directive', () => {
         Object {
           "sourceJsonPath": "$.schoolReference.schoolId",
           "targetJsonPath": "$.sessionReference.schoolId",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity extension with single merge directive', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.dataStandardVersion = '5.0.0';
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Extension';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName, extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.CourseOffering`)
+      .withDomainEntityElement(`${coreNamespaceName}.Session`)
+      .withDocumentation('doc')
+      .withOptionalPropertyIndicator()
+      .withMergeDirective('School', 'Session.School')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    const extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+    extensionNamespace?.dependencies.push(coreNamespace!);
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should create the correct equality constraints', () => {
+    const entity = metaEd.namespace.get(extensionNamespaceName)?.entity.domainEntityExtension.get('CourseOffering');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.schoolReference.schoolId",
+          "targetJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building association extension with single merge directive', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.dataStandardVersion = '5.0.0';
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Extension';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartAssociation('StudentSchoolAssociation')
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('School', 'doc')
+      .withEndAssociation()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName, extensionNamespaceName)
+      .withStartAssociationExtension(`${coreNamespaceName}.StudentSchoolAssociation`)
+      .withDomainEntityElement(`${coreNamespaceName}.Session`)
+      .withDocumentation('doc')
+      .withOptionalPropertyIndicator()
+      .withMergeDirective('School', 'Session.School')
+      .withEndAssociationExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationExtensionBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    const extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+    extensionNamespace?.dependencies.push(coreNamespace!);
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should create the correct equality constraints', () => {
+    const entity = metaEd.namespace.get(extensionNamespaceName)?.entity.associationExtension.get('StudentSchoolAssociation');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.schoolReference.schoolId",
+          "targetJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
         },
       ]
     `);
