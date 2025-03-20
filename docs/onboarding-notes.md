@@ -2,15 +2,10 @@
 
 ## Repositories
 
-| Repo | Purpose |
-| --- | --- |
-| [MetaEd-js](https://github.com/Ed-Fi-Closed/MetaEd-js) | This is the current Node.js/TypeScript implementation, structured as a [Lerna](https://lerna.js.org/) monorepo. |
-| [vscode-metaed](https://github.com/Ed-Fi-Alliance-OSS/vscode-metaed-ide/) | VS Code extension |
-| [MetaEd-Contrib](https://github.com/Ed-Fi-Alliance/MetaEd-Contrib)  | Community contributed MetaEd models​ |
-| [Ed-Fi-Model](https://github.com/Ed-Fi-Alliance-Closed/Ed-Fi-Model) | Repository for the core Ed-Fi data model definition source (as MetaEd files). Note that the formal publication of the Ed-Fi UDM is as UML and a Data Handbook and is published in the Ed-Fi-Standard repo. |
-| [MetaEd-IDE](https://github.com/Ed-Fi-Alliance/MetaEd-IDE) | The installation package for the MetaEd IDE on the Atom text editor. (OBSOLETE) |
-| [Atom-MetaEd](https://github.com/Ed-Fi-Alliance/Atom-MetaEd) (Archived) | Spike of an Atom text editor package. (OBSOLETE) |
-| [MetaEd](https://github.com/Ed-Fi-Alliance/MetaEd) (Archived) | Archived repository for Ed-Fi Alliance's original MetaEd C# project. (OBSOLETE) |
+| Repo                                                                      | Purpose                                                                                                         |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [MetaEd-js](https://github.com/Ed-Fi-Closed/MetaEd-js)                    | This is the current Node.js/TypeScript implementation, structured as a [Lerna](https://lerna.js.org/) monorepo. |
+| [vscode-metaed](https://github.com/Ed-Fi-Alliance-OSS/vscode-metaed-ide/) | VS Code extension                                                                                               |
 
 ## Getting Started with MetaEd-js
 
