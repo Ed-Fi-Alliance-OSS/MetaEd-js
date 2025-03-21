@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 import { CommonBuilder } from '../../src/builder/CommonBuilder';
 import { NamespaceBuilder } from '../../src/builder/NamespaceBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';

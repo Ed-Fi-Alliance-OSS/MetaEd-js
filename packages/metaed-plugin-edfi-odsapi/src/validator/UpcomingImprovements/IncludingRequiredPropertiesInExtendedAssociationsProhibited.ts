@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 // 2.2.X.2 - METAED-701
 import { MetaEdEnvironment, ValidationFailure, AssociationExtension, SemVer, PluginEnvironment } from '@edfi/metaed-core';
 import { getAllEntitiesOfType, versionSatisfies } from '@edfi/metaed-core';
