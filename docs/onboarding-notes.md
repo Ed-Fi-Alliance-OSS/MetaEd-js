@@ -4,7 +4,7 @@
 
 | Repo                                                                      | Purpose                                                                                                         |
 | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [MetaEd-js](https://github.com/Ed-Fi-Closed/MetaEd-js)                    | This is the current Node.js/TypeScript implementation, structured as a [Lerna](https://lerna.js.org/) monorepo. |
+| [MetaEd-js](https://github.com/Ed-Fi-OSS/MetaEd-js)                       | This is the current Node.js/TypeScript implementation, structured as a [Lerna](https://lerna.js.org/) monorepo. |
 | [vscode-metaed](https://github.com/Ed-Fi-Alliance-OSS/vscode-metaed-ide/) | VS Code extension                                                                                               |
 
 ## Getting Started with MetaEd-js
