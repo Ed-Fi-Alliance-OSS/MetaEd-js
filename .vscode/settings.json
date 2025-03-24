@@ -86,7 +86,7 @@
       "prefix": "-- "
     },
     {
-      "language": "yaml",
+      "language": ".yml",
       "mapTo": "python"
     }
   ],
