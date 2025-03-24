@@ -114,6 +114,18 @@ export function openApiCollectionReferenceSchemaFor(
     });
     return referenceSchemas;
   }
+  if (apiMapping.isScalarCommon) {
+    (property as CommonProperty).referencedEntity.properties.forEach((childProperty) => {
+      const openApiRequestBodyCollectionSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
+        childProperty,
+        propertyModifier,
+        schoolYearOpenApis,
+        propertiesChain,
+      );
+      referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
+    });
+    return referenceSchemas;
+  }
   if (property.isRequiredCollection || property.isOptionalCollection) {
     const openApiRequestBodyCollectionSchema: OpenApiRequestBodyCollectionSchema = {
       schema: openApiNonReferenceCollectionSchemaFor(property, propertyModifier, schoolYearOpenApis),

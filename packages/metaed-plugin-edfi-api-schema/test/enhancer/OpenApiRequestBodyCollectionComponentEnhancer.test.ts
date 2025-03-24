@@ -11,32 +11,32 @@ import {
   CommonBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
-  // DomainEntitySubclassBuilder,
+  DomainEntitySubclassBuilder,
   DescriptorBuilder,
-  // EnumerationBuilder,
-  // newPluginEnvironment,
-  //  DomainEntityExtensionBuilder,
-  //  newNamespace,
+  EnumerationBuilder,
+  newPluginEnvironment,
+  DomainEntityExtensionBuilder,
+  newNamespace,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
   choiceReferenceEnhancer,
   inlineCommonReferenceEnhancer,
-  // commonReferenceEnhancer,
+  commonReferenceEnhancer,
   descriptorReferenceEnhancer,
-  // domainEntitySubclassBaseClassEnhancer,
-  // enumerationReferenceEnhancer,
-  // domainEntityExtensionBaseClassEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
+  enumerationReferenceEnhancer,
+  domainEntityExtensionBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
-// import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
+import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-// import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
+import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-// import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
+import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
 import { enhance } from '../../src/enhancer/OpenApiRequestBodyCollectionComponentEnhancer';
 
@@ -515,1275 +515,1474 @@ describe('when building domain entity with nested choice and inline commons', ()
   });
 });
 
-// describe('when building domain entity with scalar collection named with prefix of parent entity', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'EducationContent';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withStringIdentity('ContentIdentifier', 'doc', '30')
-//       .withStringProperty(`${domainEntityName}SuffixName`, 'doc', true, true, '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema - parent name prefix removed', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_EducationContent_EducationContentSuffixName",
-//           "schema": Object {
-//             "properties": Object {
-//               "suffixName": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "suffixName",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with a simple common collection', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('AssessmentIdentificationCode', 'doc', false, true)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('AssessmentIdentificationCode')
-//       .withDocumentation('doc')
-//       .withStringProperty('IdentificationCode', 'doc', true, false, '30')
-//       .withDescriptorIdentity('AssessmentIdentificationSystem', 'doc')
-//       .withEndCommon()
-
-//       .withStartDescriptor('AssessmentIdentificationSystem')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     commonReferenceEnhancer(metaEd);
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_Assessment_AssessmentIdentificationCode",
-//           "schema": Object {
-//             "properties": Object {
-//               "assessmentIdentificationSystemDescriptor": Object {
-//                 "description": "doc",
-//                 "type": "string",
-//               },
-//               "identificationCode": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "identificationCode",
-//               "assessmentIdentificationSystemDescriptor",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity subclass with common collection and descriptor identity in superclass', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntitySubclassName = 'CommunityOrganization';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartAbstractEntity('EducationOrganization')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('EducationOrganizationId', 'doc')
-//       .withCommonProperty('EducationOrganizationIdentificationCode', 'doc', false, true)
-//       .withEndAbstractEntity()
-
-//       .withStartDomainEntitySubclass(domainEntitySubclassName, 'EducationOrganization')
-//       .withDocumentation('doc')
-//       .withIntegerIdentityRename('CommunityOrganizationId', 'EducationOrganizationId', 'doc')
-//       .withEndDomainEntitySubclass()
-
-//       .withStartCommon('EducationOrganizationIdentificationCode')
-//       .withDocumentation('doc')
-//       .withStringProperty('IdentificationCode', 'doc', true, false, '30')
-//       .withDescriptorIdentity('EducationOrganizationIdentificationSystem', 'doc')
-//       .withEndCommon()
-
-//       .withStartDescriptor('EducationOrganizationIdentificationSystem')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntitySubclassBaseClassEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     subclassPropertyNamingCollisionEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     subclassPropertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     subclassApiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
-//           "schema": Object {
-//             "properties": Object {
-//               "educationOrganizationIdentificationSystemDescriptor": Object {
-//                 "description": "doc",
-//                 "type": "string",
-//               },
-//               "identificationCode": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "identificationCode",
-//               "educationOrganizationIdentificationSystemDescriptor",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building association with a common collection in a common collection', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('StudentEducationOrganizationAssociation')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('StudentId', 'doc')
-//       .withCommonProperty('Address', 'doc', false, true)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('Address')
-//       .withDocumentation('doc')
-//       .withStringProperty('StreetNumberName', 'doc', true, false, '30')
-//       .withCommonProperty('Period', 'doc', false, true)
-//       .withEndCommon()
-
-//       .withStartCommon('Period')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('BeginDate', 'doc')
-//       .withIntegerProperty('EndDate', 'doc', false, false)
-//       .withEndCommon()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     commonReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_StudentEducationOrganizationAssociation_Address",
-//           "schema": Object {
-//             "properties": Object {
-//               "periods": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_StudentEducationOrganizationAssociation_Address_Period",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "streetNumberName": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "streetNumberName",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_StudentEducationOrganizationAssociation_Address_Period",
-//           "schema": Object {
-//             "properties": Object {
-//               "beginDate": Object {
-//                 "description": "doc",
-//                 "type": "integer",
-//               },
-//               "endDate": Object {
-//                 "description": "doc",
-//                 "type": "integer",
-//               },
-//             },
-//             "required": Array [
-//               "beginDate",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with a descriptor with role name', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withDescriptorProperty('GradeLevel', 'doc', false, true, 'Assessed')
-//       .withEndDomainEntity()
-
-//       .withStartDescriptor('GradeLevel')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_Assessment_AssessedGradeLevel",
-//           "schema": Object {
-//             "properties": Object {
-//               "gradeLevelDescriptor": Object {
-//                 "description": "doc",
-//                 "maxLength": 306,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "gradeLevelDescriptor",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with a descriptor collection with role name', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withDescriptorProperty('GradeLevel', 'doc', false, true, 'Assessed')
-//       .withEndDomainEntity()
-
-//       .withStartDescriptor('GradeLevel')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_Assessment_AssessedGradeLevel",
-//           "schema": Object {
-//             "properties": Object {
-//               "gradeLevelDescriptor": Object {
-//                 "description": "doc",
-//                 "maxLength": 306,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "gradeLevelDescriptor",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with a common with a choice', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('ContentStandard', 'doc', false, false)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('ContentStandard')
-//       .withDocumentation('doc')
-//       .withStringProperty('Title', 'doc', false, false, '30')
-//       .withChoiceProperty('PublicationDateChoice', 'doc', false, false)
-//       .withEndCommon()
-
-//       .withStartChoice('PublicationDateChoice')
-//       .withDocumentation('doc')
-//       .withStringProperty('PublicationDate', 'doc', true, false, '30')
-//       .withStringProperty('PublicationYear', 'doc', true, false, '30')
-//       .withEndChoice()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new ChoiceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     choiceReferenceEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building domain entity with a common and a common collection with parent entity prefix', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('AssessmentScore', 'doc', true, true)
-//       .withCommonProperty('AssessmentPeriod', 'doc', false, false)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('AssessmentScore')
-//       .withDocumentation('doc')
-//       .withStringProperty('MinimumScore', 'doc', true, false, '30')
-//       .withEndCommon()
-
-//       .withStartCommon('AssessmentPeriod')
-//       .withDocumentation('doc')
-//       .withStringProperty('BeginDate', 'doc', false, false, '30')
-//       .withEndCommon()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     commonReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_Assessment_AssessmentScore",
-//           "schema": Object {
-//             "properties": Object {
-//               "minimumScore": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "minimumScore",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with an all-caps property', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withStringProperty('URI', 'doc', false, false, '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building domain entity with a common with a domain entity reference with a role name', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('ContentStandard', 'doc', false, false)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('ContentStandard')
-//       .withDocumentation('doc')
-//       .withStringProperty('Title', 'doc', false, false, '30')
-//       .withDomainEntityProperty('EducationOrganization', 'doc', false, false, false, 'Mandating')
-//       .withEndCommon()
-
-//       .withStartDomainEntity('EducationOrganization')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('EducationOrganizationId', 'doc')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building domain entity with reference to domain entity with school year enumeration as part of identity', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('StudentSchoolAssociation')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('SchoolId', 'doc')
-//       .withDomainEntityProperty('Calendar', 'doc', false, false)
-//       .withEndDomainEntity()
-
-//       .withStartDomainEntity('Calendar')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('SchoolId', 'doc')
-//       .withIdentityProperty('enumeration', 'SchoolYear', 'doc')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     enumerationReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building a schema for studentEducationOrganizationAssociation', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-
-//       .withStartDomainEntity('StudentCohort')
-//       .withDocumentation('doc')
-//       .withCommonProperty('CohortYear', '', false, true)
-//       .withStringIdentity('StudentUniqueId', '', '100')
-//       .withEndDomainEntity()
-
-//       .withStartEnumeration('SchoolYear')
-//       .withDocumentation('doc')
-//       .withEnumerationItem('2022')
-//       .withEndEnumeration()
-
-//       .withStartCommon('CohortYear')
-//       .withDocumentation('doc')
-//       .withEnumerationIdentity('SchoolYear', '')
-//       .withEndCommon()
-
-//       .withEndNamespace()
-
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new EnumerationBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     enumerationReferenceEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCohort');
-
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_StudentCohort_CohortYear",
-//           "schema": Object {
-//             "properties": Object {
-//               "schoolYearTypeReference": Object {
-//                 "description": "A school year enumeration",
-//                 "properties": Object {
-//                   "schoolYear": Object {
-//                     "description": "A school year between 1900 and 2100",
-//                     "maximum": 2100,
-//                     "minimum": 1900,
-//                     "type": "integer",
-//                   },
-//                 },
-//                 "type": "object",
-//               },
-//             },
-//             "required": Array [
-//               "schoolYearTypeReference",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building a domain entity with an inline common property with a descriptor', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDescriptor('CreditType')
-//       .withDocumentation('Documentation')
-//       .withEndDescriptor()
-//       .withStartInlineCommon('Credits')
-//       .withDocumentation('Documentation')
-//       .withDescriptorProperty('CreditType', 'Documentation', false, false)
-//       .withEndInlineCommon()
-
-//       .withStartDomainEntity('Section')
-//       .withDocumentation('Documentation')
-//       .withIntegerIdentity('SectionIdentifier', 'Documentation')
-//       .withInlineCommonProperty('Credits', 'Documentation', false, false, 'Available')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []));
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     inlineCommonReferenceEnhancer(metaEd);
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-
-//     namespace = metaEd.namespace.get(namespaceName);
-//   });
-
-//   it('common descriptor decollisioned top level name should be correct', () => {
-//     const common = namespace.entity.common.get('Credits');
-//     expect(common.properties[0].data.edfiApiSchema.apiMapping.decollisionedTopLevelName).toBe('CreditTypeDescriptor');
-//   });
-
-//   it('should be a correct schema for section', () => {
-//     const entity = namespace.entity.domainEntity.get('Section');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building a domain entity referencing another using a shortenTo directive', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('StudentCompetencyObjective')
-//       .withDocumentation('doc')
-//       .withStringIdentity('Identity1', 'doc', '30')
-//       .withDomainEntityPropertyWithShortenTo(
-//         'CompetencyObjective',
-//         'doc',
-//         true,
-//         false,
-//         false,
-//         'CompetencyObjective',
-//         'Objective',
-//       )
-//       .withEndDomainEntity()
-
-//       .withStartDomainEntity('CompetencyObjective')
-//       .withDocumentation('doc')
-//       .withStringIdentity('Identity2', 'doc', '30')
-//       .withEndDomainEntity()
-
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building a domain entity with different string properties', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('StudentCompetencyObjective')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StringIdentity', 'doc', '30')
-//       .withStringProperty('StringRequired', 'doc', true, false, '30')
-//       .withStringProperty('StringOptional', 'doc', false, false, '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when domain entity extension references domain entity in different namespace', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
-//   const entityName = 'EntityName';
-//   const referencedEntityName = 'ReferencedEntityName';
-//   let extensionNamespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace('EdFi')
-//       .withStartDomainEntity(referencedEntityName)
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('ReferencedIdentity', 'doc')
-//       .withEndDomainEntity()
-
-//       .withStartDomainEntity(entityName)
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('EntityIdentity', 'doc')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-
-//       .withBeginNamespace('Extension')
-//       .withStartDomainEntityExtension(entityName)
-//       .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
-//       .withEndDomainEntityExtension()
-//       .withEndNamespace()
-
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
-//     extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
-
-//     domainEntityReferenceEnhancer(metaEd);
-//     domainEntityExtensionBaseClassEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = extensionNamespace.entity.domainEntityExtension.get(entityName);
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
-//   });
-// });
-
-// describe('when building domain entity with a scalar collection in a common collection in a common collection', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('IntegerIdentity', 'doc')
-//       .withCommonProperty('CommonCollection', 'doc', false, true)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('CommonCollection')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StringIdentity', 'doc', '30')
-//       .withCommonProperty('CommonSubCollection', 'doc', false, true)
-//       .withEndCommon()
-
-//       .withStartCommon('CommonSubCollection')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StringIdentity', 'doc', '30')
-//       .withIntegerProperty('IntegerCollection', 'doc', false, true)
-//       .withEndCommon()
-
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     commonReferenceEnhancer(metaEd);
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "commonSubCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonCollection_CommonSubCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "stringIdentity": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "stringIdentity",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_CommonSubCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_CommonSubCollection_IntegerCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "stringIdentity": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "stringIdentity",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_CommonSubCollection_IntegerCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollection": Object {
-//                 "description": "doc",
-//                 "type": "integer",
-//               },
-//             },
-//             "required": Array [
-//               "integerCollection",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
-
-// describe('when building domain entity with a scalar collection in a common collection in a common collection with some rolenaming', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
-
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('IntegerIdentity', 'doc')
-//       .withCommonProperty('CommonCollection', 'doc', false, true)
-//       .withEndDomainEntity()
-
-//       .withStartCommon('CommonCollection')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StringIdentity', 'doc', '30')
-//       .withCommonProperty('CommonSubCollection', 'doc', false, true)
-//       .withCommonProperty('CommonSubCollection', 'doc', false, true, 'RoleName')
-//       .withEndCommon()
-
-//       .withStartCommon('CommonSubCollection')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StringIdentity', 'doc', '30')
-//       .withIntegerProperty('IntegerCollection', 'doc', false, true)
-//       .withEndCommon()
-
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-//     namespace = metaEd.namespace.get(namespaceName);
-
-//     commonReferenceEnhancer(metaEd);
-//     descriptorReferenceEnhancer(metaEd);
-
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     openApiRequestBodyComponentEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
-
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
-//       Object {
-//         "description": "doc",
-//         "properties": Object {
-//           "commonCollections": Object {
-//             "items": Object {
-//               "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonCollection",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "integerIdentity": Object {
-//             "description": "doc",
-//             "type": "integer",
-//           },
-//         },
-//         "required": Array [
-//           "integerIdentity",
-//         ],
-//         "type": "object",
-//       }
-//     `);
-//     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "commonSubCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonCollection_CommonSubCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "roleNameCommonSubCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonCollection_RoleNameCommonSubCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "stringIdentity": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "stringIdentity",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_CommonSubCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_CommonSubCollection_IntegerCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "stringIdentity": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "stringIdentity",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_CommonSubCollection_IntegerCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollection": Object {
-//                 "description": "doc",
-//                 "type": "integer",
-//               },
-//             },
-//             "required": Array [
-//               "integerCollection",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_RoleNameCommonSubCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollections": Object {
-//                 "items": Object {
-//                   "$ref": "#/components/schemas/EdFi_CommonSubCollection_IntegerCollection",
-//                 },
-//                 "minItems": 0,
-//                 "type": "array",
-//                 "uniqueItems": false,
-//               },
-//               "stringIdentity": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "stringIdentity",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//         Object {
-//           "propertyName": "EdFi_DomainEntityName_CommonCollection_RoleNameCommonSubCollection_IntegerCollection",
-//           "schema": Object {
-//             "properties": Object {
-//               "integerCollection": Object {
-//                 "description": "doc",
-//                 "type": "integer",
-//               },
-//             },
-//             "required": Array [
-//               "integerCollection",
-//             ],
-//             "type": "object",
-//           },
-//         },
-//       ]
-//     `);
-//   });
-// });
+describe('when building domain entity with scalar collection named with prefix of parent entity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'EducationContent';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('ContentIdentifier', 'doc', '30')
+      .withStringProperty(`${domainEntityName}SuffixName`, 'doc', true, true, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema - parent name prefix removed', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_EducationContent_EducationContentSuffixName",
+          "schema": Object {
+            "properties": Object {
+              "suffixName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "suffixName",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with a simple common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('AssessmentIdentificationCode', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('AssessmentIdentificationCode')
+      .withDocumentation('doc')
+      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
+      .withDescriptorIdentity('AssessmentIdentificationSystem', 'doc')
+      .withEndCommon()
+
+      .withStartDescriptor('AssessmentIdentificationSystem')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_AssessmentIdentificationCode",
+          "schema": Object {
+            "properties": Object {
+              "assessmentIdentificationSystemDescriptor": Object {
+                "description": "doc",
+                "type": "string",
+              },
+              "identificationCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "identificationCode",
+              "assessmentIdentificationSystemDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity subclass with common collection and descriptor identity in superclass', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntitySubclassName = 'CommunityOrganization';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withCommonProperty('EducationOrganizationIdentificationCode', 'doc', false, true)
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass(domainEntitySubclassName, 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('CommunityOrganizationId', 'EducationOrganizationId', 'doc')
+      .withEndDomainEntitySubclass()
+
+      .withStartCommon('EducationOrganizationIdentificationCode')
+      .withDocumentation('doc')
+      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
+      .withDescriptorIdentity('EducationOrganizationIdentificationSystem', 'doc')
+      .withEndCommon()
+
+      .withStartDescriptor('EducationOrganizationIdentificationSystem')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    subclassPropertyNamingCollisionEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    subclassPropertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    subclassApiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
+
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
+          "schema": Object {
+            "properties": Object {
+              "educationOrganizationIdentificationSystemDescriptor": Object {
+                "description": "doc",
+                "type": "string",
+              },
+              "identificationCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "identificationCode",
+              "educationOrganizationIdentificationSystemDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building association with a common collection in a common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentEducationOrganizationAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withCommonProperty('Address', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '30')
+      .withCommonProperty('Period', 'doc', false, true)
+      .withEndCommon()
+
+      .withStartCommon('Period')
+      .withDocumentation('doc')
+      .withIntegerIdentity('BeginDate', 'doc')
+      .withIntegerProperty('EndDate', 'doc', false, false)
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
+
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_StudentEducationOrganizationAssociation_Address",
+          "schema": Object {
+            "properties": Object {
+              "periods": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_StudentEducationOrganizationAssociation_Period",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "streetNumberName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "streetNumberName",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_StudentEducationOrganizationAssociation_Period",
+          "schema": Object {
+            "properties": Object {
+              "beginDate": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+              "endDate": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "beginDate",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with a descriptor with role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withDescriptorProperty('GradeLevel', 'doc', false, true, 'Assessed')
+      .withEndDomainEntity()
+
+      .withStartDescriptor('GradeLevel')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_AssessedGradeLevel",
+          "schema": Object {
+            "properties": Object {
+              "gradeLevelDescriptor": Object {
+                "description": "doc",
+                "maxLength": 306,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "gradeLevelDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with a descriptor collection with role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withDescriptorProperty('GradeLevel', 'doc', false, true, 'Assessed')
+      .withEndDomainEntity()
+
+      .withStartDescriptor('GradeLevel')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_AssessedGradeLevel",
+          "schema": Object {
+            "properties": Object {
+              "gradeLevelDescriptor": Object {
+                "description": "doc",
+                "maxLength": 306,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "gradeLevelDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with a common with a choice', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('ContentStandard', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('ContentStandard')
+      .withDocumentation('doc')
+      .withStringProperty('Title', 'doc', false, false, '30')
+      .withChoiceProperty('PublicationDateChoice', 'doc', false, false)
+      .withEndCommon()
+
+      .withStartChoice('PublicationDateChoice')
+      .withDocumentation('doc')
+      .withStringProperty('PublicationDate', 'doc', true, false, '30')
+      .withStringProperty('PublicationYear', 'doc', true, false, '30')
+      .withEndChoice()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new ChoiceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    choiceReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with a common and a common collection with parent entity prefix', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('AssessmentScore', 'doc', true, true)
+      .withCommonProperty('AssessmentPeriod', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('AssessmentScore')
+      .withDocumentation('doc')
+      .withStringProperty('MinimumScore', 'doc', true, false, '30')
+      .withEndCommon()
+
+      .withStartCommon('AssessmentPeriod')
+      .withDocumentation('doc')
+      .withStringProperty('BeginDate', 'doc', false, false, '30')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_AssessmentScore",
+          "schema": Object {
+            "properties": Object {
+              "minimumScore": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "minimumScore",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with an all-caps property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withStringProperty('URI', 'doc', false, false, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with a common with a domain entity reference with a role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('ContentStandard', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('ContentStandard')
+      .withDocumentation('doc')
+      .withStringProperty('Title', 'doc', false, false, '30')
+      .withDomainEntityProperty('EducationOrganization', 'doc', false, false, false, 'Mandating')
+      .withEndCommon()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with reference to domain entity with school year enumeration as part of identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentSchoolAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withDomainEntityProperty('Calendar', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Calendar')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withIdentityProperty('enumeration', 'SchoolYear', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building a schema for studentEducationOrganizationAssociation', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StudentCohort')
+      .withDocumentation('doc')
+      .withCommonProperty('CohortYear', '', false, true)
+      .withStringIdentity('StudentUniqueId', '', '100')
+      .withEndDomainEntity()
+
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEnumerationItem('2022')
+      .withEndEnumeration()
+
+      .withStartCommon('CohortYear')
+      .withDocumentation('doc')
+      .withEnumerationIdentity('SchoolYear', '')
+      .withEndCommon()
+
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCohort');
+
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_StudentCohort_CohortYear",
+          "schema": Object {
+            "properties": Object {
+              "schoolYearTypeReference": Object {
+                "description": "A school year enumeration",
+                "properties": Object {
+                  "schoolYear": Object {
+                    "description": "A school year between 1900 and 2100",
+                    "maximum": 2100,
+                    "minimum": 1900,
+                    "type": "integer",
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "required": Array [
+              "schoolYearTypeReference",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building a domain entity with an inline common property with a descriptor', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('CreditType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+      .withStartInlineCommon('Credits')
+      .withDocumentation('Documentation')
+      .withDescriptorProperty('CreditType', 'Documentation', false, false)
+      .withEndInlineCommon()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('Documentation')
+      .withIntegerIdentity('SectionIdentifier', 'Documentation')
+      .withInlineCommonProperty('Credits', 'Documentation', false, false, 'Available')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('common descriptor decollisioned top level name should be correct', () => {
+    const common = namespace.entity.common.get('Credits');
+    expect(common.properties[0].data.edfiApiSchema.apiMapping.decollisionedTopLevelName).toBe('CreditTypeDescriptor');
+  });
+
+  it('should be a correct schema for section', () => {
+    const entity = namespace.entity.domainEntity.get('Section');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building a domain entity with an inline common property with a descriptor collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('CreditType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+      .withStartInlineCommon('Credits')
+      .withDocumentation('Documentation')
+      .withDescriptorProperty('CreditType', 'Documentation', false, true)
+      .withEndInlineCommon()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('Documentation')
+      .withIntegerIdentity('SectionIdentifier', 'Documentation')
+      .withInlineCommonProperty('Credits', 'Documentation', false, false, 'Available')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Section');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "Documentation",
+        "properties": Object {
+          "availableCreditTypes": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/EdFi_Section_Credits_AvailableCreditType",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "sectionIdentifier": Object {
+            "description": "Documentation",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+        ],
+        "type": "object",
+      }
+    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Section_Credits_AvailableCreditType",
+          "schema": Object {
+            "properties": Object {
+              "availableCreditTypeDescriptor": Object {
+                "description": "Documentation",
+                "maxLength": 306,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "availableCreditTypeDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building a domain entity with a common property with a descriptor collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('CreditType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+
+      .withStartCommon('Credits')
+      .withDocumentation('Documentation')
+      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
+      .withDescriptorProperty('CreditType', 'Documentation', false, true)
+      .withEndCommon()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('Documentation')
+      .withIntegerIdentity('SectionIdentifier', 'Documentation')
+      .withCommonProperty('Credits', 'Documentation', false, false, 'Available')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Section');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "Documentation",
+        "properties": Object {
+          "availableCredits": Object {
+            "properties": Object {
+              "creditTypes": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_Section_CreditType",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "identificationCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "identificationCode",
+            ],
+            "type": "object",
+          },
+          "sectionIdentifier": Object {
+            "description": "Documentation",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+        ],
+        "type": "object",
+      }
+    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Section_CreditType",
+          "schema": Object {
+            "properties": Object {
+              "creditTypeDescriptor": Object {
+                "description": "Documentation",
+                "maxLength": 306,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "creditTypeDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building a domain entity referencing another using a shortenTo directive', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentCompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('Identity1', 'doc', '30')
+      .withDomainEntityPropertyWithShortenTo(
+        'CompetencyObjective',
+        'doc',
+        true,
+        false,
+        false,
+        'CompetencyObjective',
+        'Objective',
+      )
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('Identity2', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building a domain entity with different string properties', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentCompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withStringProperty('StringRequired', 'doc', true, false, '30')
+      .withStringProperty('StringOptional', 'doc', false, false, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when domain entity extension references domain entity in different namespace', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReferencedIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntityExtension(entityName)
+      .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = extensionNamespace.entity.domainEntityExtension.get(entityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with a scalar collection in a common collection in a common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('IntegerIdentity', 'doc')
+      .withCommonProperty('CommonCollection', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('CommonCollection')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withCommonProperty('CommonSubCollection', 'doc', false, true)
+      .withEndCommon()
+
+      .withStartCommon('CommonSubCollection')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withIntegerProperty('IntegerCollection', 'doc', false, true)
+      .withEndCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_DomainEntityName_CommonCollection",
+          "schema": Object {
+            "properties": Object {
+              "commonSubCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonSubCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "stringIdentity": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "stringIdentity",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_CommonSubCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_IntegerCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "stringIdentity": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "stringIdentity",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_IntegerCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollection": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "integerCollection",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with a scalar collection in a common collection in a common collection with some rolenaming', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('IntegerIdentity', 'doc')
+      .withCommonProperty('CommonCollection', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('CommonCollection')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withCommonProperty('CommonSubCollection', 'doc', false, true)
+      .withCommonProperty('CommonSubCollection', 'doc', false, true, 'RoleName')
+      .withEndCommon()
+
+      .withStartCommon('CommonSubCollection')
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc', '30')
+      .withIntegerProperty('IntegerCollection', 'doc', false, true)
+      .withEndCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "doc",
+        "properties": Object {
+          "commonCollections": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonCollection",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "integerIdentity": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "integerIdentity",
+        ],
+        "type": "object",
+      }
+    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_DomainEntityName_CommonCollection",
+          "schema": Object {
+            "properties": Object {
+              "commonSubCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_CommonSubCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "roleNameCommonSubCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_RoleNameCommonSubCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "stringIdentity": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "stringIdentity",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_CommonSubCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_IntegerCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "stringIdentity": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "stringIdentity",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_IntegerCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollection": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "integerCollection",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_RoleNameCommonSubCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollections": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_DomainEntityName_IntegerCollection",
+                },
+                "minItems": 0,
+                "type": "array",
+                "uniqueItems": false,
+              },
+              "stringIdentity": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "stringIdentity",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_DomainEntityName_IntegerCollection",
+          "schema": Object {
+            "properties": Object {
+              "integerCollection": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "integerCollection",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
