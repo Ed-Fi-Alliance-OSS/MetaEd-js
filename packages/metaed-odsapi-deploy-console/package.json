@@ -9,7 +9,6 @@
   },
   "files": [
     "/dist",
-    "/CHANGELOG.md",
     "/LICENSE.md",
     "/package.json"
   ],
