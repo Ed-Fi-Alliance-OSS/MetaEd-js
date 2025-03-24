@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-unified",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.18",
+  "version": "4.5.2-dev.19",
   "description": "Ed-Fi Unified plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -13,7 +13,7 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.5.2-dev.18",
+    "@edfi/metaed-core": "4.5.2-dev.19",
     "ramda": "^0.29.0"
   },
   "scripts": {

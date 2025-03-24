@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-core",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.18",
+  "version": "4.5.2-dev.19",
   "description": "MetaEd core functionality plugin",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {

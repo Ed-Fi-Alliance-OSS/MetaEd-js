@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-api-schema",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.18",
+  "version": "4.5.2-dev.19",
   "description": "MetaEd plugin for generating API Schema object models",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,9 +13,9 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.5.2-dev.18",
-    "@edfi/metaed-plugin-edfi-ods-relational": "4.5.2-dev.18",
-    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.18",
+    "@edfi/metaed-core": "4.5.2-dev.19",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.5.2-dev.19",
+    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.19",
     "ajv": "^8.12.0",
     "deep-freeze": "^0.0.1",
     "inflection": "^2.0.1",
