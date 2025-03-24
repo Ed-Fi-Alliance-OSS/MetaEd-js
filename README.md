@@ -1,5 +1,7 @@
 # metaed-js
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Ed-Fi-Alliance-OSS/MetaEd-js/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Ed-Fi-Alliance-OSS/MetaEd-js)
+
 MetaEd is:
 
 * a [domain-specific language](./docs/metaed-as-language.md) (DSL) for documenting data models;

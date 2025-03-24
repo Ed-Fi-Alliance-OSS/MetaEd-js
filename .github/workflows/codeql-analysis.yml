@@ -13,6 +13,9 @@ on:
       - "packages/**/src/**/*.tsx"
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "packages/**/src/**/*.ts"
+      - "packages/**/src/**/*.tsx"
 
 permissions: read-all
 
