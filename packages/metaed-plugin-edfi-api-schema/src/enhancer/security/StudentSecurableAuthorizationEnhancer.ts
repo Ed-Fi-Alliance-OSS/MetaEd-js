@@ -10,30 +10,28 @@ import { JsonPathsInfo, JsonPathPropertyPair } from '../../model/JsonPathsMappin
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const edfiStudent: TopLevelEntity | undefined = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Student');
-  if (edfiStudent == null) {
-    throw new Error('StudentSecurableAuthorizationEnhancer: Fatal Error: Student not found in EdFi Data Standard project');
-  }
-
-  edfiStudent.inReferences.forEach((studentReferenceProperty) => {
-    // Needs to be part of identity
-    if (!studentReferenceProperty.isPartOfIdentity) return;
-
-    // Skip role named properties
-    if (studentReferenceProperty.roleName !== '') return;
-
-    const result: Set<JsonPath> = new Set();
-
-    const { allJsonPathsMapping } = studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData;
-
-    Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
-      jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
-        if (jsonPathPropertyPair.sourceProperty !== studentReferenceProperty) return;
-        result.add(jsonPathPropertyPair.jsonPath);
+  if (edfiStudent) {
+    edfiStudent.inReferences.forEach((studentReferenceProperty) => {
+      // Needs to be part of identity
+      if (!studentReferenceProperty.isPartOfIdentity) return;
+  
+      // Skip role named properties
+      if (studentReferenceProperty.roleName !== '') return;
+  
+      const result: Set<JsonPath> = new Set();
+  
+      const { allJsonPathsMapping } = studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData;
+  
+      Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+        jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
+          if (jsonPathPropertyPair.sourceProperty !== studentReferenceProperty) return;
+          result.add(jsonPathPropertyPair.jsonPath);
+        });
       });
+      (studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData).studentSecurableAuthorizationElements =
+        [...result].sort();
     });
-    (studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData).studentSecurableAuthorizationElements =
-      [...result].sort();
-  });
+  }  
 
   return {
     enhancerName: 'StudentSecurableAuthorizationEnhancer',
