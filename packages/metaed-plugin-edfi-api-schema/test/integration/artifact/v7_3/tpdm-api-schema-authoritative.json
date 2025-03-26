@@ -15221,6 +15221,10 @@
     "resourceSchemas": {
       "accreditationStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -15324,6 +15328,10 @@
       },
       "aidTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -15427,6 +15435,10 @@
       },
       "candidateEducatorPreparationProgramAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -15788,6 +15800,10 @@
       },
       "candidates": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
           "$.addresses[*].doNotPublishIndicator",
           "$.economicDisadvantaged",
@@ -17038,6 +17054,10 @@
       },
       "certificationRouteDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17141,6 +17161,10 @@
       },
       "coteachingStyleObservedDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17244,6 +17268,10 @@
       },
       "credentialStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17346,6 +17374,10 @@
         }
       },
       "credentials": {
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
           "$._ext.tpdm.boardCertificationIndicator"
         ],
@@ -17572,6 +17604,10 @@
       },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17756,6 +17792,10 @@
       },
       "educatorRoleDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17859,6 +17899,10 @@
       },
       "englishLanguageExamDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -17962,6 +18006,10 @@
       },
       "eppProgramPathwayDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -18065,6 +18113,10 @@
       },
       "evaluationElementRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -18168,6 +18220,10 @@
       },
       "evaluationElementRatings": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -18779,6 +18835,10 @@
       },
       "evaluationElements": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -19125,6 +19185,10 @@
       },
       "evaluationObjectiveRatings": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -19639,6 +19703,10 @@
       },
       "evaluationObjectives": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -19982,6 +20050,10 @@
       },
       "evaluationPeriodDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -20085,6 +20157,10 @@
       },
       "evaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -20188,6 +20264,10 @@
       },
       "evaluationRatingStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -20291,6 +20371,10 @@
       },
       "evaluationRatings": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -20990,6 +21074,10 @@
       },
       "evaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -21093,6 +21181,10 @@
       },
       "evaluations": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -21416,6 +21508,11 @@
       },
       "financialAids": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+            "$.studentReference.studentUniqueId"
+          ]
+        },
         "booleanJsonPaths": [
           "$.pellGrantRecipient"
         ],
@@ -21600,6 +21697,10 @@
       },
       "genderDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -21703,6 +21804,10 @@
       },
       "objectiveRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -21806,6 +21911,10 @@
       },
       "performanceEvaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -21909,6 +22018,10 @@
       },
       "performanceEvaluationRatings": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
           "$.announced"
         ],
@@ -22431,6 +22544,10 @@
       },
       "performanceEvaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -22534,6 +22651,10 @@
       },
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -22847,6 +22968,10 @@
       },
       "rubricDimensions": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -23147,6 +23272,10 @@
       },
       "rubricRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -23249,6 +23378,10 @@
         }
       },
       "schools": {
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -23314,6 +23447,10 @@
       },
       "surveyResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -23483,6 +23620,10 @@
         }
       },
       "surveyResponses": {
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -23559,6 +23700,10 @@
       },
       "surveySectionResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationSecurable": {
+          "Student": [
+          ]
+        },
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [

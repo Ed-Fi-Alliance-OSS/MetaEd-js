@@ -11,6 +11,7 @@ import { MetaEdResourceName } from './MetaEdResourceName';
 import { JsonPath } from './JsonPath';
 import { QueryFieldMapping } from './QueryFieldMapping';
 import { SecurityElements } from './SecurityElements';
+import { AuthorizationSecurable } from './AuthorizationSecurable';
 
 /**
  * API resource schema information common between all resources
@@ -57,6 +58,11 @@ export type BaseResourceSchema = {
    * A list of the elements this resource can be secured on.
    */
   securityElements: SecurityElements;
+
+  /**
+   * Json paths to the authorization securable elements for this resource
+   */
+  authorizationSecurable: AuthorizationSecurable;
 };
 
 /**

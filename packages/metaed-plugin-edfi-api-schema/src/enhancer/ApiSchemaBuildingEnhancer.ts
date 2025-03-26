@@ -91,6 +91,9 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
       Namespace: entityApiSchemaData.namespaceSecurityElements,
       EducationOrganization: entityApiSchemaData.educationOrganizationSecurityElements,
     },
+    authorizationSecurable: {
+      Student: entityApiSchemaData.studentSecurableAuthorizationElements,
+    },
     isResourceExtension: false,
   };
 }
@@ -111,6 +114,9 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     securityElements: {
       Namespace: [],
       EducationOrganization: [],
+    },
+    authorizationSecurable: {
+      Student: [],
     },
     isResourceExtension: true,
   };

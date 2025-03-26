@@ -152,6 +152,11 @@ export type EntityApiSchemaData = {
   namespaceSecurityElements: JsonPath[];
 
   /**
+   * A list of the student id paths for this entity for use in student securable authorization
+   */
+  studentSecurableAuthorizationElements: JsonPath[];
+
+  /**
    * A list of the EducationOrganization-based security elements for this entity
    */
   educationOrganizationSecurityElements: EducationOrganizationSecurityElement[];
@@ -181,6 +186,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     queryFieldMapping: {},
     namespaceSecurityElements: [],
     educationOrganizationSecurityElements: [],
+    studentSecurableAuthorizationElements: [],
   });
 }
 
