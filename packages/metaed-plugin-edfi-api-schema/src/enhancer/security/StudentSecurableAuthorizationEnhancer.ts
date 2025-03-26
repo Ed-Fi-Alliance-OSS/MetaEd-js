@@ -14,24 +14,25 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     edfiStudent.inReferences.forEach((studentReferenceProperty) => {
       // Needs to be part of identity
       if (!studentReferenceProperty.isPartOfIdentity) return;
-  
+
       // Skip role named properties
       if (studentReferenceProperty.roleName !== '') return;
-  
+
       const result: Set<JsonPath> = new Set();
-  
+
       const { allJsonPathsMapping } = studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData;
-  
+
       Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
         jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
           if (jsonPathPropertyPair.sourceProperty !== studentReferenceProperty) return;
           result.add(jsonPathPropertyPair.jsonPath);
         });
       });
-      (studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData).studentSecurableAuthorizationElements =
-        [...result].sort();
+      (
+        studentReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData
+      ).studentSecurableAuthorizationElements = [...result].sort();
     });
-  }  
+  }
 
   return {
     enhancerName: 'StudentSecurableAuthorizationEnhancer',
