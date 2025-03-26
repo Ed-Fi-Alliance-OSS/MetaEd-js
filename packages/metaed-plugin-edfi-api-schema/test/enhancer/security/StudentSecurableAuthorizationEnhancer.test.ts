@@ -37,7 +37,40 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   enhance(metaEd);
 }
 
-describe('when building domain entity with student id', () => {
+describe('when building domain entity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const resourceName = 'DisciplineAction';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartAbstractEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '50', 'string', 'required')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntity(resourceName)
+      .withDocumentation('doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    runEnhancers(metaEd);
+  });
+
+  it('should have no studentSecurableAuthorizationElements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
+    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
+      .studentSecurableAuthorizationElements;
+    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with Student property', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -72,5 +105,39 @@ describe('when building domain entity with student id', () => {
         "$.studentReference.studentUniqueId",
       ]
     `);
+  });
+});
+
+describe('when building domain entity with role named Student property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const resourceName = 'DisciplineAction';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartAbstractEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '50', 'string', 'required')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntity(resourceName)
+      .withDocumentation('doc')
+      .withDomainEntityProperty('Student', 'doc', false, false, undefined, 'RoleName')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    runEnhancers(metaEd);
+  });
+
+  it('should have empty studentSecurableAuthorizationElements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
+    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
+      .studentSecurableAuthorizationElements;
+    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
