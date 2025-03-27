@@ -19,6 +19,7 @@ import {
   sortTagsByName,
 } from './OpenApiSpecificationEnhancerBase';
 import { SchemasPathsTags } from '../model/SchemasPathsTags';
+import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 
 /**
  * Assembles an OpenAPI document from schemas, paths and tags
@@ -76,6 +77,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       Object.assign(resourceSchemaPathsTags.paths, paths);
       resourceSchemaPathsTags.tags.push(...tags);
     });
+
+    const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
+    Object.assign(resourceSchemaPathsTags.schemas, {
+      EdFi_SchoolYearType_Reference: schoolYearOpenApis.schoolYearEnumerationOpenApi,
+    });
+
     namespaceEdfiApiSchema.openApiCoreResources = openApiDocumentFrom(resourceSchemaPathsTags);
 
     // And in the "descriptor" OpenAPI schema
@@ -85,6 +92,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       Object.assign(descriptorSchemaPathsTags.paths, paths);
       descriptorSchemaPathsTags.tags.push(...tags);
     });
+
     namespaceEdfiApiSchema.openApiCoreDescriptors = openApiDocumentFrom(descriptorSchemaPathsTags);
   });
 

@@ -124,11 +124,11 @@ function openApiArrayForReferenceCollection(property: EntityProperty, propertyMo
  */
 function openApiPropertyForSchoolYearEnumeration(
   property: EntityProperty,
-  schoolYearEnumerationOpenApi: OpenApiObject,
+  schoolYearOpenApis: SchoolYearOpenApis,
 ): OpenApiProperty {
   invariant(property.type === 'schoolYearEnumeration');
 
-  return schoolYearEnumerationOpenApi;
+  return { $ref: schoolYearOpenApis.schoolYearEnumerationRef };
 }
 
 /**
@@ -282,7 +282,7 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
 
     const openApiProperty: OpenApiProperty =
       property.type === 'schoolYearEnumeration'
-        ? openApiPropertyForSchoolYearEnumeration(property, schoolYearOpenApis.schoolYearEnumerationOpenApi)
+        ? openApiPropertyForSchoolYearEnumeration(property, schoolYearOpenApis)
         : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis, propertyChain);
 
     openApiProperties[openApiObjectBaseName] = openApiProperty;

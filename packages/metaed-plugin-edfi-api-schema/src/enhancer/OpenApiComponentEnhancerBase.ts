@@ -9,7 +9,11 @@ import { NoOpenApiProperty, OpenApiObject, OpenApiProperties, OpenApiProperty } 
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { singularize } from '../Utility';
 
-export type SchoolYearOpenApis = { schoolYearOpenApi: OpenApiProperty; schoolYearEnumerationOpenApi: OpenApiObject };
+export type SchoolYearOpenApis = {
+  schoolYearOpenApi: OpenApiProperty;
+  schoolYearEnumerationOpenApi: OpenApiObject;
+  schoolYearEnumerationRef: string;
+};
 
 /**
  * Create new SchoolYearOpenApis
@@ -30,9 +34,12 @@ export function newSchoolYearOpenApis(minSchoolYear: number, maxSchoolYear: numb
     },
   };
 
+  const schoolYearEnumerationRef = '#/components/schemas/EdFi_SchoolYearTypeReference';
+
   return {
     schoolYearOpenApi,
     schoolYearEnumerationOpenApi,
+    schoolYearEnumerationRef,
   };
 }
 
