@@ -36,8 +36,7 @@ $metaEdConfig = @{
     }
 }
 
-# Check if MetaEdExtensionName is provided and modify the configuration for TPDM
-if ($MetaEdExtensionName -eq "TPDM") {
+if ($MetaEdExtensionName -eq "TPDM" -or $MetaEdExtensionName -eq "Homograph" -or $MetaEdExtensionName -eq "Sample") {
     $metaEdConfig.metaEdConfiguration.projects += @{
         "namespaceName" = "$MetaEdExtensionName"
         "projectName"   = "$MetaEdExtensionName"
