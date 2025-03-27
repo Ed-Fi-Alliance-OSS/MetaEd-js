@@ -68,7 +68,7 @@ jobs:
         if: matrix.config == 'Homograph'  || matrix.config == 'Sample'
         shell: pwsh
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 CheckoutBranch -RelativeRepoPath "../MetaEdExtensionSource" 
+        run: ./eng/ApiSchema/build.ps1 -Command CheckoutBranch -RelativeRepoPath "../MetaEdExtensionSource" 
 
       - name: Clean up folders except HomographMetaEd for MetaEdExtensionSource
         if: matrix.config == 'Homograph'    
