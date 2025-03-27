@@ -212,6 +212,60 @@ describe('when building a domain entity referencing another referencing another 
   });
 });
 
+describe('when building a domain entity referencing two referencing another with identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'CourseTranscript';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('SectionIdentifier', 'doc', '30')
+      .withDomainEntityIdentity('StudentAcademicRecord', 'doc')
+      .withDomainEntityIdentity('StudentOtherAcademicRecord', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StudentAcademicRecord')
+      .withDocumentation('doc')
+      .withStringIdentity('Description', 'doc', '30')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StudentOtherAcademicRecord')
+      .withDocumentation('doc')
+      .withStringIdentity('Description', 'doc', '30')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runEnhancers(metaEd);
+  });
+
+  it('should be two studentSecurableJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
+      .studentSecurableAuthorizationElements;
+    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.studentAcademicRecordReference.studentUniqueId",
+        "$.studentOtherAcademicRecordReference.studentUniqueId",
+      ]
+    `);
+  });
+});
+
 describe('when building domain entity with a common with a domain entity reference with a role name', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
