@@ -26,6 +26,10 @@ env:
   PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.2.0"
   DATASTANDARD_REPO_TAG:  "DS-5.2.0-ME-3.0.0"
   TECHNOLOGY_VERSION: "7.2.0"
+  REPOSITORY_DISPATCH_BRANCH: ${{ github.event.client_payload.branch }}
+  HEAD_REF:  ${{ GITHUB.HEAD_REF }}
+  REF_NAME:  ${{ GITHUB.REF_NAME }}
+  REPOSITORY_OWNER: ${{ GITHUB.REPOSITORY_OWNER }}
 
 jobs:
   run-metaed-project:
@@ -33,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]
+        config: [ "Core", "TPDM", "Homograph", "Sample"]
     defaults:
       run:
         shell: pwsh
@@ -52,6 +56,41 @@ jobs:
           path: MetaEdExtensionSource/
           ref: ${{env.TPDM_REPO_TAG}}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
+
+      - name: Checkout Ed-Fi-ODS-Implementation (for Homograph and Sample only)
+        if: matrix.config == 'Homograph'  || matrix.config == 'Sample'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Ed-Fi-Alliance-OSS/Ed-Fi-ODS-Implementation
+          path: MetaEdExtensionSource/
+
+      - name: Is pull request branch exists in Ed-Fi-ODS-Implementation (for Homograph and Sample only)
+        if: matrix.config == 'Homograph'  || matrix.config == 'Sample'
+        shell: pwsh
+        working-directory: ./MetaEd-js/
+        run: ./eng/ApiSchema/build.ps1 CheckoutBranch -RelativeRepoPath "../MetaEdExtensionSource" 
+
+      - name: Clean up folders except HomographMetaEd for MetaEdExtensionSource
+        if: matrix.config == 'Homograph'    
+        shell: pwsh
+        run: |
+          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/Homograph/ -Exclude HomographMetaEd | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Homograph | Remove-Item -Recurse -Force
+
+          cd MetaEdExtensionSource/Extensions/Homograph/HomographMetaEd
+          mv * ../../..
+
+      - name: Clean up folders except SampleMetaEd for MetaEdExtensionSource
+        if: matrix.config == 'Sample'
+        shell: pwsh
+        run: |
+          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/Sample/ -Exclude SampleMetaEd | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Sample | Remove-Item -Recurse -Force
+
+          cd MetaEdExtensionSource/Extensions/Sample/SampleMetaEd
+          mv * ../../..
 
       - name: Create MetaEdConfig
         working-directory: ./MetaEd-js/   
