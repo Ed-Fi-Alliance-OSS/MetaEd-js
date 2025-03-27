@@ -66,9 +66,9 @@ jobs:
 
       - name: Is pull request branch exists in Ed-Fi-ODS-Implementation (for Homograph and Sample only)
         if: matrix.config == 'Homograph'  || matrix.config == 'Sample'
-        shell: pwsh
         working-directory: ./MetaEd-js/
         run: ./eng/ApiSchema/build.ps1 -Command CheckoutBranch -RelativeRepoPath "../MetaEdExtensionSource" 
+        shell: pwsh        
 
       - name: Clean up folders except HomographMetaEd for MetaEdExtensionSource
         if: matrix.config == 'Homograph'    
