@@ -14623,16 +14623,7 @@
               "uniqueItems": false
             },
             "schoolYearTypeReference": {
-              "description": "A school year enumeration",
-              "properties": {
-                "schoolYear": {
-                  "description": "A school year between 1900 and 2100",
-                  "maximum": 2100,
-                  "minimum": 1900,
-                  "type": "integer"
-                }
-              },
-              "type": "object"
+              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference"
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
