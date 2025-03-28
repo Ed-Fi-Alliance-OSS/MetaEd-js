@@ -348,7 +348,7 @@ describe('when building simple domain entity with all the simple non-collections
               ],
               "type": "object",
             },
-            "EdFi_SchoolYearType_Reference": Object {
+            "EdFi_SchoolYearTypeReference": Object {
               "description": "A school year enumeration",
               "properties": Object {
                 "schoolYear": Object {
@@ -1655,7 +1655,7 @@ describe('when building simple domain entity with all the simple collections', (
           ],
           "type": "object",
         },
-        "EdFi_SchoolYearType_Reference": Object {
+        "EdFi_SchoolYearTypeReference": Object {
           "description": "A school year enumeration",
           "properties": Object {
             "schoolYear": Object {
@@ -3293,7 +3293,7 @@ describe('when building a domain entity referencing another referencing another 
           ],
           "type": "object",
         },
-        "EdFi_SchoolYearType_Reference": Object {
+        "EdFi_SchoolYearTypeReference": Object {
           "description": "A school year enumeration",
           "properties": Object {
             "schoolYear": Object {
@@ -4931,7 +4931,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           ],
           "type": "object",
         },
-        "EdFi_SchoolYearType_Reference": Object {
+        "EdFi_SchoolYearTypeReference": Object {
           "description": "A school year enumeration",
           "properties": Object {
             "schoolYear": Object {
@@ -5703,7 +5703,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           ],
           "type": "object",
         },
-        "EdFi_SchoolYearType_Reference": Object {
+        "EdFi_SchoolYearTypeReference": Object {
           "description": "A school year enumeration",
           "properties": Object {
             "schoolYear": Object {
@@ -6707,7 +6707,7 @@ describe('when building domain entity with scalar collection named with prefix o
           ],
           "type": "object",
         },
-        "EdFi_SchoolYearType_Reference": Object {
+        "EdFi_SchoolYearTypeReference": Object {
           "description": "A school year enumeration",
           "properties": Object {
             "schoolYear": Object {

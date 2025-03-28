@@ -80,7 +80,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
     Object.assign(resourceSchemaPathsTags.schemas, {
-      EdFi_SchoolYearType_Reference: schoolYearOpenApis.schoolYearEnumerationOpenApi,
+      EdFi_SchoolYearTypeReference: schoolYearOpenApis.schoolYearEnumerationOpenApi,
     });
 
     namespaceEdfiApiSchema.openApiCoreResources = openApiDocumentFrom(resourceSchemaPathsTags);
