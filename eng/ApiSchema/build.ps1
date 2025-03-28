@@ -167,6 +167,14 @@ function CopyMetaEdFiles {
         Copy-Item -Path ./MetaEdOutput/TPDM/XSD/* -Destination $solutionRoot/xsd/
         Copy-Item -Path ./MetaEdOutput/TPDM/Interchange/* -Destination $solutionRoot/xsd/
     }
+    if($ApiSchemaPackageType -eq 'Homograph'){
+        Copy-Item -Path ./MetaEdOutput/Homograph/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
+    }
+    if($ApiSchemaPackageType -eq 'Sample'){
+        Copy-Item -Path ./MetaEdOutput/Sample/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
+        Copy-Item -Path ./MetaEdOutput/Sample/XSD/* -Destination $solutionRoot/xsd/
+        Copy-Item -Path ./MetaEdOutput/Sample/Interchange/* -Destination $solutionRoot/xsd/
+    }
 
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.json", "xsd\*.xsd" | Select-Object FullName
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.xsd" | Select-Object FullName
