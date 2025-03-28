@@ -12,6 +12,7 @@ import { JsonPath } from './JsonPath';
 import { QueryFieldMapping } from './QueryFieldMapping';
 import { SecurityElements } from './SecurityElements';
 import { AuthorizationSecurable } from './AuthorizationSecurable';
+import { AuthorizationPathway } from './AuthorizationPathway';
 
 /**
  * API resource schema information common between all resources
@@ -63,6 +64,11 @@ export type BaseResourceSchema = {
    * Json paths to the authorization securable elements for this resource
    */
   authorizationSecurable: AuthorizationSecurable;
+
+  /**
+   * The AuthorizationPathways this resource is a part of.
+   */
+  authorizationPathways: AuthorizationPathway[];
 };
 
 /**

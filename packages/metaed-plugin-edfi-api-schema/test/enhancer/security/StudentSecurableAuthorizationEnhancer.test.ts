@@ -84,9 +84,14 @@ describe('when building domain entity', () => {
 
   it('should have no studentSecurableAuthorizationElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
-      .studentSecurableAuthorizationElements;
-    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`Array []`);
+    const { studentSecurableAuthorizationElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurableAuthorizationElements).toMatchInlineSnapshot(`Array []`);
+  });
+
+  it('should have no studentSecurityElements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -120,9 +125,18 @@ describe('when building domain entity with Student identity', () => {
 
   it('should have simple studentSecurableAuthorizationElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
-      .studentSecurableAuthorizationElements;
-    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`
+    const { studentSecurableAuthorizationElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurableAuthorizationElements).toMatchInlineSnapshot(`
+      Array [
+        "$.studentReference.studentUniqueId",
+      ]
+    `);
+  });
+
+  it('should have simple studentSecurityElements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`
       Array [
         "$.studentReference.studentUniqueId",
       ]
@@ -158,11 +172,16 @@ describe('when building domain entity with Student not part of identity', () => 
     runEnhancers(metaEd);
   });
 
-  it('should have simple studentSecurableAuthorizationElements', () => {
+  it('should have no studentSecurableAuthorizationElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
-      .studentSecurableAuthorizationElements;
-    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`Array []`);
+    const { studentSecurableAuthorizationElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurableAuthorizationElements).toMatchInlineSnapshot(`Array []`);
+  });
+
+  it('should have no studentSecurityElements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -202,9 +221,18 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct studentSecurableJsonPaths for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
-      .studentSecurableAuthorizationElements;
-    expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`
+    const { studentSecurableAuthorizationElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurableAuthorizationElements).toMatchInlineSnapshot(`
+      Array [
+        "$.studentAcademicRecordReference.studentUniqueId",
+      ]
+    `);
+  });
+
+  it('should be correct studentSecurityElements for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`
       Array [
         "$.studentAcademicRecordReference.studentUniqueId",
       ]
@@ -264,6 +292,17 @@ describe('when building a domain entity referencing two referencing another with
       ]
     `);
   });
+
+  it('should be two studentSecurityElements for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`
+      Array [
+        "$.studentAcademicRecordReference.studentUniqueId",
+        "$.studentOtherAcademicRecordReference.studentUniqueId",
+      ]
+    `);
+  });
 });
 
 describe('when building domain entity with a common with a domain entity reference with a role name', () => {
@@ -305,5 +344,11 @@ describe('when building domain entity with a common with a domain entity referen
     const studentSecurableJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData)
       .studentSecurableAuthorizationElements;
     expect(studentSecurableJsonPaths).toMatchInlineSnapshot(`Array []`);
+  });
+
+  it('should be empty studentSecurityElements for Assessment', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
+    const { studentSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurityElements).toMatchInlineSnapshot(`Array []`);
   });
 });
