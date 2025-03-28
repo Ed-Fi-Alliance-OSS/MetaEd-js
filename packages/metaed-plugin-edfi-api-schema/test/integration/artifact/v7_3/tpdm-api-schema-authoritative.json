@@ -15212,6 +15212,8 @@
     "resourceSchemas": {
       "accreditationStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -15314,11 +15316,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "aidTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -15421,11 +15427,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "candidateEducatorPreparationProgramAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -15786,11 +15796,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "candidates": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17040,11 +17054,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "certificationRouteDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17147,11 +17165,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "coteachingStyleObservedDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17254,11 +17276,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "credentialStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17361,10 +17387,14 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "credentials": {
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17590,11 +17620,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17778,11 +17812,15 @@
             }
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "educatorRoleDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17885,11 +17923,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "englishLanguageExamDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -17992,11 +18034,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "eppProgramPathwayDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -18099,11 +18145,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationElementRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -18206,11 +18256,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationElementRatings": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -18821,11 +18875,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationElements": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -19171,11 +19229,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationObjectiveRatings": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -19689,11 +19751,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationObjectives": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -20036,11 +20102,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationPeriodDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -20143,11 +20213,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -20250,11 +20324,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationRatingStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -20357,11 +20435,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationRatings": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -21060,11 +21142,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "evaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -21167,11 +21253,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "evaluations": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -21494,11 +21584,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "financialAids": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
             "$.studentReference.studentUniqueId"
@@ -21683,11 +21777,16 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
+            "$.studentReference.studentUniqueId"
           ]
         }
       },
       "genderDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -21790,11 +21889,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "objectiveRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -21897,11 +22000,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "performanceEvaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -22004,11 +22111,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "performanceEvaluationRatings": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -22530,11 +22641,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "performanceEvaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -22637,11 +22752,15 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -22954,11 +23073,15 @@
             }
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "rubricDimensions": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23258,11 +23381,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "rubricRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23365,10 +23492,14 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "schools": {
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23433,11 +23564,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "surveyResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23607,10 +23742,14 @@
           ],
           "Namespace": [
             "$.surveyResponseReference.namespace"
+          ],
+          "Student": [
           ]
         }
       },
       "surveyResponses": {
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23686,11 +23825,15 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Student": [
           ]
         }
       },
       "surveySectionResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "authorizationPathways": [
+        ],
         "authorizationSecurable": {
           "Student": [
           ]
@@ -23889,6 +24032,8 @@
           ],
           "Namespace": [
             "$.surveySectionResponseReference.namespace"
+          ],
+          "Student": [
           ]
         }
       }

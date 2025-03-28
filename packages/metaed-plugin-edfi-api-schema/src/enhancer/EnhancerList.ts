@@ -36,6 +36,7 @@ import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionF
 import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
 import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
 import { enhance as educationOrganizationHierarchyEnhancer } from './security/EducationOrganizationHierarchyEnhancer';
+import { enhance as authorizationPathwayEnhancer } from './security/AuthorizationPathwayEnhancer';
 import { enhance as studentSecurableAuthorizationEnhancer } from './security/StudentSecurableAuthorizationEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -71,6 +72,7 @@ export function enhancerList(): Enhancer[] {
     namespaceSecurityElementEnhancer,
     educationOrganizationSecurityElementEnhancer,
     educationOrganizationHierarchyEnhancer,
+    authorizationPathwayEnhancer,
     studentSecurableAuthorizationEnhancer,
     apiSchemaBuildingEnhancer,
   ];

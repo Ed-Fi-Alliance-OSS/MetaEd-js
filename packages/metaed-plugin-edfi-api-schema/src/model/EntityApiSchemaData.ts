@@ -23,6 +23,7 @@ import { QueryFieldMapping } from './api-schema/QueryFieldMapping';
 import { NoOpenApiObject, OpenApiObject } from './OpenApi';
 import { EducationOrganizationSecurityElement } from './api-schema/EducationOrganizationSecurityElement';
 import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollectionSchema';
+import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
 
 export type EntityApiSchemaData = {
   /**
@@ -157,6 +158,16 @@ export type EntityApiSchemaData = {
   studentSecurableAuthorizationElements: JsonPath[];
 
   /**
+   * A list of the student-based security elements for this entity
+   */
+  studentSecurityElements: JsonPath[];
+
+  /**
+   * The AuthorizationPathways this entity is a part of.
+   */
+  authorizationPathways: AuthorizationPathway[];
+
+  /**
    * A list of the EducationOrganization-based security elements for this entity
    */
   educationOrganizationSecurityElements: EducationOrganizationSecurityElement[];
@@ -187,6 +198,8 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     namespaceSecurityElements: [],
     educationOrganizationSecurityElements: [],
     studentSecurableAuthorizationElements: [],
+    authorizationPathways: [],
+    studentSecurityElements: [],
   });
 }
 
