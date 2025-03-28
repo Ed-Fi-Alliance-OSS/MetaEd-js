@@ -151,6 +151,7 @@ jobs:
           path: ./MetaEd-js/MetaEdOutput
 
       - name: Display structure of downloaded files
+        working-directory: ./MetaEd-js/MetaEdOutput
         run: ls -R ./
 
       - name: Move MetaEd ApiSchema Files

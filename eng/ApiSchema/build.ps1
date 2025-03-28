@@ -151,7 +151,8 @@ function RunMetaEd {
 
 function CopyMetaEdFiles {
     # Copy the MetaEd Files into the ApiSchema Folder
-
+    Write-Host "ApiSchemaPackageType: $ApiSchemaPackageType"
+    
     $destinationPath = "$solutionRoot/xsd/"
     if (!(Test-Path -Path $destinationPath)) {
         New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
@@ -168,9 +169,30 @@ function CopyMetaEdFiles {
         Copy-Item -Path ./MetaEdOutput/TPDM/Interchange/* -Destination $solutionRoot/xsd/
     }
     if($ApiSchemaPackageType -eq 'Homograph'){
+
+        Write-Host "Inside Homograph"
+        $folderPath = "./MetaEdOutput/Homograph/"
+        # Get all files recursively in the folder
+        $files = Get-ChildItem -Path $folderPath -Recurse -File
+
+        # List the files
+        foreach ($file in $files) {
+            Write-Host $file.FullName
+        }
         Copy-Item -Path ./MetaEdOutput/Homograph/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
     }
     if($ApiSchemaPackageType -eq 'Sample'){
+
+        Write-Host "Inside Sample"
+        $folderPath = "./MetaEdOutput/Sample/"
+            # Get all files recursively in the folder
+            $files = Get-ChildItem -Path $folderPath -Recurse -File
+
+            # List the files
+            foreach ($file in $files) {
+                Write-Host $file.FullName
+            }
+
         Copy-Item -Path ./MetaEdOutput/Sample/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
         Copy-Item -Path ./MetaEdOutput/Sample/XSD/* -Destination $solutionRoot/xsd/
         Copy-Item -Path ./MetaEdOutput/Sample/Interchange/* -Destination $solutionRoot/xsd/
