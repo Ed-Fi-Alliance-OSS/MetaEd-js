@@ -133,7 +133,7 @@ jobs:
     needs: run-metaed-project
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]    
+        config: [ "Core", "TPDM", "Homograph", "Sample"]
     defaults:
       run:
         shell: pwsh
@@ -192,7 +192,7 @@ jobs:
     needs: api-schema-packaging
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]     
+        config: [ "Core", "TPDM", "Homograph", "Sample"]     
     runs-on: ubuntu-latest
     defaults:
       run:
