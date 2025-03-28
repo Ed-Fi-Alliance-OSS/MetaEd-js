@@ -26,6 +26,10 @@ env:
   PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.2.0"
   DATASTANDARD_REPO_TAG:  "DS-5.2.0-ME-3.0.0"
   TECHNOLOGY_VERSION: "7.2.0"
+  REPOSITORY_DISPATCH_BRANCH: ${{ github.event.client_payload.branch }}
+  HEAD_REF:  ${{ GITHUB.HEAD_REF }}
+  REF_NAME:  ${{ GITHUB.REF_NAME }}
+  REPOSITORY_OWNER: ${{ GITHUB.REPOSITORY_OWNER }}
 
 jobs:
   run-metaed-project:
@@ -33,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]
+        config: [ "Core", "TPDM", "Homograph", "Sample"]
     defaults:
       run:
         shell: pwsh
@@ -41,8 +45,9 @@ jobs:
       - name: Checkout MetaEd-js
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          repository: Ed-Fi-Closed/MetaEd-js
+          repository: Ed-Fi-Alliance-OSS/MetaEd-js
           path: MetaEd-js/
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Checkout Ed-Fi-TPDM-Model (for TPDM only)
         if: matrix.config == 'tpdm'
@@ -52,6 +57,35 @@ jobs:
           path: MetaEdExtensionSource/
           ref: ${{env.TPDM_REPO_TAG}}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
+
+      - name: Checkout Ed-Fi-ODS-Implementation (for Homograph and Sample only)
+        if: matrix.config == 'Homograph'  || matrix.config == 'Sample'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Ed-Fi-Alliance-OSS/Ed-Fi-ODS-Implementation
+          path: MetaEdExtensionSource/
+
+      - name: Clean up folders except HomographMetaEd for MetaEdExtensionSource
+        if: matrix.config == 'Homograph'
+        shell: pwsh
+        run: |
+          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/Homograph/ -Exclude HomographMetaEd | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Homograph | Remove-Item -Recurse -Force
+
+          cd MetaEdExtensionSource/Extensions/Homograph/HomographMetaEd
+          mv * ../../..
+
+      - name: Clean up folders except SampleMetaEd for MetaEdExtensionSource
+        if: matrix.config == 'Sample'
+        shell: pwsh
+        run: |
+          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/Sample/ -Exclude SampleMetaEd | Remove-Item -Recurse -Force
+          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Sample | Remove-Item -Recurse -Force
+
+          cd MetaEdExtensionSource/Extensions/Sample/SampleMetaEd
+          mv * ../../..
 
       - name: Create MetaEdConfig
         working-directory: ./MetaEd-js/   
@@ -94,7 +128,7 @@ jobs:
     needs: run-metaed-project
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]    
+        config: [ "Core", "TPDM", "Homograph", "Sample"]
     defaults:
       run:
         shell: pwsh
@@ -104,6 +138,7 @@ jobs:
         with:
           repository: Ed-Fi-Closed/MetaEd-js
           path: MetaEd-js/
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Get Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
@@ -112,6 +147,7 @@ jobs:
           path: ./MetaEd-js/MetaEdOutput
 
       - name: Display structure of downloaded files
+        working-directory: ./MetaEd-js/MetaEdOutput
         run: ls -R ./
 
       - name: Move MetaEd ApiSchema Files
@@ -153,7 +189,7 @@ jobs:
     needs: api-schema-packaging
     strategy:
       matrix:
-        config: [ "Core", "TPDM" ]     
+        config: [ "Core", "TPDM", "Homograph", "Sample"]
     runs-on: ubuntu-latest
     defaults:
       run:

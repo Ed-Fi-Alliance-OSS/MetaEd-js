@@ -148,7 +148,7 @@ function RunMetaEd {
 
 function CopyMetaEdFiles {
     # Copy the MetaEd Files into the ApiSchema Folder
-
+    
     $destinationPath = "$solutionRoot/xsd/"
     if (!(Test-Path -Path $destinationPath)) {
         New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
@@ -160,16 +160,31 @@ function CopyMetaEdFiles {
         Copy-Item -Path ./MetaEdOutput/EdFi/Interchange/* -Destination $solutionRoot/xsd/
     }
     if($ApiSchemaPackageType -eq 'TPDM'){
-        Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination $solutionRoot
-        Copy-Item -Path ./MetaEdOutput/TPDM/XSD/* -Destination $solutionRoot/xsd/
-        Copy-Item -Path ./MetaEdOutput/TPDM/Interchange/* -Destination $solutionRoot/xsd/
+        Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
+        Copy-Item -Path ./MetaEdOutput/TPDM/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ApiSchemaPackageType-EXTENSION-Ed-Fi-Extended-Core.xsd"
+        Get-ChildItem -Path ./MetaEdOutput/TPDM/Interchange/ -File | ForEach-Object {
+            $newFileName = "$ApiSchemaPackageType-$($_.Name)"
+            $destinationFile = Join-Path -Path "$solutionRoot/xsd" -ChildPath $newFileName
+            Copy-Item -Path $_.FullName -Destination $destinationFile
+        }
+    }
+    if($ApiSchemaPackageType -eq 'Homograph'){
+        Copy-Item -Path ./MetaEdOutput/Homograph/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
+    }
+    if($ApiSchemaPackageType -eq 'Sample'){
+        Copy-Item -Path ./MetaEdOutput/Sample/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
+        Copy-Item -Path ./MetaEdOutput/Sample/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ApiSchemaPackageType-EXTENSION-Ed-Fi-Extended-Core.xsd"
+        Get-ChildItem -Path ./MetaEdOutput/Sample/Interchange/ -File | ForEach-Object {
+            $newFileName = "$ApiSchemaPackageType-$($_.Name)"
+            $destinationFile = Join-Path -Path "$solutionRoot/xsd" -ChildPath $newFileName
+            Copy-Item -Path $_.FullName -Destination $destinationFile
+        }
     }
 
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.json", "xsd\*.xsd" | Select-Object FullName
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.xsd" | Select-Object FullName
     Get-ChildItem -Path "$solutionRoot/xsd/" -Recurse -Include "*.xsd" | Select-Object FullName
 }
-
 switch ($Command) {
     DotNetClean { DotNetClean }
     Build { Invoke-Build }
