@@ -587,16 +587,7 @@ describe('when building simple domain entity with all the simple non-collections
               "type": "string",
             },
             "schoolYearTypeReference": Object {
-              "description": "A school year enumeration",
-              "properties": Object {
-                "schoolYear": Object {
-                  "description": "A school year between 1900 and 2100",
-                  "maximum": 2100,
-                  "minimum": 1900,
-                  "type": "integer",
-                },
-              },
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
             },
             "stringIdentity": Object {
               "description": "doc10",
@@ -1118,16 +1109,7 @@ describe('when building simple domain entity with all the simple collections', (
               "uniqueItems": false,
             },
             "schoolYearTypeReference": Object {
-              "description": "A school year enumeration",
-              "properties": Object {
-                "schoolYear": Object {
-                  "description": "A school year between 1900 and 2100",
-                  "maximum": 2100,
-                  "minimum": 1900,
-                  "type": "integer",
-                },
-              },
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
             },
             "stringIdentity": Object {
               "description": "doc10",
@@ -4289,16 +4271,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "$ref": "#/components/schemas/Extension_School_Reference",
             },
             "schoolYearTypeReference": Object {
-              "description": "A school year enumeration",
-              "properties": Object {
-                "schoolYear": Object {
-                  "description": "A school year between 1900 and 2100",
-                  "maximum": 2100,
-                  "minimum": 1900,
-                  "type": "integer",
-                },
-              },
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
             },
             "sessionName": Object {
               "description": "doc",
@@ -5842,6 +5815,18 @@ describe('when domain entity extension references domain entity in different nam
             "required": Array [
               "referencedIdentity",
             ],
+            "type": "object",
+          },
+          "EdFi_SchoolYearTypeReference": Object {
+            "description": "A school year enumeration",
+            "properties": Object {
+              "schoolYear": Object {
+                "description": "A school year between 1900 and 2100",
+                "maximum": 2100,
+                "minimum": 1900,
+                "type": "integer",
+              },
+            },
             "type": "object",
           },
         }
