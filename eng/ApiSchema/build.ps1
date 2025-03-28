@@ -38,10 +38,7 @@ param (
     $SchemaPackagingConfigFile,
 
     [string]
-    $ApiSchemaPackageType = "",
-
-    [string]
-    $RelativeRepoPath
+    $ApiSchemaPackageType = ""
 )
 
 $solutionRoot = "$PSScriptRoot"
@@ -151,7 +148,6 @@ function RunMetaEd {
 
 function CopyMetaEdFiles {
     # Copy the MetaEd Files into the ApiSchema Folder
-    Write-Host "ApiSchemaPackageType: $ApiSchemaPackageType"
     
     $destinationPath = "$solutionRoot/xsd/"
     if (!(Test-Path -Path $destinationPath)) {
@@ -189,9 +185,6 @@ function CopyMetaEdFiles {
     Get-ChildItem -Path "$solutionRoot" -Recurse -Include "*.xsd" | Select-Object FullName
     Get-ChildItem -Path "$solutionRoot/xsd/" -Recurse -Include "*.xsd" | Select-Object FullName
 }
-
-
-
 switch ($Command) {
     DotNetClean { DotNetClean }
     Build { Invoke-Build }
