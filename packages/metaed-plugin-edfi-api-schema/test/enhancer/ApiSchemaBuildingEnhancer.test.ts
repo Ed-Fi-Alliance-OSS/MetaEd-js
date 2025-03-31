@@ -3377,21 +3377,28 @@ describe('when domain entity extension references domain entity in different nam
         "additionalProperties": false,
         "description": "",
         "properties": Object {
-          "_ext.edfi": Object {
+          "_ext": Object {
             "additionalProperties": true,
             "description": "optional extension collection",
             "properties": Object {
-              "referencedEntityNameReference": Object {
-                "additionalProperties": false,
+              "edfi": Object {
+                "additionalProperties": true,
+                "description": "edfi extension properties collection",
                 "properties": Object {
-                  "referencedIdentity": Object {
-                    "description": "doc",
-                    "type": "integer",
+                  "referencedEntityNameReference": Object {
+                    "additionalProperties": false,
+                    "properties": Object {
+                      "referencedIdentity": Object {
+                        "description": "doc",
+                        "type": "integer",
+                      },
+                    },
+                    "required": Array [
+                      "referencedIdentity",
+                    ],
+                    "type": "object",
                   },
                 },
-                "required": Array [
-                  "referencedIdentity",
-                ],
                 "type": "object",
               },
             },
