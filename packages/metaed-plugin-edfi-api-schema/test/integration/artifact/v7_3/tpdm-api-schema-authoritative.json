@@ -17477,102 +17477,109 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext.tpdm": {
+            "_ext": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
-                "boardCertificationIndicator": {
-                  "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
-                  "type": "boolean"
-                },
-                "certificationRouteDescriptor": {
-                  "description": "The process, program, or pathway used to obtain certification.",
-                  "type": "string"
-                },
-                "certificationTitle": {
-                  "description": "The title of the certification obtained by the educator.",
-                  "maxLength": 64,
-                  "minLength": 1,
-                  "type": "string"
-                },
-                "credentialStatusDate": {
-                  "description": "The month, day, and year on which the credential status was effective.",
-                  "format": "date",
-                  "type": "string"
-                },
-                "credentialStatusDescriptor": {
-                  "description": "The current status of the credential (e.g., active, suspended, etc.).",
-                  "type": "string"
-                },
-                "educatorRoleDescriptor": {
-                  "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
-                  "type": "string"
-                },
-                "personReference": {
-                  "additionalProperties": false,
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
                   "properties": {
-                    "personId": {
-                      "description": "A unique alphanumeric code assigned to a person.",
-                      "maxLength": 32,
-                      "pattern": "^(?!\\s)(.*\\S)$",
+                    "boardCertificationIndicator": {
+                      "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
+                      "type": "boolean"
+                    },
+                    "certificationRouteDescriptor": {
+                      "description": "The process, program, or pathway used to obtain certification.",
                       "type": "string"
                     },
-                    "sourceSystemDescriptor": {
-                      "description": "This descriptor defines the originating record source system for the person.",
+                    "certificationTitle": {
+                      "description": "The title of the certification obtained by the educator.",
+                      "maxLength": 64,
+                      "minLength": 1,
                       "type": "string"
-                    }
-                  },
-                  "required": [
-                    "personId",
-                    "sourceSystemDescriptor"
-                  ],
-                  "type": "object"
-                },
-                "studentAcademicRecords": {
-                  "items": {
-                    "additionalProperties": false,
-                    "properties": {
-                      "studentAcademicRecordReference": {
+                    },
+                    "credentialStatusDate": {
+                      "description": "The month, day, and year on which the credential status was effective.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "credentialStatusDescriptor": {
+                      "description": "The current status of the credential (e.g., active, suspended, etc.).",
+                      "type": "string"
+                    },
+                    "educatorRoleDescriptor": {
+                      "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
+                      "type": "string"
+                    },
+                    "personReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "personId": {
+                          "description": "A unique alphanumeric code assigned to a person.",
+                          "maxLength": 32,
+                          "pattern": "^(?!\\s)(.*\\S)$",
+                          "type": "string"
+                        },
+                        "sourceSystemDescriptor": {
+                          "description": "This descriptor defines the originating record source system for the person.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "personId",
+                        "sourceSystemDescriptor"
+                      ],
+                      "type": "object"
+                    },
+                    "studentAcademicRecords": {
+                      "items": {
                         "additionalProperties": false,
                         "properties": {
-                          "educationOrganizationId": {
-                            "description": "The identifier assigned to an education organization.",
-                            "type": "integer"
-                          },
-                          "schoolYear": {
-                            "description": "A school year between 1900 and 2100",
-                            "maximum": 2100,
-                            "minimum": 1900,
-                            "type": "integer"
-                          },
-                          "studentUniqueId": {
-                            "description": "A unique alphanumeric code assigned to a student.",
-                            "maxLength": 32,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          },
-                          "termDescriptor": {
-                            "description": "The term for the session during the school year.",
-                            "type": "string"
+                          "studentAcademicRecordReference": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "educationOrganizationId": {
+                                "description": "The identifier assigned to an education organization.",
+                                "type": "integer"
+                              },
+                              "schoolYear": {
+                                "description": "A school year between 1900 and 2100",
+                                "maximum": 2100,
+                                "minimum": 1900,
+                                "type": "integer"
+                              },
+                              "studentUniqueId": {
+                                "description": "A unique alphanumeric code assigned to a student.",
+                                "maxLength": 32,
+                                "pattern": "^(?!\\s)(.*\\S)$",
+                                "type": "string"
+                              },
+                              "termDescriptor": {
+                                "description": "The term for the session during the school year.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "educationOrganizationId",
+                              "schoolYear",
+                              "studentUniqueId",
+                              "termDescriptor"
+                            ],
+                            "type": "object"
                           }
                         },
                         "required": [
-                          "educationOrganizationId",
-                          "schoolYear",
-                          "studentUniqueId",
-                          "termDescriptor"
+                          "studentAcademicRecordReference"
                         ],
                         "type": "object"
-                      }
-                    },
-                    "required": [
-                      "studentAcademicRecordReference"
-                    ],
-                    "type": "object"
+                      },
+                      "minItems": 0,
+                      "type": "array",
+                      "uniqueItems": false
+                    }
                   },
-                  "minItems": 0,
-                  "type": "array",
-                  "uniqueItems": false
+                  "type": "object"
                 }
               },
               "type": "object"
@@ -23401,21 +23408,28 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext.tpdm": {
+            "_ext": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
-                "postSecondaryInstitutionReference": {
-                  "additionalProperties": false,
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
                   "properties": {
-                    "postSecondaryInstitutionId": {
-                      "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
-                      "type": "integer"
+                    "postSecondaryInstitutionReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "postSecondaryInstitutionId": {
+                          "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "postSecondaryInstitutionId"
+                      ],
+                      "type": "object"
                     }
                   },
-                  "required": [
-                    "postSecondaryInstitutionId"
-                  ],
                   "type": "object"
                 }
               },
@@ -23648,28 +23662,35 @@
           "additionalProperties": false,
           "description": "",
           "properties": {
-            "_ext.tpdm": {
+            "_ext": {
               "additionalProperties": true,
               "description": "optional extension collection",
               "properties": {
-                "personReference": {
-                  "additionalProperties": false,
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
                   "properties": {
-                    "personId": {
-                      "description": "A unique alphanumeric code assigned to a person.",
-                      "maxLength": 32,
-                      "pattern": "^(?!\\s)(.*\\S)$",
-                      "type": "string"
-                    },
-                    "sourceSystemDescriptor": {
-                      "description": "This descriptor defines the originating record source system for the person.",
-                      "type": "string"
+                    "personReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "personId": {
+                          "description": "A unique alphanumeric code assigned to a person.",
+                          "maxLength": 32,
+                          "pattern": "^(?!\\s)(.*\\S)$",
+                          "type": "string"
+                        },
+                        "sourceSystemDescriptor": {
+                          "description": "This descriptor defines the originating record source system for the person.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "personId",
+                        "sourceSystemDescriptor"
+                      ],
+                      "type": "object"
                     }
                   },
-                  "required": [
-                    "personId",
-                    "sourceSystemDescriptor"
-                  ],
                   "type": "object"
                 }
               },

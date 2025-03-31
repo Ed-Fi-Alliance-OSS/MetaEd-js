@@ -438,6 +438,7 @@ function addRequired(isRequired: boolean, schemaObject: SchemaObject, schemaProp
  */
 function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: SchoolYearSchemas): SchemaRoot {
   let schemaProperties: SchemaProperties = {};
+  const extensionSchemaProperties: SchemaProperties = {};
 
   const schemaRoot: SchemaRoot = {
     ...newSchemaRoot(),
@@ -454,10 +455,19 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
     schemaProperties = {};
     const extensionSchemaName = entityForSchema.namespace.projectName.toLocaleLowerCase() as string;
 
-    schemaRoot.properties[`_ext.${extensionSchemaName}`] = {
-      description: 'optional extension collection',
+    // New schemaProperties to go under extensionSchema (ex: tpdm)
+    extensionSchemaProperties[`${extensionSchemaName}`] = {
+      description: `${extensionSchemaName} extension properties collection`,
       type: 'object',
       properties: schemaProperties,
+      additionalProperties: true,
+    };
+
+    // eslint-disable-next-line dot-notation
+    schemaRoot.properties[`_ext`] = {
+      description: 'optional extension collection',
+      type: 'object',
+      properties: extensionSchemaProperties,
       additionalProperties: true,
     };
   }
