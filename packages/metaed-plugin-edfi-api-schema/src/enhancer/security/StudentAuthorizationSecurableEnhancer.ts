@@ -14,32 +14,26 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Using Set to remove duplicates
       const result: Set<JsonPath> = new Set();
 
-      const { identityFullnames, allJsonPathsMapping, studentSecurableAuthorizationElements, studentSecurityElements } =
-        entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { identityFullnames, allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
         const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
-
+        // Add student securable authorization elements
         matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
           if (
-            (jppp.flattenedIdentityProperty.identityProperty.parentEntity.namespace.namespaceName === 'EdFi' &&
-              jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Student') ||
-            (entity.namespace.namespaceName === 'EdFi' && entity.metaEdName === 'Student')
+            jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Student' &&
+            jppp.flattenedIdentityProperty.identityProperty.parentEntity.namespace.namespaceName === 'EdFi'
           )
-            // Add student-securable authorization elements for entities that reference the Student entity as
-            // part of their identity and for the Student entity itself.
             result.add(jppp.jsonPath);
         });
       });
 
-      const sortedResult = [...result].sort();
-      studentSecurableAuthorizationElements.push(...sortedResult);
-      studentSecurityElements.push(...sortedResult);
+      (entity.data.edfiApiSchema as EntityApiSchemaData).studentAuthorizationSecurablePaths = [...result].sort();
     },
   );
 
   return {
-    enhancerName: 'StudentSecurableAuthorizationEnhancer',
+    enhancerName: 'StudentAuthorizationSecurableEnhancer',
     success: true,
   };
 }

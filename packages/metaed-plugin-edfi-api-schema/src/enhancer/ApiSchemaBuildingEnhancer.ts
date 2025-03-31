@@ -93,7 +93,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
       Student: entityApiSchemaData.studentSecurityElements,
     },
     authorizationSecurable: {
-      Student: entityApiSchemaData.studentSecurableAuthorizationElements,
+      Student: entityApiSchemaData.studentAuthorizationSecurablePaths,
     },
     authorizationPathways: entityApiSchemaData.authorizationPathways,
     isResourceExtension: false,

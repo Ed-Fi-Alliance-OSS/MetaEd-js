@@ -37,7 +37,8 @@ import { enhance as namespaceSecurityElementEnhancer } from './security/Namespac
 import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
 import { enhance as educationOrganizationHierarchyEnhancer } from './security/EducationOrganizationHierarchyEnhancer';
 import { enhance as authorizationPathwayEnhancer } from './security/AuthorizationPathwayEnhancer';
-import { enhance as studentSecurableAuthorizationEnhancer } from './security/StudentSecurableAuthorizationEnhancer';
+import { enhance as studentSecurityElementEnhancer } from './security/StudentSecurityElementEnhancer';
+import { enhance as studentAuthorizationSecurableEnhancer } from './security/StudentAuthorizationSecurableEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -73,7 +74,8 @@ export function enhancerList(): Enhancer[] {
     educationOrganizationSecurityElementEnhancer,
     educationOrganizationHierarchyEnhancer,
     authorizationPathwayEnhancer,
-    studentSecurableAuthorizationEnhancer,
+    studentSecurityElementEnhancer,
+    studentAuthorizationSecurableEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
