@@ -173,7 +173,7 @@ jobs:
 
       - name: Publish Package
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.${{ github.run_number }}"
+        run: ./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType "${{ matrix.config }}"
 
       - name: Upload Package as Artifact
         if: success()
