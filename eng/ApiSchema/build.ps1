@@ -44,7 +44,7 @@ param (
 $solutionRoot = "$PSScriptRoot"
 $defaultSolution = "$solutionRoot/EdFi.DataStandard52.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
-$projectName = "EdFi.DataStandard52.ApiSchema"
+$projectName = "EdFi.DataStandard52.ApiSchema.$ApiSchemaPackageType"
 
 function Restore {
     dotnet restore $defaultSolution
@@ -55,7 +55,7 @@ function DotNetClean {
 }
 
 function Compile {
-    dotnet build $defaultSolution -c $Configuration -p:Version=$Version -p:ApiSchemaPackageType=$ApiSchemaPackageType --nologo --no-restore
+    dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
 }
 
 function PublishApi {
@@ -114,16 +114,7 @@ function Invoke-Build {
 
 function BuildPackage {
     $projectPath = "$applicationRoot/$projectName.csproj"
-    $arguments = @("-c", "release", "-p:PackageVersion=$Version", "--output", $PSScriptRoot)
-
-    if ($ApiSchemaPackageType) {
-        $PackageName = "$projectName.$ApiSchemaPackageType"
-        $arguments += "-p:ApiSchemaPackageType=$ApiSchemaPackageType"
-    } else {
-        $PackageName = "$projectName"
-    }
-
-    $arguments += "-p:PackageId=$PackageName"
+    $arguments = @("-c", "release", "-p:PackageVersion=$Version", "-p:PackageId=$projectName", "--output", $PSScriptRoot)
     dotnet pack $projectPath @arguments
 }
 
