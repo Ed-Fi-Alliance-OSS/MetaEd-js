@@ -180,7 +180,7 @@ jobs:
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
           name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-1.0.${{ github.run_number }}"
-          path: ./MetaEd-js/eng/ApiSchema/*${{ matrix.config }}*.nupkg
+          path: ./MetaEd-js/eng/ApiSchema/*.nupkg
           if-no-files-found: error
           retention-days: 30
 
@@ -208,7 +208,7 @@ jobs:
       - name: Push Package to Azure Artifacts
         run: |
          $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
-         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *${{ matrix.config }}*.nupkg)
+         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
          
          echo "Artifacts List"
          echo $artifacts
