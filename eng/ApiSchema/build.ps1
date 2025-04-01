@@ -43,7 +43,13 @@ param (
 
 $solutionRoot = "$PSScriptRoot"
 $applicationRoot = "$solutionRoot/"
-$projectName = "EdFi.DataStandard52.ApiSchema.$ApiSchemaPackageType"
+if($ApiSchemaPackageType -eq 'Core'){
+    $projectName = "EdFi.DataStandard52.ApiSchema"
+}
+else {
+    $projectName = "EdFi.$ApiSchemaPackageType.ApiSchema"
+}
+
 $projectPath = "$applicationRoot/$projectName.csproj"
 
 function Restore {

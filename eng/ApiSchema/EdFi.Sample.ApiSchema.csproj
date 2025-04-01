@@ -3,20 +3,20 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>true</IsPackable>
-        <RootNamespace>EdFi.DataStandard52.ApiSchema.Core</RootNamespace>
+        <RootNamespace>EdFi.Sample.ApiSchema</RootNamespace>
         <NoWarn>NU5110,NU5111</NoWarn>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.DataStandard52.ApiSchema.Core</PackageId>        
-        <Id>EdFi.DataStandard52.ApiSchema.Core</Id>
+        <PackageId>EdFi.Sample.ApiSchema</PackageId>        
+        <Id>EdFi.Sample.ApiSchema</Id>
         <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
         <title>Ed-Fi API Schema definition for Data Standard 5.2.0</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
         <copyright>Copyright © 2024, Ed-Fi Alliance, LLC and contributors.</copyright>
-        <summary>API Schema definition file representing the core Ed-Fi Data Standard 5.2.0, without extensions.</summary>
+        <summary>API Schema definition file representing the  Sample extensions.</summary>
         <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.2.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
-        <AssemblyName>EdFi.DataStandard52.ApiSchema.Core</AssemblyName>
+        <AssemblyName>EdFi.Sample.ApiSchema</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="*.json" />
+		  <EmbeddedResource Include="*.json" Exclude="discovery-spec.json;xsd.json;dependencies.json" />
       <EmbeddedResource Include="xsd/*.xsd" />
     </ItemGroup>
 

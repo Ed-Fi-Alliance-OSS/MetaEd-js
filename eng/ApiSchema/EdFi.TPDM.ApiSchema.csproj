@@ -3,12 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>true</IsPackable>
-        <RootNamespace>EdFi.DataStandard52.ApiSchema.TPDM</RootNamespace>
+        <RootNamespace>EdFi.TPDM.ApiSchema</RootNamespace>
         <NoWarn>NU5110,NU5111</NoWarn>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.DataStandard52.ApiSchema.TPDM</PackageId>        
-        <Id>EdFi.DataStandard52.ApiSchema.TPDM</Id>
+        <PackageId>EdFi.TPDM.ApiSchema</PackageId>        
+        <Id>EdFi.TPDM.ApiSchema</Id>
         <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
         <title>Ed-Fi API Schema definition for Data Standard 5.2.0</title>
         <authors>Ed-Fi Alliance</authors>
@@ -16,7 +16,7 @@
         <copyright>Copyright © 2024, Ed-Fi Alliance, LLC and contributors.</copyright>
         <summary>API Schema definition file representing the TPDM extensions.</summary>
         <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.2.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
-        <AssemblyName>EdFi.DataStandard52.ApiSchema.TPDM</AssemblyName>
+        <AssemblyName>EdFi.TPDM.ApiSchema</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

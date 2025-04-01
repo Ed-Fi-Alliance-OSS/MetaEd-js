@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.DataStandard52.ApiSchema.Core", "EdFi.DataStandard52.ApiSchema.Core.csproj", "{ECA5A9EF-0C44-4CF9-98B5-08B128CA3DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.DataStandard52.ApiSchema", "EdFi.DataStandard52.ApiSchema.csproj", "{ECA5A9EF-0C44-4CF9-98B5-08B128CA3DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.DataStandard52.ApiSchema.TPDM", "EdFi.DataStandard52.ApiSchema.TPDM.csproj", "{8FDD3F52-249C-9F1E-AE7C-9906B239F057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.TPDM.ApiSchema", "EdFi.TPDM.ApiSchema.csproj", "{8FDD3F52-249C-9F1E-AE7C-9906B239F057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.DataStandard52.ApiSchema.Sample", "EdFi.DataStandard52.ApiSchema.Sample.csproj", "{235C89CE-7964-B236-1D2B-E5DDE4E8AB63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.Sample.ApiSchema", "EdFi.Sample.ApiSchema.csproj", "{235C89CE-7964-B236-1D2B-E5DDE4E8AB63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.DataStandard52.ApiSchema.Homograph", "EdFi.DataStandard52.ApiSchema.Homograph.csproj", "{99CDC89F-7ECC-A422-4D9F-1A1213C07A05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.Homograph.ApiSchema", "EdFi.Homograph.ApiSchema.csproj", "{99CDC89F-7ECC-A422-4D9F-1A1213C07A05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
