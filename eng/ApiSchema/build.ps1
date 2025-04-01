@@ -42,20 +42,20 @@ param (
 )
 
 $solutionRoot = "$PSScriptRoot"
-$defaultSolution = "$solutionRoot/EdFi.DataStandard52.ApiSchema.sln"
 $applicationRoot = "$solutionRoot/"
 $projectName = "EdFi.DataStandard52.ApiSchema.$ApiSchemaPackageType"
+$projectPath = "$applicationRoot/$projectName.csproj"
 
 function Restore {
-    dotnet restore $defaultSolution
+    dotnet restore $projectPath
 }
 
 function DotNetClean {
-    dotnet clean $defaultSolution -c $Configuration --nologo -v minimal
+    dotnet clean $projectPath  -c $Configuration --nologo -v minimal
 }
 
 function Compile {
-    dotnet build $defaultSolution -c $Configuration -p:Version=$Version --nologo --no-restore
+    dotnet build $projectPath -c $Configuration -p:Version=$Version --nologo --no-restore
 }
 
 function PublishApi {
