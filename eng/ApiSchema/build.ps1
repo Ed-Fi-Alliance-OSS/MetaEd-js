@@ -61,7 +61,7 @@ function Compile {
 function PublishApi {
     $project = $applicationRoot
     $outputPath = "$project/publish"
-    dotnet publish $project -c $Configuration -o $outputPath --nologo
+    dotnet publish $projectPath -c $Configuration -o $outputPath --nologo
 }
 
 function PushPackage {
@@ -113,7 +113,6 @@ function Invoke-Build {
 }
 
 function BuildPackage {
-    $projectPath = "$applicationRoot/$projectName.csproj"
     $arguments = @("-c", "release", "-p:PackageVersion=$Version", "-p:PackageId=$projectName", "--output", $PSScriptRoot)
     dotnet pack $projectPath @arguments
 }
