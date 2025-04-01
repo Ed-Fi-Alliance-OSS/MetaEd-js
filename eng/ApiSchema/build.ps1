@@ -120,6 +120,8 @@ function BuildPackage {
 
 function RunMetaEd {
     # Run MetadEd Project
+    npm config set registry https://registry.npmjs.org/
+    npm cache clean --force
     npm install
     npm run build
     Set-Location -Path ./packages/metaed-console
