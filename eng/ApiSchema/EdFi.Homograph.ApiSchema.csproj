@@ -10,12 +10,12 @@
         <PackageId>EdFi.Homograph.ApiSchema</PackageId>        
         <Id>EdFi.Homograph.ApiSchema</Id>
         <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
-        <title>Ed-Fi API Schema definition for Data Standard 5.2.0</title>
+        <title>Ed-Fi API Schema definition for Homograph Extension</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
-        <copyright>Copyright © 2024, Ed-Fi Alliance, LLC and contributors.</copyright>
-        <summary>API Schema definition file representing the  Homograph extensions.</summary>
-        <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.2.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
+        <copyright>Copyright © 2025, Ed-Fi Alliance, LLC and contributors.</copyright>
+        <summary>API Schema definition file representing the Homograph extensions.</summary>
+        <description>Ed-Fi API Schema definition for Homograph Extension.</description>
         <AssemblyName>EdFi.Homograph.ApiSchema.Homograph</AssemblyName>
     </PropertyGroup>
 
