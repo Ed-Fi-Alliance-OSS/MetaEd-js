@@ -194,6 +194,18 @@ function openApiNonResourceReferenceFor(fullName: string): OpenApiReference {
 }
 
 /**
+ * Returns an OpenApi fragment that specifies the API reference element shape
+ * corresponding to the given scalar common property.
+ */
+export function openApiReferenceForScalarCommonProperty(
+  property: CommonProperty,
+  propertyModifier: PropertyModifier,
+  propertiesChain: EntityProperty[],
+): OpenApiReference {
+  return openApiNonResourceReferenceFor(openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain));
+}
+
+/**
  * Returns an OpenApi array specification based on the provided collection property.
  */
 function openApiArrayForNonResourceReferenceCollection(
@@ -249,12 +261,7 @@ export function openApiPropertyFor(
     return openApiArrayForCommonCollection(property, propertyModifier, propertiesChain);
   }
   if (apiMapping.isScalarCommon) {
-    return openApiObjectForScalarCommonProperty(
-      property as CommonProperty,
-      propertyModifier,
-      schoolYearOpenApis,
-      propertiesChain,
-    );
+    return openApiReferenceForScalarCommonProperty(property as CommonProperty, propertyModifier, propertiesChain);
   }
   if (property.isRequiredCollection || property.isOptionalCollection) {
     return openApiArrayForNonResourceReferenceCollection(property, propertyModifier, propertiesChain);
