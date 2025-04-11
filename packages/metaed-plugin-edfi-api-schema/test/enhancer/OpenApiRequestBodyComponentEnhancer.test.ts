@@ -1387,24 +1387,7 @@ describe('when building domain entity with a common with a choice', () => {
             "type": "integer",
           },
           "contentStandard": Object {
-            "properties": Object {
-              "publicationDate": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-              "publicationYear": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-              "title": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-            },
-            "type": "object",
+            "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
           },
         },
         "required": Array [
@@ -1469,14 +1452,7 @@ describe('when building domain entity with a common and a common collection with
             "type": "integer",
           },
           "period": Object {
-            "properties": Object {
-              "beginDate": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-            },
-            "type": "object",
+            "$ref": "#/components/schemas/EdFi_Assessment_AssessmentPeriod",
           },
           "scores": Object {
             "items": Object {
@@ -1604,17 +1580,7 @@ describe('when building domain entity with a common with a domain entity referen
             "type": "integer",
           },
           "contentStandard": Object {
-            "properties": Object {
-              "mandatingEducationOrganizationReference": Object {
-                "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
-              },
-              "title": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-            },
-            "type": "object",
+            "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
           },
         },
         "required": Array [

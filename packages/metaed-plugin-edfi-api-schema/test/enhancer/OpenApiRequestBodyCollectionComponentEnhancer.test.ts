@@ -1002,7 +1002,33 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_ContentStandard",
+          "schema": Object {
+            "properties": Object {
+              "publicationDate": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "publicationYear": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "title": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+        },
+      ]
+    `);
   });
 });
 
@@ -1066,6 +1092,19 @@ describe('when building domain entity with a common and a common collection with
             "required": Array [
               "minimumScore",
             ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_Assessment_AssessmentPeriod",
+          "schema": Object {
+            "properties": Object {
+              "beginDate": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
             "type": "object",
           },
         },
@@ -1155,7 +1194,26 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Assessment_ContentStandard",
+          "schema": Object {
+            "properties": Object {
+              "mandatingEducationOrganizationReference": Object {
+                "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
+              },
+              "title": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+        },
+      ]
+    `);
   });
 });
 
@@ -1484,6 +1542,24 @@ describe('when building a domain entity with a common property with a descriptor
         "description": "Documentation",
         "properties": Object {
           "availableCredits": Object {
+            "$ref": "#/components/schemas/EdFi_Section_AvailableCredit",
+          },
+          "sectionIdentifier": Object {
+            "description": "Documentation",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+        ],
+        "type": "object",
+      }
+    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_Section_AvailableCredit",
+          "schema": Object {
             "properties": Object {
               "creditTypes": Object {
                 "items": Object {
@@ -1504,19 +1580,7 @@ describe('when building a domain entity with a common property with a descriptor
             ],
             "type": "object",
           },
-          "sectionIdentifier": Object {
-            "description": "Documentation",
-            "type": "integer",
-          },
         },
-        "required": Array [
-          "sectionIdentifier",
-        ],
-        "type": "object",
-      }
-    `);
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-      Array [
         Object {
           "propertyName": "EdFi_Section_CreditType",
           "schema": Object {

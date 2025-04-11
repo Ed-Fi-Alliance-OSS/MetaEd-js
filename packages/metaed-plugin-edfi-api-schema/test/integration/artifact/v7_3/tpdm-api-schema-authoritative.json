@@ -14343,6 +14343,20 @@
           ],
           "type": "object"
         },
+        "TPDM_EvaluationRating_ReceivedTraining": {
+          "properties": {
+            "interRaterReliabilityScore": {
+              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+              "type": "integer"
+            },
+            "receivedTrainingDate": {
+              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "TPDM_EvaluationRating_Reference": {
           "properties": {
             "educationOrganizationId": {
@@ -14421,18 +14435,7 @@
               "type": "string"
             },
             "receivedTraining": {
-              "properties": {
-                "interRaterReliabilityScore": {
-                  "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-                  "type": "integer"
-                },
-                "receivedTrainingDate": {
-                  "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-                  "format": "date",
-                  "type": "string"
-                }
-              },
-              "type": "object"
+              "$ref": "#/components/schemas/TPDM_EvaluationRating_ReceivedTraining"
             },
             "reviewerPersonReference": {
               "$ref": "#/components/schemas/EdFi_Person_Reference"
@@ -14735,6 +14738,20 @@
           ],
           "type": "object"
         },
+        "TPDM_PerformanceEvaluationRating_ReceivedTraining": {
+          "properties": {
+            "interRaterReliabilityScore": {
+              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+              "type": "integer"
+            },
+            "receivedTrainingDate": {
+              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "TPDM_PerformanceEvaluationRating_Reference": {
           "properties": {
             "educationOrganizationId": {
@@ -14800,18 +14817,7 @@
               "type": "string"
             },
             "receivedTraining": {
-              "properties": {
-                "interRaterReliabilityScore": {
-                  "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-                  "type": "integer"
-                },
-                "receivedTrainingDate": {
-                  "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-                  "format": "date",
-                  "type": "string"
-                }
-              },
-              "type": "object"
+              "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_ReceivedTraining"
             },
             "reviewerPersonReference": {
               "$ref": "#/components/schemas/EdFi_Person_Reference"
