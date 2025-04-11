@@ -91,7 +91,7 @@ export function openApiCollectionReferenceSchemaFor(
     referenceSchemas.push(schemaDetails);
     return referenceSchemas;
   }
-  if (apiMapping.isCommonCollection) {
+  if (apiMapping.isCommonCollection || apiMapping.isScalarCommon) {
     const scalarCommonOpenApiObject: OpenApiObject = openApiObjectForScalarCommonProperty(
       property as CommonProperty,
       propertyModifier,
@@ -103,18 +103,6 @@ export function openApiCollectionReferenceSchemaFor(
       propertyName,
     };
     referenceSchemas.push(openApiRequestBodyCollectionSchema);
-    (property as CommonProperty).referencedEntity.properties.forEach((childProperty) => {
-      const openApiRequestBodyCollectionSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
-        childProperty,
-        propertyModifier,
-        schoolYearOpenApis,
-        propertiesChain,
-      );
-      referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
-    });
-    return referenceSchemas;
-  }
-  if (apiMapping.isScalarCommon) {
     (property as CommonProperty).referencedEntity.properties.forEach((childProperty) => {
       const openApiRequestBodyCollectionSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
         childProperty,
