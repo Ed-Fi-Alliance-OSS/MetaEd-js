@@ -153,7 +153,7 @@ export type EntityApiSchemaData = {
   namespaceSecurityElements: JsonPath[];
 
   /**
-   * A list of the student id paths for this entity for use in student securable authorization
+   * A list of the student unqiue id paths for this entity for use in student securable authorization
    */
   studentAuthorizationSecurablePaths: JsonPath[];
 
@@ -161,6 +161,16 @@ export type EntityApiSchemaData = {
    * A list of the student-based security elements for this entity
    */
   studentSecurityElements: JsonPath[];
+
+  /**
+   * A list of the contact unique id paths for this entity for use in contact securable authorization
+   */
+  contactAuthorizationSecurablePaths: JsonPath[];
+
+  /**
+   * A list of the contact-based security elements for this entity
+   */
+  contactSecurityElements: JsonPath[];
 
   /**
    * The AuthorizationPathways this entity is a part of.
@@ -200,6 +210,8 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     studentAuthorizationSecurablePaths: [],
     authorizationPathways: [],
     studentSecurityElements: [],
+    contactAuthorizationSecurablePaths: [],
+    contactSecurityElements: [],
   });
 }
 

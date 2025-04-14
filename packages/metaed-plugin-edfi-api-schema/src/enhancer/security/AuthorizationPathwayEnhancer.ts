@@ -17,6 +17,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     authorizationPathways.push('StudentSchoolAssociationAuthorization' as AuthorizationPathway);
   }
 
+  const edfiStudentContactAssociation: TopLevelEntity | undefined = metaEd.namespace
+    .get('EdFi')
+    ?.entity.association.get('StudentContactAssociation');
+  // Flag StudentContactAssociation as defining the ContactStudentSchoolAuthorization pathway.
+  if (edfiStudentContactAssociation) {
+    const { authorizationPathways } = edfiStudentContactAssociation.data.edfiApiSchema as EntityApiSchemaData;
+    authorizationPathways.push('ContactStudentSchoolAuthorization' as AuthorizationPathway);
+  }
+
   return {
     enhancerName: 'AuthorizationPathwayEnhancer',
     success: true,
