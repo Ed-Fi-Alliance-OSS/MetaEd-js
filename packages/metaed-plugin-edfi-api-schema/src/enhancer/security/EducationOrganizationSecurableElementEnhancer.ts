@@ -3,14 +3,20 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  TopLevelEntity,
+  getAllEntitiesOfType,
+  MetaEdPropertyFullName,
+} from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
 import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
 
 /**
  * Finds the EducationOrganizationId elements that can be EducationOrganization
- * security elements for the document. This includes EducationOrganizationId renames on
+ * securable elements for the document. This includes EducationOrganizationId renames on
  * EducationOrganization subclasses
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
@@ -26,32 +32,57 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const allEducationOrganizations: TopLevelEntity[] = [...edfiEducationOrganization.subclassedBy, edfiEducationOrganization];
 
+  // Add securable elements for renamed educationOrganizationIds on each EducationOrganization subclass
   allEducationOrganizations.forEach((educationOrganization) => {
-    educationOrganization.inReferences.forEach((educationOrganizationReferenceProperty) => {
-      // Skip role named properties
-      if (educationOrganizationReferenceProperty.roleName !== '') return;
-
-      // Using Set to remove duplicates
-      const result: Set<{ metaEdName: string; jsonPath: JsonPath }> = new Set();
-
-      const { allJsonPathsMapping } = educationOrganizationReferenceProperty.parentEntity.data
-        .edfiApiSchema as EntityApiSchemaData;
-
-      // Find the jsonPath for the educationOrganizationReferenceProperty on its parent entity
-      Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
-        jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
-          if (jsonPathPropertyPair.sourceProperty !== educationOrganizationReferenceProperty) return;
-          result.add({
-            metaEdName: educationOrganizationReferenceProperty.metaEdName,
-            jsonPath: jsonPathPropertyPair.jsonPath,
+    const entityApiSchemaData: EntityApiSchemaData = educationOrganization.data.edfiApiSchema as EntityApiSchemaData;
+    Object.values(entityApiSchemaData.allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+      jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp: JsonPathPropertyPair) => {
+        if (jppp.sourceProperty.isIdentityRename && jppp.sourceProperty.parentEntity === educationOrganization) {
+          entityApiSchemaData.educationOrganizationSecurableElements.push({
+            metaEdName: jppp.sourceProperty.metaEdName,
+            jsonPath: jppp.jsonPath,
           });
-        });
+          entityApiSchemaData.educationOrganizationSecurableElements.sort((a, b) =>
+            a.metaEdName.localeCompare(b.metaEdName),
+          );
+        }
       });
-
-      (
-        educationOrganizationReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData
-      ).educationOrganizationSecurableElements = [...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName));
     });
+  });
+
+  // Add securable elements for entities that have non-rolenamed reference to EducationOrganization as part of their identity
+  getAllEntitiesOfType(
+    metaEd,
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'domainEntityExtension',
+    'associationExtension',
+  ).forEach((entity) => {
+    // Using Set to remove duplicates
+    const result: Set<{ metaEdName: string; jsonPath: JsonPath }> = new Set();
+
+    const { identityFullnames, allJsonPathsMapping, educationOrganizationSecurableElements } = entity.data
+      .edfiApiSchema as EntityApiSchemaData;
+
+    identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
+      const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
+
+      matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
+        if (
+          allEducationOrganizations.includes(jppp.flattenedIdentityProperty.identityProperty.parentEntity) &&
+          jppp.flattenedIdentityProperty.identityProperty.roleName === ''
+        ) {
+          result.add({
+            metaEdName: jppp.flattenedIdentityProperty.identityProperty.metaEdName,
+            jsonPath: jppp.jsonPath,
+          });
+        }
+      });
+    });
+
+    educationOrganizationSecurableElements.push(...[...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName)));
   });
 
   return {

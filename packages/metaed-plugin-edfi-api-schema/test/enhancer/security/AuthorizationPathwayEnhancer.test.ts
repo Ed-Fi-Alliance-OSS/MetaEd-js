@@ -91,12 +91,13 @@ describe('when building StudentSchoolAssociation', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have the StudentSchoolAssociationAuthorization pathway', () => {
+  it('should have the StudentSchoolAssociationAuthorization and ContactStudentSchoolAuthorization pathway', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.association.get(resourceName);
     const { authorizationPathways } = entity?.data.edfiApiSchema as EntityApiSchemaData;
     expect(authorizationPathways).toMatchInlineSnapshot(`
       Array [
         "StudentSchoolAssociationAuthorization",
+        "ContactStudentSchoolAuthorization",
       ]
     `);
   });

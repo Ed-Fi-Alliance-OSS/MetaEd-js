@@ -56,7 +56,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   enhance(metaEd);
 }
 
-describe('when building domain entity', () => {
+describe('when building Student domain entity and unrelated DisciplineAction', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -67,11 +67,13 @@ describe('when building domain entity', () => {
       .withBeginNamespace(namespaceName)
 
       .withStartDomainEntity('Student')
-      .withStringIdentity('StudentUniqueId', 'doc', '50', 'string', 'required')
-      .withEndAbstractEntity()
+      .withDocumentation('doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
+      .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
       .withDocumentation('doc')
+      .withStringIdentity('IdentityProperty', 'doc', '30')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -82,7 +84,17 @@ describe('when building domain entity', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have no studentSecurableElements', () => {
+  it('should have studentSecurableElements for Student', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Student');
+    const { studentSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(studentSecurableElements).toMatchInlineSnapshot(`
+      Array [
+        "$.studentUniqueId",
+      ]
+    `);
+  });
+
+  it('should have no studentSecurableElements for DisciplineAction', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
     const { studentSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
     expect(studentSecurableElements).toMatchInlineSnapshot(`Array []`);
@@ -101,7 +113,7 @@ describe('when building domain entity with Student identity', () => {
 
       .withStartDomainEntity('Student')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
@@ -140,7 +152,7 @@ describe('when building domain entity with Student not part of identity', () => 
 
       .withStartDomainEntity('Student')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
@@ -186,7 +198,7 @@ describe('when building a domain entity referencing another referencing another 
 
       .withStartDomainEntity('Student')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -238,7 +250,7 @@ describe('when building a domain entity referencing two referencing another with
 
       .withStartDomainEntity('Student')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -283,7 +295,7 @@ describe('when building domain entity with a common with a domain entity referen
 
       .withStartDomainEntity('Student')
       .withDocumentation('doc')
-      .withIntegerIdentity('StudentUniqueId', 'doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))

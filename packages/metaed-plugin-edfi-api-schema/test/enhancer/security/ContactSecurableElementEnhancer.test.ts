@@ -56,7 +56,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   enhance(metaEd);
 }
 
-describe('when building domain entity without Contact reference', () => {
+describe('when building Contact domain entity and unrelated DisciplineAction', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -67,8 +67,9 @@ describe('when building domain entity without Contact reference', () => {
       .withBeginNamespace(namespaceName)
 
       .withStartDomainEntity('Contact')
-      .withStringIdentity('ContactUniqueId', 'doc', '50', 'string', 'required')
-      .withEndAbstractEntity()
+      .withDocumentation('doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
+      .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
       .withDocumentation('doc')
@@ -83,7 +84,17 @@ describe('when building domain entity without Contact reference', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have no contactSecurableElements', () => {
+  it('should have contactSecurableElements for Contact', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Contact');
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`
+      Array [
+        "$.contactUniqueId",
+      ]
+    `);
+  });
+
+  it('should have no contactSecurableElements for DisciplineAction', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
     const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
     expect(contactSecurableElements).toMatchInlineSnapshot(`Array []`);
@@ -102,7 +113,7 @@ describe('when building domain entity with Contact identity', () => {
 
       .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('ContactUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
@@ -141,7 +152,7 @@ describe('when building domain entity with Contact not part of identity', () => 
 
       .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('ContactUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
@@ -187,7 +198,7 @@ describe('when building a domain entity referencing another referencing another 
 
       .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('ContactUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -239,7 +250,7 @@ describe('when building a domain entity referencing two referencing another with
 
       .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('ContactUniqueId', 'doc', '30')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -284,7 +295,7 @@ describe('when building domain entity with a common with a domain entity referen
 
       .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withIntegerIdentity('ContactUniqueId', 'doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Contact')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))

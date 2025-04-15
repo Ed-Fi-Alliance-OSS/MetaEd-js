@@ -11,10 +11,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const edfiStudentSchoolAssociation: TopLevelEntity | undefined = metaEd.namespace
     .get('EdFi')
     ?.entity.association.get('StudentSchoolAssociation');
-  // Flag StudentSchoolAssociation as defining the StudentSchoolAssociationAuthorization pathway.
+  // Flag StudentSchoolAssociation as defining the StudentSchoolAssociationAuthorization pathway
+  // and being in the ContactStudentSchoolAuthorization pathway
   if (edfiStudentSchoolAssociation) {
     const { authorizationPathways } = edfiStudentSchoolAssociation.data.edfiApiSchema as EntityApiSchemaData;
     authorizationPathways.push('StudentSchoolAssociationAuthorization' as AuthorizationPathway);
+    authorizationPathways.push('ContactStudentSchoolAuthorization' as AuthorizationPathway);
   }
 
   const edfiStudentContactAssociation: TopLevelEntity | undefined = metaEd.namespace

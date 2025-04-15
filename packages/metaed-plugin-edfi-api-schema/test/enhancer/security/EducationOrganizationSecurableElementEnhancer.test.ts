@@ -111,7 +111,7 @@ describe('when building domain entity without any EducationOrganization properti
   });
 });
 
-describe('when building domain entity with EducationOrganization property', () => {
+describe('when building domain entity with EducationOrganization property as identity', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -128,8 +128,7 @@ describe('when building domain entity with EducationOrganization property', () =
 
       .withStartDomainEntity(domainEntityName)
       .withDocumentation('doc')
-      .withBooleanIdentity('Unused', 'doc')
-      .withDomainEntityProperty('EducationOrganization', 'doc', false, false)
+      .withDomainEntityIdentity('EducationOrganization', 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -152,41 +151,7 @@ describe('when building domain entity with EducationOrganization property', () =
   });
 });
 
-describe('when building domain entity with role named EducationOrganization property', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
-  const namespaceName = 'EdFi';
-  const domainEntityName = 'DomainEntityName';
-
-  beforeAll(() => {
-    MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-
-      .withStartAbstractEntity('EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentity('EducationOrganizationId', 'doc')
-      .withEndAbstractEntity()
-
-      .withStartDomainEntity(domainEntityName)
-      .withDocumentation('doc')
-      .withBooleanIdentity('Unused', 'doc')
-      .withDomainEntityProperty('EducationOrganization', 'doc', false, false, undefined, 'RoleName')
-      .withEndDomainEntity()
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-    runEnhancers(metaEd);
-  });
-
-  it('should have EducationOrganization security elements', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
-  });
-});
-
-describe('when building domain entity with EducationOrganization subclass property', () => {
+describe('when building domain entity with School property as identity', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -208,8 +173,7 @@ describe('when building domain entity with EducationOrganization subclass proper
 
       .withStartDomainEntity(domainEntityName)
       .withDocumentation('doc')
-      .withBooleanIdentity('Unused', 'doc')
-      .withDomainEntityProperty('School', 'doc', false, false)
+      .withDomainEntityIdentity('School', 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -219,7 +183,20 @@ describe('when building domain entity with EducationOrganization subclass proper
     runEnhancers(metaEd);
   });
 
-  it('should have EducationOrganization security elements', () => {
+  it('should have EducationOrganization security element on School', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get('School');
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "jsonPath": "$.schoolId",
+          "metaEdName": "SchoolId",
+        },
+      ]
+    `);
+  });
+
+  it('should have EducationOrganization security elements on DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
@@ -230,6 +207,85 @@ describe('when building domain entity with EducationOrganization subclass proper
         },
       ]
     `);
+  });
+});
+
+describe('when building domain entity with rolenamed School property as identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass('School', 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+      .withEndDomainEntitySubclass()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc', 'RoleName')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    runEnhancers(metaEd);
+  });
+
+  it('should not have EducationOrganization security elements on DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with School property not as identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass('School', 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+      .withEndDomainEntitySubclass()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('Identity', 'doc')
+      .withDomainEntityProperty('School', 'doc', false, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    runEnhancers(metaEd);
+  });
+
+  it('should not have EducationOrganization security elements on DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
 

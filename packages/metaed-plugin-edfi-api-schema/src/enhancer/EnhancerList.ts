@@ -38,7 +38,7 @@ import { enhance as educationOrganizationSecurableElementEnhancer } from './secu
 import { enhance as educationOrganizationHierarchyEnhancer } from './security/EducationOrganizationHierarchyEnhancer';
 import { enhance as authorizationPathwayEnhancer } from './security/AuthorizationPathwayEnhancer';
 import { enhance as studentSecurableElementEnhancer } from './security/StudentSecurableElementEnhancer';
-import { enhance as studentAuthorizationEnhancer } from './security/StudentAuthorizationEnhancer';
+import { enhance as contactSecurableElementEnhancer } from './security/ContactSecurableElementEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -75,7 +75,7 @@ export function enhancerList(): Enhancer[] {
     educationOrganizationHierarchyEnhancer,
     authorizationPathwayEnhancer,
     studentSecurableElementEnhancer,
-    studentAuthorizationEnhancer,
+    contactSecurableElementEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
