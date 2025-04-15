@@ -33,12 +33,12 @@ import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhance
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
 import { enhance as openApiCoreSpecificationEnhancer } from './OpenApiCoreSpecificationEnhancer';
 import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
-import { enhance as namespaceSecurityElementEnhancer } from './security/NamespaceSecurityElementEnhancer';
-import { enhance as educationOrganizationSecurityElementEnhancer } from './security/EducationOrganizationSecurityElementEnhancer';
+import { enhance as namespaceSecurableElementEnhancer } from './security/NamespaceSecurableElementEnhancer';
+import { enhance as educationOrganizationSecurableElementEnhancer } from './security/EducationOrganizationSecurableElementEnhancer';
 import { enhance as educationOrganizationHierarchyEnhancer } from './security/EducationOrganizationHierarchyEnhancer';
 import { enhance as authorizationPathwayEnhancer } from './security/AuthorizationPathwayEnhancer';
-import { enhance as studentSecurityElementEnhancer } from './security/StudentSecurityElementEnhancer';
-import { enhance as studentAuthorizationSecurableEnhancer } from './security/StudentAuthorizationSecurableEnhancer';
+import { enhance as studentSecurableElementEnhancer } from './security/StudentSecurableElementEnhancer';
+import { enhance as studentAuthorizationEnhancer } from './security/StudentAuthorizationEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -70,12 +70,12 @@ export function enhancerList(): Enhancer[] {
     typeCoercionJsonPathsEnhancer,
     openApiCoreSpecificationEnhancer,
     openApiExtensionFragmentEnhancer,
-    namespaceSecurityElementEnhancer,
-    educationOrganizationSecurityElementEnhancer,
+    namespaceSecurableElementEnhancer,
+    educationOrganizationSecurableElementEnhancer,
     educationOrganizationHierarchyEnhancer,
     authorizationPathwayEnhancer,
-    studentSecurityElementEnhancer,
-    studentAuthorizationSecurableEnhancer,
+    studentSecurableElementEnhancer,
+    studentAuthorizationEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

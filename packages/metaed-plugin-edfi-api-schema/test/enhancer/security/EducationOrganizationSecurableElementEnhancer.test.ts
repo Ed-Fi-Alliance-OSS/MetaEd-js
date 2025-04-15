@@ -25,7 +25,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../../src/enhanc
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance } from '../../../src/enhancer/security/EducationOrganizationSecurityElementEnhancer';
+import { enhance } from '../../../src/enhancer/security/EducationOrganizationSecurableElementEnhancer';
 
 function runEnhancers(metaEd: MetaEdEnvironment) {
   domainEntityReferenceEnhancer(metaEd);
@@ -73,7 +73,7 @@ describe('when building descriptor', () => {
 
   it('should have no EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get(descriptorName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -106,7 +106,7 @@ describe('when building domain entity without any EducationOrganization properti
 
   it('should have empty EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -140,7 +140,7 @@ describe('when building domain entity with EducationOrganization property', () =
 
   it('should have EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -181,7 +181,7 @@ describe('when building domain entity with role named EducationOrganization prop
 
   it('should have EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -221,7 +221,7 @@ describe('when building domain entity with EducationOrganization subclass proper
 
   it('should have EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -274,7 +274,7 @@ describe('when building domain entity in extension namespace with EducationOrgan
 
   it('should have EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         Object {

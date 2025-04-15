@@ -13,7 +13,7 @@ import {
   newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer, commonReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
-import { enhance } from '../../../src/enhancer/security/ContactSecurityElementEnhancer';
+import { enhance } from '../../../src/enhancer/security/ContactSecurableElementEnhancer';
 import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
@@ -83,10 +83,10 @@ describe('when building domain entity without Contact reference', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have no contactSecurityElements', () => {
+  it('should have no contactSecurableElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`Array []`);
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -118,10 +118,10 @@ describe('when building domain entity with Contact identity', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have simple contactSecurityElements', () => {
+  it('should have simple contactSecurableElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`
       Array [
         "$.contactReference.contactUniqueId",
       ]
@@ -157,10 +157,10 @@ describe('when building domain entity with Contact not part of identity', () => 
     runEnhancers(metaEd);
   });
 
-  it('should have no contactSecurityElements', () => {
+  it('should have no contactSecurableElements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`Array []`);
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -198,10 +198,10 @@ describe('when building a domain entity referencing another referencing another 
     runEnhancers(metaEd);
   });
 
-  it('should be correct contactSecurityElements for DomainEntityName', () => {
+  it('should be correct contactSecurableElements for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`
       Array [
         "$.contactAcademicRecordReference.contactUniqueId",
       ]
@@ -250,10 +250,10 @@ describe('when building a domain entity referencing two referencing another with
     runEnhancers(metaEd);
   });
 
-  it('should be two contactSecurityElements for DomainEntityName', () => {
+  it('should be two contactSecurableElements for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`
       Array [
         "$.contactAcademicRecordReference.contactUniqueId",
         "$.contactOtherAcademicRecordReference.contactUniqueId",
@@ -296,9 +296,9 @@ describe('when building domain entity with a common with a domain entity referen
     runEnhancers(metaEd);
   });
 
-  it('should be empty contactSecurityElements for Assessment', () => {
+  it('should be empty contactSecurableElements for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const { contactSecurityElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(contactSecurityElements).toMatchInlineSnapshot(`Array []`);
+    const { contactSecurableElements } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactSecurableElements).toMatchInlineSnapshot(`Array []`);
   });
 });

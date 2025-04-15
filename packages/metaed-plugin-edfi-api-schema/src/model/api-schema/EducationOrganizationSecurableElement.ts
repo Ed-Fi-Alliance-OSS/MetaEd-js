@@ -5,7 +5,7 @@
 
 import { JsonPath } from './JsonPath';
 
-export type EducationOrganizationSecurityElement = {
+export type EducationOrganizationSecurableElement = {
   /**
    * The MetaEd property name for the security element
    */

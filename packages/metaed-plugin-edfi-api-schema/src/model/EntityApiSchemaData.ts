@@ -21,7 +21,7 @@ import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { JsonPath } from './api-schema/JsonPath';
 import { QueryFieldMapping } from './api-schema/QueryFieldMapping';
 import { NoOpenApiObject, OpenApiObject } from './OpenApi';
-import { EducationOrganizationSecurityElement } from './api-schema/EducationOrganizationSecurityElement';
+import { EducationOrganizationSecurableElement } from './api-schema/EducationOrganizationSecurableElement';
 import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollectionSchema';
 import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
 
@@ -150,7 +150,7 @@ export type EntityApiSchemaData = {
   /**
    * A list of the namespace-based security elements for this entity
    */
-  namespaceSecurityElements: JsonPath[];
+  namespaceSecurableElements: JsonPath[];
 
   /**
    * A list of the student unqiue id paths for this entity for use in student securable authorization
@@ -160,17 +160,17 @@ export type EntityApiSchemaData = {
   /**
    * A list of the student-based security elements for this entity
    */
-  studentSecurityElements: JsonPath[];
+  studentSecurableElements: JsonPath[];
 
   /**
    * A list of the contact unique id paths for this entity for use in contact securable authorization
    */
-  contactAuthorizationSecurablePaths: JsonPath[];
+  contactAuthorizationPaths: JsonPath[];
 
   /**
    * A list of the contact-based security elements for this entity
    */
-  contactSecurityElements: JsonPath[];
+  contactSecurableElements: JsonPath[];
 
   /**
    * The AuthorizationPathways this entity is a part of.
@@ -180,7 +180,7 @@ export type EntityApiSchemaData = {
   /**
    * A list of the EducationOrganization-based security elements for this entity
    */
-  educationOrganizationSecurityElements: EducationOrganizationSecurityElement[];
+  educationOrganizationSecurableElements: EducationOrganizationSecurableElement[];
 };
 
 /**
@@ -205,13 +205,13 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     resourceName: '' as MetaEdResourceName,
     identityFullnames: [],
     queryFieldMapping: {},
-    namespaceSecurityElements: [],
-    educationOrganizationSecurityElements: [],
+    namespaceSecurableElements: [],
+    educationOrganizationSecurableElements: [],
     studentAuthorizationSecurablePaths: [],
     authorizationPathways: [],
-    studentSecurityElements: [],
-    contactAuthorizationSecurablePaths: [],
-    contactSecurityElements: [],
+    studentSecurableElements: [],
+    contactAuthorizationPaths: [],
+    contactSecurableElements: [],
   });
 }
 

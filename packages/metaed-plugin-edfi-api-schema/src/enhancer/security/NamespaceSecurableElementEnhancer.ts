@@ -57,17 +57,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         });
       });
 
-      (entity.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements = [...result].sort();
+      (entity.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements = [...result].sort();
     },
   );
 
   // Descriptors all have Namespace security elements
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((descriptor) => {
-    (descriptor.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements = ['$.namespace' as JsonPath];
+    (descriptor.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements = ['$.namespace' as JsonPath];
   });
 
   return {
-    enhancerName: 'NamespaceSecurityElementEnhancer',
+    enhancerName: 'NamespaceSecurableElementEnhancer',
     success: true,
   };
 }

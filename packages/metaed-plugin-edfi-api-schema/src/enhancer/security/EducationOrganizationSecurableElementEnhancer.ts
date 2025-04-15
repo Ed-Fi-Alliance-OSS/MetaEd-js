@@ -20,7 +20,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     ?.entity.domainEntity.get('EducationOrganization');
   if (edfiEducationOrganization == null) {
     throw new Error(
-      'EducationOrganizationSecurityElementEnhancer: Fatal Error: EducationOrganization not found in EdFi Data Standard project',
+      'EducationOrganizationSecurableElementEnhancer: Fatal Error: EducationOrganization not found in EdFi Data Standard project',
     );
   }
 
@@ -50,12 +50,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       (
         educationOrganizationReferenceProperty.parentEntity.data.edfiApiSchema as EntityApiSchemaData
-      ).educationOrganizationSecurityElements = [...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName));
+      ).educationOrganizationSecurableElements = [...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName));
     });
   });
 
   return {
-    enhancerName: 'EducationOrganizationSecurityElementEnhancer',
+    enhancerName: 'EducationOrganizationSecurableElementEnhancer',
     success: true,
   };
 }

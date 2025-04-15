@@ -88,9 +88,9 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
     securityElements: {
-      Namespace: entityApiSchemaData.namespaceSecurityElements,
-      EducationOrganization: entityApiSchemaData.educationOrganizationSecurityElements,
-      Student: entityApiSchemaData.studentSecurityElements,
+      Namespace: entityApiSchemaData.namespaceSecurableElements,
+      EducationOrganization: entityApiSchemaData.educationOrganizationSecurableElements,
+      Student: entityApiSchemaData.studentSecurableElements,
     },
     authorizationSecurable: {
       Student: entityApiSchemaData.studentAuthorizationSecurablePaths,

@@ -14,26 +14,30 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Using Set to remove duplicates
       const result: Set<JsonPath> = new Set();
 
-      const { identityFullnames, allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { identityFullnames, allJsonPathsMapping, contactSecurableElements } = entity.data
+        .edfiApiSchema as EntityApiSchemaData;
 
       identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
         const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
-        // Add contact securable authorization elements
+
         matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
           if (
-            jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Contact' &&
-            jppp.flattenedIdentityProperty.identityProperty.parentEntity.namespace.namespaceName === 'EdFi'
+            (jppp.flattenedIdentityProperty.identityProperty.parentEntity.namespace.namespaceName === 'EdFi' &&
+              jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Contact') ||
+            (entity.namespace.namespaceName === 'EdFi' && entity.metaEdName === 'Contact')
           )
+            // Add security elements for entities that reference the Contact entity as
+            // part of their identity and for the Contact entity itself.
             result.add(jppp.jsonPath);
         });
       });
 
-      (entity.data.edfiApiSchema as EntityApiSchemaData).contactAuthorizationSecurablePaths = [...result].sort();
+      contactSecurableElements.push(...[...result].sort());
     },
   );
 
   return {
-    enhancerName: 'ContactAuthorizationSecurableEnhancer',
+    enhancerName: 'ContactSecurableElementEnhancer',
     success: true,
   };
 }

@@ -13,7 +13,7 @@ import {
   newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer, commonReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
-import { enhance } from '../../../src/enhancer/security/StudentAuthorizationSecurableEnhancer';
+import { enhance } from '../../../src/enhancer/security/ContactAuthorizationEnhancer';
 import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
@@ -56,7 +56,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   enhance(metaEd);
 }
 
-describe('when building domain entity', () => {
+describe('when building domain entity without Contact reference', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -66,12 +66,13 @@ describe('when building domain entity', () => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
 
-      .withStartDomainEntity('Student')
-      .withStringIdentity('StudentUniqueId', 'doc', '50', 'string', 'required')
+      .withStartDomainEntity('Contact')
+      .withStringIdentity('ContactUniqueId', 'doc', '50', 'string', 'required')
       .withEndAbstractEntity()
 
       .withStartDomainEntity(resourceName)
       .withDocumentation('doc')
+      .withIntegerIdentity('NotContact', 'doc')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -82,14 +83,14 @@ describe('when building domain entity', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have no studentAuthorizationSecurablePaths', () => {
+  it('should have no contactAuthorizationPaths', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`Array []`);
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
 
-describe('when building domain entity with Student identity', () => {
+describe('when building domain entity with Contact identity', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -99,14 +100,14 @@ describe('when building domain entity with Student identity', () => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
 
-      .withStartDomainEntity('Student')
+      .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('ContactUniqueId', 'doc', '30')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
       .withDocumentation('doc')
-      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Contact', 'doc')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -117,18 +118,18 @@ describe('when building domain entity with Student identity', () => {
     runEnhancers(metaEd);
   });
 
-  it('should have simple studentAuthorizationSecurablePaths', () => {
+  it('should have simple contactAuthorizationPaths', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`
       Array [
-        "$.studentReference.studentUniqueId",
+        "$.contactReference.contactUniqueId",
       ]
     `);
   });
 });
 
-describe('when building domain entity with Student not part of identity', () => {
+describe('when building domain entity with Contact not part of identity', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -138,14 +139,14 @@ describe('when building domain entity with Student not part of identity', () => 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
 
-      .withStartDomainEntity('Student')
+      .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('ContactUniqueId', 'doc', '30')
       .withEndDomainEntity()
 
       .withStartDomainEntity(resourceName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('Student', 'doc', false, false)
+      .withDomainEntityProperty('Contact', 'doc', false, false)
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -156,10 +157,10 @@ describe('when building domain entity with Student not part of identity', () => 
     runEnhancers(metaEd);
   });
 
-  it('should have no studentAuthorizationSecurablePaths', () => {
+  it('should have no contactAuthorizationPaths', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(resourceName);
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`Array []`);
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -175,18 +176,18 @@ describe('when building a domain entity referencing another referencing another 
       .withStartDomainEntity(domainEntityName)
       .withDocumentation('doc')
       .withStringIdentity('SectionIdentifier', 'doc', '30')
-      .withDomainEntityIdentity('StudentAcademicRecord', 'doc')
+      .withDomainEntityIdentity('ContactAcademicRecord', 'doc')
       .withEndDomainEntity()
 
-      .withStartDomainEntity('StudentAcademicRecord')
+      .withStartDomainEntity('ContactAcademicRecord')
       .withDocumentation('doc')
       .withStringIdentity('Description', 'doc', '30')
-      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Contact', 'doc')
       .withEndDomainEntity()
 
-      .withStartDomainEntity('Student')
+      .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('ContactUniqueId', 'doc', '30')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -197,12 +198,12 @@ describe('when building a domain entity referencing another referencing another 
     runEnhancers(metaEd);
   });
 
-  it('should be correct studentAuthorizationSecurablePaths for DomainEntityName', () => {
+  it('should be correct contactAuthorizationPaths for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`
       Array [
-        "$.studentAcademicRecordReference.studentUniqueId",
+        "$.contactAcademicRecordReference.contactUniqueId",
       ]
     `);
   });
@@ -220,25 +221,25 @@ describe('when building a domain entity referencing two referencing another with
       .withStartDomainEntity(domainEntityName)
       .withDocumentation('doc')
       .withStringIdentity('SectionIdentifier', 'doc', '30')
-      .withDomainEntityIdentity('StudentAcademicRecord', 'doc')
-      .withDomainEntityIdentity('StudentOtherAcademicRecord', 'doc')
+      .withDomainEntityIdentity('ContactAcademicRecord', 'doc')
+      .withDomainEntityIdentity('ContactOtherAcademicRecord', 'doc')
       .withEndDomainEntity()
 
-      .withStartDomainEntity('StudentAcademicRecord')
+      .withStartDomainEntity('ContactAcademicRecord')
       .withDocumentation('doc')
       .withStringIdentity('Description', 'doc', '30')
-      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Contact', 'doc')
       .withEndDomainEntity()
 
-      .withStartDomainEntity('StudentOtherAcademicRecord')
+      .withStartDomainEntity('ContactOtherAcademicRecord')
       .withDocumentation('doc')
       .withStringIdentity('Description', 'doc', '30')
-      .withDomainEntityIdentity('Student', 'doc')
+      .withDomainEntityIdentity('Contact', 'doc')
       .withEndDomainEntity()
 
-      .withStartDomainEntity('Student')
+      .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withStringIdentity('ContactUniqueId', 'doc', '30')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -249,13 +250,13 @@ describe('when building a domain entity referencing two referencing another with
     runEnhancers(metaEd);
   });
 
-  it('should be two studentAuthorizationSecurablePaths for DomainEntityName', () => {
+  it('should be two contactAuthorizationPaths for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`
       Array [
-        "$.studentAcademicRecordReference.studentUniqueId",
-        "$.studentOtherAcademicRecordReference.studentUniqueId",
+        "$.contactAcademicRecordReference.contactUniqueId",
+        "$.contactOtherAcademicRecordReference.contactUniqueId",
       ]
     `);
   });
@@ -278,12 +279,12 @@ describe('when building domain entity with a common with a domain entity referen
       .withStartCommon('ContentStandard')
       .withDocumentation('doc')
       .withStringProperty('Title', 'doc', false, false, '30')
-      .withDomainEntityProperty('Student', 'doc', false, false, false, 'Mandating')
+      .withDomainEntityProperty('Contact', 'doc', false, false, false, 'Mandating')
       .withEndCommon()
 
-      .withStartDomainEntity('Student')
+      .withStartDomainEntity('Contact')
       .withDocumentation('doc')
-      .withIntegerIdentity('StudentUniqueId', 'doc')
+      .withIntegerIdentity('ContactUniqueId', 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -295,9 +296,9 @@ describe('when building domain entity with a common with a domain entity referen
     runEnhancers(metaEd);
   });
 
-  it('should be empty studentAuthorizationSecurablePaths for Assessment', () => {
+  it('should be empty contactAuthorizationPaths for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const { studentAuthorizationSecurablePaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
-    expect(studentAuthorizationSecurablePaths).toMatchInlineSnapshot(`Array []`);
+    const { contactAuthorizationPaths } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(contactAuthorizationPaths).toMatchInlineSnapshot(`Array []`);
   });
 });

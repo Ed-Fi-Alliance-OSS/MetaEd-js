@@ -26,7 +26,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../../src/enhanc
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance } from '../../../src/enhancer/security/NamespaceSecurityElementEnhancer';
+import { enhance } from '../../../src/enhancer/security/NamespaceSecurableElementEnhancer';
 
 function runEnhancers(metaEd: MetaEdEnvironment) {
   domainEntityReferenceEnhancer(metaEd);
@@ -74,7 +74,7 @@ describe('when building descriptor', () => {
 
   it('should have simple namespace security element', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get(descriptorName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         "$.namespace",
@@ -111,7 +111,7 @@ describe('when building domain entity without any namespace properties', () => {
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -144,7 +144,7 @@ describe('when building domain entity without any namespace properties', () => {
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -183,7 +183,7 @@ describe('when building domain entity with SharedString identity but not URI', (
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -217,7 +217,7 @@ describe('when building domain entity with SharedString identity referencing URI
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -251,7 +251,7 @@ describe('when building domain entity with SharedString referencing URI named Na
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -285,7 +285,7 @@ describe('when building domain entity with SharedString identity referencing URI
 
   it('should have empty namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
@@ -319,7 +319,7 @@ describe('when building domain entity with SharedString identity referencing URI
 
   it('should have simple namespace security element', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         "$.namespace",
@@ -365,7 +365,7 @@ describe('when building domain entity referencing another with proper Namespace'
 
   it('should have namespace security element on referencing entity', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(referencingDomainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
       Array [
         "$.domainEntityNameReference.namespace",
@@ -411,7 +411,7 @@ describe('when building domain entity referencing another with role named Namesp
 
   it('should not have namespace security element on referencing entity', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(referencingDomainEntityName);
-    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurityElements;
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });

@@ -18,22 +18,22 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
         const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
-        // Add student securable authorization elements
+        // Add contact securable authorization elements
         matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
           if (
-            jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Student' &&
+            jppp.flattenedIdentityProperty.identityProperty.parentEntity.metaEdName === 'Contact' &&
             jppp.flattenedIdentityProperty.identityProperty.parentEntity.namespace.namespaceName === 'EdFi'
           )
             result.add(jppp.jsonPath);
         });
       });
 
-      (entity.data.edfiApiSchema as EntityApiSchemaData).studentAuthorizationSecurablePaths = [...result].sort();
+      (entity.data.edfiApiSchema as EntityApiSchemaData).contactAuthorizationPaths = [...result].sort();
     },
   );
 
   return {
-    enhancerName: 'StudentAuthorizationSecurableEnhancer',
+    enhancerName: 'ContactAuthorizationSecurableEnhancer',
     success: true,
   };
 }
