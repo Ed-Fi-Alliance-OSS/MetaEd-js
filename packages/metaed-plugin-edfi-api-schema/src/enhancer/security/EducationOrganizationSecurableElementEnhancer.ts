@@ -72,10 +72,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
         if (
           allEducationOrganizations.includes(jppp.flattenedIdentityProperty.identityProperty.parentEntity) &&
-          jppp.flattenedIdentityProperty.identityProperty.roleName === ''
+          jppp.sourceProperty.roleName === ''
         ) {
           result.add({
-            metaEdName: jppp.flattenedIdentityProperty.identityProperty.metaEdName,
+            metaEdName: jppp.sourceProperty.metaEdName,
             jsonPath: jppp.jsonPath,
           });
         }

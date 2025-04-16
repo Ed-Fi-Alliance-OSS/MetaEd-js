@@ -25,6 +25,9 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../../src/enhanc
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../../src/enhancer/AllJsonPathsMappingEnhancer';
+import { enhance as resourceNameEnhancer } from '../../../src/enhancer/ResourceNameEnhancer';
+import { enhance as identityFullnameEnhancer } from '../../../src/enhancer/IdentityFullnameEnhancer';
+import { enhance as subclassIdentityFullnameEnhancer } from '../../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance } from '../../../src/enhancer/security/EducationOrganizationSecurableElementEnhancer';
 
 function runEnhancers(metaEd: MetaEdEnvironment) {
@@ -42,6 +45,9 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   apiEntityMappingEnhancer(metaEd);
   subclassApiEntityMappingEnhancer(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
+  resourceNameEnhancer(metaEd);
+  identityFullnameEnhancer(metaEd);
+  subclassIdentityFullnameEnhancer(metaEd);
   enhance(metaEd);
 }
 
@@ -196,7 +202,7 @@ describe('when building domain entity with School property as identity', () => {
     `);
   });
 
-  it('should have EducationOrganization security elements on DomainEntityName', () => {
+  it('should have EducationOrganization security element on DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
     expect(identityJsonPaths).toMatchInlineSnapshot(`
@@ -289,7 +295,59 @@ describe('when building domain entity with School property not as identity', () 
   });
 });
 
-describe('when building domain entity in extension namespace with EducationOrganization subclass property', () => {
+describe('when building domain entity in extension namespace with EducationOrganization subclass identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'Extension';
+  const domainEntityName = 'DomainEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass('School', 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+      .withEndDomainEntitySubclass()
+
+      .withEndNamespace()
+      .withBeginNamespace(namespaceName, namespaceName)
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('EdFi.School', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    const extensionNamespace: any = metaEd.namespace.get(namespaceName);
+    extensionNamespace.dependencies = [metaEd.namespace.get('EdFi')];
+
+    runEnhancers(metaEd);
+  });
+
+  it('should have EducationOrganization security element', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "jsonPath": "$.schoolReference.schoolId",
+          "metaEdName": "School",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity in extension namespace with EducationOrganization subclass non-identity property', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'Extension';
@@ -331,13 +389,6 @@ describe('when building domain entity in extension namespace with EducationOrgan
   it('should have EducationOrganization security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).educationOrganizationSecurableElements;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "jsonPath": "$.schoolReference.schoolId",
-          "metaEdName": "School",
-        },
-      ]
-    `);
+    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
   });
 });
