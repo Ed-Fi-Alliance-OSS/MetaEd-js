@@ -153,19 +153,9 @@ export type EntityApiSchemaData = {
   namespaceSecurableElements: JsonPath[];
 
   /**
-   * A list of the student unqiue id paths for this entity for use in student securable authorization
-   */
-  studentAuthorizationSecurablePaths: JsonPath[];
-
-  /**
    * A list of the student-based security elements for this entity
    */
   studentSecurableElements: JsonPath[];
-
-  /**
-   * A list of the contact unique id paths for this entity for use in contact securable authorization
-   */
-  contactAuthorizationPaths: JsonPath[];
 
   /**
    * A list of the contact-based security elements for this entity
