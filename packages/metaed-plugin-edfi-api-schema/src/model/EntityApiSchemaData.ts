@@ -200,7 +200,6 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     studentAuthorizationSecurablePaths: [],
     authorizationPathways: [],
     studentSecurableElements: [],
-    contactAuthorizationPaths: [],
     contactSecurableElements: [],
   });
 }

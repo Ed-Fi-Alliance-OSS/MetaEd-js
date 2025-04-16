@@ -15308,6 +15308,8 @@
         },
         "resourceName": "AccreditationStatusDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -15415,6 +15417,8 @@
         },
         "resourceName": "AidTypeDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -15781,6 +15785,8 @@
         },
         "resourceName": "CandidateEducatorPreparationProgramAssociation",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.educatorPreparationProgramReference.educationOrganizationId",
@@ -17039,6 +17045,8 @@
         },
         "resourceName": "Candidate",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17145,6 +17153,8 @@
         },
         "resourceName": "CertificationRouteDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17252,6 +17262,8 @@
         },
         "resourceName": "CoteachingStyleObservedDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17359,6 +17371,8 @@
         },
         "resourceName": "CredentialStatusDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17596,6 +17610,8 @@
         ],
         "resourceName": "Credential",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17780,6 +17796,8 @@
         },
         "resourceName": "EducatorPreparationProgram",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
@@ -17890,6 +17908,8 @@
         },
         "resourceName": "EducatorRoleDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -17997,6 +18017,8 @@
         },
         "resourceName": "EnglishLanguageExamDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -18104,6 +18126,8 @@
         },
         "resourceName": "EPPProgramPathwayDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -18211,6 +18235,8 @@
         },
         "resourceName": "EvaluationElementRatingLevelDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -18827,6 +18853,8 @@
         },
         "resourceName": "EvaluationElementRating",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationElementReference.educationOrganizationId",
@@ -19185,6 +19213,8 @@
         },
         "resourceName": "EvaluationElement",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationObjectiveReference.educationOrganizationId",
@@ -19707,6 +19737,8 @@
         },
         "resourceName": "EvaluationObjectiveRating",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationObjectiveReference.educationOrganizationId",
@@ -20062,6 +20094,8 @@
         },
         "resourceName": "EvaluationObjective",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationReference.educationOrganizationId",
@@ -20172,6 +20206,8 @@
         },
         "resourceName": "EvaluationPeriodDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -20279,6 +20315,8 @@
         },
         "resourceName": "EvaluationRatingLevelDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -20386,6 +20424,8 @@
         },
         "resourceName": "EvaluationRatingStatusDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -21090,6 +21130,8 @@
         },
         "resourceName": "EvaluationRating",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationReference.educationOrganizationId",
@@ -21204,6 +21246,8 @@
         },
         "resourceName": "EvaluationTypeDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -21532,6 +21576,8 @@
         },
         "resourceName": "Evaluation",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.performanceEvaluationReference.educationOrganizationId",
@@ -21724,6 +21770,8 @@
         },
         "resourceName": "FinancialAid",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -21831,6 +21879,8 @@
         },
         "resourceName": "GenderDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -21938,6 +21988,8 @@
         },
         "resourceName": "ObjectiveRatingLevelDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -22045,6 +22097,8 @@
         },
         "resourceName": "PerformanceEvaluationRatingLevelDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -22572,6 +22626,8 @@
         },
         "resourceName": "PerformanceEvaluationRating",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.performanceEvaluationReference.educationOrganizationId",
@@ -22682,6 +22738,8 @@
         },
         "resourceName": "PerformanceEvaluationTypeDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -22996,6 +23054,8 @@
         },
         "resourceName": "PerformanceEvaluation",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
@@ -23304,6 +23364,8 @@
         },
         "resourceName": "RubricDimension",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
             {
               "jsonPath": "$.evaluationElementReference.educationOrganizationId",
@@ -23414,6 +23476,8 @@
         },
         "resourceName": "RubricRatingLevelDescriptor",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -23490,6 +23554,8 @@
         ],
         "resourceName": "School",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -23663,6 +23729,8 @@
         },
         "resourceName": "SurveyResponsePersonTargetAssociation",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -23750,6 +23818,8 @@
         ],
         "resourceName": "SurveyResponse",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [
@@ -23952,6 +24022,8 @@
         },
         "resourceName": "SurveySectionResponsePersonTargetAssociation",
         "securableElements": {
+          "Contact": [
+          ],
           "EducationOrganization": [
           ],
           "Namespace": [

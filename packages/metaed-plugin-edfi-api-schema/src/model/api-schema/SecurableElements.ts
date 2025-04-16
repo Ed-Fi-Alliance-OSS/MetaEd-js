@@ -13,4 +13,5 @@ export type SecurableElements = {
   Namespace: JsonPath[];
   EducationOrganization: EducationOrganizationSecurableElement[];
   Student: JsonPath[];
+  Contact: JsonPath[];
 };
