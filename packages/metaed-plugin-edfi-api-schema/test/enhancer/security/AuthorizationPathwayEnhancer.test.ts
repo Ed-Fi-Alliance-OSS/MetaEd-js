@@ -97,7 +97,6 @@ describe('when building StudentSchoolAssociation', () => {
     expect(authorizationPathways).toMatchInlineSnapshot(`
       Array [
         "StudentSchoolAssociationAuthorization",
-        "ContactStudentSchoolAuthorization",
       ]
     `);
   });

@@ -16,7 +16,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (edfiStudentSchoolAssociation) {
     const { authorizationPathways } = edfiStudentSchoolAssociation.data.edfiApiSchema as EntityApiSchemaData;
     authorizationPathways.push('StudentSchoolAssociationAuthorization' as AuthorizationPathway);
-    authorizationPathways.push('ContactStudentSchoolAuthorization' as AuthorizationPathway);
   }
 
   const edfiStudentContactAssociation: TopLevelEntity | undefined = metaEd.namespace
