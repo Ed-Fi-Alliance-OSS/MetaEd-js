@@ -143,7 +143,7 @@ function buildOpenApiCollectionSchemaList(
     if (isReferentialProperty(property)) {
       const referentialProperty = property as ReferentialProperty;
       if (referentialProperty.referencedEntity.namespace !== entityForOpenApi.namespace) {
-        if (referentialProperty.parentEntity.type === 'association') {
+        if (referentialProperty.parentEntity.type === 'association' && entityForOpenApi.namespace.namespaceName !== 'TPDM') {
           return;
         }
       }
