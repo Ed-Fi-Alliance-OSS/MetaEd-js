@@ -10,6 +10,8 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
+  isReferentialProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -137,6 +139,16 @@ function buildOpenApiCollectionSchemaList(
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
+    // Skip if the property is referencing a different namespace
+    if (isReferentialProperty(property)) {
+      const referentialProperty = property as ReferentialProperty;
+      if (referentialProperty.referencedEntity.namespace !== entityForOpenApi.namespace) {
+        if (referentialProperty.parentEntity.type === 'association') {
+          return;
+        }
+      }
+    }
+
     const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,
