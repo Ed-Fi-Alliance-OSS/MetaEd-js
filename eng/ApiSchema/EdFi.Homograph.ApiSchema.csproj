@@ -16,7 +16,7 @@
         <copyright>Copyright © 2025, Ed-Fi Alliance, LLC and contributors.</copyright>
         <summary>API Schema definition file representing the Homograph extensions.</summary>
         <description>Ed-Fi API Schema definition for Homograph Extension.</description>
-        <AssemblyName>EdFi.Homograph.ApiSchema.Homograph</AssemblyName>
+        <AssemblyName>EdFi.Homograph.ApiSchema</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
