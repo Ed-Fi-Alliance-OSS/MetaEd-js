@@ -135,6 +135,7 @@
     "sqlserver",
     "teamcity",
     "totalcount",
+    "uncapitalize",
     "unmock",
     "vsix",
     "yarnpkg"
