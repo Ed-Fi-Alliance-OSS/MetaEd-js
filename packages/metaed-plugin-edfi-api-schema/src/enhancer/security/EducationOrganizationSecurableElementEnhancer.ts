@@ -9,10 +9,49 @@ import {
   TopLevelEntity,
   getAllEntitiesOfType,
   MetaEdPropertyFullName,
+  isReferentialProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
 import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
+import { EducationOrganizationSecurableElement } from '../../model/api-schema/EducationOrganizationSecurableElement';
+
+/**
+ * Adds EducationOrganization-specific SecurableElements like the renamed educationOrganizationId
+ * and non-identity EducationOrganization scalar references regardless of role name
+ */
+function addEducationOrganizationSpecificSecurableElements(
+  educationOrganization: TopLevelEntity,
+  result: Map<JsonPath, EducationOrganizationSecurableElement>,
+  allEducationOrganizations: TopLevelEntity[],
+) {
+  const entityApiSchemaData: EntityApiSchemaData = educationOrganization.data.edfiApiSchema as EntityApiSchemaData;
+
+  Object.values(entityApiSchemaData.allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+    jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp: JsonPathPropertyPair) => {
+      // Add securable elements for renamed educationOrganizationIds on each EducationOrganization subclass
+      if (jppp.sourceProperty.isIdentityRename && jppp.sourceProperty.parentEntity === educationOrganization) {
+        result.set(jppp.jsonPath, {
+          metaEdName: jppp.sourceProperty.metaEdName,
+          jsonPath: jppp.jsonPath,
+        });
+      }
+
+      // Add non-identity EducationOrganization scalar references regardless of role name
+      if (
+        isReferentialProperty(jppp.sourceProperty) &&
+        (jppp.sourceProperty.isRequired || jppp.sourceProperty.isOptional) &&
+        allEducationOrganizations.includes((jppp.sourceProperty as ReferentialProperty).referencedEntity)
+      ) {
+        result.set(jppp.jsonPath, {
+          metaEdName: jppp.sourceProperty.metaEdName,
+          jsonPath: jppp.jsonPath,
+        });
+      }
+    });
+  });
+}
 
 /**
  * Finds the EducationOrganizationId elements that can be EducationOrganization
@@ -32,36 +71,21 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const allEducationOrganizations: TopLevelEntity[] = [...edfiEducationOrganization.subclassedBy, edfiEducationOrganization];
 
-  // Add securable elements for renamed educationOrganizationIds on each EducationOrganization subclass
-  allEducationOrganizations.forEach((educationOrganization) => {
-    const entityApiSchemaData: EntityApiSchemaData = educationOrganization.data.edfiApiSchema as EntityApiSchemaData;
-    Object.values(entityApiSchemaData.allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
-      jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp: JsonPathPropertyPair) => {
-        if (jppp.sourceProperty.isIdentityRename && jppp.sourceProperty.parentEntity === educationOrganization) {
-          entityApiSchemaData.educationOrganizationSecurableElements.push({
-            metaEdName: jppp.sourceProperty.metaEdName,
-            jsonPath: jppp.jsonPath,
-          });
-          entityApiSchemaData.educationOrganizationSecurableElements.sort((a, b) =>
-            a.metaEdName.localeCompare(b.metaEdName),
-          );
-        }
-      });
-    });
-  });
-
   // Add securable elements for entities that have non-rolenamed reference to EducationOrganization as part of their identity
-  getAllEntitiesOfType(
-    metaEd,
-    'domainEntity',
-    'association',
-    'domainEntitySubclass',
-    'associationSubclass',
-    'domainEntityExtension',
-    'associationExtension',
+  // Also handle EducationOrganization special cases
+  (
+    getAllEntitiesOfType(
+      metaEd,
+      'domainEntity',
+      'association',
+      'domainEntitySubclass',
+      'associationSubclass',
+      'domainEntityExtension',
+      'associationExtension',
+    ) as TopLevelEntity[]
   ).forEach((entity) => {
-    // Using Set to remove duplicates
-    const result: Set<{ metaEdName: string; jsonPath: JsonPath }> = new Set();
+    // Using Map to remove duplicate JsonPaths
+    const result: Map<JsonPath, EducationOrganizationSecurableElement> = new Map();
 
     const { identityFullnames, allJsonPathsMapping, educationOrganizationSecurableElements } = entity.data
       .edfiApiSchema as EntityApiSchemaData;
@@ -74,7 +98,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           allEducationOrganizations.includes(jppp.flattenedIdentityProperty.identityProperty.parentEntity) &&
           jppp.sourceProperty.roleName === ''
         ) {
-          result.add({
+          result.set(jppp.jsonPath, {
             metaEdName: jppp.sourceProperty.metaEdName,
             jsonPath: jppp.jsonPath,
           });
@@ -82,7 +106,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       });
     });
 
-    educationOrganizationSecurableElements.push(...[...result].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName)));
+    // EducationOrganization entities have additional securable elements
+    if (allEducationOrganizations.includes(entity)) {
+      addEducationOrganizationSpecificSecurableElements(entity, result, allEducationOrganizations);
+    }
+
+    educationOrganizationSecurableElements.push(
+      ...[...result.values()].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName)),
+    );
   });
 
   return {
