@@ -19,6 +19,7 @@ import { enhance as jsonSchemaForInsertEnhancer } from './JsonSchemaForInsertEnh
 import { enhance as openApiReferenceComponentEnhancer } from './OpenApiReferenceComponentEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from './OpenApiRequestBodyComponentEnhancer';
 import { enhance as openApiRequestBodyCollectionComponentEnhancer } from './OpenApiRequestBodyCollectionComponentEnhancer';
+import { enhance as openApiRequestBodyCollectionComponentSubclassEnhancer } from './OpenApiRequestBodyCollectionComponentSubclassEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from './MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
@@ -58,6 +59,7 @@ export function enhancerList(): Enhancer[] {
     openApiReferenceComponentEnhancer,
     openApiRequestBodyComponentEnhancer,
     openApiRequestBodyCollectionComponentEnhancer,
+    openApiRequestBodyCollectionComponentSubclassEnhancer,
     allJsonPathsMappingEnhancer,
     mergeJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,

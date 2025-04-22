@@ -10,6 +10,8 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
+  isReferentialProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -27,7 +29,7 @@ import {
 import { openApiObjectForScalarCommonProperty } from './OpenApiRequestBodyComponentEnhancer';
 import { OpenApiRequestBodyCollectionSchema } from '../model/OpenApiRequestBodyCollectionSchema';
 
-const enhancerName = 'OpenApiRequestBodyCollectionComponentEnhancer';
+const enhancerName = 'OpenApiRequestBodyCollectionComponentSubclassEnhancer';
 
 /**
  * Returns an OpenApi schema that specifies the API body element shape
@@ -137,6 +139,16 @@ function buildOpenApiCollectionSchemaList(
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
+    // Skip if the property is referencing a different namespace
+    if (isReferentialProperty(property)) {
+      const referentialProperty = property as ReferentialProperty;
+      if (referentialProperty.referencedEntity.namespace !== entityForOpenApi.namespace) {
+        // if (referentialProperty.parentEntity.type === 'association' && entityForOpenApi.namespace.namespaceName !== 'TPDM') {
+        return;
+        // }
+      }
+    }
+
     const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,
@@ -156,15 +168,14 @@ function buildOpenApiCollectionSchemaList(
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'associationExtension', 'domainEntityExtension').forEach(
-    (entity) => {
-      const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
-      entityApiOpenApiData.openApiRequestBodyCollectionComponents = buildOpenApiCollectionSchemaList(
-        entity as TopLevelEntity,
-        schoolYearOpenApis,
-      );
-    },
-  );
+  const allEntities = getAllEntitiesOfType(metaEd, 'domainEntitySubclass', 'associationSubclass');
+  allEntities.forEach((entity) => {
+    const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    entityApiOpenApiData.openApiRequestBodyCollectionComponents = buildOpenApiCollectionSchemaList(
+      entity as TopLevelEntity,
+      schoolYearOpenApis,
+    );
+  });
 
   return {
     enhancerName,

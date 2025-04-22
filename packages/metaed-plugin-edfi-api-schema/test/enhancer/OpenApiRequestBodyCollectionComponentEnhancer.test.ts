@@ -11,11 +11,10 @@ import {
   CommonBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
-  DomainEntitySubclassBuilder,
   DescriptorBuilder,
-  EnumerationBuilder,
   newPluginEnvironment,
   DomainEntityExtensionBuilder,
+  EnumerationBuilder,
   newNamespace,
 } from '@edfi/metaed-core';
 import {
@@ -24,19 +23,15 @@ import {
   inlineCommonReferenceEnhancer,
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
-  domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
-import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
 import { enhance } from '../../src/enhancer/OpenApiRequestBodyCollectionComponentEnhancer';
 
@@ -638,92 +633,6 @@ describe('when building domain entity with a simple common collection', () => {
             "required": Array [
               "identificationCode",
               "assessmentIdentificationSystemDescriptor",
-            ],
-            "type": "object",
-          },
-        },
-      ]
-    `);
-  });
-});
-
-describe('when building domain entity subclass with common collection and descriptor identity in superclass', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespaceName = 'EdFi';
-  const domainEntitySubclassName = 'CommunityOrganization';
-  let namespace: any = null;
-
-  beforeAll(() => {
-    MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-      .withStartAbstractEntity('EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentity('EducationOrganizationId', 'doc')
-      .withCommonProperty('EducationOrganizationIdentificationCode', 'doc', false, true)
-      .withEndAbstractEntity()
-
-      .withStartDomainEntitySubclass(domainEntitySubclassName, 'EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentityRename('CommunityOrganizationId', 'EducationOrganizationId', 'doc')
-      .withEndDomainEntitySubclass()
-
-      .withStartCommon('EducationOrganizationIdentificationCode')
-      .withDocumentation('doc')
-      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
-      .withDescriptorIdentity('EducationOrganizationIdentificationSystem', 'doc')
-      .withEndCommon()
-
-      .withStartDescriptor('EducationOrganizationIdentificationSystem')
-      .withDocumentation('doc')
-      .withEndDescriptor()
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
-      .sendToListener(new CommonBuilder(metaEd, []))
-      .sendToListener(new DescriptorBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-    namespace = metaEd.namespace.get(namespaceName);
-
-    domainEntitySubclassBaseClassEnhancer(metaEd);
-    commonReferenceEnhancer(metaEd);
-    descriptorReferenceEnhancer(metaEd);
-
-    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-    entityApiSchemaDataSetupEnhancer(metaEd);
-    subclassPropertyNamingCollisionEnhancer(metaEd);
-    referenceComponentEnhancer(metaEd);
-    apiPropertyMappingEnhancer(metaEd);
-    propertyCollectingEnhancer(metaEd);
-    subclassPropertyCollectingEnhancer(metaEd);
-    apiEntityMappingEnhancer(metaEd);
-    subclassApiEntityMappingEnhancer(metaEd);
-    openApiRequestBodyComponentEnhancer(metaEd);
-    enhance(metaEd);
-  });
-
-  it('should be a correct schema', () => {
-    const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "propertyName": "EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
-          "schema": Object {
-            "properties": Object {
-              "educationOrganizationIdentificationSystemDescriptor": Object {
-                "description": "doc",
-                "type": "string",
-              },
-              "identificationCode": Object {
-                "description": "doc",
-                "maxLength": 30,
-                "type": "string",
-              },
-            },
-            "required": Array [
-              "identificationCode",
-              "educationOrganizationIdentificationSystemDescriptor",
             ],
             "type": "object",
           },
