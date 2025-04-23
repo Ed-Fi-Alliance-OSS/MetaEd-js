@@ -107,6 +107,29 @@ function propertyPathsFromIdentityProperty(
 }
 
 /**
+ * Adds a parent prefix to the PropertyModifier if the flattenedIdentityProperty has an initial reference property
+ * with a role name.
+ */
+function parentPropertyModifier(
+  flattenedIdentityProperty: FlattenedIdentityProperty,
+  propertyModifier: PropertyModifier,
+): PropertyModifier {
+  if (flattenedIdentityProperty.propertyChain.length > 1 && flattenedIdentityProperty.propertyChain[0].roleName !== '') {
+    const propertyContributingPrefix = flattenedIdentityProperty.propertyChain[0];
+    // Handle the shortenTo override
+    const roleNamePrefix =
+      propertyContributingPrefix.shortenTo === ''
+        ? propertyContributingPrefix.roleName
+        : propertyContributingPrefix.shortenTo;
+    return propertyModifierConcat(propertyModifier, {
+      optionalDueToParent: false,
+      parentPrefixes: [roleNamePrefix],
+    });
+  }
+  return propertyModifier;
+}
+
+/**
  * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given referential property.
  */
 function jsonPathsForReferentialProperty(
@@ -137,7 +160,7 @@ function jsonPathsForReferentialProperty(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
         flattenedIdentityProperty.identityProperty,
-        propertyModifier,
+        parentPropertyModifier(flattenedIdentityProperty, propertyModifier),
         { specialPrefix },
       ),
       false,

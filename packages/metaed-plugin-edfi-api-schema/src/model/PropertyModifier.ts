@@ -3,6 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+import { prependPrefixWithCollapse } from '../Utility';
+
 /**
  * A possible modifier to the API body element shape of a property, based on a factor external
  * to the property itself.
@@ -35,7 +37,7 @@ export function prefixedName(apiMappingName: string, propertyModifier: PropertyM
   const prefix: string = propertyModifier.parentPrefixes.join('');
   if (prefix.length === 0) return apiMappingName;
 
-  return `${prefix}${apiMappingName}`;
+  return prependPrefixWithCollapse(apiMappingName, prefix);
 }
 
 /**
