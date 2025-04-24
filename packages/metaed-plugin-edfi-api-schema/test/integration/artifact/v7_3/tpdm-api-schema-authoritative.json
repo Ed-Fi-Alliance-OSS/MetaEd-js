@@ -17388,244 +17388,6 @@
           ]
         }
       },
-      "credentials": {
-        "authorizationPathways": [
-        ],
-        "booleanJsonPaths": [
-          "$._ext.tpdm.boardCertificationIndicator"
-        ],
-        "dateTimeJsonPaths": [
-        ],
-        "documentPathsMapping": {
-          "BoardCertificationIndicator": {
-            "isReference": false,
-            "isRequired": false,
-            "path": "$._ext.tpdm.boardCertificationIndicator",
-            "type": "boolean"
-          },
-          "CertificationRouteDescriptor": {
-            "isDescriptor": true,
-            "isReference": true,
-            "isRequired": false,
-            "path": "$._ext.tpdm.certificationRouteDescriptor",
-            "projectName": "TPDM",
-            "resourceName": "CertificationRouteDescriptor",
-            "type": "string"
-          },
-          "CertificationTitle": {
-            "isReference": false,
-            "isRequired": false,
-            "path": "$._ext.tpdm.certificationTitle",
-            "type": "string"
-          },
-          "CredentialStatusDate": {
-            "isReference": false,
-            "isRequired": false,
-            "path": "$._ext.tpdm.credentialStatusDate",
-            "type": "date"
-          },
-          "CredentialStatusDescriptor": {
-            "isDescriptor": true,
-            "isReference": true,
-            "isRequired": false,
-            "path": "$._ext.tpdm.credentialStatusDescriptor",
-            "projectName": "TPDM",
-            "resourceName": "CredentialStatusDescriptor",
-            "type": "string"
-          },
-          "EducatorRoleDescriptor": {
-            "isDescriptor": true,
-            "isReference": true,
-            "isRequired": false,
-            "path": "$._ext.tpdm.educatorRoleDescriptor",
-            "projectName": "TPDM",
-            "resourceName": "EducatorRoleDescriptor",
-            "type": "string"
-          },
-          "Person": {
-            "isDescriptor": false,
-            "isReference": true,
-            "isRequired": false,
-            "projectName": "Ed-Fi",
-            "referenceJsonPaths": [
-              {
-                "identityJsonPath": "$.personId",
-                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
-                "type": "string"
-              },
-              {
-                "identityJsonPath": "$.sourceSystemDescriptor",
-                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
-                "type": "string"
-              }
-            ],
-            "resourceName": "Person"
-          },
-          "StudentAcademicRecord": {
-            "isDescriptor": false,
-            "isReference": true,
-            "isRequired": false,
-            "projectName": "Ed-Fi",
-            "referenceJsonPaths": [
-              {
-                "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
-                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
-                "type": "number"
-              },
-              {
-                "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
-                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear",
-                "type": "string"
-              },
-              {
-                "identityJsonPath": "$.studentReference.studentUniqueId",
-                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.studentUniqueId",
-                "type": "string"
-              },
-              {
-                "identityJsonPath": "$.termDescriptor",
-                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.termDescriptor",
-                "type": "string"
-              }
-            ],
-            "resourceName": "StudentAcademicRecord"
-          }
-        },
-        "equalityConstraints": [
-        ],
-        "isResourceExtension": true,
-        "jsonSchemaForInsert": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "",
-          "properties": {
-            "_ext": {
-              "additionalProperties": true,
-              "description": "optional extension collection",
-              "properties": {
-                "tpdm": {
-                  "additionalProperties": true,
-                  "description": "tpdm extension properties collection",
-                  "properties": {
-                    "boardCertificationIndicator": {
-                      "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
-                      "type": "boolean"
-                    },
-                    "certificationRouteDescriptor": {
-                      "description": "The process, program, or pathway used to obtain certification.",
-                      "type": "string"
-                    },
-                    "certificationTitle": {
-                      "description": "The title of the certification obtained by the educator.",
-                      "maxLength": 64,
-                      "minLength": 1,
-                      "type": "string"
-                    },
-                    "credentialStatusDate": {
-                      "description": "The month, day, and year on which the credential status was effective.",
-                      "format": "date",
-                      "type": "string"
-                    },
-                    "credentialStatusDescriptor": {
-                      "description": "The current status of the credential (e.g., active, suspended, etc.).",
-                      "type": "string"
-                    },
-                    "educatorRoleDescriptor": {
-                      "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
-                      "type": "string"
-                    },
-                    "personReference": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "personId": {
-                          "description": "A unique alphanumeric code assigned to a person.",
-                          "maxLength": 32,
-                          "pattern": "^(?!\\s)(.*\\S)$",
-                          "type": "string"
-                        },
-                        "sourceSystemDescriptor": {
-                          "description": "This descriptor defines the originating record source system for the person.",
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "personId",
-                        "sourceSystemDescriptor"
-                      ],
-                      "type": "object"
-                    },
-                    "studentAcademicRecords": {
-                      "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "studentAcademicRecordReference": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "educationOrganizationId": {
-                                "description": "The identifier assigned to an education organization.",
-                                "type": "integer"
-                              },
-                              "schoolYear": {
-                                "description": "A school year between 1900 and 2100",
-                                "maximum": 2100,
-                                "minimum": 1900,
-                                "type": "integer"
-                              },
-                              "studentUniqueId": {
-                                "description": "A unique alphanumeric code assigned to a student.",
-                                "maxLength": 32,
-                                "pattern": "^(?!\\s)(.*\\S)$",
-                                "type": "string"
-                              },
-                              "termDescriptor": {
-                                "description": "The term for the session during the school year.",
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "educationOrganizationId",
-                              "schoolYear",
-                              "studentUniqueId",
-                              "termDescriptor"
-                            ],
-                            "type": "object"
-                          }
-                        },
-                        "required": [
-                          "studentAcademicRecordReference"
-                        ],
-                        "type": "object"
-                      },
-                      "minItems": 0,
-                      "type": "array",
-                      "uniqueItems": false
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "title": "TPDM.Credential",
-          "type": "object"
-        },
-        "numericJsonPaths": [
-          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
-          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear"
-        ],
-        "resourceName": "Credential",
-        "securableElements": {
-          "Contact": [
-          ],
-          "EducationOrganization": [
-          ],
-          "Namespace": [
-          ],
-          "Student": [
-          ]
-        }
-      },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
         "authorizationPathways": [
@@ -23493,83 +23255,6 @@
           ]
         }
       },
-      "schools": {
-        "authorizationPathways": [
-        ],
-        "booleanJsonPaths": [
-        ],
-        "dateTimeJsonPaths": [
-        ],
-        "documentPathsMapping": {
-          "PostSecondaryInstitution": {
-            "isDescriptor": false,
-            "isReference": true,
-            "isRequired": false,
-            "projectName": "Ed-Fi",
-            "referenceJsonPaths": [
-              {
-                "identityJsonPath": "$.postSecondaryInstitutionId",
-                "referenceJsonPath": "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId",
-                "type": "number"
-              }
-            ],
-            "resourceName": "PostSecondaryInstitution"
-          }
-        },
-        "equalityConstraints": [
-        ],
-        "isResourceExtension": true,
-        "jsonSchemaForInsert": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "",
-          "properties": {
-            "_ext": {
-              "additionalProperties": true,
-              "description": "optional extension collection",
-              "properties": {
-                "tpdm": {
-                  "additionalProperties": true,
-                  "description": "tpdm extension properties collection",
-                  "properties": {
-                    "postSecondaryInstitutionReference": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "postSecondaryInstitutionId": {
-                          "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
-                          "type": "integer"
-                        }
-                      },
-                      "required": [
-                        "postSecondaryInstitutionId"
-                      ],
-                      "type": "object"
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "title": "TPDM.School",
-          "type": "object"
-        },
-        "numericJsonPaths": [
-          "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId"
-        ],
-        "resourceName": "School",
-        "securableElements": {
-          "Contact": [
-          ],
-          "EducationOrganization": [
-          ],
-          "Namespace": [
-          ],
-          "Student": [
-          ]
-        }
-      },
       "surveyResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
         "authorizationPathways": [
@@ -23741,94 +23426,6 @@
           ],
           "Namespace": [
             "$.surveyResponseReference.namespace"
-          ],
-          "Student": [
-          ]
-        }
-      },
-      "surveyResponses": {
-        "authorizationPathways": [
-        ],
-        "booleanJsonPaths": [
-        ],
-        "dateTimeJsonPaths": [
-        ],
-        "documentPathsMapping": {
-          "Person": {
-            "isDescriptor": false,
-            "isReference": true,
-            "isRequired": false,
-            "projectName": "Ed-Fi",
-            "referenceJsonPaths": [
-              {
-                "identityJsonPath": "$.personId",
-                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
-                "type": "string"
-              },
-              {
-                "identityJsonPath": "$.sourceSystemDescriptor",
-                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
-                "type": "string"
-              }
-            ],
-            "resourceName": "Person"
-          }
-        },
-        "equalityConstraints": [
-        ],
-        "isResourceExtension": true,
-        "jsonSchemaForInsert": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "",
-          "properties": {
-            "_ext": {
-              "additionalProperties": true,
-              "description": "optional extension collection",
-              "properties": {
-                "tpdm": {
-                  "additionalProperties": true,
-                  "description": "tpdm extension properties collection",
-                  "properties": {
-                    "personReference": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "personId": {
-                          "description": "A unique alphanumeric code assigned to a person.",
-                          "maxLength": 32,
-                          "pattern": "^(?!\\s)(.*\\S)$",
-                          "type": "string"
-                        },
-                        "sourceSystemDescriptor": {
-                          "description": "This descriptor defines the originating record source system for the person.",
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "personId",
-                        "sourceSystemDescriptor"
-                      ],
-                      "type": "object"
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "title": "TPDM.SurveyResponse",
-          "type": "object"
-        },
-        "numericJsonPaths": [
-        ],
-        "resourceName": "SurveyResponse",
-        "securableElements": {
-          "Contact": [
-          ],
-          "EducationOrganization": [
-          ],
-          "Namespace": [
           ],
           "Student": [
           ]
@@ -24034,6 +23631,409 @@
           ],
           "Namespace": [
             "$.surveySectionResponseReference.namespace"
+          ],
+          "Student": [
+          ]
+        }
+      },
+      "tpdm_credentialsExtension": {
+        "authorizationPathways": [
+        ],
+        "booleanJsonPaths": [
+          "$._ext.tpdm.boardCertificationIndicator"
+        ],
+        "dateTimeJsonPaths": [
+        ],
+        "documentPathsMapping": {
+          "BoardCertificationIndicator": {
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.tpdm.boardCertificationIndicator",
+            "type": "boolean"
+          },
+          "CertificationRouteDescriptor": {
+            "isDescriptor": true,
+            "isReference": true,
+            "isRequired": false,
+            "path": "$._ext.tpdm.certificationRouteDescriptor",
+            "projectName": "TPDM",
+            "resourceName": "CertificationRouteDescriptor",
+            "type": "string"
+          },
+          "CertificationTitle": {
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.tpdm.certificationTitle",
+            "type": "string"
+          },
+          "CredentialStatusDate": {
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.tpdm.credentialStatusDate",
+            "type": "date"
+          },
+          "CredentialStatusDescriptor": {
+            "isDescriptor": true,
+            "isReference": true,
+            "isRequired": false,
+            "path": "$._ext.tpdm.credentialStatusDescriptor",
+            "projectName": "TPDM",
+            "resourceName": "CredentialStatusDescriptor",
+            "type": "string"
+          },
+          "EducatorRoleDescriptor": {
+            "isDescriptor": true,
+            "isReference": true,
+            "isRequired": false,
+            "path": "$._ext.tpdm.educatorRoleDescriptor",
+            "projectName": "TPDM",
+            "resourceName": "EducatorRoleDescriptor",
+            "type": "string"
+          },
+          "Person": {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": false,
+            "projectName": "Ed-Fi",
+            "referenceJsonPaths": [
+              {
+                "identityJsonPath": "$.personId",
+                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
+                "type": "string"
+              },
+              {
+                "identityJsonPath": "$.sourceSystemDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
+                "type": "string"
+              }
+            ],
+            "resourceName": "Person"
+          },
+          "StudentAcademicRecord": {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": false,
+            "projectName": "Ed-Fi",
+            "referenceJsonPaths": [
+              {
+                "identityJsonPath": "$.educationOrganizationReference.educationOrganizationId",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
+                "type": "number"
+              },
+              {
+                "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear",
+                "type": "string"
+              },
+              {
+                "identityJsonPath": "$.studentReference.studentUniqueId",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.studentUniqueId",
+                "type": "string"
+              },
+              {
+                "identityJsonPath": "$.termDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.termDescriptor",
+                "type": "string"
+              }
+            ],
+            "resourceName": "StudentAcademicRecord"
+          }
+        },
+        "equalityConstraints": [
+        ],
+        "isResourceExtension": true,
+        "jsonSchemaForInsert": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "",
+          "properties": {
+            "_ext": {
+              "additionalProperties": true,
+              "description": "optional extension collection",
+              "properties": {
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
+                  "properties": {
+                    "boardCertificationIndicator": {
+                      "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
+                      "type": "boolean"
+                    },
+                    "certificationRouteDescriptor": {
+                      "description": "The process, program, or pathway used to obtain certification.",
+                      "type": "string"
+                    },
+                    "certificationTitle": {
+                      "description": "The title of the certification obtained by the educator.",
+                      "maxLength": 64,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "credentialStatusDate": {
+                      "description": "The month, day, and year on which the credential status was effective.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "credentialStatusDescriptor": {
+                      "description": "The current status of the credential (e.g., active, suspended, etc.).",
+                      "type": "string"
+                    },
+                    "educatorRoleDescriptor": {
+                      "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
+                      "type": "string"
+                    },
+                    "personReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "personId": {
+                          "description": "A unique alphanumeric code assigned to a person.",
+                          "maxLength": 32,
+                          "pattern": "^(?!\\s)(.*\\S)$",
+                          "type": "string"
+                        },
+                        "sourceSystemDescriptor": {
+                          "description": "This descriptor defines the originating record source system for the person.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "personId",
+                        "sourceSystemDescriptor"
+                      ],
+                      "type": "object"
+                    },
+                    "studentAcademicRecords": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "studentAcademicRecordReference": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "educationOrganizationId": {
+                                "description": "The identifier assigned to an education organization.",
+                                "type": "integer"
+                              },
+                              "schoolYear": {
+                                "description": "A school year between 1900 and 2100",
+                                "maximum": 2100,
+                                "minimum": 1900,
+                                "type": "integer"
+                              },
+                              "studentUniqueId": {
+                                "description": "A unique alphanumeric code assigned to a student.",
+                                "maxLength": 32,
+                                "pattern": "^(?!\\s)(.*\\S)$",
+                                "type": "string"
+                              },
+                              "termDescriptor": {
+                                "description": "The term for the session during the school year.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "educationOrganizationId",
+                              "schoolYear",
+                              "studentUniqueId",
+                              "termDescriptor"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "studentAcademicRecordReference"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 0,
+                      "type": "array",
+                      "uniqueItems": false
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "title": "TPDM.Credential",
+          "type": "object"
+        },
+        "numericJsonPaths": [
+          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.educationOrganizationId",
+          "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear"
+        ],
+        "resourceName": "Credential",
+        "securableElements": {
+          "Contact": [
+          ],
+          "EducationOrganization": [
+          ],
+          "Namespace": [
+          ],
+          "Student": [
+          ]
+        }
+      },
+      "tpdm_schoolsExtension": {
+        "authorizationPathways": [
+        ],
+        "booleanJsonPaths": [
+        ],
+        "dateTimeJsonPaths": [
+        ],
+        "documentPathsMapping": {
+          "PostSecondaryInstitution": {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": false,
+            "projectName": "Ed-Fi",
+            "referenceJsonPaths": [
+              {
+                "identityJsonPath": "$.postSecondaryInstitutionId",
+                "referenceJsonPath": "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId",
+                "type": "number"
+              }
+            ],
+            "resourceName": "PostSecondaryInstitution"
+          }
+        },
+        "equalityConstraints": [
+        ],
+        "isResourceExtension": true,
+        "jsonSchemaForInsert": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "",
+          "properties": {
+            "_ext": {
+              "additionalProperties": true,
+              "description": "optional extension collection",
+              "properties": {
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
+                  "properties": {
+                    "postSecondaryInstitutionReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "postSecondaryInstitutionId": {
+                          "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "postSecondaryInstitutionId"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "title": "TPDM.School",
+          "type": "object"
+        },
+        "numericJsonPaths": [
+          "$._ext.tpdm.postSecondaryInstitutionReference.postSecondaryInstitutionId"
+        ],
+        "resourceName": "School",
+        "securableElements": {
+          "Contact": [
+          ],
+          "EducationOrganization": [
+          ],
+          "Namespace": [
+          ],
+          "Student": [
+          ]
+        }
+      },
+      "tpdm_surveyResponsesExtension": {
+        "authorizationPathways": [
+        ],
+        "booleanJsonPaths": [
+        ],
+        "dateTimeJsonPaths": [
+        ],
+        "documentPathsMapping": {
+          "Person": {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": false,
+            "projectName": "Ed-Fi",
+            "referenceJsonPaths": [
+              {
+                "identityJsonPath": "$.personId",
+                "referenceJsonPath": "$._ext.tpdm.personReference.personId",
+                "type": "string"
+              },
+              {
+                "identityJsonPath": "$.sourceSystemDescriptor",
+                "referenceJsonPath": "$._ext.tpdm.personReference.sourceSystemDescriptor",
+                "type": "string"
+              }
+            ],
+            "resourceName": "Person"
+          }
+        },
+        "equalityConstraints": [
+        ],
+        "isResourceExtension": true,
+        "jsonSchemaForInsert": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "",
+          "properties": {
+            "_ext": {
+              "additionalProperties": true,
+              "description": "optional extension collection",
+              "properties": {
+                "tpdm": {
+                  "additionalProperties": true,
+                  "description": "tpdm extension properties collection",
+                  "properties": {
+                    "personReference": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "personId": {
+                          "description": "A unique alphanumeric code assigned to a person.",
+                          "maxLength": 32,
+                          "pattern": "^(?!\\s)(.*\\S)$",
+                          "type": "string"
+                        },
+                        "sourceSystemDescriptor": {
+                          "description": "This descriptor defines the originating record source system for the person.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "personId",
+                        "sourceSystemDescriptor"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "title": "TPDM.SurveyResponse",
+          "type": "object"
+        },
+        "numericJsonPaths": [
+        ],
+        "resourceName": "SurveyResponse",
+        "securableElements": {
+          "Contact": [
+          ],
+          "EducationOrganization": [
+          ],
+          "Namespace": [
           ],
           "Student": [
           ]

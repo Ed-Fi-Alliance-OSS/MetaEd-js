@@ -263,7 +263,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach((entity) => {
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceSchemas[endpointName] = buildResourceExtensionSchema(entity as TopLevelEntity);
+      const namespacePrefix = namespace.projectName.toLowerCase();
+      if (namespacePrefix === 'edfi') {
+        resourceSchemas[endpointName] = buildResourceExtensionSchema(entity as TopLevelEntity);
+      } else {
+        resourceSchemas[`${namespacePrefix}_${endpointName}Extension`] = buildResourceExtensionSchema(
+          entity as TopLevelEntity,
+        );
+      }
     });
 
     if (!projectSchema.isExtensionProject) {
