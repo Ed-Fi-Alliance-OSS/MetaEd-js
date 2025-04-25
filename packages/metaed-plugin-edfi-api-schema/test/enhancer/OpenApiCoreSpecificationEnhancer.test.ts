@@ -5879,7 +5879,6 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "description": "The descriptor code value",
                   "maxLength": 50,
                   "minLength": 1,
-                  "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
                   "type": "string",
                 },
                 "description": Object {
@@ -5912,7 +5911,6 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "description": "The descriptor short description",
                   "maxLength": 75,
                   "minLength": 1,
-                  "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
                   "type": "string",
                 },
               },
