@@ -5839,7 +5839,7 @@ describe('when domain entity extension references domain entity in different nam
     expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
     expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
         Object {
-          "EdFi_EntityName": Object {
+          "Extension_EntityName": Object {
             "description": "",
             "properties": Object {
               "referencedEntityNameReference": Object {
