@@ -40,6 +40,7 @@ import { enhance as educationOrganizationHierarchyEnhancer } from './security/Ed
 import { enhance as authorizationPathwayEnhancer } from './security/AuthorizationPathwayEnhancer';
 import { enhance as studentSecurableElementEnhancer } from './security/StudentSecurableElementEnhancer';
 import { enhance as contactSecurableElementEnhancer } from './security/ContactSecurableElementEnhancer';
+import { enhance as staffSecurableElementEnhancer } from './security/StaffSecurableElementEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -78,6 +79,7 @@ export function enhancerList(): Enhancer[] {
     authorizationPathwayEnhancer,
     studentSecurableElementEnhancer,
     contactSecurableElementEnhancer,
+    staffSecurableElementEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

@@ -27,6 +27,26 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     authorizationPathways.push('ContactStudentSchoolAuthorization' as AuthorizationPathway);
   }
 
+  const edfiStaffEducationOrganizationAssignmentAssociation: TopLevelEntity | undefined = metaEd.namespace
+    .get('EdFi')
+    ?.entity.association.get('StaffEducationOrganizationAssignmentAssociation');
+  // Flag StaffEducationOrganizationAssignmentAssociation as defining the StaffEducationOrganizationAuthorization pathway.
+  if (edfiStaffEducationOrganizationAssignmentAssociation) {
+    const { authorizationPathways } = edfiStaffEducationOrganizationAssignmentAssociation.data
+      .edfiApiSchema as EntityApiSchemaData;
+    authorizationPathways.push('StaffEducationOrganizationAuthorization' as AuthorizationPathway);
+  }
+
+  const edfiStaffEducationOrganizationEmploymentAssociation: TopLevelEntity | undefined = metaEd.namespace
+    .get('EdFi')
+    ?.entity.association.get('StaffEducationOrganizationEmploymentAssociation');
+  // Flag StaffEducationOrganizationEmploymentAssociation as defining the StaffEducationOrganizationAuthorization pathway.
+  if (edfiStaffEducationOrganizationEmploymentAssociation) {
+    const { authorizationPathways } = edfiStaffEducationOrganizationEmploymentAssociation.data
+      .edfiApiSchema as EntityApiSchemaData;
+    authorizationPathways.push('StaffEducationOrganizationAuthorization' as AuthorizationPathway);
+  }
+
   return {
     enhancerName: 'AuthorizationPathwayEnhancer',
     success: true,

@@ -4181,6 +4181,8 @@
           "Namespace": [
             "$.namespace"
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -4778,6 +4780,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -4842,6 +4846,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -5567,6 +5573,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -5676,6 +5684,8 @@
           "Namespace": [
             "$.namespace"
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -5784,6 +5794,8 @@
           ],
           "Namespace": [
             "$.namespace"
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -5954,6 +5966,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -6083,6 +6097,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -6821,6 +6837,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
             "$.studentReference.studentUniqueId"
           ]
@@ -6896,6 +6914,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -7347,6 +7367,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
           ]
         }
@@ -7742,6 +7764,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -8386,6 +8410,8 @@
           ],
           "Namespace": [
           ],
+          "Staff": [
+          ],
           "Student": [
             "$.studentReference.studentUniqueId"
           ]
@@ -8448,6 +8474,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -8599,6 +8627,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]
@@ -8822,6 +8852,8 @@
           "EducationOrganization": [
           ],
           "Namespace": [
+          ],
+          "Staff": [
           ],
           "Student": [
           ]

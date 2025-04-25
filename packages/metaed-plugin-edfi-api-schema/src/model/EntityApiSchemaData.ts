@@ -163,6 +163,11 @@ export type EntityApiSchemaData = {
   contactSecurableElements: JsonPath[];
 
   /**
+   * A list of the staff-based security elements for this entity
+   */
+  staffSecurableElements: JsonPath[];
+
+  /**
    * The AuthorizationPathways this entity is a part of.
    */
   authorizationPathways: AuthorizationPathway[];
@@ -201,6 +206,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     authorizationPathways: [],
     studentSecurableElements: [],
     contactSecurableElements: [],
+    staffSecurableElements: [],
   });
 }
 

@@ -13,7 +13,6 @@ import {
   AssociationBuilder,
 } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
-import { enhance } from '../../../src/enhancer/security/AuthorizationPathwayEnhancer';
 import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
@@ -33,6 +32,7 @@ import { enhance as identityFullnameEnhancer } from '../../../src/enhancer/Ident
 import { enhance as subclassIdentityFullnameEnhancer } from '../../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as identityJsonPathsEnhancer } from '../../../src/enhancer/IdentityJsonPathsEnhancer';
+import { enhance } from '../../../src/enhancer/security/AuthorizationPathwayEnhancer';
 
 function runEnhancers(metaEd: MetaEdEnvironment) {
   namespaceSetupEnhancer(metaEd);
@@ -148,7 +148,99 @@ describe('when building StudentContactAssociation', () => {
   });
 });
 
-describe('when building an association other than StudentSchoolAssociation', () => {
+describe('when building StaffEducationOrganizationAssignmentAssociation', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const resourceName = 'StaffEducationOrganizationAssignmentAssociation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('Staff')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StaffUniqueId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withStartAssociation(resourceName)
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Staff', 'doc')
+      .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+      .withEndAssociation()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runEnhancers(metaEd);
+  });
+
+  it('should have the StaffEducationOrganizationAuthorization pathway', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get(resourceName);
+    const { authorizationPathways } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(authorizationPathways).toMatchInlineSnapshot(`
+      Array [
+        "StaffEducationOrganizationAuthorization",
+      ]
+    `);
+  });
+});
+
+describe('when building StaffEducationOrganizationEmploymentAssociation', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const resourceName = 'StaffEducationOrganizationEmploymentAssociation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('Staff')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StaffUniqueId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withStartAssociation(resourceName)
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Staff', 'doc')
+      .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+      .withEndAssociation()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runEnhancers(metaEd);
+  });
+
+  it('should have the StaffEducationOrganizationAuthorization pathway', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get(resourceName);
+    const { authorizationPathways } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(authorizationPathways).toMatchInlineSnapshot(`
+      Array [
+        "StaffEducationOrganizationAuthorization",
+      ]
+    `);
+  });
+});
+
+describe('when building a non-pathway association', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';

@@ -14,4 +14,5 @@ export type SecurableElements = {
   EducationOrganization: EducationOrganizationSecurableElement[];
   Student: JsonPath[];
   Contact: JsonPath[];
+  Staff: JsonPath[];
 };
