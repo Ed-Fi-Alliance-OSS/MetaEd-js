@@ -7510,7 +7510,7 @@
     },
     "openApiExtensionResourceFragments": {
       "exts": {
-        "EdFi_Credential": {
+        "TPDM_Credential": {
           "description": "",
           "properties": {
             "boardCertificationIndicator": {
@@ -7562,7 +7562,7 @@
           },
           "type": "object"
         },
-        "EdFi_School": {
+        "TPDM_School": {
           "description": "",
           "properties": {
             "postSecondaryInstitutionReference": {
@@ -7571,7 +7571,7 @@
           },
           "type": "object"
         },
-        "EdFi_SurveyResponse": {
+        "TPDM_SurveyResponse": {
           "description": "",
           "properties": {
             "personReference": {
