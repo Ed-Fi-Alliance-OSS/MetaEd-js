@@ -1304,7 +1304,7 @@
     },
     "openApiExtensionResourceFragments": {
       "exts": {
-        "EdFi_Contact": {
+        "Sample_Contact": {
           "description": "",
           "properties": {
             "addresses": {
@@ -1432,7 +1432,7 @@
           ],
           "type": "object"
         },
-        "EdFi_School": {
+        "Sample_School": {
           "description": "",
           "properties": {
             "cteProgramService": {
@@ -1461,7 +1461,7 @@
           },
           "type": "object"
         },
-        "EdFi_Staff": {
+        "Sample_Staff": {
           "description": "",
           "properties": {
             "firstPetOwnedDate": {
@@ -1483,7 +1483,7 @@
           },
           "type": "object"
         },
-        "EdFi_Student": {
+        "Sample_Student": {
           "description": "",
           "properties": {
             "aquaticPets": {
@@ -1516,7 +1516,7 @@
           },
           "type": "object"
         },
-        "EdFi_StudentCTEProgramAssociation": {
+        "Sample_StudentCTEProgramAssociation": {
           "description": "",
           "properties": {
             "analysisCompleted": {
@@ -1531,7 +1531,7 @@
           },
           "type": "object"
         },
-        "EdFi_StudentContactAssociation": {
+        "Sample_StudentContactAssociation": {
           "description": "",
           "properties": {
             "bedtimeReader": {
@@ -1643,7 +1643,7 @@
           ],
           "type": "object"
         },
-        "EdFi_StudentEducationOrganizationAssociation": {
+        "Sample_StudentEducationOrganizationAssociation": {
           "description": "",
           "properties": {
             "addresses": {
@@ -1668,7 +1668,7 @@
           },
           "type": "object"
         },
-        "EdFi_StudentSchoolAssociation": {
+        "Sample_StudentSchoolAssociation": {
           "description": "",
           "properties": {
             "membershipTypeDescriptor": {
@@ -1678,7 +1678,7 @@
           },
           "type": "object"
         },
-        "EdFi_StudentSectionAssociation": {
+        "Sample_StudentSectionAssociation": {
           "description": "",
           "properties": {
             "relatedGeneralStudentProgramAssociations": {
