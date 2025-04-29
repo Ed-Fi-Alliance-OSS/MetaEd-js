@@ -72,7 +72,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'associationSubclass',
       'schoolYearEnumeration',
     ).forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
+      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity, false);
       Object.assign(resourceSchemaPathsTags.schemas, schemas);
       Object.assign(resourceSchemaPathsTags.paths, paths);
       resourceSchemaPathsTags.tags.push(...tags);
@@ -87,7 +87,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // And in the "descriptor" OpenAPI schema
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
+      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity, true);
       Object.assign(descriptorSchemaPathsTags.schemas, schemas);
       Object.assign(descriptorSchemaPathsTags.paths, paths);
       descriptorSchemaPathsTags.tags.push(...tags);
