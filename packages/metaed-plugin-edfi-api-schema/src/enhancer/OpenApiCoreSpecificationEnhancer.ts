@@ -72,7 +72,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'associationSubclass',
       'schoolYearEnumeration',
     ).forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity, false);
+      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
       Object.assign(resourceSchemaPathsTags.schemas, schemas);
       Object.assign(resourceSchemaPathsTags.paths, paths);
       resourceSchemaPathsTags.tags.push(...tags);
