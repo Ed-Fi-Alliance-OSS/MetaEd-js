@@ -660,7 +660,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
 /**
  * Creates the schemas, paths and tags from a given TopLevelEntity
  */
-export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPathsTags {
+export function createSchemasPathsTagsFrom(entity: TopLevelEntity, addDescriptorSuffix: boolean = false): SchemasPathsTags {
   const schemas: Schemas = {};
   const paths: PathsObject = {};
   const tags: TagObject[] = [];
@@ -693,10 +693,16 @@ export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPaths
     // Not all entities have a reference component (e.g. descriptors, school year enumeration)
     schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
   }
-  schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
+
+  // Add 'Descriptor' suffix if addDescriptorSuffix is true
+  const key =
+    addDescriptorSuffix && !openApiRequestBodyComponentPropertyName.endsWith('Descriptor')
+      ? `${openApiRequestBodyComponentPropertyName}Descriptor`
+      : openApiRequestBodyComponentPropertyName;
+  schemas[key] = openApiRequestBodyComponent;
 
   openApiRequestBodyCollectionComponents.forEach(({ propertyName, schema }) => {
-    schemas[`${propertyName}Descriptor`] = schema;
+    schemas[propertyName] = schema;
   });
 
   // Add to global tags
