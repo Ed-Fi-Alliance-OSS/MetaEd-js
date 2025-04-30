@@ -249,6 +249,40 @@ describe('when building domain entity with SharedString referencing URI named Na
     runEnhancers(metaEd);
   });
 
+  it('should have empty namespace security elements', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building domain entity with required SharedString referencing URI named Namespace but not an identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartSharedString('URI')
+      .withDocumentation('doc')
+      .withStringRestrictions('30')
+      .withEndSharedString()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc10', '30', '20')
+      .withSharedStringProperty('URI', 'Namespace', 'doc', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new SharedStringBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    runEnhancers(metaEd);
+  });
+
   it('should have simple namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
