@@ -38,6 +38,7 @@ import {
   uncapitalize,
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
+import { parentPropertyModifier } from './JsonElementNamingHelper';
 
 const enhancerName = 'JsonSchemaForInsertEnhancer';
 
@@ -160,7 +161,9 @@ function schemaObjectForReferentialProperty(
         ? identityPropertyApiMapping.fullName
         : prependPrefixWithCollapse(identityPropertyApiMapping.fullName, specialPrefix);
 
-    const schemaPropertyName: string = uncapitalize(prefixedName(adjustedName, propertyModifier));
+    const parentAdjustedPropertyModifier = parentPropertyModifier(flattenedIdentityProperty, propertyModifier);
+
+    const schemaPropertyName: string = uncapitalize(prefixedName(adjustedName, parentAdjustedPropertyModifier));
 
     // Because these are flattened, we know they are non-reference properties
     const schemaProperty: SchemaProperty = schemaPropertyForNonReference(
@@ -174,7 +177,7 @@ function schemaObjectForReferentialProperty(
     // property name duplication _must_ be a merge.
     schemaProperties[schemaPropertyName] = schemaProperty;
 
-    if (isSchemaPropertyRequired(flattenedIdentityProperty.identityProperty, propertyModifier)) {
+    if (isSchemaPropertyRequired(flattenedIdentityProperty.identityProperty, parentAdjustedPropertyModifier)) {
       // As above, this usage of Set this implictly merges by overwrite
       required.add(schemaPropertyName);
     }

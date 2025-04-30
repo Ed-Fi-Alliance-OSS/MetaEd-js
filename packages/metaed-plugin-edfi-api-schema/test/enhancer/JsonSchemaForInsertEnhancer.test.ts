@@ -2759,3 +2759,133 @@ describe('when domain entity extension references domain entity in different nam
     `);
   });
 });
+
+describe('when building a domain entity referencing another referencing another with rolenamed identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'AssessmentAdministrationParticipation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationParticipationId', 'doc', '30')
+      .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('AssessmentAdministration')
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationId', 'doc', '30')
+      .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct mergeJsonPathsMapping for AssessmentAdministrationParticipation', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "assessmentAdministrationParticipationId": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "pattern": "^(?!\\\\s)(.*\\\\S)$",
+            "type": "string",
+          },
+          "assessmentAdministrationReference": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "assessmentAdministrationId": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "pattern": "^(?!\\\\s)(.*\\\\S)$",
+                "type": "string",
+              },
+              "assigningEducationOrganizationId": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "pattern": "^(?!\\\\s)(.*\\\\S)$",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "assessmentAdministrationId",
+              "assigningEducationOrganizationId",
+            ],
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "assessmentAdministrationParticipationId",
+          "assessmentAdministrationReference",
+        ],
+        "title": "EdFi.AssessmentAdministrationParticipation",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be correct mergeJsonPathsMapping for AssessmentAdministration', () => {
+    const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
+    expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "assessmentAdministrationId": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "pattern": "^(?!\\\\s)(.*\\\\S)$",
+            "type": "string",
+          },
+          "assigningEducationOrganizationReference": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "educationOrganizationId": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "pattern": "^(?!\\\\s)(.*\\\\S)$",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "educationOrganizationId",
+            ],
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "assessmentAdministrationId",
+          "assigningEducationOrganizationReference",
+        ],
+        "title": "EdFi.AssessmentAdministration",
+        "type": "object",
+      }
+    `);
+  });
+});

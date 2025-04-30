@@ -3414,14 +3414,14 @@
             "studentReference": {
               "additionalProperties": false,
               "properties": {
-                "firstName": {
+                "studentFirstName": {
                   "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                   "maxLength": 75,
                   "minLength": 1,
                   "pattern": "^(?!\\s)(.*\\S)$",
                   "type": "string"
                 },
-                "lastSurname": {
+                "studentLastSurname": {
                   "description": "The name borne in common by members of a family.",
                   "maxLength": 75,
                   "minLength": 1,
@@ -3430,8 +3430,8 @@
                 }
               },
               "required": [
-                "firstName",
-                "lastSurname"
+                "studentFirstName",
+                "studentLastSurname"
               ],
               "type": "object"
             }

@@ -2650,7 +2650,7 @@ describe('when building domain entity with role named and pluralized inline comm
     enhance(metaEd);
   });
 
-  it('should be correct allJsonPathsMapping with "availableCreditConversion" not pluralized', () => {
+  it('should be correct mergeJsonPathsMapping with "availableCreditConversion" not pluralized', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
@@ -3061,7 +3061,7 @@ describe('when building simple domain entity extension', () => {
     enhance(metaEd);
   });
 
-  it('should be correct allJsonPathsMapping', () => {
+  it('should be correct mergeJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntityExtension.get(domainEntityName);
     const mappings: Snapshotable = snapshotifyEntity(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
@@ -3083,6 +3083,129 @@ describe('when building simple domain entity extension', () => {
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "StringProperty": "StringProperty",
+      }
+    `);
+  });
+});
+
+describe('when building a domain entity referencing another referencing another with rolenamed identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'AssessmentAdministrationParticipation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationParticipationId', 'doc', '30')
+      .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('AssessmentAdministration')
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationId', 'doc', '30')
+      .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct mergeJsonPathsMapping for AssessmentAdministrationParticipation', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotifyEntity(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentAdministration": Array [
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationReference.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministration",
+          },
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "AssessmentAdministration",
+          },
+        ],
+        "AssessmentAdministration.AssessmentAdministrationId": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assessmentAdministrationReference.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministrationId",
+          },
+        ],
+        "AssessmentAdministration.AssigningEducationOrganization": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
+        "AssessmentAdministration.AssigningEducationOrganization.EducationOrganizationId": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
+        "AssessmentAdministrationParticipationId": Array [
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationParticipationId",
+            "propertyName": "AssessmentAdministrationParticipationId",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct mergeJsonPathsMapping for AssessmentAdministration', () => {
+    const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
+    const mappings: Snapshotable = snapshotifyEntity(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentAdministrationId": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministrationId",
+          },
+        ],
+        "AssigningEducationOrganization": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assigningEducationOrganizationReference.educationOrganizationId",
+            "propertyName": "EducationOrganization",
+          },
+        ],
+        "AssigningEducationOrganization.EducationOrganizationId": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assigningEducationOrganizationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
       }
     `);
   });

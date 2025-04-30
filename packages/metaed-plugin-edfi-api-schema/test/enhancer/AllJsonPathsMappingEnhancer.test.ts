@@ -2823,3 +2823,125 @@ describe('when building simple domain entity extension', () => {
     `);
   });
 });
+
+describe('when building a domain entity referencing another referencing another with rolenamed identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'AssessmentAdministrationParticipation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationParticipationId', 'doc', '30')
+      .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('AssessmentAdministration')
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationId', 'doc', '30')
+      .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping for AssessmentAdministrationParticipation', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentAdministration": Array [
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationReference.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministration",
+          },
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "AssessmentAdministration",
+          },
+        ],
+        "AssessmentAdministration.AssessmentAdministrationId": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assessmentAdministrationReference.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministrationId",
+          },
+        ],
+        "AssessmentAdministration.AssigningEducationOrganization": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
+        "AssessmentAdministration.AssigningEducationOrganization.EducationOrganizationId": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
+        "AssessmentAdministrationParticipationId": Array [
+          Object {
+            "entityName": "AssessmentAdministrationParticipation",
+            "jsonPath": "$.assessmentAdministrationParticipationId",
+            "propertyName": "AssessmentAdministrationParticipationId",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for AssessmentAdministration', () => {
+    const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentAdministrationId": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assessmentAdministrationId",
+            "propertyName": "AssessmentAdministrationId",
+          },
+        ],
+        "AssigningEducationOrganization": Array [
+          Object {
+            "entityName": "AssessmentAdministration",
+            "jsonPath": "$.assigningEducationOrganizationReference.educationOrganizationId",
+            "propertyName": "EducationOrganization",
+          },
+        ],
+        "AssigningEducationOrganization.EducationOrganizationId": Array [
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.assigningEducationOrganizationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+        ],
+      }
+    `);
+  });
+});

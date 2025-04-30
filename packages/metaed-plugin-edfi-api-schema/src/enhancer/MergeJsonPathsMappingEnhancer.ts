@@ -30,6 +30,7 @@ import {
 } from '../Utility';
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
+import { parentPropertyModifier } from './JsonElementNamingHelper';
 
 const enhancerName = 'MergeJsonPathsMappingEnhancer';
 
@@ -128,7 +129,7 @@ function jsonPathsForReferentialProperty(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
         flattenedIdentityProperty.identityProperty,
-        propertyModifier,
+        parentPropertyModifier(flattenedIdentityProperty, propertyModifier),
         { specialPrefix },
       ),
       false,

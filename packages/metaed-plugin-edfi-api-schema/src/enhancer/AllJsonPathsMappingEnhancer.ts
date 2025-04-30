@@ -30,6 +30,7 @@ import {
 } from '../Utility';
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
+import { parentPropertyModifier } from './JsonElementNamingHelper';
 
 const enhancerName = 'AllJsonPathsMappingEnhancer';
 
@@ -104,29 +105,6 @@ function propertyPathsFromIdentityProperty(
   invariant(lastPath != null, 'The path array should not be empty');
   result.push(`${lastPath}Descriptor` as MetaEdPropertyPath);
   return result;
-}
-
-/**
- * Adds a parent prefix to the PropertyModifier if the flattenedIdentityProperty has an initial reference property
- * with a role name.
- */
-function parentPropertyModifier(
-  flattenedIdentityProperty: FlattenedIdentityProperty,
-  propertyModifier: PropertyModifier,
-): PropertyModifier {
-  if (flattenedIdentityProperty.propertyChain.length > 1 && flattenedIdentityProperty.propertyChain[0].roleName !== '') {
-    const propertyContributingPrefix = flattenedIdentityProperty.propertyChain[0];
-    // Handle the shortenTo override
-    const roleNamePrefix =
-      propertyContributingPrefix.shortenTo === ''
-        ? propertyContributingPrefix.roleName
-        : propertyContributingPrefix.shortenTo;
-    return propertyModifierConcat(propertyModifier, {
-      optionalDueToParent: false,
-      parentPrefixes: [roleNamePrefix],
-    });
-  }
-  return propertyModifier;
 }
 
 /**
