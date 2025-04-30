@@ -44,9 +44,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           const sourceProperty: SharedStringProperty = jsonPathPropertyPair.sourceProperty as SharedStringProperty;
           if (sourceProperty.referencedEntity !== uriSharedString) return;
 
-          // Needs to be an identity
-          if (!sourceProperty.isPartOfIdentity) return;
-
           // Needs to not be role named
           if (sourceProperty.roleName !== '') return;
 

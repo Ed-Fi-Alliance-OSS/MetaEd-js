@@ -249,10 +249,14 @@ describe('when building domain entity with SharedString referencing URI named Na
     runEnhancers(metaEd);
   });
 
-  it('should have empty namespace security elements', () => {
+  it('should have simple namespace security elements', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const identityJsonPaths = (entity?.data.edfiApiSchema as EntityApiSchemaData).namespaceSecurableElements;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`Array []`);
+    expect(identityJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.namespace",
+      ]
+    `);
   });
 });
 
