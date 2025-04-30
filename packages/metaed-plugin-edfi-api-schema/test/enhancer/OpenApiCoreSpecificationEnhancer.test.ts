@@ -5872,7 +5872,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             },
           },
           "schemas": Object {
-            "EdFi_ContentClass": Object {
+            "EdFi_ContentClassDescriptor": Object {
               "description": "An Ed-Fi Descriptor",
               "properties": Object {
                 "codeValue": Object {

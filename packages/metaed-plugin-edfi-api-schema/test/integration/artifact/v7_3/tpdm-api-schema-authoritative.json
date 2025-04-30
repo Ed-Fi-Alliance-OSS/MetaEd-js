@@ -6514,7 +6514,7 @@
         }
       },
       "newSchemas": {
-        "TPDM_AccreditationStatus": {
+        "TPDM_AccreditationStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6565,7 +6565,7 @@
           ],
           "type": "object"
         },
-        "TPDM_AidType": {
+        "TPDM_AidTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6616,7 +6616,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CertificationRoute": {
+        "TPDM_CertificationRouteDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6667,7 +6667,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CoteachingStyleObserved": {
+        "TPDM_CoteachingStyleObservedDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6718,7 +6718,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CredentialStatus": {
+        "TPDM_CredentialStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6769,7 +6769,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EPPProgramPathway": {
+        "TPDM_EPPProgramPathwayDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6820,7 +6820,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EducatorRole": {
+        "TPDM_EducatorRoleDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6871,7 +6871,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EnglishLanguageExam": {
+        "TPDM_EnglishLanguageExamDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6922,7 +6922,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElementRatingLevel": {
+        "TPDM_EvaluationElementRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6973,7 +6973,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationPeriod": {
+        "TPDM_EvaluationPeriodDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7024,7 +7024,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRatingLevel": {
+        "TPDM_EvaluationRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7075,7 +7075,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRatingStatus": {
+        "TPDM_EvaluationRatingStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7126,7 +7126,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationType": {
+        "TPDM_EvaluationTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7177,7 +7177,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Gender": {
+        "TPDM_GenderDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7228,7 +7228,7 @@
           ],
           "type": "object"
         },
-        "TPDM_ObjectiveRatingLevel": {
+        "TPDM_ObjectiveRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7279,7 +7279,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRatingLevel": {
+        "TPDM_PerformanceEvaluationRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7330,7 +7330,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationType": {
+        "TPDM_PerformanceEvaluationTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7381,7 +7381,7 @@
           ],
           "type": "object"
         },
-        "TPDM_RubricRatingLevel": {
+        "TPDM_RubricRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {

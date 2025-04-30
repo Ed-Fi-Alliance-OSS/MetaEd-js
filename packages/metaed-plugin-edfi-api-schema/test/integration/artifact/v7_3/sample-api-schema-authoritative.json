@@ -1133,7 +1133,7 @@
         }
       },
       "newSchemas": {
-        "Sample_ArtMedium": {
+        "Sample_ArtMediumDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -1184,7 +1184,7 @@
           ],
           "type": "object"
         },
-        "Sample_FavoriteBookCategory": {
+        "Sample_FavoriteBookCategoryDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -1235,7 +1235,7 @@
           ],
           "type": "object"
         },
-        "Sample_MembershipType": {
+        "Sample_MembershipTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {

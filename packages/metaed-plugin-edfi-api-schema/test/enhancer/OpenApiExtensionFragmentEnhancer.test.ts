@@ -5240,7 +5240,7 @@ describe('when building domain entity with nested choice and inline commons', ()
     `);
     expect(openApiExtensionDescriptorFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
-        "Extension_ContentClass": Object {
+        "Extension_ContentClassDescriptor": Object {
           "description": "An Ed-Fi Descriptor",
           "properties": Object {
             "codeValue": Object {
