@@ -696,9 +696,7 @@ export function createSchemasPathsTagsFrom(entity: TopLevelEntity, addDescriptor
   schemas[openApiRequestBodyComponentPropertyName] = openApiRequestBodyComponent;
 
   openApiRequestBodyCollectionComponents.forEach(({ propertyName, schema }) => {
-    // Add 'Descriptor' suffix if addDescriptorSuffix is true
-    const key = addDescriptorSuffix && !propertyName.endsWith('Descriptor') ? `${propertyName}Descriptor` : propertyName;
-    schemas[key] = schema;
+    schemas[`${propertyName}Descriptor`] = schema;
   });
 
   // Add to global tags
