@@ -660,7 +660,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
 /**
  * Creates the schemas, paths and tags from a given TopLevelEntity
  */
-export function createSchemasPathsTagsFrom(entity: TopLevelEntity, addDescriptorSuffix: boolean = false): SchemasPathsTags {
+export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPathsTags {
   const schemas: Schemas = {};
   const paths: PathsObject = {};
   const tags: TagObject[] = [];
