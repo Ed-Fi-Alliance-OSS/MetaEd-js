@@ -694,7 +694,7 @@ export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPaths
     schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
   }
 
-  // Add 'Descriptor' suffix if addDescriptorSuffix is true
+  // Add 'Descriptor' suffix when entity is a Descriptor
   const key =
     entity.type === 'descriptor'
       ? `${openApiRequestBodyComponentPropertyName}Descriptor`
