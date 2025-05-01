@@ -104,16 +104,8 @@ function openApiArrayFrom(openApiArrayElement: OpenApiProperty): OpenApiArray {
  * corresponding to the given reference collection property.
  */
 function openApiArrayForReferenceCollection(property: EntityProperty, propertyModifier: PropertyModifier): OpenApiArray {
-  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const referenceName = uncapitalize(prefixedName(apiMapping.referenceCollectionName, propertyModifier));
-
-  const referenceArrayElement: OpenApiObject = openApiObjectFrom(
-    { [referenceName]: openApiReferenceFor(property as ReferentialProperty) },
-    [referenceName],
-  );
-
   return {
-    ...openApiArrayFrom(referenceArrayElement),
+    ...openApiArrayFrom(openApiReferenceFor(property as ReferentialProperty)),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
   };
 }
