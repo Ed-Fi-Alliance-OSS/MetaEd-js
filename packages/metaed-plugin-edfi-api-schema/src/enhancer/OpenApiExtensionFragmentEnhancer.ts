@@ -61,7 +61,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // Paths and schemas for new descriptor endpoints
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity, true);
+      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
       Object.assign(descriptorSchemaPathsTags.schemas, schemas);
       Object.assign(descriptorSchemaPathsTags.paths, paths);
       descriptorSchemaPathsTags.tags.push(...tags);

@@ -87,7 +87,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // And in the "descriptor" OpenAPI schema
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity, true);
+      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
       Object.assign(descriptorSchemaPathsTags.schemas, schemas);
       Object.assign(descriptorSchemaPathsTags.paths, paths);
       descriptorSchemaPathsTags.tags.push(...tags);
