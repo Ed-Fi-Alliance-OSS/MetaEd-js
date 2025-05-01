@@ -91,5 +91,6 @@ export function buildSchoolYearResourceSchema(
     queryFieldMapping: buildQueryFieldMapping(documentObjectPaths),
     securableElements: { Namespace: [], EducationOrganization: [], Student: [], Contact: [], Staff: [] },
     authorizationPathways: [],
+    arrayUniquenessConstraints: [],
   } as ResourceSchema;
 }

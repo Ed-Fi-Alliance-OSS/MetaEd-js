@@ -70,7 +70,8 @@ export function removeSourcePropertyFromQueryFieldMapping(queryFieldMapping: Que
 }
 
 /**
- *
+ * Builds a complete ResourceSchema from the pieces iteratively added to entityApiSchemaData
+ * by previous enhancers.
  */
 function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema {
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
@@ -95,12 +96,14 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
       Staff: entityApiSchemaData.staffSecurableElements,
     },
     authorizationPathways: entityApiSchemaData.authorizationPathways,
+    arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: false,
   };
 }
 
 /**
- *
+ * Builds a complete ResourceExtensionSchema from the pieces iteratively added to entityApiSchemaData
+ * by previous enhancers.
  */
 function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtensionSchema {
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
@@ -120,6 +123,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
       Staff: [],
     },
     authorizationPathways: [],
+    arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: true,
   };
 }

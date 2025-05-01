@@ -69,8 +69,8 @@ function addJsonPathTo(
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
-        ? { jsonPathPropertyPairs: [], isTopLevel, terminalProperty }
-        : { jsonPathPropertyPairs: [], isTopLevel };
+        ? { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity: false, terminalProperty }
+        : { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity: false };
       jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 

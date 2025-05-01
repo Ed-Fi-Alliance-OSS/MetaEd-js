@@ -63,6 +63,12 @@ export type BaseResourceSchema = {
    * The AuthorizationPathways this resource is a part of.
    */
   authorizationPathways: AuthorizationPathway[];
+
+  /**
+   * JsonPaths to array items in the document that will need uniqueness validation
+   * based on those paths.
+   */
+  arrayUniquenessConstraints: JsonPath[];
 };
 
 /**

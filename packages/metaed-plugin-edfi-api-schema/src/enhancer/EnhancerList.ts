@@ -41,6 +41,7 @@ import { enhance as authorizationPathwayEnhancer } from './security/Authorizatio
 import { enhance as studentSecurableElementEnhancer } from './security/StudentSecurableElementEnhancer';
 import { enhance as contactSecurableElementEnhancer } from './security/ContactSecurableElementEnhancer';
 import { enhance as staffSecurableElementEnhancer } from './security/StaffSecurableElementEnhancer';
+import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessConstraintEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -62,6 +63,7 @@ export function enhancerList(): Enhancer[] {
     openApiRequestBodyCollectionComponentEnhancer,
     openApiRequestBodyCollectionComponentSubclassEnhancer,
     allJsonPathsMappingEnhancer,
+    arrayUniquenessConstraintEnhancer,
     mergeJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,
     columnConflictEqualityConstraintEnhancer,

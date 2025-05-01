@@ -176,6 +176,12 @@ export type EntityApiSchemaData = {
    * A list of the EducationOrganization-based security elements for this entity
    */
   educationOrganizationSecurableElements: EducationOrganizationSecurableElement[];
+
+  /**
+   * JsonPaths to array items in the document that will need uniqueness validation
+   * based on those paths.
+   */
+  arrayUniquenessConstraints: JsonPath[];
 };
 
 /**
@@ -207,6 +213,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     studentSecurableElements: [],
     contactSecurableElements: [],
     staffSecurableElements: [],
+    arrayUniquenessConstraints: [],
   });
 }
 

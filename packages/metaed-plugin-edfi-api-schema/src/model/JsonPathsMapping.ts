@@ -34,6 +34,12 @@ type BaseJsonPathsInfo = {
    * The JsonPathPropertyPairs for a MetaEdPropertyPath, in JsonPath sorted order
    */
   jsonPathPropertyPairs: JsonPathPropertyPair[];
+
+  /**
+   * Whether this JsonPathInfo is derived from an identity property on a common
+   * collection. Only used for AllJsonPathsMapping.
+   */
+  isArrayIdentity: boolean;
 };
 
 /**

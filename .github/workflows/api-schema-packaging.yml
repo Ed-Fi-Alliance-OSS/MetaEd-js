@@ -33,6 +33,7 @@ env:
 
 jobs:
   run-metaed-project:
+    if: github.ref_protected # Don't allow this to run on PRs
     name: Run MetaEd Project 
     runs-on: ubuntu-latest
     strategy:
