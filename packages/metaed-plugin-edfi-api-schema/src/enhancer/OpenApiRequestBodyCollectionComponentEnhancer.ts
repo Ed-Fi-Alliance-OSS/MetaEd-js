@@ -81,7 +81,12 @@ export function openApiCollectionReferenceSchemaFor(
   const propertyName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
 
   if (apiMapping.isReferenceCollection) {
-    return [];
+    const schemaDetails: OpenApiRequestBodyCollectionSchema = {
+      schema: {} as OpenApiObject, // THIS IS WHERE I AM STUCK
+      propertyName: `${propertyName}`,
+    };
+    referenceSchemas.push(schemaDetails);
+    return referenceSchemas;
   }
   if (apiMapping.isDescriptorCollection) {
     const schemaDetails: OpenApiRequestBodyCollectionSchema = {

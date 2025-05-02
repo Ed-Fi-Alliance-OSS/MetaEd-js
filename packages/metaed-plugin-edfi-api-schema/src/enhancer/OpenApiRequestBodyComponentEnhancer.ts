@@ -103,9 +103,17 @@ function openApiArrayFrom(openApiArrayElement: OpenApiProperty): OpenApiArray {
  * Returns an OpenApi fragment that specifies the API body element shape
  * corresponding to the given reference collection property.
  */
-function openApiArrayForReferenceCollection(property: EntityProperty, propertyModifier: PropertyModifier): OpenApiArray {
+function openApiArrayForReferenceCollection(
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+  propertiesChain: EntityProperty[],
+): OpenApiArray {
+  const referenceName = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
+  const reference = {
+    $ref: `#/components/schemas/${referenceName}`,
+  } as OpenApiReference;
   return {
-    ...openApiArrayFrom(openApiReferenceFor(property as ReferentialProperty)),
+    ...openApiArrayFrom(reference),
     minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
   };
 }
@@ -241,7 +249,7 @@ export function openApiPropertyFor(
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
-    return openApiArrayForReferenceCollection(property, propertyModifier);
+    return openApiArrayForReferenceCollection(property, propertyModifier, propertiesChain);
   }
   if (apiMapping.isScalarReference) {
     return openApiReferenceFor(property as ReferentialProperty);

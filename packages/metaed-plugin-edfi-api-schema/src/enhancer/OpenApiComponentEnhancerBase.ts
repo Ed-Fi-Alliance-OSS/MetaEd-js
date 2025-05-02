@@ -78,6 +78,24 @@ export function openApiCollectionReferenceNameFor(
 ): string {
   const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
   const parentEntitiesNameChain: string =
+    propertiesChain.length > 0 ? propertiesChain[0].parentEntityName : property.parentEntityName;
+  const namespace: string =
+    propertiesChain.length > 0
+      ? propertiesChain[0].parentEntity.namespace.namespaceName
+      : property.parentEntity.namespace.namespaceName;
+  return `${namespace}_${parentEntitiesNameChain}_${propertyName}`;
+}
+
+/**
+ * Returns an OpenApi collection reference component name
+ */
+export function openApiResourceCollectionReferenceNameFor(
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+  propertiesChain: EntityProperty[],
+): string {
+  const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
+  const parentEntitiesNameChain: string =
     propertiesChain.length > 0
       ? propertiesChain.map((chainedProperty) => chainedProperty.parentEntityName).join('_')
       : property.parentEntityName;
