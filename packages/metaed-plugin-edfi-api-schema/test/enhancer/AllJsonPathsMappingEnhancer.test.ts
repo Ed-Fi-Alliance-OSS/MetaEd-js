@@ -46,6 +46,7 @@ export type Snapshotable = {
   jsonPaths: { [key: MetaEdPropertyPath]: SimpleJsonPathsInfo };
   isTopLevel: { [key: MetaEdPropertyPath]: boolean };
   terminalPropertyFullName: { [key: MetaEdPropertyPath]: string };
+  isArrayIdentity: { [key: MetaEdPropertyPath]: boolean };
 };
 
 export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
@@ -54,6 +55,7 @@ export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
   const jsonPaths = {} as { [key: MetaEdPropertyPath]: SimpleJsonPathsInfo };
   const isTopLevel = {} as { [key: MetaEdPropertyPath]: boolean };
   const terminalPropertyFullName = {} as { [key: MetaEdPropertyPath]: string };
+  const isArrayIdentity = {} as { [key: MetaEdPropertyPath]: boolean };
 
   Object.entries(allJsonPathsMapping).forEach(([key, value]) => {
     jsonPaths[key] = value.jsonPathPropertyPairs.map((jppp) => ({
@@ -65,12 +67,14 @@ export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
     if (value.isTopLevel) {
       terminalPropertyFullName[key] = value.terminalProperty.fullPropertyName;
     }
+    isArrayIdentity[key] = value.isArrayIdentity;
   });
 
   return {
     jsonPaths,
     isTopLevel,
     terminalPropertyFullName,
+    isArrayIdentity,
   };
 }
 
@@ -245,6 +249,23 @@ describe('when building simple domain entity with all the simple non-collections
         "RequiredTimeProperty": "RequiredTimeProperty",
         "SchoolYear": "SchoolYear",
         "StringIdentity": "StringIdentity",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": false,
+        "OptionalDecimalProperty": false,
+        "OptionalPercentProperty": false,
+        "OptionalShortProperty": false,
+        "OptionalYear": false,
+        "RequiredCurrencyProperty": false,
+        "RequiredDateProperty": false,
+        "RequiredDatetimeProperty": false,
+        "RequiredDurationProperty": false,
+        "RequiredIntegerProperty": false,
+        "RequiredTimeProperty": false,
+        "SchoolYear": false,
+        "StringIdentity": false,
       }
     `);
   });
@@ -431,6 +452,24 @@ describe('when building simple domain entity with all the simple collections', (
         "RequiredTimeProperty": "RequiredTimeProperty",
         "SchoolYear": "SchoolYear",
         "StringIdentity": "StringIdentity",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": false,
+        "OptionalDecimalProperty": false,
+        "OptionalPercentProperty": false,
+        "OptionalShortProperty": false,
+        "OptionalYear": false,
+        "RequiredCurrencyProperty": false,
+        "RequiredDateProperty": false,
+        "RequiredDatetimeProperty": false,
+        "RequiredDurationProperty": false,
+        "RequiredIntegerProperty": false,
+        "RequiredStringProperty": false,
+        "RequiredTimeProperty": false,
+        "SchoolYear": false,
+        "StringIdentity": false,
       }
     `);
   });
@@ -628,6 +667,21 @@ describe('when building a domain entity referencing another referencing another 
         "SectionIdentifier": "SectionIdentifier",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ClassPeriod": false,
+        "ClassPeriod.ClassPeriodName": false,
+        "ClassPeriod.School": false,
+        "ClassPeriod.School.SchoolId": false,
+        "ClassPeriod.School.SchoolTypeDescriptor": false,
+        "CourseOffering": false,
+        "CourseOffering.LocalCourseCode": false,
+        "CourseOffering.School": false,
+        "CourseOffering.School.SchoolId": false,
+        "CourseOffering.School.SchoolTypeDescriptor": false,
+        "SectionIdentifier": false,
+      }
+    `);
   });
 });
 
@@ -802,6 +856,20 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "SectionIdentifier": "SectionIdentifier",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "CourseOffering": false,
+        "CourseOffering.LocalCourseCode": false,
+        "CourseOffering.School": false,
+        "CourseOffering.School.SchoolId": false,
+        "CourseOffering.Session": false,
+        "CourseOffering.Session.School": false,
+        "CourseOffering.Session.School.SchoolId": false,
+        "CourseOffering.Session.SchoolYear": false,
+        "CourseOffering.Session.SessionName": false,
+        "SectionIdentifier": false,
+      }
+    `);
   });
 
   it('should be correct allJsonPathsMapping for CourseOffering', () => {
@@ -896,6 +964,18 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "Session": "Session",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "LocalCourseCode": false,
+        "School": false,
+        "School.SchoolId": false,
+        "Session": false,
+        "Session.School": false,
+        "Session.School.SchoolId": false,
+        "Session.SchoolYear": false,
+        "Session.SessionName": false,
+      }
+    `);
   });
 
   it('should be correct allJsonPathsMapping for Session', () => {
@@ -972,6 +1052,11 @@ describe('when building a domain entity referencing CourseOffering with an impli
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "SchoolId": "SchoolId",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "SchoolId": false,
       }
     `);
   });
@@ -1133,6 +1218,19 @@ describe('when building domain entity with nested choice and inline commons', ()
         "RequiredURI": "RequiredURI",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": false,
+        "LearningResourceChoice.LearningResource.ContentClassDescriptor": false,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": false,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent.ContentIdentifier": false,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": false,
+        "LearningResourceChoice.LearningResource.Description": false,
+        "LearningResourceChoice.LearningResource.ShortDescription": false,
+        "LearningResourceChoice.LearningResourceMetadataURI": false,
+        "RequiredURI": false,
+      }
+    `);
   });
 });
 
@@ -1198,6 +1296,12 @@ describe('when building domain entity with scalar collection named with prefix o
       Object {
         "ContentIdentifier": "ContentIdentifier",
         "EducationContentSuffixName": "EducationContentSuffixName",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": false,
+        "EducationContentSuffixName": false,
       }
     `);
   });
@@ -1280,6 +1384,13 @@ describe('when building domain entity with Association/DomainEntity collection n
         "EducationContentSuffixName": "EducationContentSuffixName",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": false,
+        "EducationContentSuffixName": false,
+        "EducationContentSuffixName.StringIdentity": false,
+      }
+    `);
   });
 });
 
@@ -1345,6 +1456,12 @@ describe('when building domain entity with acronym property name', () => {
       Object {
         "ContentIdentifier": "ContentIdentifier",
         "IEPBeginDate": "IEPBeginDate",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": false,
+        "IEPBeginDate": false,
       }
     `);
   });
@@ -1433,6 +1550,13 @@ describe('when building domain entity with a simple common collection', () => {
         "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": "AssessmentIdentificationSystem",
         "AssessmentIdentificationCode.IdentificationCode": "IdentificationCode",
         "AssessmentIdentifier": "AssessmentIdentifier",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": true,
+        "AssessmentIdentificationCode.IdentificationCode": false,
+        "AssessmentIdentifier": false,
       }
     `);
   });
@@ -1534,6 +1658,13 @@ describe('when building domain entity subclass with common collection and descri
         "EducationOrganizationIdentificationCode.IdentificationCode": "IdentificationCode",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "CommunityOrganizationId": false,
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": true,
+        "EducationOrganizationIdentificationCode.IdentificationCode": false,
+      }
+    `);
   });
 });
 
@@ -1631,6 +1762,14 @@ describe('when building association with a common collection in a common collect
         "StudentId": "StudentId",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Address.Period.BeginDate": true,
+        "Address.Period.EndDate": false,
+        "Address.StreetNumberName": false,
+        "StudentId": false,
+      }
+    `);
   });
 });
 
@@ -1703,6 +1842,12 @@ describe('when building domain entity with a descriptor with role name', () => {
         "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevelDescriptor": false,
+        "AssessmentIdentifier": false,
+      }
+    `);
   });
 });
 
@@ -1773,6 +1918,12 @@ describe('when building domain entity with a descriptor collection with role nam
       Object {
         "AssessedGradeLevelDescriptor": "AssessedGradeLevel",
         "AssessmentIdentifier": "AssessmentIdentifier",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevelDescriptor": false,
+        "AssessmentIdentifier": false,
       }
     `);
   });
@@ -1874,6 +2025,14 @@ describe('when building domain entity with a common with a choice', () => {
         "ContentStandard.Title": "Title",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": false,
+        "ContentStandard.PublicationDateChoice.PublicationDate": false,
+        "ContentStandard.PublicationDateChoice.PublicationYear": false,
+        "ContentStandard.Title": false,
+      }
+    `);
   });
 });
 
@@ -1961,6 +2120,13 @@ describe('when building domain entity with a common and a common collection with
         "AssessmentScore.MinimumScore": "MinimumScore",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": false,
+        "AssessmentPeriod.BeginDate": false,
+        "AssessmentScore.MinimumScore": false,
+      }
+    `);
   });
 });
 
@@ -2023,6 +2189,12 @@ describe('when building domain entity with an all-caps property', () => {
       Object {
         "AssessmentIdentifier": "AssessmentIdentifier",
         "URI": "URI",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": false,
+        "URI": false,
       }
     `);
   });
@@ -2121,6 +2293,14 @@ describe('when building domain entity with a common with a domain entity referen
         "ContentStandard.Title": "Title",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": false,
+        "ContentStandard.MandatingEducationOrganization": false,
+        "ContentStandard.MandatingEducationOrganization.EducationOrganizationId": false,
+        "ContentStandard.Title": false,
+      }
+    `);
   });
 });
 
@@ -2201,6 +2381,13 @@ describe('when building domain entity with two school year enumerations, one rol
         "ClassOfSchoolYear": "ClassOfSchoolYear",
         "SchoolId": "SchoolId",
         "SchoolYear": "SchoolYear",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "ClassOfSchoolYear": false,
+        "SchoolId": false,
+        "SchoolYear": false,
       }
     `);
   });
@@ -2295,6 +2482,14 @@ describe('when building domain entity with reference to domain entity with schoo
       Object {
         "Calendar": "Calendar",
         "SchoolId": "SchoolId",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Calendar": false,
+        "Calendar.SchoolId": false,
+        "Calendar.SchoolYear": false,
+        "SchoolId": false,
       }
     `);
   });
@@ -2454,6 +2649,12 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
         "StudentUniqueId": "StudentUniqueId",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "CohortYear.SchoolYear": true,
+        "StudentUniqueId": false,
+      }
+    `);
   });
 });
 
@@ -2532,6 +2733,12 @@ describe('when building a domain entity with an inline common property with a de
       Object {
         "AvailableCredits.CreditTypeDescriptor": "CreditType",
         "SectionIdentifier": "SectionIdentifier",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditTypeDescriptor": false,
+        "SectionIdentifier": false,
       }
     `);
   });
@@ -2621,6 +2828,13 @@ describe('when building a domain entity referencing another using a shortenTo di
         "Identity1": "Identity1",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "CompetencyObjective": false,
+        "CompetencyObjective.Identity2": false,
+        "Identity1": false,
+      }
+    `);
   });
 });
 
@@ -2694,6 +2908,12 @@ describe('when building domain entity with role named and pluralized inline comm
         "SectionIdentifier": "SectionIdentifier",
       }
     `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditConversion": false,
+        "SectionIdentifier": false,
+      }
+    `);
   });
 });
 
@@ -2755,6 +2975,11 @@ describe('when building simple domain entity in extension namespace', () => {
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "StringIdentity": "StringIdentity",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "StringIdentity": false,
       }
     `);
   });
@@ -2819,6 +3044,11 @@ describe('when building simple domain entity extension', () => {
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "StringProperty": "StringProperty",
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "StringProperty": false,
       }
     `);
   });
@@ -2941,6 +3171,13 @@ describe('when building a domain entity referencing another referencing another 
             "propertyName": "EducationOrganizationId",
           },
         ],
+      }
+    `);
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentAdministrationId": false,
+        "AssigningEducationOrganization": false,
+        "AssigningEducationOrganization.EducationOrganizationId": false,
       }
     `);
   });
