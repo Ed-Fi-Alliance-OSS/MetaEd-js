@@ -1228,16 +1228,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
           "schema": Object {
             "properties": Object {
               "schoolYearTypeReference": Object {
-                "description": "A school year enumeration",
-                "properties": Object {
-                  "schoolYear": Object {
-                    "description": "A school year between 1900 and 2100",
-                    "maximum": 2100,
-                    "minimum": 1900,
-                    "type": "integer",
-                  },
-                },
-                "type": "object",
+                "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
               },
             },
             "required": Array [

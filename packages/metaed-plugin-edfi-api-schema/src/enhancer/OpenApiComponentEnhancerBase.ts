@@ -94,7 +94,7 @@ export function openApiCollectionReferenceNameFor(
  */
 export function openApiPropertyForNonReference(
   property: EntityProperty,
-  { schoolYearOpenApi, schoolYearEnumerationOpenApi }: SchoolYearOpenApis,
+  { schoolYearOpenApi, schoolYearEnumerationRef }: SchoolYearOpenApis,
 ): OpenApiProperty {
   invariant(property.type !== 'association' && property.type !== 'common' && property.type !== 'domainEntity');
 
@@ -154,7 +154,7 @@ export function openApiPropertyForNonReference(
     case 'schoolYearEnumeration':
       if (property.parentEntity.type === 'common') {
         // For a common, the school year ends up being nested under a reference object
-        return schoolYearEnumerationOpenApi;
+        return { $ref: schoolYearEnumerationRef };
       }
 
       return schoolYearOpenApi;
