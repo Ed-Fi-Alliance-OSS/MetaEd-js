@@ -3302,11 +3302,6 @@
         "Sample_BusRoute": {
           "description": "This is an example of a new domain entity.",
           "properties": {
-            "busId": {
-              "description": "The unique identifier for the bus assigned to the bus route.",
-              "maxLength": 60,
-              "type": "string"
-            },
             "busReference": {
               "$ref": "#/components/schemas/Sample_Bus_Reference"
             },
@@ -3410,16 +3405,15 @@
             }
           },
           "required": [
+            "busReference",
             "busRouteNumber",
-            "busId",
             "busRouteDirection",
             "startTimes",
             "operatingCost",
             "expectedTransitTime",
             "hoursPerWeek",
             "serviceAreaPostalCodes",
-            "telephones",
-            "busReference"
+            "telephones"
           ],
           "type": "object"
         },
@@ -3438,7 +3432,7 @@
         "Sample_BusRoute_Reference": {
           "properties": {
             "busId": {
-              "description": "The unique identifier for the bus assigned to the bus route.",
+              "description": "The unique identifier for the bus.",
               "maxLength": 60,
               "type": "string"
             },
@@ -4221,12 +4215,6 @@
             ],
             "resourceName": "Bus"
           },
-          "BusId": {
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.busId",
-            "type": "string"
-          },
           "BusRouteDirection": {
             "isReference": false,
             "isRequired": true,
@@ -4402,13 +4390,9 @@
           }
         },
         "equalityConstraints": [
-          {
-            "sourceJsonPath": "$.busReference.busId",
-            "targetJsonPath": "$.busId"
-          }
         ],
         "identityJsonPaths": [
-          "$.busId",
+          "$.busReference.busId",
           "$.busRouteNumber"
         ],
         "isDescriptor": false,
@@ -4420,12 +4404,6 @@
           "additionalProperties": false,
           "description": "This is an example of a new domain entity.",
           "properties": {
-            "busId": {
-              "description": "The unique identifier for the bus assigned to the bus route.",
-              "maxLength": 60,
-              "pattern": "^(?!\\s)(.*\\S)$",
-              "type": "string"
-            },
             "busReference": {
               "additionalProperties": false,
               "properties": {
@@ -4655,16 +4633,15 @@
             }
           },
           "required": [
+            "busReference",
             "busRouteNumber",
-            "busId",
             "busRouteDirection",
             "startTimes",
             "operatingCost",
             "expectedTransitTime",
             "hoursPerWeek",
             "serviceAreaPostalCodes",
-            "telephones",
-            "busReference"
+            "telephones"
           ],
           "title": "Sample.BusRoute",
           "type": "object"
