@@ -36,6 +36,10 @@ type BaseJsonPathsInfo = {
   jsonPathPropertyPairs: JsonPathPropertyPair[];
 
   /**
+   * The first part of the property path for these JsonPaths
+   */
+  initialPropertyPath: MetaEdPropertyPath;
+  /**
    * Whether this JsonPathInfo is derived from an identity property on a common
    * collection. Only used for AllJsonPathsMapping.
    */

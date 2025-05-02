@@ -2649,6 +2649,11 @@
     "resourceSchemas": {
       "contacts": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.addresses[*].city"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -2852,6 +2857,8 @@
       },
       "names": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -2941,6 +2948,8 @@
       },
       "schoolYearTypes": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -3008,6 +3017,8 @@
       },
       "schools": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -3138,6 +3149,11 @@
       },
       "staffs": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.addresses[*].city"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -3339,6 +3355,8 @@
       },
       "studentSchoolAssociations": {
         "allowIdentityUpdates": true,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -3481,6 +3499,8 @@
       },
       "students": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [

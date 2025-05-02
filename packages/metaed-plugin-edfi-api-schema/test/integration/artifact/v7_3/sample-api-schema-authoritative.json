@@ -4078,6 +4078,8 @@
     "resourceSchemas": {
       "artMediumDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -4189,6 +4191,12 @@
       },
       "busRoutes": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.telephones[*].telephoneNumber",
+            "$.telephones[*].telephoneNumberTypeDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -4788,6 +4796,8 @@
       },
       "buses": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -4854,6 +4864,16 @@
         }
       },
       "contacts": {
+        "arrayUniquenessConstraints": [
+          [
+            "$._ext.sample.addresses[*].addressTypeDescriptor",
+            "$._ext.sample.addresses[*].city",
+            "$._ext.sample.addresses[*].periods[*].beginDate",
+            "$._ext.sample.addresses[*].postalCode",
+            "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+            "$._ext.sample.addresses[*].streetNumberName"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -5581,6 +5601,8 @@
       },
       "favoriteBookCategoryDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -5692,6 +5714,8 @@
       },
       "membershipTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -5802,6 +5826,8 @@
         }
       },
       "schools": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -5973,6 +5999,11 @@
         }
       },
       "staffs": {
+        "arrayUniquenessConstraints": [
+          [
+            "$._ext.sample.pets[*].petName"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -6106,6 +6137,18 @@
       },
       "studentArtProgramAssociations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.favoriteBook.artMedia[*].artMediumDescriptor"
+          ],
+          [
+            "$.programParticipationStatuses[*].participationStatusDescriptor",
+            "$.programParticipationStatuses[*].statusBeginDate"
+          ],
+          [
+            "$.services[*].serviceDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -6848,6 +6891,8 @@
         "superclassResourceName": "GeneralStudentProgramAssociation"
       },
       "studentCTEProgramAssociations": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -6922,6 +6967,8 @@
         }
       },
       "studentContactAssociations": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -7374,6 +7421,20 @@
         }
       },
       "studentEducationOrganizationAssociations": {
+        "arrayUniquenessConstraints": [
+          [
+            "$._ext.sample.addresses[*].addressTypeDescriptor",
+            "$._ext.sample.addresses[*].city",
+            "$._ext.sample.addresses[*].periods[*].beginDate",
+            "$._ext.sample.addresses[*].postalCode",
+            "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+            "$._ext.sample.addresses[*].streetNumberName"
+          ],
+          [
+            "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
+            "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -7773,6 +7834,8 @@
       },
       "studentGraduationPlanAssociations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -8418,6 +8481,8 @@
         }
       },
       "studentSchoolAssociations": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -8482,6 +8547,8 @@
         }
       },
       "studentSectionAssociations": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -8635,6 +8702,18 @@
         }
       },
       "students": {
+        "arrayUniquenessConstraints": [
+          [
+            "$._ext.sample.aquaticPets[*].mimimumTankVolume"
+          ],
+          [
+            "$._ext.sample.favoriteBooks[*].artMedia[*].artMediumDescriptor",
+            "$._ext.sample.favoriteBooks[*].favoriteBookCategoryDescriptor"
+          ],
+          [
+            "$._ext.sample.pets[*].petName"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [

@@ -15218,6 +15218,8 @@
     "resourceSchemas": {
       "accreditationStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -15329,6 +15331,8 @@
       },
       "aidTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -15440,6 +15444,16 @@
       },
       "candidateEducatorPreparationProgramAssociations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.cohortYears[*].cohortYearTypeDescriptor",
+            "$.cohortYears[*].schoolYearTypeReference.schoolYear"
+          ],
+          [
+            "$.degreeSpecializations[*].beginDate",
+            "$.degreeSpecializations[*].majorSpecialization"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -15813,6 +15827,37 @@
       },
       "candidates": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.addresses[*].addressTypeDescriptor",
+            "$.addresses[*].city",
+            "$.addresses[*].periods[*].beginDate",
+            "$.addresses[*].postalCode",
+            "$.addresses[*].stateAbbreviationDescriptor",
+            "$.addresses[*].streetNumberName"
+          ],
+          [
+            "$.disabilities[*].disabilityDescriptor"
+          ],
+          [
+            "$.electronicMails[*].electronicMailAddress",
+            "$.electronicMails[*].electronicMailTypeDescriptor"
+          ],
+          [
+            "$.languages[*].languageDescriptor"
+          ],
+          [
+            "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
+            "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor"
+          ],
+          [
+            "$.otherNames[*].otherNameTypeDescriptor"
+          ],
+          [
+            "$.telephones[*].telephoneNumber",
+            "$.telephones[*].telephoneNumberTypeDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17071,6 +17116,8 @@
       },
       "certificationRouteDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17182,6 +17229,8 @@
       },
       "coteachingStyleObservedDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17293,6 +17342,8 @@
       },
       "credentialStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17403,6 +17454,8 @@
         }
       },
       "credentials": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17644,6 +17697,8 @@
       },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17836,6 +17891,8 @@
       },
       "educatorRoleDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -17947,6 +18004,8 @@
       },
       "englishLanguageExamDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -18058,6 +18117,8 @@
       },
       "eppProgramPathwayDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -18169,6 +18230,8 @@
       },
       "evaluationElementRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -18280,6 +18343,12 @@
       },
       "evaluationElementRatings": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.elementRatingResults[*].rating",
+            "$.elementRatingResults[*].ratingResultTitle"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -18907,6 +18976,11 @@
       },
       "evaluationElements": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -19265,6 +19339,12 @@
       },
       "evaluationObjectiveRatings": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.objectiveRatingResults[*].rating",
+            "$.objectiveRatingResults[*].ratingResultTitle"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -19795,6 +19875,11 @@
       },
       "evaluationObjectives": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -20150,6 +20235,8 @@
       },
       "evaluationPeriodDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -20261,6 +20348,8 @@
       },
       "evaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -20372,6 +20461,8 @@
       },
       "evaluationRatingStatusDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -20483,6 +20574,16 @@
       },
       "evaluationRatings": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.results[*].rating",
+            "$.results[*].ratingResultTitle"
+          ],
+          [
+            "$.reviewers[*].firstName",
+            "$.reviewers[*].lastSurname"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -21198,6 +21299,8 @@
       },
       "evaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -21309,6 +21412,11 @@
       },
       "evaluations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -21644,6 +21752,8 @@
       },
       "financialAids": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -21837,6 +21947,8 @@
       },
       "genderDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -21948,6 +22060,8 @@
       },
       "objectiveRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -22059,6 +22173,8 @@
       },
       "performanceEvaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -22170,6 +22286,16 @@
       },
       "performanceEvaluationRatings": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.results[*].rating",
+            "$.results[*].ratingResultTitle"
+          ],
+          [
+            "$.reviewers[*].firstName",
+            "$.reviewers[*].lastSurname"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -22704,6 +22830,8 @@
       },
       "performanceEvaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -22815,6 +22943,11 @@
       },
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+          [
+            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+          ]
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23136,6 +23269,8 @@
       },
       "rubricDimensions": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23448,6 +23583,8 @@
       },
       "rubricRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23558,6 +23695,8 @@
         }
       },
       "schools": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23638,6 +23777,8 @@
       },
       "surveyResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23815,6 +23956,8 @@
         }
       },
       "surveyResponses": {
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
@@ -23906,6 +24049,8 @@
       },
       "surveySectionResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
+        "arrayUniquenessConstraints": [
+        ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
