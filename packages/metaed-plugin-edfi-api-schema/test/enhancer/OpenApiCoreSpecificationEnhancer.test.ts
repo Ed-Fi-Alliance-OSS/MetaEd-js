@@ -3223,16 +3223,9 @@ describe('when building a domain entity referencing another referencing another 
           "description": "doc",
           "properties": Object {
             "classPeriods": Object {
+              "description": "doc",
               "items": Object {
-                "properties": Object {
-                  "classPeriodReference": Object {
-                    "$ref": "#/components/schemas/EdFi_ClassPeriod_Reference",
-                  },
-                },
-                "required": Array [
-                  "classPeriodReference",
-                ],
-                "type": "object",
+                "$ref": "#/components/schemas/EdFi_DomainEntityName_ClassPeriod",
               },
               "minItems": 1,
               "type": "array",
@@ -3251,6 +3244,17 @@ describe('when building a domain entity referencing another referencing another 
             "sectionIdentifier",
             "courseOfferingReference",
             "classPeriods",
+          ],
+          "type": "object",
+        },
+        "EdFi_DomainEntityName_ClassPeriod": Object {
+          "properties": Object {
+            "classPeriodReference": Object {
+              "$ref": "#/components/schemas/EdFi_ClassPeriod_Reference",
+            },
+          },
+          "required": Array [
+            "classPeriodReference",
           ],
           "type": "object",
         },
@@ -5611,16 +5615,9 @@ describe('when building domain entity with nested choice and inline commons', ()
               "type": "string",
             },
             "derivativeSourceEducationContents": Object {
+              "description": "doc",
               "items": Object {
-                "properties": Object {
-                  "derivativeSourceEducationContentReference": Object {
-                    "$ref": "#/components/schemas/EdFi_EducationContent_Reference",
-                  },
-                },
-                "required": Array [
-                  "derivativeSourceEducationContentReference",
-                ],
-                "type": "object",
+                "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceEducationContent",
               },
               "minItems": 0,
               "type": "array",
@@ -5661,6 +5658,17 @@ describe('when building domain entity with nested choice and inline commons', ()
           "required": Array [
             "contentIdentifier",
             "requiredURIs",
+          ],
+          "type": "object",
+        },
+        "EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceEducationContent": Object {
+          "properties": Object {
+            "derivativeSourceEducationContentReference": Object {
+              "$ref": "#/components/schemas/EdFi_EducationContent_Reference",
+            },
+          },
+          "required": Array [
+            "derivativeSourceEducationContentReference",
           ],
           "type": "object",
         },
