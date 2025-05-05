@@ -10,11 +10,12 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
-import { OpenApiObject, OpenApiProperty } from '../model/OpenApi';
+import { OpenApiObject, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { singularize, uncapitalize } from '../Utility';
 import {
@@ -68,6 +69,15 @@ function openApiNonReferenceCollectionSchemaFor(
 }
 
 /**
+ * Returns an OpenApiReference to the OpenApi reference component for the referenced entity
+ */
+function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
+  return {
+    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
+  };
+}
+
+/**
  * Returns an OpenApi schema corresponding to the given property
  */
 export function openApiCollectionReferenceSchemaFor(
@@ -81,7 +91,16 @@ export function openApiCollectionReferenceSchemaFor(
   const propertyName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
 
   if (apiMapping.isReferenceCollection) {
-    return [];
+    const referenceName = uncapitalize(prefixedName(apiMapping.referenceCollectionName, propertyModifier));
+    const referenceArrayElement: OpenApiObject = openApiObjectFrom(
+      { [referenceName]: openApiReferenceFor(property as ReferentialProperty) },
+      [referenceName],
+    );
+    referenceSchemas.push({
+      schema: referenceArrayElement,
+      propertyName,
+    });
+    return referenceSchemas;
   }
   if (apiMapping.isDescriptorCollection) {
     const schemaDetails: OpenApiRequestBodyCollectionSchema = {

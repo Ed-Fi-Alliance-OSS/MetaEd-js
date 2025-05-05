@@ -417,16 +417,9 @@ describe('when building domain entity with nested choice and inline commons', ()
             "type": "string",
           },
           "derivativeSourceEducationContents": Object {
+            "description": "doc",
             "items": Object {
-              "properties": Object {
-                "derivativeSourceEducationContentReference": Object {
-                  "$ref": "#/components/schemas/EdFi_EducationContent_Reference",
-                },
-              },
-              "required": Array [
-                "derivativeSourceEducationContentReference",
-              ],
-              "type": "object",
+              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceEducationContent",
             },
             "minItems": 0,
             "type": "array",
@@ -473,6 +466,20 @@ describe('when building domain entity with nested choice and inline commons', ()
     `);
     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
+        Object {
+          "propertyName": "EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceEducationContent",
+          "schema": Object {
+            "properties": Object {
+              "derivativeSourceEducationContentReference": Object {
+                "$ref": "#/components/schemas/EdFi_EducationContent_Reference",
+              },
+            },
+            "required": Array [
+              "derivativeSourceEducationContentReference",
+            ],
+            "type": "object",
+          },
+        },
         Object {
           "propertyName": "EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
           "schema": Object {
