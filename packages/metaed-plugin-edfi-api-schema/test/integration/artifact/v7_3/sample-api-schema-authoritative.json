@@ -1356,16 +1356,9 @@
               "type": "integer"
             },
             "educationContents": {
+              "description": "Education content to which the contact has been referred.",
               "items": {
-                "properties": {
-                  "educationContentReference": {
-                    "$ref": "#/components/schemas/EdFi_EducationContent_Reference"
-                  }
-                },
-                "required": [
-                  "educationContentReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_Contact_EducationContent"
               },
               "minItems": 0,
               "type": "array",
@@ -1406,16 +1399,9 @@
               "type": "number"
             },
             "studentProgramAssociations": {
+              "description": "Programs the contact's child or children are enrolled in for which the contact provides volunteer services.",
               "items": {
-                "properties": {
-                  "studentProgramAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StudentProgramAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentProgramAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_Contact_StudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1439,16 +1425,9 @@
               "$ref": "#/components/schemas/Sample_School_CTEProgramService"
             },
             "directlyOwnedBuses": {
+              "description": "Buses owned by the School directly.",
               "items": {
-                "properties": {
-                  "directlyOwnedBusReference": {
-                    "$ref": "#/components/schemas/Sample_Bus_Reference"
-                  }
-                },
-                "required": [
-                  "directlyOwnedBusReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_School_DirectlyOwnedBus"
               },
               "minItems": 0,
               "type": "array",
@@ -1614,16 +1593,9 @@
               "type": "number"
             },
             "staffEducationOrganizationEmploymentAssociations": {
+              "description": "A reference to the staff member and education organization assigned to help track the student's reading abilities with the contact's involvement.",
               "items": {
-                "properties": {
-                  "staffEducationOrganizationEmploymentAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StaffEducationOrganizationEmploymentAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "staffEducationOrganizationEmploymentAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentContactAssociation_StaffEducationOrganizationEmploymentAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1682,16 +1654,9 @@
           "description": "",
           "properties": {
             "relatedGeneralStudentProgramAssociations": {
+              "description": "Programs which this student is participating in that is supported by this coursework.",
               "items": {
-                "properties": {
-                  "relatedGeneralStudentProgramAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_GeneralStudentProgramAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "relatedGeneralStudentProgramAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -3352,16 +3317,9 @@
               "type": "number"
             },
             "programs": {
+              "description": "Programs served by the bus route.",
               "items": {
-                "properties": {
-                  "programReference": {
-                    "$ref": "#/components/schemas/EdFi_Program_Reference"
-                  }
-                },
-                "required": [
-                  "programReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_BusRoute_Program"
               },
               "minItems": 0,
               "type": "array",
@@ -3426,6 +3384,17 @@
           },
           "required": [
             "busYear"
+          ],
+          "type": "object"
+        },
+        "Sample_BusRoute_Program": {
+          "properties": {
+            "programReference": {
+              "$ref": "#/components/schemas/EdFi_Program_Reference"
+            }
+          },
+          "required": [
+            "programReference"
           ],
           "type": "object"
         },
@@ -3857,16 +3826,9 @@
               "$ref": "#/components/schemas/EdFi_Staff_Reference"
             },
             "studentContactAssociations": {
+              "description": "Contact responsible for graduation plan.",
               "items": {
-                "properties": {
-                  "studentContactAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StudentContactAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentContactAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_StudentContactAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -4022,6 +3984,17 @@
             "graduationPlanTypeDescriptor",
             "graduationSchoolYear",
             "studentUniqueId"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentGraduationPlanAssociation_StudentContactAssociation": {
+          "properties": {
+            "studentContactAssociationReference": {
+              "$ref": "#/components/schemas/EdFi_StudentContactAssociation_Reference"
+            }
+          },
+          "required": [
+            "studentContactAssociationReference"
           ],
           "type": "object"
         },

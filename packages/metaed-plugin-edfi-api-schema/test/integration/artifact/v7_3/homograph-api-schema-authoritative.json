@@ -2258,16 +2258,9 @@
               "$ref": "#/components/schemas/Homograph_Name_Reference"
             },
             "studentSchoolAssociations": {
+              "description": "The students association with the contact.",
               "items": {
-                "properties": {
-                  "studentSchoolAssociationReference": {
-                    "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentSchoolAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Homograph_Contact_StudentSchoolAssociation"
               },
               "minItems": 1,
               "type": "array",
@@ -2313,6 +2306,17 @@
           "required": [
             "firstName",
             "lastSurname"
+          ],
+          "type": "object"
+        },
+        "Homograph_Contact_StudentSchoolAssociation": {
+          "properties": {
+            "studentSchoolAssociationReference": {
+              "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_Reference"
+            }
+          },
+          "required": [
+            "studentSchoolAssociationReference"
           ],
           "type": "object"
         },
@@ -2448,16 +2452,9 @@
               "$ref": "#/components/schemas/Homograph_Name_Reference"
             },
             "studentSchoolAssociations": {
+              "description": "The students under the instruction of the staff member",
               "items": {
-                "properties": {
-                  "studentSchoolAssociationReference": {
-                    "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentSchoolAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Homograph_Staff_StudentSchoolAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -2501,6 +2498,17 @@
           "required": [
             "firstName",
             "lastSurname"
+          ],
+          "type": "object"
+        },
+        "Homograph_Staff_StudentSchoolAssociation": {
+          "properties": {
+            "studentSchoolAssociationReference": {
+              "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_Reference"
+            }
+          },
+          "required": [
+            "studentSchoolAssociationReference"
           ],
           "type": "object"
         },
