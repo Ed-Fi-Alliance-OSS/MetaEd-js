@@ -7546,7 +7546,7 @@
             "studentAcademicRecords": {
               "description": "Reference to the person's Student Academic Records for the school(s) with which the Credential is associated.",
               "items": {
-                "$ref": "#/components/schemas/TPDM_Credential_StudentAcademicRecord"
+                "$ref": "#/components/schemas/EdFi_Credential_StudentAcademicRecord"
               },
               "minItems": 0,
               "type": "array",

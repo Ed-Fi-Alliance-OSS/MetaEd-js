@@ -17,7 +17,7 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import { singularize, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
   openApiObjectFrom,
   isOpenApiPropertyRequired,
@@ -108,7 +108,15 @@ function openApiArrayForReferenceCollection(
   propertyModifier: PropertyModifier,
   propertiesChain: EntityProperty[],
 ): OpenApiArray {
-  const referenceName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
+  const propertyName: string = singularize(prefixedName(property.fullPropertyName, propertyModifier));
+  const parentEntitiesNameChain: string =
+    propertiesChain.length > 0
+      ? propertiesChain.map((chainedProperty) => chainedProperty.parentEntityName).join('_')
+      : property.parentEntityName;
+  const namespace: string =
+    propertiesChain.length > 0 ? propertiesChain[0].referencedNamespaceName : property.referencedNamespaceName;
+  const referenceName: string = `${namespace}_${parentEntitiesNameChain}_${propertyName}`;
+
   const reference = {
     $ref: `#/components/schemas/${referenceName}`,
   } as OpenApiReference;

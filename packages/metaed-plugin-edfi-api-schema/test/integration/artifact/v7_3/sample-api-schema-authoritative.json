@@ -1358,7 +1358,7 @@
             "educationContents": {
               "description": "Education content to which the contact has been referred.",
               "items": {
-                "$ref": "#/components/schemas/Sample_Contact_EducationContent"
+                "$ref": "#/components/schemas/EdFi_Contact_EducationContent"
               },
               "minItems": 0,
               "type": "array",
@@ -1401,7 +1401,7 @@
             "studentProgramAssociations": {
               "description": "Programs the contact's child or children are enrolled in for which the contact provides volunteer services.",
               "items": {
-                "$ref": "#/components/schemas/Sample_Contact_StudentProgramAssociation"
+                "$ref": "#/components/schemas/EdFi_Contact_StudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1595,7 +1595,7 @@
             "staffEducationOrganizationEmploymentAssociations": {
               "description": "A reference to the staff member and education organization assigned to help track the student's reading abilities with the contact's involvement.",
               "items": {
-                "$ref": "#/components/schemas/Sample_StudentContactAssociation_StaffEducationOrganizationEmploymentAssociation"
+                "$ref": "#/components/schemas/EdFi_StudentContactAssociation_StaffEducationOrganizationEmploymentAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1656,7 +1656,7 @@
             "relatedGeneralStudentProgramAssociations": {
               "description": "Programs which this student is participating in that is supported by this coursework.",
               "items": {
-                "$ref": "#/components/schemas/Sample_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation"
+                "$ref": "#/components/schemas/EdFi_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -3319,7 +3319,7 @@
             "programs": {
               "description": "Programs served by the bus route.",
               "items": {
-                "$ref": "#/components/schemas/Sample_BusRoute_Program"
+                "$ref": "#/components/schemas/EdFi_BusRoute_Program"
               },
               "minItems": 0,
               "type": "array",
@@ -3828,7 +3828,7 @@
             "studentContactAssociations": {
               "description": "Contact responsible for graduation plan.",
               "items": {
-                "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_StudentContactAssociation"
+                "$ref": "#/components/schemas/EdFi_StudentGraduationPlanAssociation_StudentContactAssociation"
               },
               "minItems": 0,
               "type": "array",
