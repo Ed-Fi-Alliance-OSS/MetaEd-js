@@ -9,11 +9,49 @@ import {
   TopLevelEntity,
   getAllEntitiesOfType,
   MetaEdPropertyFullName,
+  isReferentialProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
-import { JsonPathsInfo } from '../../model/JsonPathsMapping';
+import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
 import { EducationOrganizationSecurableElement } from '../../model/api-schema/EducationOrganizationSecurableElement';
+
+/**
+ * Adds EducationOrganization-specific SecurableElements like the renamed educationOrganizationId
+ * and non-identity EducationOrganization scalar references regardless of role name
+ */
+function addEducationOrganizationSpecificSecurableElements(
+  educationOrganization: TopLevelEntity,
+  result: Map<JsonPath, EducationOrganizationSecurableElement>,
+  allEducationOrganizations: TopLevelEntity[],
+) {
+  const entityApiSchemaData: EntityApiSchemaData = educationOrganization.data.edfiApiSchema as EntityApiSchemaData;
+
+  Object.values(entityApiSchemaData.allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+    jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp: JsonPathPropertyPair) => {
+      // Add securable elements for renamed educationOrganizationIds on each EducationOrganization subclass
+      if (jppp.sourceProperty.isIdentityRename && jppp.sourceProperty.parentEntity === educationOrganization) {
+        result.set(jppp.jsonPath, {
+          metaEdName: jppp.sourceProperty.metaEdName,
+          jsonPath: jppp.jsonPath,
+        });
+      }
+
+      // Add non-identity EducationOrganization scalar references regardless of role name
+      if (
+        isReferentialProperty(jppp.sourceProperty) &&
+        (jppp.sourceProperty.isRequired || jppp.sourceProperty.isOptional) &&
+        allEducationOrganizations.includes((jppp.sourceProperty as ReferentialProperty).referencedEntity)
+      ) {
+        result.set(jppp.jsonPath, {
+          metaEdName: jppp.sourceProperty.metaEdName,
+          jsonPath: jppp.jsonPath,
+        });
+      }
+    });
+  });
+}
 
 /**
  * Finds the EducationOrganizationId elements that can be EducationOrganization
@@ -56,25 +94,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
 
       matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
-        const hasRoleNameInPropertyChain = [jppp.sourceProperty, ...jppp.flattenedIdentityProperty.propertyChain].some(
-          (property) => property.roleName !== '',
-        );
-
         if (
           allEducationOrganizations.includes(jppp.flattenedIdentityProperty.identityProperty.parentEntity) &&
-          !hasRoleNameInPropertyChain
-        ) {
-          result.set(jppp.jsonPath, {
-            metaEdName: jppp.sourceProperty.metaEdName,
-            jsonPath: jppp.jsonPath,
-          });
-        }
-
-        // Add securable elements for renamed educationOrganizationIds on each EducationOrganization subclass
-        if (
-          allEducationOrganizations.includes(entity) &&
-          jppp.sourceProperty.isIdentityRename &&
-          jppp.sourceProperty.parentEntity === entity
+          jppp.sourceProperty.roleName === ''
         ) {
           result.set(jppp.jsonPath, {
             metaEdName: jppp.sourceProperty.metaEdName,
@@ -83,6 +105,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         }
       });
     });
+
+    // EducationOrganization entities have additional securable elements
+    if (allEducationOrganizations.includes(entity)) {
+      addEducationOrganizationSpecificSecurableElements(entity, result, allEducationOrganizations);
+    }
 
     educationOrganizationSecurableElements.push(
       ...[...result.values()].sort((a, b) => a.metaEdName.localeCompare(b.metaEdName)),
