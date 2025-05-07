@@ -25,6 +25,8 @@ import {
   openApiPropertyForNonReference,
   newSchoolYearOpenApis,
   openApiCollectionReferenceNameFor,
+  openApiArrayFrom,
+  openApiReferenceFor,
 } from './OpenApiComponentEnhancerBase';
 
 const enhancerName = 'OpenApiRequestBodyComponentEnhancer';
@@ -77,46 +79,6 @@ const descriptorOpenApi: OpenApiObject = {
   },
   required: ['namespace', 'codeValue', 'shortDescription'],
 };
-
-/**
- * Returns an OpenApiReference to the OpenApi reference component for the referenced entity
- */
-function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
-  return {
-    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
-  };
-}
-
-/**
- * Wraps a OpenApi property in an OpenApi array
- */
-function openApiArrayFrom(openApiArrayElement: OpenApiProperty): OpenApiArray {
-  return {
-    type: 'array',
-    items: openApiArrayElement,
-    minItems: 0,
-    uniqueItems: false,
-  };
-}
-
-/**
- * Returns an OpenApi fragment that specifies the API body element shape
- * corresponding to the given reference collection property.
- */
-function openApiArrayForReferenceCollection(property: EntityProperty, propertyModifier: PropertyModifier): OpenApiArray {
-  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const referenceName = uncapitalize(prefixedName(apiMapping.referenceCollectionName, propertyModifier));
-
-  const referenceArrayElement: OpenApiObject = openApiObjectFrom(
-    { [referenceName]: openApiReferenceFor(property as ReferentialProperty) },
-    [referenceName],
-  );
-
-  return {
-    ...openApiArrayFrom(referenceArrayElement),
-    minItems: isOpenApiPropertyRequired(property, propertyModifier) ? 1 : 0,
-  };
-}
 
 /**
  * Returns an OpenApi fragment that specifies the API body shape
@@ -185,7 +147,7 @@ export function openApiObjectForScalarCommonProperty(
 }
 
 /**
- * Returns an OpenApiReference to the OpenApi reference component for the referenced entity
+ * Returns an OpenApiReference to the OpenApi non-reference component for the referenced entity
  */
 function openApiNonResourceReferenceFor(fullName: string): OpenApiReference {
   return {
@@ -249,7 +211,7 @@ export function openApiPropertyFor(
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
-    return openApiArrayForReferenceCollection(property, propertyModifier);
+    return openApiArrayForNonResourceReferenceCollection(property, propertyModifier, propertiesChain);
   }
   if (apiMapping.isScalarReference) {
     return openApiReferenceFor(property as ReferentialProperty);

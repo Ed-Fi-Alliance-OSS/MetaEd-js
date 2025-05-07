@@ -3,9 +3,9 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EntityProperty, StringProperty, IntegerProperty, ShortProperty } from '@edfi/metaed-core';
+import { EntityProperty, StringProperty, IntegerProperty, ShortProperty, ReferentialProperty } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
-import { NoOpenApiProperty, OpenApiObject, OpenApiProperties, OpenApiProperty } from '../model/OpenApi';
+import { NoOpenApiProperty, OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { singularize } from '../Utility';
 
@@ -66,6 +66,27 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
     (property.isRequired || property.isRequiredCollection || property.isPartOfIdentity) &&
     !propertyModifier.optionalDueToParent
   );
+}
+
+/**
+ * Returns an OpenApiReference to the OpenApi reference component for the referenced entity
+ */
+export function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
+  return {
+    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
+  };
+}
+
+/**
+ * Wraps a OpenApi property in an OpenApi array
+ */
+export function openApiArrayFrom(openApiArrayElement: OpenApiProperty): OpenApiArray {
+  return {
+    type: 'array',
+    items: openApiArrayElement,
+    minItems: 0,
+    uniqueItems: false,
+  };
 }
 
 /**
