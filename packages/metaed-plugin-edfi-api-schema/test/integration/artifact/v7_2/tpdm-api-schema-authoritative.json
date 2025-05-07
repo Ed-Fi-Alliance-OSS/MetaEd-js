@@ -177,7 +177,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_AccreditationStatus"
+                        "$ref": "#/components/schemas/TPDM_AccreditationStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -534,7 +534,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_AidType"
+                        "$ref": "#/components/schemas/TPDM_AidTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -891,7 +891,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CertificationRoute"
+                        "$ref": "#/components/schemas/TPDM_CertificationRouteDescriptor"
                       },
                       "type": "array"
                     }
@@ -1248,7 +1248,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CoteachingStyleObserved"
+                        "$ref": "#/components/schemas/TPDM_CoteachingStyleObservedDescriptor"
                       },
                       "type": "array"
                     }
@@ -1605,7 +1605,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CredentialStatus"
+                        "$ref": "#/components/schemas/TPDM_CredentialStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -1962,7 +1962,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EducatorRole"
+                        "$ref": "#/components/schemas/TPDM_EducatorRoleDescriptor"
                       },
                       "type": "array"
                     }
@@ -2319,7 +2319,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EnglishLanguageExam"
+                        "$ref": "#/components/schemas/TPDM_EnglishLanguageExamDescriptor"
                       },
                       "type": "array"
                     }
@@ -2676,7 +2676,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EPPProgramPathway"
+                        "$ref": "#/components/schemas/TPDM_EPPProgramPathwayDescriptor"
                       },
                       "type": "array"
                     }
@@ -3033,7 +3033,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevel"
+                        "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -3390,7 +3390,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationPeriod"
+                        "$ref": "#/components/schemas/TPDM_EvaluationPeriodDescriptor"
                       },
                       "type": "array"
                     }
@@ -3747,7 +3747,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationRatingLevel"
+                        "$ref": "#/components/schemas/TPDM_EvaluationRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -4104,7 +4104,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationRatingStatus"
+                        "$ref": "#/components/schemas/TPDM_EvaluationRatingStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -4461,7 +4461,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationType"
+                        "$ref": "#/components/schemas/TPDM_EvaluationTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -4818,7 +4818,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_Gender"
+                        "$ref": "#/components/schemas/TPDM_GenderDescriptor"
                       },
                       "type": "array"
                     }
@@ -5175,7 +5175,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevel"
+                        "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -5532,7 +5532,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevel"
+                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -5889,7 +5889,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationType"
+                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -6246,7 +6246,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_RubricRatingLevel"
+                        "$ref": "#/components/schemas/TPDM_RubricRatingLevelDescriptor"
                       },
                       "type": "array"
                     }

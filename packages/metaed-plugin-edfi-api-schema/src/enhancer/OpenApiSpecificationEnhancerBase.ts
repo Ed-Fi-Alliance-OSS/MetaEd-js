@@ -466,7 +466,9 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
             schema: {
               type: 'array',
               items: {
-                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
+                  entity.type === 'descriptor' ? 'Descriptor' : ''
+                }`,
               },
             },
           },

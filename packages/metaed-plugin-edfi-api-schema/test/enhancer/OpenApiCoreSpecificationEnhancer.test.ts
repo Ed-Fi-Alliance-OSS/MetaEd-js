@@ -6030,7 +6030,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                     "application/json": Object {
                       "schema": Object {
                         "items": Object {
-                          "$ref": "#/components/schemas/EdFi_ContentClass",
+                          "$ref": "#/components/schemas/EdFi_ContentClassDescriptor",
                         },
                         "type": "array",
                       },

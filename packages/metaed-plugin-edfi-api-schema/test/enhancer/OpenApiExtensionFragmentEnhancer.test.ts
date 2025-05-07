@@ -4970,7 +4970,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "application/json": Object {
                     "schema": Object {
                       "items": Object {
-                        "$ref": "#/components/schemas/Extension_ContentClass",
+                        "$ref": "#/components/schemas/Extension_ContentClassDescriptor",
                       },
                       "type": "array",
                     },

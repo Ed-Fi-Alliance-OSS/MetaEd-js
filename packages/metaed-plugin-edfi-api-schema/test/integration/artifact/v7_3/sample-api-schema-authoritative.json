@@ -151,7 +151,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/Sample_ArtMedium"
+                        "$ref": "#/components/schemas/Sample_ArtMediumDescriptor"
                       },
                       "type": "array"
                     }
@@ -508,7 +508,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/Sample_FavoriteBookCategory"
+                        "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor"
                       },
                       "type": "array"
                     }
@@ -865,7 +865,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/Sample_MembershipType"
+                        "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor"
                       },
                       "type": "array"
                     }
