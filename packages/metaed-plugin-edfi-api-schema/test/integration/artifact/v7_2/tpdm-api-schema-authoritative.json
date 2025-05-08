@@ -7545,15 +7545,7 @@
             },
             "studentAcademicRecords": {
               "items": {
-                "properties": {
-                  "studentAcademicRecordReference": {
-                    "$ref": "#/components/schemas/EdFi_StudentAcademicRecord_Reference"
-                  }
-                },
-                "required": [
-                  "studentAcademicRecordReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/TPDM_Credential_StudentAcademicRecord"
               },
               "minItems": 0,
               "type": "array",

@@ -1357,15 +1357,7 @@
             },
             "educationContents": {
               "items": {
-                "properties": {
-                  "educationContentReference": {
-                    "$ref": "#/components/schemas/EdFi_EducationContent_Reference"
-                  }
-                },
-                "required": [
-                  "educationContentReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_Contact_EducationContent"
               },
               "minItems": 0,
               "type": "array",
@@ -1407,15 +1399,7 @@
             },
             "studentProgramAssociations": {
               "items": {
-                "properties": {
-                  "studentProgramAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StudentProgramAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentProgramAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_Contact_StudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1440,15 +1424,7 @@
             },
             "directlyOwnedBuses": {
               "items": {
-                "properties": {
-                  "directlyOwnedBusReference": {
-                    "$ref": "#/components/schemas/Sample_Bus_Reference"
-                  }
-                },
-                "required": [
-                  "directlyOwnedBusReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_School_DirectlyOwnedBus"
               },
               "minItems": 0,
               "type": "array",
@@ -1615,15 +1591,7 @@
             },
             "staffEducationOrganizationEmploymentAssociations": {
               "items": {
-                "properties": {
-                  "staffEducationOrganizationEmploymentAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StaffEducationOrganizationEmploymentAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "staffEducationOrganizationEmploymentAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentContactAssociation_StaffEducationOrganizationEmploymentAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -1683,15 +1651,7 @@
           "properties": {
             "relatedGeneralStudentProgramAssociations": {
               "items": {
-                "properties": {
-                  "relatedGeneralStudentProgramAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_GeneralStudentProgramAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "relatedGeneralStudentProgramAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -3353,15 +3313,7 @@
             },
             "programs": {
               "items": {
-                "properties": {
-                  "programReference": {
-                    "$ref": "#/components/schemas/EdFi_Program_Reference"
-                  }
-                },
-                "required": [
-                  "programReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_BusRoute_Program"
               },
               "minItems": 0,
               "type": "array",
@@ -3426,6 +3378,17 @@
           },
           "required": [
             "busYear"
+          ],
+          "type": "object"
+        },
+        "Sample_BusRoute_Program": {
+          "properties": {
+            "programReference": {
+              "$ref": "#/components/schemas/EdFi_Program_Reference"
+            }
+          },
+          "required": [
+            "programReference"
           ],
           "type": "object"
         },
@@ -3858,15 +3821,7 @@
             },
             "studentContactAssociations": {
               "items": {
-                "properties": {
-                  "studentContactAssociationReference": {
-                    "$ref": "#/components/schemas/EdFi_StudentContactAssociation_Reference"
-                  }
-                },
-                "required": [
-                  "studentContactAssociationReference"
-                ],
-                "type": "object"
+                "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_StudentContactAssociation"
               },
               "minItems": 0,
               "type": "array",
@@ -4022,6 +3977,17 @@
             "graduationPlanTypeDescriptor",
             "graduationSchoolYear",
             "studentUniqueId"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentGraduationPlanAssociation_StudentContactAssociation": {
+          "properties": {
+            "studentContactAssociationReference": {
+              "$ref": "#/components/schemas/EdFi_StudentContactAssociation_Reference"
+            }
+          },
+          "required": [
+            "studentContactAssociationReference"
           ],
           "type": "object"
         },

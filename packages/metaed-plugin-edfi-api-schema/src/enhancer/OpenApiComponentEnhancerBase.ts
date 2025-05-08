@@ -5,7 +5,14 @@
 
 import { EntityProperty, StringProperty, IntegerProperty, ShortProperty, ReferentialProperty } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
-import { NoOpenApiProperty, OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
+import {
+  NoOpenApiProperty,
+  OpenApiArray,
+  OpenApiObject,
+  OpenApiProperties,
+  OpenApiProperty,
+  OpenApiReference,
+} from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { singularize } from '../Utility';
 
