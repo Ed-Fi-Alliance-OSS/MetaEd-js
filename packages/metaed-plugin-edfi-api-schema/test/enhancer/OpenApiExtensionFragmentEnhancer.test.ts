@@ -5853,10 +5853,6 @@ describe('when domain entity extension references domain entity in different nam
           },
           "type": "object",
         },
-        "Extension_EntityName_Reference": Object {
-          "properties": Object {},
-          "type": "object",
-        },
       }
     `);
     expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
@@ -5937,10 +5933,6 @@ describe('when domain entity extension references domain entity collection in di
           "required": Array [
             "referencedEntityNames",
           ],
-          "type": "object",
-        },
-        "Extension_EntityName_Reference": Object {
-          "properties": Object {},
           "type": "object",
         },
         "Extension_EntityName_ReferencedEntityName": Object {

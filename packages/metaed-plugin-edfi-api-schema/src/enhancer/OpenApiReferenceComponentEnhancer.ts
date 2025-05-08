@@ -77,22 +77,16 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
 
-  getAllEntitiesOfType(
-    metaEd,
-    'domainEntity',
-    'association',
-    'domainEntitySubclass',
-    'associationSubclass',
-    'associationExtension',
-    'domainEntityExtension',
-  ).forEach((entity) => {
-    const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
-    entityApiOpenApiData.openApiReferenceComponent = openApiReferenceComponentFor(
-      entity as TopLevelEntity,
-      schoolYearOpenApis,
-    );
-    entityApiOpenApiData.openApiReferenceComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}_Reference`;
-  });
+  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
+    (entity) => {
+      const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
+      entityApiOpenApiData.openApiReferenceComponent = openApiReferenceComponentFor(
+        entity as TopLevelEntity,
+        schoolYearOpenApis,
+      );
+      entityApiOpenApiData.openApiReferenceComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}_Reference`;
+    },
+  );
 
   return {
     enhancerName,
