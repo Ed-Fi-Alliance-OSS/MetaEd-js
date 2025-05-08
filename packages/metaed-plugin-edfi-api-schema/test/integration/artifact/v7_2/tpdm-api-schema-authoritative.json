@@ -13583,6 +13583,17 @@
           ],
           "type": "object"
         },
+        "TPDM_Credential_StudentAcademicRecord": {
+          "properties": {
+            "studentAcademicRecordReference": {
+              "$ref": "#/components/schemas/EdFi_StudentAcademicRecord_Reference"
+            }
+          },
+          "required": [
+            "studentAcademicRecordReference"
+          ],
+          "type": "object"
+        },
         "TPDM_EducatorPreparationProgram": {
           "description": "The Educator Preparation Program is designed to prepare students to become licensed educators.",
           "properties": {

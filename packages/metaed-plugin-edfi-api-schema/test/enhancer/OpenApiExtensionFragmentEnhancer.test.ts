@@ -5842,19 +5842,7 @@ describe('when domain entity extension references domain entity in different nam
   it('should be a correct ext for extension namespace that references core schema', () => {
     const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
     expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
-    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
-      Object {
-        "Extension_EntityName": Object {
-          "description": "",
-          "properties": Object {
-            "referencedEntityNameReference": Object {
-              "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
-            },
-          },
-          "type": "object",
-        },
-      }
-    `);
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
     expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
         Object {
           "EdFi_EntityName": Object {
@@ -5918,23 +5906,6 @@ describe('when domain entity extension references domain entity collection in di
     expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
     expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
       Object {
-        "Extension_EntityName": Object {
-          "description": "",
-          "properties": Object {
-            "referencedEntityNames": Object {
-              "items": Object {
-                "$ref": "#/components/schemas/Extension_EntityName_ReferencedEntityName",
-              },
-              "minItems": 1,
-              "type": "array",
-              "uniqueItems": false,
-            },
-          },
-          "required": Array [
-            "referencedEntityNames",
-          ],
-          "type": "object",
-        },
         "Extension_EntityName_ReferencedEntityName": Object {
           "properties": Object {
             "referencedEntityNameReference": Object {

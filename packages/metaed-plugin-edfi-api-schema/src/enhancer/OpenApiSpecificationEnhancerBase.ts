@@ -670,19 +670,24 @@ export function createSchemasFrom(entity: TopLevelEntity): Schemas {
     openApiRequestBodyCollectionComponents,
   } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-  // Add to Schemas
-  if (openApiReferenceComponentPropertyName !== '') {
+  // DomainEntityExtension and AssociationExtension do not have their own references or request bodies
+  if (entity.type !== 'domainEntityExtension' && entity.type !== 'associationExtension') {
+    // Add reference component
     // Not all entities have a reference component (e.g. descriptors, school year enumeration)
-    schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+    if (openApiReferenceComponentPropertyName !== '') {
+      schemas[openApiReferenceComponentPropertyName] = openApiReferenceComponent;
+    }
+
+    // Add request body component
+    // 'Descriptor' suffix when entity is a Descriptor
+    const key =
+      entity.type === 'descriptor'
+        ? `${openApiRequestBodyComponentPropertyName}Descriptor`
+        : openApiRequestBodyComponentPropertyName;
+    schemas[key] = openApiRequestBodyComponent;
   }
 
-  // Add 'Descriptor' suffix when entity is a Descriptor
-  const key =
-    entity.type === 'descriptor'
-      ? `${openApiRequestBodyComponentPropertyName}Descriptor`
-      : openApiRequestBodyComponentPropertyName;
-  schemas[key] = openApiRequestBodyComponent;
-
+  // Add collection components
   openApiRequestBodyCollectionComponents.forEach(({ propertyName, schema }) => {
     schemas[propertyName] = schema;
   });

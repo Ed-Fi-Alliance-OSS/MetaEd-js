@@ -3480,6 +3480,305 @@
           ],
           "type": "object"
         },
+        "Sample_Contact_Address": {
+          "properties": {
+            "addressTypeDescriptor": {
+              "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
+              "type": "string"
+            },
+            "apartmentRoomSuiteNumber": {
+              "description": "The apartment, room, or suite number of an address.",
+              "maxLength": 50,
+              "type": "string"
+            },
+            "buildingSiteNumber": {
+              "description": "The number of the building on the site, if more than one building shares the same address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "city": {
+              "description": "The name of the city in which an address is located.",
+              "maxLength": 30,
+              "minLength": 2,
+              "type": "string"
+            },
+            "congressionalDistrict": {
+              "description": "The congressional district in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "countyFIPSCode": {
+              "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
+              "maxLength": 5,
+              "minLength": 3,
+              "type": "string"
+            },
+            "doNotPublishIndicator": {
+              "description": "An indication that the address should not be published.",
+              "type": "boolean"
+            },
+            "latitude": {
+              "description": "The geographic latitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "localeDescriptor": {
+              "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
+              "type": "string"
+            },
+            "longitude": {
+              "description": "The geographic longitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "nameOfCounty": {
+              "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "periods": {
+              "items": {
+                "$ref": "#/components/schemas/Sample_Contact_Period"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "postalCode": {
+              "description": "The five or nine digit zip code or overseas postal code portion of an address.",
+              "maxLength": 17,
+              "type": "string"
+            },
+            "stateAbbreviationDescriptor": {
+              "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
+              "type": "string"
+            },
+            "streetNumberName": {
+              "description": "The street number and street name or post office box number of an address.",
+              "maxLength": 150,
+              "type": "string"
+            }
+          },
+          "required": [
+            "streetNumberName",
+            "city",
+            "stateAbbreviationDescriptor",
+            "postalCode",
+            "addressTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_Author": {
+          "properties": {
+            "author": {
+              "description": "The contact's favorite authors.",
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          "required": [
+            "author"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_CTEProgramService": {
+          "properties": {
+            "cipCode": {
+              "description": "Number and description of the CIP code associated with the student's CTE program.",
+              "maxLength": 120,
+              "type": "string"
+            },
+            "cteProgramServiceDescriptor": {
+              "description": "Indicates the service being provided to the student by the CTE program.",
+              "type": "string"
+            },
+            "primaryIndicator": {
+              "description": "True if service is a primary service.",
+              "type": "boolean"
+            },
+            "serviceBeginDate": {
+              "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "serviceEndDate": {
+              "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cteProgramServiceDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_CeilingHeight": {
+          "properties": {
+            "ceilingHeight": {
+              "description": "The height of the ceiling in the rooms of the contact's home.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "ceilingHeight"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_EducationContent": {
+          "properties": {
+            "educationContentReference": {
+              "$ref": "#/components/schemas/EdFi_EducationContent_Reference"
+            }
+          },
+          "required": [
+            "educationContentReference"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_FavoriteBookTitle": {
+          "properties": {
+            "favoriteBookTitle": {
+              "description": "The title of the contact's favorite book.",
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          "required": [
+            "favoriteBookTitle"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_Period": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "beginDate"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_StudentProgramAssociation": {
+          "properties": {
+            "studentProgramAssociationReference": {
+              "$ref": "#/components/schemas/EdFi_StudentProgramAssociation_Reference"
+            }
+          },
+          "required": [
+            "studentProgramAssociationReference"
+          ],
+          "type": "object"
+        },
+        "Sample_Contact_TeacherConference": {
+          "properties": {
+            "dayOfWeek": {
+              "description": "The day of the week the parent prefers to meet for parent-teacher conferences.",
+              "maxLength": 10,
+              "type": "string"
+            },
+            "endTime": {
+              "description": "The end time the parent prefers to meet for parent-teacher conferences.",
+              "format": "time",
+              "type": "string"
+            },
+            "startTime": {
+              "description": "The start time the parent prefers to meet for parent-teacher conferences.",
+              "format": "time",
+              "type": "string"
+            }
+          },
+          "required": [
+            "dayOfWeek",
+            "startTime",
+            "endTime"
+          ],
+          "type": "object"
+        },
+        "Sample_School_CTEProgramService": {
+          "properties": {
+            "cipCode": {
+              "description": "Number and description of the CIP code associated with the student's CTE program.",
+              "maxLength": 120,
+              "type": "string"
+            },
+            "cteProgramServiceDescriptor": {
+              "description": "Indicates the service being provided to the student by the CTE program.",
+              "type": "string"
+            },
+            "primaryIndicator": {
+              "description": "True if service is a primary service.",
+              "type": "boolean"
+            },
+            "serviceBeginDate": {
+              "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "serviceEndDate": {
+              "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cteProgramServiceDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_School_DirectlyOwnedBus": {
+          "properties": {
+            "directlyOwnedBusReference": {
+              "$ref": "#/components/schemas/Sample_Bus_Reference"
+            }
+          },
+          "required": [
+            "directlyOwnedBusReference"
+          ],
+          "type": "object"
+        },
+        "Sample_Staff_Pet": {
+          "properties": {
+            "isFixed": {
+              "description": "An indication as to whether the pet has been spayed/neutered.",
+              "type": "boolean"
+            },
+            "petName": {
+              "description": "The pet's name.",
+              "maxLength": 20,
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "petName"
+          ],
+          "type": "object"
+        },
+        "Sample_Staff_PetPreference": {
+          "properties": {
+            "maximumWeight": {
+              "description": "The preferred maximum weight of a household pet.",
+              "type": "integer"
+            },
+            "minimumWeight": {
+              "description": "The preferred minimum weight of a household pet.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "minimumWeight",
+            "maximumWeight"
+          ],
+          "type": "object"
+        },
         "Sample_StudentArtProgramAssociation": {
           "description": "This is an example of a subclass of an association.",
           "properties": {
@@ -3734,6 +4033,229 @@
           },
           "required": [
             "style"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_Discipline": {
+          "properties": {
+            "disciplineDescriptor": {
+              "description": "The type of action used to discipline the student preferred by the contact.",
+              "maxLength": 306,
+              "type": "string"
+            }
+          },
+          "required": [
+            "disciplineDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_FavoriteBookTitle": {
+          "properties": {
+            "favoriteBookTitle": {
+              "description": "The title of the student's favorite book.",
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          "required": [
+            "favoriteBookTitle"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_HoursPerWeek": {
+          "properties": {
+            "hoursPerWeek": {
+              "description": "Total number of hours per week a student and contact dedicates to reading.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "hoursPerWeek"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_PagesRead": {
+          "properties": {
+            "pagesRead": {
+              "description": "Total number of pages the contact has read the student.",
+              "type": "number"
+            }
+          },
+          "required": [
+            "pagesRead"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_StaffEducationOrganizationEmploymentAssociation": {
+          "properties": {
+            "staffEducationOrganizationEmploymentAssociationReference": {
+              "$ref": "#/components/schemas/EdFi_StaffEducationOrganizationEmploymentAssociation_Reference"
+            }
+          },
+          "required": [
+            "staffEducationOrganizationEmploymentAssociationReference"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentContactAssociation_Telephone": {
+          "properties": {
+            "doNotPublishIndicator": {
+              "description": "An indication that the telephone number should not be published.",
+              "type": "boolean"
+            },
+            "orderOfPriority": {
+              "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "telephoneNumber": {
+              "description": "The telephone number including the area code, and extension, if applicable.",
+              "maxLength": 24,
+              "type": "string"
+            },
+            "telephoneNumberTypeDescriptor": {
+              "description": "The type of communication number listed for an individual or organization.",
+              "type": "string"
+            },
+            "textMessageCapabilityIndicator": {
+              "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "telephoneNumber",
+            "telephoneNumberTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentEducationOrganizationAssociation_Address": {
+          "properties": {
+            "addressTypeDescriptor": {
+              "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
+              "type": "string"
+            },
+            "apartmentRoomSuiteNumber": {
+              "description": "The apartment, room, or suite number of an address.",
+              "maxLength": 50,
+              "type": "string"
+            },
+            "buildingSiteNumber": {
+              "description": "The number of the building on the site, if more than one building shares the same address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "city": {
+              "description": "The name of the city in which an address is located.",
+              "maxLength": 30,
+              "minLength": 2,
+              "type": "string"
+            },
+            "congressionalDistrict": {
+              "description": "The congressional district in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "countyFIPSCode": {
+              "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
+              "maxLength": 5,
+              "minLength": 3,
+              "type": "string"
+            },
+            "doNotPublishIndicator": {
+              "description": "An indication that the address should not be published.",
+              "type": "boolean"
+            },
+            "latitude": {
+              "description": "The geographic latitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "localeDescriptor": {
+              "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
+              "type": "string"
+            },
+            "longitude": {
+              "description": "The geographic longitude of the physical address.",
+              "maxLength": 20,
+              "type": "string"
+            },
+            "nameOfCounty": {
+              "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
+              "maxLength": 30,
+              "type": "string"
+            },
+            "periods": {
+              "items": {
+                "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_Period"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "postalCode": {
+              "description": "The five or nine digit zip code or overseas postal code portion of an address.",
+              "maxLength": 17,
+              "type": "string"
+            },
+            "stateAbbreviationDescriptor": {
+              "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
+              "type": "string"
+            },
+            "streetNumberName": {
+              "description": "The street number and street name or post office box number of an address.",
+              "maxLength": 150,
+              "type": "string"
+            }
+          },
+          "required": [
+            "streetNumberName",
+            "city",
+            "stateAbbreviationDescriptor",
+            "postalCode",
+            "addressTypeDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentEducationOrganizationAssociation_Period": {
+          "properties": {
+            "beginDate": {
+              "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "beginDate"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic": {
+          "properties": {
+            "designatedBy": {
+              "description": "The person, organization, or department that designated the characteristic.",
+              "maxLength": 60,
+              "type": "string"
+            },
+            "periods": {
+              "items": {
+                "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_Period"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "studentCharacteristicDescriptor": {
+              "description": "The characteristic designated for the student.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "studentCharacteristicDescriptor"
           ],
           "type": "object"
         },
@@ -4000,6 +4522,108 @@
           },
           "required": [
             "yearsAttended"
+          ],
+          "type": "object"
+        },
+        "Sample_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation": {
+          "properties": {
+            "relatedGeneralStudentProgramAssociationReference": {
+              "$ref": "#/components/schemas/EdFi_GeneralStudentProgramAssociation_Reference"
+            }
+          },
+          "required": [
+            "relatedGeneralStudentProgramAssociationReference"
+          ],
+          "type": "object"
+        },
+        "Sample_Student_AquaticPet": {
+          "properties": {
+            "mimimumTankVolume": {
+              "description": "The minimum tank volume this aquatic pet requires.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "mimimumTankVolume"
+          ],
+          "type": "object"
+        },
+        "Sample_Student_FavoriteBook": {
+          "properties": {
+            "artMedia": {
+              "items": {
+                "$ref": "#/components/schemas/Sample_Student_FavoriteBookArtMedium"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "bookTitle": {
+              "description": "This is documentation.",
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "favoriteBookCategoryDescriptor": {
+              "description": "This is documentation.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "favoriteBookCategoryDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_Student_FavoriteBookArtMedium": {
+          "properties": {
+            "artMediumDescriptor": {
+              "description": "This is documentation.",
+              "type": "string"
+            },
+            "artPieces": {
+              "description": "This is documentation.",
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "artMediumDescriptor"
+          ],
+          "type": "object"
+        },
+        "Sample_Student_Pet": {
+          "properties": {
+            "isFixed": {
+              "description": "An indication as to whether the pet has been spayed/neutered.",
+              "type": "boolean"
+            },
+            "petName": {
+              "description": "The pet's name.",
+              "maxLength": 20,
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "petName"
+          ],
+          "type": "object"
+        },
+        "Sample_Student_PetPreference": {
+          "properties": {
+            "maximumWeight": {
+              "description": "The preferred maximum weight of a household pet.",
+              "type": "integer"
+            },
+            "minimumWeight": {
+              "description": "The preferred minimum weight of a household pet.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "minimumWeight",
+            "maximumWeight"
           ],
           "type": "object"
         }
