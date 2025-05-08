@@ -5943,3 +5943,87 @@ describe('when domain entity extension references domain entity collection in di
     expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`Array []`);
   });
 });
+
+describe('when domain entity extension has a simple string collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReferencedIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntityExtension(`EdFi.${entityName}`)
+      .withStringProperty('StringCollection', 'doc', true, true, '30')
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct ext for extension with simple collection', () => {
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
+      Object {
+        "Extension_EntityName_StringCollection": Object {
+          "properties": Object {
+            "stringCollection": Object {
+              "description": "doc",
+              "maxLength": 30,
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "stringCollection",
+          ],
+          "type": "object",
+        },
+      }
+    `);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
+      Object {
+        "EdFi_EntityName": Object {
+          "description": "",
+          "properties": Object {
+            "stringCollections": Object {
+              "items": Object {
+                "$ref": "#/components/schemas/Extension_EntityName_StringCollection",
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": false,
+            },
+          },
+          "required": Array [
+            "stringCollections",
+          ],
+          "type": "object",
+        },
+      }
+    `);
+  });
+});
