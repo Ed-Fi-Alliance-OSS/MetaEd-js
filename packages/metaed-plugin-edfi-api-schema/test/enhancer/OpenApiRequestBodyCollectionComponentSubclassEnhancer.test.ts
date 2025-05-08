@@ -17,6 +17,7 @@ import {
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
+  domainEntityReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -107,6 +108,111 @@ describe('when building domain entity subclass with common collection and descri
             "required": Array [
               "identificationCode",
               "educationOrganizationIdentificationSystemDescriptor",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity subclass with reference collection in subclass', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntitySubclassName = 'CommunityOrganization';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass(domainEntitySubclassName, 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('CommunityOrganizationId', 'EducationOrganizationId', 'doc')
+      .withCommonProperty('OrganizationIdentificationCode', 'doc', false, true)
+      .withEndDomainEntitySubclass()
+
+      .withStartCommon('OrganizationIdentificationCode')
+      .withDocumentation('doc')
+      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
+      .withDomainEntityProperty('Organization', 'doc', true, true)
+      .withEndCommon()
+
+      .withStartDomainEntity('Organization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('OrganizationId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    subclassPropertyNamingCollisionEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    subclassPropertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    subclassApiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
+
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "EdFi_CommunityOrganization_OrganizationIdentificationCode",
+          "schema": Object {
+            "properties": Object {
+              "identificationCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "organizations": Object {
+                "items": Object {
+                  "$ref": "#/components/schemas/EdFi_CommunityOrganization_Organization",
+                },
+                "minItems": 1,
+                "type": "array",
+                "uniqueItems": false,
+              },
+            },
+            "required": Array [
+              "identificationCode",
+              "organizations",
+            ],
+            "type": "object",
+          },
+        },
+        Object {
+          "propertyName": "EdFi_CommunityOrganization_Organization",
+          "schema": Object {
+            "properties": Object {
+              "organizationReference": Object {
+                "$ref": "#/components/schemas/EdFi_Organization_Reference",
+              },
+            },
+            "required": Array [
+              "organizationReference",
             ],
             "type": "object",
           },

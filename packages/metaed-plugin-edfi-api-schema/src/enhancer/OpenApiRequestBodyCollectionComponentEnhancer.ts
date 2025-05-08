@@ -10,7 +10,6 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
-  ReferentialProperty,
 } from '@edfi/metaed-core';
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -24,7 +23,7 @@ import {
   SchoolYearOpenApis,
   newSchoolYearOpenApis,
   openApiPropertyForNonReference,
-  openApiReferenceFor,
+  openApiArrayItemForReferenceCollection,
 } from './OpenApiComponentEnhancerBase';
 import { openApiObjectForScalarCommonProperty } from './OpenApiRequestBodyComponentEnhancer';
 import { OpenApiRequestBodyCollectionSchema } from '../model/OpenApiRequestBodyCollectionSchema';
@@ -67,20 +66,6 @@ function openApiNonReferenceCollectionSchemaFor(
   };
 
   return openApiObjectFrom(openApiProperty, [propertyName]);
-}
-
-/**
- * Returns an OpenApi fragment that specifies the API body element shape
- * corresponding to the reference collection item for the given property.
- */
-function openApiArrayItemForReferenceCollection(
-  property: EntityProperty,
-  propertyModifier: PropertyModifier,
-): OpenApiObject {
-  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const referenceName = uncapitalize(prefixedName(apiMapping.referenceCollectionName, propertyModifier));
-
-  return openApiObjectFrom({ [referenceName]: openApiReferenceFor(property as ReferentialProperty) }, [referenceName]);
 }
 
 /**

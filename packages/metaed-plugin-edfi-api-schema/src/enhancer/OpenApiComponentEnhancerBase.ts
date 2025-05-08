@@ -14,7 +14,8 @@ import {
   OpenApiReference,
 } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize } from '../Utility';
+import { singularize, uncapitalize } from '../Utility';
+import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
 export type SchoolYearOpenApis = {
   schoolYearOpenApi: OpenApiProperty;
@@ -195,4 +196,18 @@ export function openApiPropertyForNonReference(
     default:
       return NoOpenApiProperty;
   }
+}
+
+/**
+ * Returns an OpenApi fragment that specifies the API body element shape
+ * corresponding to the reference collection item for the given property.
+ */
+export function openApiArrayItemForReferenceCollection(
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+): OpenApiObject {
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+  const referenceName = uncapitalize(prefixedName(apiMapping.referenceCollectionName, propertyModifier));
+
+  return openApiObjectFrom({ [referenceName]: openApiReferenceFor(property as ReferentialProperty) }, [referenceName]);
 }
