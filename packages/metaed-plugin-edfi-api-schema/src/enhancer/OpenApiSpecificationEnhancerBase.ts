@@ -20,7 +20,6 @@ import {
 } from '../model/OpenApiTypes';
 import { pluralize } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
-import { SchemasPathsTags } from '../model/SchemasPathsTags';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -658,27 +657,10 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
 }
 
 /**
- * Creates the schemas, paths and tags from a given TopLevelEntity
+ * Creates the schemas from a given TopLevelEntity
  */
-export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPathsTags {
+export function createSchemasFrom(entity: TopLevelEntity): Schemas {
   const schemas: Schemas = {};
-  const paths: PathsObject = {};
-  const tags: TagObject[] = [];
-
-  const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
-  const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-
-  // Add to paths without "id"
-  paths[`/${projectEndpointName}/${endpointName}`] = {
-    post: createPostSectionFor(entity, endpointName),
-    get: createGetByQuerySectionFor(entity, endpointName),
-  };
-
-  paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
-    get: createGetByIdSectionFor(entity, endpointName),
-    put: createPutSectionFor(entity, endpointName),
-    delete: createDeleteSectionFor(entity, endpointName),
-  };
 
   const {
     openApiReferenceComponent,
@@ -705,22 +687,52 @@ export function createSchemasPathsTagsFrom(entity: TopLevelEntity): SchemasPaths
     schemas[propertyName] = schema;
   });
 
-  // Add to global tags
+  return schemas;
+}
+
+/**
+ * Creates the paths from a given TopLevelEntity
+ */
+export function createPathsFrom(entity: TopLevelEntity): PathsObject {
+  const paths: PathsObject = {};
+
+  const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
+  const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+  // Add to paths without "id"
+  paths[`/${projectEndpointName}/${endpointName}`] = {
+    post: createPostSectionFor(entity, endpointName),
+    get: createGetByQuerySectionFor(entity, endpointName),
+  };
+
+  paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
+    get: createGetByIdSectionFor(entity, endpointName),
+    put: createPutSectionFor(entity, endpointName),
+    delete: createDeleteSectionFor(entity, endpointName),
+  };
+
+  return paths;
+}
+
+/**
+ * Creates the tags from a given TopLevelEntity
+ */
+export function createTagsFrom(entity: TopLevelEntity): TagObject[] {
+  const tags: TagObject[] = [];
+
+  const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
   tags.push({
     name: endpointName,
     description: entity.documentation,
   });
 
-  return { schemas, paths, tags };
+  return tags;
 }
 
 /**
  * Sorts tag objects by name, returning a new array.
  */
 export function sortTagsByName(tags: TagObject[]): TagObject[] {
-  const sortedTags = [...tags];
-
-  sortedTags.sort((a, b) => a.name.localeCompare(b.name));
-
-  return sortedTags;
+  return [...tags].sort((a, b) => a.name.localeCompare(b.name));
 }

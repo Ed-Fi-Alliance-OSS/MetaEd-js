@@ -4014,12 +4014,12 @@
           "name": "busRoutes"
         },
         {
-          "description": "This is an example of a new Association.",
-          "name": "studentGraduationPlanAssociations"
-        },
-        {
           "description": "This is an example of a subclass of an association.",
           "name": "studentArtProgramAssociations"
+        },
+        {
+          "description": "This is an example of a new Association.",
+          "name": "studentGraduationPlanAssociations"
         }
       ]
     },

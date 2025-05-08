@@ -10,21 +10,23 @@ import {
   type Namespace,
   getEntitiesOfTypeForNamespaces,
 } from '@edfi/metaed-core';
-import { ComponentsObject, Document } from '../model/OpenApiTypes';
+import { ComponentsObject, Document, PathsObject, Schemas, TagObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import {
   createHardcodedParameterResponses,
   createHardcodedComponentParameters,
-  createSchemasPathsTagsFrom,
+  createSchemasFrom,
+  createPathsFrom,
+  createTagsFrom,
   sortTagsByName,
 } from './OpenApiSpecificationEnhancerBase';
-import { SchemasPathsTags } from '../model/SchemasPathsTags';
+
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 
 /**
  * Assembles an OpenAPI document from schemas, paths and tags
  */
-function openApiDocumentFrom({ schemas, paths, tags }: SchemasPathsTags): Document {
+function openApiDocumentFrom(schemas: Schemas, paths: PathsObject, tags: TagObject[]): Document {
   const components: ComponentsObject = {
     schemas,
     responses: createHardcodedParameterResponses(),
@@ -60,8 +62,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     if (namespace.isExtension) return;
 
     const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
-    const resourceSchemaPathsTags: SchemasPathsTags = { schemas: {}, paths: {}, tags: [] };
-    const descriptorSchemaPathsTags: SchemasPathsTags = { schemas: {}, paths: {}, tags: [] };
+    const resourceSchemas: Schemas = {};
+    const resourcePaths: PathsObject = {};
+    const resourceTags: TagObject[] = [];
 
     // All the entities that go in the "resources" OpenAPI schema
     getEntitiesOfTypeForNamespaces(
@@ -72,28 +75,30 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'associationSubclass',
       'schoolYearEnumeration',
     ).forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
-      Object.assign(resourceSchemaPathsTags.schemas, schemas);
-      Object.assign(resourceSchemaPathsTags.paths, paths);
-      resourceSchemaPathsTags.tags.push(...tags);
+      Object.assign(resourceSchemas, createSchemasFrom(entity));
+      Object.assign(resourcePaths, createPathsFrom(entity));
+      resourceTags.push(...createTagsFrom(entity));
     });
 
     const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
-    Object.assign(resourceSchemaPathsTags.schemas, {
+    Object.assign(resourceSchemas, {
       EdFi_SchoolYearTypeReference: schoolYearOpenApis.schoolYearEnumerationOpenApi,
     });
 
-    namespaceEdfiApiSchema.openApiCoreResources = openApiDocumentFrom(resourceSchemaPathsTags);
+    namespaceEdfiApiSchema.openApiCoreResources = openApiDocumentFrom(resourceSchemas, resourcePaths, resourceTags);
+
+    const descriptorSchemas: Schemas = {};
+    const descriptorPaths: PathsObject = {};
+    const descriptorTags: TagObject[] = [];
 
     // And in the "descriptor" OpenAPI schema
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity: TopLevelEntity) => {
-      const { schemas, paths, tags } = createSchemasPathsTagsFrom(entity);
-      Object.assign(descriptorSchemaPathsTags.schemas, schemas);
-      Object.assign(descriptorSchemaPathsTags.paths, paths);
-      descriptorSchemaPathsTags.tags.push(...tags);
+      Object.assign(descriptorSchemas, createSchemasFrom(entity));
+      Object.assign(descriptorPaths, createPathsFrom(entity));
+      descriptorTags.push(...createTagsFrom(entity));
     });
 
-    namespaceEdfiApiSchema.openApiCoreDescriptors = openApiDocumentFrom(descriptorSchemaPathsTags);
+    namespaceEdfiApiSchema.openApiCoreDescriptors = openApiDocumentFrom(descriptorSchemas, descriptorPaths, descriptorTags);
   });
 
   return {

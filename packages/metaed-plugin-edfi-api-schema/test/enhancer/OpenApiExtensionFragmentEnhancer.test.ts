@@ -2797,7 +2797,7 @@ describe('when building a domain entity referencing another referencing another 
       Array [
         Object {
           "description": "doc",
-          "name": "domainEntityNames",
+          "name": "classPeriods",
         },
         Object {
           "description": "doc",
@@ -2805,7 +2805,7 @@ describe('when building a domain entity referencing another referencing another 
         },
         Object {
           "description": "doc",
-          "name": "classPeriods",
+          "name": "domainEntityNames",
         },
         Object {
           "description": "doc",
@@ -4322,19 +4322,19 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Array [
         Object {
           "description": "doc",
-          "name": "domainEntityNames",
-        },
-        Object {
-          "description": "doc",
           "name": "courseOfferings",
         },
         Object {
           "description": "doc",
-          "name": "sessions",
+          "name": "domainEntityNames",
         },
         Object {
           "description": "doc",
           "name": "schools",
+        },
+        Object {
+          "description": "doc",
+          "name": "sessions",
         },
       ]
     `);
@@ -5856,6 +5856,76 @@ describe('when domain entity extension references domain entity in different nam
           },
         }
       `);
+    expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when domain entity extension references domain entity collection in different namespace', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const entityName = 'EntityName';
+  const referencedEntityName = 'ReferencedEntityName';
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(referencedEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReferencedIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntityExtension(`EdFi.${entityName}`)
+      .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', true, true)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct ext for extension namespace that references core schema', () => {
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newPaths).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`Object {}`);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`
+      Object {
+        "EdFi_EntityName": Object {
+          "description": "",
+          "properties": Object {
+            "referencedEntityNames": Object {
+              "items": Object {
+                "$ref": "#/components/schemas/Extension_EntityName_ReferencedEntityName",
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": false,
+            },
+          },
+          "required": Array [
+            "referencedEntityNames",
+          ],
+          "type": "object",
+        },
+      }
+    `);
     expect(openApiExtensionResourceFragments.newTags).toMatchInlineSnapshot(`Array []`);
   });
 });

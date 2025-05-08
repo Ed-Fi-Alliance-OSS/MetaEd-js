@@ -15099,6 +15099,10 @@
       },
       "newTags": [
         {
+          "description": "Information about the association between the Teacher Candidate and the EducatorPreparationProgram",
+          "name": "candidateEducatorPreparationProgramAssociations"
+        },
+        {
           "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
           "name": "candidates"
         },
@@ -15107,48 +15111,44 @@
           "name": "educatorPreparationPrograms"
         },
         {
-          "description": "An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.",
-          "name": "evaluations"
+          "description": "The lowest-level rating for an Evaluation Element for an individual educator.",
+          "name": "evaluationElementRatings"
         },
         {
           "description": "The lowest-level Elements or criterion of performance being evaluated by rubric, quantitative measure, or aggregate survey response.",
           "name": "evaluationElements"
         },
         {
-          "description": "The lowest-level rating for an Evaluation Element for an individual educator.",
-          "name": "evaluationElementRatings"
+          "description": "The rating for the component Evaluation Objective for an individual educator.",
+          "name": "evaluationObjectiveRatings"
         },
         {
           "description": "A subcomponent of an Evaluation, a specific educator Objective or domain of performance that is being evaluated.",
           "name": "evaluationObjectives"
         },
         {
-          "description": "The rating for the component Evaluation Objective for an individual educator.",
-          "name": "evaluationObjectiveRatings"
-        },
-        {
           "description": "The summary weighting for the Evaluation instrument for an individual educator.",
           "name": "evaluationRatings"
+        },
+        {
+          "description": "An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.",
+          "name": "evaluations"
         },
         {
           "description": "This entity represents the financial aid a person is awarded.",
           "name": "financialAids"
         },
         {
-          "description": "A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.",
-          "name": "performanceEvaluations"
-        },
-        {
           "description": "The summary rating for a Performance Evaluation across all Evaluation instruments for an individual educator.",
           "name": "performanceEvaluationRatings"
         },
         {
-          "description": "The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.",
-          "name": "rubricDimensions"
+          "description": "A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.",
+          "name": "performanceEvaluations"
         },
         {
-          "description": "Information about the association between the Teacher Candidate and the EducatorPreparationProgram",
-          "name": "candidateEducatorPreparationProgramAssociations"
+          "description": "The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.",
+          "name": "rubricDimensions"
         },
         {
           "description": "The association provides information about the survey being taken and who the survey is about.",
