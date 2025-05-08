@@ -50,7 +50,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           entity.data.edfiApiSchema as EntityApiSchemaData
         ).openApiRequestBodyComponent;
 
-        // Object.assign(resourceSchemas, createSchemasFrom(entity));
+        Object.assign(resourceSchemas, createSchemasFrom(entity));
       },
     );
 
