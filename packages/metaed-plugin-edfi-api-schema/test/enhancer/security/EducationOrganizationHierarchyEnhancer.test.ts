@@ -79,7 +79,7 @@ describe('when building an EdOrg hierarchy with only EducationOrganization', () 
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [],
+        "EducationOrganization": Object {},
       }
     `);
   });
@@ -126,8 +126,8 @@ describe('when building an EdOrg hierarchy with EducationOrganization subclasses
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [],
-        "School": Array [],
+        "EducationOrganization": Object {},
+        "School": Object {},
       }
     `);
   });
@@ -181,11 +181,11 @@ describe('when building an EdOrg hierarchy with EducationOrganization subclasses
     const educationOrganizationHierarchy = metaEd.namespace.get(namespaceName)?.data.educationOrganizationHierarchy;
     expect(educationOrganizationHierarchy).toMatchInlineSnapshot(`
       Object {
-        "EducationOrganization": Array [],
-        "LocalEducationAgency": Array [],
-        "School": Array [
-          "LocalEducationAgency",
-        ],
+        "EducationOrganization": Object {},
+        "LocalEducationAgency": Object {},
+        "School": Object {
+          "LocalEducationAgency": "$.localEducationAgencyReference.localEducationAgencyId",
+        },
       }
     `);
   });
