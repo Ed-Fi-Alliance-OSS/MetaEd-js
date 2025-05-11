@@ -41,33 +41,33 @@
     "compatibleDsRange": "5.1.0",
     "description": "TPDM-Core",
     "educationOrganizationHierarchy": {
-      "CommunityOrganization": [
-      ],
-      "CommunityProvider": [
-        "CommunityOrganization"
-      ],
-      "EducationOrganization": [
-      ],
-      "EducationOrganizationNetwork": [
-      ],
-      "EducationServiceCenter": [
-        "StateEducationAgency"
-      ],
-      "LocalEducationAgency": [
-        "EducationServiceCenter",
-        "LocalEducationAgency",
-        "StateEducationAgency"
-      ],
-      "OrganizationDepartment": [
-        "EducationOrganization"
-      ],
-      "PostSecondaryInstitution": [
-      ],
-      "School": [
-        "LocalEducationAgency"
-      ],
-      "StateEducationAgency": [
-      ]
+      "CommunityOrganization": {
+      },
+      "CommunityProvider": {
+        "CommunityOrganization": "$.communityOrganizationReference.communityOrganizationId"
+      },
+      "EducationOrganization": {
+      },
+      "EducationOrganizationNetwork": {
+      },
+      "EducationServiceCenter": {
+        "StateEducationAgency": "$.stateEducationAgencyReference.stateEducationAgencyId"
+      },
+      "LocalEducationAgency": {
+        "EducationServiceCenter": "$.educationServiceCenterReference.educationServiceCenterId",
+        "LocalEducationAgency": "$.parentLocalEducationAgencyReference.localEducationAgencyId",
+        "StateEducationAgency": "$.stateEducationAgencyReference.stateEducationAgencyId"
+      },
+      "OrganizationDepartment": {
+        "EducationOrganization": "$.parentEducationOrganizationReference.educationOrganizationId"
+      },
+      "PostSecondaryInstitution": {
+      },
+      "School": {
+        "LocalEducationAgency": "$.localEducationAgencyReference.localEducationAgencyId"
+      },
+      "StateEducationAgency": {
+      }
     },
     "educationOrganizationTypes": [
       "CommunityOrganization",
