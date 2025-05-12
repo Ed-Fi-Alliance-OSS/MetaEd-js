@@ -9,6 +9,7 @@ import {
   DescriptorBuilder,
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
+  DomainEntitySubclassBuilder,
   MetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
@@ -22,6 +23,8 @@ import {
   inlineCommonReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
+  commonReferenceEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -6025,5 +6028,190 @@ describe('when domain entity extension has a simple string collection', () => {
         },
       }
     `);
+  });
+});
+
+describe('when domain entity in extension has a DS common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartCommon('Service')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ServiceIdentity', 'doc')
+      .withDateProperty('BeginDate', 'doc', false, false)
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntity('StudentArtProgram')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withCommonProperty('EdFi.Service', 'doc', true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct ext for extension with DS common collection', () => {
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
+      Object {
+        "Extension_StudentArtProgram": Object {
+          "description": "doc",
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+            "services": Object {
+              "items": Object {
+                "$ref": "#/components/schemas/Extension_StudentArtProgram_Service",
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": false,
+            },
+          },
+          "required": Array [
+            "entityIdentity",
+            "services",
+          ],
+          "type": "object",
+        },
+        "Extension_StudentArtProgram_Reference": Object {
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+          },
+          "required": Array [
+            "entityIdentity",
+          ],
+          "type": "object",
+        },
+        "Extension_StudentArtProgram_Service": Object {
+          "properties": Object {
+            "beginDate": Object {
+              "description": "doc",
+              "format": "date",
+              "type": "string",
+            },
+            "serviceIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+          },
+          "required": Array [
+            "serviceIdentity",
+          ],
+          "type": "object",
+        },
+      }
+    `);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+  });
+});
+
+describe('when domain entity subclass in extension has a DS common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartAbstractEntity('GeneralStudentProgram')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityIdentity', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartCommon('Service')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ServiceIdentity', 'doc')
+      .withDateProperty('BeginDate', 'doc', false, false)
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntitySubclass('StudentArtProgram', 'EdFi.GeneralStudentProgram')
+      .withDocumentation('doc')
+      .withCommonProperty('EdFi.Service', 'doc', true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct ext for extension with DS common collection', () => {
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
+      Object {
+        "Extension_StudentArtProgram": Object {
+          "description": "doc",
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+            "services": Object {
+              "items": Object {
+                "$ref": "#/components/schemas/Extension_StudentArtProgram_Service",
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": false,
+            },
+          },
+          "required": Array [
+            "services",
+            "entityIdentity",
+          ],
+          "type": "object",
+        },
+        "Extension_StudentArtProgram_Reference": Object {
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+          },
+          "required": Array [
+            "entityIdentity",
+          ],
+          "type": "object",
+        },
+      }
+    `);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
   });
 });
