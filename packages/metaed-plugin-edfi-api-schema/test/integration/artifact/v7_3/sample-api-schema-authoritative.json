@@ -4023,6 +4023,32 @@
           ],
           "type": "object"
         },
+        "Sample_StudentArtProgramAssociation_Service": {
+          "properties": {
+            "primaryIndicator": {
+              "description": "True if service is a primary service.",
+              "type": "boolean"
+            },
+            "serviceBeginDate": {
+              "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            },
+            "serviceDescriptor": {
+              "description": "Indicates the service being provided to the student by the program.",
+              "type": "string"
+            },
+            "serviceEndDate": {
+              "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "required": [
+            "serviceDescriptor"
+          ],
+          "type": "object"
+        },
         "Sample_StudentArtProgramAssociation_Style": {
           "properties": {
             "style": {

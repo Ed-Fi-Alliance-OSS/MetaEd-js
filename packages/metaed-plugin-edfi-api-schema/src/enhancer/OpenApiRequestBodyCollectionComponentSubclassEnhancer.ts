@@ -148,7 +148,10 @@ function buildOpenApiCollectionSchemaList(
     // Skip if the property is referencing a different namespace
     if (isReferentialProperty(property)) {
       const referentialProperty = property as ReferentialProperty;
-      if (referentialProperty.referencedEntity.namespace !== entityForOpenApi.namespace) {
+      if (
+        referentialProperty.referencedEntity.namespace !== entityForOpenApi.namespace &&
+        referentialProperty.parentEntity.namespace !== entityForOpenApi.namespace
+      ) {
         return;
       }
     }

@@ -12,6 +12,7 @@ import {
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
   DescriptorBuilder,
+  newNamespace,
 } from '@edfi/metaed-core';
 import {
   commonReferenceEnhancer,
@@ -219,5 +220,144 @@ describe('when building domain entity subclass with reference collection in subc
         },
       ]
     `);
+  });
+});
+
+describe('when domain entity subclass in extension has a DS common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartAbstractEntity('GeneralStudentProgram')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SuperclassIdentity', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartCommon('Service')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ServiceIdentity', 'doc')
+      .withDateProperty('BeginDate', 'doc', false, false)
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntitySubclass('StudentArtProgram', 'EdFi.GeneralStudentProgram')
+      .withDocumentation('doc')
+      .withCommonProperty('EdFi.Service', 'doc', true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    subclassPropertyNamingCollisionEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    subclassPropertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    subclassApiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema', () => {
+    const entity = extensionNamespace.entity.domainEntitySubclass.get('StudentArtProgram');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "propertyName": "Extension_StudentArtProgram_Service",
+          "schema": Object {
+            "properties": Object {
+              "beginDate": Object {
+                "description": "doc",
+                "format": "date",
+                "type": "string",
+              },
+              "serviceIdentity": Object {
+                "description": "doc",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "serviceIdentity",
+            ],
+            "type": "object",
+          },
+        },
+      ]
+    `);
+  });
+});
+
+describe('when domain entity superclass in DS has a common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartAbstractEntity('GeneralStudentProgram')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SuperclassIdentity', 'doc')
+      .withCommonProperty('Service', 'doc', true, true)
+      .withEndAbstractEntity()
+
+      .withStartCommon('Service')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ServiceIdentity', 'doc')
+      .withDateProperty('BeginDate', 'doc', false, false)
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntitySubclass('StudentArtProgram', 'EdFi.GeneralStudentProgram')
+      .withIntegerIdentity('SubclassIdentity', 'doc')
+      .withDocumentation('doc')
+
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    subclassPropertyNamingCollisionEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    subclassPropertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    subclassApiEntityMappingEnhancer(metaEd);
+    openApiRequestBodyComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have no collection schema', () => {
+    const entity = extensionNamespace.entity.domainEntitySubclass.get('StudentArtProgram');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
   });
 });
