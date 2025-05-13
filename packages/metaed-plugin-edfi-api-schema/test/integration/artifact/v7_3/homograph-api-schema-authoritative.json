@@ -73,7 +73,7 @@
         "/homograph/contacts": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getContact",
+            "operationId": "getHomographContact",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -139,7 +139,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postContact",
+            "operationId": "postHomographContact",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -190,7 +190,7 @@
         "/homograph/contacts/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteContactsById",
+            "operationId": "deleteHomographContactsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -241,7 +241,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getContactsById",
+            "operationId": "getHomographContactsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -302,7 +302,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putContact",
+            "operationId": "putHomographContact",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -374,7 +374,7 @@
         "/homograph/names": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getName",
+            "operationId": "getHomographName",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -462,7 +462,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postName",
+            "operationId": "postHomographName",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -513,7 +513,7 @@
         "/homograph/names/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteNamesById",
+            "operationId": "deleteHomographNamesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -564,7 +564,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getNamesById",
+            "operationId": "getHomographNamesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -625,7 +625,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putName",
+            "operationId": "putHomographName",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -697,7 +697,7 @@
         "/homograph/schoolYearTypes": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchoolYearType",
+            "operationId": "getHomographSchoolYearType",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -773,7 +773,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSchoolYearType",
+            "operationId": "postHomographSchoolYearType",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -824,7 +824,7 @@
         "/homograph/schoolYearTypes/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchoolYearTypesById",
+            "operationId": "deleteHomographSchoolYearTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -875,7 +875,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchoolYearTypesById",
+            "operationId": "getHomographSchoolYearTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -936,7 +936,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSchoolYearType",
+            "operationId": "putHomographSchoolYearType",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1008,7 +1008,7 @@
         "/homograph/schools": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchool",
+            "operationId": "getHomographSchool",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1095,7 +1095,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSchool",
+            "operationId": "postHomographSchool",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -1146,7 +1146,7 @@
         "/homograph/schools/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchoolsById",
+            "operationId": "deleteHomographSchoolsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1197,7 +1197,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchoolsById",
+            "operationId": "getHomographSchoolsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1258,7 +1258,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSchool",
+            "operationId": "putHomographSchool",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1330,7 +1330,7 @@
         "/homograph/staffs": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getStaff",
+            "operationId": "getHomographStaff",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1396,7 +1396,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postStaff",
+            "operationId": "postHomographStaff",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -1447,7 +1447,7 @@
         "/homograph/staffs/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteStaffsById",
+            "operationId": "deleteHomographStaffsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1498,7 +1498,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getStaffsById",
+            "operationId": "getHomographStaffsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1559,7 +1559,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putStaff",
+            "operationId": "putHomographStaff",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1631,7 +1631,7 @@
         "/homograph/studentSchoolAssociations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getStudentSchoolAssociation",
+            "operationId": "getHomographStudentSchoolAssociation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1697,7 +1697,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postStudentSchoolAssociation",
+            "operationId": "postHomographStudentSchoolAssociation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -1748,7 +1748,7 @@
         "/homograph/studentSchoolAssociations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteStudentSchoolAssociationsById",
+            "operationId": "deleteHomographStudentSchoolAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1799,7 +1799,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getStudentSchoolAssociationsById",
+            "operationId": "getHomographStudentSchoolAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1860,7 +1860,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putStudentSchoolAssociation",
+            "operationId": "putHomographStudentSchoolAssociation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1932,7 +1932,7 @@
         "/homograph/students": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getStudent",
+            "operationId": "getHomographStudent",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -2009,7 +2009,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postStudent",
+            "operationId": "postHomographStudent",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -2060,7 +2060,7 @@
         "/homograph/students/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteStudentsById",
+            "operationId": "deleteHomographStudentsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2111,7 +2111,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getStudentsById",
+            "operationId": "getHomographStudentsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2172,7 +2172,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putStudent",
+            "operationId": "putHomographStudent",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",

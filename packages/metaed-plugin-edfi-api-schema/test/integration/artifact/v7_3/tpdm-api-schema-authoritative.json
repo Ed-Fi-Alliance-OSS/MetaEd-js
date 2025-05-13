@@ -89,7 +89,7 @@
         "/tpdm/accreditationStatusDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getAccreditationStatus",
+            "operationId": "getTPDMAccreditationStatus",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -211,7 +211,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postAccreditationStatus",
+            "operationId": "postTPDMAccreditationStatus",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -262,7 +262,7 @@
         "/tpdm/accreditationStatusDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteAccreditationStatusesById",
+            "operationId": "deleteTPDMAccreditationStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -313,7 +313,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getAccreditationStatusesById",
+            "operationId": "getTPDMAccreditationStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -374,7 +374,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putAccreditationStatus",
+            "operationId": "putTPDMAccreditationStatus",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -446,7 +446,7 @@
         "/tpdm/aidTypeDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getAidType",
+            "operationId": "getTPDMAidType",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -568,7 +568,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postAidType",
+            "operationId": "postTPDMAidType",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -619,7 +619,7 @@
         "/tpdm/aidTypeDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteAidTypesById",
+            "operationId": "deleteTPDMAidTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -670,7 +670,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getAidTypesById",
+            "operationId": "getTPDMAidTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -731,7 +731,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putAidType",
+            "operationId": "putTPDMAidType",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -803,7 +803,7 @@
         "/tpdm/certificationRouteDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCertificationRoute",
+            "operationId": "getTPDMCertificationRoute",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -925,7 +925,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCertificationRoute",
+            "operationId": "postTPDMCertificationRoute",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -976,7 +976,7 @@
         "/tpdm/certificationRouteDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCertificationRoutesById",
+            "operationId": "deleteTPDMCertificationRoutesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1027,7 +1027,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCertificationRoutesById",
+            "operationId": "getTPDMCertificationRoutesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1088,7 +1088,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCertificationRoute",
+            "operationId": "putTPDMCertificationRoute",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1160,7 +1160,7 @@
         "/tpdm/coteachingStyleObservedDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCoteachingStyleObserved",
+            "operationId": "getTPDMCoteachingStyleObserved",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1282,7 +1282,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCoteachingStyleObserved",
+            "operationId": "postTPDMCoteachingStyleObserved",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -1333,7 +1333,7 @@
         "/tpdm/coteachingStyleObservedDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCoteachingStyleObservedsById",
+            "operationId": "deleteTPDMCoteachingStyleObservedsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1384,7 +1384,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCoteachingStyleObservedsById",
+            "operationId": "getTPDMCoteachingStyleObservedsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1445,7 +1445,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCoteachingStyleObserved",
+            "operationId": "putTPDMCoteachingStyleObserved",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1517,7 +1517,7 @@
         "/tpdm/credentialStatusDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCredentialStatus",
+            "operationId": "getTPDMCredentialStatus",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1639,7 +1639,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCredentialStatus",
+            "operationId": "postTPDMCredentialStatus",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -1690,7 +1690,7 @@
         "/tpdm/credentialStatusDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCredentialStatusesById",
+            "operationId": "deleteTPDMCredentialStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1741,7 +1741,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCredentialStatusesById",
+            "operationId": "getTPDMCredentialStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1802,7 +1802,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCredentialStatus",
+            "operationId": "putTPDMCredentialStatus",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1874,7 +1874,7 @@
         "/tpdm/educatorRoleDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEducatorRole",
+            "operationId": "getTPDMEducatorRole",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -1996,7 +1996,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEducatorRole",
+            "operationId": "postTPDMEducatorRole",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -2047,7 +2047,7 @@
         "/tpdm/educatorRoleDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEducatorRolesById",
+            "operationId": "deleteTPDMEducatorRolesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2098,7 +2098,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEducatorRolesById",
+            "operationId": "getTPDMEducatorRolesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2159,7 +2159,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEducatorRole",
+            "operationId": "putTPDMEducatorRole",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2231,7 +2231,7 @@
         "/tpdm/englishLanguageExamDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEnglishLanguageExam",
+            "operationId": "getTPDMEnglishLanguageExam",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -2353,7 +2353,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEnglishLanguageExam",
+            "operationId": "postTPDMEnglishLanguageExam",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -2404,7 +2404,7 @@
         "/tpdm/englishLanguageExamDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEnglishLanguageExamsById",
+            "operationId": "deleteTPDMEnglishLanguageExamsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2455,7 +2455,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEnglishLanguageExamsById",
+            "operationId": "getTPDMEnglishLanguageExamsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2516,7 +2516,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEnglishLanguageExam",
+            "operationId": "putTPDMEnglishLanguageExam",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2588,7 +2588,7 @@
         "/tpdm/eppProgramPathwayDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEPPProgramPathway",
+            "operationId": "getTPDMEPPProgramPathway",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -2710,7 +2710,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEPPProgramPathway",
+            "operationId": "postTPDMEPPProgramPathway",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -2761,7 +2761,7 @@
         "/tpdm/eppProgramPathwayDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEPPProgramPathwaysById",
+            "operationId": "deleteTPDMEPPProgramPathwaysById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2812,7 +2812,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEPPProgramPathwaysById",
+            "operationId": "getTPDMEPPProgramPathwaysById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2873,7 +2873,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEPPProgramPathway",
+            "operationId": "putTPDMEPPProgramPathway",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2945,7 +2945,7 @@
         "/tpdm/evaluationElementRatingLevelDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationElementRatingLevel",
+            "operationId": "getTPDMEvaluationElementRatingLevel",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -3067,7 +3067,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationElementRatingLevel",
+            "operationId": "postTPDMEvaluationElementRatingLevel",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -3118,7 +3118,7 @@
         "/tpdm/evaluationElementRatingLevelDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationElementRatingLevelsById",
+            "operationId": "deleteTPDMEvaluationElementRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3169,7 +3169,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationElementRatingLevelsById",
+            "operationId": "getTPDMEvaluationElementRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3230,7 +3230,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationElementRatingLevel",
+            "operationId": "putTPDMEvaluationElementRatingLevel",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3302,7 +3302,7 @@
         "/tpdm/evaluationPeriodDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationPeriod",
+            "operationId": "getTPDMEvaluationPeriod",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -3424,7 +3424,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationPeriod",
+            "operationId": "postTPDMEvaluationPeriod",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -3475,7 +3475,7 @@
         "/tpdm/evaluationPeriodDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationPeriodsById",
+            "operationId": "deleteTPDMEvaluationPeriodsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3526,7 +3526,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationPeriodsById",
+            "operationId": "getTPDMEvaluationPeriodsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3587,7 +3587,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationPeriod",
+            "operationId": "putTPDMEvaluationPeriod",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3659,7 +3659,7 @@
         "/tpdm/evaluationRatingLevelDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationRatingLevel",
+            "operationId": "getTPDMEvaluationRatingLevel",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -3781,7 +3781,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationRatingLevel",
+            "operationId": "postTPDMEvaluationRatingLevel",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -3832,7 +3832,7 @@
         "/tpdm/evaluationRatingLevelDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationRatingLevelsById",
+            "operationId": "deleteTPDMEvaluationRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3883,7 +3883,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationRatingLevelsById",
+            "operationId": "getTPDMEvaluationRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3944,7 +3944,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationRatingLevel",
+            "operationId": "putTPDMEvaluationRatingLevel",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4016,7 +4016,7 @@
         "/tpdm/evaluationRatingStatusDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationRatingStatus",
+            "operationId": "getTPDMEvaluationRatingStatus",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -4138,7 +4138,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationRatingStatus",
+            "operationId": "postTPDMEvaluationRatingStatus",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -4189,7 +4189,7 @@
         "/tpdm/evaluationRatingStatusDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationRatingStatusesById",
+            "operationId": "deleteTPDMEvaluationRatingStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4240,7 +4240,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationRatingStatusesById",
+            "operationId": "getTPDMEvaluationRatingStatusesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4301,7 +4301,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationRatingStatus",
+            "operationId": "putTPDMEvaluationRatingStatus",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4373,7 +4373,7 @@
         "/tpdm/evaluationTypeDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationType",
+            "operationId": "getTPDMEvaluationType",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -4495,7 +4495,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationType",
+            "operationId": "postTPDMEvaluationType",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -4546,7 +4546,7 @@
         "/tpdm/evaluationTypeDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationTypesById",
+            "operationId": "deleteTPDMEvaluationTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4597,7 +4597,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationTypesById",
+            "operationId": "getTPDMEvaluationTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4658,7 +4658,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationType",
+            "operationId": "putTPDMEvaluationType",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4730,7 +4730,7 @@
         "/tpdm/genderDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getGender",
+            "operationId": "getTPDMGender",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -4852,7 +4852,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postGender",
+            "operationId": "postTPDMGender",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -4903,7 +4903,7 @@
         "/tpdm/genderDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteGendersById",
+            "operationId": "deleteTPDMGendersById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4954,7 +4954,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getGendersById",
+            "operationId": "getTPDMGendersById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5015,7 +5015,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putGender",
+            "operationId": "putTPDMGender",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5087,7 +5087,7 @@
         "/tpdm/objectiveRatingLevelDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getObjectiveRatingLevel",
+            "operationId": "getTPDMObjectiveRatingLevel",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -5209,7 +5209,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postObjectiveRatingLevel",
+            "operationId": "postTPDMObjectiveRatingLevel",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -5260,7 +5260,7 @@
         "/tpdm/objectiveRatingLevelDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteObjectiveRatingLevelsById",
+            "operationId": "deleteTPDMObjectiveRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5311,7 +5311,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getObjectiveRatingLevelsById",
+            "operationId": "getTPDMObjectiveRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5372,7 +5372,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putObjectiveRatingLevel",
+            "operationId": "putTPDMObjectiveRatingLevel",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5444,7 +5444,7 @@
         "/tpdm/performanceEvaluationRatingLevelDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getPerformanceEvaluationRatingLevel",
+            "operationId": "getTPDMPerformanceEvaluationRatingLevel",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -5566,7 +5566,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postPerformanceEvaluationRatingLevel",
+            "operationId": "postTPDMPerformanceEvaluationRatingLevel",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -5617,7 +5617,7 @@
         "/tpdm/performanceEvaluationRatingLevelDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deletePerformanceEvaluationRatingLevelsById",
+            "operationId": "deleteTPDMPerformanceEvaluationRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5668,7 +5668,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getPerformanceEvaluationRatingLevelsById",
+            "operationId": "getTPDMPerformanceEvaluationRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5729,7 +5729,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putPerformanceEvaluationRatingLevel",
+            "operationId": "putTPDMPerformanceEvaluationRatingLevel",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5801,7 +5801,7 @@
         "/tpdm/performanceEvaluationTypeDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getPerformanceEvaluationType",
+            "operationId": "getTPDMPerformanceEvaluationType",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -5923,7 +5923,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postPerformanceEvaluationType",
+            "operationId": "postTPDMPerformanceEvaluationType",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -5974,7 +5974,7 @@
         "/tpdm/performanceEvaluationTypeDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deletePerformanceEvaluationTypesById",
+            "operationId": "deleteTPDMPerformanceEvaluationTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -6025,7 +6025,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getPerformanceEvaluationTypesById",
+            "operationId": "getTPDMPerformanceEvaluationTypesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -6086,7 +6086,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putPerformanceEvaluationType",
+            "operationId": "putTPDMPerformanceEvaluationType",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -6158,7 +6158,7 @@
         "/tpdm/rubricRatingLevelDescriptors": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getRubricRatingLevel",
+            "operationId": "getTPDMRubricRatingLevel",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -6280,7 +6280,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postRubricRatingLevel",
+            "operationId": "postTPDMRubricRatingLevel",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -6331,7 +6331,7 @@
         "/tpdm/rubricRatingLevelDescriptors/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteRubricRatingLevelsById",
+            "operationId": "deleteTPDMRubricRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -6382,7 +6382,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getRubricRatingLevelsById",
+            "operationId": "getTPDMRubricRatingLevelsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -6443,7 +6443,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putRubricRatingLevel",
+            "operationId": "putTPDMRubricRatingLevel",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -7577,7 +7577,7 @@
         "/tpdm/candidateEducatorPreparationProgramAssociations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCandidateEducatorPreparationProgramAssociation",
+            "operationId": "getTPDMCandidateEducatorPreparationProgramAssociation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -7680,7 +7680,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCandidateEducatorPreparationProgramAssociation",
+            "operationId": "postTPDMCandidateEducatorPreparationProgramAssociation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -7731,7 +7731,7 @@
         "/tpdm/candidateEducatorPreparationProgramAssociations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCandidateEducatorPreparationProgramAssociationsById",
+            "operationId": "deleteTPDMCandidateEducatorPreparationProgramAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -7782,7 +7782,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCandidateEducatorPreparationProgramAssociationsById",
+            "operationId": "getTPDMCandidateEducatorPreparationProgramAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -7843,7 +7843,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCandidateEducatorPreparationProgramAssociation",
+            "operationId": "putTPDMCandidateEducatorPreparationProgramAssociation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -7915,7 +7915,7 @@
         "/tpdm/candidates": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCandidate",
+            "operationId": "getTPDMCandidate",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -8206,7 +8206,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCandidate",
+            "operationId": "postTPDMCandidate",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -8257,7 +8257,7 @@
         "/tpdm/candidates/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCandidatesById",
+            "operationId": "deleteTPDMCandidatesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8308,7 +8308,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCandidatesById",
+            "operationId": "getTPDMCandidatesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8369,7 +8369,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCandidate",
+            "operationId": "putTPDMCandidate",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8441,7 +8441,7 @@
         "/tpdm/educatorPreparationPrograms": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEducatorPreparationProgram",
+            "operationId": "getTPDMEducatorPreparationProgram",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -8546,7 +8546,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEducatorPreparationProgram",
+            "operationId": "postTPDMEducatorPreparationProgram",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -8597,7 +8597,7 @@
         "/tpdm/educatorPreparationPrograms/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEducatorPreparationProgramsById",
+            "operationId": "deleteTPDMEducatorPreparationProgramsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8648,7 +8648,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEducatorPreparationProgramsById",
+            "operationId": "getTPDMEducatorPreparationProgramsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8709,7 +8709,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEducatorPreparationProgram",
+            "operationId": "putTPDMEducatorPreparationProgram",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8781,7 +8781,7 @@
         "/tpdm/evaluationElementRatings": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationElementRating",
+            "operationId": "getTPDMEvaluationElementRating",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -8896,7 +8896,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationElementRating",
+            "operationId": "postTPDMEvaluationElementRating",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -8947,7 +8947,7 @@
         "/tpdm/evaluationElementRatings/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationElementRatingsById",
+            "operationId": "deleteTPDMEvaluationElementRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -8998,7 +8998,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationElementRatingsById",
+            "operationId": "getTPDMEvaluationElementRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9059,7 +9059,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationElementRating",
+            "operationId": "putTPDMEvaluationElementRating",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9131,7 +9131,7 @@
         "/tpdm/evaluationElements": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationElement",
+            "operationId": "getTPDMEvaluationElement",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -9244,7 +9244,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationElement",
+            "operationId": "postTPDMEvaluationElement",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -9295,7 +9295,7 @@
         "/tpdm/evaluationElements/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationElementsById",
+            "operationId": "deleteTPDMEvaluationElementsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9346,7 +9346,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationElementsById",
+            "operationId": "getTPDMEvaluationElementsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9407,7 +9407,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationElement",
+            "operationId": "putTPDMEvaluationElement",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9479,7 +9479,7 @@
         "/tpdm/evaluationObjectiveRatings": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationObjectiveRating",
+            "operationId": "getTPDMEvaluationObjectiveRating",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -9564,7 +9564,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationObjectiveRating",
+            "operationId": "postTPDMEvaluationObjectiveRating",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -9615,7 +9615,7 @@
         "/tpdm/evaluationObjectiveRatings/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationObjectiveRatingsById",
+            "operationId": "deleteTPDMEvaluationObjectiveRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9666,7 +9666,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationObjectiveRatingsById",
+            "operationId": "getTPDMEvaluationObjectiveRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9727,7 +9727,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationObjectiveRating",
+            "operationId": "putTPDMEvaluationObjectiveRating",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -9799,7 +9799,7 @@
         "/tpdm/evaluationObjectives": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationObjective",
+            "operationId": "getTPDMEvaluationObjective",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -9921,7 +9921,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationObjective",
+            "operationId": "postTPDMEvaluationObjective",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -9972,7 +9972,7 @@
         "/tpdm/evaluationObjectives/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationObjectivesById",
+            "operationId": "deleteTPDMEvaluationObjectivesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10023,7 +10023,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationObjectivesById",
+            "operationId": "getTPDMEvaluationObjectivesById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10084,7 +10084,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationObjective",
+            "operationId": "putTPDMEvaluationObjective",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10156,7 +10156,7 @@
         "/tpdm/evaluationRatings": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluationRating",
+            "operationId": "getTPDMEvaluationRating",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -10269,7 +10269,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluationRating",
+            "operationId": "postTPDMEvaluationRating",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -10320,7 +10320,7 @@
         "/tpdm/evaluationRatings/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationRatingsById",
+            "operationId": "deleteTPDMEvaluationRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10371,7 +10371,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationRatingsById",
+            "operationId": "getTPDMEvaluationRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10432,7 +10432,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluationRating",
+            "operationId": "putTPDMEvaluationRating",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10504,7 +10504,7 @@
         "/tpdm/evaluations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEvaluation",
+            "operationId": "getTPDMEvaluation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -10626,7 +10626,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEvaluation",
+            "operationId": "postTPDMEvaluation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -10677,7 +10677,7 @@
         "/tpdm/evaluations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEvaluationsById",
+            "operationId": "deleteTPDMEvaluationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10728,7 +10728,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEvaluationsById",
+            "operationId": "getTPDMEvaluationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10789,7 +10789,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEvaluation",
+            "operationId": "putTPDMEvaluation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -10861,7 +10861,7 @@
         "/tpdm/financialAids": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getFinancialAid",
+            "operationId": "getTPDMFinancialAid",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -10982,7 +10982,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postFinancialAid",
+            "operationId": "postTPDMFinancialAid",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -11033,7 +11033,7 @@
         "/tpdm/financialAids/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteFinancialAidsById",
+            "operationId": "deleteTPDMFinancialAidsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11084,7 +11084,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getFinancialAidsById",
+            "operationId": "getTPDMFinancialAidsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11145,7 +11145,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putFinancialAid",
+            "operationId": "putTPDMFinancialAid",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11217,7 +11217,7 @@
         "/tpdm/performanceEvaluationRatings": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getPerformanceEvaluationRating",
+            "operationId": "getTPDMPerformanceEvaluationRating",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -11354,7 +11354,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postPerformanceEvaluationRating",
+            "operationId": "postTPDMPerformanceEvaluationRating",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -11405,7 +11405,7 @@
         "/tpdm/performanceEvaluationRatings/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deletePerformanceEvaluationRatingsById",
+            "operationId": "deleteTPDMPerformanceEvaluationRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11456,7 +11456,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getPerformanceEvaluationRatingsById",
+            "operationId": "getTPDMPerformanceEvaluationRatingsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11517,7 +11517,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putPerformanceEvaluationRating",
+            "operationId": "putTPDMPerformanceEvaluationRating",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11589,7 +11589,7 @@
         "/tpdm/performanceEvaluations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getPerformanceEvaluation",
+            "operationId": "getTPDMPerformanceEvaluation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -11724,7 +11724,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postPerformanceEvaluation",
+            "operationId": "postTPDMPerformanceEvaluation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -11775,7 +11775,7 @@
         "/tpdm/performanceEvaluations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deletePerformanceEvaluationsById",
+            "operationId": "deleteTPDMPerformanceEvaluationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11826,7 +11826,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getPerformanceEvaluationsById",
+            "operationId": "getTPDMPerformanceEvaluationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11887,7 +11887,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putPerformanceEvaluation",
+            "operationId": "putTPDMPerformanceEvaluation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -11959,7 +11959,7 @@
         "/tpdm/rubricDimensions": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getRubricDimension",
+            "operationId": "getTPDMRubricDimension",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -12062,7 +12062,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postRubricDimension",
+            "operationId": "postTPDMRubricDimension",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -12113,7 +12113,7 @@
         "/tpdm/rubricDimensions/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteRubricDimensionsById",
+            "operationId": "deleteTPDMRubricDimensionsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12164,7 +12164,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getRubricDimensionsById",
+            "operationId": "getTPDMRubricDimensionsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12225,7 +12225,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putRubricDimension",
+            "operationId": "putTPDMRubricDimension",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12297,7 +12297,7 @@
         "/tpdm/surveyResponsePersonTargetAssociations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSurveyResponsePersonTargetAssociation",
+            "operationId": "getTPDMSurveyResponsePersonTargetAssociation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -12363,7 +12363,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSurveyResponsePersonTargetAssociation",
+            "operationId": "postTPDMSurveyResponsePersonTargetAssociation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -12414,7 +12414,7 @@
         "/tpdm/surveyResponsePersonTargetAssociations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSurveyResponsePersonTargetAssociationsById",
+            "operationId": "deleteTPDMSurveyResponsePersonTargetAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12465,7 +12465,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSurveyResponsePersonTargetAssociationsById",
+            "operationId": "getTPDMSurveyResponsePersonTargetAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12526,7 +12526,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSurveyResponsePersonTargetAssociation",
+            "operationId": "putTPDMSurveyResponsePersonTargetAssociation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12598,7 +12598,7 @@
         "/tpdm/surveySectionResponsePersonTargetAssociations": {
           "get": {
             "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSurveySectionResponsePersonTargetAssociation",
+            "operationId": "getTPDMSurveySectionResponsePersonTargetAssociation",
             "parameters": [
               {
                 "$ref": "#/components/parameters/offset"
@@ -12664,7 +12664,7 @@
           },
           "post": {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSurveySectionResponsePersonTargetAssociation",
+            "operationId": "postTPDMSurveySectionResponsePersonTargetAssociation",
             "requestBody": {
               "content": {
                 "application/json": {
@@ -12715,7 +12715,7 @@
         "/tpdm/surveySectionResponsePersonTargetAssociations/{id}": {
           "delete": {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSurveySectionResponsePersonTargetAssociationsById",
+            "operationId": "deleteTPDMSurveySectionResponsePersonTargetAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12766,7 +12766,7 @@
           },
           "get": {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSurveySectionResponsePersonTargetAssociationsById",
+            "operationId": "getTPDMSurveySectionResponsePersonTargetAssociationsById",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -12827,7 +12827,7 @@
           },
           "put": {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSurveySectionResponsePersonTargetAssociation",
+            "operationId": "putTPDMSurveySectionResponsePersonTargetAssociation",
             "parameters": [
               {
                 "description": "A resource identifier that uniquely identifies the resource.",
