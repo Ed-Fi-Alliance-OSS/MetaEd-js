@@ -145,7 +145,8 @@ function buildOpenApiCollectionSchemaList(
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
-    // Skip if the property is referencing a different namespace
+    // If it's a reference property in the DS, like when it's from a superclass in the DS,
+    // then you ignore because the collection schema component will already be taken care of in the DS OpenAPI
     if (isReferentialProperty(property)) {
       const referentialProperty = property as ReferentialProperty;
       if (
