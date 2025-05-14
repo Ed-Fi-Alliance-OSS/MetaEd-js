@@ -11,6 +11,39 @@ param (
     [string]$MetaEdExtensionName = ""   
 )
 
+# Extracts metaEdProject.projectVersion from MetaEd project package.json
+function Get-ProjectVersionFromPackageJson {
+    param (
+        [string]$PackageJsonPath
+    )
+
+    if (-not (Test-Path $PackageJsonPath -PathType Leaf)) {
+        Write-Warning "MetaEd project package.json not found at $PackageJsonPath"
+        return $null
+    }
+
+    try {
+        $jsonContent = Get-Content -Path $PackageJsonPath -Raw
+        $jsonObject = $jsonContent | ConvertFrom-Json -ErrorAction Stop
+
+        if ($jsonObject.PSObject.Properties.Name -contains 'metaEdProject' -and $null -ne $jsonObject.metaEdProject) {
+            if ($jsonObject.metaEdProject.PSObject.Properties.Name -contains 'projectVersion' -and -not [string]::IsNullOrEmpty($jsonObject.metaEdProject.projectVersion)) {
+                return $jsonObject.metaEdProject.projectVersion
+            } else {
+                Write-Warning "JSON element 'metaEdProject.projectVersion' not found in $PackageJsonPath"
+                return $null
+            }
+        } else {
+            Write-Warning "JSON element 'metaEdProject' not found in $PackageJsonPath"
+            return $null
+        }
+    }
+    catch {
+        Write-Warning "Error reading package.json at '$PackageJsonPath': $($_.Exception.Message)"
+        return $null
+    }
+}
+
 # Define the base structure for MetaEd configuration
 $metaEdConfig = @{
     "metaEdConfiguration" = @{
@@ -37,15 +70,29 @@ $metaEdConfig = @{
 }
 
 if ($MetaEdExtensionName -eq "TPDM" -or $MetaEdExtensionName -eq "Homograph" -or $MetaEdExtensionName -eq "Sample") {
+    $extensionProjectVersionDefault = "1.0.0"
+    $extensionProjectPath = "$Workspace/MetaEdExtensionSource"
+    $packageJsonPathForExtension = Join-Path -Path $extensionProjectPath -ChildPath "package.json"
+    
+    $extractedVersion = Get-ProjectVersionFromPackageJson -PackageJsonPath $packageJsonPathForExtension
+    
+    $versionToUse = $extensionProjectVersionDefault
+    if (-not [string]::IsNullOrEmpty($extractedVersion)) {
+        $versionToUse = $extractedVersion
+        Write-Host "Using projectVersion '$versionToUse' from $packageJsonPathForExtension for $MetaEdExtensionName extension."
+    } else {
+        Write-Warning "Could not extract projectVersion from $packageJsonPathForExtension for $MetaEdExtensionName extension. Defaulting to '$versionToUse'."
+    }
+
     $metaEdConfig.metaEdConfiguration.projects += @{
         "namespaceName" = "$MetaEdExtensionName"
         "projectName"   = "$MetaEdExtensionName"
-        "projectVersion" = "1.0.0"
+        "projectVersion" = $versionToUse
         "projectExtension" = "EXTENSION"
         "description"    = ""
     }
 
-    $metaEdConfig.metaEdConfiguration.projectPaths += "$Workspace/MetaEdExtensionSource"
+    $metaEdConfig.metaEdConfiguration.projectPaths += $extensionProjectPath
 }
 
 # Define the file path for the new configuration file
