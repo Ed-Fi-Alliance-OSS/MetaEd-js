@@ -6323,3 +6323,71 @@ describe('when domain entity superclass in DS has a common collection', () => {
     expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
   });
 });
+
+describe('when building an abstract domain entity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartAbstractEntity('SomeAbstractEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SomeAbstractEntityId', 'doc')
+      .withEndAbstractEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    extensionNamespace = metaEd.namespace.get('Extension') ?? newNamespace();
+    extensionNamespace?.dependencies.push(metaEd.namespace.get('EdFi') ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+    openApiCoreSpecificationEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct openApiExtensionResourceFragments', () => {
+    const { openApiExtensionResourceFragments } = extensionNamespace.data.edfiApiSchema;
+    expect(openApiExtensionResourceFragments.newSchemas).toMatchInlineSnapshot(`
+      Object {
+        "Extension_SomeAbstractEntity": Object {
+          "description": "doc",
+          "properties": Object {
+            "someAbstractEntityId": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+          },
+          "required": Array [
+            "someAbstractEntityId",
+          ],
+          "type": "object",
+        },
+        "Extension_SomeAbstractEntity_Reference": Object {
+          "properties": Object {
+            "someAbstractEntityId": Object {
+              "description": "doc",
+              "type": "integer",
+            },
+          },
+          "required": Array [
+            "someAbstractEntityId",
+          ],
+          "type": "object",
+        },
+      }
+    `);
+    expect(openApiExtensionResourceFragments.exts).toMatchInlineSnapshot(`Object {}`);
+  });
+});

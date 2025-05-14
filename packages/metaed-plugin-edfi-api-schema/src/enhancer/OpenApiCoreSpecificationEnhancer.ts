@@ -9,6 +9,7 @@ import {
   type TopLevelEntity,
   type Namespace,
   getEntitiesOfTypeForNamespaces,
+  DomainEntity,
 } from '@edfi/metaed-core';
 import { ComponentsObject, Document, PathsObject, Schemas, TagObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
@@ -74,8 +75,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'domainEntitySubclass',
       'associationSubclass',
       'schoolYearEnumeration',
-    ).forEach((entity: TopLevelEntity) => {
+    ).forEach((entity: DomainEntity) => {
       Object.assign(resourceSchemas, createSchemasFrom(entity));
+      if (entity.isAbstract) return;
       Object.assign(resourcePaths, createPathsFrom(entity));
       resourceTags.push(...createTagsFrom(entity));
     });
