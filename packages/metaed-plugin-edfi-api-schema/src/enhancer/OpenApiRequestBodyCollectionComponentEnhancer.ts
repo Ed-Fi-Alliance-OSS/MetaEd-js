@@ -59,7 +59,9 @@ function openApiNonReferenceCollectionSchemaFor(
   schoolYearOpenApis: SchoolYearOpenApis,
 ): OpenApiObject {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const propertyName: string = uncapitalize(singularize(prefixedName(apiMapping.fullName, propertyModifier)));
+  const propertyName: string = uncapitalize(
+    singularize(prefixedName(apiMapping.fullNamePreservingPrefix, propertyModifier)),
+  );
 
   const openApiProperty: { [key: string]: OpenApiProperty } = {
     [propertyName]: openApiPropertyForNonReference(property, schoolYearOpenApis),

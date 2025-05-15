@@ -22,21 +22,20 @@ const enhancerName = 'ApiPropertyMappingEnhancer';
 type NamingOptions = { removePrefixes: boolean };
 
 /**
- * API naming removes prefixes of collection properties that match the parent entity name in some cases.
+ * API naming removes prefixes of collection properties and scalar commons that match the parent entity name in some cases.
  *
  * This is derived from the ODS/API JSON naming pattern for collections.
  */
 function parentPrefixRemovalConvention(property: EntityProperty): string {
   const name = adjustedFullPropertyName(property);
 
-  // collections from association and domain entity properties don't get table names collapsed
+  // association and domain entity properties never get prefixes removed
   if (property.type === 'association' || property.type === 'domainEntity') return name;
 
   if (name.startsWith(property.parentEntity.metaEdName)) return name.slice(property.parentEntity.metaEdName.length);
 
-  // For any collection (with the exception of domain entities and associations types),
-  // given that the collection name starts with how the parent name ends,
-  // then this overlapping text is collapsed.
+  // When the collection/common name starts with how the parent name ends
+  // then the overlapping prefix is removed.
   const parentLastWord = property.parentEntity.metaEdName.split(/(?=[A-Z])/).pop();
   const nameFirstWord = name.split(/(?=[A-Z])/)[0];
   if (parentLastWord === nameFirstWord) {
@@ -172,14 +171,14 @@ function buildApiPropertyMapping(property: EntityProperty): ApiPropertyMapping {
   const isCommonCollection: boolean = apiCommonCollection(property);
   const isScalarReference: boolean = apiReferenceScalar(property);
   const isScalarCommon: boolean = apiCommonScalar(property);
-  const fullName: string = apiFullName(property, { removePrefixes: true });
 
   return {
     metaEdName: property.metaEdName,
     metaEdType: isReferentialProperty(property) ? (property as ReferentialProperty).referencedEntity.type : property.type,
     topLevelName: apiTopLevelName(property, { removePrefixes: true }),
     decollisionedTopLevelName: apiTopLevelName(property, { removePrefixes: false }),
-    fullName,
+    fullName: apiFullName(property, { removePrefixes: true }),
+    fullNamePreservingPrefix: apiFullName(property, { removePrefixes: false }),
     isReferenceCollection,
     referenceCollectionName: isReferenceCollection ? apiReferenceName(property) : '',
     isDescriptorCollection,

@@ -28,9 +28,13 @@ export type ApiPropertyMapping = {
    */
   decollisionedTopLevelName: string;
   /**
-   * The basic name of a property in the API.
+   * The basic name of a property in the API, which means collection prefix removal takes place
    */
   fullName: string;
+  /**
+   * The basic name of a property without any collection prefix removal
+   */
+  fullNamePreservingPrefix: string;
   /**
    * Whether the property is a reference collection.
    */
@@ -80,6 +84,7 @@ export function newApiPropertyMapping(): ApiPropertyMapping {
     topLevelName: '',
     decollisionedTopLevelName: '',
     fullName: '',
+    fullNamePreservingPrefix: '',
     isReferenceCollection: false,
     referenceCollectionName: '',
     isDescriptorCollection: false,

@@ -449,7 +449,12 @@ function jsonPathsForNonReferenceCollection(
     jsonPathsMapping,
     initialPropertyPath,
     [currentPropertyPath],
-    appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier),
+    appendNextJsonPathName(
+      `${currentJsonPath}[*]` as JsonPath,
+      apiMapping.fullNamePreservingPrefix,
+      property,
+      propertyModifier,
+    ),
     isTopLevel,
     NoFlattenedIdentityProperty,
     isArrayIdentity,

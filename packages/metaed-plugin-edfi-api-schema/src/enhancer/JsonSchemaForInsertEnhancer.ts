@@ -366,7 +366,7 @@ function schemaArrayForNonReferenceCollection(
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const propertyName = uncapitalize(singularize(prefixedName(apiMapping.fullName, propertyModifier)));
+  const propertyName = uncapitalize(singularize(prefixedName(apiMapping.fullNamePreservingPrefix, propertyModifier)));
 
   const schemaProperty: { [key: string]: SchemaProperty } = {
     [propertyName]: schemaPropertyForNonReference(property, schoolYearSchemas),
