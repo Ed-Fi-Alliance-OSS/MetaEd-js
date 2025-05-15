@@ -1344,14 +1344,14 @@ describe('when building domain entity with scalar collection named with prefix o
             "items": Object {
               "additionalProperties": false,
               "properties": Object {
-                "suffixName": Object {
+                "educationContentSuffixName": Object {
                   "description": "doc",
                   "maxLength": 30,
                   "type": "string",
                 },
               },
               "required": Array [
-                "suffixName",
+                "educationContentSuffixName",
               ],
               "type": "object",
             },

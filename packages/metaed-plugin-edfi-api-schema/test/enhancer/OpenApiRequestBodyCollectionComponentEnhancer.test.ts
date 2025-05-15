@@ -548,7 +548,7 @@ describe('when building domain entity with scalar collection named with prefix o
     enhance(metaEd);
   });
 
-  it('should be a correct schema - parent name prefix removed', () => {
+  it('should be a correct schema - parent name prefix not removed', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
       Array [
@@ -556,14 +556,14 @@ describe('when building domain entity with scalar collection named with prefix o
           "propertyName": "EdFi_EducationContent_EducationContentSuffixName",
           "schema": Object {
             "properties": Object {
-              "suffixName": Object {
+              "educationContentSuffixName": Object {
                 "description": "doc",
                 "maxLength": 30,
                 "type": "string",
               },
             },
             "required": Array [
-              "suffixName",
+              "educationContentSuffixName",
             ],
             "type": "object",
           },

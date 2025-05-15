@@ -816,7 +816,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "EducationContentSuffixName": Object {
           "isReference": false,
           "isRequired": false,
-          "path": "$.suffixNames[*].suffixName",
+          "path": "$.suffixNames[*].educationContentSuffixName",
           "type": "string",
         },
       }

@@ -1280,7 +1280,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "EducationContentSuffixName": Array [
           Object {
             "entityName": "EducationContent",
-            "jsonPath": "$.suffixNames[*].suffixName",
+            "jsonPath": "$.suffixNames[*].educationContentSuffixName",
             "propertyName": "EducationContentSuffixName",
           },
         ],

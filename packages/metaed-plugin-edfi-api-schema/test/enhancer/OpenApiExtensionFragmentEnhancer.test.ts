@@ -5686,14 +5686,14 @@ describe('when building domain entity with scalar collection named with prefix o
         },
         "Extension_DomainEntityName_DomainEntityNameSuffixName": Object {
           "properties": Object {
-            "suffixName": Object {
+            "domainEntityNameSuffixName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
             },
           },
           "required": Array [
-            "suffixName",
+            "domainEntityNameSuffixName",
           ],
           "type": "object",
         },

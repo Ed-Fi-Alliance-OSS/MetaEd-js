@@ -70,6 +70,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "SectionIdentifier",
         "descriptorCollectionName": "",
         "fullName": "SectionIdentifier",
+        "fullNamePreservingPrefix": "SectionIdentifier",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -88,6 +89,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "LocalCourseCode",
         "descriptorCollectionName": "",
         "fullName": "LocalCourseCode",
+        "fullNamePreservingPrefix": "LocalCourseCode",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -106,6 +108,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "ClassPeriodName",
         "descriptorCollectionName": "",
         "fullName": "ClassPeriodName",
+        "fullNamePreservingPrefix": "ClassPeriodName",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -124,6 +127,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "SchoolId",
         "descriptorCollectionName": "",
         "fullName": "SchoolId",
+        "fullNamePreservingPrefix": "SchoolId",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -144,6 +148,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "CourseOfferingReference",
         "descriptorCollectionName": "",
         "fullName": "CourseOffering",
+        "fullNamePreservingPrefix": "CourseOffering",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -162,6 +167,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "ClassPeriods",
         "descriptorCollectionName": "",
         "fullName": "ClassPeriod",
+        "fullNamePreservingPrefix": "ClassPeriod",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -180,6 +186,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
         "fullName": "School",
+        "fullNamePreservingPrefix": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -198,6 +205,7 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
         "fullName": "School",
+        "fullNamePreservingPrefix": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -261,6 +269,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "SectionIdentifier",
         "descriptorCollectionName": "",
         "fullName": "SectionIdentifier",
+        "fullNamePreservingPrefix": "SectionIdentifier",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -279,6 +288,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "LocalCourseCode",
         "descriptorCollectionName": "",
         "fullName": "LocalCourseCode",
+        "fullNamePreservingPrefix": "LocalCourseCode",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -297,6 +307,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "ClassPeriodName",
         "descriptorCollectionName": "",
         "fullName": "ClassPeriodName",
+        "fullNamePreservingPrefix": "ClassPeriodName",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -315,6 +326,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "SchoolId",
         "descriptorCollectionName": "",
         "fullName": "SchoolId",
+        "fullNamePreservingPrefix": "SchoolId",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -335,6 +347,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "CourseOfferingReference",
         "descriptorCollectionName": "",
         "fullName": "CourseOffering",
+        "fullNamePreservingPrefix": "CourseOffering",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -353,6 +366,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "ClassPeriods",
         "descriptorCollectionName": "",
         "fullName": "ClassPeriod",
+        "fullNamePreservingPrefix": "ClassPeriod",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -371,6 +385,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
         "fullName": "School",
+        "fullNamePreservingPrefix": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -389,6 +404,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
         "fullName": "School",
+        "fullNamePreservingPrefix": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -483,6 +499,7 @@ describe('when building simple domain entity with common collection', () => {
         "decollisionedTopLevelName": "MeetingTimes",
         "descriptorCollectionName": "",
         "fullName": "MeetingTime",
+        "fullNamePreservingPrefix": "MeetingTime",
         "isChoice": false,
         "isCommonCollection": true,
         "isDescriptorCollection": false,
@@ -667,6 +684,7 @@ describe('when building simple domain entity with inline common', () => {
         "decollisionedTopLevelName": "MeetingTime",
         "descriptorCollectionName": "",
         "fullName": "MeetingTime",
+        "fullNamePreservingPrefix": "MeetingTime",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -719,6 +737,7 @@ describe('when building simple domain entity with inline common with role name',
         "decollisionedTopLevelName": "RoleNameMeetingTime",
         "descriptorCollectionName": "",
         "fullName": "RoleNameMeetingTime",
+        "fullNamePreservingPrefix": "RoleNameMeetingTime",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -771,6 +790,7 @@ describe('when building simple domain entity with choice', () => {
         "decollisionedTopLevelName": "MeetingTime",
         "descriptorCollectionName": "",
         "fullName": "MeetingTime",
+        "fullNamePreservingPrefix": "MeetingTime",
         "isChoice": true,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -823,6 +843,7 @@ describe('when building simple domain entity with choice with role name', () => 
         "decollisionedTopLevelName": "RoleNameMeetingTime",
         "descriptorCollectionName": "",
         "fullName": "RoleNameMeetingTime",
+        "fullNamePreservingPrefix": "RoleNameMeetingTime",
         "isChoice": true,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -874,6 +895,7 @@ describe('when building domain entity with role name as prefix name of reference
         "decollisionedTopLevelName": "BalanceSheetDimensionReference",
         "descriptorCollectionName": "",
         "fullName": "BalanceSheetDimension",
+        "fullNamePreservingPrefix": "BalanceSheetDimension",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -885,6 +907,55 @@ describe('when building domain entity with role name as prefix name of reference
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
         "topLevelName": "BalanceSheetDimensionReference",
+      }
+    `);
+  });
+});
+
+describe('when building domain entity with scalar collection named with prefix of parent entity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'EducationContent';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('ContentIdentifier', 'doc', '30')
+      .withStringProperty(`${domainEntityName}SuffixName`, 'doc', true, true, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have fullName and topLevelName with prefix truncated but not decollisionedTopLevelName or fullNamePreservingPrefix', () => {
+    expect(metaEd.propertyIndex.string).toHaveLength(2);
+    expect(metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "EducationContentSuffixNames",
+        "descriptorCollectionName": "",
+        "fullName": "SuffixName",
+        "fullNamePreservingPrefix": "EducationContentSuffixName",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "EducationContentSuffixName",
+        "metaEdType": "string",
+        "referenceCollectionName": "",
+        "topLevelName": "SuffixNames",
       }
     `);
   });
