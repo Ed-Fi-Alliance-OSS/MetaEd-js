@@ -5020,7 +5020,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "content": Object {
                 "application/json": Object {
                   "schema": Object {
-                    "$ref": "#/components/schemas/Extension_ContentClass",
+                    "$ref": "#/components/schemas/Extension_ContentClassDescriptor",
                   },
                 },
               },
@@ -5146,7 +5146,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                 "content": Object {
                   "application/json": Object {
                     "schema": Object {
-                      "$ref": "#/components/schemas/Extension_ContentClass",
+                      "$ref": "#/components/schemas/Extension_ContentClassDescriptor",
                     },
                   },
                 },
@@ -5206,7 +5206,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "content": Object {
                 "application/json": Object {
                   "schema": Object {
-                    "$ref": "#/components/schemas/Extension_ContentClass",
+                    "$ref": "#/components/schemas/Extension_ContentClassDescriptor",
                   },
                 },
               },

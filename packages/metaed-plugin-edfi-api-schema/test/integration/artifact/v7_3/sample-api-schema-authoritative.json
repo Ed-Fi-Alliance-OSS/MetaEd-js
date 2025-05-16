@@ -190,7 +190,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_ArtMedium"
+                    "$ref": "#/components/schemas/Sample_ArtMediumDescriptor"
                   }
                 }
               },
@@ -316,7 +316,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/Sample_ArtMedium"
+                      "$ref": "#/components/schemas/Sample_ArtMediumDescriptor"
                     }
                   }
                 },
@@ -376,7 +376,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_ArtMedium"
+                    "$ref": "#/components/schemas/Sample_ArtMediumDescriptor"
                   }
                 }
               },
@@ -547,7 +547,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_FavoriteBookCategory"
+                    "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor"
                   }
                 }
               },
@@ -673,7 +673,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/Sample_FavoriteBookCategory"
+                      "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor"
                     }
                   }
                 },
@@ -733,7 +733,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_FavoriteBookCategory"
+                    "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor"
                   }
                 }
               },
@@ -904,7 +904,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_MembershipType"
+                    "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor"
                   }
                 }
               },
@@ -1030,7 +1030,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/Sample_MembershipType"
+                      "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor"
                     }
                   }
                 },
@@ -1090,7 +1090,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/Sample_MembershipType"
+                    "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor"
                   }
                 }
               },
