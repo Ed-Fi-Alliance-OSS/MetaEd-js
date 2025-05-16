@@ -182,3 +182,10 @@ export function findMergeJsonPathsMapping(entity: TopLevelEntity | null, path: M
   const result = mergeJsonPathsMapping[path];
   return result || findMergeJsonPathsMapping(entity.baseEntity, path);
 }
+
+/**
+ * Normalize entity metaEdName to include a "Descriptor" suffix on descriptor entities
+ */
+export function normalizeDescriptorName(entity: TopLevelEntity): string {
+  return entity.type === 'descriptor' ? `${entity.metaEdName}Descriptor` : entity.metaEdName;
+}

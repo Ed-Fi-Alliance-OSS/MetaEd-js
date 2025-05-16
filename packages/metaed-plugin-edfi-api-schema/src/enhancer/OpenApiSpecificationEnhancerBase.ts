@@ -20,6 +20,7 @@ import {
 } from '../model/OpenApiTypes';
 import { pluralize } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
+import { normalizeDescriptorName } from '../Utility';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -212,9 +213,7 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
-              entity.type === 'descriptor' ? 'Descriptor' : ''
-            }`,
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
           },
         },
       },
@@ -469,9 +468,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
             schema: {
               type: 'array',
               items: {
-                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
-                  entity.type === 'descriptor' ? 'Descriptor' : ''
-                }`,
+                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
               },
             },
           },
@@ -527,9 +524,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         content: {
           'application/json': {
             schema: {
-              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
-                entity.type === 'descriptor' ? 'Descriptor' : ''
-              }`,
+              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
             },
           },
         },
@@ -584,9 +579,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
-              entity.type === 'descriptor' ? 'Descriptor' : ''
-            }`,
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
           },
         },
       },
