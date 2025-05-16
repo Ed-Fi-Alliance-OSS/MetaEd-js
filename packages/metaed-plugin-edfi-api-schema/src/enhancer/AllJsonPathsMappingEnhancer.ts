@@ -407,7 +407,7 @@ function jsonPathsForDescriptorCollection(
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
-  isArrayIdentity: boolean,
+  _isArrayIdentity: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -424,7 +424,7 @@ function jsonPathsForDescriptorCollection(
     isTopLevel,
     property,
     NoFlattenedIdentityProperty,
-    isArrayIdentity,
+    true,
   );
 }
 
@@ -440,7 +440,7 @@ function jsonPathsForNonReferenceCollection(
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
-  isArrayIdentity: boolean,
+  _isArrayIdentity: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -457,7 +457,7 @@ function jsonPathsForNonReferenceCollection(
     ),
     isTopLevel,
     NoFlattenedIdentityProperty,
-    isArrayIdentity,
+    true,
   );
 }
 

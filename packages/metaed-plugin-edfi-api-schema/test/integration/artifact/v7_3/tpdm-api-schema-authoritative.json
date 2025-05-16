@@ -15831,6 +15831,7 @@
             "$.addresses[*].streetNumberName"
           ],
           [
+            "$.disabilities[*].designations[*].disabilityDesignationDescriptor",
             "$.disabilities[*].disabilityDescriptor"
           ],
           [
@@ -15838,7 +15839,8 @@
             "$.electronicMails[*].electronicMailTypeDescriptor"
           ],
           [
-            "$.languages[*].languageDescriptor"
+            "$.languages[*].languageDescriptor",
+            "$.languages[*].uses[*].languageUseDescriptor"
           ],
           [
             "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
@@ -15846,6 +15848,9 @@
           ],
           [
             "$.otherNames[*].otherNameTypeDescriptor"
+          ],
+          [
+            "$.races[*].raceDescriptor"
           ],
           [
             "$.telephones[*].telephoneNumber",
@@ -17692,6 +17697,9 @@
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
+          [
+            "$.gradeLevels[*].gradeLevelDescriptor"
+          ]
         ],
         "authorizationPathways": [
         ],
@@ -22938,6 +22946,9 @@
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
+          [
+            "$.gradeLevels[*].gradeLevelDescriptor"
+          ],
           [
             "$.ratingLevels[*].evaluationRatingLevelDescriptor"
           ]

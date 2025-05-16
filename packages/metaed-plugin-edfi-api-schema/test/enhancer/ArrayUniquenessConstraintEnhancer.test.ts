@@ -66,7 +66,13 @@ describe('when building simple domain entity with a simple collections', () => {
 
   it('should be correct arrayUniquenessConstraints', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`Array []`);
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          "$.requiredStringProperties[*].requiredStringProperty",
+        ],
+      ]
+    `);
   });
 });
 
