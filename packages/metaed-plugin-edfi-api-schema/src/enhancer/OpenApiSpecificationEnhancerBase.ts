@@ -212,7 +212,9 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
+                  entity.type === 'descriptor' ? 'Descriptor' : ''
+                }`,
           },
         },
       },
@@ -525,7 +527,9 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         content: {
           'application/json': {
             schema: {
-              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
+                  entity.type === 'descriptor' ? 'Descriptor' : ''
+                }`,
             },
           },
         },
@@ -580,7 +584,9 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}`,
+            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${entity.metaEdName}${
+                  entity.type === 'descriptor' ? 'Descriptor' : ''
+                }`,
           },
         },
       },
