@@ -4803,6 +4803,15 @@
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           [
+            "$.busYears[*].busYear"
+          ],
+          [
+            "$.serviceAreaPostalCodes[*].serviceAreaPostalCode"
+          ],
+          [
+            "$.startTimes[*].startTime"
+          ],
+          [
             "$.telephones[*].telephoneNumber",
             "$.telephones[*].telephoneNumberTypeDescriptor"
           ]
@@ -5465,6 +5474,15 @@
             "$._ext.sample.addresses[*].postalCode",
             "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
             "$._ext.sample.addresses[*].streetNumberName"
+          ],
+          [
+            "$._ext.sample.authors[*].author"
+          ],
+          [
+            "$._ext.sample.ceilingHeights[*].ceilingHeight"
+          ],
+          [
+            "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
           ]
         ],
         "authorizationPathways": [
@@ -6732,7 +6750,13 @@
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           [
+            "$.artMedia[*].artMediumDescriptor"
+          ],
+          [
             "$.favoriteBook.artMedia[*].artMediumDescriptor"
+          ],
+          [
+            "$.portfolioYears[*].portfolioYears"
           ],
           [
             "$.programParticipationStatuses[*].participationStatusDescriptor",
@@ -6740,6 +6764,9 @@
           ],
           [
             "$.services[*].serviceDescriptor"
+          ],
+          [
+            "$.styles[*].style"
           ]
         ],
         "authorizationPathways": [
@@ -7561,6 +7588,18 @@
       },
       "studentContactAssociations": {
         "arrayUniquenessConstraints": [
+          [
+            "$._ext.sample.disciplines[*].disciplineDescriptor"
+          ],
+          [
+            "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
+          ],
+          [
+            "$._ext.sample.hoursPerWeeks[*].hoursPerWeek"
+          ],
+          [
+            "$._ext.sample.pagesReads[*].pagesRead"
+          ]
         ],
         "authorizationPathways": [
         ],
@@ -8428,6 +8467,24 @@
       "studentGraduationPlanAssociations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
+          [
+            "$.academicSubjects[*].academicSubjectDescriptor"
+          ],
+          [
+            "$.careerPathwayCodes[*].careerPathwayCode"
+          ],
+          [
+            "$.descriptions[*].description"
+          ],
+          [
+            "$.designatedBies[*].designatedBy"
+          ],
+          [
+            "$.industryCredentials[*].industryCredential"
+          ],
+          [
+            "$.yearsAttendeds[*].yearsAttended"
+          ]
         ],
         "authorizationPathways": [
         ],

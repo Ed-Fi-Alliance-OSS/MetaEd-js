@@ -456,18 +456,18 @@ describe('when building simple domain entity with all the simple collections', (
     `);
     expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
       Object {
-        "OptionalBooleanProperty": false,
-        "OptionalDecimalProperty": false,
-        "OptionalPercentProperty": false,
-        "OptionalShortProperty": false,
-        "OptionalYear": false,
-        "RequiredCurrencyProperty": false,
-        "RequiredDateProperty": false,
-        "RequiredDatetimeProperty": false,
-        "RequiredDurationProperty": false,
-        "RequiredIntegerProperty": false,
-        "RequiredStringProperty": false,
-        "RequiredTimeProperty": false,
+        "OptionalBooleanProperty": true,
+        "OptionalDecimalProperty": true,
+        "OptionalPercentProperty": true,
+        "OptionalShortProperty": true,
+        "OptionalYear": true,
+        "RequiredCurrencyProperty": true,
+        "RequiredDateProperty": true,
+        "RequiredDatetimeProperty": true,
+        "RequiredDurationProperty": true,
+        "RequiredIntegerProperty": true,
+        "RequiredStringProperty": true,
+        "RequiredTimeProperty": true,
         "SchoolYear": false,
         "StringIdentity": false,
       }
@@ -1224,11 +1224,11 @@ describe('when building domain entity with nested choice and inline commons', ()
         "LearningResourceChoice.LearningResource.ContentClassDescriptor": false,
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": false,
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent.ContentIdentifier": false,
-        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": false,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": true,
         "LearningResourceChoice.LearningResource.Description": false,
         "LearningResourceChoice.LearningResource.ShortDescription": false,
         "LearningResourceChoice.LearningResourceMetadataURI": false,
-        "RequiredURI": false,
+        "RequiredURI": true,
       }
     `);
   });
@@ -1301,7 +1301,7 @@ describe('when building domain entity with scalar collection named with prefix o
     expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": false,
-        "EducationContentSuffixName": false,
+        "EducationContentSuffixName": true,
       }
     `);
   });
@@ -1922,7 +1922,7 @@ describe('when building domain entity with a descriptor collection with role nam
     `);
     expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevelDescriptor": false,
+        "AssessedGradeLevelDescriptor": true,
         "AssessmentIdentifier": false,
       }
     `);
