@@ -754,3 +754,73 @@ describe('when building a school year enumeration', () => {
     `);
   });
 });
+
+describe('when building a domain entity referencing another referencing another with rolenamed identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('AssessmentAdministrationParticipation')
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationParticipationId', 'doc', '30')
+      .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('AssessmentAdministration')
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentAdministrationId', 'doc', '30')
+      .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct AssessmentAdministration schema - "assigning" prefix on "EducationOrganizationId"', () => {
+    const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
+    expect(entity.data.edfiApiSchema.openApiReferenceComponentPropertyName).toMatchInlineSnapshot(
+      `"EdFi_AssessmentAdministration_Reference"`,
+    );
+    expect(entity.data.edfiApiSchema.openApiReferenceComponent).toMatchInlineSnapshot(`
+      Object {
+        "properties": Object {
+          "assessmentAdministrationId": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+          "assigningEducationOrganizationId": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "assessmentAdministrationId",
+          "assigningEducationOrganizationId",
+        ],
+        "type": "object",
+      }
+    `);
+  });
+});

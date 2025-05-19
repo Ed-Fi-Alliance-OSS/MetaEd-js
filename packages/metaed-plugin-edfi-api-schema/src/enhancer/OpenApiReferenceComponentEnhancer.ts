@@ -17,6 +17,7 @@ import {
   openApiPropertyForNonReference,
   SchoolYearOpenApis,
 } from './OpenApiComponentEnhancerBase';
+import { parentPropertyModifier } from './JsonElementNamingHelper';
 
 const enhancerName = 'OpenApiReferenceComponentEnhancer';
 
@@ -47,7 +48,9 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
         ? identityPropertyApiMapping.fullName
         : prependPrefixWithCollapse(identityPropertyApiMapping.fullName, specialPrefix);
 
-    const openApiPropertyName: string = uncapitalize(prefixedName(adjustedName, defaultPropertyModifier));
+    const parentAdjustedPropertyModifier = parentPropertyModifier(flattenedIdentityProperty, defaultPropertyModifier);
+
+    const openApiPropertyName: string = uncapitalize(prefixedName(adjustedName, parentAdjustedPropertyModifier));
 
     // Because these are flattened, we know they are non-reference properties
     const openApiProperty: OpenApiProperty = openApiPropertyForNonReference(
@@ -55,14 +58,14 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
       schoolYearOpenApis,
     );
 
-    // Note that this key/value usage of Object implictly merges by overwrite if there is more than one scalar property
+    // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check
     // properties for merge directive annotations because MetaEd has already validated merges and any scalar identity
     // property name duplication _must_ be a merge.
     openApiProperties[openApiPropertyName] = openApiProperty;
 
     if (isOpenApiPropertyRequired(flattenedIdentityProperty.identityProperty, defaultPropertyModifier)) {
-      // As above, this usage of Set implictly merges by overwrite
+      // As above, this usage of Set implicitly merges by overwrite
       required.add(openApiPropertyName);
     }
   });

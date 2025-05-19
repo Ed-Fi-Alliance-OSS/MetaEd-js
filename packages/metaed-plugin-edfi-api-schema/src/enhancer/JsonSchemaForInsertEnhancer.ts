@@ -171,14 +171,14 @@ function schemaObjectForReferentialProperty(
       schoolYearSchemas,
     );
 
-    // Note that this key/value usage of Object implictly merges by overwrite if there is more than one scalar property
+    // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check
     // properties for merge directive annotations because MetaEd has already validated merges and any scalar identity
     // property name duplication _must_ be a merge.
     schemaProperties[schemaPropertyName] = schemaProperty;
 
     if (isSchemaPropertyRequired(flattenedIdentityProperty.identityProperty, parentAdjustedPropertyModifier)) {
-      // As above, this usage of Set this implictly merges by overwrite
+      // As above, this usage of Set this implicitly merges by overwrite
       required.add(schemaPropertyName);
     }
   });

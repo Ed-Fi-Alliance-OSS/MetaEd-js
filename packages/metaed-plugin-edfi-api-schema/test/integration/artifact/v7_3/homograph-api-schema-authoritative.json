@@ -2289,13 +2289,13 @@
         },
         "Homograph_Contact_Reference": {
           "properties": {
-            "firstName": {
+            "contactFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
               "type": "string"
             },
-            "lastSurname": {
+            "contactLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
@@ -2303,8 +2303,8 @@
             }
           },
           "required": [
-            "firstName",
-            "lastSurname"
+            "contactFirstName",
+            "contactLastSurname"
           ],
           "type": "object"
         },
@@ -2480,13 +2480,13 @@
         },
         "Homograph_Staff_Reference": {
           "properties": {
-            "firstName": {
+            "staffFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
               "type": "string"
             },
-            "lastSurname": {
+            "staffLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
@@ -2494,8 +2494,8 @@
             }
           },
           "required": [
-            "firstName",
-            "lastSurname"
+            "staffFirstName",
+            "staffLastSurname"
           ],
           "type": "object"
         },
@@ -2589,13 +2589,13 @@
         },
         "Homograph_Student_Reference": {
           "properties": {
-            "firstName": {
+            "studentFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
               "type": "string"
             },
-            "lastSurname": {
+            "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
@@ -2603,8 +2603,8 @@
             }
           },
           "required": [
-            "firstName",
-            "lastSurname"
+            "studentFirstName",
+            "studentLastSurname"
           ],
           "type": "object"
         }
