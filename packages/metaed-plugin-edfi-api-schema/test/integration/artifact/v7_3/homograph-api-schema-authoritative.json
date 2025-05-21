@@ -2666,6 +2666,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "Address.City": {
             "isReference": false,
@@ -2871,6 +2873,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "FirstName": {
             "isReference": false,
@@ -2962,6 +2966,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "SchoolYear": {
             "isReference": false,
@@ -3030,6 +3036,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Address.City": {
@@ -3165,6 +3173,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Address.City": {
@@ -3369,6 +3379,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "School": {
             "isDescriptor": false,
@@ -3512,6 +3524,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Address.City": {

@@ -12,6 +12,7 @@ import { JsonPath } from './JsonPath';
 import { QueryFieldMapping } from './QueryFieldMapping';
 import { SecurableElements } from './SecurableElements';
 import { AuthorizationPathway } from './AuthorizationPathway';
+import { DecimalPropertyValidationInfo } from './DecimalPropertyValidationInfo';
 
 /**
  * API resource schema information common between all resources
@@ -47,6 +48,11 @@ export type BaseResourceSchema = {
    * A list of the JsonPaths that are numeric for use in type coercion.
    */
   dateTimeJsonPaths: JsonPath[];
+
+  /**
+   * A list of the decimal property validation information for validating precision and scale
+   */
+  decimalPropertyValidationInfos: DecimalPropertyValidationInfo[];
 
   /**
    * A collection of MetaEd property fullnames mapped to DocumentPaths objects,

@@ -88,6 +88,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
+    decimalPropertyValidationInfos: entityApiSchemaData.decimalPropertyValidationInfos,
     securableElements: {
       Namespace: entityApiSchemaData.namespaceSecurableElements,
       EducationOrganization: entityApiSchemaData.educationOrganizationSecurableElements,
@@ -115,6 +116,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
+    decimalPropertyValidationInfos: entityApiSchemaData.decimalPropertyValidationInfos,
     securableElements: {
       Namespace: [],
       EducationOrganization: [],

@@ -14,6 +14,7 @@ import { capitalize } from '../Utility';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EndpointName } from '../model/api-schema/EndpointName';
 import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
+import { DecimalPropertyValidationInfo } from '../model/api-schema/DecimalPropertyValidationInfo';
 
 function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: DocumentObjectKey]: DocumentPaths } {
   const documentPathsMapping: { [key: DocumentObjectKey]: DocumentPaths } = {};
@@ -85,6 +86,7 @@ export function buildSchoolYearResourceSchema(
     booleanJsonPaths: ['$.currentSchoolYear'] as JsonPath[],
     numericJsonPaths: ['$.schoolYear'] as JsonPath[],
     dateTimeJsonPaths: [] as JsonPath[],
+    decimalPropertyValidationInfos: [] as DecimalPropertyValidationInfo[],
     isSubclass: false,
     isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),

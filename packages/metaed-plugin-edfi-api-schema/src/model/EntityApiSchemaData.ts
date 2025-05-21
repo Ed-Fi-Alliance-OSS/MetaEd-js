@@ -24,6 +24,7 @@ import { NoOpenApiObject, OpenApiObject } from './OpenApi';
 import { EducationOrganizationSecurableElement } from './api-schema/EducationOrganizationSecurableElement';
 import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollectionSchema';
 import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
+import { DecimalPropertyValidationInfo } from './api-schema/DecimalPropertyValidationInfo';
 
 export type EntityApiSchemaData = {
   /**
@@ -130,6 +131,11 @@ export type EntityApiSchemaData = {
    * A list of the JsonPaths that are numeric for use in type coercion.
    */
   numericJsonPaths: JsonPath[];
+
+  /**
+   * A list of the decimal property validation information for validating precision and scale
+   */
+  decimalPropertyValidationInfos: DecimalPropertyValidationInfo[];
 
   /**
    * A list of the JsonPaths that are date-time for use in type coercion.

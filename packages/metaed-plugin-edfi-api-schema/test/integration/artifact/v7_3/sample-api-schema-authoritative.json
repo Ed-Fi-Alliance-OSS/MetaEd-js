@@ -4696,6 +4696,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -4824,6 +4826,18 @@
           "$.telephones[*].textMessageCapabilityIndicator"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 2,
+            "path": "$.weeklyMileage",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 2,
+            "path": "$.hoursPerWeek",
+            "totalDigits": 5
+          }
         ],
         "documentPathsMapping": {
           "Bus": {
@@ -5406,6 +5420,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "BusId": {
             "isReference": false,
@@ -5493,6 +5509,18 @@
           "$._ext.sample.isSportsFan"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 1,
+            "path": "$._ext.sample.ceilingHeights[*].ceilingHeight",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$._ext.sample.gpa",
+            "totalDigits": 18
+          }
         ],
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
@@ -6220,6 +6248,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -6332,6 +6362,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -6446,6 +6478,8 @@
           "$._ext.sample.isExemplary"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "CTEProgramService.CIPCode": {
@@ -6622,6 +6656,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "FirstPetOwnedDate": {
             "isReference": false,
@@ -6777,6 +6813,18 @@
           "$.services[*].primaryIndicator"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 4,
+            "path": "$.numberOfDaysInAttendance",
+            "totalDigits": 18
+          },
+          {
+            "decimalPlaces": 2,
+            "path": "$.hoursPerDay",
+            "totalDigits": 5
+          }
         ],
         "documentPathsMapping": {
           "ArtMediumDescriptor": {
@@ -7521,6 +7569,8 @@
         "dateTimeJsonPaths": [
           "$._ext.sample.analysisDate"
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "AnalysisCompleted": {
             "isReference": false,
@@ -7609,6 +7659,18 @@
           "$._ext.sample.telephone.textMessageCapabilityIndicator"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 2,
+            "path": "$._ext.sample.pagesReads[*].pagesRead",
+            "totalDigits": 18
+          },
+          {
+            "decimalPlaces": 2,
+            "path": "$._ext.sample.hoursPerWeeks[*].hoursPerWeek",
+            "totalDigits": 5
+          }
         ],
         "documentPathsMapping": {
           "BedtimeReader": {
@@ -8074,6 +8136,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
             "isDescriptor": true,
@@ -8493,6 +8557,18 @@
           "$.isActivePlan"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 4,
+            "path": "$.targetGPA",
+            "totalDigits": 18
+          },
+          {
+            "decimalPlaces": 2,
+            "path": "$.hoursPerWeek",
+            "totalDigits": 5
+          }
         ],
         "documentPathsMapping": {
           "AcademicSubjectDescriptor": {
@@ -9139,6 +9215,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "MembershipTypeDescriptor": {
             "isDescriptor": true,
@@ -9204,6 +9282,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "RelatedGeneralStudentProgramAssociation": {
@@ -9370,6 +9450,8 @@
           "$._ext.sample.pets[*].isFixed"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "AquaticPet.MimimumTankVolume": {

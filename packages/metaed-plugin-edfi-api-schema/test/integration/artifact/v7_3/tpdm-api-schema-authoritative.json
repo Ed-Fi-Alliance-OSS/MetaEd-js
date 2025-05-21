@@ -15220,6 +15220,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -15332,6 +15334,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -15453,6 +15457,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "BeginDate": {
@@ -15871,6 +15877,8 @@
           "$.telephones[*].textMessageCapabilityIndicator"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
@@ -17123,6 +17131,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -17235,6 +17245,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -17349,6 +17361,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -17461,6 +17475,8 @@
           "$._ext.tpdm.boardCertificationIndicator"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "BoardCertificationIndicator": {
@@ -17707,6 +17723,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "AccreditationStatusDescriptor": {
             "isDescriptor": true,
@@ -17901,6 +17919,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -18013,6 +18033,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -18127,6 +18149,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -18239,6 +18263,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -18357,6 +18383,13 @@
         ],
         "dateTimeJsonPaths": [
           "$.evaluationObjectiveRatingReference.evaluationDate"
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.elementRatingResults[*].rating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "AreaOfRefinement": {
@@ -18989,6 +19022,28 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          }
+        ],
         "documentPathsMapping": {
           "ElementRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
@@ -19353,6 +19408,13 @@
         ],
         "dateTimeJsonPaths": [
           "$.evaluationRatingReference.evaluationDate"
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.objectiveRatingResults[*].rating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "Comments": {
@@ -19888,6 +19950,28 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          }
+        ],
         "documentPathsMapping": {
           "Evaluation": {
             "isDescriptor": false,
@@ -20245,6 +20329,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -20358,6 +20444,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -20470,6 +20558,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -20592,6 +20682,13 @@
         ],
         "dateTimeJsonPaths": [
           "$.evaluationDate"
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.results[*].rating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "ActualDuration": {
@@ -21309,6 +21406,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -21424,6 +21523,28 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "EvaluationDescription": {
@@ -21763,6 +21884,13 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 4,
+            "path": "$.aidAmount",
+            "totalDigits": 19
+          }
+        ],
         "documentPathsMapping": {
           "AidAmount": {
             "isReference": false,
@@ -21957,6 +22085,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -22070,6 +22200,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -22182,6 +22314,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
         },
@@ -22304,6 +22438,13 @@
           "$.announced"
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.results[*].rating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "ActualDate": {
@@ -22840,6 +22981,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -22958,6 +23101,18 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          }
         ],
         "documentPathsMapping": {
           "AcademicSubjectDescriptor": {
@@ -23282,6 +23437,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "CriterionDescription": {
             "isReference": false,
@@ -23596,6 +23753,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
         },
         "equalityConstraints": [
@@ -23708,6 +23867,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "PostSecondaryInstitution": {
             "isDescriptor": false,
@@ -23789,6 +23950,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Person": {
@@ -23969,6 +24132,8 @@
         ],
         "dateTimeJsonPaths": [
         ],
+        "decimalPropertyValidationInfos": [
+        ],
         "documentPathsMapping": {
           "Person": {
             "isDescriptor": false,
@@ -24061,6 +24226,8 @@
         "booleanJsonPaths": [
         ],
         "dateTimeJsonPaths": [
+        ],
+        "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
           "Person": {
