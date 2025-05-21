@@ -3,12 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  getAllEntitiesOfType,
-  MetaEdEnvironment,
-  EnhancerResult,
-  DecimalProperty,
-} from '@edfi/metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, DecimalProperty } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { DecimalPropertyValidationInfo } from '../model/api-schema/DecimalPropertyValidationInfo';
 
@@ -48,6 +43,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             decimalResult.add(result);
             break;
           }
+          default:
+            // No action needed for other types
+            break;
         }
       });
     });

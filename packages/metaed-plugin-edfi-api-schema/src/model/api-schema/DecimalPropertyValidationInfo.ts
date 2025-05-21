@@ -9,9 +9,9 @@ export type DecimalPropertyValidationInfo = {
   // The json path for this property.
   path: JsonPath;
 
-  //The number of decimal places allowed for this property.
+  // The number of decimal places allowed for this property.
   decimalPlaces?: number;
 
-  //The total number of digits allowed for this property.
+  // The total number of digits allowed for this property.
   totalDigits?: number;
 };

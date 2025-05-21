@@ -97,4 +97,3 @@ describe('when building a domain entity with decimal properties', () => {
     expect(requiredDecimal?.decimalPlaces).toBe(4);
   });
 });
-
