@@ -19,6 +19,7 @@ import {
   newPluginEnvironment,
   DomainEntityExtensionBuilder,
   newNamespace,
+  AssociationBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -29,9 +30,10 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
+  associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
-import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
+import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
@@ -2802,7 +2804,7 @@ describe('when building a domain entity referencing another referencing another 
     enhance(metaEd);
   });
 
-  it('should be correct mergeJsonPathsMapping for AssessmentAdministrationParticipation', () => {
+  it('should be correct jsonSchemaForInsert for AssessmentAdministrationParticipation', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
       Object {
@@ -2849,7 +2851,7 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 
-  it('should be correct mergeJsonPathsMapping for AssessmentAdministration', () => {
+  it('should be correct jsonSchemaForInsert for AssessmentAdministration', () => {
     const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
     expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
       Object {
@@ -2889,3 +2891,128 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 });
+
+describe(
+  'when building association with domain entity with two entities, one with role named educationOrganization and' +
+    ' one with non role named educationOrganization ',
+  () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartAssociation('StudentAssessmentRegistrationBatteryPartAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('StudentAssessmentRegistration', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('StudentAssessmentRegistration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+        .withAssociationIdentity('StudentEducationOrganizationAssociation', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('AssessmentAdministration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+        .withEndDomainEntity()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('doc')
+        .withIntegerIdentity('EducationOrganizationId', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('UnusedEntity')
+        .withDocumentation('doc')
+        .withStringIdentity('UnusedProperty', 'doc', '30')
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+
+      entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+      entityApiSchemaDataSetupEnhancer(metaEd);
+      referenceComponentEnhancer(metaEd);
+      apiPropertyMappingEnhancer(metaEd);
+      propertyCollectingEnhancer(metaEd);
+      apiEntityMappingEnhancer(metaEd);
+      enhance(metaEd);
+    });
+
+    it('should be correct schema for StudentAssessmentRegistrationBatteryPartAssociation', () => {
+      const entity = metaEd.namespace
+        .get(namespaceName)
+        ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
+      const { jsonSchemaForInsert } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+      expect(jsonSchemaForInsert).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "doc",
+          "properties": Object {
+            "studentAssessmentRegistrationReference": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "assigningEducationOrganizationId": Object {
+                  "description": "doc",
+                  "type": "integer",
+                },
+                "educationOrganizationId": Object {
+                  "description": "doc",
+                  "type": "integer",
+                },
+                "unusedProperty": Object {
+                  "description": "doc",
+                  "maxLength": 30,
+                  "pattern": "^(?!\\\\s)(.*\\\\S)$",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "assigningEducationOrganizationId",
+                "educationOrganizationId",
+                "unusedProperty",
+              ],
+              "type": "object",
+            },
+            "unusedEntityReference": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "unusedProperty": Object {
+                  "description": "doc",
+                  "maxLength": 30,
+                  "pattern": "^(?!\\\\s)(.*\\\\S)$",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "unusedProperty",
+              ],
+              "type": "object",
+            },
+          },
+          "required": Array [
+            "studentAssessmentRegistrationReference",
+            "unusedEntityReference",
+          ],
+          "title": "EdFi.StudentAssessmentRegistrationBatteryPartAssociation",
+          "type": "object",
+        }
+      `);
+    });
+  },
+);

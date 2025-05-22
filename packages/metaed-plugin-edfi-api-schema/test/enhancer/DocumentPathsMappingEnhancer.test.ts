@@ -2443,3 +2443,110 @@ describe('when a reference is to a resource that merges on a descriptor (TPDM ex
     `);
   });
 });
+
+describe(
+  'when building association with domain entity with two entities, one with role named educationOrganization and' +
+    ' one with non role named educationOrganization ',
+  () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartAssociation('StudentAssessmentRegistrationBatteryPartAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('StudentAssessmentRegistration', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('StudentAssessmentRegistration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+        .withAssociationIdentity('StudentEducationOrganizationAssociation', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('AssessmentAdministration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+        .withEndDomainEntity()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('doc')
+        .withIntegerIdentity('EducationOrganizationId', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('UnusedEntity')
+        .withDocumentation('doc')
+        .withStringIdentity('UnusedProperty', 'doc', '30')
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      runApiSchemaEnhancers(metaEd);
+    });
+
+    it('should be correct documentPathsMapping for StudentAssessmentRegistrationBatteryPartAssociation', () => {
+      const entity = metaEd.namespace
+        .get(namespaceName)
+        ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
+      const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+        entity?.data.edfiApiSchema.documentPathsMapping,
+      );
+      expect(documentPathsMapping).toMatchInlineSnapshot(`
+        Object {
+          "StudentAssessmentRegistration": Object {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": true,
+            "projectName": "EdFi",
+            "referenceJsonPaths": Array [
+              Object {
+                "identityJsonPath": "$.assessmentAdministrationReference.assigningEducationOrganizationId",
+                "referenceJsonPath": "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+                "type": "number",
+              },
+              Object {
+                "identityJsonPath": "$.studentEducationOrganizationAssociationReference.educationOrganizationId",
+                "referenceJsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
+                "type": "number",
+              },
+              Object {
+                "identityJsonPath": "$.studentEducationOrganizationAssociationReference.unusedProperty",
+                "referenceJsonPath": "$.studentAssessmentRegistrationReference.unusedProperty",
+                "type": "string",
+              },
+            ],
+            "resourceName": "StudentAssessmentRegistration",
+          },
+          "UnusedEntity": Object {
+            "isDescriptor": false,
+            "isReference": true,
+            "isRequired": true,
+            "projectName": "EdFi",
+            "referenceJsonPaths": Array [
+              Object {
+                "identityJsonPath": "$.unusedProperty",
+                "referenceJsonPath": "$.unusedEntityReference.unusedProperty",
+                "type": "string",
+              },
+            ],
+            "resourceName": "UnusedEntity",
+          },
+        }
+      `);
+    });
+  },
+);

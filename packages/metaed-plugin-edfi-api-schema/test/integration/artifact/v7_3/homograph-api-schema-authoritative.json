@@ -2548,28 +2548,28 @@
         },
         "Homograph_StudentSchoolAssociation_Reference": {
           "properties": {
-            "firstName": {
+            "schoolName": {
+              "description": "The name of the school.",
+              "maxLength": 100,
+              "type": "string"
+            },
+            "studentFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
               "type": "string"
             },
-            "lastSurname": {
+            "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
-            },
-            "schoolName": {
-              "description": "The name of the school.",
-              "maxLength": 100,
               "type": "string"
             }
           },
           "required": [
             "schoolName",
-            "firstName",
-            "lastSurname"
+            "studentFirstName",
+            "studentLastSurname"
           ],
           "type": "object"
         },
@@ -2705,12 +2705,12 @@
               },
               {
                 "identityJsonPath": "$.studentReference.studentFirstName",
-                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.firstName",
+                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.studentFirstName",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.studentReference.studentLastSurname",
-                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.lastSurname",
+                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.studentLastSurname",
                 "type": "string"
               }
             ],
@@ -2784,31 +2784,31 @@
                   "studentSchoolAssociationReference": {
                     "additionalProperties": false,
                     "properties": {
-                      "firstName": {
+                      "schoolName": {
+                        "description": "The name of the school.",
+                        "maxLength": 100,
+                        "pattern": "^(?!\\s)(.*\\S)$",
+                        "type": "string"
+                      },
+                      "studentFirstName": {
                         "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                         "maxLength": 75,
                         "minLength": 1,
                         "pattern": "^(?!\\s)(.*\\S)$",
                         "type": "string"
                       },
-                      "lastSurname": {
+                      "studentLastSurname": {
                         "description": "The name borne in common by members of a family.",
                         "maxLength": 75,
                         "minLength": 1,
-                        "pattern": "^(?!\\s)(.*\\S)$",
-                        "type": "string"
-                      },
-                      "schoolName": {
-                        "description": "The name of the school.",
-                        "maxLength": 100,
                         "pattern": "^(?!\\s)(.*\\S)$",
                         "type": "string"
                       }
                     },
                     "required": [
                       "schoolName",
-                      "firstName",
-                      "lastSurname"
+                      "studentFirstName",
+                      "studentLastSurname"
                     ],
                     "type": "object"
                   }
@@ -3205,12 +3205,12 @@
               },
               {
                 "identityJsonPath": "$.studentReference.studentFirstName",
-                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.firstName",
+                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.studentFirstName",
                 "type": "string"
               },
               {
                 "identityJsonPath": "$.studentReference.studentLastSurname",
-                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.lastSurname",
+                "referenceJsonPath": "$.studentSchoolAssociations[*].studentSchoolAssociationReference.studentLastSurname",
                 "type": "string"
               }
             ],
@@ -3284,31 +3284,31 @@
                   "studentSchoolAssociationReference": {
                     "additionalProperties": false,
                     "properties": {
-                      "firstName": {
+                      "schoolName": {
+                        "description": "The name of the school.",
+                        "maxLength": 100,
+                        "pattern": "^(?!\\s)(.*\\S)$",
+                        "type": "string"
+                      },
+                      "studentFirstName": {
                         "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                         "maxLength": 75,
                         "minLength": 1,
                         "pattern": "^(?!\\s)(.*\\S)$",
                         "type": "string"
                       },
-                      "lastSurname": {
+                      "studentLastSurname": {
                         "description": "The name borne in common by members of a family.",
                         "maxLength": 75,
                         "minLength": 1,
-                        "pattern": "^(?!\\s)(.*\\S)$",
-                        "type": "string"
-                      },
-                      "schoolName": {
-                        "description": "The name of the school.",
-                        "maxLength": 100,
                         "pattern": "^(?!\\s)(.*\\S)$",
                         "type": "string"
                       }
                     },
                     "required": [
                       "schoolName",
-                      "firstName",
-                      "lastSurname"
+                      "studentFirstName",
+                      "studentLastSurname"
                     ],
                     "type": "object"
                   }

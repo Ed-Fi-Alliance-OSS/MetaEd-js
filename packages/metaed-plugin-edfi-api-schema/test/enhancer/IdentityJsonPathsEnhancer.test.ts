@@ -29,6 +29,7 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   associationSubclassBaseClassEnhancer,
+  associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -1137,3 +1138,74 @@ describe('when building an Association subclass', () => {
     `);
   });
 });
+
+describe(
+  'when building association with domain entity with two entities, one with role named educationOrganization and' +
+    ' one with non role named educationOrganization ',
+  () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartAssociation('StudentAssessmentRegistrationBatteryPartAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('StudentAssessmentRegistration', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('StudentAssessmentRegistration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+        .withAssociationIdentity('StudentEducationOrganizationAssociation', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('AssessmentAdministration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+        .withEndDomainEntity()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('doc')
+        .withIntegerIdentity('EducationOrganizationId', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('UnusedEntity')
+        .withDocumentation('doc')
+        .withStringIdentity('UnusedProperty', 'doc', '30')
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      runApiSchemaEnhancers(metaEd);
+    });
+
+    it('should be correct identityJsonPaths for StudentAssessmentRegistrationBatteryPartAssociation', () => {
+      const entity = metaEd.namespace
+        .get(namespaceName)
+        ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
+      const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
+      expect(identityJsonPaths).toMatchInlineSnapshot(`
+        Array [
+          "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+          "$.studentAssessmentRegistrationReference.educationOrganizationId",
+          "$.studentAssessmentRegistrationReference.unusedProperty",
+          "$.unusedEntityReference.unusedProperty",
+        ]
+      `);
+    });
+  },
+);

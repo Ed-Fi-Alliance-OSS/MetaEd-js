@@ -18,6 +18,7 @@ import {
   MetaEdPropertyPath,
   DomainEntityExtensionBuilder,
   newNamespace,
+  AssociationBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -27,6 +28,7 @@ import {
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
+  associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -3182,3 +3184,167 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 });
+
+describe(
+  'when building association with domain entity with two entities, one with role named educationOrganization and' +
+    ' one with non role named educationOrganization ',
+  () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    const namespaceName = 'EdFi';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartAssociation('StudentAssessmentRegistrationBatteryPartAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('StudentAssessmentRegistration', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('StudentAssessmentRegistration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('AssessmentAdministration', 'doc')
+        .withAssociationIdentity('StudentEducationOrganizationAssociation', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('AssessmentAdministration')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+        .withEndDomainEntity()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('doc')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+        .withAssociationDomainEntityProperty('UnusedEntity', 'doc')
+        .withEndAssociation()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('doc')
+        .withIntegerIdentity('EducationOrganizationId', 'doc')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('UnusedEntity')
+        .withDocumentation('doc')
+        .withStringIdentity('UnusedProperty', 'doc', '30')
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      associationReferenceEnhancer(metaEd);
+      domainEntityReferenceEnhancer(metaEd);
+      entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+      entityApiSchemaDataSetupEnhancer(metaEd);
+      referenceComponentEnhancer(metaEd);
+      apiPropertyMappingEnhancer(metaEd);
+      propertyCollectingEnhancer(metaEd);
+      apiEntityMappingEnhancer(metaEd);
+      enhance(metaEd);
+    });
+
+    it('should be correct allJsonPathsMapping for StudentAssessmentRegistrationBatteryPartAssociation', () => {
+      const entity = metaEd.namespace
+        .get(namespaceName)
+        ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
+      const mappings: Snapshotable = snapshotify(entity);
+      expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+        Object {
+          "StudentAssessmentRegistration": Array [
+            Object {
+              "entityName": "StudentAssessmentRegistrationBatteryPartAssociation",
+              "jsonPath": "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+              "propertyName": "StudentAssessmentRegistration",
+            },
+            Object {
+              "entityName": "StudentAssessmentRegistrationBatteryPartAssociation",
+              "jsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
+              "propertyName": "StudentAssessmentRegistration",
+            },
+            Object {
+              "entityName": "StudentAssessmentRegistrationBatteryPartAssociation",
+              "jsonPath": "$.studentAssessmentRegistrationReference.unusedProperty",
+              "propertyName": "StudentAssessmentRegistration",
+            },
+          ],
+          "StudentAssessmentRegistration.AssessmentAdministration": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+          ],
+          "StudentAssessmentRegistration.AssessmentAdministration.AssigningEducationOrganization": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+          ],
+          "StudentAssessmentRegistration.AssessmentAdministration.AssigningEducationOrganization.EducationOrganizationId": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+          ],
+          "StudentAssessmentRegistration.StudentEducationOrganizationAssociation": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+            Object {
+              "entityName": "UnusedEntity",
+              "jsonPath": "$.studentAssessmentRegistrationReference.unusedProperty",
+              "propertyName": "UnusedProperty",
+            },
+          ],
+          "StudentAssessmentRegistration.StudentEducationOrganizationAssociation.EducationOrganization": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+          ],
+          "StudentAssessmentRegistration.StudentEducationOrganizationAssociation.EducationOrganization.EducationOrganizationId": Array [
+            Object {
+              "entityName": "EducationOrganization",
+              "jsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
+              "propertyName": "EducationOrganizationId",
+            },
+          ],
+          "StudentAssessmentRegistration.StudentEducationOrganizationAssociation.UnusedEntity": Array [
+            Object {
+              "entityName": "UnusedEntity",
+              "jsonPath": "$.studentAssessmentRegistrationReference.unusedProperty",
+              "propertyName": "UnusedProperty",
+            },
+          ],
+          "StudentAssessmentRegistration.StudentEducationOrganizationAssociation.UnusedEntity.UnusedProperty": Array [
+            Object {
+              "entityName": "UnusedEntity",
+              "jsonPath": "$.studentAssessmentRegistrationReference.unusedProperty",
+              "propertyName": "UnusedProperty",
+            },
+          ],
+          "UnusedEntity": Array [
+            Object {
+              "entityName": "StudentAssessmentRegistrationBatteryPartAssociation",
+              "jsonPath": "$.unusedEntityReference.unusedProperty",
+              "propertyName": "UnusedEntity",
+            },
+          ],
+          "UnusedEntity.UnusedProperty": Array [
+            Object {
+              "entityName": "UnusedEntity",
+              "jsonPath": "$.unusedEntityReference.unusedProperty",
+              "propertyName": "UnusedProperty",
+            },
+          ],
+        }
+      `);
+    });
+  },
+);
