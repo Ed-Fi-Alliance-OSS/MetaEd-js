@@ -1,0 +1,28 @@
+{
+  "name": "@edfi/ods-comparator",
+  "main": "dist/index.js",
+  "bin": {
+    "ods-comparator": "./dist/cli.js"
+  },
+  "version": "4.5.2-dev.52",
+  "description": "Comparator between an ODS/API swagger.json and a DMS ApiSchema.json",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "scripts": {
+    "build": "tsc -p .",
+    "build:watch": "tsc -p . --watch"
+  },
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE.md",
+    "/package.json"
+  ],
+  "dependencies": {
+    "@edfi/metaed-core": "4.5.2-dev.52"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}
