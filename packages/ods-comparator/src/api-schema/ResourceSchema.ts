@@ -49,7 +49,7 @@ export type BaseResourceSchema = {
   dateTimeJsonPaths: JsonPath[];
 
   /**
-   * A collection of MetaEd property fullnames mapped to DocumentPaths objects,
+   * A collection of MetaEd property full names mapped to DocumentPaths objects,
    * which provide JsonPaths to the corresponding values in a resource document.
    */
   documentPathsMapping: { [key: MetaEdPropertyFullName]: DocumentPaths };
