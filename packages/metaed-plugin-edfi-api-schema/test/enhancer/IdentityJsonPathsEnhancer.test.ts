@@ -1209,3 +1209,53 @@ describe(
     });
   },
 );
+
+describe('when building domain entity referencing another which has inline common with identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StaffEducationOrganizationAssignmentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssignmentId', 'doc')
+      .withDomainEntityProperty('StaffEducationOrganizationEmploymentAssociation', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StaffEducationOrganizationEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withIntegerProperty('PeriodId', 'doc', false, false)
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct identityJsonPaths for StaffEducationOrganizationEmploymentAssociation', () => {
+    const entity = metaEd.namespace
+      .get(namespaceName)
+      ?.entity.domainEntity.get('StaffEducationOrganizationEmploymentAssociation');
+    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.employmentId",
+        "$.hireDate"
+      ]
+    `);
+  });
+});

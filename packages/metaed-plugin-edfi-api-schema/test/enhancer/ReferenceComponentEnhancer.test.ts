@@ -12,11 +12,13 @@ import {
   NamespaceBuilder,
   newNamespace,
   DomainEntityExtensionBuilder,
+  CommonBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
+  inlineCommonReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import {
   enhance as entityPropertyApiSchemaDataSetupEnhancer,
@@ -314,5 +316,60 @@ describe('when domain entity extension references domain entity in different nam
     expect((referenceComponent as ReferenceGroup).referenceComponents[0].sourceProperty.metaEdName).toBe(
       'ReferencedIdentity',
     );
+  });
+});
+
+describe('when building domain entity referencing another which has inline common with identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StaffEducationOrganizationAssignmentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssignmentId', 'doc')
+      .withDomainEntityProperty('StaffEducationOrganizationEmploymentAssociation', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StaffEducationOrganizationEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withIntegerProperty('PeriodId', 'doc', false, false)
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have the referenced domain entitys identity property', () => {
+    const property = metaEd.propertyIndex.domainEntity.find(
+      (p) => p.metaEdName === 'StaffEducationOrganizationEmploymentAssociation',
+    ) as any;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    expect(isReferenceGroup(referenceComponent)).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(2);
+    expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
+    expect((referenceComponent as ReferenceGroup).referenceComponents[0].sourceProperty.metaEdName).toBe('EmploymentId');
+    expect(isReferenceGroup((referenceComponent as ReferenceGroup).referenceComponents[1])).toBe(true);
+
+    const inlineCommonReferenceGroup = (referenceComponent as ReferenceGroup).referenceComponents[1] as ReferenceGroup;
+    expect(inlineCommonReferenceGroup.referenceComponents).toHaveLength(1);
+    expect(inlineCommonReferenceGroup.referenceComponents[0].sourceProperty.metaEdName).toBe('HireDate');
   });
 });
