@@ -2550,3 +2550,109 @@ describe(
     });
   },
 );
+
+describe('when building domain entity referencing another which has inline common with identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StaffEducationOrganizationAssignmentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssignmentId', 'doc')
+      .withDomainEntityProperty('StaffEducationOrganizationEmploymentAssociation', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StaffEducationOrganizationEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withIntegerProperty('PeriodId', 'doc', false, false)
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct identityJsonPaths for StaffEducationOrganizationAssignmentAssociation', () => {
+    const entity = metaEd.namespace
+      .get(namespaceName)
+      ?.entity.domainEntity.get('StaffEducationOrganizationAssignmentAssociation');
+    const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+      entity?.data.edfiApiSchema.documentPathsMapping,
+    );
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "AssignmentId": Object {
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.assignmentId",
+          "type": "number",
+        },
+        "StaffEducationOrganizationEmploymentAssociation": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "isRequired": false,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.employmentId",
+              "referenceJsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.employmentId",
+              "type": "number",
+            },
+            Object {
+              "identityJsonPath": "$.hireDate",
+              "referenceJsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.hireDate",
+              "type": "date",
+            },
+          ],
+          "resourceName": "StaffEducationOrganizationEmploymentAssociation",
+        },
+      }
+    `);
+  });
+
+  it('should be correct identityJsonPaths for StaffEducationOrganizationEmploymentAssociation', () => {
+    const entity = metaEd.namespace
+      .get(namespaceName)
+      ?.entity.domainEntity.get('StaffEducationOrganizationEmploymentAssociation');
+    const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+      entity?.data.edfiApiSchema.documentPathsMapping,
+    );
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "EmploymentId": Object {
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.employmentId",
+          "type": "number",
+        },
+        "EmploymentPeriod.HireDate": Object {
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.hireDate",
+          "type": "date",
+        },
+        "EmploymentPeriod.PeriodId": Object {
+          "isReference": false,
+          "isRequired": false,
+          "path": "$.periodId",
+          "type": "number",
+        },
+      }
+    `);
+  });
+});

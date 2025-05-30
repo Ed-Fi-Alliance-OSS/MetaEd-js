@@ -1053,3 +1053,60 @@ describe('when a role named resource has a schoolid merged away', () => {
     `);
   });
 });
+
+describe('when building domain entity referencing another which has inline common with identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StaffEducationOrganizationAssignmentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssignmentId', 'doc')
+      .withDomainEntityProperty('StaffEducationOrganizationEmploymentAssociation', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StaffEducationOrganizationEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withIntegerProperty('PeriodId', 'doc', false, false)
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have the referenced domain entitys identity property', () => {
+    const sectionEntity = metaEd.namespace
+      .get('EdFi')
+      ?.entity.domainEntity.get('StaffEducationOrganizationEmploymentAssociation');
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('EmploymentId');
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toHaveLength(1);
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths[0]).toBe('EmploymentId');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('HireDate');
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toHaveLength(1);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths[0]).toBe('EmploymentPeriod.HireDate');
+  });
+});

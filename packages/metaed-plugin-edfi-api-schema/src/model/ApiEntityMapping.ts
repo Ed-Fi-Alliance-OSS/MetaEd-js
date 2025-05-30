@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import deepFreeze from 'deep-freeze';
-import type { TopLevelEntity } from '@edfi/metaed-core';
+import type { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import type { CollectedProperty } from './CollectedProperty';
 import type { ReferenceGroup } from './ReferenceComponent';
 import type { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
@@ -13,6 +13,12 @@ import type { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
  * API shape metadata for a MetaEd entity.
  */
 export type ApiEntityMapping = {
+  /**
+   * All of the identity properties of the entity, in sorted order.
+   * Includes identity properties pulled up from InlineCommons
+   */
+  allIdentityProperties: EntityProperty[];
+
   /**
    * The non-reference properties that make up the identity
    * of the entity, in sorted order. Includes the paths showing
@@ -43,6 +49,7 @@ export type ApiEntityMapping = {
 
 export function newApiEntityMapping(): ApiEntityMapping {
   return {
+    allIdentityProperties: [],
     flattenedIdentityProperties: [],
     referenceGroups: [],
     descriptorCollectedApiProperties: [],
