@@ -29,16 +29,6 @@ function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: Docum
   return documentPathsMapping;
 }
 
-function buildQueryFieldMapping(documentObjectPaths: string[]): QueryFieldMapping {
-  const result: QueryFieldMapping = {};
-
-  documentObjectPaths.forEach((documentObjectPath) => {
-    result[documentObjectPath] = [{ path: `$.${documentObjectPath}` as JsonPath, type: 'string' }];
-  });
-
-  return result;
-}
-
 export function buildSchoolYearResourceSchema(
   resourceNameMapping: ResourceNameMapping,
   caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping,
@@ -90,7 +80,26 @@ export function buildSchoolYearResourceSchema(
     isSubclass: false,
     isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
-    queryFieldMapping: buildQueryFieldMapping(documentObjectPaths),
+    queryFieldMapping: {
+      currentSchoolYear: [
+        {
+          path: '$.currentSchoolYear' as JsonPath,
+          type: 'boolean',
+        },
+      ],
+      schoolYear: [
+        {
+          path: '$.schoolYear' as JsonPath,
+          type: 'number',
+        },
+      ],
+      schoolYearDescription: [
+        {
+          path: '$.schoolYearDescription' as JsonPath,
+          type: 'string',
+        },
+      ],
+    } as QueryFieldMapping,
     securableElements: { Namespace: [], EducationOrganization: [], Student: [], Contact: [], Staff: [] },
     authorizationPathways: [],
     arrayUniquenessConstraints: [],
