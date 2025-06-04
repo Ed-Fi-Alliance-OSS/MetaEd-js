@@ -188,7 +188,10 @@ export function flattenIdentityPropertiesFrom(
 
     // Prefix if this was a pulled-up identity property
     const initialPropertyPathPrefix =
-      identityProperty.parentEntity === entity ? '' : identityProperty.parentEntity.metaEdName;
+      identityProperty.parentEntity === entity ||
+      (entity.baseEntity != null && identityProperty.parentEntity === entity.baseEntity)
+        ? ''
+        : identityProperty.parentEntity.metaEdName;
 
     const initialPropertyPath = (
       getsInitialPropertyPathInAccumulator
