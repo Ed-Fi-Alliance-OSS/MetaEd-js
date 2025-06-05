@@ -1075,3 +1075,52 @@ describe('when building domain entity referencing another which has inline commo
     `);
   });
 });
+
+describe('when building domain entity with nested inline common properties with identities', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartInlineCommon('ContractInfo')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ContractId', 'doc')
+      .withEndInlineCommon()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withInlineCommonProperty('ContractInfo', 'doc', true, false)
+      .withEndInlineCommon()
+
+      .withStartDomainEntity('StaffNestedEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should include nested inline common identity properties with proper prefixing', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StaffNestedEmploymentAssociation');
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
+      Array [
+        "EmploymentId",
+        "EmploymentPeriod.HireDate",
+        "EmploymentPeriod.ContractInfo.ContractId",
+      ]
+    `);
+  });
+});

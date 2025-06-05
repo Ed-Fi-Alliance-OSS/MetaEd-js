@@ -27,17 +27,27 @@ function collectIdentityFullnamesFor(entity: TopLevelEntity): MetaEdPropertyFull
   });
 
   // Add identity properties from inline commons with proper prefixing
+  function addInlineCommonIdentities(inlineEntity: TopLevelEntity, prefix: string) {
+    inlineEntity.identityProperties.forEach((property) => {
+      const prefixedName = `${prefix}.${property.fullPropertyName}${property.type === 'descriptor' ? 'Descriptor' : ''}`;
+      identityFullnames.push(prefixedName as MetaEdPropertyFullName);
+    });
+
+    inlineEntity.properties
+      .filter((property) => property.type === 'inlineCommon')
+      .forEach((inlineCommonProperty) => {
+        const nestedPrefix = `${prefix}.${inlineCommonProperty.metaEdName}`;
+        addInlineCommonIdentities((inlineCommonProperty as InlineCommonProperty).referencedEntity, nestedPrefix);
+      });
+  }
+
   entity.properties
     .filter((property) => property.type === 'inlineCommon')
     .forEach((inlineCommonProperty) => {
-      const inlineCommonIdentityProperties = (inlineCommonProperty as InlineCommonProperty).referencedEntity
-        .identityProperties;
-      inlineCommonIdentityProperties.forEach((identityProperty) => {
-        const prefixedName = `${inlineCommonProperty.metaEdName}.${identityProperty.fullPropertyName}${
-          identityProperty.type === 'descriptor' ? 'Descriptor' : ''
-        }`;
-        identityFullnames.push(prefixedName as MetaEdPropertyFullName);
-      });
+      addInlineCommonIdentities(
+        (inlineCommonProperty as InlineCommonProperty).referencedEntity,
+        inlineCommonProperty.metaEdName,
+      );
     });
 
   return identityFullnames;
