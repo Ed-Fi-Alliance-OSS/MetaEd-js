@@ -3,7 +3,13 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import type { EntityProperty, TopLevelEntity, MetaEdPropertyPath, MergeDirectiveInfo } from '@edfi/metaed-core';
+import type {
+  EntityProperty,
+  TopLevelEntity,
+  MetaEdPropertyPath,
+  MergeDirectiveInfo,
+  InlineCommonProperty,
+} from '@edfi/metaed-core';
 import {
   ReferenceElement,
   ReferenceComponent,
@@ -151,6 +157,17 @@ function flattenReferenceElementsFromComponent({
   }
 }
 
+function prependInitialPropertyPathPrefix(
+  initialPropertyPathPrefix: string,
+  identityProperty: EntityProperty,
+): MetaEdPropertyPath {
+  return (
+    initialPropertyPathPrefix === ''
+      ? identityProperty.fullPropertyName
+      : `${initialPropertyPathPrefix}.${identityProperty.fullPropertyName}`
+  ) as MetaEdPropertyPath;
+}
+
 /**
  * Converts the given list of identity properties to only the "leaf" non-reference properties, in sorted order.
  * Includes the paths showing how the property came to be part of the identity, if it was via a reference identity
@@ -159,24 +176,39 @@ function flattenReferenceElementsFromComponent({
  * Omits properties that have been "merged away", meaning the property is marked as a merge directive source
  * along this property chain.
  */
-export function flattenIdentityPropertiesFrom(identityProperties: EntityProperty[]): FlattenedIdentityProperty[] {
+export function flattenIdentityPropertiesFrom(
+  identityProperties: EntityProperty[],
+  entity: TopLevelEntity,
+): FlattenedIdentityProperty[] {
   const referenceElementsWithPaths: ReferenceElementsWithPaths = new Map();
 
   identityProperties.forEach((identityProperty) => {
+    const getsInitialPropertyPathInAccumulator: boolean =
+      identityProperty.type === 'association' || identityProperty.type === 'domainEntity';
+
+    // Prefix if this was a pulled-up identity property
+    const initialPropertyPathPrefix =
+      identityProperty.parentEntity === entity ||
+      (entity.baseEntity != null && identityProperty.parentEntity === entity.baseEntity)
+        ? ''
+        : identityProperty.parentEntity.metaEdName;
+
     const initialPropertyPath = (
-      identityProperty.type === 'association' || identityProperty.type === 'domainEntity'
-        ? identityProperty.fullPropertyName
-        : ''
+      getsInitialPropertyPathInAccumulator
+        ? prependInitialPropertyPathPrefix(initialPropertyPathPrefix, identityProperty)
+        : initialPropertyPathPrefix
     ) as MetaEdPropertyPath;
 
-    const initialPropertyChain: EntityProperty[] =
-      identityProperty.type === 'association' || identityProperty.type === 'domainEntity' ? [identityProperty] : [];
+    const initialPropertyChain: EntityProperty[] = getsInitialPropertyPathInAccumulator ? [identityProperty] : [];
+    const initialPropertyPathAccumulator: MetaEdPropertyPath[] = getsInitialPropertyPathInAccumulator
+      ? [initialPropertyPath]
+      : [];
 
     flattenReferenceElementsFromComponent({
       referenceComponent: identityProperty.data.edfiApiSchema.referenceComponent,
       currentPropertyPath: initialPropertyPath,
       currentPropertyChain: initialPropertyChain,
-      propertyPathAccumulator: initialPropertyPath === '' ? [] : [initialPropertyPath],
+      propertyPathAccumulator: initialPropertyPathAccumulator,
       propertyChainAccumulator: initialPropertyChain,
       referenceElementsAccumulator: referenceElementsWithPaths,
       mergedAwayByDirectiveInfo: null,
@@ -220,4 +252,17 @@ export function superclassFor(entity: TopLevelEntity): TopLevelEntity | null {
   // If it's a subclass, return its superclass
   if (entity.baseEntity != null) return entity.baseEntity;
   return null;
+}
+
+/**
+ * Collects all identity properties, including those found on inline commons
+ * Returns them in sorted order.
+ */
+export function collectAllIdentityPropertiesFor(entity: TopLevelEntity): EntityProperty[] {
+  const result: EntityProperty[] = [...entity.identityProperties];
+  const inlineCommonIdentityProperties: EntityProperty[] = entity.properties
+    .filter((property) => property.type === 'inlineCommon')
+    .flatMap((property) => collectAllIdentityPropertiesFor((property as InlineCommonProperty).referencedEntity));
+  result.push(...inlineCommonIdentityProperties);
+  return result.sort((a, b) => a.fullPropertyName.localeCompare(b.fullPropertyName));
 }

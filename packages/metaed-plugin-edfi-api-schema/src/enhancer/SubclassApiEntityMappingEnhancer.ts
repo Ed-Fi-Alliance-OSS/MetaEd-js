@@ -11,6 +11,7 @@ import {
   referenceGroupsFrom,
   descriptorCollectedApiPropertiesFrom,
   superclassFor,
+  collectAllIdentityPropertiesFor,
 } from './ApiEntityMappingEnhancerBase';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
@@ -36,7 +37,7 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
       : entity.baseEntity.properties.find((p) => p.metaEdName === subclassRenamedIdentityProperty.baseKeyName);
 
   const combinedIdentityProperties = sortedPropertiesWithExclusion(
-    [...entity.identityProperties, ...entity.baseEntity.identityProperties],
+    [...collectAllIdentityPropertiesFor(entity), ...collectAllIdentityPropertiesFor(entity.baseEntity)],
     baseClassRenamedProperty,
   );
   const combinedProperties = sortedPropertiesWithExclusion(
@@ -45,7 +46,8 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
   );
 
   return {
-    flattenedIdentityProperties: flattenIdentityPropertiesFrom(combinedIdentityProperties),
+    allIdentityProperties: combinedIdentityProperties,
+    flattenedIdentityProperties: flattenIdentityPropertiesFrom(combinedIdentityProperties, entity),
     referenceGroups: referenceGroupsFrom(combinedProperties),
     descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),

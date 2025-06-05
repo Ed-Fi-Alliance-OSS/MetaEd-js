@@ -3348,3 +3348,122 @@ describe(
     });
   },
 );
+
+describe('when building domain entity referencing another which has inline common with identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('StaffEducationOrganizationAssignmentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssignmentId', 'doc')
+      .withDomainEntityProperty('StaffEducationOrganizationEmploymentAssociation', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StaffEducationOrganizationEmploymentAssociation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EmploymentId', 'doc')
+      .withInlineCommonProperty('EmploymentPeriod', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('EmploymentPeriod')
+      .withDocumentation('doc')
+      .withDateIdentity('HireDate', 'doc')
+      .withIntegerProperty('PeriodId', 'doc', false, false)
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping for StaffEducationOrganizationAssignmentAssociation', () => {
+    const entity = metaEd.namespace
+      .get(namespaceName)
+      ?.entity.domainEntity.get('StaffEducationOrganizationAssignmentAssociation');
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssignmentId": Array [
+          Object {
+            "entityName": "StaffEducationOrganizationAssignmentAssociation",
+            "jsonPath": "$.assignmentId",
+            "propertyName": "AssignmentId",
+          },
+        ],
+        "StaffEducationOrganizationEmploymentAssociation": Array [
+          Object {
+            "entityName": "StaffEducationOrganizationAssignmentAssociation",
+            "jsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.employmentId",
+            "propertyName": "StaffEducationOrganizationEmploymentAssociation",
+          },
+          Object {
+            "entityName": "StaffEducationOrganizationAssignmentAssociation",
+            "jsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.hireDate",
+            "propertyName": "StaffEducationOrganizationEmploymentAssociation",
+          },
+        ],
+        "StaffEducationOrganizationEmploymentAssociation.EmploymentId": Array [
+          Object {
+            "entityName": "StaffEducationOrganizationEmploymentAssociation",
+            "jsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.employmentId",
+            "propertyName": "EmploymentId",
+          },
+        ],
+        "StaffEducationOrganizationEmploymentAssociation.EmploymentPeriod.HireDate": Array [
+          Object {
+            "entityName": "EmploymentPeriod",
+            "jsonPath": "$.staffEducationOrganizationEmploymentAssociationReference.hireDate",
+            "propertyName": "HireDate",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for StaffEducationOrganizationEmploymentAssociation', () => {
+    const entity = metaEd.namespace
+      .get(namespaceName)
+      ?.entity.domainEntity.get('StaffEducationOrganizationEmploymentAssociation');
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "EmploymentId": Array [
+          Object {
+            "entityName": "StaffEducationOrganizationEmploymentAssociation",
+            "jsonPath": "$.employmentId",
+            "propertyName": "EmploymentId",
+          },
+        ],
+        "EmploymentPeriod.HireDate": Array [
+          Object {
+            "entityName": "EmploymentPeriod",
+            "jsonPath": "$.hireDate",
+            "propertyName": "HireDate",
+          },
+        ],
+        "EmploymentPeriod.PeriodId": Array [
+          Object {
+            "entityName": "EmploymentPeriod",
+            "jsonPath": "$.periodId",
+            "propertyName": "PeriodId",
+          },
+        ],
+      }
+    `);
+  });
+});
