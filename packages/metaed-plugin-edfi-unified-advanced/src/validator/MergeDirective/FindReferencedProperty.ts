@@ -16,7 +16,6 @@ const referenceTypes: ModelType[] = [
   'choice',
   'common',
   'commonSubclass',
-  'inlineCommon',
 ];
 
 const commonTypes: PropertyType[] = ['choice', 'common', 'inlineCommon'];

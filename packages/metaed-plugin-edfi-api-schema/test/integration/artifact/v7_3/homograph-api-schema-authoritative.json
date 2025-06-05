@@ -2670,6 +2670,7 @@
         ],
         "documentPathsMapping": {
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].city",
@@ -2677,6 +2678,7 @@
           },
           "ContactName": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",
@@ -2696,6 +2698,7 @@
           },
           "StudentSchoolAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Homograph",
@@ -2877,12 +2880,14 @@
         ],
         "documentPathsMapping": {
           "FirstName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.firstName",
             "type": "string"
           },
           "LastSurname": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.lastSurname",
@@ -2970,6 +2975,7 @@
         ],
         "documentPathsMapping": {
           "SchoolYear": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.schoolYear",
@@ -3041,12 +3047,14 @@
         ],
         "documentPathsMapping": {
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.address.city",
             "type": "string"
           },
           "SchoolName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.schoolName",
@@ -3054,6 +3062,7 @@
           },
           "SchoolYearType": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Homograph",
@@ -3178,6 +3187,7 @@
         ],
         "documentPathsMapping": {
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].city",
@@ -3185,6 +3195,7 @@
           },
           "StaffName": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",
@@ -3204,6 +3215,7 @@
           },
           "StudentSchoolAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Homograph",
@@ -3384,6 +3396,7 @@
         "documentPathsMapping": {
           "School": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",
@@ -3398,6 +3411,7 @@
           },
           "Student": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",
@@ -3529,6 +3543,7 @@
         ],
         "documentPathsMapping": {
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.address.city",
@@ -3536,6 +3551,7 @@
           },
           "SchoolYearType": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",
@@ -3550,6 +3566,7 @@
           },
           "StudentName": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Homograph",

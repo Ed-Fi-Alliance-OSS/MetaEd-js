@@ -4842,6 +4842,7 @@
         "documentPathsMapping": {
           "Bus": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Sample",
@@ -4855,30 +4856,35 @@
             "resourceName": "Bus"
           },
           "BusRouteDirection": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.busRouteDirection",
             "type": "string"
           },
           "BusRouteDuration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.busRouteDuration",
             "type": "number"
           },
           "BusRouteNumber": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.busRouteNumber",
             "type": "number"
           },
           "BusYear": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.busYears[*].busYear",
             "type": "number"
           },
           "Daily": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.daily",
@@ -4886,6 +4892,7 @@
           },
           "DisabilityDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.disabilityDescriptor",
@@ -4894,24 +4901,28 @@
             "type": "string"
           },
           "ExpectedTransitTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.expectedTransitTime",
             "type": "number"
           },
           "HoursPerWeek": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.hoursPerWeek",
             "type": "number"
           },
           "OperatingCost": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.operatingCost",
             "type": "number"
           },
           "OptimalCapacity": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.optimalCapacity",
@@ -4919,6 +4930,7 @@
           },
           "Program": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -4942,6 +4954,7 @@
             "resourceName": "Program"
           },
           "ServiceAreaPostalCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.serviceAreaPostalCodes[*].serviceAreaPostalCode",
@@ -4949,6 +4962,7 @@
           },
           "StaffEducationOrganizationAssignmentAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -4977,30 +4991,35 @@
             "resourceName": "StaffEducationOrganizationAssignmentAssociation"
           },
           "StartDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.startDate",
             "type": "date"
           },
           "StartTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.startTimes[*].startTime",
             "type": "time"
           },
           "Telephone.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Telephone.OrderOfPriority": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].orderOfPriority",
             "type": "number"
           },
           "Telephone.TelephoneNumber": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.telephones[*].telephoneNumber",
@@ -5008,6 +5027,7 @@
           },
           "Telephone.TelephoneNumberTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.telephones[*].telephoneNumberTypeDescriptor",
@@ -5016,12 +5036,14 @@
             "type": "string"
           },
           "Telephone.TextMessageCapabilityIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].textMessageCapabilityIndicator",
             "type": "boolean"
           },
           "WeeklyMileage": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.weeklyMileage",
@@ -5424,6 +5446,7 @@
         ],
         "documentPathsMapping": {
           "BusId": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.busId",
@@ -5525,6 +5548,7 @@
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].addressTypeDescriptor",
@@ -5533,42 +5557,49 @@
             "type": "string"
           },
           "Address.ApartmentRoomSuiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].city",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].latitude",
@@ -5576,6 +5607,7 @@
           },
           "Address.LocaleDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].localeDescriptor",
@@ -5584,30 +5616,35 @@
             "type": "string"
           },
           "Address.Longitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.Period.BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].postalCode",
@@ -5615,6 +5652,7 @@
           },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
@@ -5623,30 +5661,35 @@
             "type": "string"
           },
           "Address.StreetNumberName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].streetNumberName",
             "type": "string"
           },
           "Author": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.authors[*].author",
             "type": "string"
           },
           "AverageCarLineWait": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.averageCarLineWait",
             "type": "number"
           },
           "BecameParent": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.becameParent",
             "type": "number"
           },
           "CTEProgramService.CIPCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.cipCode",
@@ -5654,6 +5697,7 @@
           },
           "CTEProgramService.CTEProgramServiceDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.cteProgramService.cteProgramServiceDescriptor",
@@ -5662,30 +5706,35 @@
             "type": "string"
           },
           "CTEProgramService.PrimaryIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.primaryIndicator",
             "type": "boolean"
           },
           "CTEProgramService.ServiceBeginDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.serviceBeginDate",
             "type": "date"
           },
           "CTEProgramService.ServiceEndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.serviceEndDate",
             "type": "date"
           },
           "CeilingHeight": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.ceilingHeights[*].ceilingHeight",
             "type": "number"
           },
           "CoffeeSpend": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.coffeeSpend",
@@ -5693,6 +5742,7 @@
           },
           "CredentialFieldDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.sample.credentialFieldDescriptor",
@@ -5701,6 +5751,7 @@
             "type": "string"
           },
           "Duration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.duration",
@@ -5708,6 +5759,7 @@
           },
           "EducationContent": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -5721,42 +5773,49 @@
             "resourceName": "EducationContent"
           },
           "FavoriteBookTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle",
             "type": "string"
           },
           "GPA": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.gpa",
             "type": "number"
           },
           "GraduationDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.graduationDate",
             "type": "date"
           },
           "IsSportsFan": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.isSportsFan",
             "type": "boolean"
           },
           "LuckyNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.luckyNumber",
             "type": "number"
           },
           "PreferredWakeUpTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.preferredWakeUpTime",
             "type": "time"
           },
           "RainCertainty": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.rainCertainty",
@@ -5764,6 +5823,7 @@
           },
           "StudentProgramAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -5802,18 +5862,21 @@
             "resourceName": "StudentProgramAssociation"
           },
           "TeacherConference.DayOfWeek": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.teacherConference.dayOfWeek",
             "type": "string"
           },
           "TeacherConference.EndTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.teacherConference.endTime",
             "type": "time"
           },
           "TeacherConference.StartTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.teacherConference.startTime",
@@ -6483,6 +6546,7 @@
         ],
         "documentPathsMapping": {
           "CTEProgramService.CIPCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.cipCode",
@@ -6490,6 +6554,7 @@
           },
           "CTEProgramService.CTEProgramServiceDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.cteProgramService.cteProgramServiceDescriptor",
@@ -6498,18 +6563,21 @@
             "type": "string"
           },
           "CTEProgramService.PrimaryIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.primaryIndicator",
             "type": "boolean"
           },
           "CTEProgramService.ServiceBeginDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.serviceBeginDate",
             "type": "date"
           },
           "CTEProgramService.ServiceEndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.cteProgramService.serviceEndDate",
@@ -6517,6 +6585,7 @@
           },
           "DirectlyOwnedBus": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Sample",
@@ -6530,6 +6599,7 @@
             "resourceName": "Bus"
           },
           "IsExemplary": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.isExemplary",
@@ -6660,30 +6730,35 @@
         ],
         "documentPathsMapping": {
           "FirstPetOwnedDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.firstPetOwnedDate",
             "type": "date"
           },
           "Pet.IsFixed": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.pets[*].isFixed",
             "type": "boolean"
           },
           "Pet.PetName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.pets[*].petName",
             "type": "string"
           },
           "PetPreference.MaximumWeight": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.petPreference.maximumWeight",
             "type": "number"
           },
           "PetPreference.MinimumWeight": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.petPreference.minimumWeight",
@@ -6829,6 +6904,7 @@
         "documentPathsMapping": {
           "ArtMediumDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.artMedia[*].artMediumDescriptor",
@@ -6837,12 +6913,14 @@
             "type": "string"
           },
           "ArtPieces": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.artPieces",
             "type": "number"
           },
           "BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.beginDate",
@@ -6850,6 +6928,7 @@
           },
           "EducationOrganization": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -6863,18 +6942,21 @@
             "resourceName": "EducationOrganization"
           },
           "EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.endDate",
             "type": "date"
           },
           "ExhibitDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.exhibitDate",
             "type": "date"
           },
           "FavoriteBook.BookTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.favoriteBook.bookTitle",
@@ -6882,6 +6964,7 @@
           },
           "FavoriteBook.FavoriteBookArtMedium.ArtMediumDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.favoriteBook.artMedia[*].artMediumDescriptor",
@@ -6890,6 +6973,7 @@
             "type": "string"
           },
           "FavoriteBook.FavoriteBookArtMedium.ArtPieces": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.favoriteBook.artMedia[*].artPieces",
@@ -6897,6 +6981,7 @@
           },
           "FavoriteBook.FavoriteBookCategoryDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.favoriteBook.favoriteBookCategoryDescriptor",
@@ -6905,54 +6990,63 @@
             "type": "string"
           },
           "HoursPerDay": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.hoursPerDay",
             "type": "number"
           },
           "IdentificationCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.identificationCode",
             "type": "string"
           },
           "KilnReservation": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.kilnReservation",
             "type": "time"
           },
           "KilnReservationLength": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.kilnReservationLength",
             "type": "number"
           },
           "MasteredMediums": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.masteredMediums",
             "type": "number"
           },
           "NumberOfDaysInAttendance": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.numberOfDaysInAttendance",
             "type": "number"
           },
           "PortfolioPieces": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.portfolioPieces",
             "type": "number"
           },
           "PortfolioYears": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.portfolioYears[*].portfolioYears",
             "type": "number"
           },
           "PrivateArtProgram": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.privateArtProgram",
@@ -6960,6 +7054,7 @@
           },
           "Program": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -6983,12 +7078,14 @@
             "resourceName": "Program"
           },
           "ProgramFees": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.programFees",
             "type": "number"
           },
           "ProgramParticipationStatus.DesignatedBy": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.programParticipationStatuses[*].designatedBy",
@@ -6996,6 +7093,7 @@
           },
           "ProgramParticipationStatus.ParticipationStatusDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.programParticipationStatuses[*].participationStatusDescriptor",
@@ -7004,12 +7102,14 @@
             "type": "string"
           },
           "ProgramParticipationStatus.StatusBeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.programParticipationStatuses[*].statusBeginDate",
             "type": "date"
           },
           "ProgramParticipationStatus.StatusEndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.programParticipationStatuses[*].statusEndDate",
@@ -7017,6 +7117,7 @@
           },
           "ReasonExitedDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.reasonExitedDescriptor",
@@ -7025,18 +7126,21 @@
             "type": "string"
           },
           "ServedOutsideOfRegularSession": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.servedOutsideOfRegularSession",
             "type": "boolean"
           },
           "Service.PrimaryIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.services[*].primaryIndicator",
             "type": "boolean"
           },
           "Service.ServiceBeginDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.services[*].serviceBeginDate",
@@ -7044,6 +7148,7 @@
           },
           "Service.ServiceDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.services[*].serviceDescriptor",
@@ -7052,6 +7157,7 @@
             "type": "string"
           },
           "Service.ServiceEndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.services[*].serviceEndDate",
@@ -7059,6 +7165,7 @@
           },
           "Student": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -7072,6 +7179,7 @@
             "resourceName": "Student"
           },
           "Style": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.styles[*].style",
@@ -7573,12 +7681,14 @@
         ],
         "documentPathsMapping": {
           "AnalysisCompleted": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.analysisCompleted",
             "type": "boolean"
           },
           "AnalysisDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.analysisDate",
@@ -7674,24 +7784,28 @@
         ],
         "documentPathsMapping": {
           "BedtimeReader": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.bedtimeReader",
             "type": "boolean"
           },
           "BedtimeReadingRate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.bedtimeReadingRate",
             "type": "number"
           },
           "BookBudget": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.bookBudget",
             "type": "number"
           },
           "BooksBorrowed": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.booksBorrowed",
@@ -7699,6 +7813,7 @@
           },
           "DisciplineDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.sample.disciplines[*].disciplineDescriptor",
@@ -7707,12 +7822,14 @@
             "type": "string"
           },
           "FavoriteBookTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle",
             "type": "string"
           },
           "HoursPerWeek": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.hoursPerWeeks[*].hoursPerWeek",
@@ -7720,6 +7837,7 @@
           },
           "InterventionStudy": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -7738,42 +7856,49 @@
             "resourceName": "InterventionStudy"
           },
           "LibraryDuration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.libraryDuration",
             "type": "number"
           },
           "LibraryTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.libraryTime",
             "type": "time"
           },
           "LibraryVisits": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.libraryVisits",
             "type": "number"
           },
           "PagesRead": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.pagesReads[*].pagesRead",
             "type": "number"
           },
           "PriorContactRestrictions": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.priorContactRestrictions",
             "type": "string"
           },
           "ReadGreenEggsAndHamDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.readGreenEggsAndHamDate",
             "type": "date"
           },
           "ReadingTimeSpent": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.readingTimeSpent",
@@ -7781,6 +7906,7 @@
           },
           "StaffEducationOrganizationEmploymentAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -7809,24 +7935,28 @@
             "resourceName": "StaffEducationOrganizationEmploymentAssociation"
           },
           "StudentRead": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.studentRead",
             "type": "number"
           },
           "Telephone.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.telephone.doNotPublishIndicator",
             "type": "boolean"
           },
           "Telephone.OrderOfPriority": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.telephone.orderOfPriority",
             "type": "number"
           },
           "Telephone.TelephoneNumber": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.telephone.telephoneNumber",
@@ -7834,6 +7964,7 @@
           },
           "Telephone.TelephoneNumberTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.telephone.telephoneNumberTypeDescriptor",
@@ -7842,6 +7973,7 @@
             "type": "string"
           },
           "Telephone.TextMessageCapabilityIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.telephone.textMessageCapabilityIndicator",
@@ -8152,6 +8284,7 @@
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].addressTypeDescriptor",
@@ -8160,42 +8293,49 @@
             "type": "string"
           },
           "Address.ApartmentRoomSuiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].city",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].latitude",
@@ -8203,6 +8343,7 @@
           },
           "Address.LocaleDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].localeDescriptor",
@@ -8211,30 +8352,35 @@
             "type": "string"
           },
           "Address.Longitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.Period.BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].postalCode",
@@ -8242,6 +8388,7 @@
           },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
@@ -8250,6 +8397,7 @@
             "type": "string"
           },
           "Address.StreetNumberName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].streetNumberName",
@@ -8257,6 +8405,7 @@
           },
           "FavoriteProgram": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -8280,18 +8429,21 @@
             "resourceName": "Program"
           },
           "StudentCharacteristic.DesignatedBy": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.studentCharacteristics[*].designatedBy",
             "type": "string"
           },
           "StudentCharacteristic.Period.BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
             "type": "date"
           },
           "StudentCharacteristic.Period.EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.studentCharacteristics[*].periods[*].endDate",
@@ -8299,6 +8451,7 @@
           },
           "StudentCharacteristic.StudentCharacteristicDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor",
@@ -8584,6 +8737,7 @@
         "documentPathsMapping": {
           "AcademicSubjectDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.academicSubjects[*].academicSubjectDescriptor",
@@ -8592,6 +8746,7 @@
             "type": "string"
           },
           "CTEProgramService.CIPCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.cteProgramService.cipCode",
@@ -8599,6 +8754,7 @@
           },
           "CTEProgramService.CTEProgramServiceDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.cteProgramService.cteProgramServiceDescriptor",
@@ -8607,54 +8763,63 @@
             "type": "string"
           },
           "CTEProgramService.PrimaryIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.cteProgramService.primaryIndicator",
             "type": "boolean"
           },
           "CTEProgramService.ServiceBeginDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.cteProgramService.serviceBeginDate",
             "type": "date"
           },
           "CTEProgramService.ServiceEndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.cteProgramService.serviceEndDate",
             "type": "date"
           },
           "CareerPathwayCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.careerPathwayCodes[*].careerPathwayCode",
             "type": "number"
           },
           "CommencementTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.commencementTime",
             "type": "time"
           },
           "Description": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.descriptions[*].description",
             "type": "string"
           },
           "DesignatedBy": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.designatedBies[*].designatedBy",
             "type": "string"
           },
           "EffectiveDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.effectiveDate",
             "type": "date"
           },
           "GraduationFee": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.graduationFee",
@@ -8662,6 +8827,7 @@
           },
           "GraduationPlan": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -8685,30 +8851,35 @@
             "resourceName": "GraduationPlan"
           },
           "HighSchoolDuration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.highSchoolDuration",
             "type": "number"
           },
           "HoursPerWeek": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.hoursPerWeek",
             "type": "number"
           },
           "IndustryCredential": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.industryCredentials[*].industryCredential",
             "type": "string"
           },
           "IsActivePlan": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.isActivePlan",
             "type": "boolean"
           },
           "RequiredAttendance": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.requiredAttendance",
@@ -8716,6 +8887,7 @@
           },
           "Staff": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -8730,6 +8902,7 @@
           },
           "Student": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -8744,6 +8917,7 @@
           },
           "StudentContactAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -8762,12 +8936,14 @@
             "resourceName": "StudentContactAssociation"
           },
           "TargetGPA": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.targetGPA",
             "type": "number"
           },
           "YearsAttended": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.yearsAttendeds[*].yearsAttended",
@@ -9231,6 +9407,7 @@
         "documentPathsMapping": {
           "MembershipTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.sample.membershipTypeDescriptor",
@@ -9299,6 +9476,7 @@
         "documentPathsMapping": {
           "RelatedGeneralStudentProgramAssociation": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -9466,12 +9644,14 @@
         ],
         "documentPathsMapping": {
           "AquaticPet.MimimumTankVolume": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.aquaticPets[*].mimimumTankVolume",
             "type": "number"
           },
           "FavoriteBook.BookTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.favoriteBooks[*].bookTitle",
@@ -9479,6 +9659,7 @@
           },
           "FavoriteBook.FavoriteBookArtMedium.ArtMediumDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.favoriteBooks[*].artMedia[*].artMediumDescriptor",
@@ -9487,6 +9668,7 @@
             "type": "string"
           },
           "FavoriteBook.FavoriteBookArtMedium.ArtPieces": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.favoriteBooks[*].artMedia[*].artPieces",
@@ -9494,6 +9676,7 @@
           },
           "FavoriteBook.FavoriteBookCategoryDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$._ext.sample.favoriteBooks[*].favoriteBookCategoryDescriptor",
@@ -9502,24 +9685,28 @@
             "type": "string"
           },
           "Pet.IsFixed": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.pets[*].isFixed",
             "type": "boolean"
           },
           "Pet.PetName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.pets[*].petName",
             "type": "string"
           },
           "PetPreference.MaximumWeight": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.petPreference.maximumWeight",
             "type": "number"
           },
           "PetPreference.MinimumWeight": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.petPreference.minimumWeight",

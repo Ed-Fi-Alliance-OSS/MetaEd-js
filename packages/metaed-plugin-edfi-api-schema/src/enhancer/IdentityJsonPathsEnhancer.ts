@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, MetaEdPropertyFullName } from '@edfi/metaed-core';
+import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { JsonPathsInfo } from '../model/JsonPathsMapping';
@@ -21,6 +22,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
         const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
+        invariant(matchingJsonPathsInfo != null, 'identityFullname did not match an allJsonPathsMapping');
         // Add them all
         matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => result.add(jppp.jsonPath));
       });

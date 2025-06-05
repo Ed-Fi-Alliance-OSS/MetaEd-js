@@ -178,7 +178,7 @@ export class DomainBuilder extends MetaEdGrammarListener {
     if (context.COMMON_KEYWORD()) this.currentDomainItem.referencedType = 'common';
     if (context.DOMAIN_ENTITY_KEYWORD()) this.currentDomainItem.referencedType = 'domainEntity';
     if (context.DESCRIPTOR_KEYWORD()) this.currentDomainItem.referencedType = 'descriptor';
-    if (context.INLINE_COMMON_KEYWORD()) this.currentDomainItem.referencedType = 'inlineCommon';
+    if (context.INLINE_COMMON_KEYWORD()) this.currentDomainItem.referencedType = 'common';
 
     const baseNamespaceContext = context.baseNamespace();
     if (

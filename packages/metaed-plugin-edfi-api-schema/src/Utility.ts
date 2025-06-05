@@ -189,3 +189,19 @@ export function findMergeJsonPathsMapping(entity: TopLevelEntity | null, path: M
 export function normalizeDescriptorName(entity: TopLevelEntity): string {
   return entity.type === 'descriptor' ? `${entity.metaEdName}Descriptor` : entity.metaEdName;
 }
+
+/**
+ * Normalize a property path to include a "Descriptor" suffix only if it doesn't already end with "Descriptor"
+ */
+export function normalizeDescriptorPropertyPath(propertyPath: string, shouldAddDescriptor: boolean): string {
+  if (!shouldAddDescriptor) {
+    return propertyPath;
+  }
+
+  // If it already ends with "Descriptor", don't add another one
+  if (propertyPath.endsWith('Descriptor')) {
+    return propertyPath;
+  }
+
+  return `${propertyPath}Descriptor`;
+}

@@ -8,49 +8,37 @@ import {
   MetaEdEnvironment,
   EnhancerResult,
   TopLevelEntity,
+  Common,
   MetaEdPropertyFullName,
-  InlineCommonProperty,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import { normalizeDescriptorPropertyPath } from '../Utility';
 
 /**
- * Collects all identity properties with their correct fullnames, including inline common prefixes
+ * Collects all identity properties with their correct fullnames, using the pre-computed allJsonPathsMapping
+ * that already contains the correct property paths including inline common prefixes
  */
 function collectIdentityFullnamesFor(entity: TopLevelEntity): MetaEdPropertyFullName[] {
-  const identityFullnames: MetaEdPropertyFullName[] = [];
+  const { documentPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-  // Add direct identity properties
-  entity.identityProperties.forEach((property) => {
-    identityFullnames.push(
-      `${property.fullPropertyName}${property.type === 'descriptor' ? 'Descriptor' : ''}` as MetaEdPropertyFullName,
-    );
-  });
-
-  // Add identity properties from inline commons with proper prefixing
-  function addInlineCommonIdentities(inlineEntity: TopLevelEntity, prefix: string) {
-    inlineEntity.identityProperties.forEach((property) => {
-      const prefixedName = `${prefix}.${property.fullPropertyName}${property.type === 'descriptor' ? 'Descriptor' : ''}`;
-      identityFullnames.push(prefixedName as MetaEdPropertyFullName);
-    });
-
-    inlineEntity.properties
-      .filter((property) => property.type === 'inlineCommon')
-      .forEach((inlineCommonProperty) => {
-        const nestedPrefix = `${prefix}.${inlineCommonProperty.metaEdName}`;
-        addInlineCommonIdentities((inlineCommonProperty as InlineCommonProperty).referencedEntity, nestedPrefix);
-      });
-  }
-
-  entity.properties
-    .filter((property) => property.type === 'inlineCommon')
-    .forEach((inlineCommonProperty) => {
-      addInlineCommonIdentities(
-        (inlineCommonProperty as InlineCommonProperty).referencedEntity,
-        inlineCommonProperty.metaEdName,
-      );
-    });
-
-  return identityFullnames;
+  return (
+    Object.entries(documentPathsMapping)
+      // will find identity properties on main entity and also on inline commons off the main entity
+      .filter(
+        ([_, documentPaths]) =>
+          documentPaths.isPartOfIdentity &&
+          (documentPaths.sourceProperty?.parentEntity === entity ||
+            (documentPaths.sourceProperty?.parentEntity.type === 'common' &&
+              (documentPaths.sourceProperty?.parentEntity as Common).inlineInOds)),
+      )
+      .map(
+        ([path, documentPaths]) =>
+          normalizeDescriptorPropertyPath(
+            path,
+            documentPaths.isReference && documentPaths.isDescriptor,
+          ) as MetaEdPropertyFullName,
+      )
+  );
 }
 
 /**

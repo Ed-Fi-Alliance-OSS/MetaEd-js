@@ -10,6 +10,7 @@ import {
   getAllEntitiesOfType,
   MetaEdPropertyFullName,
 } from '@edfi/metaed-core';
+import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
 import { JsonPathsInfo } from '../../model/JsonPathsMapping';
@@ -54,6 +55,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
       const matchingJsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
+      invariant(matchingJsonPathsInfo != null, 'identityFullname did not match an allJsonPathsMapping');
 
       matchingJsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
         const hasRoleNameInPropertyChain = [jppp.sourceProperty, ...jppp.flattenedIdentityProperty.propertyChain].some(

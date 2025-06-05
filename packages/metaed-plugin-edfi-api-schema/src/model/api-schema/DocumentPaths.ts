@@ -15,6 +15,11 @@ type DocumentPathBase = {
   isRequired: boolean;
 
   /**
+   * Whether this path is part of the identity
+   */
+  isPartOfIdentity: boolean;
+
+  /**
    * The source property of this document reference path. This must be stripped out before the DocumentReferencePaths
    * can be stringified to JSON.
    */

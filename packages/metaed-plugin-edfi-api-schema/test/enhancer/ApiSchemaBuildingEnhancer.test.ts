@@ -73,10 +73,10 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   allJsonPathsMappingEnhancer(metaEd);
   mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
+  documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
-  documentPathsMappingEnhancer(metaEd);
   typeCoercionJsonPathsEnhancer(metaEd);
   enhance(metaEd);
 }
@@ -3050,18 +3050,21 @@ describe('when building a Domain Entity subclass', () => {
     ).toMatchInlineSnapshot(`
       Object {
         "SchoolId": Object {
+          "isPartOfIdentity": true,
           "isReference": false,
           "isRequired": true,
           "path": "$.schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "isRequired": true,
           "path": "$.superclassProperty",
@@ -3259,6 +3262,7 @@ describe('when building an Association subclass', () => {
       Object {
         "Program": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": true,
           "isReference": true,
           "isRequired": true,
           "projectName": "EdFi",
@@ -3278,6 +3282,7 @@ describe('when building an Association subclass', () => {
         },
         "School": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": true,
           "isReference": true,
           "isRequired": true,
           "projectName": "EdFi",
@@ -3296,12 +3301,14 @@ describe('when building an Association subclass', () => {
           "resourceName": "School",
         },
         "SubclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "isRequired": true,
           "path": "$.subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
+          "isPartOfIdentity": false,
           "isReference": false,
           "isRequired": true,
           "path": "$.superclassProperty",
@@ -3441,6 +3448,7 @@ describe('when domain entity extension references domain entity in different nam
       Object {
         "ReferencedEntityName": Object {
           "isDescriptor": false,
+          "isPartOfIdentity": false,
           "isReference": true,
           "isRequired": false,
           "projectName": "EdFi",

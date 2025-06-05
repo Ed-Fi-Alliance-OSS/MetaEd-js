@@ -49,9 +49,9 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   allJsonPathsMappingEnhancer(metaEd);
   mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
+  documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
-  documentPathsMappingEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   enhance(metaEd);
 }

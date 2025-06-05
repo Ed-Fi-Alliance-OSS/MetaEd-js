@@ -15462,6 +15462,7 @@
         ],
         "documentPathsMapping": {
           "BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.beginDate",
@@ -15469,6 +15470,7 @@
           },
           "Candidate": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -15483,6 +15485,7 @@
           },
           "CohortYear.CohortYearTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.cohortYears[*].cohortYearTypeDescriptor",
@@ -15492,6 +15495,7 @@
           },
           "CohortYear.SchoolYear": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -15506,6 +15510,7 @@
           },
           "CohortYear.TermDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.cohortYears[*].termDescriptor",
@@ -15514,24 +15519,28 @@
             "type": "string"
           },
           "DegreeSpecialization.BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.degreeSpecializations[*].beginDate",
             "type": "date"
           },
           "DegreeSpecialization.EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.degreeSpecializations[*].endDate",
             "type": "date"
           },
           "DegreeSpecialization.MajorSpecialization": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.degreeSpecializations[*].majorSpecialization",
             "type": "string"
           },
           "DegreeSpecialization.MinorSpecialization": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.degreeSpecializations[*].minorSpecialization",
@@ -15539,6 +15548,7 @@
           },
           "EPPProgramPathwayDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.eppProgramPathwayDescriptor",
@@ -15548,6 +15558,7 @@
           },
           "EducatorPreparationProgram": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -15571,6 +15582,7 @@
             "resourceName": "EducatorPreparationProgram"
           },
           "EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.endDate",
@@ -15578,6 +15590,7 @@
           },
           "ReasonExitedDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.reasonExitedDescriptor",
@@ -15883,6 +15896,7 @@
         "documentPathsMapping": {
           "Address.AddressTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.addresses[*].addressTypeDescriptor",
@@ -15891,42 +15905,49 @@
             "type": "string"
           },
           "Address.ApartmentRoomSuiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].city",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].latitude",
@@ -15934,6 +15955,7 @@
           },
           "Address.LocaleDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.addresses[*].localeDescriptor",
@@ -15942,30 +15964,35 @@
             "type": "string"
           },
           "Address.Longitude": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.Period.BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].postalCode",
@@ -15973,6 +16000,7 @@
           },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.addresses[*].stateAbbreviationDescriptor",
@@ -15981,12 +16009,14 @@
             "type": "string"
           },
           "Address.StreetNumberName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "BirthData.BirthCity": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.birthCity",
@@ -15994,6 +16024,7 @@
           },
           "BirthData.BirthCountryDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.birthCountryDescriptor",
@@ -16002,12 +16033,14 @@
             "type": "string"
           },
           "BirthData.BirthDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.birthDate",
             "type": "date"
           },
           "BirthData.BirthInternationalProvince": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.birthInternationalProvince",
@@ -16015,6 +16048,7 @@
           },
           "BirthData.BirthSexDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.birthSexDescriptor",
@@ -16024,6 +16058,7 @@
           },
           "BirthData.BirthStateAbbreviationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.birthStateAbbreviationDescriptor",
@@ -16032,18 +16067,21 @@
             "type": "string"
           },
           "BirthData.DateEnteredUS": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.dateEnteredUS",
             "type": "date"
           },
           "BirthData.MultipleBirthStatus": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.multipleBirthStatus",
             "type": "boolean"
           },
           "CandidateIdentifier": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.candidateIdentifier",
@@ -16051,6 +16089,7 @@
           },
           "Disability.DisabilityDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.disabilities[*].disabilityDescriptor",
@@ -16060,6 +16099,7 @@
           },
           "Disability.DisabilityDesignationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.disabilities[*].designations[*].disabilityDesignationDescriptor",
@@ -16069,6 +16109,7 @@
           },
           "Disability.DisabilityDeterminationSourceTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.disabilities[*].disabilityDeterminationSourceTypeDescriptor",
@@ -16077,36 +16118,42 @@
             "type": "string"
           },
           "Disability.DisabilityDiagnosis": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.disabilities[*].disabilityDiagnosis",
             "type": "string"
           },
           "Disability.OrderOfDisability": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.disabilities[*].orderOfDisability",
             "type": "number"
           },
           "DisplacementStatus": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.displacementStatus",
             "type": "string"
           },
           "EconomicDisadvantaged": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.economicDisadvantaged",
             "type": "boolean"
           },
           "ElectronicMail.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.electronicMails[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "ElectronicMail.ElectronicMailAddress": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.electronicMails[*].electronicMailAddress",
@@ -16114,6 +16161,7 @@
           },
           "ElectronicMail.ElectronicMailTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.electronicMails[*].electronicMailTypeDescriptor",
@@ -16122,6 +16170,7 @@
             "type": "string"
           },
           "ElectronicMail.PrimaryEmailAddressIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.electronicMails[*].primaryEmailAddressIndicator",
@@ -16129,6 +16178,7 @@
           },
           "EnglishLanguageExamDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.englishLanguageExamDescriptor",
@@ -16137,6 +16187,7 @@
             "type": "string"
           },
           "FirstGenerationStudent": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.firstGenerationStudent",
@@ -16144,6 +16195,7 @@
           },
           "GenderDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.genderDescriptor",
@@ -16152,6 +16204,7 @@
             "type": "string"
           },
           "HispanicLatinoEthnicity": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.hispanicLatinoEthnicity",
@@ -16159,6 +16212,7 @@
           },
           "Language.LanguageDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.languages[*].languageDescriptor",
@@ -16168,6 +16222,7 @@
           },
           "Language.LanguageUseDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.languages[*].uses[*].languageUseDescriptor",
@@ -16177,6 +16232,7 @@
           },
           "LimitedEnglishProficiencyDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.limitedEnglishProficiencyDescriptor",
@@ -16185,42 +16241,49 @@
             "type": "string"
           },
           "Name.FirstName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.firstName",
             "type": "string"
           },
           "Name.GenerationCodeSuffix": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.generationCodeSuffix",
             "type": "string"
           },
           "Name.LastSurname": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.lastSurname",
             "type": "string"
           },
           "Name.MaidenName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.maidenName",
             "type": "string"
           },
           "Name.MiddleName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.middleName",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.DocumentExpirationDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].documentExpirationDate",
             "type": "date"
           },
           "Name.PersonalIdentificationDocument.DocumentTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].documentTitle",
@@ -16228,6 +16291,7 @@
           },
           "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
@@ -16237,6 +16301,7 @@
           },
           "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerCountryDescriptor",
@@ -16245,12 +16310,14 @@
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.IssuerDocumentIdentificationCode": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode",
             "type": "string"
           },
           "Name.PersonalIdentificationDocument.IssuerName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.personalIdentificationDocuments[*].issuerName",
@@ -16258,6 +16325,7 @@
           },
           "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor",
@@ -16266,42 +16334,49 @@
             "type": "string"
           },
           "Name.PersonalTitlePrefix": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.personalTitlePrefix",
             "type": "string"
           },
           "Name.PreferredFirstName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.preferredFirstName",
             "type": "string"
           },
           "Name.PreferredLastSurname": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.preferredLastSurname",
             "type": "string"
           },
           "OtherName.FirstName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.otherNames[*].firstName",
             "type": "string"
           },
           "OtherName.GenerationCodeSuffix": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.otherNames[*].generationCodeSuffix",
             "type": "string"
           },
           "OtherName.LastSurname": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.otherNames[*].lastSurname",
             "type": "string"
           },
           "OtherName.MiddleName": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.otherNames[*].middleName",
@@ -16309,6 +16384,7 @@
           },
           "OtherName.OtherNameTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.otherNames[*].otherNameTypeDescriptor",
@@ -16317,6 +16393,7 @@
             "type": "string"
           },
           "OtherName.PersonalTitlePrefix": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.otherNames[*].personalTitlePrefix",
@@ -16324,6 +16401,7 @@
           },
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -16343,6 +16421,7 @@
           },
           "RaceDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.races[*].raceDescriptor",
@@ -16352,6 +16431,7 @@
           },
           "SexDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.sexDescriptor",
@@ -16360,18 +16440,21 @@
             "type": "string"
           },
           "Telephone.DoNotPublishIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Telephone.OrderOfPriority": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].orderOfPriority",
             "type": "number"
           },
           "Telephone.TelephoneNumber": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.telephones[*].telephoneNumber",
@@ -16379,6 +16462,7 @@
           },
           "Telephone.TelephoneNumberTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.telephones[*].telephoneNumberTypeDescriptor",
@@ -16387,6 +16471,7 @@
             "type": "string"
           },
           "Telephone.TextMessageCapabilityIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.telephones[*].textMessageCapabilityIndicator",
@@ -17480,6 +17565,7 @@
         ],
         "documentPathsMapping": {
           "BoardCertificationIndicator": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.tpdm.boardCertificationIndicator",
@@ -17487,6 +17573,7 @@
           },
           "CertificationRouteDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.tpdm.certificationRouteDescriptor",
@@ -17495,12 +17582,14 @@
             "type": "string"
           },
           "CertificationTitle": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.tpdm.certificationTitle",
             "type": "string"
           },
           "CredentialStatusDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.tpdm.credentialStatusDate",
@@ -17508,6 +17597,7 @@
           },
           "CredentialStatusDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.tpdm.credentialStatusDescriptor",
@@ -17517,6 +17607,7 @@
           },
           "EducatorRoleDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$._ext.tpdm.educatorRoleDescriptor",
@@ -17526,6 +17617,7 @@
           },
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -17545,6 +17637,7 @@
           },
           "StudentAcademicRecord": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -17728,6 +17821,7 @@
         "documentPathsMapping": {
           "AccreditationStatusDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.accreditationStatusDescriptor",
@@ -17737,6 +17831,7 @@
           },
           "EducationOrganization": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -17751,6 +17846,7 @@
           },
           "GradeLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
@@ -17759,12 +17855,14 @@
             "type": "string"
           },
           "ProgramId": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.programId",
             "type": "string"
           },
           "ProgramName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.programName",
@@ -17772,6 +17870,7 @@
           },
           "ProgramTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.programTypeDescriptor",
@@ -18393,30 +18492,35 @@
         ],
         "documentPathsMapping": {
           "AreaOfRefinement": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.areaOfRefinement",
             "type": "string"
           },
           "AreaOfReinforcement": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.areaOfReinforcement",
             "type": "string"
           },
           "Comments": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.comments",
             "type": "string"
           },
           "ElementRatingResult.Rating": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.elementRatingResults[*].rating",
             "type": "number"
           },
           "ElementRatingResult.RatingResultTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.elementRatingResults[*].ratingResultTitle",
@@ -18424,6 +18528,7 @@
           },
           "ElementRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": true,
             "path": "$.elementRatingResults[*].resultDatatypeTypeDescriptor",
@@ -18433,6 +18538,7 @@
           },
           "EvaluationElement": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -18487,6 +18593,7 @@
           },
           "EvaluationElementRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationElementRatingLevelDescriptor",
@@ -18496,6 +18603,7 @@
           },
           "EvaluationObjectiveRating": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -18594,6 +18702,7 @@
             "resourceName": "EvaluationObjectiveRating"
           },
           "Feedback": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.feedback",
@@ -19047,6 +19156,7 @@
         "documentPathsMapping": {
           "ElementRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
@@ -19055,18 +19165,21 @@
             "type": "string"
           },
           "ElementRatingLevel.MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "ElementRatingLevel.MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "EvaluationElementTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.evaluationElementTitle",
@@ -19074,6 +19187,7 @@
           },
           "EvaluationObjective": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -19123,6 +19237,7 @@
           },
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
@@ -19131,18 +19246,21 @@
             "type": "string"
           },
           "MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.minRating",
             "type": "number"
           },
           "SortOrder": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.sortOrder",
@@ -19418,6 +19536,7 @@
         ],
         "documentPathsMapping": {
           "Comments": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.comments",
@@ -19425,6 +19544,7 @@
           },
           "EvaluationObjective": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -19474,6 +19594,7 @@
           },
           "EvaluationRating": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -19563,6 +19684,7 @@
           },
           "ObjectiveRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.objectiveRatingLevelDescriptor",
@@ -19571,12 +19693,14 @@
             "type": "string"
           },
           "ObjectiveRatingResult.Rating": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.objectiveRatingResults[*].rating",
             "type": "number"
           },
           "ObjectiveRatingResult.RatingResultTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.objectiveRatingResults[*].ratingResultTitle",
@@ -19584,6 +19708,7 @@
           },
           "ObjectiveRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": true,
             "path": "$.objectiveRatingResults[*].resultDatatypeTypeDescriptor",
@@ -19975,6 +20100,7 @@
         "documentPathsMapping": {
           "Evaluation": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -20018,12 +20144,14 @@
             "resourceName": "Evaluation"
           },
           "EvaluationObjectiveDescription": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.evaluationObjectiveDescription",
             "type": "string"
           },
           "EvaluationObjectiveTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.evaluationObjectiveTitle",
@@ -20031,6 +20159,7 @@
           },
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
@@ -20039,12 +20168,14 @@
             "type": "string"
           },
           "MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.minRating",
@@ -20052,6 +20183,7 @@
           },
           "ObjectiveRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
@@ -20060,18 +20192,21 @@
             "type": "string"
           },
           "ObjectiveRatingLevel.MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "ObjectiveRatingLevel.MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "SortOrder": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.sortOrder",
@@ -20692,12 +20827,14 @@
         ],
         "documentPathsMapping": {
           "ActualDuration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.actualDuration",
             "type": "number"
           },
           "Comments": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.comments",
@@ -20705,6 +20842,7 @@
           },
           "Evaluation": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -20748,6 +20886,7 @@
             "resourceName": "Evaluation"
           },
           "EvaluationDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.evaluationDate",
@@ -20755,6 +20894,7 @@
           },
           "EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationRatingLevelDescriptor",
@@ -20763,12 +20903,14 @@
             "type": "string"
           },
           "EvaluationRatingResult.Rating": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.results[*].rating",
             "type": "number"
           },
           "EvaluationRatingResult.RatingResultTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.results[*].ratingResultTitle",
@@ -20776,6 +20918,7 @@
           },
           "EvaluationRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
@@ -20785,6 +20928,7 @@
           },
           "EvaluationRatingStatusDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationRatingStatusDescriptor",
@@ -20794,6 +20938,7 @@
           },
           "PerformanceEvaluationRating": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -20842,24 +20987,28 @@
             "resourceName": "PerformanceEvaluationRating"
           },
           "Reviewer.FirstName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.reviewers[*].firstName",
             "type": "string"
           },
           "Reviewer.LastSurname": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.reviewers[*].lastSurname",
             "type": "string"
           },
           "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
             "type": "number"
           },
           "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
@@ -20867,6 +21016,7 @@
           },
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -20886,6 +21036,7 @@
           },
           "Section": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -21548,6 +21699,7 @@
         ],
         "documentPathsMapping": {
           "EvaluationDescription": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.evaluationDescription",
@@ -21555,6 +21707,7 @@
           },
           "EvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
@@ -21563,18 +21716,21 @@
             "type": "string"
           },
           "EvaluationRatingLevel.MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "EvaluationRatingLevel.MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "EvaluationTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.evaluationTitle",
@@ -21582,6 +21738,7 @@
           },
           "EvaluationTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.evaluationTypeDescriptor",
@@ -21590,18 +21747,21 @@
             "type": "string"
           },
           "InterRaterReliabilityScore": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.interRaterReliabilityScore",
             "type": "number"
           },
           "MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.maxRating",
             "type": "number"
           },
           "MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.minRating",
@@ -21609,6 +21769,7 @@
           },
           "PerformanceEvaluation": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -21893,12 +22054,14 @@
         ],
         "documentPathsMapping": {
           "AidAmount": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.aidAmount",
             "type": "number"
           },
           "AidConditionDescription": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.aidConditionDescription",
@@ -21906,6 +22069,7 @@
           },
           "AidTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.aidTypeDescriptor",
@@ -21914,18 +22078,21 @@
             "type": "string"
           },
           "BeginDate": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.beginDate",
             "type": "date"
           },
           "EndDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.endDate",
             "type": "date"
           },
           "PellGrantRecipient": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.pellGrantRecipient",
@@ -21933,6 +22100,7 @@
           },
           "Student": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -22448,30 +22616,35 @@
         ],
         "documentPathsMapping": {
           "ActualDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.actualDate",
             "type": "date"
           },
           "ActualDuration": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.actualDuration",
             "type": "number"
           },
           "ActualTime": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.actualTime",
             "type": "time"
           },
           "Announced": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.announced",
             "type": "boolean"
           },
           "Comments": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.comments",
@@ -22479,6 +22652,7 @@
           },
           "CoteachingStyleObservedDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.coteachingStyleObservedDescriptor",
@@ -22488,6 +22662,7 @@
           },
           "PerformanceEvaluation": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -22527,6 +22702,7 @@
           },
           "PerformanceEvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.performanceEvaluationRatingLevelDescriptor",
@@ -22535,12 +22711,14 @@
             "type": "string"
           },
           "PerformanceEvaluationRatingResult.Rating": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.results[*].rating",
             "type": "number"
           },
           "PerformanceEvaluationRatingResult.RatingResultTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.results[*].ratingResultTitle",
@@ -22548,6 +22726,7 @@
           },
           "PerformanceEvaluationRatingResult.ResultDatatypeTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": true,
             "path": "$.results[*].resultDatatypeTypeDescriptor",
@@ -22557,6 +22736,7 @@
           },
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -22575,24 +22755,28 @@
             "resourceName": "Person"
           },
           "Reviewer.FirstName": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.reviewers[*].firstName",
             "type": "string"
           },
           "Reviewer.LastSurname": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.reviewers[*].lastSurname",
             "type": "string"
           },
           "Reviewer.ReceivedTraining.InterRaterReliabilityScore": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.interRaterReliabilityScore",
             "type": "number"
           },
           "Reviewer.ReceivedTraining.ReceivedTrainingDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.reviewers[*].receivedTraining.receivedTrainingDate",
@@ -22600,6 +22784,7 @@
           },
           "Reviewer.ReviewerPerson": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -22618,6 +22803,7 @@
             "resourceName": "Person"
           },
           "ScheduleDate": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.scheduleDate",
@@ -23117,6 +23303,7 @@
         "documentPathsMapping": {
           "AcademicSubjectDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.academicSubjectDescriptor",
@@ -23126,6 +23313,7 @@
           },
           "EducationOrganization": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -23140,6 +23328,7 @@
           },
           "EvaluationPeriodDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.evaluationPeriodDescriptor",
@@ -23149,6 +23338,7 @@
           },
           "GradeLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.gradeLevels[*].gradeLevelDescriptor",
@@ -23157,6 +23347,7 @@
             "type": "string"
           },
           "PerformanceEvaluationDescription": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.performanceEvaluationDescription",
@@ -23164,6 +23355,7 @@
           },
           "PerformanceEvaluationRatingLevel.EvaluationRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.ratingLevels[*].evaluationRatingLevelDescriptor",
@@ -23172,18 +23364,21 @@
             "type": "string"
           },
           "PerformanceEvaluationRatingLevel.MaxRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].maxRating",
             "type": "number"
           },
           "PerformanceEvaluationRatingLevel.MinRating": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.ratingLevels[*].minRating",
             "type": "number"
           },
           "PerformanceEvaluationTitle": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.performanceEvaluationTitle",
@@ -23191,6 +23386,7 @@
           },
           "PerformanceEvaluationTypeDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.performanceEvaluationTypeDescriptor",
@@ -23200,6 +23396,7 @@
           },
           "SchoolYear": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -23214,6 +23411,7 @@
           },
           "TermDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "path": "$.termDescriptor",
@@ -23441,12 +23639,14 @@
         ],
         "documentPathsMapping": {
           "CriterionDescription": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
             "path": "$.criterionDescription",
             "type": "string"
           },
           "DimensionOrder": {
+            "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.dimensionOrder",
@@ -23454,6 +23654,7 @@
           },
           "EvaluationElement": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "TPDM",
@@ -23507,6 +23708,7 @@
             "resourceName": "EvaluationElement"
           },
           "RubricRating": {
+            "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$.rubricRating",
@@ -23514,6 +23716,7 @@
           },
           "RubricRatingLevelDescriptor": {
             "isDescriptor": true,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "path": "$.rubricRatingLevelDescriptor",
@@ -23872,6 +24075,7 @@
         "documentPathsMapping": {
           "PostSecondaryInstitution": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -23956,6 +24160,7 @@
         "documentPathsMapping": {
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -23975,6 +24180,7 @@
           },
           "SurveyResponse": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -24137,6 +24343,7 @@
         "documentPathsMapping": {
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
             "projectName": "Ed-Fi",
@@ -24232,6 +24439,7 @@
         "documentPathsMapping": {
           "Person": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",
@@ -24251,6 +24459,7 @@
           },
           "SurveySectionResponse": {
             "isDescriptor": false,
+            "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
             "projectName": "Ed-Fi",

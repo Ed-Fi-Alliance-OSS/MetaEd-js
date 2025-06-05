@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when validating common domain item does not match top level entity should have one validation failure() 1`] = `"Common Domain Item property 'CommonDomainItemName' does not match any declared Common in namespace EdFi."`;
+exports[`when validating common domain item does not match top level entity should have one validation failure() 1`] = `"Common Domain Item property 'CommonDomainItemName' does not match any declared Common or Inline Common in namespace EdFi."`;
 
 exports[`when validating common domain item does not match top level entity should have one validation failure() 2`] = `
 Object {
   "column": 11,
   "line": 5,
   "tokenText": "CommonDomainItemName",
+}
+`;
+
+exports[`when validating inline common domain item does not match top level entity should have one validation failure() 1`] = `"Common Domain Item property 'InlineCommonDomainItemName' does not match any declared Common or Inline Common in namespace EdFi."`;
+
+exports[`when validating inline common domain item does not match top level entity should have one validation failure() 2`] = `
+Object {
+  "column": 18,
+  "line": 5,
+  "tokenText": "InlineCommonDomainItemName",
 }
 `;

@@ -68,9 +68,9 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   allJsonPathsMappingEnhancer(metaEd);
   mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
+  documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
-  documentPathsMappingEnhancer(metaEd);
   enhance(metaEd);
 }
 

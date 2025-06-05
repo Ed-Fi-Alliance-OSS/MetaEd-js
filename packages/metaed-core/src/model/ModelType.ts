@@ -28,7 +28,6 @@ export type ModelType =
   | 'interchange'
   | 'interchangeExtension'
   | 'interchangeItem'
-  | 'inlineCommon'
   | 'mapTypeEnumeration'
   | 'schoolYearEnumeration'
   | 'sharedDecimal'

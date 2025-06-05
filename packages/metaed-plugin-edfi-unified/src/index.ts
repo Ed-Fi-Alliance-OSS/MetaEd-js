@@ -56,7 +56,6 @@ import { validate as descriptorDomainItemMustMatchTopLevelEntity } from './valid
 // Temporarily comment out until METAED-697 fixed
 // import { validate as domainEntityDomainItemMustMatchTopLevelEntity } from './validator/Domain/DomainEntityDomainItemMustMatchTopLevelEntity';
 import { validate as domainMustNotDuplicateDomainItems } from './validator/Domain/DomainMustNotDuplicateDomainItems';
-import { validate as inlineCommonDomainItemMustMatchTopLevelEntity } from './validator/Domain/InlineCommonDomainItemMustMatchTopLevelEntity';
 
 import { validate as domainEntityMustContainAnIdentity } from './validator/DomainEntity/DomainEntityMustContainAnIdentity';
 import { validate as domainEntityMustContainNoMoreThanOneUniqueIdColumn } from './validator/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn';
@@ -257,7 +256,6 @@ function validatorList(): Validator[] {
     // domainEntityDomainItemMustMatchTopLevelEntity,
 
     domainMustNotDuplicateDomainItems,
-    inlineCommonDomainItemMustMatchTopLevelEntity,
 
     domainEntityMustContainAnIdentity,
     domainEntityMustContainNoMoreThanOneUniqueIdColumn,

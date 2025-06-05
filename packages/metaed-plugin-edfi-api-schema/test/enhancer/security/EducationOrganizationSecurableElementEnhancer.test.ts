@@ -31,6 +31,7 @@ import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/Pro
 import { enhance as subclassPropertyCollectingEnhancer } from '../../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../../src/enhancer/AllJsonPathsMappingEnhancer';
 import { enhance as resourceNameEnhancer } from '../../../src/enhancer/ResourceNameEnhancer';
+import { enhance as documentPathsMappingEnhancer } from '../../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance } from '../../../src/enhancer/security/EducationOrganizationSecurableElementEnhancer';
@@ -52,6 +53,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
   subclassApiEntityMappingEnhancer(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
+  documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
   enhance(metaEd);

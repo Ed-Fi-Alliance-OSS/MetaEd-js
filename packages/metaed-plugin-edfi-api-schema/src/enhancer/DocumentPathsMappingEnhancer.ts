@@ -15,6 +15,7 @@ import {
   PropertyType,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import { normalizeDescriptorPropertyPath } from '../Utility';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DescriptorReferencePath, DocumentReferencePaths, ScalarPath } from '../model/api-schema/DocumentPaths';
@@ -123,9 +124,10 @@ function adjustForMerges(referencingJsonPathsInfo: JsonPathsInfo, fromReferencin
 
   // Append "Descriptor" to propertyPath if terminal property is a descriptor, to match descriptor paths
   // in fromReferencingEntity, which derives from an allJsonPathsMapping
-  if (mergeCoveredBy.propertyChain.at(-1)?.type === 'descriptor') {
-    coveringMergePropertyPath += 'Descriptor';
-  }
+  coveringMergePropertyPath = normalizeDescriptorPropertyPath(
+    coveringMergePropertyPath,
+    mergeCoveredBy.propertyChain.at(-1)?.type === 'descriptor',
+  );
 
   invariant(
     fromReferencingEntity[coveringMergePropertyPath] != null,
@@ -234,6 +236,7 @@ function buildDocumentReferencePaths(
     ),
     sourceProperty: referenceProperty,
     isRequired: referenceProperty.isRequired || referenceProperty.isPartOfIdentity,
+    isPartOfIdentity: referenceProperty.isPartOfIdentity,
   };
 }
 
@@ -256,6 +259,7 @@ function buildDescriptorPath(
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
     isRequired:
       jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
@@ -277,6 +281,7 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
     isRequired:
       jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
@@ -289,6 +294,7 @@ function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarP
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
     isRequired:
       jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
