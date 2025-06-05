@@ -3,8 +3,6 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import Ajv from 'ajv/dist/2020';
-import addFormatsTo from 'ajv-formats';
 import {
   newMetaEdEnvironment,
   MetaEdEnvironment,
@@ -13,12 +11,10 @@ import {
   CommonBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
-  DomainEntitySubclassBuilder,
   DescriptorBuilder,
   EnumerationBuilder,
   newPluginEnvironment,
   AssociationBuilder,
-  AssociationSubclassBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -26,51 +22,32 @@ import {
   inlineCommonReferenceEnhancer,
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
-  domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
-  associationSubclassBaseClassEnhancer,
   associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
-import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaForInsertEnhancer } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
-import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
-import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
-import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
-import { enhance } from '../../src/enhancer/IdentityJsonPathsEnhancer';
-
-const ajv = new Ajv({ allErrors: true });
-addFormatsTo(ajv);
+import { enhance } from '../../src/enhancer/IdentityFullnameEnhancer';
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   namespaceSetupEnhancer(metaEd);
   entityPropertyApiSchemaDataSetupEnhancer(metaEd);
   entityApiSchemaDataSetupEnhancer(metaEd);
-  subclassPropertyNamingCollisionEnhancer(metaEd);
   referenceComponentEnhancer(metaEd);
   apiPropertyMappingEnhancer(metaEd);
   propertyCollectingEnhancer(metaEd);
-  subclassPropertyCollectingEnhancer(metaEd);
   apiEntityMappingEnhancer(metaEd);
-  subclassApiEntityMappingEnhancer(metaEd);
   jsonSchemaForInsertEnhancer(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
-  mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
-  identityFullnameEnhancer(metaEd);
-  subclassIdentityFullnameEnhancer(metaEd);
-  documentPathsMappingEnhancer(metaEd);
   enhance(metaEd);
 }
 
@@ -107,12 +84,12 @@ describe('when building simple domain entity with all the simple non-collections
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.stringIdentity",
+        "StringIdentity",
       ]
     `);
   });
@@ -152,12 +129,12 @@ describe('when building simple domain entity with all the simple collections', (
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.stringIdentity",
+        "StringIdentity",
       ]
     `);
   });
@@ -203,14 +180,13 @@ describe('when building a domain entity referencing another referencing another 
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.courseOfferingReference.localCourseCode",
-        "$.courseOfferingReference.schoolId",
-        "$.sectionIdentifier",
+        "SectionIdentifier",
+        "CourseOffering",
       ]
     `);
   });
@@ -257,52 +233,47 @@ describe('when building a domain entity referencing CourseOffering with an impli
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.courseOfferingReference.localCourseCode",
-        "$.courseOfferingReference.schoolId",
-        "$.courseOfferingReference.schoolYear",
-        "$.courseOfferingReference.sessionName",
-        "$.sectionIdentifier",
+        "SectionIdentifier",
+        "CourseOffering",
       ]
     `);
   });
 
-  it('should be correct identityJsonPaths for CourseOffering', () => {
+  it('should be correct identityFullnames for CourseOffering', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('CourseOffering');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.localCourseCode",
-        "$.schoolReference.schoolId",
-        "$.sessionReference.schoolId",
-        "$.sessionReference.schoolYear",
-        "$.sessionReference.sessionName",
+        "LocalCourseCode",
+        "School",
+        "Session",
       ]
     `);
   });
 
-  it('should be correct identityJsonPaths for Session', () => {
+  it('should be correct identityFullnames for Session', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Session');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.schoolReference.schoolId",
-        "$.schoolYearTypeReference.schoolYear",
-        "$.sessionName",
+        "SessionName",
+        "SchoolYear",
+        "School",
       ]
     `);
   });
 
-  it('should be correct identityJsonPaths for School', () => {
+  it('should be correct identityFullnames for School', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('School');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.schoolId",
+        "SchoolId",
       ]
     `);
   });
@@ -361,12 +332,12 @@ describe('when building domain entity with nested choice and inline commons', ()
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.contentIdentifier",
+        "ContentIdentifier",
       ]
     `);
   });
@@ -395,12 +366,12 @@ describe('when building domain entity with scalar collection named with prefix o
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.contentIdentifier",
+        "ContentIdentifier",
       ]
     `);
   });
@@ -434,12 +405,12 @@ describe('when building domain entity with Association/DomainEntity collection n
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.contentIdentifier",
+        "ContentIdentifier",
       ]
     `);
   });
@@ -468,13 +439,13 @@ describe('when building domain entity with acronym property name', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for DomainEntityName', () => {
+  it('should be correct identityFullnames for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.contentIdentifier",
-        "$.iepBeginDate",
+        "ContentIdentifier",
+        "IEPBeginDate",
       ]
     `);
   });
@@ -514,65 +485,12 @@ describe('when building domain entity with a simple common collection', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
-      ]
-    `);
-  });
-});
-
-describe('when building domain entity subclass with common collection and descriptor identity in superclass', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
-  const namespaceName = 'EdFi';
-  const domainEntitySubclassName = 'CommunityOrganization';
-
-  beforeAll(() => {
-    MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-      .withStartAbstractEntity('EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentity('EducationOrganizationId', 'doc')
-      .withCommonProperty('EducationOrganizationIdentificationCode', 'doc', false, true)
-      .withEndAbstractEntity()
-
-      .withStartDomainEntitySubclass(domainEntitySubclassName, 'EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentityRename('CommunityOrganizationId', 'EducationOrganizationId', 'doc')
-      .withEndDomainEntitySubclass()
-
-      .withStartCommon('EducationOrganizationIdentificationCode')
-      .withDocumentation('doc')
-      .withStringProperty('IdentificationCode', 'doc', true, false, '30')
-      .withDescriptorIdentity('EducationOrganizationIdentificationSystem', 'doc')
-      .withEndCommon()
-
-      .withStartDescriptor('EducationOrganizationIdentificationSystem')
-      .withDocumentation('doc')
-      .withEndDescriptor()
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
-      .sendToListener(new CommonBuilder(metaEd, []))
-      .sendToListener(new DescriptorBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
-
-    domainEntitySubclassBaseClassEnhancer(metaEd);
-    commonReferenceEnhancer(metaEd);
-    descriptorReferenceEnhancer(metaEd);
-    runApiSchemaEnhancers(metaEd);
-  });
-
-  it('should be correct identityJsonPaths for domainEntitySubclassName', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
-      Array [
-        "$.communityOrganizationId",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -612,12 +530,12 @@ describe('when building association with a common collection in a common collect
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for StudentEducationOrganizationAssociation', () => {
+  it('should be correct identityFullnames for StudentEducationOrganizationAssociation', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.studentId",
+        "StudentId",
       ]
     `);
   });
@@ -650,12 +568,12 @@ describe('when building domain entity with a descriptor with role name', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -688,12 +606,12 @@ describe('when building domain entity with a descriptor collection with role nam
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -735,12 +653,12 @@ describe('when building domain entity with a common with a choice', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -779,12 +697,12 @@ describe('when building domain entity with a common and a common collection with
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -810,12 +728,12 @@ describe('when building domain entity with an all-caps property', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -855,12 +773,12 @@ describe('when building domain entity with a common with a domain entity referen
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Assessment', () => {
+  it('should be correct identityFullnames for Assessment', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Assessment');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.assessmentIdentifier",
+        "AssessmentIdentifier",
       ]
     `);
   });
@@ -894,12 +812,12 @@ describe('when building domain entity with two school year enumerations, one rol
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for StudentSchoolAssociation', () => {
+  it('should be correct identityFullnames for StudentSchoolAssociation', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentSchoolAssociation');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.schoolId",
+        "SchoolId",
       ]
     `);
   });
@@ -933,22 +851,18 @@ describe('when building domain entity with reference to domain entity with schoo
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for StudentSchoolAssociation', () => {
+  it('should be correct identityFullnames for StudentSchoolAssociation', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentSchoolAssociation');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.schoolId",
+        "SchoolId",
       ]
     `);
   });
 });
 
 describe('when building a schema for StudentCohort', () => {
-  // The core problem addressed by this test is in RND-456: The CohortYears schoolYearTypeReference was being interpreted as
-  // an integer, rather than as a SchoolYearTypeEnumeration. This test builds the minimum components of
-  // studentEducationOrganizationAssociation required to duplicate the issue.
-
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
   const namespaceName = 'EdFi';
@@ -986,12 +900,12 @@ describe('when building a schema for StudentCohort', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for StudentCohort', () => {
+  it('should be correct identityFullnames for StudentCohort', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentCohort');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.studentUniqueId",
+        "StudentUniqueId",
       ]
     `);
   });
@@ -1032,108 +946,12 @@ describe('when building a domain entity with an inline common property with a de
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for Section', () => {
+  it('should be correct identityFullnames for Section', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('Section');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.sectionIdentifier",
-      ]
-    `);
-  });
-});
-
-describe('when building a Domain Entity subclass', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
-  const namespaceName = 'EdFi';
-
-  beforeAll(() => {
-    MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-      .withStartAbstractEntity('EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentity('EducationOrganizationId', 'doc')
-      .withIntegerProperty('SuperclassProperty', 'doc', true, false)
-      .withEndAbstractEntity()
-
-      .withStartDomainEntitySubclass('School', 'EducationOrganization')
-      .withDocumentation('doc')
-      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
-      .withIntegerProperty('SubclassProperty', 'doc', true, false)
-      .withEndDomainEntitySubclass()
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
-
-    domainEntitySubclassBaseClassEnhancer(metaEd);
-    runApiSchemaEnhancers(metaEd);
-  });
-
-  it('should be correct identityJsonPaths for School', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get('School');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
-      Array [
-        "$.schoolId",
-      ]
-    `);
-  });
-});
-
-describe('when building an Association subclass', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
-  const namespaceName = 'EdFi';
-
-  beforeAll(() => {
-    MetaEdTextBuilder.build()
-      .withBeginNamespace(namespaceName)
-      .withStartAssociation('GeneralStudentProgramAssociation')
-      .withDocumentation('doc')
-      .withAssociationDomainEntityProperty('School', 'doc')
-      .withAssociationDomainEntityProperty('Program', 'doc')
-      .withIntegerProperty('SuperclassProperty', 'doc', true, false)
-      .withEndAssociation()
-
-      .withStartAssociationSubclass('StudentProgramAssociation', 'GeneralStudentProgramAssociation')
-      .withDocumentation('doc')
-      .withIntegerProperty('SubclassProperty', 'doc', true, false)
-      .withEndAssociationSubclass()
-
-      .withStartDomainEntity('School')
-      .withDocumentation('doc')
-      .withIntegerIdentity('SchoolId', 'doc')
-      .withStringIdentity('SchoolName', 'doc', '30')
-      .withEndDomainEntity()
-
-      .withStartDomainEntity('Program')
-      .withDocumentation('doc')
-      .withIntegerIdentity('ProgramId', 'doc')
-      .withStringIdentity('ProgramName', 'doc', '30')
-      .withEndDomainEntity()
-
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(new AssociationBuilder(metaEd, []))
-      .sendToListener(new AssociationSubclassBuilder(metaEd, []));
-
-    associationSubclassBaseClassEnhancer(metaEd);
-    domainEntityReferenceEnhancer(metaEd);
-    runApiSchemaEnhancers(metaEd);
-  });
-
-  it('should be correct identityJsonPaths for StudentProgramAssociation', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.associationSubclass.get('StudentProgramAssociation');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
-      Array [
-        "$.programReference.programId",
-        "$.programReference.programName",
-        "$.schoolReference.schoolId",
-        "$.schoolReference.schoolName",
+        "SectionIdentifier",
       ]
     `);
   });
@@ -1193,17 +1011,15 @@ describe(
       runApiSchemaEnhancers(metaEd);
     });
 
-    it('should be correct identityJsonPaths for StudentAssessmentRegistrationBatteryPartAssociation', () => {
+    it('should be correct identityFullnames for StudentAssessmentRegistrationBatteryPartAssociation', () => {
       const entity = metaEd.namespace
         .get(namespaceName)
         ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
-      const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-      expect(identityJsonPaths).toMatchInlineSnapshot(`
+      const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+      expect(identityFullnames).toMatchInlineSnapshot(`
         Array [
-          "$.studentAssessmentRegistrationReference.assigningEducationOrganizationId",
-          "$.studentAssessmentRegistrationReference.educationOrganizationId",
-          "$.studentAssessmentRegistrationReference.unusedProperty",
-          "$.unusedEntityReference.unusedProperty",
+          "StudentAssessmentRegistration",
+          "UnusedEntity",
         ]
       `);
     });
@@ -1246,15 +1062,15 @@ describe('when building domain entity referencing another which has inline commo
     runApiSchemaEnhancers(metaEd);
   });
 
-  it('should be correct identityJsonPaths for StaffEducationOrganizationEmploymentAssociation', () => {
+  it('should be correct identityFullnames for StaffEducationOrganizationEmploymentAssociation', () => {
     const entity = metaEd.namespace
       .get(namespaceName)
       ?.entity.domainEntity.get('StaffEducationOrganizationEmploymentAssociation');
-    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
-    expect(identityJsonPaths).toMatchInlineSnapshot(`
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
       Array [
-        "$.employmentId",
-        "$.hireDate",
+        "EmploymentId",
+        "EmploymentPeriod.HireDate",
       ]
     `);
   });
