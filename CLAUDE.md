@@ -5,16 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Essential Commands
 
 **Build & Development:**
-- `npm run build` - Build all packages
-- `npm run build:clean` - Clean build (removes dist folders first)
 - `npm run test:lint` - Run TypeScript and ESLint checks
-- `npm run test:unit` - Run all unit tests
-- `npm run test` - Full test suite (clean build + lint + unit tests)
-- `npm run test:coverage` - Run tests with coverage report
-
-**MetaEd Specific:**
 - `npm run metaed:build` - Build MetaEd artifacts
-- `npm run metaed:deploy` - Deploy to ODS/API
 - `npm run antlr-gen` - Generate ANTLR grammar files
 
 **Running Single Tests:**
@@ -23,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tests
 
-ALWAYS use `npx jest path/to/test.ts` from the project root to run a specific test file. NEVER use `npm run test` to run a single test file.
+ALWAYS use `npx jest path/to/test.ts` from the project root to run a specific test file. NEVER use `npm run` to run a single test file.
 
 ## Architecture Overview
 

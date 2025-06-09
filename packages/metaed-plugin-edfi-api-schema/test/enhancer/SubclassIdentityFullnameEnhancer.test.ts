@@ -22,6 +22,7 @@ import {
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
   associationSubclassBaseClassEnhancer,
+  inlineCommonReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -201,6 +202,54 @@ describe('when building an Association subclass', () => {
       Array [
         "Program",
         "School",
+      ]
+    `);
+  });
+});
+
+describe('when building a domain entity subclass with inline common containing identity property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass('School', 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+      .withInlineCommonProperty('SchoolDetails', 'doc', true, false)
+      .withEndDomainEntitySubclass()
+
+      .withStartInlineCommon('SchoolDetails')
+      .withDocumentation('doc')
+      .withStringIdentity('SchoolCode', 'doc', '10')
+      .withStringProperty('SchoolName', 'doc', false, false, '50')
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []));
+
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct identityFullnames for School including inline common identity', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get('School');
+    const identityFullnames = entity?.data.edfiApiSchema.identityFullnames;
+    expect(identityFullnames).toMatchInlineSnapshot(`
+      Array [
+        "SchoolDetails.SchoolCode",
+        "SchoolId",
       ]
     `);
   });
