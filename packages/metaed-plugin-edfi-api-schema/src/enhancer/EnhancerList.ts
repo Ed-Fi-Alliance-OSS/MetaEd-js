@@ -43,6 +43,7 @@ import { enhance as studentSecurableElementEnhancer } from './security/StudentSe
 import { enhance as contactSecurableElementEnhancer } from './security/ContactSecurableElementEnhancer';
 import { enhance as staffSecurableElementEnhancer } from './security/StaffSecurableElementEnhancer';
 import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessConstraintEnhancer';
+import { enhance as programRoleNameHardcodedSecurityDiminisher } from '../diminisher/ProgramRoleNameHardcodedSecurityDiminisher';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -85,5 +86,6 @@ export function enhancerList(): Enhancer[] {
     contactSecurableElementEnhancer,
     staffSecurableElementEnhancer,
     apiSchemaBuildingEnhancer,
+    programRoleNameHardcodedSecurityDiminisher,
   ];
 }
