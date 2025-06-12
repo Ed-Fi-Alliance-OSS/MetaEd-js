@@ -4,177 +4,596 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## MetaEd Plugin Ed-Fi API Schema Overview
 
-This plugin transforms MetaEd domain models into comprehensive API schemas and JSON specifications that drive the Ed-Fi Data
-Management Service (DMS). It generates critical metadata including JSON schemas, OpenAPI specifications, path mappings,
-validation rules, and security configurations.
+The `metaed-plugin-edfi-api-schema` package is a sophisticated transformation engine that converts MetaEd domain models into comprehensive API specifications for the Ed-Fi ecosystem. It generates JSON Schema definitions, OpenAPI 3.0.0 specifications, security metadata, and authorization pathways that drive the Ed-Fi ODS/API runtime. This plugin represents one of the most complex parts of the MetaEd system, employing advanced algorithms for property flattening, identity resolution, and path mapping.
 
-## Package Structure
+## Multi-Step Enhancer Pipeline Architecture
+
+### Pipeline Design Philosophy
+
+The plugin implements a **declarative, multi-step processing pipeline** where transformation is broken into discrete, ordered enhancers. This architecture provides clarity, maintainability, and extensibility by ensuring each enhancer has a single responsibility and builds upon previous enhancer results.
+
+### Pipeline Execution Order
+
+Critical architectural principle: **Enhancers must execute in exact order** defined in `src/enhancer/EnhancerList.ts`. Each enhancer assumes specific metadata exists from its predecessors.
+
+### Plugin Dependency Chain
 
 ```
-src/
-├── generator/          # Core API schema generators
-├── enhancer/           # multi-step processing pipeline
-│   └── security/       # Security-related enhancers
-├── model/              # Data models and type definitions
-│   └── api-schema/     # API schema specific models
-└── test/
-    ├── enhancer/       # Unit tests for enhancers
-    └── integration/    # Integration tests with sample projects
+metaed-plugin-edfi-unified (reference resolution, merge directives)
+  ↓
+metaed-plugin-edfi-ods-relational (database mappings)  
+  ↓
+metaed-plugin-edfi-api-schema (API specifications)
 ```
 
-## Core Processing Pipeline
+### Pipeline Phases
 
-The plugin uses a **multi-step enhancer pipeline** that processes MetaEd models sequentially:
-
-### Key Pipeline Phases
-
-1. **Setup** - Initialize namespace and entity API schema data
-2. **Reference Processing** - Handle entity references and relationships
-3. **Property Mapping** - Map MetaEd properties to API properties
-4. **Identity Processing** - Handle identity property flattening and JSON paths
-5. **Schema Generation** - Generate JSON schemas for insert/update operations
-6. **OpenAPI Generation** - Create OpenAPI specifications and components
-7. **Security Processing** - Generate authorization pathways and security metadata
-8. **Final Assembly** - Build complete API schema
-
-### Critical Enhancers
-
-- **`apiPropertyMappingEnhancer`** - Maps MetaEd properties to API representation
-- **`propertyCollectingEnhancer`** - Collects flattened properties for API
-- **`identityJsonPathsEnhancer`** - Maps identity properties to JSON paths
-- **`jsonSchemaForInsertEnhancer`** - Generates JSON Schema Draft 2020-12 schemas
-- **`openApiCoreSpecificationEnhancer`** - Assembles OpenAPI 3.0.0 specifications
-- **`apiSchemaBuildingEnhancer`** - Final API schema assembly
-
-## Core Data Models
-
-### EntityApiSchemaData
-Central structure containing:
+**1. Setup Phase:**
 ```typescript
-{
-  apiMapping: ApiMapping;              // API shape metadata
-  jsonSchemaForInsert: JsonSchema;     // JSON schema for insert operations
-  openApiRequestBodyComponent: Object; // OpenAPI request body components
-  collectedApiProperties: Property[]; // Flattened API properties
-  allJsonPathsMapping: PathMapping;   // Complete path mappings
-  identityJsonPaths: string[];        // Identity property paths
-  securableElements: SecurityElement[]; // Security configuration
-  authorizationPathways: Authorization[]; // Authorization metadata
+// Initialize data structures to prevent null reference issues
+namespaceSetupEnhancer,
+entityPropertyApiSchemaDataSetupEnhancer, 
+entityApiSchemaDataSetupEnhancer
+```
+
+**2. Core Mapping Phase:**
+```typescript
+subclassPropertyNamingCollisionEnhancer,  // Detect JSON naming conflicts
+referenceComponentEnhancer,               // Build reference component graph
+apiPropertyMappingEnhancer,              // Define API naming conventions
+propertyCollectingEnhancer,              // Gather flattened properties
+subclassPropertyCollectingEnhancer       // Handle inheritance
+```
+
+**3. Entity and Identity Processing:**
+```typescript
+apiEntityMappingEnhancer,                    // Create API entity mappings
+subclassApiEntityMappingEnhancer,           // Handle subclass mappings
+mergeCoveringFlattenedIdentityPropertyEnhancer  // Resolve merge directives
+```
+
+**4. Schema and Path Generation:**
+```typescript
+resourceNameEnhancer,                    // Determine API endpoint names
+jsonSchemaForInsertEnhancer,            // Generate JSON Schema Draft 2020-12
+openApi*Enhancer,                       // Build OpenAPI 3.0.0 components
+allJsonPathsMappingEnhancer,            // Create comprehensive path mappings
+mergeJsonPathsMappingEnhancer           // Handle merge directive paths
+```
+
+**5. Security and Authorization:**
+```typescript
+// Security enhancers in src/enhancer/security/
+namespaceSecurableElementEnhancer,
+educationOrganizationSecurableElementEnhancer,
+studentSecurableElementEnhancer,
+contactSecurableElementEnhancer,
+staffSecurableElementEnhancer,
+authorizationPathwayEnhancer
+```
+
+**6. Final Assembly:**
+```typescript
+apiSchemaBuildingEnhancer,              // Assemble final API schema
+openApiCoreSpecificationEnhancer,       // Complete OpenAPI for core projects
+openApiExtensionFragmentEnhancer        // OpenAPI fragments for extensions
+```
+
+## Property Flattening and Collection Algorithms
+
+### Property Collection Algorithm
+
+The `propertyCollectingEnhancer` implements sophisticated recursive traversal using `collectApiProperties` from `BasePropertyCollectingEnhancer.ts`:
+
+```typescript
+// Recursive property collection algorithm
+function collectApiProperties(
+  entity: TopLevelEntity,
+  propertyModifier: PropertyModifier = newPropertyModifier(),
+  visitedEntities: Set<TopLevelEntity> = new Set()
+): CollectedProperty[] {
+  
+  // Handle inlineCommon and choice transparency
+  if (property.isInlineCommon || property.isChoice) {
+    // Recursively collect child properties with inherited modifiers
+    return collectApiProperties(
+      property.referencedEntity,
+      updatePropertyModifier(propertyModifier, property),
+      visitedEntities
+    );
+  }
+  
+  // Apply property modifiers (prefixes, optional flags)
+  return properties.map(property => ({
+    property,
+    propertyModifier: mergeModifiers(propertyModifier, property)
+  }));
 }
 ```
 
-### Output Schema Types
-- **CoreProjectSchema** - Complete data standard projects with full OpenAPI specs
-- **ExtensionProjectSchema** - Extension projects with fragment-based specs
+**Key Characteristics:**
+- **Recursive Traversal** - Explores property graphs including nested references
+- **Transparency Handling** - InlineCommon and Choice properties "pull up" child properties
+- **Property Modifiers** - Tracks inherited characteristics (optional flags, role prefixes)
+- **Cycle Detection** - Prevents infinite recursion in circular references
 
-## Key Algorithms
+### Identity Flattening Algorithm
 
-### Property Flattening
-Recursively flattens nested entity references while preserving:
-- Property chains and paths
-- Role-based naming conventions
-- Merge directive effects
-- Identity property relationships
+Complex entity identities are flattened into scalar properties using `flattenIdentityPropertiesFrom`:
 
-### Naming Collision Resolution
-Handles property naming conflicts through:
-- Superclass/subclass conflict detection
-- Role-based prefixing
-- "shortenTo" override application
-- API naming consistency maintenance
-
-### Path Mapping
-Creates bidirectional mappings between:
-- MetaEd property paths (dot-separated)
-- JSON paths (JSONPath syntax)
-- Database column paths
-- Query parameter names
-
-## Security and Authorization
-
-### Security Elements Generated
-- **Namespace-based** - Security based on data ownership
-- **EducationOrganization-based** - Hierarchical organization security
-- **Student-based** - Student data privacy protections
-- **Contact-based** - Contact information security
-- **Staff-based** - Staff data access controls
-
-### Authorization Pathways
-Defines how entities relate to securable elements and security inheritance patterns.
-
-## Testing Patterns
-
-### Unit Testing
 ```typescript
-describe('when processing [scenario]', () => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+// Identity flattening process
+function flattenIdentityPropertiesFrom(
+  identityProperties: EntityProperty[]
+): FlattenedIdentityProperty[] {
   
-  beforeAll(() => {
-    // Build test MetaEd model
-    const metaEdText = MetaEdTextBuilder.build()
-      .withBeginNamespace('EdFi')
-      // ... build scenario
-      .buildAsString();
-      
-    // Run required enhancers from dependencies
-    runUnifiedEnhancers(metaEd);
-    runRelationalEnhancers(metaEd);
+  return identityProperties.flatMap(property => {
+    if (property.isReferential) {
+      // Recursively flatten referenced entity's identity
+      const referencedIdentities = property.referencedEntity.identityProperties;
+      return flattenIdentityPropertiesFrom(referencedIdentities).map(flattened => ({
+        ...flattened,
+        propertyChain: [property, ...flattened.propertyChain],
+        propertyPaths: [property.metaEdName, ...flattened.propertyPaths]
+      }));
+    } else {
+      // Base case: scalar property
+      return [{
+        property,
+        propertyChain: [property],
+        propertyPaths: [property.metaEdName]
+      }];
+    }
+  });
+}
+```
+
+**Example:** `Section` identity includes reference to `CourseOffering` → `School`. Flattening produces `SchoolId` as a flattened identity property with complete property chain and path information.
+
+## JSON Schema and OpenAPI Specification Creation
+
+### JSON Schema Generation
+
+The `JsonSchemaForInsertEnhancer` generates JSON Schema Draft 2020-12 for resource request bodies:
+
+```typescript
+// JSON Schema generation pattern
+function generateJsonSchema(entity: TopLevelEntity): SchemaRoot {
+  const properties: Record<string, Schema> = {};
+  
+  entity.data.edfiApiSchema.collectedApiProperties.forEach(collectedProperty => {
+    const { property, propertyModifier } = collectedProperty;
+    const propertyName = getApiPropertyName(property, propertyModifier);
     
-    // Run API schema enhancers
-    runApiSchemaEnhancers(metaEd);
+    properties[propertyName] = schemaPropertyFor(property, propertyModifier);
   });
   
-  it('should generate expected API schema', () => {
-    const apiSchema = metaEd.namespace.get('EdFi').data.edfiApiSchema;
-    expect(apiSchema.collectedApiProperties).toHaveLength(expectedCount);
-    expect(apiSchema).toMatchSnapshot();
+  return {
+    type: 'object',
+    properties,
+    required: getRequiredProperties(entity),
+    additionalProperties: false
+  };
+}
+```
+
+**Schema Property Types:**
+- **Scalars** - Direct mapping (`string`, `integer`, `boolean`) with constraints
+- **Collections** - Wrapped in `SchemaArray` with `type: 'array'`
+- **References** - Object containing flattened identity properties of referenced entity
+
+### OpenAPI Specification Creation
+
+Multi-stage process creating comprehensive OpenAPI 3.0.0 specifications:
+
+**1. Component Generation:**
+- `OpenApiReferenceComponentEnhancer` - Reference objects (e.g., `EdFi_School_Reference`)
+- `OpenApiRequestBodyComponentEnhancer` - Main resource schemas (e.g., `EdFi_School`)
+- `OpenApiRequestBodyCollectionComponentEnhancer` - Collection item schemas
+
+**2. Final Assembly:**
+- `OpenApiCoreSpecificationEnhancer` - Complete OpenAPI documents for data standards
+- `OpenApiExtensionFragmentEnhancer` - Extension fragments for runtime merging
+
+**Generated OpenAPI Structure:**
+```typescript
+interface OpenApiDocument {
+  openapi: "3.0.0";
+  info: InfoObject;
+  paths: PathsObject;           // GET, POST, PUT, DELETE for each resource
+  components: {
+    schemas: ComponentSchemas;   // All schema components
+  };
+  tags: TagObject[];           // Resource groupings
+}
+```
+
+## Security Model and Authorization Pathways
+
+### Securable Elements Architecture
+
+The security model identifies JSON paths to key identifiers used for authorization:
+
+**Security Types:**
+- **Namespace** - Data ownership via namespace URIs
+- **EducationOrganization** - Hierarchical organization security via EducationOrganizationId
+- **Student** - Student data privacy via StudentUniqueId  
+- **Contact** - Contact information security via ContactUniqueId
+- **Staff** - Staff data access via StaffUniqueId
+
+**Implementation Pattern:**
+```typescript
+// Security element detection pattern
+function findSecurableElements(
+  entity: TopLevelEntity,
+  securityType: SecurityType
+): SecurityElement[] {
+  
+  const securableElements: SecurityElement[] = [];
+  
+  entity.data.edfiApiSchema.identityFullnames.forEach(identityName => {
+    if (matchesSecurityPattern(identityName, securityType)) {
+      const jsonPath = entity.data.edfiApiSchema.allJsonPathsMapping[identityName];
+      securableElements.push({
+        jsonPath,
+        securityType,
+        // ... additional metadata
+      });
+    }
+  });
+  
+  return securableElements;
+}
+```
+
+### Authorization Pathways
+
+The `AuthorizationPathwayEnhancer` hardcodes specific authorization pathway names onto key associations:
+
+```typescript
+// Authorization pathway assignment
+const authorizationPathways = {
+  'StudentSchoolAssociation': ['StudentSchoolAssociationAuthorization'],
+  'StaffEducationOrganizationAssociation': ['StaffEducationOrganizationAssociationAuthorization'],
+  // ... other critical associations
+};
+```
+
+**Purpose:** Tells runtime API which associations directly link entities for authorization (e.g., Student to EducationOrganization).
+
+## Identity Property Handling and JSON Path Mapping
+
+### Identity Processing Pipeline
+
+```typescript
+// Complete identity processing flow
+1. collectAllIdentityPropertiesFor()    // Gather all identity properties
+2. flattenIdentityPropertiesFrom()      // Flatten to scalar properties  
+3. IdentityFullnameEnhancer             // Generate correctly prefixed fullnames
+4. IdentityJsonPathsEnhancer            // Map fullnames to JSON paths
+```
+
+### JSON Path Mapping Algorithm
+
+The `AllJsonPathsMappingEnhancer` creates comprehensive bidirectional mapping:
+
+```typescript
+// JSON path mapping core algorithm
+function jsonPathsFor(
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+  jsonPathPrefix: string = '$'
+): JsonPathsMapping {
+  
+  const propertyName = getApiPropertyName(property, propertyModifier);
+  const currentPath = `${jsonPathPrefix}.${propertyName}`;
+  
+  if (property.isSimple) {
+    return { [property.fullMetaEdName]: currentPath };
+  }
+  
+  if (property.isReferential) {
+    // Flatten referenced entity's identity
+    const referencedIdentity = flattenIdentityPropertiesFrom(
+      property.referencedEntity.identityProperties
+    );
+    
+    return referencedIdentity.reduce((mapping, flattened) => {
+      const fullPath = `${property.fullMetaEdName}.${flattened.propertyPaths.join('.')}`;
+      const jsonPath = `${currentPath}.${getJsonPropertyName(flattened)}`;
+      return { ...mapping, [fullPath]: jsonPath };
+    }, {});
+  }
+  
+  // Handle collections, extensions, etc.
+}
+```
+
+**Key Features:**
+- **Recursive Traversal** - Handles nested property structures
+- **Naming Conventions** - Applies camelCase, pluralization, suffix rules
+- **Collection Support** - Adds `[*]` JSONPath operators for arrays
+- **Reference Flattening** - Expands references to identity properties
+- **Extension Handling** - Nests extensions under `_ext.extensionName`
+
+## API Entity and Property Mapping Strategies
+
+### Property Mapping Rules
+
+**Naming Conventions (`ApiPropertyMappingEnhancer`):**
+```typescript
+// API naming strategy
+const apiNaming = {
+  propertyName: uncapitalize(property.metaEdName),           // camelCase
+  collectionName: pluralize(uncapitalize(property.metaEdName)), // pluralized
+  referenceNames: `${uncapitalize(property.metaEdName)}Reference`, // suffixed
+  descriptorNames: `${uncapitalize(property.metaEdName)}Descriptor` // suffixed
+};
+```
+
+**Prefix Removal Strategy:**
+```typescript
+// Remove redundant prefixes for readability
+function parentPrefixRemovalConvention(
+  property: EntityProperty,
+  parentEntity: TopLevelEntity
+): string {
+  
+  const propertyName = property.metaEdName;
+  const parentPrefix = parentEntity.metaEdName;
+  
+  // Remove parent prefix if property name starts with it
+  if (propertyName.startsWith(parentPrefix)) {
+    return propertyName.substring(parentPrefix.length);
+  }
+  
+  return propertyName;
+}
+```
+
+**Example:** `AssessmentIdentificationCode` on `Assessment` → `identificationCodes`
+
+### Entity Mapping Process
+
+**ApiEntityMapping Creation:**
+```typescript
+interface ApiEntityMapping {
+  flattenedIdentityProperties: FlattenedIdentityProperty[];
+  referenceGroups: ReferenceGroup[];
+  superClass?: TopLevelEntity;
+  // ... additional metadata
+}
+```
+
+## Subclass Handling and Naming Collision Resolution
+
+### Subclass Property Aggregation
+
+**Property Collection Strategy:**
+```typescript
+// SubclassPropertyCollectingEnhancer pattern
+function collectSubclassProperties(subclass: TopLevelEntity): CollectedProperty[] {
+  const subclassProperties = collectApiProperties(subclass);
+  const superclassProperties = collectApiProperties(subclass.baseEntity);
+  
+  // Exclude superclass properties that have been renamed by subclass
+  const nonConflictingSuperclassProperties = superclassProperties.filter(
+    superProp => !hasRenamedProperty(subclass, superProp.property)
+  );
+  
+  return [...subclassProperties, ...nonConflictingSuperclassProperties];
+}
+```
+
+### Naming Collision Resolution
+
+**Problem:** Superclass and subclass collections that would shorten to same name.
+**Example:** `EducationOrganizationCategories` and `SchoolCategories` both → `categories`
+
+**Solution (`SubclassPropertyNamingCollisionEnhancer`):**
+```typescript
+function detectNamingCollisions(subclass: TopLevelEntity): CollisionResult {
+  const superclassCollections = findPrefixedCollections(subclass.baseEntity);
+  const subclassCollections = findCollections(subclass);
+  
+  superclassCollections.forEach(superProp => {
+    const suffix = removePrefixFromName(superProp.metaEdName, subclass.baseEntity.metaEdName);
+    
+    subclassCollections.forEach(subProp => {
+      if (subProp.metaEdName.endsWith(suffix)) {
+        // Mark both properties with collision flag
+        markCollision(superProp, subProp);
+      }
+    });
+  });
+}
+```
+
+**Resolution (`topLevelApiNameOnEntity`):**
+```typescript
+function getApiPropertyName(property: EntityProperty): string {
+  if (property.data.edfiApiSchema.hasNamingCollision) {
+    return property.data.edfiApiSchema.decollisionedTopLevelName; // Keep prefix
+  }
+  return property.data.edfiApiSchema.topLevelName; // Remove prefix
+}
+```
+
+**Result:** `educationOrganizationCategories` and `schoolCategories` (collision avoided)
+
+## Integration Testing and Authoritative Comparison
+
+### Golden File Testing Strategy
+
+The plugin employs comprehensive integration testing using "authoritative comparison":
+
+```typescript
+// Integration test pattern
+describe('API Schema Generation v7.1', () => {
+  it('should match authoritative ApiSchema.json', async () => {
+    // 1. Run complete MetaEd pipeline
+    const state = await buildCompleteApiSchema('@edfi/ed-fi-model-5.1');
+    
+    // 2. Generate ApiSchema.json artifact
+    const generatedSchema = await generateApiSchema(state);
+    
+    // 3. Compare against checked-in authoritative version
+    const authoritativeSchema = readAuthoritativeSchema('v7.1');
+    const gitDiff = execSync(`git diff --no-index ${authoritativeSchema} ${generatedSchema}`);
+    
+    // 4. Assert no differences
+    expect(gitDiff.toString()).toBe('');
   });
 });
 ```
 
-### Integration Testing
-- Full pipeline testing with sample MetaEd projects
-- Authoritative comparison against known good outputs
-- Multi-version data standard testing (DS 5.0, 5.1, 5.2)
-- Extension project testing (TPDM, Sample, Homograph)
+**Test Structure:**
+- `ApiSchemaAuthoritativeCompare_v7_1.test.ts` - Ed-Fi Data Standard 5.1
+- `ApiSchemaAuthoritativeCompare_v7_2.test.ts` - Ed-Fi Data Standard 5.2  
+- `ApiSchemaAuthoritativeCompare_v7_3.test.ts` - Ed-Fi Data Standard 5.3
 
-## Dependencies
+**Benefits:**
+- **Comprehensive Regression Testing** - Catches any unintended changes
+- **Multi-Version Support** - Validates compatibility across data standard versions
+- **Living Documentation** - Authoritative files serve as expected output examples
+- **Full Pipeline Validation** - Tests complete transformation including all dependencies
 
-### Required Plugins
-- **metaed-plugin-edfi-unified** - Reference resolution and merge directives
-- **metaed-plugin-edfi-ods-relational** - Database mapping information
+## Data Model Structures and Type Definitions
 
-### Plugin Processing Order
-1. Unified plugin processes basic model
-2. Relational plugin creates database mappings
-3. **This plugin** creates API schemas and specifications
+### Intermediate Processing Models
 
-## Generated Artifacts
+**EntityApiSchemaData (Primary Processing Container):**
+```typescript
+interface EntityApiSchemaData {
+  apiMapping: ApiEntityMapping;                    // Core API shape metadata
+  collectedApiProperties: CollectedProperty[];     // Flattened property list
+  allJsonPathsMapping: JsonPathsMapping;          // MetaEd path → JSON path mapping
+  identityFullnames: string[];                    // Processed identity property names
+  identityJsonPaths: string[];                    // JSON paths for identity properties
+  securableElements: SecurityElement[];           // Security configuration  
+  authorizationPathways: AuthorizationPathway[];  // Authorization metadata
+  jsonSchemaForInsert: JsonSchema;               // Generated JSON Schema
+  openApiRequestBodyComponent: OpenApiComponent;  // OpenAPI request body schema
+  // ... additional processing metadata
+}
+```
 
-### Output Files
-- **`ApiSchema.json`** - Complete API metadata for data standard projects
-- **`ApiSchema-{extension}.json`** - Extension-specific API metadata
+**Supporting Processing Models:**
+```typescript
+interface CollectedProperty {
+  property: EntityProperty;
+  propertyModifier: PropertyModifier;  // Inherited characteristics (optional flags, prefixes)
+}
 
-### Schema Content
-- Resource schemas with JSON Schema definitions
-- OpenAPI specifications for resources and descriptors
-- Path mappings for all properties
-- Security and authorization metadata
-- Validation constraints and type coercion rules
-- Query field mappings for search operations
+interface FlattenedIdentityProperty {
+  property: EntityProperty;            // Final scalar property
+  propertyChain: EntityProperty[];     // Complete property traversal path
+  propertyPaths: string[];            // Dot-notation path components
+}
 
-## Development Notes
+interface JsonPathsMapping {
+  [metaEdPropertyPath: string]: string; // MetaEd path → JSONPath mapping
+}
+```
 
-1. **Multi-Step Pipeline** - Enhancers must run in exact order defined in `enhancerList()`
-2. **Property Flattening** - Complex algorithm for handling nested references
-3. **Path Mappings** - Critical for ODS/API runtime property resolution
-4. **Security Metadata** - Essential for authorization pathway evaluation
-5. **JSON Schema Compliance** - Must generate valid JSON Schema Draft 2020-12
+### Final Output Models
 
-## Common Development Tasks
+**ApiSchema (Root Output Structure):**
+```typescript
+interface ApiSchema {
+  projectSchemas: Record<string, ProjectSchema>;  // Per-project schemas
+  // ... global metadata
+}
 
-- **Adding Enhancer** - Insert in correct pipeline position, update `enhancerList()`
-- **Property Mapping Changes** - Update flattening and path mapping algorithms
-- **Security Rules** - Modify security enhancers for new authorization patterns
-- **Schema Generation** - Update JSON schema generators for new property types
-- **Testing** - Add integration tests for new scenarios with authoritative comparison
+interface ProjectSchema {
+  projectName: string;
+  resourceSchemas: Record<string, ResourceSchema>; // Per-resource schemas
+  isExtensionProject: boolean;
+  // ... project metadata
+}
+
+interface ResourceSchema {
+  jsonSchemaForInsert: JsonSchema;                // JSON Schema Draft 2020-12
+  identityJsonPaths: string[];                   // Identity property JSON paths
+  documentPathsMapping: DocumentPathsMapping;    // Public path mappings
+  queryFieldMapping: QueryFieldMapping;          // Query parameter mappings
+  securableElements: SecurityElement[];          // Security configuration
+  authorizationPathways: AuthorizationPathway[]; // Authorization metadata
+  // ... additional resource metadata
+}
+```
+
+## Performance Optimizations and Build-Time Caching
+
+### Build-Time Pre-Calculation Strategy
+
+**Primary Performance Principle:** Perform complex computation once at build time, cache results for runtime.
+
+**ApiSchema.json as Comprehensive Cache:**
+- **Resolved JSON Schemas** - No runtime schema generation
+- **Complete OpenAPI Specifications** - Ready for API documentation
+- **Pre-calculated JSON Paths** - Eliminates runtime path resolution
+- **Flattened Identity Properties** - No runtime identity traversal
+- **Security Metadata** - Pre-identified authorization pathways
+
+**Runtime Performance Benefits:**
+```typescript
+// Runtime API can directly use pre-calculated data:
+const resourceSchema = apiSchema.projectSchemas['EdFi'].resourceSchemas['School'];
+const identityPaths = resourceSchema.identityJsonPaths;  // Pre-calculated
+const jsonSchema = resourceSchema.jsonSchemaForInsert;   // Pre-generated
+```
+
+### Performance Constraints
+
+**Array Nesting Limitation (`hasAtMostTwoArrayLevels`):**
+```typescript
+// Prevents deeply nested arrays that cause database performance issues
+function validateArrayNesting(jsonPath: string): void {
+  const arrayCount = (jsonPath.match(/\[\*\]/g) || []).length;
+  if (arrayCount > 2) {
+    throw new Error(`JSON path ${jsonPath} exceeds maximum array nesting depth`);
+  }
+}
+```
+
+**Rationale:** Deeply nested arrays (`[*][*][*]`) cause performance issues in:
+- Database query generation
+- JSON validation processing  
+- API response serialization
+
+## Development Patterns
+
+### Adding New Enhancers
+
+1. **Determine Correct Pipeline Position** - Review `EnhancerList.ts` execution order
+2. **Create Enhancer File** - Follow naming convention `[Purpose]Enhancer.ts`
+3. **Implement Enhancement Logic** - Follow established patterns for data modification
+4. **Add to Pipeline** - Insert in correct position in `enhancerList()`
+5. **Write Tests** - Unit tests for logic, integration tests for pipeline effects
+
+### Property Mapping Modifications
+
+1. **Update Flattening Algorithm** - Modify `collectApiProperties` logic
+2. **Adjust Naming Conventions** - Update `ApiPropertyMappingEnhancer`
+3. **Validate Path Mappings** - Ensure `AllJsonPathsMappingEnhancer` compatibility
+4. **Test Across Data Standards** - Run integration tests for all supported versions
+
+### Security Rule Changes
+
+1. **Modify Security Enhancers** - Update detection logic in `src/enhancer/security/`
+2. **Update Authorization Pathways** - Modify `AuthorizationPathwayEnhancer` assignments
+3. **Validate Security Metadata** - Ensure proper securable element identification
+4. **Test Authorization Scenarios** - Verify correct pathway assignment
+
+## Architecture Strengths
+
+1. **Multi-Step Pipeline** - Clear separation of concerns with ordered execution
+2. **Property Flattening** - Sophisticated algorithms handle complex nested structures  
+3. **Build-Time Optimization** - Pre-calculation eliminates runtime complexity
+4. **Comprehensive Testing** - Golden file testing prevents regressions
+5. **Security Integration** - First-class authorization pathway support
+6. **Standards Compliance** - Generates valid JSON Schema Draft 2020-12 and OpenAPI 3.0.0
+7. **Extension Support** - Robust handling of Ed-Fi extension model
+
+This plugin represents one of the most sophisticated parts of the MetaEd ecosystem, successfully transforming complex domain models into production-ready API specifications while maintaining performance and extensibility.
