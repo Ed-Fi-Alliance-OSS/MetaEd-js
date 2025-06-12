@@ -101,7 +101,15 @@ function parseArgs(): CliOptions {
 
   // Use default file paths if not provided
   if (!options.apiSchemaPath) {
-    options.apiSchemaPath = path.join(__dirname, '..', 'ds-5.2-api-schema.json');
+    options.apiSchemaPath = path.join(
+      __dirname,
+      '..',
+      '..',
+      'integration',
+      'artifact',
+      'v7_3',
+      'ds-5.2-api-schema-authoritative.json',
+    );
   }
   if (!options.openApiPath) {
     options.openApiPath = path.join(__dirname, '..', 'ds-5.2-ods-api-openapi.json');
