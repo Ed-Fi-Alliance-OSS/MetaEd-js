@@ -17,10 +17,6 @@ import { JsonPath } from '../model/api-schema/JsonPath';
 import { JsonPathsInfo } from '../model/JsonPathsMapping';
 import { EducationOrganizationSecurableElement } from '../model/api-schema/EducationOrganizationSecurableElement';
 
-// Hardcode EducationOrganization securable elements for resources listed below
-// to a role-named EducationOrganizationId property in their identity.
-// A future ticket (DMS-735) will define a formal mechanism to replace this hardcoded logic
-// with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd.
 const hardcodedSecurityResources: string[] = [
   'ProgramEvaluation',
   'ProgramEvaluationElement',
@@ -28,6 +24,10 @@ const hardcodedSecurityResources: string[] = [
   'EvaluationRubricDimension',
 ];
 
+/** Hardcode EducationOrganization securable elements for ProgramEvaluation, ProgramEvaluationElement,
+ * ProgramEvaluationObjective and EvaluationRubricDimension to a role-named EducationOrganizationId property in their identity.
+ * A future ticket (DMS-735) will define a formal mechanism to replace this hardcoded logic
+ * with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd. */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const enhancerName = 'ProgramRoleNameHardcodedSecurityDiminisher';
 

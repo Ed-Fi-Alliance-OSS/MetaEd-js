@@ -14,12 +14,12 @@ import {
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
-// Hardcode EducationOrganization securable elements for resources listed below
-// to a role-named SchoolId property in their identity.
-// A future ticket (DMS-735) will define a formal mechanism to replace this hardcoded logic
-// with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd.
 const hardcodedSecurityResources: string[] = ['DisciplineAction'];
 
+/** Hardcode EducationOrganization securable elements for DisciplineAction
+ * to a role-named SchoolId property in their identity.
+ * A future ticket (DMS-735) will define a formal mechanism to replace this hardcoded logic
+ * with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd. */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const enhancerName = 'DisciplineActionHardcodedSecurityDiminisher';
 
