@@ -18,7 +18,7 @@ type CliOptions = {
   openApiPath: string;
   outputFormat: 'summary' | 'detailed' | 'json';
   filter?: string;
-  ignoreLinkFields?: boolean;
+  includeLinkFields?: boolean;
   ignoreTypeMismatches?: boolean;
   ignoreRequiredMismatches?: boolean;
 };
@@ -34,7 +34,7 @@ Options:
   -o, --openapi <file>          Path to OpenAPI JSON file (default: ds-5.2-ods-api-openapi.json)
   -f, --format <format>         Output format: summary, detailed, or json (default: summary)
   --filter <endpoint>           Filter results to specific endpoint name
-  --ignore-link-fields          Ignore missing link.rel and link.href fields on references
+  --include-link-fields         Include missing link.rel and link.href fields on references in comparison (default: ignore)
   --ignore-type-mismatches      Ignore type mismatches between ApiSchema and OpenAPI
   --ignore-required-mismatches  Ignore required field mismatches between ApiSchema and OpenAPI
   -h, --help                   Show this help message
@@ -76,8 +76,8 @@ function parseArgs(): CliOptions {
         i += 1;
         options.filter = args[i];
         break;
-      case '--ignore-link-fields':
-        options.ignoreLinkFields = true;
+      case '--include-link-fields':
+        options.includeLinkFields = true;
         break;
       case '--ignore-type-mismatches':
         options.ignoreTypeMismatches = true;
@@ -233,7 +233,7 @@ function main(): void {
     console.log('Comparing structures...');
   }
   let results = compareStructures(apiSchemaStructures, openApiStructures, {
-    ignoreLinkFields: options.ignoreLinkFields,
+    ignoreLinkFields: !options.includeLinkFields,
     ignoreTypeMismatches: options.ignoreTypeMismatches,
     ignoreRequiredMismatches: options.ignoreRequiredMismatches,
   });
