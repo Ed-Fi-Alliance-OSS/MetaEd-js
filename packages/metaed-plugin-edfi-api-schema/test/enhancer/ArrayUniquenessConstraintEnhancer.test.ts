@@ -68,9 +68,11 @@ describe('when building simple domain entity with a simple collections', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.requiredStringProperties[*].requiredStringProperty",
-        ],
+        Object {
+          "paths": Array [
+            "$.requiredStringProperties[*].requiredStringProperty",
+          ],
+        },
       ]
     `);
   });
@@ -135,9 +137,11 @@ describe('when building domain entity with nested choice and common collection',
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.learningResources[*].contentClassDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.learningResources[*].contentClassDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -192,9 +196,11 @@ describe('when building domain entity with a simple common collection', () => {
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -260,9 +266,11 @@ describe('when building domain entity subclass with common collection and descri
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -317,9 +325,14 @@ describe('when building association with a common collection in a common collect
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.addresses[*].periods[*].beginDate",
-        ],
+        Object {
+          "nestedConstraint": Object {
+            "basePath": "$.addresses[*]",
+            "paths": Array [
+              "$.periods[*].beginDate",
+            ],
+          },
+        },
       ]
     `);
   });
