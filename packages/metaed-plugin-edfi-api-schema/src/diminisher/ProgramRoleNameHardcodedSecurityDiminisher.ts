@@ -10,6 +10,7 @@ import {
   TopLevelEntity,
   getEntitiesOfType,
   MetaEdPropertyFullName,
+  versionSatisfies,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
@@ -29,6 +30,10 @@ const hardcodedSecurityResources: string[] = [
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const enhancerName = 'ProgramRoleNameHardcodedSecurityDiminisher';
+
+  // ProgramEvaluation hardcoded security was added on Data Standard 5.0.0
+  if (!versionSatisfies(metaEd.dataStandardVersion, '>=5.0.0')) return { enhancerName, success: true };
+
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
 

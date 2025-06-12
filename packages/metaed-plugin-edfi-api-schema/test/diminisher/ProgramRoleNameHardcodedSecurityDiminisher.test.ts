@@ -60,6 +60,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
 describe('when diminishing a Program role entity hierarchy', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  metaEd.dataStandardVersion = '5.0.0';
   const namespaceName = 'EdFi';
 
   beforeAll(() => {
@@ -340,6 +341,7 @@ describe('when diminishing a Program role entity hierarchy with missing Evaluati
 describe('when diminishing a Program role entity hierarchy without a valid criteria to get hardcoded securable element', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  metaEd.dataStandardVersion = '8.0';
   const namespaceName = 'EdFi';
 
   beforeAll(() => {

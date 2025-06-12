@@ -10,6 +10,7 @@ import {
   TopLevelEntity,
   getEntitiesOfType,
   MetaEdPropertyPath,
+  versionSatisfies,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
@@ -17,11 +18,14 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 // to a role-named EducationOrganizationId property in their identity.
 // A future ticket (DMS-735) will define a formal mechanism to replace this hardcoded logic
 // with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd.
-export const hardcodedSecurityResources: string[] = ['OrganizationDepartment'];
-
-const enhancerName = 'OrganizationDepartmentHardcodedSecurityDiminisher';
+const hardcodedSecurityResources: string[] = ['OrganizationDepartment'];
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  const enhancerName = 'OrganizationDepartmentHardcodedSecurityDiminisher';
+
+  // OrganizationDepartment hardcoded security was added on Data Standard 3.3.0-a
+  if (!versionSatisfies(metaEd.dataStandardVersion, '>=3.3.0-a')) return { enhancerName, success: true };
+
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
 

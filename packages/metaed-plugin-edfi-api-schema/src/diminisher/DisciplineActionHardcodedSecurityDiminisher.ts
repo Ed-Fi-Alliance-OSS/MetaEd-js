@@ -10,6 +10,7 @@ import {
   TopLevelEntity,
   getEntitiesOfType,
   MetaEdPropertyPath,
+  versionSatisfies,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
@@ -19,9 +20,12 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 // with a long-term solution so that Extension developers don’t need to hardcode logic in MetaEd.
 const hardcodedSecurityResources: string[] = ['DisciplineAction'];
 
-const enhancerName = 'DisciplineActionHardcodedSecurityDiminisher';
-
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  const enhancerName = 'DisciplineActionHardcodedSecurityDiminisher';
+
+  // DisciplineAction hardcoded security was added on Data Standard 4.0.0-a
+  if (!versionSatisfies(metaEd.dataStandardVersion, '>=4.0.0-a')) return { enhancerName, success: true };
+
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
 

@@ -54,6 +54,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
 describe('when diminishing DisciplineAction', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  metaEd.dataStandardVersion = '4.0.0-a';
   const namespaceName = 'EdFi';
 
   beforeAll(() => {

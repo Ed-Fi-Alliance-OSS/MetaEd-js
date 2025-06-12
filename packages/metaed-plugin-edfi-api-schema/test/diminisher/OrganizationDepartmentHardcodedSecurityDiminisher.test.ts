@@ -62,6 +62,7 @@ function runEnhancers(metaEd: MetaEdEnvironment) {
 describe('when diminishing OrganizationDepartment', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  metaEd.dataStandardVersion = '3.3.0-a';
   const namespaceName = 'EdFi';
 
   beforeAll(() => {
