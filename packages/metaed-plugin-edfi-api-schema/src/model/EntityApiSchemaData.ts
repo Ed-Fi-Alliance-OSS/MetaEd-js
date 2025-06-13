@@ -25,7 +25,7 @@ import { EducationOrganizationSecurableElement } from './api-schema/EducationOrg
 import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollectionSchema';
 import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './api-schema/DecimalPropertyValidationInfo';
-import type { ArrayUniquenessConstraint } from '../enhancer/ArrayUniquenessConstraintEnhancer';
+import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstraint';
 
 export type EntityApiSchemaData = {
   /**

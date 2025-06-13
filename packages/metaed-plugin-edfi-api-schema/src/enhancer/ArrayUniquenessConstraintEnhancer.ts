@@ -7,22 +7,7 @@ import { EnhancerResult, getAllEntitiesOfType, MetaEdEnvironment, MetaEdProperty
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { JsonPathsInfo } from '../model/JsonPathsMapping';
-
-/**
- * Represents an array uniqueness constraint with support for nested arrays
- */
-export type ArrayUniquenessConstraint = {
-  // Present only when this ArrayUniquenessConstraint is a nestedConstraint,
-  // this is its parent ArrayUniquenessConstraint array path, and always of
-  // the form $.XYZ[*]
-  basePath?: JsonPath;
-
-  // A list of scalar paths on an array, always of the form $.XYZ[*].something
-  paths?: JsonPath[];
-
-  // A nested ArrayUniquenessConstraint for a nested array
-  nestedConstraint?: ArrayUniquenessConstraint;
-};
+import { ArrayUniquenessConstraint } from '../model/api-schema/ArrayUniquenessConstraint';
 
 /**
  * Extracts the array base path from a JsonPath (e.g., "$.addresses[*].periods[*].beginDate" -> "$.addresses[*]")

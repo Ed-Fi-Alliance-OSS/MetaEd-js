@@ -13,7 +13,7 @@ import { QueryFieldMapping } from './QueryFieldMapping';
 import { SecurableElements } from './SecurableElements';
 import { AuthorizationPathway } from './AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './DecimalPropertyValidationInfo';
-import type { ArrayUniquenessConstraint } from '../../enhancer/ArrayUniquenessConstraintEnhancer';
+import { ArrayUniquenessConstraint } from './ArrayUniquenessConstraint';
 
 /**
  * API resource schema information common between all resources
