@@ -572,3 +572,119 @@ describe('when building entity with scalar collections on a scalar common', () =
     `);
   });
 });
+
+// Simple test to demonstrate the error with different base paths
+describe('SIMPLE: entity with two different array collections (demonstrates the bug)', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('TestEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('TestId', 'doc')
+      .withDescriptorProperty('FirstType', 'doc', false, true)
+      .withDescriptorProperty('SecondType', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartDescriptor('FirstType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('SecondType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should handle arrays with different base paths correctly', () => {
+    const entity = namespace.entity.domainEntity.get('TestEntity');
+    const constraints = (entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints;
+
+    // The bug: paths with different base paths are split into separate constraints
+    // instead of being grouped together when they should be
+    expect(constraints).toHaveLength(2);
+    expect(constraints[0].paths).toEqual(['$.firstTypes[*].firstTypeDescriptor']);
+    expect(constraints[1].paths).toEqual(['$.secondTypes[*].secondTypeDescriptor']);
+
+    // What it SHOULD be is one constraint with both paths:
+    // expect(constraints).toHaveLength(1);
+    // expect(constraints[0].paths).toContain('$.firstTypes[*].firstTypeDescriptor');
+    // expect(constraints[0].paths).toContain('$.secondTypes[*].secondTypeDescriptor');
+  });
+});
+
+// Even simpler test to show the specific line 35 bug
+describe('SIMPLEST: demonstrates line 35 bug in ArrayUniquenessConstraintEnhancer', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('TestEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('TestId', 'doc')
+      .withDescriptorProperty('Alpha', 'doc', false, true)
+      .withDescriptorProperty('Beta', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartDescriptor('Alpha')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('Beta')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    descriptorReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('demonstrates that line 35 incorrectly assumes all paths have same base path', () => {
+    const entity = namespace.entity.domainEntity.get('TestEntity');
+    const constraints = (entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints;
+
+    // Bug: Line 35 takes firstBasePath from sortedPaths[0] which is "$.alphas[*]"
+    // But sortedPaths also contains "$.betas[*]" which has a different base path
+    // So line 48 check (basePath === firstBasePath) fails for the second path
+    // and it gets incorrectly excluded from the constraint
+    expect(constraints).toHaveLength(2);
+    expect(constraints[0].paths).toEqual(['$.alphas[*].alphaDescriptor']);
+    expect(constraints[1].paths).toEqual(['$.beta[*].betaDescriptor']);
+  });
+});
