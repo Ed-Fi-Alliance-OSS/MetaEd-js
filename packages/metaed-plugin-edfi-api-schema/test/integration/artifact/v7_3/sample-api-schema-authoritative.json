@@ -5515,12 +5515,14 @@
       "contacts": {
         "arrayUniquenessConstraints": [
           {
-            "nestedConstraint": {
-              "basePath": "$._ext.sample.addresses[*]",
-              "paths": [
-                "$.periods[*].beginDate"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
             "paths": [
               "$._ext.sample.addresses[*].addressTypeDescriptor",
               "$._ext.sample.addresses[*].city",
@@ -8303,12 +8305,14 @@
       "studentEducationOrganizationAssociations": {
         "arrayUniquenessConstraints": [
           {
-            "nestedConstraint": {
-              "basePath": "$._ext.sample.addresses[*]",
-              "paths": [
-                "$.periods[*].beginDate"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
             "paths": [
               "$._ext.sample.addresses[*].addressTypeDescriptor",
               "$._ext.sample.addresses[*].city",
@@ -8318,12 +8322,14 @@
             ]
           },
           {
-            "nestedConstraint": {
-              "basePath": "$._ext.sample.studentCharacteristics[*]",
-              "paths": [
-                "$.periods[*].beginDate"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.studentCharacteristics[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
             "paths": [
               "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor"
             ]
@@ -9697,12 +9703,14 @@
             ]
           },
           {
-            "nestedConstraint": {
-              "basePath": "$._ext.sample.favoriteBooks[*]",
-              "paths": [
-                "$.artMedia[*].artMediumDescriptor"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.favoriteBooks[*]",
+                "paths": [
+                  "$.artMedia[*].artMediumDescriptor"
+                ]
+              }
+            ],
             "paths": [
               "$._ext.sample.favoriteBooks[*].favoriteBookCategoryDescriptor"
             ]
