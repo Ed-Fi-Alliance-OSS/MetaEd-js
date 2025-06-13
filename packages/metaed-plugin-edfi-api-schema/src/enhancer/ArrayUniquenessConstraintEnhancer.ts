@@ -63,13 +63,13 @@ function groupJsonPathsByArrayStructure(jsonPaths: JsonPath[]): ArrayUniquenessC
     constraint.paths = simplePaths;
   }
 
-  // Add nested constraint if any
+  // Add nested constraints if any
   if (nestedPaths.length > 0) {
     const nestedRelativePaths = nestedPaths.map((path) => extractNestedPath(path, firstBasePath));
-    constraint.nestedConstraint = {
+    constraint.nestedConstraints = [{
       basePath: firstBasePath,
       ...groupJsonPathsByArrayStructure(nestedRelativePaths),
-    };
+    }];
   }
 
   return constraint;

@@ -17,6 +17,6 @@ export type ArrayUniquenessConstraint = {
   // A list of scalar paths on an array, always of the form $.XYZ[*].something
   paths?: JsonPath[];
 
-  // A nested ArrayUniquenessConstraint for a nested array
-  nestedConstraint?: ArrayUniquenessConstraint;
+  // Nested ArrayUniquenessConstraints for nested arrays
+  nestedConstraints?: ArrayUniquenessConstraint[];
 };

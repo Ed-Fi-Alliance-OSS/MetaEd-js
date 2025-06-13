@@ -326,12 +326,14 @@ describe('when building association with a common collection in a common collect
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
-          "nestedConstraint": Object {
-            "basePath": "$.addresses[*]",
-            "paths": Array [
-              "$.periods[*].beginDate",
-            ],
-          },
+          "nestedConstraints": Array [
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.periods[*].beginDate",
+              ],
+            },
+          ],
         },
       ]
     `);
