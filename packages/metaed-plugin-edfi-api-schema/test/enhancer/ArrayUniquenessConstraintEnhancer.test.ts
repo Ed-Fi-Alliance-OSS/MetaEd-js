@@ -339,3 +339,86 @@ describe('when building association with a common collection in a common collect
     `);
   });
 });
+
+describe('when building entity with multiple nested collections in a common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withCommonProperty('Address', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '30')
+      .withCommonProperty('Period', 'doc', false, true)
+      .withCommonProperty('Contact', 'doc', false, true)
+      .withEndCommon()
+
+      .withStartCommon('Period')
+      .withDocumentation('doc')
+      .withIntegerIdentity('BeginDate', 'doc')
+      .withIntegerProperty('EndDate', 'doc', false, false)
+      .withEndCommon()
+
+      .withStartCommon('Contact')
+      .withDocumentation('doc')
+      .withDescriptorIdentity('ContactType', 'doc')
+      .withStringProperty('ContactValue', 'doc', false, false, '30')
+      .withEndCommon()
+
+      .withStartDescriptor('ContactType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct arrayUniquenessConstraints with multiple nested constraints', () => {
+    const entity = namespace.entity.domainEntity.get('School');
+
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "nestedConstraints": Array [
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.contacts[*].contactTypeDescriptor",
+              ],
+            },
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.periods[*].beginDate",
+              ],
+            },
+          ],
+        },
+      ]
+    `);
+  });
+});
