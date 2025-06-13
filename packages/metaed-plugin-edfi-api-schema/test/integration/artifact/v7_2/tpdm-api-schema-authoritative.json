@@ -15846,12 +15846,14 @@
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
-            "nestedConstraint": {
-              "basePath": "$.addresses[*]",
-              "paths": [
-                "$.periods[*].beginDate"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
             "paths": [
               "$.addresses[*].addressTypeDescriptor",
               "$.addresses[*].city",
@@ -15861,12 +15863,14 @@
             ]
           },
           {
-            "nestedConstraint": {
-              "basePath": "$.disabilities[*]",
-              "paths": [
-                "$.designations[*].disabilityDesignationDescriptor"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$.disabilities[*]",
+                "paths": [
+                  "$.designations[*].disabilityDesignationDescriptor"
+                ]
+              }
+            ],
             "paths": [
               "$.disabilities[*].disabilityDescriptor"
             ]
@@ -15878,12 +15882,14 @@
             ]
           },
           {
-            "nestedConstraint": {
-              "basePath": "$.languages[*]",
-              "paths": [
-                "$.uses[*].languageUseDescriptor"
-              ]
-            },
+            "nestedConstraints": [
+              {
+                "basePath": "$.languages[*]",
+                "paths": [
+                  "$.uses[*].languageUseDescriptor"
+                ]
+              }
+            ],
             "paths": [
               "$.languages[*].languageDescriptor"
             ]
