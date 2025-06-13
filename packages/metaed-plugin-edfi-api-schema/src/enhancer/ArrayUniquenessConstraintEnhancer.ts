@@ -31,60 +31,81 @@ function extractNestedPath(jsonPath: JsonPath, basePath: JsonPath): JsonPath {
 function groupJsonPathsByArrayStructure(jsonPaths: JsonPath[]): ArrayUniquenessConstraint {
   const sortedPaths = [...jsonPaths].sort();
 
-  // Check if all paths have the same base array path
-  const firstBasePath = extractArrayBasePath(sortedPaths[0]);
-
-  if (!firstBasePath) {
-    // No array structure, this shouldn't happen for array identities
-    return { paths: sortedPaths };
-  }
-
-  // Group paths by whether they are simple (one level) or nested (multiple levels)
-  const simplePaths: JsonPath[] = [];
-  const nestedPaths: JsonPath[] = [];
+  // Group paths by their array base paths
+  const pathsByBasePath = new Map<JsonPath | null, JsonPath[]>();
 
   sortedPaths.forEach((path) => {
     const basePath = extractArrayBasePath(path);
-    if (basePath === firstBasePath) {
-      // Check if this is a simple path (no further nesting)
-      const remainingPath = extractNestedPath(path, basePath);
-      if (!remainingPath.includes('[*]')) {
-        simplePaths.push(path);
-      } else {
-        nestedPaths.push(path);
+    if (!pathsByBasePath.has(basePath)) {
+      pathsByBasePath.set(basePath, []);
+    }
+    pathsByBasePath.get(basePath)!.push(path);
+  });
+
+  // If no array structure, return simple paths
+  if (pathsByBasePath.has(null) && pathsByBasePath.size === 1) {
+    return { paths: pathsByBasePath.get(null)! };
+  }
+
+  // Handle multiple array base paths
+  const allSimplePaths: JsonPath[] = [];
+  const nestedConstraints: any[] = [];
+
+  pathsByBasePath.forEach((paths, basePath) => {
+    if (basePath === null) {
+      // Non-array paths - add to simple paths
+      allSimplePaths.push(...paths);
+    } else {
+      // Check if these are simple array paths or nested
+      const simplePaths: JsonPath[] = [];
+      const nestedPaths: JsonPath[] = [];
+
+      paths.forEach((path) => {
+        const remainingPath = extractNestedPath(path, basePath);
+        if (!remainingPath.includes('[*]')) {
+          simplePaths.push(path);
+        } else {
+          nestedPaths.push(path);
+        }
+      });
+
+      // Add simple paths to the main collection
+      allSimplePaths.push(...simplePaths);
+
+      // Handle nested paths
+      if (nestedPaths.length > 0) {
+        const nestedPathGroups = new Map<JsonPath, JsonPath[]>();
+
+        nestedPaths.forEach((path) => {
+          const relativePath = extractNestedPath(path, basePath);
+          const nestedBasePath = extractArrayBasePath(relativePath);
+
+          if (nestedBasePath) {
+            if (!nestedPathGroups.has(nestedBasePath)) {
+              nestedPathGroups.set(nestedBasePath, []);
+            }
+            nestedPathGroups.get(nestedBasePath)!.push(relativePath);
+          }
+        });
+
+        nestedPathGroups.forEach((pathGroup) => {
+          nestedConstraints.push({
+            basePath,
+            ...groupJsonPathsByArrayStructure(pathGroup),
+          });
+        });
       }
     }
   });
 
   const constraint: ArrayUniquenessConstraint = {};
 
-  // Add simple paths if any
-  if (simplePaths.length > 0) {
-    constraint.paths = simplePaths;
+  if (allSimplePaths.length > 0) {
+    constraint.paths = allSimplePaths;
   }
 
-  // Add nested constraints if any
-  if (nestedPaths.length > 0) {
-    // Group nested paths by their immediate nested array base path
-    const nestedPathGroups = new Map<JsonPath, JsonPath[]>();
-
-    nestedPaths.forEach((path) => {
-      const relativePath = extractNestedPath(path, firstBasePath);
-      const nestedBasePath = extractArrayBasePath(relativePath);
-
-      if (nestedBasePath) {
-        if (!nestedPathGroups.has(nestedBasePath)) {
-          nestedPathGroups.set(nestedBasePath, []);
-        }
-        nestedPathGroups.get(nestedBasePath)!.push(relativePath);
-      }
-    });
-
-    // Create a constraint for each group of nested paths
-    constraint.nestedConstraints = Array.from(nestedPathGroups.entries()).map(([, pathGroup]) => ({
-      basePath: firstBasePath,
-      ...groupJsonPathsByArrayStructure(pathGroup),
-    }));
+  if (nestedConstraints.length > 0) {
+    constraint.nestedConstraints = nestedConstraints;
   }
 
   return constraint;
