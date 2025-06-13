@@ -1,0 +1,31 @@
+{
+  "metaEdConfiguration": {
+    "artifactDirectory": "./MetaEdOutput",
+    "deployDirectory": "",
+    "pluginTechVersion": {},
+    "projects": [
+      {
+        "namespaceName": "EdFi",
+        "projectName": "Ed-Fi",
+        "projectVersion": "5.2.0",
+        "projectExtension": "",
+        "description": "The Ed-Fi Data Model 5.2"
+      },
+      {
+        "namespaceName": "TPDM",
+        "projectName": "TPDM",
+        "projectVersion": "1.1.0",
+        "projectExtension": "tpdm",
+        "description": "Teacher Preparation Data Model Extension"
+      }
+    ],
+    "projectPaths": [
+      "../../node_modules/@edfi/ed-fi-model-5.2",
+      "../metaed-plugin-edfi-api-schema/test/integration/tpdm-project"
+    ],
+    "pluginConfigDirectories": [],
+    "defaultPluginTechVersion": "7.2.0",
+    "allianceMode": false,
+    "suppressPrereleaseVersion": true
+  }
+}
