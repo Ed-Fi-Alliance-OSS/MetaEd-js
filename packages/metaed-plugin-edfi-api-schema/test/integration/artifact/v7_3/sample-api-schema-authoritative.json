@@ -4804,19 +4804,27 @@
       "busRoutes": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.busYears[*].busYear"
-          ],
-          [
-            "$.serviceAreaPostalCodes[*].serviceAreaPostalCode"
-          ],
-          [
-            "$.startTimes[*].startTime"
-          ],
-          [
-            "$.telephones[*].telephoneNumber",
-            "$.telephones[*].telephoneNumberTypeDescriptor"
-          ]
+          {
+            "paths": [
+              "$.busYears[*].busYear"
+            ]
+          },
+          {
+            "paths": [
+              "$.serviceAreaPostalCodes[*].serviceAreaPostalCode"
+            ]
+          },
+          {
+            "paths": [
+              "$.startTimes[*].startTime"
+            ]
+          },
+          {
+            "paths": [
+              "$.telephones[*].telephoneNumber",
+              "$.telephones[*].telephoneNumberTypeDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -5506,23 +5514,38 @@
       },
       "contacts": {
         "arrayUniquenessConstraints": [
-          [
-            "$._ext.sample.addresses[*].addressTypeDescriptor",
-            "$._ext.sample.addresses[*].city",
-            "$._ext.sample.addresses[*].periods[*].beginDate",
-            "$._ext.sample.addresses[*].postalCode",
-            "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
-            "$._ext.sample.addresses[*].streetNumberName"
-          ],
-          [
-            "$._ext.sample.authors[*].author"
-          ],
-          [
-            "$._ext.sample.ceilingHeights[*].ceilingHeight"
-          ],
-          [
-            "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
-          ]
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
+            "paths": [
+              "$._ext.sample.addresses[*].addressTypeDescriptor",
+              "$._ext.sample.addresses[*].city",
+              "$._ext.sample.addresses[*].postalCode",
+              "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+              "$._ext.sample.addresses[*].streetNumberName"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.authors[*].author"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.ceilingHeights[*].ceilingHeight"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -6715,9 +6738,11 @@
       },
       "staffs": {
         "arrayUniquenessConstraints": [
-          [
-            "$._ext.sample.pets[*].petName"
-          ]
+          {
+            "paths": [
+              "$._ext.sample.pets[*].petName"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -6860,25 +6885,37 @@
       "studentArtProgramAssociations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.artMedia[*].artMediumDescriptor"
-          ],
-          [
-            "$.favoriteBook.artMedia[*].artMediumDescriptor"
-          ],
-          [
-            "$.portfolioYears[*].portfolioYears"
-          ],
-          [
-            "$.programParticipationStatuses[*].participationStatusDescriptor",
-            "$.programParticipationStatuses[*].statusBeginDate"
-          ],
-          [
-            "$.services[*].serviceDescriptor"
-          ],
-          [
-            "$.styles[*].style"
-          ]
+          {
+            "paths": [
+              "$.artMedia[*].artMediumDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.favoriteBook.artMedia[*].artMediumDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.portfolioYears[*].portfolioYears"
+            ]
+          },
+          {
+            "paths": [
+              "$.programParticipationStatuses[*].participationStatusDescriptor",
+              "$.programParticipationStatuses[*].statusBeginDate"
+            ]
+          },
+          {
+            "paths": [
+              "$.services[*].serviceDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.styles[*].style"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -7748,18 +7785,26 @@
       },
       "studentContactAssociations": {
         "arrayUniquenessConstraints": [
-          [
-            "$._ext.sample.disciplines[*].disciplineDescriptor"
-          ],
-          [
-            "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
-          ],
-          [
-            "$._ext.sample.hoursPerWeeks[*].hoursPerWeek"
-          ],
-          [
-            "$._ext.sample.pagesReads[*].pagesRead"
-          ]
+          {
+            "paths": [
+              "$._ext.sample.disciplines[*].disciplineDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.favoriteBookTitles[*].favoriteBookTitle"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.hoursPerWeeks[*].hoursPerWeek"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.pagesReads[*].pagesRead"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -8259,18 +8304,36 @@
       },
       "studentEducationOrganizationAssociations": {
         "arrayUniquenessConstraints": [
-          [
-            "$._ext.sample.addresses[*].addressTypeDescriptor",
-            "$._ext.sample.addresses[*].city",
-            "$._ext.sample.addresses[*].periods[*].beginDate",
-            "$._ext.sample.addresses[*].postalCode",
-            "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
-            "$._ext.sample.addresses[*].streetNumberName"
-          ],
-          [
-            "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
-            "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor"
-          ]
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
+            "paths": [
+              "$._ext.sample.addresses[*].addressTypeDescriptor",
+              "$._ext.sample.addresses[*].city",
+              "$._ext.sample.addresses[*].postalCode",
+              "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+              "$._ext.sample.addresses[*].streetNumberName"
+            ]
+          },
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.studentCharacteristics[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
+            "paths": [
+              "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -8695,24 +8758,36 @@
       "studentGraduationPlanAssociations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.academicSubjects[*].academicSubjectDescriptor"
-          ],
-          [
-            "$.careerPathwayCodes[*].careerPathwayCode"
-          ],
-          [
-            "$.descriptions[*].description"
-          ],
-          [
-            "$.designatedBies[*].designatedBy"
-          ],
-          [
-            "$.industryCredentials[*].industryCredential"
-          ],
-          [
-            "$.yearsAttendeds[*].yearsAttended"
-          ]
+          {
+            "paths": [
+              "$.academicSubjects[*].academicSubjectDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.careerPathwayCodes[*].careerPathwayCode"
+            ]
+          },
+          {
+            "paths": [
+              "$.descriptions[*].description"
+            ]
+          },
+          {
+            "paths": [
+              "$.designatedBies[*].designatedBy"
+            ]
+          },
+          {
+            "paths": [
+              "$.industryCredentials[*].industryCredential"
+            ]
+          },
+          {
+            "paths": [
+              "$.yearsAttendeds[*].yearsAttended"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -9622,16 +9697,29 @@
       },
       "students": {
         "arrayUniquenessConstraints": [
-          [
-            "$._ext.sample.aquaticPets[*].mimimumTankVolume"
-          ],
-          [
-            "$._ext.sample.favoriteBooks[*].artMedia[*].artMediumDescriptor",
-            "$._ext.sample.favoriteBooks[*].favoriteBookCategoryDescriptor"
-          ],
-          [
-            "$._ext.sample.pets[*].petName"
-          ]
+          {
+            "paths": [
+              "$._ext.sample.aquaticPets[*].mimimumTankVolume"
+            ]
+          },
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$._ext.sample.favoriteBooks[*]",
+                "paths": [
+                  "$.artMedia[*].artMediumDescriptor"
+                ]
+              }
+            ],
+            "paths": [
+              "$._ext.sample.favoriteBooks[*].favoriteBookCategoryDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$._ext.sample.pets[*].petName"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],

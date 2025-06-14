@@ -2656,9 +2656,11 @@
       "contacts": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.addresses[*].city"
-          ]
+          {
+            "paths": [
+              "$.addresses[*].city"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -3173,9 +3175,11 @@
       "staffs": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.addresses[*].city"
-          ]
+          {
+            "paths": [
+              "$.addresses[*].city"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],

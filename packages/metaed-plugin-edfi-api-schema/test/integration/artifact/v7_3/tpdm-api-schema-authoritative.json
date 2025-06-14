@@ -15443,14 +15443,18 @@
       "candidateEducatorPreparationProgramAssociations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.cohortYears[*].cohortYearTypeDescriptor",
-            "$.cohortYears[*].schoolYearTypeReference.schoolYear"
-          ],
-          [
-            "$.degreeSpecializations[*].beginDate",
-            "$.degreeSpecializations[*].majorSpecialization"
-          ]
+          {
+            "paths": [
+              "$.cohortYears[*].cohortYearTypeDescriptor",
+              "$.cohortYears[*].schoolYearTypeReference.schoolYear"
+            ]
+          },
+          {
+            "paths": [
+              "$.degreeSpecializations[*].beginDate",
+              "$.degreeSpecializations[*].majorSpecialization"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -15841,40 +15845,77 @@
       "candidates": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.addresses[*].addressTypeDescriptor",
-            "$.addresses[*].city",
-            "$.addresses[*].periods[*].beginDate",
-            "$.addresses[*].postalCode",
-            "$.addresses[*].stateAbbreviationDescriptor",
-            "$.addresses[*].streetNumberName"
-          ],
-          [
-            "$.disabilities[*].designations[*].disabilityDesignationDescriptor",
-            "$.disabilities[*].disabilityDescriptor"
-          ],
-          [
-            "$.electronicMails[*].electronicMailAddress",
-            "$.electronicMails[*].electronicMailTypeDescriptor"
-          ],
-          [
-            "$.languages[*].languageDescriptor",
-            "$.languages[*].uses[*].languageUseDescriptor"
-          ],
-          [
-            "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
-            "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor"
-          ],
-          [
-            "$.otherNames[*].otherNameTypeDescriptor"
-          ],
-          [
-            "$.races[*].raceDescriptor"
-          ],
-          [
-            "$.telephones[*].telephoneNumber",
-            "$.telephones[*].telephoneNumberTypeDescriptor"
-          ]
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$.addresses[*]",
+                "paths": [
+                  "$.periods[*].beginDate"
+                ]
+              }
+            ],
+            "paths": [
+              "$.addresses[*].addressTypeDescriptor",
+              "$.addresses[*].city",
+              "$.addresses[*].postalCode",
+              "$.addresses[*].stateAbbreviationDescriptor",
+              "$.addresses[*].streetNumberName"
+            ]
+          },
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$.disabilities[*]",
+                "paths": [
+                  "$.designations[*].disabilityDesignationDescriptor"
+                ]
+              }
+            ],
+            "paths": [
+              "$.disabilities[*].disabilityDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.electronicMails[*].electronicMailAddress",
+              "$.electronicMails[*].electronicMailTypeDescriptor"
+            ]
+          },
+          {
+            "nestedConstraints": [
+              {
+                "basePath": "$.languages[*]",
+                "paths": [
+                  "$.uses[*].languageUseDescriptor"
+                ]
+              }
+            ],
+            "paths": [
+              "$.languages[*].languageDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.personalIdentificationDocuments[*].identificationDocumentUseDescriptor",
+              "$.personalIdentificationDocuments[*].personalInformationVerificationDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.otherNames[*].otherNameTypeDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.races[*].raceDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.telephones[*].telephoneNumber",
+              "$.telephones[*].telephoneNumberTypeDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -17806,9 +17847,11 @@
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.gradeLevels[*].gradeLevelDescriptor"
-          ]
+          {
+            "paths": [
+              "$.gradeLevels[*].gradeLevelDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -18471,10 +18514,12 @@
       "evaluationElementRatings": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.elementRatingResults[*].rating",
-            "$.elementRatingResults[*].ratingResultTitle"
-          ]
+          {
+            "paths": [
+              "$.elementRatingResults[*].rating",
+              "$.elementRatingResults[*].ratingResultTitle"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -19121,9 +19166,11 @@
       "evaluationElements": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
-          ]
+          {
+            "paths": [
+              "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -19515,10 +19562,12 @@
       "evaluationObjectiveRatings": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.objectiveRatingResults[*].rating",
-            "$.objectiveRatingResults[*].ratingResultTitle"
-          ]
+          {
+            "paths": [
+              "$.objectiveRatingResults[*].rating",
+              "$.objectiveRatingResults[*].ratingResultTitle"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -20065,9 +20114,11 @@
       "evaluationObjectives": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
-          ]
+          {
+            "paths": [
+              "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -20802,14 +20853,18 @@
       "evaluationRatings": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.results[*].rating",
-            "$.results[*].ratingResultTitle"
-          ],
-          [
-            "$.reviewers[*].firstName",
-            "$.reviewers[*].lastSurname"
-          ]
+          {
+            "paths": [
+              "$.results[*].rating",
+              "$.results[*].ratingResultTitle"
+            ]
+          },
+          {
+            "paths": [
+              "$.reviewers[*].firstName",
+              "$.reviewers[*].lastSurname"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -21665,9 +21720,11 @@
       "evaluations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
-          ]
+          {
+            "paths": [
+              "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -22591,14 +22648,18 @@
       "performanceEvaluationRatings": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.results[*].rating",
-            "$.results[*].ratingResultTitle"
-          ],
-          [
-            "$.reviewers[*].firstName",
-            "$.reviewers[*].lastSurname"
-          ]
+          {
+            "paths": [
+              "$.results[*].rating",
+              "$.results[*].ratingResultTitle"
+            ]
+          },
+          {
+            "paths": [
+              "$.reviewers[*].firstName",
+              "$.reviewers[*].lastSurname"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],
@@ -23275,12 +23336,16 @@
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
-          [
-            "$.gradeLevels[*].gradeLevelDescriptor"
-          ],
-          [
-            "$.ratingLevels[*].evaluationRatingLevelDescriptor"
-          ]
+          {
+            "paths": [
+              "$.gradeLevels[*].gradeLevelDescriptor"
+            ]
+          },
+          {
+            "paths": [
+              "$.ratingLevels[*].evaluationRatingLevelDescriptor"
+            ]
+          }
         ],
         "authorizationPathways": [
         ],

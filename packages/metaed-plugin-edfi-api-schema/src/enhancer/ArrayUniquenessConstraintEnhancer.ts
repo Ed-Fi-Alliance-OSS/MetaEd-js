@@ -7,13 +7,115 @@ import { EnhancerResult, getAllEntitiesOfType, MetaEdEnvironment, MetaEdProperty
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { JsonPathsInfo } from '../model/JsonPathsMapping';
+import { ArrayUniquenessConstraint } from '../model/api-schema/ArrayUniquenessConstraint';
 
 /**
- * Converts a Map<MetaEdPropertyPath, Set<JsonPath>> to a JsonPath[][] as arrays of JsonPaths
- * from the Set. Sorts the inner array by the JsonPaths and outer array by the MetaEdPropertyPath.
- * MetaEdPropertyPath itself is discarded.
+ * Extracts the array base path from a JsonPath (e.g., "$.addresses[*].periods[*].beginDate" -> "$.addresses[*]")
  */
-function groupedJsonPathArraysFrom(map: Map<MetaEdPropertyPath, Set<JsonPath>>): JsonPath[][] {
+function extractArrayBasePath(jsonPath: JsonPath): JsonPath | null {
+  const match = jsonPath.match(/^(\$\.[^[]+\[\*\])/);
+  return match ? (match[1] as JsonPath) : null;
+}
+
+/**
+ * Extracts the nested path relative to the base path
+ * (e.g., "$.addresses[*].periods[*].beginDate" with base "$.addresses[*]" -> "$.periods[*].beginDate")
+ */
+function extractNestedPath(jsonPath: JsonPath, basePath: JsonPath): JsonPath {
+  return jsonPath.replace(basePath, '$') as JsonPath;
+}
+
+/**
+ * Groups JsonPaths by their array base paths to build nested constraint structure
+ */
+function groupJsonPathsByArrayStructure(jsonPaths: JsonPath[]): ArrayUniquenessConstraint {
+  const sortedPaths = [...jsonPaths].sort();
+
+  // Group paths by their array base paths
+  const pathsByBasePath = new Map<JsonPath | null, JsonPath[]>();
+
+  sortedPaths.forEach((path) => {
+    const basePath = extractArrayBasePath(path);
+    if (!pathsByBasePath.has(basePath)) {
+      pathsByBasePath.set(basePath, []);
+    }
+    pathsByBasePath.get(basePath)!.push(path);
+  });
+
+  // If no array structure, return simple paths
+  if (pathsByBasePath.has(null) && pathsByBasePath.size === 1) {
+    return { paths: pathsByBasePath.get(null)! };
+  }
+
+  // Handle multiple array base paths
+  const allSimplePaths: JsonPath[] = [];
+  const nestedConstraints: any[] = [];
+
+  pathsByBasePath.forEach((paths, basePath) => {
+    if (basePath === null) {
+      // Non-array paths - add to simple paths
+      allSimplePaths.push(...paths);
+    } else {
+      // Check if these are simple array paths or nested
+      const simplePaths: JsonPath[] = [];
+      const nestedPaths: JsonPath[] = [];
+
+      paths.forEach((path) => {
+        const remainingPath = extractNestedPath(path, basePath);
+        if (!remainingPath.includes('[*]')) {
+          simplePaths.push(path);
+        } else {
+          nestedPaths.push(path);
+        }
+      });
+
+      // Add simple paths to the main collection
+      allSimplePaths.push(...simplePaths);
+
+      // Handle nested paths
+      if (nestedPaths.length > 0) {
+        const nestedPathGroups = new Map<JsonPath, JsonPath[]>();
+
+        nestedPaths.forEach((path) => {
+          const relativePath = extractNestedPath(path, basePath);
+          const nestedBasePath = extractArrayBasePath(relativePath);
+
+          if (nestedBasePath) {
+            if (!nestedPathGroups.has(nestedBasePath)) {
+              nestedPathGroups.set(nestedBasePath, []);
+            }
+            nestedPathGroups.get(nestedBasePath)!.push(relativePath);
+          }
+        });
+
+        nestedPathGroups.forEach((pathGroup) => {
+          nestedConstraints.push({
+            basePath,
+            ...groupJsonPathsByArrayStructure(pathGroup),
+          });
+        });
+      }
+    }
+  });
+
+  const constraint: ArrayUniquenessConstraint = {};
+
+  if (allSimplePaths.length > 0) {
+    constraint.paths = allSimplePaths;
+  }
+
+  if (nestedConstraints.length > 0) {
+    constraint.nestedConstraints = nestedConstraints;
+  }
+
+  return constraint;
+}
+
+/**
+ * Converts a Map<MetaEdPropertyPath, Set<JsonPath>> to ArrayUniquenessConstraint[]
+ * Groups paths by their MetaEdPropertyPath and builds nested constraint structures
+ */
+function buildArrayUniquenessConstraints(map: Map<MetaEdPropertyPath, Set<JsonPath>>): ArrayUniquenessConstraint[] {
   const mapEntriesArray: [MetaEdPropertyPath, Set<JsonPath>][] = Array.from(map.entries());
 
   // Sort outer array by MetaEdPropertyPaths
@@ -23,8 +125,10 @@ function groupedJsonPathArraysFrom(map: Map<MetaEdPropertyPath, Set<JsonPath>>):
     return propertyPath1.localeCompare(propertyPath2);
   });
 
-  // Convert Set of JsonPaths to inner array and sort
-  return mapEntriesArray.map((entry) => Array.from(entry[1]).sort());
+  return mapEntriesArray.map((entry) => {
+    const jsonPaths = Array.from(entry[1]);
+    return groupJsonPathsByArrayStructure(jsonPaths);
+  });
 }
 
 /**
@@ -59,7 +163,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       }
     });
 
-    (entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints = groupedJsonPathArraysFrom(resultMap);
+    (entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints =
+      buildArrayUniquenessConstraints(resultMap);
   });
 
   return {

@@ -25,6 +25,7 @@ import { EducationOrganizationSecurableElement } from './api-schema/EducationOrg
 import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollectionSchema';
 import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './api-schema/DecimalPropertyValidationInfo';
+import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstraint';
 
 export type EntityApiSchemaData = {
   /**
@@ -184,11 +185,10 @@ export type EntityApiSchemaData = {
   educationOrganizationSecurableElements: EducationOrganizationSecurableElement[];
 
   /**
-   * JsonPaths to array items in the document that will need uniqueness validation
-   * based on those paths. There can be multiple arrays in a document, so
-   * constraint JsonPaths are grouped by the paths to each individual array.
+   * Array uniqueness constraints that will need uniqueness validation.
+   * Supports nested array structures with proper base paths and constraint hierarchies.
    */
-  arrayUniquenessConstraints: JsonPath[][];
+  arrayUniquenessConstraints: ArrayUniquenessConstraint[];
 };
 
 /**

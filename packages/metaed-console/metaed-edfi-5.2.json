@@ -1,0 +1,23 @@
+{
+  "metaEdConfiguration": {
+    "artifactDirectory": "./MetaEdOutput",
+    "deployDirectory": "",
+    "pluginTechVersion": {},
+    "projects": [
+      {
+        "namespaceName": "EdFi",
+        "projectName": "Ed-Fi",
+        "projectVersion": "5.2.0",
+        "projectExtension": "",
+        "description": "The Ed-Fi Data Model 5.2"
+      }
+    ],
+    "projectPaths": [
+      "../../node_modules/@edfi/ed-fi-model-5.2"
+    ],
+    "pluginConfigDirectories": [],
+    "defaultPluginTechVersion": "7.2.0",
+    "allianceMode": false,
+    "suppressPrereleaseVersion": true
+  }
+}

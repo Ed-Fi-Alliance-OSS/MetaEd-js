@@ -20,6 +20,7 @@ import {
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
+  inlineCommonReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -68,9 +69,11 @@ describe('when building simple domain entity with a simple collections', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.requiredStringProperties[*].requiredStringProperty",
-        ],
+        Object {
+          "paths": Array [
+            "$.requiredStringProperties[*].requiredStringProperty",
+          ],
+        },
       ]
     `);
   });
@@ -135,9 +138,11 @@ describe('when building domain entity with nested choice and common collection',
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.learningResources[*].contentClassDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.learningResources[*].contentClassDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -192,9 +197,11 @@ describe('when building domain entity with a simple common collection', () => {
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -260,9 +267,11 @@ describe('when building domain entity subclass with common collection and descri
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
-        ],
+        Object {
+          "paths": Array [
+            "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
+          ],
+        },
       ]
     `);
   });
@@ -317,9 +326,312 @@ describe('when building association with a common collection in a common collect
 
     expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
       Array [
-        Array [
-          "$.addresses[*].periods[*].beginDate",
-        ],
+        Object {
+          "nestedConstraints": Array [
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.periods[*].beginDate",
+              ],
+            },
+          ],
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building entity with multiple nested collections in a common collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withCommonProperty('Address', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '30')
+      .withCommonProperty('Period', 'doc', false, true)
+      .withCommonProperty('Contact', 'doc', false, true)
+      .withEndCommon()
+
+      .withStartCommon('Period')
+      .withDocumentation('doc')
+      .withIntegerIdentity('BeginDate', 'doc')
+      .withIntegerProperty('EndDate', 'doc', false, false)
+      .withEndCommon()
+
+      .withStartCommon('Contact')
+      .withDocumentation('doc')
+      .withDescriptorIdentity('ContactType', 'doc')
+      .withStringProperty('ContactValue', 'doc', false, false, '30')
+      .withEndCommon()
+
+      .withStartDescriptor('ContactType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct arrayUniquenessConstraints with multiple nested constraints', () => {
+    const entity = namespace.entity.domainEntity.get('School');
+
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "nestedConstraints": Array [
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.contacts[*].contactTypeDescriptor",
+              ],
+            },
+            Object {
+              "basePath": "$.addresses[*]",
+              "paths": Array [
+                "$.periods[*].beginDate",
+              ],
+            },
+          ],
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building entity with scalar collection in a common collection on an inline common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Staff')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StaffId', 'doc')
+      .withInlineCommonProperty('Citizenship', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('Citizenship')
+      .withDocumentation('doc')
+      .withDescriptorProperty('CitizenshipStatus', 'doc', false, false)
+      .withDescriptorProperty('Visa', 'doc', false, true)
+      .withCommonProperty('IdentificationDocument', 'doc', false, true)
+      .withEndInlineCommon()
+
+      .withStartCommon('IdentificationDocument')
+      .withDocumentation('doc')
+      .withDescriptorIdentity('IdentificationDocumentUse', 'doc')
+      .withDescriptorIdentity('PersonalInformationVerification', 'doc')
+      .withStringProperty('DocumentTitle', 'doc', false, false, '30')
+      .withEndCommon()
+
+      .withStartDescriptor('CitizenshipStatus')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('Visa')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('IdentificationDocumentUse')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('PersonalInformationVerification')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct arrayUniquenessConstraints with scalar collection and common collection', () => {
+    const entity = namespace.entity.domainEntity.get('Staff');
+
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "paths": Array [
+            "$.identificationDocuments[*].identificationDocumentUseDescriptor",
+            "$.identificationDocuments[*].personalInformationVerificationDescriptor",
+            "$.visas[*].visaDescriptor",
+          ],
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building entity with scalar collections on a scalar common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentTransportation')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withCommonProperty('StudentBusDetails', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('StudentBusDetails')
+      .withDocumentation('doc')
+      .withDescriptorProperty('TravelDayOfWeek', 'doc', false, true)
+      .withDescriptorProperty('TravelDirection', 'doc', false, true)
+      .withStringIdentity('BusNumber', 'doc', '30')
+      .withEndCommon()
+
+      .withStartDescriptor('TravelDayOfWeek')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('TravelDirection')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    commonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct arrayUniquenessConstraints with scalar collection on scalar common', () => {
+    const entity = namespace.entity.domainEntity.get('StudentTransportation');
+
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "paths": Array [
+            "$.studentBusDetails.travelDayOfWeeks[*].travelDayOfWeekDescriptor",
+            "$.studentBusDetails.travelDirections[*].travelDirectionDescriptor",
+          ],
+        },
+      ]
+    `);
+  });
+});
+
+// Simple test to demonstrate the error with different base paths
+describe('SIMPLE: entity with two different array collections (demonstrates the bug)', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('TestEntity')
+      .withDocumentation('doc')
+      .withIntegerIdentity('TestId', 'doc')
+      .withDescriptorProperty('FirstType', 'doc', false, true)
+      .withDescriptorProperty('SecondType', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartDescriptor('FirstType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('SecondType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('shows that different descriptor properties create separate constraints', () => {
+    const entity = namespace.entity.domainEntity.get('TestEntity');
+    const constraints = (entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints;
+
+    expect(constraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "paths": Array [
+            "$.firstTypes[*].firstTypeDescriptor",
+          ],
+        },
+        Object {
+          "paths": Array [
+            "$.secondTypes[*].secondTypeDescriptor",
+          ],
+        },
       ]
     `);
   });

@@ -13,6 +13,7 @@ import { QueryFieldMapping } from './QueryFieldMapping';
 import { SecurableElements } from './SecurableElements';
 import { AuthorizationPathway } from './AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './DecimalPropertyValidationInfo';
+import { ArrayUniquenessConstraint } from './ArrayUniquenessConstraint';
 
 /**
  * API resource schema information common between all resources
@@ -71,11 +72,10 @@ export type BaseResourceSchema = {
   authorizationPathways: AuthorizationPathway[];
 
   /**
-   * JsonPaths to array items in the document that will need uniqueness validation
-   * based on those paths. There can be multiple arrays in a document, so
-   * constraint JsonPaths are grouped by the paths to each individual array.
+   * Array uniqueness constraints that will need uniqueness validation.
+   * Supports nested array structures with proper base paths and constraint hierarchies.
    */
-  arrayUniquenessConstraints: JsonPath[][];
+  arrayUniquenessConstraints: ArrayUniquenessConstraint[];
 };
 
 /**
