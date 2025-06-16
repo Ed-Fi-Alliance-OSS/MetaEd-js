@@ -2,7 +2,7 @@
 
 # Wait for SQL Server to be ready
 echo "Waiting for SQL Server to start..."
-until docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -Q "SELECT 1" -C &> /dev/null
+until docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -Q "SELECT 1" -C &> /dev/null
 do
   echo "SQL Server is unavailable - sleeping"
   sleep 1
@@ -11,7 +11,7 @@ done
 echo "SQL Server is up - executing setup script"
 
 # Create the setup SQL script with escaped password
-docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -C -Q "
+docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -C -Q "
 -- Disable password policy for test user
 ALTER LOGIN sa WITH CHECK_POLICY = OFF;
 

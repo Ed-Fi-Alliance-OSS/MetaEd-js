@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: metaed-mssql
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=MetaEd\!Test123
+      - MSSQL_SA_PASSWORD=MetaEdTest123
       - MSSQL_PID=Developer
     ports:
       - "1433:1433"
