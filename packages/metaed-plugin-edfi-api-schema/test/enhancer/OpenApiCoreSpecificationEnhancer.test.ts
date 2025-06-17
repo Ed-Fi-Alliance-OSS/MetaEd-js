@@ -379,7 +379,7 @@ describe('when building simple domain entity with all the simple non-collections
           "/edfi/domainEntityNames": Object {
             "get": Object {
               "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-              "operationId": "getDomainEntityName",
+              "operationId": "getDomainEntityNames",
               "parameters": Array [
                 Object {
                   "$ref": "#/components/parameters/offset",
@@ -1033,7 +1033,7 @@ describe('when building simple domain entity with all the simple collections', (
         "/edfi/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -1900,7 +1900,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/classPeriods": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getClassPeriod",
+            "operationId": "getClassPeriods",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2211,7 +2211,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/courseOfferings": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferings",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2522,7 +2522,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2833,7 +2833,7 @@ describe('when building a domain entity referencing another referencing another 
         "/edfi/schools": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchool",
+            "operationId": "getSchools",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -3555,7 +3555,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/courseOfferings": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCourseOffering",
+            "operationId": "getCourseOfferings",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -3866,7 +3866,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -4177,7 +4177,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/schools": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchool",
+            "operationId": "getSchools",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -4488,7 +4488,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/edfi/sessions": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSession",
+            "operationId": "getSessions",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -5253,7 +5253,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/edfi/educationContents": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEducationContent",
+            "operationId": "getEducationContents",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -5948,7 +5948,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           "/edfi/contentClassDescriptors": Object {
             "get": Object {
               "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-              "operationId": "getContentClass",
+              "operationId": "getContentClasses",
               "parameters": Array [
                 Object {
                   "$ref": "#/components/parameters/offset",
@@ -6352,7 +6352,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "/edfi/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityName",
+            "operationId": "getDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
