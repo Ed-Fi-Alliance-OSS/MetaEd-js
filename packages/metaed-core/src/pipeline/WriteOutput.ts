@@ -57,7 +57,7 @@ export function execute(state: State): boolean {
         Logger.error(`WriteOutput: MetaEd files found in output location '${outputDirectory}'. Not writing files.`);
         return false;
       }
-      fs.rmdirSync(outputDirectory, { recursive: true });
+      fs.rmSync(outputDirectory, { recursive: true, force: true }); // Updated per Node.js deprecation warning
     }
 
     fs.mkdirSync(outputDirectory, { mode: LINUX_USER_FULL_CONTROL, recursive: true });
