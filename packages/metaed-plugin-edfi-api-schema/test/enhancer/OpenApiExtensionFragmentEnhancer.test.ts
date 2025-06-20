@@ -120,7 +120,7 @@ describe('when building simple domain entity with all the simple non-collections
         "/extension/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityNames",
+            "operationId": "get_ExtensionDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -303,7 +303,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postDomainEntityName",
+            "operationId": "post_ExtensionDomainEntityName",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -354,7 +354,7 @@ describe('when building simple domain entity with all the simple non-collections
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityNamesById",
+            "operationId": "delete_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -405,7 +405,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityNamesById",
+            "operationId": "get_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -466,7 +466,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "put_ExtensionDomainEntityName",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -692,7 +692,7 @@ describe('when building simple domain entity with all the simple collections', (
         "/extension/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityNames",
+            "operationId": "get_ExtensionDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -778,7 +778,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postDomainEntityName",
+            "operationId": "post_ExtensionDomainEntityName",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -829,7 +829,7 @@ describe('when building simple domain entity with all the simple collections', (
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityNamesById",
+            "operationId": "delete_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -880,7 +880,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityNamesById",
+            "operationId": "get_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -941,7 +941,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "put_ExtensionDomainEntityName",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1386,7 +1386,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/classPeriods": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getClassPeriods",
+            "operationId": "get_ExtensionClassPeriods",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -1462,7 +1462,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postClassPeriod",
+            "operationId": "post_ExtensionClassPeriod",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -1513,7 +1513,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/classPeriods/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteClassPeriodsById",
+            "operationId": "delete_ExtensionClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1564,7 +1564,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getClassPeriodsById",
+            "operationId": "get_ExtensionClassPeriodsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1625,7 +1625,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putClassPeriod",
+            "operationId": "put_ExtensionClassPeriod",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1697,7 +1697,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/courseOfferings": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCourseOfferings",
+            "operationId": "get_ExtensionCourseOfferings",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -1773,7 +1773,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCourseOffering",
+            "operationId": "post_ExtensionCourseOffering",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -1824,7 +1824,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOfferingsById",
+            "operationId": "delete_ExtensionCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1875,7 +1875,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOfferingsById",
+            "operationId": "get_ExtensionCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -1936,7 +1936,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCourseOffering",
+            "operationId": "put_ExtensionCourseOffering",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2008,7 +2008,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityNames",
+            "operationId": "get_ExtensionDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2084,7 +2084,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postDomainEntityName",
+            "operationId": "post_ExtensionDomainEntityName",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -2135,7 +2135,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityNamesById",
+            "operationId": "delete_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2186,7 +2186,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityNamesById",
+            "operationId": "get_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2247,7 +2247,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "put_ExtensionDomainEntityName",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2319,7 +2319,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/schools": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchools",
+            "operationId": "get_ExtensionSchools",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2395,7 +2395,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSchool",
+            "operationId": "post_ExtensionSchool",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -2446,7 +2446,7 @@ describe('when building a domain entity referencing another referencing another 
         "/extension/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchoolsById",
+            "operationId": "delete_ExtensionSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2497,7 +2497,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchoolsById",
+            "operationId": "get_ExtensionSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2558,7 +2558,7 @@ describe('when building a domain entity referencing another referencing another 
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSchool",
+            "operationId": "put_ExtensionSchool",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -2880,7 +2880,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/courseOfferings": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getCourseOfferings",
+            "operationId": "get_ExtensionCourseOfferings",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -2956,7 +2956,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postCourseOffering",
+            "operationId": "post_ExtensionCourseOffering",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -3007,7 +3007,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/courseOfferings/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteCourseOfferingsById",
+            "operationId": "delete_ExtensionCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3058,7 +3058,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getCourseOfferingsById",
+            "operationId": "get_ExtensionCourseOfferingsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3119,7 +3119,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putCourseOffering",
+            "operationId": "put_ExtensionCourseOffering",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3191,7 +3191,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityNames",
+            "operationId": "get_ExtensionDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -3267,7 +3267,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postDomainEntityName",
+            "operationId": "post_ExtensionDomainEntityName",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -3318,7 +3318,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityNamesById",
+            "operationId": "delete_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3369,7 +3369,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityNamesById",
+            "operationId": "get_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3430,7 +3430,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "put_ExtensionDomainEntityName",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3502,7 +3502,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/schools": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSchools",
+            "operationId": "get_ExtensionSchools",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -3578,7 +3578,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSchool",
+            "operationId": "post_ExtensionSchool",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -3629,7 +3629,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/schools/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSchoolsById",
+            "operationId": "delete_ExtensionSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3680,7 +3680,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSchoolsById",
+            "operationId": "get_ExtensionSchoolsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3741,7 +3741,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSchool",
+            "operationId": "put_ExtensionSchool",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -3813,7 +3813,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/sessions": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getSessions",
+            "operationId": "get_ExtensionSessions",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -3899,7 +3899,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postSession",
+            "operationId": "post_ExtensionSession",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -3950,7 +3950,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "/extension/sessions/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteSessionsById",
+            "operationId": "delete_ExtensionSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4001,7 +4001,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getSessionsById",
+            "operationId": "get_ExtensionSessionsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4062,7 +4062,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putSession",
+            "operationId": "put_ExtensionSession",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4417,7 +4417,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/extension/educationContents": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getEducationContents",
+            "operationId": "get_ExtensionEducationContents",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -4529,7 +4529,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postEducationContent",
+            "operationId": "post_ExtensionEducationContent",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -4580,7 +4580,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/extension/educationContents/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteEducationContentsById",
+            "operationId": "delete_ExtensionEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4631,7 +4631,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getEducationContentsById",
+            "operationId": "get_ExtensionEducationContentsById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4692,7 +4692,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putEducationContent",
+            "operationId": "put_ExtensionEducationContent",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -4893,7 +4893,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/extension/contentClassDescriptors": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getContentClasses",
+            "operationId": "get_ExtensionContentClasses",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -5015,7 +5015,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postContentClass",
+            "operationId": "post_ExtensionContentClass",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -5066,7 +5066,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "/extension/contentClassDescriptors/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteContentClassesById",
+            "operationId": "delete_ExtensionContentClassesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5117,7 +5117,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getContentClassesById",
+            "operationId": "get_ExtensionContentClassesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5178,7 +5178,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putContentClass",
+            "operationId": "put_ExtensionContentClass",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5349,7 +5349,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "/extension/domainEntityNames": Object {
           "get": Object {
             "description": "This GET operation provides access to resources using the \\"Get\\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-            "operationId": "getDomainEntityNames",
+            "operationId": "get_ExtensionDomainEntityNames",
             "parameters": Array [
               Object {
                 "$ref": "#/components/parameters/offset",
@@ -5425,7 +5425,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "post": Object {
             "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \\"upsert\\" operation (insert + update). Clients should NOT include the resource \\"id\\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-            "operationId": "postDomainEntityName",
+            "operationId": "post_ExtensionDomainEntityName",
             "requestBody": Object {
               "content": Object {
                 "application/json": Object {
@@ -5476,7 +5476,7 @@ describe('when building domain entity with scalar collection named with prefix o
         "/extension/domainEntityNames/{id}": Object {
           "delete": Object {
             "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-            "operationId": "deleteDomainEntityNamesById",
+            "operationId": "delete_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5527,7 +5527,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "get": Object {
             "description": "This GET operation retrieves a resource by the specified resource identifier.",
-            "operationId": "getDomainEntityNamesById",
+            "operationId": "get_ExtensionDomainEntityNamesById",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
@@ -5588,7 +5588,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
           "put": Object {
             "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\\"id\\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-            "operationId": "putDomainEntityName",
+            "operationId": "put_ExtensionDomainEntityName",
             "parameters": Array [
               Object {
                 "description": "A resource identifier that uniquely identifies the resource.",
