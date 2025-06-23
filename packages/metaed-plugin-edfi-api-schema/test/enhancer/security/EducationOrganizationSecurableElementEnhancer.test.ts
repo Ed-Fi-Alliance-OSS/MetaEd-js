@@ -158,7 +158,7 @@ describe('when building domain entity with EducationOrganization property as ide
       Array [
         Object {
           "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
-          "metaEdName": "EducationOrganization",
+          "metaEdName": "EducationOrganizationId",
         },
       ]
     `);
@@ -217,7 +217,7 @@ describe('when building domain entity with School property as identity', () => {
       Array [
         Object {
           "jsonPath": "$.schoolReference.schoolId",
-          "metaEdName": "School",
+          "metaEdName": "SchoolId",
         },
       ]
     `);
@@ -435,7 +435,7 @@ describe('when building domain entity in extension namespace with EducationOrgan
       Array [
         Object {
           "jsonPath": "$.schoolReference.schoolId",
-          "metaEdName": "School",
+          "metaEdName": "SchoolId",
         },
       ]
     `);
@@ -549,7 +549,7 @@ describe(
         Array [
           Object {
             "jsonPath": "$.studentAssessmentRegistrationReference.educationOrganizationId",
-            "metaEdName": "StudentAssessmentRegistration",
+            "metaEdName": "EducationOrganizationId",
           },
         ]
       `);

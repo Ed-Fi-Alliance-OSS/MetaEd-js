@@ -67,7 +67,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           !hasRoleNameInPropertyChain
         ) {
           result.set(jppp.jsonPath, {
-            metaEdName: jppp.sourceProperty.metaEdName,
+            metaEdName: jppp.flattenedIdentityProperty.identityProperty.metaEdName,
             jsonPath: jppp.jsonPath,
           });
         }

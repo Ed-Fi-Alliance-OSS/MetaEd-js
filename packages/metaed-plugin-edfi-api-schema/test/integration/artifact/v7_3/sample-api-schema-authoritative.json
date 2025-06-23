@@ -7688,7 +7688,7 @@
           "EducationOrganization": [
             {
               "jsonPath": "$.educationOrganizationReference.educationOrganizationId",
-              "metaEdName": "EducationOrganization"
+              "metaEdName": "EducationOrganizationId"
             }
           ],
           "Namespace": [
@@ -9456,7 +9456,7 @@
           "EducationOrganization": [
             {
               "jsonPath": "$.graduationPlanReference.educationOrganizationId",
-              "metaEdName": "GraduationPlan"
+              "metaEdName": "EducationOrganizationId"
             }
           ],
           "Namespace": [
