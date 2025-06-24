@@ -787,7 +787,7 @@ describe('when model has a domain entity extension', () => {
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
-          "sourceJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
+          "sourceJsonPath": "$._ext.extension.sessionReference.schoolId",
           "targetJsonPath": "$.schoolReference.schoolId",
         },
       ]
@@ -859,7 +859,7 @@ describe('when model has an association extension', () => {
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
-          "sourceJsonPath": "$._ext.${extensionNamespaceName.toLocaleLowerCase()}.sessionReference.schoolId",
+          "sourceJsonPath": "$._ext.extension.sessionReference.schoolId",
           "targetJsonPath": "$.schoolReference.schoolId",
         },
       ]
@@ -915,6 +915,50 @@ describe('when a reference has a merge on a UniqueId property', () => {
 
   it('should not crash - no column conflicts though due to merge directives', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessmentRegistration');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building with scalar in common collection with same name as scalar outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'PreparationProgram';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withStringProperty('MinorSpecialization', 'doc', false, false, '255')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not create equality constraints for partial identity matches', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    // No equality constraint should be generated because BeginDate is only part of the
+    // DegreeSpecialization's identity (BeginDate + MajorSpecialization).
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
   });
 });
