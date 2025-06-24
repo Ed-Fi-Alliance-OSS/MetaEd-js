@@ -34,7 +34,7 @@ import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhance
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 import { enhance } from '../../src/enhancer/ArrayUniquenessConstraintEnhancer';
 
-describe('when building simple domain entity with a simple collections', () => {
+describe('when building simple domain entity with a simple collection', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
   const domainEntityName = 'DomainEntityName';
@@ -72,6 +72,59 @@ describe('when building simple domain entity with a simple collections', () => {
         Object {
           "paths": Array [
             "$.requiredStringProperties[*].requiredStringProperty",
+          ],
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building with scalar in common collection with same name as scalar outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'PreparationProgram';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('BeginDate', 'doc', '30')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withStringIdentity('BeginDate', 'doc', '30')
+      .withStringProperty('OtherProperty', 'doc', false, false, '30')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct arrayUniquenessConstraints', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect((entity.data.edfiApiSchema as EntityApiSchemaData).arrayUniquenessConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "paths": Array [
+            "$.degreeSpecializations[*].beginDate",
           ],
         },
       ]
