@@ -1,0 +1,4 @@
+Domain Entity EdFi.School additions
+  domain entity EdFi.PostSecondaryInstitution
+    documentation "The postsecondary institution or university associated as an organization component for the School, if applicable"
+    is optional

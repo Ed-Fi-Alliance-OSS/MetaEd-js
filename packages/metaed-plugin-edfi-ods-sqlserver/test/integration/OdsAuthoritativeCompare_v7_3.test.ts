@@ -533,3 +533,96 @@ describe('when generating ods with student transcript extensions and comparing i
     expect(expectOneOf).toContain(result);
   });
 });
+
+describe('when generating ods with TPDM extensions and comparing it to data standard 5.2 authoritative artifacts for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const tpdmExtensionPath: string = path.resolve(__dirname, './tpdm-project');
+
+  let generatedCoreOdsFilename: string;
+  let authoritativeCoreOdsFilename: string;
+  let generatedExtensionOdsFilename: string;
+  let authoritativeExtensionOdsFilename: string;
+
+  let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', tpdmExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '5.2.0',
+          description: '',
+        },
+        {
+          projectName: 'TPDM',
+          namespaceName: 'TPDM',
+          projectExtension: 'TPDM',
+          projectVersion: '1.1.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '5.2.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsSqlServer.OdsGenerator'),
+    );
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+
+    const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
+    generatedExtensionOdsFilename = `${artifactPath}/TPDM-${extensionFileBaseName}.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/TPDM-${extensionFileBaseName}-Authoritative.sql`;
+
+    await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
+    await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
+  });
+
+  it('should have core with no differences', async () => {
+    expect(generatedCoreOutput).toBeDefined();
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have extension with no differences', async () => {
+    expect(generatedExtensionOutput).toBeDefined();
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
