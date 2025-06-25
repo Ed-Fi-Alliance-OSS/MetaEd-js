@@ -157,15 +157,22 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
                       // Count the identity properties of the common entity
                       const identityProperties = commonEntity.properties.filter((p) => p.isPartOfIdentity);
 
-                      // Check if the conflicting property is actually an identity property in the common
-                      const conflictingPropertyName = collectionPropertyPath.split('.')[1];
-                      const isConflictingPropertyIdentity = identityProperties.some(
-                        (p) => p.metaEdName.toLowerCase() === conflictingPropertyName.toLowerCase(),
-                      );
+                      // Special case: If the common has no identity properties at all,
+                      // then any property conflict must create an equality constraint
+                      // because the collection elements have no way to be identified independently
+                      if (identityProperties.length === 0) {
+                        // Continue to create the constraint - don't check if it's an identity
+                      } else {
+                        // Check if the conflicting property is actually an identity property in the common
+                        const conflictingPropertyName = collectionPropertyPath.split('.')[1];
+                        const isConflictingPropertyIdentity = identityProperties.some(
+                          (p) => p.metaEdName.toLowerCase() === conflictingPropertyName.toLowerCase(),
+                        );
 
-                      // If the conflicting property is not an identity in the common, skip the constraint
-                      if (!isConflictingPropertyIdentity) {
-                        return;
+                        // If the conflicting property is not an identity in the common, skip the constraint
+                        if (!isConflictingPropertyIdentity) {
+                          return;
+                        }
                       }
 
                       // To determine if this is a partial or full match, we need to check
