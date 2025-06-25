@@ -4,7 +4,14 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import invariant from 'ts-invariant';
-import { MetaEdEnvironment, EnhancerResult, Namespace, EntityProperty, TopLevelEntity, Common } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  Namespace,
+  TopLevelEntity,
+  Common,
+  ReferentialProperty,
+} from '@edfi/metaed-core';
 import {
   Table,
   tableEntities,
@@ -99,7 +106,10 @@ function isValidConflictPair(conflictPair: ColumnConflictPair): boolean {
  */
 function getConstraintContext(table: Table, conflictPair: ColumnConflictPair): ConstraintContext | null {
   const { firstColumn, secondColumn } = conflictPair;
-  const entity = firstColumn.originalEntity!;
+
+  invariant(firstColumn.originalEntity != null, 'isValidConflictPair should have filtered this out');
+
+  const entity = firstColumn.originalEntity;
 
   const { equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
@@ -128,13 +138,6 @@ function getConstraintContext(table: Table, conflictPair: ColumnConflictPair): C
 }
 
 /**
- * Checks if either column represents a reference relationship
- */
-function isReferenceRelationship(firstColumn: Column, secondColumn: Column): boolean {
-  return firstColumn.isFromReferenceProperty || secondColumn.isFromReferenceProperty;
-}
-
-/**
  * Gets collection conflict information if one side is a collection and the other isn't
  */
 function getCollectionConflictInfo(
@@ -142,16 +145,20 @@ function getCollectionConflictInfo(
   targetJsonPath: JsonPath,
   context: ConstraintContext,
 ): CollectionConflictInfo | null {
-  const sourceIsCollection = sourceJsonPath.includes('[*]');
-  const targetIsCollection = targetJsonPath.includes('[*]');
+  // Use metadata from columns to check if they represent collections
+  const isSourceFromCollection = context.firstColumn.sourceEntityProperties.some((prop) => prop.isCollection);
+  const isTargetFromCollection = context.secondColumn.sourceEntityProperties.some((prop) => prop.isCollection);
+
+  // As a fallback, also check the JsonPath for collection indicators
+  const isSourceCollectionPath = isSourceFromCollection || sourceJsonPath.includes('[*]');
+  const isTargetCollectionPath = isTargetFromCollection || targetJsonPath.includes('[*]');
 
   // Only process if exactly one side is a collection
-  if (sourceIsCollection === targetIsCollection) {
+  if (isSourceCollectionPath === isTargetCollectionPath) {
     return null;
   }
 
-  const isSourceCollection = sourceIsCollection;
-  const collectionColumn = isSourceCollection ? context.firstColumn : context.secondColumn;
+  const collectionColumn = isSourceCollectionPath ? context.firstColumn : context.secondColumn;
   const collectionPropertyPath = collectionColumn.propertyPath;
 
   // Extract the collection property name from the path
@@ -164,7 +171,7 @@ function getCollectionConflictInfo(
     collectionColumn,
     collectionPropertyPath,
     collectionPropertyName: pathParts[0],
-    isSourceCollection,
+    isSourceCollection: isSourceCollectionPath,
   };
 }
 
@@ -178,51 +185,44 @@ function getCommonEntityFromProperty(entity: TopLevelEntity, collectionPropertyN
     return null;
   }
 
-  // For common properties, we should use the property's actual type information
-  // rather than hacky string manipulation
-  let commonEntityName = collectionPropertyName;
+  // CommonProperty extends ReferentialProperty, so it has referencedEntity
+  const commonProperty = collectionProperty as ReferentialProperty;
 
-  // Convert plural to singular if needed (simple heuristic)
-  // TODO: This should be replaced with proper type information from the property
-  if (commonEntityName.endsWith('s')) {
-    commonEntityName = commonEntityName.slice(0, -1);
-  }
-  // Capitalize first letter
-  commonEntityName = commonEntityName.charAt(0).toUpperCase() + commonEntityName.slice(1);
-
-  const { namespace } = entity;
-  if (!namespace?.entity?.common) {
-    return null;
+  // The referencedEntity should be the Common entity we're looking for
+  if (commonProperty.referencedEntity && commonProperty.referencedEntity.type === 'common') {
+    return commonProperty.referencedEntity as Common;
   }
 
-  return namespace.entity.common.get(commonEntityName) || null;
+  return null;
 }
 
 /**
  * Counts how many identity properties from the common entity have conflicts
  */
-function countConflictingIdentities(
-  table: Table,
-  collectionPropertyName: string,
-  identityProperties: EntityProperty[],
-): number {
+function countConflictingIdentities(table: Table, collectionPropertyName: string): number {
   let conflictingIdentityCount = 0;
 
   table.columnConflictPairs.forEach((conflict) => {
-    const conflictPath1 = conflict.firstColumn.propertyPath;
-    const conflictPath2 = conflict.secondColumn.propertyPath;
+    // Check if either column is from our collection by looking at source properties
+    const isFirstFromCollection = conflict.firstColumn.sourceEntityProperties.some(
+      (prop) =>
+        prop.parentEntityName === collectionPropertyName ||
+        conflict.firstColumn.propertyPath.startsWith(`${collectionPropertyName}.`),
+    );
+    const isSecondFromCollection = conflict.secondColumn.sourceEntityProperties.some(
+      (prop) =>
+        prop.parentEntityName === collectionPropertyName ||
+        conflict.secondColumn.propertyPath.startsWith(`${collectionPropertyName}.`),
+    );
 
-    // Check if either path is from our collection
-    const isPath1FromCollection = conflictPath1.startsWith(`${collectionPropertyName}.`);
-    const isPath2FromCollection = conflictPath2.startsWith(`${collectionPropertyName}.`);
+    if (isFirstFromCollection || isSecondFromCollection) {
+      // Get the column from the collection side
+      const collectionSideColumn = isFirstFromCollection ? conflict.firstColumn : conflict.secondColumn;
 
-    if (isPath1FromCollection || isPath2FromCollection) {
-      // Extract the property name after the collection name
-      const collectionSidePath = isPath1FromCollection ? conflictPath1 : conflictPath2;
-      const propertyName = collectionSidePath.split('.')[1];
+      // Check if any of the source properties are identity properties
+      const hasIdentityProperty = collectionSideColumn.sourceEntityProperties.some((prop) => prop.isPartOfIdentity);
 
-      // Check if this property is an identity property of the common
-      if (identityProperties.some((p) => p.metaEdName.toLowerCase() === propertyName.toLowerCase())) {
+      if (hasIdentityProperty) {
         conflictingIdentityCount += 1;
       }
     }
@@ -235,7 +235,7 @@ function countConflictingIdentities(
  * Determines if a collection constraint should be created based on identity matches
  */
 function shouldCreateCollectionConstraint(collectionInfo: CollectionConflictInfo, table: Table): boolean {
-  const { collectionColumn, collectionPropertyPath, collectionPropertyName } = collectionInfo;
+  const { collectionColumn, collectionPropertyName } = collectionInfo;
 
   // Always create constraints for reference relationships
   if (collectionColumn.isFromReferenceProperty) {
@@ -261,10 +261,7 @@ function shouldCreateCollectionConstraint(collectionInfo: CollectionConflictInfo
   }
 
   // Check if the conflicting property is actually an identity property in the common
-  const conflictingPropertyName = collectionPropertyPath.split('.')[1];
-  const isConflictingPropertyIdentity = identityProperties.some(
-    (p) => p.metaEdName.toLowerCase() === conflictingPropertyName.toLowerCase(),
-  );
+  const isConflictingPropertyIdentity = collectionColumn.sourceEntityProperties.some((prop) => prop.isPartOfIdentity);
 
   // If the conflicting property is not an identity in the common, skip the constraint
   if (!isConflictingPropertyIdentity) {
@@ -273,7 +270,7 @@ function shouldCreateCollectionConstraint(collectionInfo: CollectionConflictInfo
 
   // For collections with multiple identity properties, check if this is a partial match
   if (identityProperties.length > 1) {
-    const conflictingIdentityCount = countConflictingIdentities(table, collectionPropertyName, identityProperties);
+    const conflictingIdentityCount = countConflictingIdentities(table, collectionPropertyName);
 
     // If not all identity properties have conflicts, it's a partial match
     if (conflictingIdentityCount < identityProperties.length) {
@@ -327,11 +324,6 @@ function processColumnConflictPair(table: Table, conflictPair: ColumnConflictPai
     return;
   }
 
-  // Always allow constraints for reference relationships
-  if (!isReferenceRelationship(context.firstColumn, context.secondColumn)) {
-    // For non-reference relationships, we'll check each path pair individually
-  }
-
   // Process each path pair
   context.sourceJsonPaths.forEach((sourceJsonPath, index) => {
     const targetJsonPath = context.targetJsonPaths[index];
@@ -346,23 +338,14 @@ function processColumnConflictPair(table: Table, conflictPair: ColumnConflictPai
 }
 
 /**
- * Processes all column conflicts for a single table
- */
-function processTableColumnConflicts(table: Table): void {
-  table.columnConflictPairs.forEach((conflictPair) => {
-    processColumnConflictPair(table, conflictPair);
-  });
-}
-
-/**
  * Creates EqualityConstraints from relational ColumnConflictPairs using JsonPathsMapping to find the source and
- * target JsonPaths.
+ * target JsonPaths. Not all ColumnConflictPairs lead to the creation of an EqualityConstraint
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const tables = allTables(metaEd);
-
-  tables.forEach((table) => {
-    processTableColumnConflicts(table);
+  allTables(metaEd).forEach((table) => {
+    table.columnConflictPairs.forEach((conflictPair) => {
+      processColumnConflictPair(table, conflictPair);
+    });
   });
 
   return {
