@@ -5,7 +5,7 @@
 
 import deepFreeze from 'deep-freeze';
 import * as R from 'ramda';
-import { EntityProperty, Logger, MetaEdPropertyPath, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, Logger, MetaEdPropertyPath, TopLevelEntity, isReferentialProperty } from '@edfi/metaed-core';
 import { ColumnType } from './ColumnType';
 import { NoTable, Table } from './Table';
 
@@ -84,6 +84,8 @@ export interface Column {
   isFromUniqueIdProperty: boolean;
   /** is the column derived from an usi column */
   isFromUsiProperty: boolean;
+  /** Indicates if this column represents a reference relationship */
+  isFromReferenceProperty: boolean;
   data: any;
 }
 
@@ -120,6 +122,7 @@ export function newColumn(): Column {
     deprecationReasons: [],
     isFromUniqueIdProperty: false,
     isFromUsiProperty: false,
+    isFromReferenceProperty: false,
     data: {},
   };
 }
@@ -161,6 +164,7 @@ export function initializeColumn(
     originalContextPrefix: property.data.edfiOdsRelational.odsContextPrefix,
     isFromUniqueIdProperty: property.data.edfiOdsRelational.isUniqueIdProperty,
     isFromUsiProperty: property.data.edfiOdsRelational.isUsiProperty,
+    isFromReferenceProperty: isReferentialProperty(property),
   });
   column.sourceEntityProperties.push(property);
   return column;
@@ -176,6 +180,9 @@ export function columnConstraintMerge(existing: Column, received: Column): Colum
 
   // ensure unique index key if set by either
   if (received.isUniqueIndex) clone.isUniqueIndex = true;
+
+  // ensure isFromReferenceProperty if set by either
+  if (received.isFromReferenceProperty) clone.isFromReferenceProperty = true;
 
   // ensure primary key if set by either
   if (clone.isPartOfPrimaryKey) return clone;

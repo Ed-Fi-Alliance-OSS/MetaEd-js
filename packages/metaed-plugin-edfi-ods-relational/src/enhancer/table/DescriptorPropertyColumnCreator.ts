@@ -50,6 +50,7 @@ export function descriptorPropertyColumnCreator(
     sourceEntityProperties: [property],
     propertyPath: currentPropertyPath,
     originalEntity,
+    isFromReferenceProperty: true, // Descriptor properties are reference properties
   };
   return [column];
 }

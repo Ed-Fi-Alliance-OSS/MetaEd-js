@@ -47,6 +47,7 @@ export function schoolYearEnumerationPropertyColumnCreator(
     sourceEntityProperties: [property],
     propertyPath: currentPropertyPath,
     originalEntity,
+    isFromReferenceProperty: true, // SchoolYearEnumeration properties are reference properties
   };
   return [column];
 }

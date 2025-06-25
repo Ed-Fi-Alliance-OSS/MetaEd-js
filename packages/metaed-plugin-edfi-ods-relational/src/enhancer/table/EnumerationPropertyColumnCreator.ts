@@ -48,6 +48,7 @@ export function enumerationPropertyColumnCreator(
     sourceEntityProperties: [property],
     propertyPath: currentPropertyPath,
     originalEntity,
+    isFromReferenceProperty: true, // Enumeration properties are reference properties
   };
   return [column];
 }

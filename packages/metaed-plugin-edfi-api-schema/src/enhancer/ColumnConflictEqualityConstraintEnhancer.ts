@@ -128,10 +128,10 @@ function getConstraintContext(table: Table, conflictPair: ColumnConflictPair): C
 }
 
 /**
- * Checks if either path represents a reference relationship
+ * Checks if either column represents a reference relationship
  */
 function isReferenceRelationship(firstColumn: Column, secondColumn: Column): boolean {
-  return firstColumn.propertyPath.includes('Reference.') || secondColumn.propertyPath.includes('Reference.');
+  return firstColumn.isFromReferenceProperty || secondColumn.isFromReferenceProperty;
 }
 
 /**
@@ -238,7 +238,7 @@ function shouldCreateCollectionConstraint(collectionInfo: CollectionConflictInfo
   const { collectionColumn, collectionPropertyPath, collectionPropertyName } = collectionInfo;
 
   // Always create constraints for reference relationships
-  if (collectionColumn.propertyPath.includes('Reference.')) {
+  if (collectionColumn.isFromReferenceProperty) {
     return true;
   }
 
