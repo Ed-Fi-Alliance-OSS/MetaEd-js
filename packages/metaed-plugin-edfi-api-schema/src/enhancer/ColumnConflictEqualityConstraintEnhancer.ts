@@ -50,67 +50,14 @@ function areDuplicateConstraintPaths(
  * Returns true if we should create equality constraints between these paths.
  * This prevents creating equality constraints for partial identity matches in common collections.
  */
-function shouldCreateEqualityConstraint(
-  firstColumn: Column,
-  secondColumn: Column,
-  firstPathInfo: JsonPathsInfo,
-  secondPathInfo: JsonPathsInfo,
-): boolean {
-  // Check if paths involve common collections (contain [*] but not part of a reference)
-  const firstInCommonCollection = firstPathInfo.jsonPathPropertyPairs.some((pair) => {
-    const path = pair.jsonPath;
-    return path.includes('[*]') && !path.includes('Reference.');
-  });
-  const secondInCommonCollection = secondPathInfo.jsonPathPropertyPairs.some((pair) => {
-    const path = pair.jsonPath;
-    return path.includes('[*]') && !path.includes('Reference.');
-  });
-
-  // If one path is in a common collection, check if they represent the same identity structure
-  if (firstInCommonCollection || secondInCommonCollection) {
-    // Check the property paths to see if this is a reference equality or just same-named scalars
-    const firstPath = firstColumn.propertyPath;
-    const secondPath = secondColumn.propertyPath;
-
-    // Split paths into segments
-    const firstSegments = firstPath.split('.');
-    const secondSegments = secondPath.split('.');
-
-    // Get the property names (last segment)
-    const firstPropertyName = firstSegments[firstSegments.length - 1];
-    const secondPropertyName = secondSegments[secondSegments.length - 1];
-
-    // If property names don't match, they can't be the same reference
-    if (firstPropertyName !== secondPropertyName) {
-      return true; // Different properties, allow constraint
-    }
-
-    // If both paths have only one segment (top-level properties), they're independent
-    if (firstSegments.length === 1 && secondSegments.length === 1) {
-      return false; // Same-named top-level properties in different contexts
-    }
-
-    // Check if one is a simple scalar in a collection and the other is a top-level scalar
-    // Example: "DegreeSpecialization.BeginDate" vs "BeginDate"
-    if (
-      (firstSegments.length === 1 && secondSegments.length === 2) ||
-      (firstSegments.length === 2 && secondSegments.length === 1)
-    ) {
-      // This is the case of a scalar in a common collection with the same name as a top-level scalar
-      // These are independent and should not have equality constraints
-      return false;
-    }
-
-    // For more complex paths, check if they share a reference structure
-    // Example: "Assessment" vs "StudentAssessmentItem.AssessmentItem.Assessment"
-    const longerPath = firstSegments.length > secondSegments.length ? firstPath : secondPath;
-    const shorterPath = firstSegments.length > secondSegments.length ? secondPath : firstPath;
-
-    // Check if the longer path contains the shorter path as a suffix (indicating a reference)
-    return longerPath.endsWith(shorterPath);
+function shouldCreateEqualityConstraint(firstColumn: Column, secondColumn: Column): boolean {
+  // Always allow constraints for reference relationships
+  if (firstColumn.propertyPath.includes('Reference.') || secondColumn.propertyPath.includes('Reference.')) {
+    return true;
   }
 
-  return true;
+  // For non-reference relationships, continue with the existing logic
+  return true; // Let the main logic handle partial vs full match detection
 }
 
 /**
@@ -151,7 +98,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       );
 
       // Skip if we shouldn't create equality constraints for these paths
-      if (!shouldCreateEqualityConstraint(firstColumn, secondColumn, firstPathInMapping, secondPathInMapping)) {
+      if (!shouldCreateEqualityConstraint(firstColumn, secondColumn)) {
         return;
       }
 
@@ -185,14 +132,22 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             if (pathParts.length >= 2) {
               const collectionPropertyName = pathParts[0];
 
-              // Find the property definition on the original entity
-              const entity = firstColumn.originalEntity;
+              // Find the property definition on the original entity (use the collection column's entity)
+              const entity = collectionColumn.originalEntity;
               if (entity && entity.properties) {
                 const collectionProperty = entity.properties.find((p) => p.metaEdName === collectionPropertyName);
 
                 if (collectionProperty && collectionProperty.type === 'common' && collectionProperty.isCollection) {
-                  // Get the common entity that this collection references
-                  const commonEntityName = collectionProperty.metaEdName;
+                  // For common properties, the referenced type name is typically in the property's referencedEntity
+                  // or we can infer it from the property name (e.g., "degreeSpecializations" -> "DegreeSpecialization")
+                  let commonEntityName = collectionPropertyName;
+                  // Convert plural to singular if needed (simple heuristic)
+                  if (commonEntityName.endsWith('s')) {
+                    commonEntityName = commonEntityName.slice(0, -1);
+                  }
+                  // Capitalize first letter
+                  commonEntityName = commonEntityName.charAt(0).toUpperCase() + commonEntityName.slice(1);
+
                   const { namespace } = entity;
 
                   if (namespace && namespace.entity && namespace.entity.common) {
@@ -202,11 +157,51 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
                       // Count the identity properties of the common entity
                       const identityProperties = commonEntity.properties.filter((p) => p.isPartOfIdentity);
 
-                      // If the common entity has more than one identity property, and we're only
-                      // conflicting on one of them, this is a partial identity match
-                      if (identityProperties.length > 1) {
-                        // This is a partial identity match - skip creating the constraint
+                      // Check if the conflicting property is actually an identity property in the common
+                      const conflictingPropertyName = collectionPropertyPath.split('.')[1];
+                      const isConflictingPropertyIdentity = identityProperties.some(
+                        (p) => p.metaEdName.toLowerCase() === conflictingPropertyName.toLowerCase(),
+                      );
+
+                      // If the conflicting property is not an identity in the common, skip the constraint
+                      if (!isConflictingPropertyIdentity) {
                         return;
+                      }
+
+                      // To determine if this is a partial or full match, we need to check
+                      // how many of the common's identity properties have conflicts
+                      if (identityProperties.length > 1) {
+                        // Count how many identity properties from the common entity have conflicts
+                        let conflictingIdentityCount = 0;
+
+                        // Look through all column conflicts on this table
+                        table.columnConflictPairs.forEach((conflict) => {
+                          // Check if this conflict involves a property from our common entity
+                          const conflictPath1 = conflict.firstColumn.propertyPath;
+                          const conflictPath2 = conflict.secondColumn.propertyPath;
+
+                          // Check if either path is from our collection
+                          const isPath1FromCollection = conflictPath1.startsWith(`${collectionPropertyName}.`);
+                          const isPath2FromCollection = conflictPath2.startsWith(`${collectionPropertyName}.`);
+
+                          if (isPath1FromCollection || isPath2FromCollection) {
+                            // Extract the property name after the collection name
+                            const collectionSidePath = isPath1FromCollection ? conflictPath1 : conflictPath2;
+                            const propertyName = collectionSidePath.split('.')[1];
+
+                            // Check if this property is an identity property of the common
+                            if (identityProperties.some((p) => p.metaEdName.toLowerCase() === propertyName.toLowerCase())) {
+                              conflictingIdentityCount += 1;
+                            }
+                          }
+                        });
+
+                        // If not all identity properties have conflicts, it's a partial match
+                        if (conflictingIdentityCount < identityProperties.length) {
+                          // This is a partial identity match - skip creating the constraint
+                          return;
+                        }
+                        // Otherwise, it's a full match - continue to create the constraint
                       }
                     }
                   }

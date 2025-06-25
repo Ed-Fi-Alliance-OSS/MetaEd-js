@@ -919,7 +919,7 @@ describe('when a reference has a merge on a UniqueId property', () => {
   });
 });
 
-describe('when building with scalar in common collection with same name as scalar outside collection', () => {
+describe('when building with identity in common collection with same name as identity outside collection', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
   const domainEntityName = 'CandidateEducatorPreparationProgramAssociation';
@@ -958,5 +958,193 @@ describe('when building with scalar in common collection with same name as scala
   it('should not create equality constraints for partial identity matches', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building with non-identity in common collection with same name as identity outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'CandidateEducatorPreparationProgramAssociationVariation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withDateProperty('BeginDate', 'doc', false, false)
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not create equality constraints for non-identity in collection match', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building with two partial identity in common collection with same name as two identity outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'CandidateEducatorPreparationProgramAssociationVariation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withStringIdentity('MinorSpecialization', 'doc', '255')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not create equality constraints for partial identity matches', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when building with exactly one identity in common collection with same name as one identity outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'CandidateEducatorPreparationProgramAssociationVariation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withDateIdentity('EndDate', 'doc')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringProperty('MajorSpecialization', 'doc', false, false, '255')
+      .withStringProperty('MinorSpecialization', 'doc', false, false, '255')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should create equality constraints for full identity match', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.degreeSpecializations[*].beginDate",
+          "targetJsonPath": "$.beginDate",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building with exactly two identity in common collection with same name as two identity outside collection', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'CandidateEducatorPreparationProgramAssociationVariation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withCommonProperty('DegreeSpecialization', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('DegreeSpecialization')
+      .withDocumentation('doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withStringIdentity('MajorSpecialization', 'doc', '255')
+      .withStringProperty('MinorSpecialization', 'doc', false, false, '255')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should create equality constraints for full identity match', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.degreeSpecializations[*].beginDate",
+          "targetJsonPath": "$.beginDate",
+        },
+        Object {
+          "sourceJsonPath": "$.degreeSpecializations[*].majorSpecialization",
+          "targetJsonPath": "$.majorSpecialization",
+        },
+      ]
+    `);
   });
 });
