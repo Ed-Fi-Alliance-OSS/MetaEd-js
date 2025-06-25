@@ -12,12 +12,7 @@ import {
   Common,
   ReferentialProperty,
 } from '@edfi/metaed-core';
-import {
-  Table,
-  tableEntities,
-  Column,
-  ColumnConflictPath as ColumnConflictPair,
-} from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Table, tableEntities, Column, ColumnConflictPair } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EqualityConstraint } from '../model/EqualityConstraint';
@@ -25,9 +20,9 @@ import { JsonPathsInfo } from '../model/JsonPathsMapping';
 import { findMergeJsonPathsMapping } from '../Utility';
 
 /**
- * Context needed for processing constraints
+ * Constraint information for conflicting columns
  */
-interface ConstraintContext {
+interface ConstraintInfo {
   entity: TopLevelEntity;
   equalityConstraints: EqualityConstraint[];
   firstColumn: Column;
@@ -83,9 +78,9 @@ function areDuplicateConstraintPaths(
 }
 
 /**
- * Validates that a conflict pair is valid for processing
+ * Validates that a conflict pair is relevant to EqualityConstraints
  */
-function isValidConflictPair(conflictPair: ColumnConflictPair): boolean {
+function isRelevantConflictPair(conflictPair: ColumnConflictPair): boolean {
   const { firstColumn, secondColumn } = conflictPair;
 
   // Both columns must have an original entity
@@ -93,21 +88,17 @@ function isValidConflictPair(conflictPair: ColumnConflictPair): boolean {
     return false;
   }
 
-  // Must be on same resource to be a resource equality constraint
-  if (firstColumn.originalEntity !== secondColumn.originalEntity) {
-    return false;
-  }
-
-  return true;
+  // Must be on same resource to be an equality constraint
+  return firstColumn.originalEntity === secondColumn.originalEntity;
 }
 
 /**
- * Gets the constraint processing context for a conflict pair
+ * Gets the constraint information from a conflict pair
  */
-function getConstraintContext(table: Table, conflictPair: ColumnConflictPair): ConstraintContext | null {
+function extractConstraintInfo(table: Table, conflictPair: ColumnConflictPair): ConstraintInfo | null {
   const { firstColumn, secondColumn } = conflictPair;
 
-  invariant(firstColumn.originalEntity != null, 'isValidConflictPair should have filtered this out');
+  invariant(firstColumn.originalEntity != null, 'isValidConflictPair() should have filtered this out');
 
   const entity = firstColumn.originalEntity;
 
@@ -138,31 +129,28 @@ function getConstraintContext(table: Table, conflictPair: ColumnConflictPair): C
 }
 
 /**
- * Gets collection conflict information if one side is a collection and the other isn't
+ * Gets collection conflict information, but only if one side is a collection and the other isn't
  */
 function getCollectionConflictInfo(
   sourceJsonPath: JsonPath,
   targetJsonPath: JsonPath,
-  context: ConstraintContext,
+  constraintInfo: ConstraintInfo,
 ): CollectionConflictInfo | null {
-  // Use metadata from columns to check if they represent collections
-  const isSourceFromCollection = context.firstColumn.sourceEntityProperties.some((prop) => prop.isCollection);
-  const isTargetFromCollection = context.secondColumn.sourceEntityProperties.some((prop) => prop.isCollection);
+  const isSourceCollectionPath = sourceJsonPath.includes('[*]');
+  const isTargetCollectionPath = targetJsonPath.includes('[*]');
 
-  // As a fallback, also check the JsonPath for collection indicators
-  const isSourceCollectionPath = isSourceFromCollection || sourceJsonPath.includes('[*]');
-  const isTargetCollectionPath = isTargetFromCollection || targetJsonPath.includes('[*]');
-
-  // Only process if exactly one side is a collection
   if (isSourceCollectionPath === isTargetCollectionPath) {
     return null;
   }
 
-  const collectionColumn = isSourceCollectionPath ? context.firstColumn : context.secondColumn;
+  const collectionColumn = isSourceCollectionPath ? constraintInfo.firstColumn : constraintInfo.secondColumn;
   const collectionPropertyPath = collectionColumn.propertyPath;
 
   // Extract the collection property name from the path
   const pathParts = collectionPropertyPath.split('.');
+
+  // Collection conflicts involve nested properties
+  // If we have a single-segment path, it's not a nested collection conflict
   if (pathParts.length < 2) {
     return null;
   }
@@ -179,7 +167,7 @@ function getCollectionConflictInfo(
  * Gets the common entity from a collection property
  */
 function getCommonEntityFromProperty(entity: TopLevelEntity, collectionPropertyName: string): Common | null {
-  const collectionProperty = entity.properties.find((p) => p.metaEdName === collectionPropertyName);
+  const collectionProperty = entity.properties.find((p) => p.fullPropertyName === collectionPropertyName);
 
   if (!collectionProperty || collectionProperty.type !== 'common' || !collectionProperty.isCollection) {
     return null;
@@ -287,7 +275,7 @@ function shouldCreateCollectionConstraint(collectionInfo: CollectionConflictInfo
 function shouldCreateConstraint(
   sourceJsonPath: JsonPath,
   targetJsonPath: JsonPath,
-  context: ConstraintContext,
+  context: ConstraintInfo,
   table: Table,
 ): boolean {
   // Can ignore conflicts that result in the same path
@@ -314,22 +302,22 @@ function shouldCreateConstraint(
  */
 function processColumnConflictPair(table: Table, conflictPair: ColumnConflictPair): void {
   // Validate the conflict pair
-  if (!isValidConflictPair(conflictPair)) {
+  if (!isRelevantConflictPair(conflictPair)) {
     return;
   }
 
   // Get the processing context
-  const context = getConstraintContext(table, conflictPair);
-  if (!context) {
+  const constraintInfo: ConstraintInfo | null = extractConstraintInfo(table, conflictPair);
+  if (!constraintInfo) {
     return;
   }
 
   // Process each path pair
-  context.sourceJsonPaths.forEach((sourceJsonPath, index) => {
-    const targetJsonPath = context.targetJsonPaths[index];
+  constraintInfo.sourceJsonPaths.forEach((sourceJsonPath, index) => {
+    const targetJsonPath: JsonPath = constraintInfo.targetJsonPaths[index];
 
-    if (shouldCreateConstraint(sourceJsonPath, targetJsonPath, context, table)) {
-      context.equalityConstraints.push({
+    if (shouldCreateConstraint(sourceJsonPath, targetJsonPath, constraintInfo, table)) {
+      constraintInfo.equalityConstraints.push({
         sourceJsonPath,
         targetJsonPath,
       });
