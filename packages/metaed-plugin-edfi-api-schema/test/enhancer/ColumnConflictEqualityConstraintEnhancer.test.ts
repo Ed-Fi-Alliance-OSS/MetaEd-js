@@ -922,7 +922,7 @@ describe('when a reference has a merge on a UniqueId property', () => {
 describe('when building with scalar in common collection with same name as scalar outside collection', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
-  const domainEntityName = 'PreparationProgram';
+  const domainEntityName = 'CandidateEducatorPreparationProgramAssociation';
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -957,8 +957,6 @@ describe('when building with scalar in common collection with same name as scala
 
   it('should not create equality constraints for partial identity matches', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
-    // No equality constraint should be generated because BeginDate is only part of the
-    // DegreeSpecialization's identity (BeginDate + MajorSpecialization).
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
   });
 });

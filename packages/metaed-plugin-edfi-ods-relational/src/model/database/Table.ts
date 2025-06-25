@@ -22,7 +22,7 @@ import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
 import { ForeignKey } from './ForeignKey';
 import { simpleTableNameGroupConcat } from './TableNameGroupHelper';
-import { ColumnConflictPath } from './ColumnConflictPath';
+import { ColumnConflictPair } from './ColumnConflictPair';
 
 // eslint-disable-next-line no-use-before-define
 export type TableNameElement = TableNameComponent | TableNameGroup;
@@ -96,8 +96,8 @@ export interface Table {
   existenceReason: TableExistenceReason;
   tableId: string;
 
-  /** A list of all the column conflict paths that lead to the creation of this table */
-  columnConflictPaths: ColumnConflictPath[];
+  /** A list of all the column conflict pairs that required implicit merges */
+  columnConflictPairs: ColumnConflictPair[];
 
   namespace: Namespace;
   schema: string;
@@ -142,7 +142,7 @@ export function newTable(): Table {
     existenceReason: NoTableExistenceReason,
     tableId: '',
 
-    columnConflictPaths: [],
+    columnConflictPairs: [],
 
     namespace: NoNamespace,
     schema: '',
@@ -241,9 +241,9 @@ export function isTableNameComponent(nameElement: TableNameElement): nameElement
 }
 
 /**
- * Add columnConflictPaths to the table
+ * Add columnConflictPairs to the table
  */
-function addColumnConflictPaths(table: Table, firstColumn: Column, secondColumn: Column) {
+function addColumnConflictPairs(table: Table, firstColumn: Column, secondColumn: Column) {
   // Ignore synthetic USI columns
   if (
     firstColumn.sourceEntityProperties.some(
@@ -262,12 +262,7 @@ function addColumnConflictPaths(table: Table, firstColumn: Column, secondColumn:
     `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
   );
 
-  table.columnConflictPaths.push({
-    firstPath: firstColumn.propertyPath,
-    secondPath: secondColumn.propertyPath,
-    firstOriginalEntity: firstColumn.originalEntity,
-    secondOriginalEntity: secondColumn.originalEntity,
-  });
+  table.columnConflictPairs.push({ firstColumn, secondColumn });
 }
 
 /**
@@ -280,7 +275,7 @@ function addColumnV5(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
-    addColumnConflictPaths(table, existingColumn, column);
+    addColumnConflictPairs(table, existingColumn, column);
 
     table.columns = R.reject((c: Column) => c.columnId === column.columnId)(table.columns);
     table.columns.push(columnConstraintMerge(existingColumn, column));
@@ -297,7 +292,7 @@ function addColumnV7(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
-    addColumnConflictPaths(table, table.columns[existingColumnIndex], column);
+    addColumnConflictPairs(table, table.columns[existingColumnIndex], column);
 
     table.columns[existingColumnIndex] = columnConstraintMerge(table.columns[existingColumnIndex], column);
   }

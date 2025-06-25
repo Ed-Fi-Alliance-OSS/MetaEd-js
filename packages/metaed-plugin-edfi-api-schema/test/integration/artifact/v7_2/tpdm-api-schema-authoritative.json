@@ -15604,10 +15604,6 @@
           }
         },
         "equalityConstraints": [
-          {
-            "sourceJsonPath": "$.beginDate",
-            "targetJsonPath": "$.degreeSpecializations[*].beginDate"
-          }
         ],
         "identityJsonPaths": [
           "$.beginDate",

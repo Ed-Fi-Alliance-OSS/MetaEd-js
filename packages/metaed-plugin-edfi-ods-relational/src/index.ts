@@ -32,7 +32,7 @@ export {
   getParentTableColumns,
 } from './model/database/ForeignKey';
 export { SchoolYearEnumerationRow } from './model/database/SchoolYearEnumerationRow';
-export { ColumnConflictPath } from './model/database/ColumnConflictPath';
+export { ColumnConflictPair as ColumnConflictPath } from './model/database/ColumnConflictPair';
 export {
   Table,
   NoTable,

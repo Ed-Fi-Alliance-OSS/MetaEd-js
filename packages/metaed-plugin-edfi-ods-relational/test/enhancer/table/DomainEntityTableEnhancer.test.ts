@@ -841,11 +841,11 @@ describe('when DomainEntityTableEnhancer enhances entity with two reference prop
 
   it('should record the column collision', (): void => {
     const table: Table = tableEntities(metaEd, namespace).get(entityName) as Table;
-    expect(table.columnConflictPaths).toHaveLength(1);
-    expect(table.columnConflictPaths[0].firstPath).toBe('ReferencedEntityName1.CommonPkPropertyName');
-    expect(table.columnConflictPaths[0].secondPath).toBe('ReferencedEntityName2.CommonPkPropertyName');
-    expect(table.columnConflictPaths[0].firstOriginalEntity.metaEdName).toBe(entityName);
-    expect(table.columnConflictPaths[0].secondOriginalEntity.metaEdName).toBe(entityName);
+    expect(table.columnConflictPairs).toHaveLength(1);
+    expect(table.columnConflictPairs[0].firstColumn.propertyPath).toBe('ReferencedEntityName1.CommonPkPropertyName');
+    expect(table.columnConflictPairs[0].secondColumn.propertyPath).toBe('ReferencedEntityName2.CommonPkPropertyName');
+    expect(table.columnConflictPairs[0].firstColumn.originalEntity?.metaEdName).toBe(entityName);
+    expect(table.columnConflictPairs[0].secondColumn.originalEntity?.metaEdName).toBe(entityName);
   });
 });
 
@@ -981,10 +981,10 @@ describe('when DomainEntityTableEnhancer enhances entity with two reference prop
 
   it('should record the column collision', (): void => {
     const table: Table = tableEntities(metaEd, namespace).get(entityName) as Table;
-    expect(table.columnConflictPaths[0].firstPath).toBe('ReferencedEntityName1.CommonPkPropertyName');
-    expect(table.columnConflictPaths[0].secondPath).toBe('ReferencedEntityName2.CommonPkPropertyName');
-    expect(table.columnConflictPaths[0].firstOriginalEntity.metaEdName).toBe(entityName);
-    expect(table.columnConflictPaths[0].secondOriginalEntity.metaEdName).toBe(entityName);
+    expect(table.columnConflictPairs[0].firstColumn.propertyPath).toBe('ReferencedEntityName1.CommonPkPropertyName');
+    expect(table.columnConflictPairs[0].secondColumn.propertyPath).toBe('ReferencedEntityName2.CommonPkPropertyName');
+    expect(table.columnConflictPairs[0].firstColumn.originalEntity?.metaEdName).toBe(entityName);
+    expect(table.columnConflictPairs[0].secondColumn.originalEntity?.metaEdName).toBe(entityName);
   });
 });
 
