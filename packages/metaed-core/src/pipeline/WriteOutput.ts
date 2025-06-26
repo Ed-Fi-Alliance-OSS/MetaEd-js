@@ -22,7 +22,7 @@ function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
     if (output.resultString)
       fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultString, 'utf-8');
     else if (output.resultStream)
-      fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultStream);
+      fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultStream as Uint8Array);
     else Logger.debug(`No output stream or string for ${result.generatorName}`);
   });
 }

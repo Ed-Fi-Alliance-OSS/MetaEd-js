@@ -6,8 +6,9 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node', 'mjs', 'cjs', 'mts', 'cts'],
   transformIgnorePatterns: ['<rootDir>.*(node_modules)(?!.*metaed-.*).*$'],
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)', '**/__tests__/**/*.m[jt]s', '**/?(*.)+(spec|test).m[jt]s', '**/__tests__/**/*.c[jt]s', '**/?(*.)+(spec|test).c[jt]s'],
   collectCoverageFrom: ['packages/**/src/**/*.ts'],
   coverageThreshold: {
     global: {
