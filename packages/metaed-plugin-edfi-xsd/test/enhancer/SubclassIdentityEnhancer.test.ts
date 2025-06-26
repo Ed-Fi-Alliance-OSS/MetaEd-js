@@ -11,7 +11,7 @@ import {
   newNamespace,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Association, AssociationSubclass, AssociationProperty, Namespace } from '@edfi/metaed-core';
-import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
+import { enhance as initializeTopLevelEntities, TopLevelEntityEdfiXsd } from '../../src/model/TopLevelEntity';
 import { enhance as copyPropertiesEnhance } from '../../src/enhancer/CopyPropertiesEnhancer';
 import { enhance } from '../../src/enhancer/SubclassIdentityEnhancer';
 
@@ -82,7 +82,7 @@ describe('when enhancing association subclass without identity renames', (): voi
 
   it('should not have base identity in properties', (): void => {
     const associationSubclass: any = namespace.entity.associationSubclass.get(subclassAssociationName);
-    expect(associationSubclass.data.edfiXsd.xsdProperties).not.toContain(baseIdentityProperty);
+    expect((associationSubclass.data.edfiXsd as TopLevelEntityEdfiXsd).xsdProperties()).not.toContain(baseIdentityProperty);
   });
 });
 
