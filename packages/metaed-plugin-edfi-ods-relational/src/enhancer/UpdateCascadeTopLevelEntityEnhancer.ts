@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { asReferentialProperty, getAllTopLevelEntitiesForNamespaces, getAllEntitiesOfType } from '@edfi/metaed-core';
-import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
+import { getAllTopLevelEntitiesForNamespaces, getAllEntitiesOfType } from '@edfi/metaed-core';
+import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity, ReferentialProperty } from '@edfi/metaed-core';
 import { isOdsReferenceProperty } from '../model/property/ReferenceProperty';
 
 const enhancerName = 'UpdateCascadeTopLevelEntityEnhancer';
@@ -60,7 +60,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       // eslint-disable-next-line no-loop-func
       referenceEntityProperties.forEach((referenceEntityProperty: EntityProperty) => {
-        if (!topLevelCascadingEntities.includes(asReferentialProperty(referenceEntityProperty).referencedEntity)) return;
+        if (!topLevelCascadingEntities.includes((referenceEntityProperty as ReferentialProperty).referencedEntity)) return;
         if (!referenceEntityProperty.isPartOfIdentity && !referenceEntityProperty.isIdentityRename) return;
 
         referenceEntityProperty.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates = true;
@@ -68,7 +68,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
         cascadeGraph.vertices.push(referenceEntityProperty.parentEntity);
         cascadeGraph.edges.push({
-          source: asReferentialProperty(referenceEntityProperty).referencedEntity,
+          source: (referenceEntityProperty as ReferentialProperty).referencedEntity,
           target: referenceEntityProperty.parentEntity,
         });
       });
@@ -87,7 +87,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       edgesToPrune.forEach((edge: Edge<TopLevelEntity>) => {
         multipleCascadeTopLevelEntity.data.edfiOdsRelational.odsIdentityProperties.forEach((property: EntityProperty) => {
-          if (!isOdsReferenceProperty(property) || asReferentialProperty(property).referencedEntity !== edge.source) return;
+          if (!isOdsReferenceProperty(property) || (property as ReferentialProperty).referencedEntity !== edge.source)
+            return;
 
           property.data.edfiOdsRelational.odsCausesCyclicUpdateCascade = true;
           cascadeGraph.edges = R.reject((x) => x.edge === edge)(cascadeGraph).edges;

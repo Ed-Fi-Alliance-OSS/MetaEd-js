@@ -5,7 +5,6 @@
 
 import deepFreeze from 'deep-freeze';
 import { newEnumeration } from './Enumeration';
-import { ModelBase } from './ModelBase';
 import { Enumeration } from './Enumeration';
 
 /**
@@ -31,8 +30,3 @@ export const NoMapTypeEnumeration: MapTypeEnumeration = deepFreeze({
   ...newMapTypeEnumeration(),
   metaEdName: 'NoMapTypeEnumeration',
 });
-
-/**
- *
- */
-export const asMapTypeEnumeration = (x: ModelBase): MapTypeEnumeration => x as MapTypeEnumeration;

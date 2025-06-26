@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
-import { asReferentialProperty } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { TableBuilderParameters, buildTableFor } from './TableBuilder';
 import { appendToPropertyPath } from '../EnhancerHelper';
@@ -19,7 +18,7 @@ export function inlineCommonPropertyTableBuilder({
   currentPropertyPath,
   targetTechnologyVersion,
 }: TableBuilderParameters): void {
-  const inlineCommonProperty: ReferentialProperty = asReferentialProperty(property);
+  const inlineCommonProperty: ReferentialProperty = property as ReferentialProperty;
 
   let strategy: BuildStrategy = buildStrategy.appendParentContextProperty(inlineCommonProperty);
   if (inlineCommonProperty.isOptional) {

@@ -13,7 +13,7 @@ import {
   ReferentialProperty,
   isReferentialProperty,
 } from '@edfi/metaed-core';
-import { getPropertiesOfType, asReferentialProperty } from '@edfi/metaed-core';
+import { getPropertiesOfType } from '@edfi/metaed-core';
 
 const enhancerName = 'MergeDirectiveEnhancer';
 
@@ -80,7 +80,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getPropertiesOfType(metaEd.propertyIndex, ...referenceTypes)
     // TODO: As of METAED-881, the current property here could also be one of the shared simple properties, which
     // are not currently extensions of ReferentialProperty but have an equivalent mergeDirectives field
-    .map((x) => asReferentialProperty(x))
+    .map((x) => x as ReferentialProperty)
     .filter((x) => !R.isEmpty(x.mergeDirectives))
     .forEach((property) => {
       property.mergeDirectives.forEach((mergeDirective) => {

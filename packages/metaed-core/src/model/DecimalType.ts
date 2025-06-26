@@ -62,5 +62,3 @@ export const NoDecimalType: DecimalType = deepFreeze({
   ...newDecimalType(),
   metaEdName: 'NoDecimalType',
 });
-
-export const asDecimalType = (x: ModelBase): DecimalType => x as DecimalType;

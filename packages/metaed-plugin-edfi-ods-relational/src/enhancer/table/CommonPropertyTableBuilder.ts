@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { MetaEdPropertyPath, SemVer, TopLevelEntity, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
-import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
+import { EntityProperty, MergeDirective, ReferentialProperty, Namespace, CommonProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
   addForeignKey,
@@ -136,7 +136,7 @@ export function commonPropertyTableBuilder({
   parentIsRequired,
   currentPropertyPath,
 }: TableBuilderParameters): void {
-  const commonProperty = asCommonProperty(property);
+  const commonProperty = property as CommonProperty;
   let strategy: BuildStrategy = buildStrategy;
 
   if (commonProperty.mergeDirectives.length > 0) {

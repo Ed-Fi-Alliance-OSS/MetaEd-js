@@ -7,7 +7,6 @@ import { ReferentialProperty, ReferentialPropertySourceMap } from './Referential
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
 import { SourceMap } from '../SourceMap';
 import { NoSourceMap } from '../SourceMap';
-import { EntityProperty } from './EntityProperty';
 
 export interface DomainEntityPropertySourceMap extends ReferentialPropertySourceMap {
   potentiallyLogical: SourceMap;
@@ -48,8 +47,3 @@ export function newDomainEntityProperty(): DomainEntityProperty {
     sourceMap: newDomainEntityPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDomainEntityProperty = (x: EntityProperty): DomainEntityProperty => x as DomainEntityProperty;

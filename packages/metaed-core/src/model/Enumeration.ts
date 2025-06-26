@@ -7,7 +7,6 @@ import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import { EnumerationItem } from './EnumerationItem';
 import { SourceMap } from './SourceMap';
-import { ModelBase } from './ModelBase';
 
 export interface EnumerationSourceMap extends TopLevelEntitySourceMap {
   enumerationItems: SourceMap[];
@@ -40,8 +39,3 @@ export function newEnumeration(): Enumeration {
     sourceMap: newEnumerationSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asEnumeration = (x: ModelBase): Enumeration => x as Enumeration;

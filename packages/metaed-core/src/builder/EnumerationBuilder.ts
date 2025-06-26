@@ -5,7 +5,7 @@
 
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
-import { newEnumeration, asEnumeration } from '../model/Enumeration';
+import { newEnumeration, Enumeration } from '../model/Enumeration';
 import { newSchoolYearEnumeration } from '../model/SchoolYearEnumeration';
 import { EnumerationSourceMap } from '../model/Enumeration';
 import { EnumerationItem } from '../model/EnumerationItem';
@@ -73,7 +73,7 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
 
   exitEnumerationItem(context: MetaEdGrammar.EnumerationItemContext) {
     if (this.currentTopLevelEntity === NoTopLevelEntity || this.currentEnumerationItem === NoEnumerationItem) return;
-    asEnumeration(this.currentTopLevelEntity).enumerationItems.push(this.currentEnumerationItem);
+    (this.currentTopLevelEntity as Enumeration).enumerationItems.push(this.currentEnumerationItem);
     (this.currentTopLevelEntity.sourceMap as EnumerationSourceMap).enumerationItems.push(sourceMapFrom(context));
     this.currentEnumerationItem = NoEnumerationItem;
   }

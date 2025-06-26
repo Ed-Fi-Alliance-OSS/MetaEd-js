@@ -10,7 +10,6 @@ import { NoSourceMap } from './SourceMap';
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import { DomainItem } from './DomainItem';
-import { ModelBase } from './ModelBase';
 
 export interface SubdomainSourceMap extends TopLevelEntitySourceMap {
   domainItems: SourceMap[];
@@ -59,8 +58,3 @@ export function newSubdomain(): Subdomain {
     sourceMap: newSubdomainSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSubdomain = (x: ModelBase): Subdomain => x as Subdomain;

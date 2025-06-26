@@ -5,7 +5,6 @@
 
 import { newIntegerProperty, newIntegerPropertySourceMap } from './IntegerProperty';
 import { IntegerProperty, IntegerPropertySourceMap } from './IntegerProperty';
-import { EntityProperty } from './EntityProperty';
 import { MergeDirective } from './MergeDirective';
 import { SourceMap } from '../SourceMap';
 
@@ -40,8 +39,3 @@ export function newSharedIntegerProperty(): SharedIntegerProperty {
     sourceMap: newSharedIntegerPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSharedIntegerProperty = (x: EntityProperty): SharedIntegerProperty => x as SharedIntegerProperty;

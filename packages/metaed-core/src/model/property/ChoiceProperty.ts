@@ -5,7 +5,6 @@
 
 import { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -36,8 +35,3 @@ export function newChoiceProperty(): ChoiceProperty {
     sourceMap: newChoicePropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asChoiceProperty = (x: EntityProperty): ChoiceProperty => x as ChoiceProperty;

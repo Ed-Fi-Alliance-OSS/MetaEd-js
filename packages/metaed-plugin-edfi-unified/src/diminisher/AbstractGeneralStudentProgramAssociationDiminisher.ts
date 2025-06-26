@@ -5,7 +5,7 @@
 
 import * as R from 'ramda';
 import { MetaEdEnvironment, EnhancerResult, Association, ModelBase, Namespace } from '@edfi/metaed-core';
-import { versionSatisfies, V3OrGreater, getEntitiesOfType, asAssociation } from '@edfi/metaed-core';
+import { versionSatisfies, V3OrGreater, getEntitiesOfType } from '@edfi/metaed-core';
 
 // METAED-769
 // Forces GeneralStudentProgramAssociation to be abstract
@@ -23,7 +23,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const generalStudentProgramAssociation: Association = R.head(
     getEntitiesOfType(coreNamespace.entity, 'association')
-      .map((entity: ModelBase) => asAssociation(entity))
+      .map((entity: ModelBase) => entity as Association)
       .filter((association: Association) => association.metaEdName === generalStudentProgramAssociationName),
   );
 

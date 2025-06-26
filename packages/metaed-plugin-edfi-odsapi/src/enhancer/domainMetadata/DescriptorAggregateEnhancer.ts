@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { getAllEntitiesOfType, asTopLevelEntity, normalizeEnumerationSuffix } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, normalizeEnumerationSuffix } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from '@edfi/metaed-core';
 import { Table, TopLevelEntityEdfiOds, DescriptorEdfiOds, tableEntity } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DescriptorEdfiOdsApi } from '../../model/Descriptor';
@@ -73,7 +73,7 @@ function enhanceSingleEntity(metaEd: MetaEdEnvironment, entity: TopLevelEntity) 
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((modelBase: ModelBase) => {
-    enhanceSingleEntity(metaEd, asTopLevelEntity(modelBase));
+    enhanceSingleEntity(metaEd, modelBase as TopLevelEntity);
   });
 
   return {

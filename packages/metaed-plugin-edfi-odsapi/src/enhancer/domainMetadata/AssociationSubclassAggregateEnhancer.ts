@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { getAllEntitiesOfType, asTopLevelEntity } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
 import { Table, TopLevelEntityEdfiOds, tableEntity } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
@@ -31,7 +31,7 @@ export function enhanceEntityTable(
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'associationSubclass').forEach((modelBase: ModelBase) => {
-    enhanceSingleEntity(metaEd, asTopLevelEntity(modelBase), metaEd.namespace, enhanceEntityTable);
+    enhanceSingleEntity(metaEd, modelBase as TopLevelEntity, metaEd.namespace, enhanceEntityTable);
   });
 
   return {

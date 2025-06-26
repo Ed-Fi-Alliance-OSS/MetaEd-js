@@ -5,7 +5,6 @@
 
 import { SharedSimple, SharedSimpleSourceMap } from './SharedSimple';
 import { newSharedSimpleSourceMap, newSharedSimple } from './SharedSimple';
-import { ModelBase } from './ModelBase';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
 
@@ -44,8 +43,3 @@ export function newSharedString(): SharedString {
     sourceMap: newSharedStringSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSharedString = (x: ModelBase): SharedString => x as SharedString;

@@ -3,14 +3,14 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
-import { asIntegerType, NoSharedSimple } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, SharedInteger } from '@edfi/metaed-core';
+import { NoSharedSimple } from '@edfi/metaed-core';
 import { withEmptyAsNull } from './SharedPropertyEnhancerUtility';
 
 const enhancerName = 'SharedIntegerPropertyEnhancer';
 
 function copyRestrictions(property) {
-  const referencedEntity = asIntegerType(property.referencedEntity);
+  const referencedEntity = property.referencedEntity as SharedInteger;
   property.minValue = withEmptyAsNull(referencedEntity.minValue);
   property.maxValue = withEmptyAsNull(referencedEntity.maxValue);
 }

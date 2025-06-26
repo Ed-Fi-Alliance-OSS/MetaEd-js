@@ -8,7 +8,6 @@ import {
   PropertyType,
   ValidationFailure,
   ReferentialProperty,
-  asReferentialProperty,
   getPropertiesOfType,
   isReferentialProperty,
   TopLevelEntity,
@@ -46,7 +45,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     if (!isReferentialProperty(property)) return;
-    const referentialProperty = asReferentialProperty(property);
+    const referentialProperty = property as ReferentialProperty;
     if (referentialProperty.mergeDirectives.length === 0) return;
 
     referentialProperty.mergeDirectives.forEach((mergeDirective) => {

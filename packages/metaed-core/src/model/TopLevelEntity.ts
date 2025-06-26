@@ -7,7 +7,7 @@ import deepFreeze from 'deep-freeze';
 import { EntityProperty } from './property/EntityProperty';
 import { ReferentialProperty } from './property/ReferentialProperty';
 import { SimpleProperty } from './property/SimpleProperty';
-import { ModelBase, ModelBaseSourceMap, newModelBaseSourceMap, newModelBase } from './ModelBase';
+import { ModelBaseSourceMap, newModelBaseSourceMap, newModelBase, ModelBase } from './ModelBase';
 import { NoNamespace } from './Namespace';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
@@ -94,8 +94,3 @@ export const NoTopLevelEntity: TopLevelEntity = deepFreeze({
   ...newTopLevelEntity(),
   metaEdName: 'NoTopLevelEntity',
 });
-
-/**
- *
- */
-export const asTopLevelEntity = (x: ModelBase): TopLevelEntity => x as TopLevelEntity;

@@ -5,7 +5,6 @@
 
 import { ShortProperty, ShortPropertySourceMap } from './ShortProperty';
 import { newShortProperty, newShortPropertySourceMap } from './ShortProperty';
-import { EntityProperty } from './EntityProperty';
 import { MergeDirective } from './MergeDirective';
 import { SourceMap } from '../SourceMap';
 
@@ -40,8 +39,3 @@ export function newSharedShortProperty(): SharedShortProperty {
     sourceMap: newSharedShortPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSharedShortProperty = (x: EntityProperty): SharedShortProperty => x as SharedShortProperty;

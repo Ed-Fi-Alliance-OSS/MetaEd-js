@@ -5,7 +5,6 @@
 
 import { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
 import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newDurationProperty(): DurationProperty {
     sourceMap: newDurationPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDurationProperty = (x: EntityProperty): DurationProperty => x as DurationProperty;

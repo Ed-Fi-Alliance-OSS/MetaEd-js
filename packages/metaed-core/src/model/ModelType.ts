@@ -131,8 +131,3 @@ export const topLevelCoreEntityModelTypes: ModelType[] = [
   'mapTypeEnumeration',
   'schoolYearEnumeration',
 ];
-
-/**
- *
- */
-export const asModelType = (x: string): ModelType => x as ModelType;

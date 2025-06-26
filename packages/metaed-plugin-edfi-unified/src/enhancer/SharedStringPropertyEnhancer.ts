@@ -3,8 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
-import { asStringType, NoSharedSimple } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, SharedString } from '@edfi/metaed-core';
+import { NoSharedSimple } from '@edfi/metaed-core';
 import { withEmptyAsNull } from './SharedPropertyEnhancerUtility';
 
 const enhancerName = 'SharedStringPropertyEnhancer';
@@ -13,7 +13,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.propertyIndex.sharedString.forEach((property) => {
     if (property.referencedEntity === NoSharedSimple) return;
 
-    const referencedEntity = asStringType(property.referencedEntity);
+    const referencedEntity = property.referencedEntity as SharedString;
     property.minLength = withEmptyAsNull(referencedEntity.minLength);
     property.maxLength = withEmptyAsNull(referencedEntity.maxLength);
   });

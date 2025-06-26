@@ -6,7 +6,7 @@
 import deepFreeze from 'deep-freeze';
 import { InterchangeItem } from './InterchangeItem';
 import { SourceMap, NoSourceMap } from './SourceMap';
-import { ModelBase, ModelBaseSourceMap, newModelBaseSourceMap, newModelBase } from './ModelBase';
+import { ModelBaseSourceMap, newModelBaseSourceMap, newModelBase, ModelBase } from './ModelBase';
 
 export interface InterchangeSourceMap extends ModelBaseSourceMap {
   elements: SourceMap[];
@@ -72,8 +72,3 @@ export const NoInterchange: Interchange = deepFreeze({
   ...newInterchange(),
   metaEdName: 'NoInterchange',
 });
-
-/**
- *
- */
-export const asInterchange = (x: ModelBase): Interchange => x as Interchange;

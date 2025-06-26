@@ -5,7 +5,6 @@
 
 import { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
 import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newPercentProperty(): PercentProperty {
     sourceMap: newPercentPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asPercentProperty = (x: EntityProperty): PercentProperty => x as PercentProperty;

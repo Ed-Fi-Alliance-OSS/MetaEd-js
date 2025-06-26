@@ -5,7 +5,6 @@
 
 import { newStringProperty, newStringPropertySourceMap } from './StringProperty';
 import { StringProperty, StringPropertySourceMap } from './StringProperty';
-import { EntityProperty } from './EntityProperty';
 import { MergeDirective } from './MergeDirective';
 import { SourceMap } from '../SourceMap';
 
@@ -40,8 +39,3 @@ export function newSharedStringProperty(): SharedStringProperty {
     sourceMap: newSharedStringPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSharedStringProperty = (x: EntityProperty): SharedStringProperty => x as SharedStringProperty;

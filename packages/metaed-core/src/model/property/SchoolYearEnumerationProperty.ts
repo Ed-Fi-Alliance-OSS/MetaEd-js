@@ -5,7 +5,6 @@
 
 import { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -36,9 +35,3 @@ export function newSchoolYearEnumerationProperty(): SchoolYearEnumerationPropert
     sourceMap: newSchoolYearEnumerationPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSchoolYearEnumerationProperty = (x: EntityProperty): SchoolYearEnumerationProperty =>
-  x as SchoolYearEnumerationProperty;

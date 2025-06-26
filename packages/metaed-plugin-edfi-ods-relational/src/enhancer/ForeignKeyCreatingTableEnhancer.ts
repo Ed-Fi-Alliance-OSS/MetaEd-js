@@ -4,8 +4,14 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { asReferentialProperty } from '@edfi/metaed-core';
-import { EnhancerResult, EntityProperty, MergeDirective, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import {
+  EnhancerResult,
+  EntityProperty,
+  MergeDirective,
+  MetaEdEnvironment,
+  Namespace,
+  ReferentialProperty,
+} from '@edfi/metaed-core';
 import { getAllColumns, getPrimaryKeys, addForeignKey } from '../model/database/Table';
 import { newColumnPair } from '../model/database/ColumnPair';
 import { newForeignKey, addColumnPair, foreignKeySourceReferenceFrom } from '../model/database/ForeignKey';
@@ -76,7 +82,7 @@ export function getMergePropertyColumn(table: Table, column: Column, property: E
   let result: Column | undefined;
   // TODO: As of METAED-881, the property here could be a shared simple property, which
   // is not currently an extension of ReferentialProperty but has an equivalent mergeDirectives field
-  asReferentialProperty(property).mergeDirectives.forEach((mergeDirective: MergeDirective) => {
+  (property as ReferentialProperty).mergeDirectives.forEach((mergeDirective: MergeDirective) => {
     if (
       mergeDirective.sourceProperty != null &&
       !column.sourceEntityProperties.includes(mergeDirective.sourceProperty) &&
@@ -95,7 +101,7 @@ export function getMergePropertyColumn(table: Table, column: Column, property: E
             R.compose(
               R.uniq,
               getPrimaryKeys,
-            )(asReferentialProperty(mergeDirective.targetProperty).referencedEntity.data.edfiOdsRelational.odsEntityTable),
+            )((mergeDirective.targetProperty as ReferentialProperty).referencedEntity.data.edfiOdsRelational.odsEntityTable),
           ),
         );
       } else {
@@ -133,7 +139,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     tables.forEach((parentTable: Table) => {
       const parentTablePropertyColumnPairs: PropertyColumnPair[] = getReferencePropertiesAndAssociatedColumns(parentTable);
       parentTablePropertyColumnPairs.forEach((parentTablePairs: PropertyColumnPair) => {
-        const foreignTableNamespace: Namespace = asReferentialProperty(parentTablePairs.property).referencedEntity.namespace;
+        const foreignTableNamespace: Namespace = (parentTablePairs.property as ReferentialProperty).referencedEntity
+          .namespace;
         const foreignTable: Table | undefined = tableEntities(metaEd, foreignTableNamespace).get(
           parentTablePairs.property.metaEdName,
         );
@@ -177,7 +184,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
         foreignKey.withUpdateCascade =
           isReference &&
-          asReferentialProperty(parentTablePairs.property).referencedEntity.data.edfiOdsRelational
+          (parentTablePairs.property as ReferentialProperty).referencedEntity.data.edfiOdsRelational
             .odsCascadePrimaryKeyUpdates &&
           !parentTablePairs.property.data.edfiOdsRelational.odsCausesCyclicUpdateCascade;
 

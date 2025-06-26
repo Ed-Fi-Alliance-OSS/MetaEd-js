@@ -4,12 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { MetaEdEnvironment, ValidationFailure, StringProperty, StringPropertySourceMap } from '@edfi/metaed-core';
-import { asStringProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.propertyIndex.string.forEach((string) => {
-    const stringProperty: StringProperty = asStringProperty(string);
+    const stringProperty: StringProperty = string as StringProperty;
     const minLength: number = Number.parseInt(stringProperty.minLength || '0', 10);
     const maxLength: number = Number.parseInt(stringProperty.maxLength || '0', 10);
     if (minLength <= maxLength) return;

@@ -6,7 +6,6 @@
 import deepFreeze from 'deep-freeze';
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
-import { ModelBase } from './ModelBase';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
 
@@ -41,11 +40,6 @@ export function newAssociation(): Association {
     sourceMap: newAssociationSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asAssociation = (x: ModelBase): Association => x as Association;
 
 /**
  *

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { EntityProperty, ReferentialProperty, asReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
 import { addColumnsWithoutSort, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
@@ -33,7 +33,7 @@ export function enumerationPropertyTableBuilder({
   parentIsRequired,
   currentPropertyPath,
 }: TableBuilderParameters): void {
-  const enumerationProperty: ReferentialProperty = asReferentialProperty(property);
+  const enumerationProperty: ReferentialProperty = property as ReferentialProperty;
 
   if (!enumerationProperty.data.edfiOdsRelational.odsIsCollection) {
     const enumerationColumn: Column = createColumnFor(

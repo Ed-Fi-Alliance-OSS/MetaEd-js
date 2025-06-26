@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { EntityProperty, ModelBase, ModelType, PropertyType, Namespace, TopLevelEntity } from '@edfi/metaed-core';
-import { asModelType, getEntityFromNamespaceChain, allEntityModelTypes } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain, allEntityModelTypes } from '@edfi/metaed-core';
 
 const referenceTypes: ModelType[] = [
   'association',
@@ -31,7 +31,7 @@ function possibleModelTypesReferencedByProperty(propertyType: ModelType | Proper
     result.push(`${propertyType}${extensionSuffix}`);
   if (allEntityModelTypesUntyped.includes(`${propertyType}${subclassSuffix}`))
     result.push(`${propertyType}${subclassSuffix}`);
-  return result.map((x) => asModelType(x));
+  return result.map((x) => x as ModelType);
 }
 
 export function getReferencedEntities(
@@ -42,7 +42,7 @@ export function getReferencedEntities(
 ): ModelBase[] {
   return possibleModelTypesReferencedByProperty(propertyType).reduce(
     (result: ModelBase[], type: ModelType | PropertyType) => {
-      const entity = getEntityFromNamespaceChain(propertyName, propertyReferencedNamespace, namespace, asModelType(type));
+      const entity = getEntityFromNamespaceChain(propertyName, propertyReferencedNamespace, namespace, type as ModelType);
       if (entity != null) return result.concat(entity);
       return result;
     },
@@ -53,8 +53,8 @@ export function getReferencedEntities(
 function getBaseEntity(namespace: Namespace, entity: TopLevelEntity): ModelBase | null {
   if (!entity) return null;
   const modelTypes: ModelType[] = [];
-  if (entity.type.match(subclassSuffix)) modelTypes.push(asModelType(entity.type.replace(subclassSuffix, '')));
-  if (entity.type.match(extensionSuffix)) modelTypes.push(asModelType(entity.type.replace(extensionSuffix, '')));
+  if (entity.type.match(subclassSuffix)) modelTypes.push(entity.type.replace(subclassSuffix, '') as ModelType);
+  if (entity.type.match(extensionSuffix)) modelTypes.push(entity.type.replace(extensionSuffix, '') as ModelType);
   return getEntityFromNamespaceChain(entity.baseEntityName, entity.baseEntityNamespaceName, namespace, ...modelTypes);
 }
 
@@ -118,13 +118,13 @@ export function findReferencedProperty(
       );
 
       if (currentProperty != null) {
-        if (!referenceTypes.includes(asModelType(currentProperty.type))) return true;
+        if (!referenceTypes.includes(currentProperty.type as ModelType)) return true;
         entities.push(
           ...getReferencedEntities(
             namespace,
             currentProperty.metaEdName,
             currentProperty.referencedNamespaceName,
-            asModelType(currentProperty.type),
+            currentProperty.type as ModelType,
           ),
         );
       } else {

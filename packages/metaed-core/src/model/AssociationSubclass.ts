@@ -5,7 +5,6 @@
 
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
-import { ModelBase } from './ModelBase';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newAssociationSubclass(): AssociationSubclass {
     sourceMap: newAssociationSubclassSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asAssociationSubclass = (x: ModelBase): AssociationSubclass => x as AssociationSubclass;

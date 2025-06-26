@@ -7,7 +7,6 @@ import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
-import { ModelBase } from './ModelBase';
 
 export interface CommonSourceMap extends TopLevelEntitySourceMap {
   inlineInOds: SourceMap;
@@ -53,13 +52,3 @@ export function newInlineCommon(): Common {
     inlineInOds: true,
   };
 }
-
-/**
- *
- */
-export const asCommon = (x: ModelBase): Common => x as Common;
-
-/**
- *
- */
-export const asInlineCommon = (x: ModelBase): Common => x as Common;

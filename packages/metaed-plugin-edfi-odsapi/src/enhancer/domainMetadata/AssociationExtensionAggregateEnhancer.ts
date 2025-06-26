@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { getAllEntitiesOfType, asTopLevelEntity } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from '@edfi/metaed-core';
 import { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
@@ -28,7 +28,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'associationExtension').forEach((modelBase: ModelBase) => {
     enhanceSingleEntity(
       metaEd,
-      asTopLevelEntity(modelBase),
+      modelBase as TopLevelEntity,
       metaEd.namespace,
       undefined,
       isAggregateExtension,

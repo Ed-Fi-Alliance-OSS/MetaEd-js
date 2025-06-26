@@ -5,7 +5,6 @@
 
 import { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
 import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import { EntityProperty } from './EntityProperty';
 import { SourceMap } from '../SourceMap';
 import { NoSourceMap } from '../SourceMap';
 
@@ -44,8 +43,3 @@ export function newShortProperty(): ShortProperty {
     sourceMap: newShortPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asShortProperty = (x: EntityProperty): ShortProperty => x as ShortProperty;

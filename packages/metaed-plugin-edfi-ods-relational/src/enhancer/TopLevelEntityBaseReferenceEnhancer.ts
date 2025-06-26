@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { asTopLevelEntity, getAllEntitiesOfType, newReferentialProperty, NoTopLevelEntity } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, newReferentialProperty, NoTopLevelEntity } from '@edfi/metaed-core';
 import { EnhancerResult, MetaEdEnvironment, PropertyType, ReferentialProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { addEntityPropertyEdfiOdsTo } from '../model/property/EntityProperty';
 
@@ -32,7 +32,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'domainEntityExtension',
     'domainEntitySubclass',
   )
-    .map((x) => asTopLevelEntity(x))
+    .map((x) => x as TopLevelEntity)
     .forEach((entity: TopLevelEntity) => {
       if (entity.data.edfiOdsRelational.odsProperties.some((x) => x.isIdentityRename)) return;
 

@@ -11,7 +11,7 @@ import {
   Namespace,
   TopLevelEntity,
 } from '@edfi/metaed-core';
-import { getEntityFromNamespaceChain, getAllEntitiesOfType, asInterchange } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain, getAllEntitiesOfType } from '@edfi/metaed-core';
 
 const enhancerName = 'InterchangeBaseItemEnhancer';
 
@@ -31,7 +31,7 @@ function assignReference(namespace: Namespace, item: InterchangeItem) {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   (getAllEntitiesOfType(metaEd, 'interchange', 'interchangeExtension') as Interchange[]).forEach((interchangeBase) => {
-    const interchange: Interchange = asInterchange(interchangeBase);
+    const interchange: Interchange = interchangeBase as Interchange;
     interchange.elements.forEach((item) => assignReference(interchange.namespace, item));
     interchange.identityTemplates.forEach((item) => assignReference(interchange.namespace, item));
   });

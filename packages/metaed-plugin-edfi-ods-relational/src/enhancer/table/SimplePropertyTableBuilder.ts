@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { MergeDirective } from '@edfi/metaed-core';
-import { isSharedProperty, asReferentialProperty } from '@edfi/metaed-core';
+import { MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
+import { isSharedProperty } from '@edfi/metaed-core';
 import { addColumnsWithoutSort, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
@@ -31,9 +31,9 @@ export function simplePropertyTableBuilder({
 
   // TODO: As of METAED-881, the property here could be a shared simple property, which
   // is not currently an extension of ReferentialProperty but has an equivalent mergeDirectives field
-  if (isSharedProperty(property) && asReferentialProperty(property).mergeDirectives.length > 0) {
+  if (isSharedProperty(property) && (property as ReferentialProperty).mergeDirectives.length > 0) {
     strategy = strategy.skipPath(
-      asReferentialProperty(property).mergeDirectives.map((x: MergeDirective) => x.sourcePropertyPathStrings.slice(1)),
+      (property as ReferentialProperty).mergeDirectives.map((x: MergeDirective) => x.sourcePropertyPathStrings.slice(1)),
     );
   }
 

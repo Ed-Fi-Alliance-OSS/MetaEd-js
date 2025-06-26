@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EntityProperty, EntityPropertySourceMap } from './EntityProperty';
+import { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
 import { newEntityPropertySourceMap, newEntityProperty } from './EntityProperty';
 import { NoSharedSimple } from '../SharedSimple';
 import { SharedSimple } from '../SharedSimple';
@@ -42,8 +42,3 @@ export function newSimpleProperty() {
     sourceMap: newSimplePropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSimpleProperty = (x: EntityProperty): SimpleProperty => x as SimpleProperty;

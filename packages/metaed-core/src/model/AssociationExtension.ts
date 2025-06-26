@@ -5,7 +5,6 @@
 
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
-import { ModelBase } from './ModelBase';
 
 /**
  *
@@ -34,7 +33,3 @@ export function newAssociationExtension(): AssociationExtension {
     sourceMap: newAssociationExtensionSourceMap(),
   };
 }
-/**
- *
- */
-export const asAssociationExtension = (x: ModelBase): AssociationExtension => x as AssociationExtension;

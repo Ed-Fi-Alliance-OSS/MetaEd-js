@@ -51,5 +51,3 @@ export function newStringType(): StringType {
 }
 
 export const NoStringType: StringType = deepFreeze({ ...newStringType(), metaEdName: 'NoStringType' });
-
-export const asStringType = (x: ModelBase): StringType => x as StringType;

@@ -5,7 +5,6 @@
 
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
-import { ModelBase } from './ModelBase';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newDomainEntitySubclass(): DomainEntitySubclass {
     sourceMap: newDomainEntitySubclassSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDomainEntitySubclass = (x: ModelBase): DomainEntitySubclass => x as DomainEntitySubclass;

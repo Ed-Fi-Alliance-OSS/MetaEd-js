@@ -4,13 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import {
-  MetaEdPropertyPath,
-  SemVer,
-  asTopLevelEntity,
-  getEntitiesOfTypeForNamespaces,
-  targetTechnologyVersionFor,
-} from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addForeignKey } from '../../model/database/Table';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
@@ -85,7 +79,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const targetTechnologyVersion = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
 
   getEntitiesOfTypeForNamespaces(Array.from(metaEd.namespace.values()), 'domainEntitySubclass')
-    .map((x: ModelBase) => asTopLevelEntity(x))
+    .map((x: ModelBase) => x as TopLevelEntity)
     .forEach((entity: TopLevelEntity) => {
       const tables: Table[] = [];
       const mainTable: Table = buildMainTable(metaEd, entity, false);

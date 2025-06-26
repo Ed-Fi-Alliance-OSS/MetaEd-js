@@ -69,5 +69,3 @@ export const NoIntegerType: IntegerType = deepFreeze({
   ...newIntegerType(),
   metaEdName: 'NoIntegerType',
 });
-
-export const asIntegerType = (x: ModelBase): IntegerType => x as IntegerType;

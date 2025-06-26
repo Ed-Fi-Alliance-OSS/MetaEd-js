@@ -5,7 +5,6 @@
 
 import { DecimalProperty, DecimalPropertySourceMap } from './DecimalProperty';
 import { newDecimalProperty, newDecimalPropertySourceMap } from './DecimalProperty';
-import { EntityProperty } from './EntityProperty';
 import { MergeDirective } from './MergeDirective';
 import { SourceMap } from '../SourceMap';
 
@@ -40,8 +39,3 @@ export function newSharedDecimalProperty(): SharedDecimalProperty {
     sourceMap: newSharedDecimalPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asSharedDecimalProperty = (x: EntityProperty): SharedDecimalProperty => x as SharedDecimalProperty;

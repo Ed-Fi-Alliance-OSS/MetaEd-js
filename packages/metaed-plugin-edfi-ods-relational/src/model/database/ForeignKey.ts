@@ -6,11 +6,11 @@
 import * as R from 'ramda';
 import {
   orderByProp,
-  asCommonProperty,
   Logger,
   NoNamespace,
   DomainEntityProperty,
   AssociationProperty,
+  CommonProperty,
 } from '@edfi/metaed-core';
 import { EntityProperty, PropertyType, Namespace } from '@edfi/metaed-core';
 import { ReferencePropertyEdfiOds } from '../property/ReferenceProperty';
@@ -108,7 +108,7 @@ function isSubclassRelationship(property: EntityProperty): boolean {
 }
 
 function isExtensionRelationship(property: EntityProperty): boolean {
-  if (property.type === 'common' && asCommonProperty(property).isExtensionOverride) return true;
+  if (property.type === 'common' && (property as CommonProperty).isExtensionOverride) return true;
   if (isReferenceProperty(property)) {
     return !!(property.data.edfiOdsRelational as ReferencePropertyEdfiOds).odsIsReferenceToExtensionParent;
   }

@@ -5,7 +5,6 @@
 
 import { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
 import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import { EntityProperty } from './EntityProperty';
 import { SourceMap } from '../SourceMap';
 import { NoSourceMap } from '../SourceMap';
 
@@ -52,8 +51,3 @@ export function newDecimalProperty(): DecimalProperty {
     sourceMap: newDecimalPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDecimalProperty = (x: EntityProperty): DecimalProperty => x as DecimalProperty;

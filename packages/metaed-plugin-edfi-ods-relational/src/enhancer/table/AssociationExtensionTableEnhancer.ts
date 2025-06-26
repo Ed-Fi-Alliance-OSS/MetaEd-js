@@ -4,8 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  asReferentialProperty,
-  asTopLevelEntity,
   getEntitiesOfTypeForNamespaces,
   versionSatisfies,
   NoNamespace,
@@ -13,6 +11,7 @@ import {
   targetTechnologyVersionFor,
   SemVer,
   MetaEdPropertyPath,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
@@ -38,7 +37,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
 
   getEntitiesOfTypeForNamespaces(Array.from(metaEd.namespace.values()), 'associationExtension')
-    .map((x: ModelBase) => asTopLevelEntity(x))
+    .map((x: ModelBase) => x as TopLevelEntity)
     .forEach((entity: TopLevelEntity) => {
       const tables: Table[] = [];
       const mainTable: Table = {
@@ -81,7 +80,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           (property: EntityProperty) =>
             !property.data.edfiOdsRelational.odsIsCollection &&
             property.type !== 'common' &&
-            (!isOdsReferenceProperty(property) || asReferentialProperty(property).referencedEntity !== entity.baseEntity),
+            (!isOdsReferenceProperty(property) || (property as ReferentialProperty).referencedEntity !== entity.baseEntity),
         )
       ) {
         tables.push(mainTable);

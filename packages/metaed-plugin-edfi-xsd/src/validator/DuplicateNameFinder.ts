@@ -11,7 +11,6 @@ import {
   ValidationFailure,
   TopLevelEntity,
   allEntityModelTypesNoSimpleTypes,
-  asTopLevelEntity,
 } from '@edfi/metaed-core';
 
 export type FailureCollector = (
@@ -31,7 +30,7 @@ export function duplicateNameFinder(
         const entitiesInModelType: ModelBase[] = Array.from(namespace.entity[modelType].values());
         entitiesInModelType.forEach((entityInModelType: ModelBase) => {
           if (dependencyNamespace.entity[modelType].has(entityInModelType.metaEdName)) {
-            const entityWithDuplicateName: TopLevelEntity = asTopLevelEntity(entityInModelType);
+            const entityWithDuplicateName: TopLevelEntity = entityInModelType as TopLevelEntity;
             failureCollector(failures, entityWithDuplicateName, dependencyNamespace);
           }
         });

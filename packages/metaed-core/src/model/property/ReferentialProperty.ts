@@ -48,8 +48,3 @@ export function newReferentialProperty(): ReferentialProperty {
     sourceMap: newReferentialPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asReferentialProperty = (x: EntityProperty): ReferentialProperty => x as ReferentialProperty;

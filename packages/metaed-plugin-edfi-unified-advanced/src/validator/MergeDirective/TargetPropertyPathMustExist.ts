@@ -3,8 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { PropertyType, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
-import { getPropertiesOfType, asReferentialProperty } from '@edfi/metaed-core';
+import { PropertyType, MetaEdEnvironment, ValidationFailure, ReferentialProperty } from '@edfi/metaed-core';
+import { getPropertiesOfType } from '@edfi/metaed-core';
 import { failReferencedPropertyDoesNotExist } from './FailReferencedPropertyDoesNotExist';
 
 const validPropertyTypes: PropertyType[] = [
@@ -28,7 +28,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     // TODO: As of METAED-881, the current property here could also be one of the shared simple properties, which
     // are not currently extensions of ReferentialProperty but have an equivalent mergeDirectives field
-    const referentialProperty = asReferentialProperty(property);
+    const referentialProperty = property as ReferentialProperty;
     referentialProperty.mergeDirectives.forEach((mergeDirective) => {
       failReferencedPropertyDoesNotExist(
         'TargetPropertyPathMustExist',

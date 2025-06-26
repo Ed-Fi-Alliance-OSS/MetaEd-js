@@ -11,12 +11,11 @@ import {
   versionSatisfies,
   PluginEnvironment,
 } from '@edfi/metaed-core';
-import { asSharedStringProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.propertyIndex.sharedString.forEach((property) => {
-    const sharedStringProperty: SharedStringProperty = asSharedStringProperty(property);
+    const sharedStringProperty: SharedStringProperty = property as SharedStringProperty;
     const minLength: number = Number.parseInt(sharedStringProperty.minLength || '0', 10);
     if (minLength === 1 && sharedStringProperty.isOptional) {
       const { targetTechnologyVersion } = metaEd.plugin.get('edfiUnifiedAdvanced') as PluginEnvironment;

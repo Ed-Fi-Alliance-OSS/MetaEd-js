@@ -7,7 +7,6 @@ import { ReferentialProperty, ReferentialPropertySourceMap } from './Referential
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
 import { SourceMap } from '../SourceMap';
 import { NoSourceMap } from '../SourceMap';
-import { EntityProperty } from './EntityProperty';
 
 export interface CommonPropertySourceMap extends ReferentialPropertySourceMap {
   isExtensionOverride: SourceMap;
@@ -40,8 +39,3 @@ export function newCommonProperty(): CommonProperty {
     sourceMap: newCommonPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asCommonProperty = (x: EntityProperty): CommonProperty => x as CommonProperty;

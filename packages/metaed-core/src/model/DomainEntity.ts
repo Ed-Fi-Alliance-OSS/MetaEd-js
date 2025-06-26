@@ -8,7 +8,6 @@ import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity'
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
-import { ModelBase } from './ModelBase';
 
 export interface DomainEntitySourceMap extends TopLevelEntitySourceMap {
   isAbstract: SourceMap;
@@ -60,8 +59,3 @@ export const NoDomainEntity: DomainEntity = deepFreeze({
   ...newDomainEntity(),
   metaEdName: 'NoDomainEntity',
 });
-
-/**
- *
- */
-export const asDomainEntity = (x: ModelBase): DomainEntity => x as DomainEntity;

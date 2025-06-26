@@ -5,7 +5,6 @@
 
 import { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -36,8 +35,3 @@ export function newDescriptorProperty(): DescriptorProperty {
     sourceMap: newDescriptorPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDescriptorProperty = (x: EntityProperty): DescriptorProperty => x as DescriptorProperty;

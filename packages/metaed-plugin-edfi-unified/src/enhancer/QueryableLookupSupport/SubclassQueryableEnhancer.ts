@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
-import { asTopLevelEntity, getAllEntitiesForNamespaces } from '@edfi/metaed-core';
+import { getAllEntitiesForNamespaces } from '@edfi/metaed-core';
 
 const enhancerName = 'SubclassQueryableEnhancer';
 
@@ -18,7 +18,7 @@ function includeBaseClassQueryableFields(entity: TopLevelEntity, queryableProper
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesForNamespaces(Array.from(metaEd.namespace.values()))
-    .map((x) => asTopLevelEntity(x))
+    .map((x) => x as TopLevelEntity)
     .filter((x) => x.baseEntity && x.baseEntity.queryableFields)
     .forEach((entity) => entity.queryableFields.push(...includeBaseClassQueryableFields(entity, [])));
 

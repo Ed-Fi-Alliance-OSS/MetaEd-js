@@ -9,7 +9,6 @@ import { MapTypeEnumeration } from './MapTypeEnumeration';
 import { NoMapTypeEnumeration } from './MapTypeEnumeration';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
-import { ModelBase } from './ModelBase';
 
 export interface DescriptorSourceMap extends TopLevelEntitySourceMap {
   isMapTypeRequired: SourceMap;
@@ -50,8 +49,3 @@ export function newDescriptor(): Descriptor {
     sourceMap: newDescriptorSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asDescriptor = (x: ModelBase): Descriptor => x as Descriptor;

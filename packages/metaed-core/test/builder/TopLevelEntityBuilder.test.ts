@@ -10,23 +10,15 @@ import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { NoSourceMap } from '../../src/model/SourceMap';
 import { getDomainEntity, getAssociation } from '../TestHelper';
-import { asAssociationProperty } from '../../src/model/property/AssociationProperty';
-import { asCommonProperty } from '../../src/model/property/CommonProperty';
-import { asDecimalProperty } from '../../src/model/property/DecimalProperty';
-import { asDomainEntityProperty } from '../../src/model/property/DomainEntityProperty';
-import { asIntegerProperty } from '../../src/model/property/IntegerProperty';
-import { asReferentialProperty } from '../../src/model/property/ReferentialProperty';
-import { asSharedStringProperty } from '../../src/model/property/SharedStringProperty';
-import { asShortProperty } from '../../src/model/property/ShortProperty';
-import { asStringProperty } from '../../src/model/property/StringProperty';
-import { AssociationPropertySourceMap } from '../../src/model/property/AssociationProperty';
-import { CommonPropertySourceMap } from '../../src/model/property/CommonProperty';
-import { DecimalPropertySourceMap } from '../../src/model/property/DecimalProperty';
-import { DomainEntityPropertySourceMap } from '../../src/model/property/DomainEntityProperty';
-import { IntegerPropertySourceMap } from '../../src/model/property/IntegerProperty';
-import { ReferentialPropertySourceMap } from '../../src/model/property/ReferentialProperty';
-import { ShortPropertySourceMap } from '../../src/model/property/ShortProperty';
-import { StringPropertySourceMap } from '../../src/model/property/StringProperty';
+import { AssociationPropertySourceMap, AssociationProperty } from '../../src/model/property/AssociationProperty';
+import { CommonPropertySourceMap, CommonProperty } from '../../src/model/property/CommonProperty';
+import { DecimalPropertySourceMap, DecimalProperty } from '../../src/model/property/DecimalProperty';
+import { DomainEntityPropertySourceMap, DomainEntityProperty } from '../../src/model/property/DomainEntityProperty';
+import { IntegerPropertySourceMap, IntegerProperty } from '../../src/model/property/IntegerProperty';
+import { ReferentialPropertySourceMap, ReferentialProperty } from '../../src/model/property/ReferentialProperty';
+import { ShortPropertySourceMap, ShortProperty } from '../../src/model/property/ShortProperty';
+import { StringPropertySourceMap, StringProperty } from '../../src/model/property/StringProperty';
+import { SharedStringProperty } from '../../src/model/property/SharedStringProperty';
 import { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -174,7 +166,7 @@ describe('when building association property with weak reference', (): void => {
   });
 
   it('should have isWeak', (): void => {
-    expect(asAssociationProperty(getDomainEntity(namespace.entity, entityName).properties[0]).isWeak).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as AssociationProperty).isWeak).toBe(true);
   });
 
   it('should have source map for isWeak with line, column, text', (): void => {
@@ -512,7 +504,7 @@ describe('when building common property with extension override', (): void => {
   });
 
   it('should have isExtensionOverride', (): void => {
-    expect(asCommonProperty(getDomainEntity(namespace.entity, entityName).properties[0]).isExtensionOverride).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as CommonProperty).isExtensionOverride).toBe(true);
   });
 
   it('should have source map for isExtensionOverride with line, column, text', (): void => {
@@ -860,7 +852,7 @@ describe('when building decimal property', (): void => {
   });
 
   it('should have totalDigits', (): void => {
-    expect(asDecimalProperty(getDomainEntity(namespace.entity, entityName).properties[0]).totalDigits).toBe(totalDigits);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as DecimalProperty).totalDigits).toBe(totalDigits);
   });
 
   it('should have source map for totalDigits', (): void => {
@@ -873,7 +865,9 @@ describe('when building decimal property', (): void => {
   });
 
   it('should have decimalPlaces', (): void => {
-    expect(asDecimalProperty(getDomainEntity(namespace.entity, entityName).properties[0]).decimalPlaces).toBe(decimalPlaces);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as DecimalProperty).decimalPlaces).toBe(
+      decimalPlaces,
+    );
   });
 
   it('should have source map for decimalPlaces', (): void => {
@@ -886,7 +880,7 @@ describe('when building decimal property', (): void => {
   });
 
   it('should have minValue', (): void => {
-    expect(asDecimalProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBe(minValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as DecimalProperty).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', (): void => {
@@ -899,7 +893,7 @@ describe('when building decimal property', (): void => {
   });
 
   it('should have maxValue', (): void => {
-    expect(asDecimalProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBe(maxValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as DecimalProperty).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', (): void => {
@@ -1338,7 +1332,7 @@ describe('when building domain entity property with weak reference', (): void =>
   });
 
   it('should have isWeak', (): void => {
-    expect(asDomainEntityProperty(getDomainEntity(namespace.entity, entityName).properties[0]).isWeak).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as DomainEntityProperty).isWeak).toBe(true);
   });
 
   it('should have source map for isWeak with line, column, text', (): void => {
@@ -2499,7 +2493,7 @@ describe('when building integer property', (): void => {
   });
 
   it('should have minValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBe(minValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', (): void => {
@@ -2512,7 +2506,7 @@ describe('when building integer property', (): void => {
   });
 
   it('should have maxValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBe(maxValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', (): void => {
@@ -2525,7 +2519,7 @@ describe('when building integer property', (): void => {
   });
 
   it('should not have big hint', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(false);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).hasBigHint).toBe(false);
   });
 
   it('should have source map with line, column, text', (): void => {
@@ -2708,15 +2702,15 @@ describe('when building integer property with big max value', (): void => {
   });
 
   it('should not have maxValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).maxValue).toBeNull();
   });
 
   it('should not have minValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).minValue).toBeNull();
   });
 
   it('should have big hint', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).hasBigHint).toBe(true);
   });
 
   it('should have source map for max value', (): void => {
@@ -2753,15 +2747,15 @@ describe('when building integer property with big min value', (): void => {
   });
 
   it('should not have maxValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).maxValue).toBeNull();
   });
 
   it('should not have minValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).minValue).toBeNull();
   });
 
   it('should have big hint', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).hasBigHint).toBe(true);
   });
 
   it('should have source map for min value', (): void => {
@@ -2801,15 +2795,15 @@ describe('when building integer property with big min value and big max value', 
   });
 
   it('should not have maxValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).maxValue).toBeNull();
   });
 
   it('should not have minValue', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).minValue).toBeNull();
   });
 
   it('should have big hint', (): void => {
-    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as IntegerProperty).hasBigHint).toBe(true);
   });
 });
 
@@ -2882,29 +2876,29 @@ describe('when building merge directive reference', (): void => {
   });
 
   it('should have property in merge properties', (): void => {
-    expect(asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives).toHaveLength(
-      1,
-    );
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives,
+    ).toHaveLength(1);
   });
 
   it('should have sourcePropertyPathStrings', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings,
     ).toHaveLength(2);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings.split('.')[0]);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[1],
     ).toBe(sourcePropertyPathStrings.split('.')[1]);
   });
 
   it('should have source map for sourcePropertyPathStrings with line, column, text', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0].sourceMap
         .sourcePropertyPathStrings,
     ).toMatchInlineSnapshot(`
             Object {
@@ -2917,22 +2911,22 @@ describe('when building merge directive reference', (): void => {
 
   it('should have targetPropertyPathStrings', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings,
     ).toHaveLength(2);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings.split('.')[0]);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings[1],
     ).toBe(targetPropertyPathStrings.split('.')[1]);
   });
 
   it('should have source map for targetPropertyPathStrings with line, column, text', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0].sourceMap
         .targetPropertyPathStrings,
     ).toMatchInlineSnapshot(`
             Object {
@@ -2976,32 +2970,32 @@ describe('when building multiple merge directives', (): void => {
   });
 
   it('should have multiple properties in merge directives', (): void => {
-    expect(asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives).toHaveLength(
-      2,
-    );
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives,
+    ).toHaveLength(2);
   });
 
   it('should have sourcePropertyPathStrings and targetPropertyPathStrings for first merge directive', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings0);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings0);
   });
 
   it('should have source map for first merge directive', (): void => {
-    expect(asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap)
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0].sourceMap)
       .toMatchInlineSnapshot(`
             Object {
               "sourceProperty": Object {
@@ -3045,25 +3039,25 @@ describe('when building multiple merge directives', (): void => {
 
   it('should have sourcePropertyPathStrings and targetPropertyPathStrings for second merge directive', (): void => {
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[1]
         .sourcePropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[1]
         .targetPropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[1]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings1);
     expect(
-      asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[1]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings1);
   });
 
   it('should have source map for second merge directive', (): void => {
-    expect(asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1].sourceMap)
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[1].sourceMap)
       .toMatchInlineSnapshot(`
             Object {
               "sourceProperty": Object {
@@ -3137,33 +3131,34 @@ describe('when building multiple merge directives for a shared simple type', ():
   });
 
   it('should have multiple properties in merge directives', (): void => {
-    expect(asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives).toHaveLength(
-      2,
-    );
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives,
+    ).toHaveLength(2);
   });
 
   it('should have sourcePropertyPathStrings and targetPropertyPathStrings for first merge directive', (): void => {
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[0]
         .sourcePropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[0]
         .targetPropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings0);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[0]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings0);
   });
 
   it('should have source map for first merge directive', (): void => {
-    expect(asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap)
-      .toMatchInlineSnapshot(`
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[0].sourceMap,
+    ).toMatchInlineSnapshot(`
             Object {
               "sourceProperty": Object {
                 "column": 0,
@@ -3206,26 +3201,27 @@ describe('when building multiple merge directives for a shared simple type', ():
 
   it('should have sourcePropertyPathStrings and targetPropertyPathStrings for second merge directive', (): void => {
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[1]
         .sourcePropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[1]
         .targetPropertyPathStrings,
     ).toHaveLength(1);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[1]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings1);
     expect(
-      asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1]
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[1]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings1);
   });
 
   it('should have source map for second merge directive', (): void => {
-    expect(asSharedStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives[1].sourceMap)
-      .toMatchInlineSnapshot(`
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as SharedStringProperty).mergeDirectives[1].sourceMap,
+    ).toMatchInlineSnapshot(`
             Object {
               "sourceProperty": Object {
                 "column": 0,
@@ -3297,29 +3293,29 @@ describe('when building merge directive for defining association domain entity p
   });
 
   it('should have property in merge properties', (): void => {
-    expect(asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives).toHaveLength(
+    expect((getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives).toHaveLength(
       1,
     );
   });
 
   it('should have sourcePropertyPathStrings', (): void => {
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings,
     ).toHaveLength(2);
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[0],
     ).toBe(sourcePropertyPathStrings.split('.')[0]);
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .sourcePropertyPathStrings[1],
     ).toBe(sourcePropertyPathStrings.split('.')[1]);
   });
 
   it('should have source map for sourcePropertyPathStrings with line, column, text', (): void => {
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0].sourceMap
         .sourcePropertyPathStrings,
     ).toMatchInlineSnapshot(`
             Object {
@@ -3332,22 +3328,22 @@ describe('when building merge directive for defining association domain entity p
 
   it('should have targetPropertyPathStrings', (): void => {
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings,
     ).toHaveLength(2);
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings[0],
     ).toBe(targetPropertyPathStrings.split('.')[0]);
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0]
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0]
         .targetPropertyPathStrings[1],
     ).toBe(targetPropertyPathStrings.split('.')[1]);
   });
 
   it('should have source map for targetPropertyPathStrings with line, column, text', (): void => {
     expect(
-      asReferentialProperty(getAssociation(namespace.entity, entityName).properties[0]).mergeDirectives[0].sourceMap
+      (getAssociation(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives[0].sourceMap
         .targetPropertyPathStrings,
     ).toMatchInlineSnapshot(`
             Object {
@@ -3483,9 +3479,9 @@ describe('when building referential property with merge directives', (): void =>
   });
 
   it('should have merge directive', (): void => {
-    expect(asReferentialProperty(getDomainEntity(namespace.entity, entityName).properties[0]).mergeDirectives).toHaveLength(
-      1,
-    );
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0] as ReferentialProperty).mergeDirectives,
+    ).toHaveLength(1);
   });
 
   it('should have source map for mergeDirectives with line, column, text', (): void => {
@@ -3806,7 +3802,7 @@ describe('when building short property', (): void => {
   });
 
   it('should have minValue', (): void => {
-    expect(asShortProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBe(minValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as ShortProperty).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', (): void => {
@@ -3819,7 +3815,7 @@ describe('when building short property', (): void => {
   });
 
   it('should have maxValue', (): void => {
-    expect(asShortProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBe(maxValue);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as ShortProperty).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', (): void => {
@@ -4041,7 +4037,7 @@ describe('when building string property', (): void => {
   });
 
   it('should have minLength', (): void => {
-    expect(asStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minLength).toBe(minLength);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as StringProperty).minLength).toBe(minLength);
   });
 
   it('should have source map for minLength', (): void => {
@@ -4054,7 +4050,7 @@ describe('when building string property', (): void => {
   });
 
   it('should have maxLength', (): void => {
-    expect(asStringProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxLength).toBe(maxLength);
+    expect((getDomainEntity(namespace.entity, entityName).properties[0] as StringProperty).maxLength).toBe(maxLength);
   });
 
   it('should have source map for maxLength', (): void => {

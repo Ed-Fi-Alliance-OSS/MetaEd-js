@@ -5,7 +5,6 @@
 
 import { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
 import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import { EntityProperty } from './EntityProperty';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newBooleanProperty(): BooleanProperty {
     sourceMap: newBooleanPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asBooleanProperty = (x: EntityProperty): BooleanProperty => x as BooleanProperty;

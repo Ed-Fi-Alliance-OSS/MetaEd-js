@@ -10,7 +10,6 @@ import { DomainItem } from './DomainItem';
 import { SourceMap } from './SourceMap';
 import { NoSourceMap } from './SourceMap';
 import { Subdomain } from './Subdomain';
-import { ModelBase } from './ModelBase';
 
 export interface DomainSourceMap extends TopLevelEntitySourceMap {
   domainItems: SourceMap[];
@@ -63,13 +62,3 @@ export const NoDomain: Domain = deepFreeze({
   ...newDomain(),
   metaEdName: 'NoDomain',
 });
-
-/**
- *
- */
-export const asDomain = (x: ModelBase): Domain => x as Domain;
-
-/**
- *
- */
-export const asDomainBase = (x: ModelBase): Domain | Subdomain => x as Domain | Subdomain;

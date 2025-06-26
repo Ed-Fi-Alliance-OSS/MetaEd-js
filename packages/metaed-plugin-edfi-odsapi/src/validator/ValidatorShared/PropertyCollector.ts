@@ -4,8 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 // 2.x - METAED-711 - ODS-1732
-import { asReferentialProperty } from '@edfi/metaed-core';
-import { TopLevelEntity, EntityProperty } from '@edfi/metaed-core';
+import { TopLevelEntity, EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
 
 export function collectSingleEntity(
   entity: TopLevelEntity,
@@ -19,15 +18,15 @@ export function collectSingleEntity(
 
   entity.properties.forEach((property: EntityProperty) => {
     if (
-      (asReferentialProperty(property).referencedEntity != null &&
-        asReferentialProperty(property).referencedEntity.properties != null &&
+      ((property as ReferentialProperty).referencedEntity != null &&
+        (property as ReferentialProperty).referencedEntity.properties != null &&
         ['choice', 'inlineCommon'].includes(entity.type)) ||
       ((includeAllProperties || property.isPartOfIdentity || property.isIdentityRename) &&
         ['association', 'descriptor', 'domainEntity', 'enumeration'].includes(property.type))
     ) {
-      referencedEntities.push(entityStrategy(asReferentialProperty(property).referencedEntity, property));
+      referencedEntities.push(entityStrategy((property as ReferentialProperty).referencedEntity, property));
     } else if (includeAllProperties || property.isPartOfIdentity) {
-      properties.push(propertyStrategy(asReferentialProperty(property).referencedEntity, property));
+      properties.push(propertyStrategy((property as ReferentialProperty).referencedEntity, property));
     }
   });
 

@@ -7,7 +7,6 @@ import { ReferentialProperty, ReferentialPropertySourceMap } from './Referential
 import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
 import { SourceMap } from '../SourceMap';
 import { NoSourceMap } from '../SourceMap';
-import { EntityProperty } from './EntityProperty';
 
 export interface AssociationPropertySourceMap extends ReferentialPropertySourceMap {
   potentiallyLogical: SourceMap;
@@ -44,8 +43,3 @@ export function newAssociationProperty(): AssociationProperty {
     sourceMap: newAssociationPropertySourceMap(),
   };
 }
-
-/**
- *
- */
-export const asAssociationProperty = (x: EntityProperty): AssociationProperty => x as AssociationProperty;

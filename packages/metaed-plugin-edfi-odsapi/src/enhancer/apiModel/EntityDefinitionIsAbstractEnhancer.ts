@@ -3,8 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
-import { asAssociation, asDomainEntity } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace, DomainEntity, Association } from '@edfi/metaed-core';
 import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
@@ -18,10 +17,10 @@ function isAbstract(table: Table): boolean {
   // true for the main table of an Abstract Entity
   return (
     (table.parentEntity.type === 'domainEntity' &&
-      asDomainEntity(table.parentEntity).isAbstract &&
+      (table.parentEntity as DomainEntity).isAbstract &&
       table.existenceReason.isEntityMainTable) ||
     (table.parentEntity.type === 'association' &&
-      asAssociation(table.parentEntity).isAbstract &&
+      (table.parentEntity as Association).isAbstract &&
       table.existenceReason.isEntityMainTable)
   );
 }

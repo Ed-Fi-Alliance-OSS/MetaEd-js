@@ -4,14 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { uniq, sortWith, prop } from 'ramda';
-import {
-  isReferentialProperty,
-  asInlineCommonProperty,
-  asChoiceProperty,
-  asReferentialProperty,
-  Logger,
-  NoInterchangeItem,
-} from '@edfi/metaed-core';
+import { isReferentialProperty, Logger, NoInterchangeItem } from '@edfi/metaed-core';
 import {
   ChoiceProperty,
   EnhancerResult,
@@ -49,7 +42,7 @@ function getDependencies(entity: TopLevelEntity, includeExtensions: boolean, par
 
   const referenceProperties: ReferentialProperty[] = entity.properties
     .filter((property: EntityProperty) => isReferentialProperty(property))
-    .map((property: EntityProperty) => asReferentialProperty(property));
+    .map((property: EntityProperty) => property as ReferentialProperty);
 
   if (referenceProperties.length === 0) return result;
 
@@ -58,8 +51,8 @@ function getDependencies(entity: TopLevelEntity, includeExtensions: boolean, par
   const inlineCommonProperties: InlineCommonProperty[] = [];
 
   referenceProperties.forEach((property: ReferentialProperty) => {
-    if (property.type === 'choice') choiceProperties.push(asChoiceProperty(property));
-    else if (property.type === 'inlineCommon') inlineCommonProperties.push(asInlineCommonProperty(property));
+    if (property.type === 'choice') choiceProperties.push(property as ChoiceProperty);
+    else if (property.type === 'inlineCommon') inlineCommonProperties.push(property as InlineCommonProperty);
     else otherProperties.push(property);
   });
 

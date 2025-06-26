@@ -11,12 +11,11 @@ import {
   versionSatisfies,
   PluginEnvironment,
 } from '@edfi/metaed-core';
-import { asStringProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.propertyIndex.string.forEach((string) => {
-    const stringProperty: StringProperty = asStringProperty(string);
+    const stringProperty: StringProperty = string as StringProperty;
     const minLength: number = Number.parseInt(stringProperty.minLength || '0', 10);
     if (minLength === 1 && stringProperty.isOptional) {
       const { targetTechnologyVersion } = metaEd.plugin.get('edfiUnified') as PluginEnvironment;

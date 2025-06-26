@@ -5,7 +5,7 @@
 
 import deepFreeze from 'deep-freeze';
 import { ModelType } from './ModelType';
-import { ModelBase, ModelBaseSourceMap, newModelBaseSourceMap, newModelBase } from './ModelBase';
+import { ModelBaseSourceMap, newModelBaseSourceMap, newModelBase, ModelBase } from './ModelBase';
 import { SourceMap, NoSourceMap } from './SourceMap';
 import { NoTopLevelEntity, TopLevelEntity } from './TopLevelEntity';
 
@@ -63,8 +63,3 @@ export const NoInterchangeItem: InterchangeItem = deepFreeze({
   ...newInterchangeItem(),
   metaEdName: 'NoInterchangeItem',
 });
-
-/**
- *
- */
-export const asInterchangeItem = (x: ModelBase): InterchangeItem => x as InterchangeItem;

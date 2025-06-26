@@ -10,8 +10,8 @@ import {
   ValidationFailure,
   MergeDirective,
   getPropertiesOfType,
-  asReferentialProperty,
   EntityProperty,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 
 const validPropertyTypes: PropertyType[] = [
@@ -55,7 +55,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     // TODO: As of METAED-881, the current property here could also be one of the shared simple properties, which
     // are not currently extensions of ReferentialProperty but have an equivalent mergeDirectives field
-    const referentialProperty = asReferentialProperty(property);
+    const referentialProperty = property as ReferentialProperty;
     referentialProperty.mergeDirectives.forEach((mergeDirective) => {
       if (mergeDirective.sourceProperty == null) {
         makeFailure(failures, mergeDirective);

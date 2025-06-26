@@ -5,7 +5,7 @@
 
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
-import { newDescriptor, asDescriptor } from '../model/Descriptor';
+import { newDescriptor, Descriptor } from '../model/Descriptor';
 import { DescriptorSourceMap } from '../model/Descriptor';
 import { EnumerationSourceMap } from '../model/Enumeration';
 import { MapTypeEnumeration } from '../model/MapTypeEnumeration';
@@ -51,13 +51,13 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
 
   enterOptionalMapType(context: MetaEdGrammar.OptionalMapTypeContext) {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    asDescriptor(this.currentTopLevelEntity).isMapTypeOptional = true;
+    (this.currentTopLevelEntity as Descriptor).isMapTypeOptional = true;
     (this.currentTopLevelEntity.sourceMap as DescriptorSourceMap).isMapTypeOptional = sourceMapFrom(context);
   }
 
   enterRequiredMapType(context: MetaEdGrammar.RequiredMapTypeContext) {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    asDescriptor(this.currentTopLevelEntity).isMapTypeRequired = true;
+    (this.currentTopLevelEntity as Descriptor).isMapTypeRequired = true;
     (this.currentTopLevelEntity.sourceMap as DescriptorSourceMap).isMapTypeRequired = sourceMapFrom(context);
   }
 
@@ -89,7 +89,7 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
   exitWithMapType(_context: MetaEdGrammar.WithMapTypeContext) {
     if (this.currentMapTypeEnumeration === NoMapTypeEnumeration) return;
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
-      asDescriptor(this.currentTopLevelEntity).mapTypeEnumeration = this.currentMapTypeEnumeration;
+      (this.currentTopLevelEntity as Descriptor).mapTypeEnumeration = this.currentMapTypeEnumeration;
     }
     this.currentNamespace.entity.mapTypeEnumeration.set(
       this.currentMapTypeEnumeration.metaEdName,

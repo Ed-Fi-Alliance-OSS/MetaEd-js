@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import deepFreeze from 'deep-freeze';
-import { ModelBase, ModelBaseSourceMap, newModelBaseSourceMap, newModelBase } from './ModelBase';
+import { ModelBaseSourceMap, newModelBaseSourceMap, newModelBase, ModelBase } from './ModelBase';
 import { TopLevelEntity, NoTopLevelEntity } from './TopLevelEntity';
 import { ModelType } from './ModelType';
 import { SourceMap, NoSourceMap } from './SourceMap';
@@ -63,8 +63,3 @@ export const NoDomainItem: DomainItem = deepFreeze({
   ...newDomainItem(),
   metaEdName: 'NoDomainItem',
 });
-
-/**
- *
- */
-export const asDomainItem = (x: ModelBase): DomainItem => x as DomainItem;

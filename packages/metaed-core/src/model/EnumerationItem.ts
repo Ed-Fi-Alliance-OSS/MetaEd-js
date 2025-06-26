@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import deepFreeze from 'deep-freeze';
-import { ModelBase, ModelBaseSourceMap, newModelBaseSourceMap, newModelBase } from './ModelBase';
+import { ModelBaseSourceMap, newModelBaseSourceMap, newModelBase, ModelBase } from './ModelBase';
 import { SourceMap, NoSourceMap } from './SourceMap';
 
 export interface EnumerationItemSourceMap extends ModelBaseSourceMap {
@@ -50,8 +50,3 @@ export const NoEnumerationItem: EnumerationItem = deepFreeze({
   metaEdName: 'NoEnumerationItem',
   shortDescription: 'NoEnumerationItem',
 });
-
-/**
- *
- */
-export const asEnumerationItem = (x: ModelBase): EnumerationItem => x as EnumerationItem;

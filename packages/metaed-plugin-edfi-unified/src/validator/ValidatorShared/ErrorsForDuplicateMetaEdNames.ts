@@ -3,8 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { ModelBase, ValidationFailure } from '@edfi/metaed-core';
-import { asTopLevelEntity } from '@edfi/metaed-core';
+import { ModelBase, TopLevelEntity, ValidationFailure } from '@edfi/metaed-core';
 import { groupByMetaEdName } from '../../shared/GroupByMetaEdName';
 
 export function generateValidationErrorsForDuplicates(
@@ -20,9 +19,9 @@ export function generateValidationErrorsForDuplicates(
           validatorName,
           category: 'error',
           message: `${
-            asTopLevelEntity(entity).typeHumanizedName
+            (entity as TopLevelEntity).typeHumanizedName
           } named ${metaEdName} is a duplicate declaration of that name.`,
-          sourceMap: asTopLevelEntity(entity).sourceMap.metaEdName,
+          sourceMap: (entity as TopLevelEntity).sourceMap.metaEdName,
           fileMap: null,
         });
       });

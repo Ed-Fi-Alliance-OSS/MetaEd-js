@@ -5,7 +5,6 @@
 
 import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
-import { ModelBase } from './ModelBase';
 
 /**
  *
@@ -34,8 +33,3 @@ export function newChoice(): Choice {
     sourceMap: newChoiceSourceMap(),
   };
 }
-
-/**
- *
- */
-export const asChoice = (x: ModelBase): Choice => x as Choice;
