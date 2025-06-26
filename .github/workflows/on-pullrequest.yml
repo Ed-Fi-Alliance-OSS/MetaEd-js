@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
-          node-version: "18"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
@@ -60,7 +60,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
-          node-version: "18"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
@@ -121,7 +121,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
-          node-version: "18"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
@@ -141,8 +141,8 @@ jobs:
           docker exec -i mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ${{ env.SA_PASSWORD }} -C -d master \
             -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
 
-      - name: SQLServer Unit tests
-        run: npm run test:unit:ods:sqlserver:db -- --ci  --config ./jest.ci-config.js
+      - name: SQLServer Database tests
+        run: npm run test:unit:db:sqlserver -- --ci  --config ./jest.ci-config.js
         env:
           MSSQL_USERNAME: sa
           MSSQL_PASSWORD: ${{ env.SA_PASSWORD }}
@@ -173,7 +173,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: "18"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
@@ -196,8 +196,8 @@ jobs:
           sudo -u postgres psql -U postgres -c "create database metaed_integration_tests;"
           sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
 
-      - name: PostgreSQL Unit tests
-        run: npm run test:unit:ods:postgresql:db -- --ci --config ./jest.ci-config.js
+      - name: PostgreSQL Database tests
+        run: npm run test:unit:db:postgresql -- --ci --config ./jest.ci-config.js
         env:
           JEST_JUNIT_OUTPUT_DIR: postgresql-tests
 
