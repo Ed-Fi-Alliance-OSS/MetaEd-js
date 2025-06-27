@@ -22,6 +22,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     // Using Set to remove duplicates
     const booleanResult: Set<JsonPath> = new Set();
+    const dateResult: Set<JsonPath> = new Set();
     const dateTimeResult: Set<JsonPath> = new Set();
     const numericResult: Set<JsonPath> = new Set();
     const numericTypes = [
@@ -47,6 +48,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
         if (jppp.sourceProperty.type === 'boolean') {
           booleanResult.add(jppp.jsonPath);
+        } else if (jppp.sourceProperty.type === 'date') {
+          dateResult.add(jppp.jsonPath);
         } else if (jppp.sourceProperty.type === 'datetime') {
           dateTimeResult.add(jppp.jsonPath);
         } else if (numericTypes.includes(jppp.sourceProperty.type)) {
@@ -56,14 +59,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     });
 
     (entity.data.edfiApiSchema as EntityApiSchemaData).booleanJsonPaths = [...booleanResult].sort();
+    (entity.data.edfiApiSchema as EntityApiSchemaData).dateJsonPaths = [...dateResult].sort();
     (entity.data.edfiApiSchema as EntityApiSchemaData).dateTimeJsonPaths = [...dateTimeResult].sort();
     (entity.data.edfiApiSchema as EntityApiSchemaData).numericJsonPaths = [...numericResult].sort();
   });
 
-  // Descriptors have no boolean, numeric, or datetime properties
+  // Descriptors have no boolean, numeric, date, or datetime properties
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.booleanJsonPaths = [];
+    edfiApiSchemaData.dateJsonPaths = [];
     edfiApiSchemaData.dateTimeJsonPaths = [];
     edfiApiSchemaData.numericJsonPaths = [];
   });

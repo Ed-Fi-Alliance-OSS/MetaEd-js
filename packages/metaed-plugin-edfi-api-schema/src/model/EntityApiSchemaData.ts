@@ -129,6 +129,11 @@ export type EntityApiSchemaData = {
   booleanJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that are of type date for use in type coercion.
+   */
+  dateJsonPaths: JsonPath[];
+
+  /**
    * A list of the JsonPaths that are numeric for use in type coercion.
    */
   numericJsonPaths: JsonPath[];
@@ -221,6 +226,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     contactSecurableElements: [],
     staffSecurableElements: [],
     arrayUniquenessConstraints: [],
+    dateJsonPaths: [],
   });
 }
 

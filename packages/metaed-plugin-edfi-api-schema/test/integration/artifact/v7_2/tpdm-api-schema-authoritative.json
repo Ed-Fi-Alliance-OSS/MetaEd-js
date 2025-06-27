@@ -15218,6 +15218,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -15332,6 +15334,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -15459,6 +15463,12 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
+          "$.beginDate",
+          "$.degreeSpecializations[*].beginDate",
+          "$.degreeSpecializations[*].endDate",
+          "$.endDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -15925,6 +15935,13 @@
           "$.multipleBirthStatus",
           "$.telephones[*].doNotPublishIndicator",
           "$.telephones[*].textMessageCapabilityIndicator"
+        ],
+        "dateJsonPaths": [
+          "$.addresses[*].periods[*].beginDate",
+          "$.addresses[*].periods[*].endDate",
+          "$.birthDate",
+          "$.dateEnteredUS",
+          "$.personalIdentificationDocuments[*].documentExpirationDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -17251,6 +17268,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -17365,6 +17384,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -17481,6 +17502,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -17595,6 +17618,9 @@
         ],
         "booleanJsonPaths": [
           "$._ext.tpdm.boardCertificationIndicator"
+        ],
+        "dateJsonPaths": [
+          "$._ext.tpdm.credentialStatusDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -17853,6 +17879,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -18055,6 +18083,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -18169,6 +18199,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -18285,6 +18317,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -18399,6 +18433,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -18520,6 +18556,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
           "$.evaluationObjectiveRatingReference.evaluationDate"
@@ -19172,6 +19210,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -19568,6 +19608,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
           "$.evaluationRatingReference.evaluationDate"
@@ -20120,6 +20162,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -20509,6 +20553,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -20624,6 +20670,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -20738,6 +20786,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -20865,6 +20915,9 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
+          "$.reviewers[*].receivedTraining.receivedTrainingDate"
         ],
         "dateTimeJsonPaths": [
           "$.evaluationDate"
@@ -21606,6 +21659,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -21725,6 +21780,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -22096,6 +22153,10 @@
         "booleanJsonPaths": [
           "$.pellGrantRecipient"
         ],
+        "dateJsonPaths": [
+          "$.beginDate",
+          "$.endDate"
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -22304,6 +22365,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -22419,6 +22482,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -22533,6 +22598,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -22661,6 +22728,11 @@
         ],
         "booleanJsonPaths": [
           "$.announced"
+        ],
+        "dateJsonPaths": [
+          "$.actualDate",
+          "$.reviewers[*].receivedTraining.receivedTrainingDate",
+          "$.scheduleDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -23222,6 +23294,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -23346,6 +23420,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -23694,6 +23770,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -24015,6 +24093,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -24129,6 +24209,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -24213,6 +24295,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -24397,6 +24481,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -24492,6 +24578,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],

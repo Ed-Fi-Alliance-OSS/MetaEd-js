@@ -46,7 +46,12 @@ export type BaseResourceSchema = {
   numericJsonPaths: JsonPath[];
 
   /**
-   * A list of the JsonPaths that are numeric for use in type coercion.
+   * A list of the JsonPaths that are type date for use in type coercion.
+   */
+  dateJsonPaths: JsonPath[];
+
+  /**
+   * A list of the JsonPaths that are type dateTime for use in type coercion.
    */
   dateTimeJsonPaths: JsonPath[];
 

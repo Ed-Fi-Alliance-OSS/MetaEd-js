@@ -110,6 +110,16 @@ describe('when building simple domain entity with all the simple non-collections
       `);
   });
 
+  it('should be correct dateJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
+    const dateJsonPaths = entity?.data.edfiApiSchema.dateJsonPaths;
+    expect(dateJsonPaths).toMatchInlineSnapshot(`
+        Array [
+          "$.requiredDateProperty",
+        ]
+      `);
+  });
+
   it('should be correct numericJsonPaths for DomainEntityName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
@@ -175,10 +185,13 @@ describe('when building domain entity with collections', () => {
   it('should be correct booleanJsonPaths and numericJsonPaths for AssessmentScoreRangeLearningStandard', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('AssessmentScoreRangeLearningStandard');
     const booleanJsonPaths = entity?.data.edfiApiSchema.booleanJsonPaths;
+    const dateJsonPaths = entity?.data.edfiApiSchema.dateJsonPaths;
     const dateTimeJsonPaths = entity?.data.edfiApiSchema.dateTimeJsonPaths;
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
 
     expect(booleanJsonPaths).toMatchInlineSnapshot(`Array []`);
+
+    expect(dateJsonPaths).toMatchInlineSnapshot(`Array []`);
 
     expect(dateTimeJsonPaths).toMatchInlineSnapshot(`
       Array [
@@ -249,6 +262,16 @@ describe('when building domain entity extension with all the simple non-collecti
     expect(booleanJsonPaths).toMatchInlineSnapshot(`
       Array [
         "$._ext.edfi.optionalBooleanProperty",
+      ]
+    `);
+  });
+
+  it('should be correct dateJsonPaths for DomainEntityName', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntityExtension.get(domainEntityName);
+    const dateJsonPaths = entity?.data.edfiApiSchema.dateJsonPaths;
+    expect(dateJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$._ext.edfi.requiredDateProperty",
       ]
     `);
   });

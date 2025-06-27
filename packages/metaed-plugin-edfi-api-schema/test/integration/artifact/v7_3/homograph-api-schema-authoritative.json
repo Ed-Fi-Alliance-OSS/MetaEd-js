@@ -2666,6 +2666,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -2876,6 +2878,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -2971,6 +2975,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -3042,6 +3048,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -3184,6 +3192,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -3393,6 +3403,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -3540,6 +3552,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],

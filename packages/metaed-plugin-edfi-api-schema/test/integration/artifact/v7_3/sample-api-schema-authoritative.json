@@ -4694,6 +4694,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -4832,6 +4834,10 @@
           "$.daily",
           "$.telephones[*].doNotPublishIndicator",
           "$.telephones[*].textMessageCapabilityIndicator"
+        ],
+        "dateJsonPaths": [
+          "$.staffEducationOrganizationAssignmentAssociationReference.beginDate",
+          "$.startDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -5448,6 +5454,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -5553,6 +5561,14 @@
           "$._ext.sample.addresses[*].doNotPublishIndicator",
           "$._ext.sample.cteProgramService.primaryIndicator",
           "$._ext.sample.isSportsFan"
+        ],
+        "dateJsonPaths": [
+          "$._ext.sample.addresses[*].periods[*].beginDate",
+          "$._ext.sample.addresses[*].periods[*].endDate",
+          "$._ext.sample.cteProgramService.serviceBeginDate",
+          "$._ext.sample.cteProgramService.serviceEndDate",
+          "$._ext.sample.graduationDate",
+          "$._ext.sample.studentProgramAssociations[*].studentProgramAssociationReference.beginDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -6332,6 +6348,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -6446,6 +6464,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
@@ -6562,6 +6582,10 @@
         "booleanJsonPaths": [
           "$._ext.sample.cteProgramService.primaryIndicator",
           "$._ext.sample.isExemplary"
+        ],
+        "dateJsonPaths": [
+          "$._ext.sample.cteProgramService.serviceBeginDate",
+          "$._ext.sample.cteProgramService.serviceEndDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -6749,6 +6773,9 @@
         "booleanJsonPaths": [
           "$._ext.sample.pets[*].isFixed"
         ],
+        "dateJsonPaths": [
+          "$._ext.sample.firstPetOwnedDate"
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -6923,6 +6950,15 @@
           "$.privateArtProgram",
           "$.servedOutsideOfRegularSession",
           "$.services[*].primaryIndicator"
+        ],
+        "dateJsonPaths": [
+          "$.beginDate",
+          "$.endDate",
+          "$.exhibitDate",
+          "$.programParticipationStatuses[*].statusBeginDate",
+          "$.programParticipationStatuses[*].statusEndDate",
+          "$.services[*].serviceBeginDate",
+          "$.services[*].serviceEndDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -7711,6 +7747,8 @@
         "booleanJsonPaths": [
           "$._ext.sample.analysisCompleted"
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
           "$._ext.sample.analysisDate"
         ],
@@ -7812,6 +7850,10 @@
           "$._ext.sample.bedtimeReader",
           "$._ext.sample.telephone.doNotPublishIndicator",
           "$._ext.sample.telephone.textMessageCapabilityIndicator"
+        ],
+        "dateJsonPaths": [
+          "$._ext.sample.readGreenEggsAndHamDate",
+          "$._ext.sample.staffEducationOrganizationEmploymentAssociations[*].staffEducationOrganizationEmploymentAssociationReference.hireDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -8340,6 +8382,12 @@
         "booleanJsonPaths": [
           "$._ext.sample.addresses[*].doNotPublishIndicator"
         ],
+        "dateJsonPaths": [
+          "$._ext.sample.addresses[*].periods[*].beginDate",
+          "$._ext.sample.addresses[*].periods[*].endDate",
+          "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
+          "$._ext.sample.studentCharacteristics[*].periods[*].endDate"
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -8794,6 +8842,11 @@
         "booleanJsonPaths": [
           "$.cteProgramService.primaryIndicator",
           "$.isActivePlan"
+        ],
+        "dateJsonPaths": [
+          "$.cteProgramService.serviceBeginDate",
+          "$.cteProgramService.serviceEndDate",
+          "$.effectiveDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -9475,6 +9528,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "dateJsonPaths": [
+        ],
         "dateTimeJsonPaths": [
         ],
         "decimalPropertyValidationInfos": [
@@ -9543,6 +9598,9 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "dateJsonPaths": [
+          "$._ext.sample.relatedGeneralStudentProgramAssociations[*].relatedGeneralStudentProgramAssociationReference.beginDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -9725,6 +9783,8 @@
         ],
         "booleanJsonPaths": [
           "$._ext.sample.pets[*].isFixed"
+        ],
+        "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
         ],
