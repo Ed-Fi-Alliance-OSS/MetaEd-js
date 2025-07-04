@@ -82,6 +82,14 @@
             </li>
         </ul>
     </div>
+    <div ng-if="ctrl.selected.domains.length">
+        <h3>Domains</h3>
+        <ul>
+            <li ng-repeat="domain in ctrl.selected.domains">
+                {{domain}}
+            </li>
+        </ul>
+    </div>
     <div ng-if="ctrl.selected.xsdFragment.length">
         <h3>XSD</h3>
         <div hljs hljs-source="ctrl.selected.xsdFragment" hljs-language="xml"></div>
