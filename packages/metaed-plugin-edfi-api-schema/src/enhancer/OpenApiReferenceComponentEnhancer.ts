@@ -58,6 +58,11 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
       schoolYearOpenApis,
     );
 
+    // Add x-Ed-Fi-isIdentity extension for identity properties
+    if (flattenedIdentityProperty.identityProperty.isPartOfIdentity) {
+      openApiProperty['x-Ed-Fi-isIdentity'] = true;
+    }
+
     // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check
     // properties for merge directive annotations because MetaEd has already validated merges and any scalar identity
