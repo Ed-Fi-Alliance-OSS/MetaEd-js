@@ -3397,11 +3397,13 @@
             "busId": {
               "description": "The unique identifier for the bus.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "busRouteNumber": {
               "description": "A unique identifier for the bus route.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -3472,7 +3474,8 @@
             "busId": {
               "description": "The unique identifier for the bus.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -3988,29 +3991,35 @@
             "beginDate": {
               "description": "The earliest date the student is involved with the program. Typically, this is the date the student becomes eligible for the program.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programEducationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programName": {
               "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentUniqueId": {
               "description": "A unique alphanumeric code assigned to a student.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -4502,22 +4511,26 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "graduationPlanTypeDescriptor": {
               "description": "The type of academic plan the student is following for graduation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "graduationSchoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentUniqueId": {
               "description": "A unique alphanumeric code assigned to a student.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [

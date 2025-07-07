@@ -81,7 +81,7 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
  */
 export function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
   return {
-    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}Reference`,
+    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
   };
 }
 
