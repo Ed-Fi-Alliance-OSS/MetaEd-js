@@ -5865,6 +5865,9 @@ describe('when domain entity extension references domain entity in different nam
                 "type": "integer",
               },
             },
+            "required": Array [
+              "schoolYear",
+            ],
             "type": "object",
           },
         }

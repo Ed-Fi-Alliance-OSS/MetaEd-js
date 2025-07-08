@@ -359,6 +359,9 @@ describe('when building simple domain entity with all the simple non-collections
                   "type": "integer",
                 },
               },
+              "required": Array [
+                "schoolYear",
+              ],
               "type": "object",
             },
           },
@@ -1667,6 +1670,9 @@ describe('when building simple domain entity with all the simple collections', (
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -3315,6 +3321,9 @@ describe('when building a domain entity referencing another referencing another 
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -4963,6 +4972,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -5743,6 +5755,9 @@ describe('when building domain entity with nested choice and inline commons', ()
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -6748,6 +6763,9 @@ describe('when building domain entity with scalar collection named with prefix o
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -6998,6 +7016,9 @@ describe('when building an abstract domain entity', () => {
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
