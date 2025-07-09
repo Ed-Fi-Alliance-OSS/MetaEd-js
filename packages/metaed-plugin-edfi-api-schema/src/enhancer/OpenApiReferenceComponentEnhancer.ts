@@ -7,6 +7,7 @@ import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiObject, OpenApiProperties, OpenApiProperty } from '../model/OpenApi';
+import { ED_FI_IDENTITY_EXTENSION_KEY } from '../model/OpenApiTypes';
 import { defaultPropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { findIdenticalRoleNamePatternPrefix, prependPrefixWithCollapse, uncapitalize } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
@@ -59,9 +60,8 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
     );
 
     // Add x-Ed-Fi-isIdentity extension for identity properties
-    const identityExtensionKey = 'x-Ed-Fi-isIdentity';
     if (flattenedIdentityProperty.identityProperty.isPartOfIdentity) {
-      openApiProperty[identityExtensionKey] = true;
+      openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
     }
 
     // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property

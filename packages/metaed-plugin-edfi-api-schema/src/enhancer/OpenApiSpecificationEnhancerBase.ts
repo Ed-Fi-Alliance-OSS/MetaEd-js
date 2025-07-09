@@ -17,6 +17,7 @@ import {
   PathsObject,
   Schemas,
   TagObject,
+  ED_FI_IDENTITY_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
 import { pluralize } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
@@ -368,7 +369,7 @@ const descriptorOpenApiParameters: Parameter[] = [
       maxLength: 50,
       type: 'string',
     },
-    'x-Ed-Fi-isIdentity': true,
+    [ED_FI_IDENTITY_EXTENSION_KEY]: true,
   },
   {
     name: 'description',
@@ -407,7 +408,7 @@ const descriptorOpenApiParameters: Parameter[] = [
       maxLength: 255,
       type: 'string',
     },
-    'x-Ed-Fi-isIdentity': true,
+    [ED_FI_IDENTITY_EXTENSION_KEY]: true,
   },
   {
     name: 'shortDescription',
@@ -443,7 +444,7 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
       description: sourceProperty.documentation,
       schema: schemaObjectFrom(sourceProperty),
     };
-    if (sourceProperty.isPartOfIdentity) parameter['x-Ed-Fi-isIdentity'] = true;
+    if (sourceProperty.isPartOfIdentity) parameter[ED_FI_IDENTITY_EXTENSION_KEY] = true;
 
     result.push(parameter);
   });
