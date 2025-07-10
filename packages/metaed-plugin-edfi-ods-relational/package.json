@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-relational",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.68",
+  "version": "4.5.2-dev.69",
   "description": "Ed-Fi Relational ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -13,9 +13,9 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.5.2-dev.68",
-    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.68",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "4.5.2-dev.68",
+    "@edfi/metaed-core": "4.5.2-dev.69",
+    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.69",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.5.2-dev.69",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
