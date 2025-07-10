@@ -180,6 +180,10 @@
             color: white;
         }
 
+        #sidebar-nav .form-group {
+            margin-bottom: 5px;
+        } 
+
         .inline-header {
             display: inline-block;
             vertical-align: baseline;
@@ -200,6 +204,13 @@
         .merge-property {
             color: #569cd6;
             font-weight: bold;
+        }
+
+        .text-ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
         }
     </style>
 
@@ -294,6 +305,28 @@
             };
         });
 
+        app.filter('byDomain', function () {
+            return function (items, filter) {
+
+                // If no filters then return everything.
+                if (filter.length === 0)
+                    return items;
+
+                var out = [];
+
+                angular.forEach(items, function (value, key) {
+                    for (const domain of value.domains) {
+                        if (filter.indexOf(domain) > -1) {
+                            out.push(value);
+                            break;
+                        }
+                    }
+                });
+
+                return out;
+            };
+        });
+
         app.service('dataService', function () {
             return {
                 get: function () {
@@ -320,6 +353,8 @@
             var ctrl = this;
             ctrl.selectedEntityTypes = [];
             ctrl.entityFilterTypes = [];
+            ctrl.selectedDomains = [];
+            ctrl.domains = [];
 
             ctrl.entries = dataService.get();
 
@@ -333,12 +368,22 @@
             });
             ctrl.entityFilterTypes.sort();
 
+            angular.forEach(ctrl.entries, function (entry) {
+                angular.forEach(entry.domains, function (domain) {
+                    if (ctrl.domains.indexOf(domain) == -1) {
+                        ctrl.domains.push(domain);
+                    }
+                });                
+            });
+            ctrl.domains.sort();
+
             ctrl.selecteEntity = function (entity) {
                 ctrl.selected = entity;
             }
 
             ctrl.resetSearch = function () {
                 ctrl.selectedEntityTypes = [];
+                ctrl.selectedDomains = [];
                 ctrl.search = "";
             };
 
@@ -353,11 +398,6 @@
                     var sideContainer = angular.element(document.querySelector('#sidebar-container'));
                     sideContainer.css('padding-bottom', sideNav.height() + 'px');
                 }, 100);
-            }
-
-            ctrl.entityTypeDisplay = function (umlType) {
-                if (umlType.length > 35) return umlType.substring(0, 35) + '...';
-                else return umlType;
             }
 
             ctrl.displaySideDefinition = function (definition) {
@@ -426,7 +466,7 @@
     <div style="height: calc(100% - 51px); position: relative; ">
         <div style="height: 100%; width: 275px; background-color: #f5f5f5; padding-top: 10px; display: inline-block">
             <div id="sidebar-nav" style="padding-left: 15px">
-                <div class="form-group search" style="margin-bottom: 0px">
+                <div class="form-group search">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-search"></i>
@@ -435,15 +475,25 @@
                     </div>
                 </div>
                 <div>
-                    <label>
-                        <input type="checkbox" ng-model="ctrl.includeDefinition" /> Include Definition in Search</label>
+                    <label style="display: flex; align-items: center">
+                        <input style="margin: 0 5px 0 0" type="checkbox" ng-model="ctrl.includeDefinition" /> Include Definition in Search
+                    </label>
                 </div>
                 <div class="form-group search">
                     <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedEntityTypes" theme="bootstrap" close-on-select="true"
                         title="Choose an entity type">
-                        <ui-select-match placeholder="Filter by UML Type">{{ctrl.entityTypeDisplay($item)}}</ui-select-match>
+                        <ui-select-match placeholder="Filter by UML Type">{{$item}}</ui-select-match>
                         <ui-select-choices repeat="et in ctrl.entityFilterTypes | filter:$select.search">
-                            {{et}}
+                            <span class="text-ellipsis">{{et}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="form-group search">
+                    <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedDomains" theme="bootstrap" close-on-select="true"
+                        title="Choose a Domain">
+                        <ui-select-match placeholder="Filter by Domain">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="domain in ctrl.domains | filter:$select.search">
+                            <span class="text-ellipsis">{{domain}}</span>
                         </ui-select-choices>
                     </ui-select>
                 </div>
@@ -452,7 +502,7 @@
             <div id="sidebar-container" style="position: relative; height: 100%; padding-bottom: 131px">
                 <div id="sidebarContent" class="sidebar" style="height: 100%;">
                     <ul class="nav nav-sidebar">
-                        <li ng-repeat="entry in ctrl.entries | orderBy: 'name' | customSearch:ctrl.search:ctrl.includeDefinition | byEntityType:ctrl.selectedEntityTypes as filteredResults">
+                        <li ng-repeat="entry in ctrl.entries | orderBy: 'name' | customSearch:ctrl.search:ctrl.includeDefinition | byEntityType:ctrl.selectedEntityTypes | byDomain:ctrl.selectedDomains as filteredResults">
                             <a id="entity{{entry.uniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.uniqueIdentifier}}" class="menu"
                                 ng-class="{active: (ctrl.selected.uniqueIdentifier) == (entry.uniqueIdentifier)}" title="{{entry.metaEdId}} - {{entry.name}}"
                                 style="text-decoration: none">

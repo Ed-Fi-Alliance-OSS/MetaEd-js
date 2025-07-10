@@ -14,6 +14,8 @@ import {
   newAssociationSubclass,
   addEntityForNamespace,
   newNamespace,
+  newDescriptor,
+  Descriptor,
 } from '@edfi/metaed-core';
 
 import {
@@ -37,6 +39,8 @@ describe('when enhancing domain', (): void => {
   const domainEntity1MetaEdName = 'DomainEntity1Name';
   const domainEntity2MetaEdName = 'DomainEntity2Name';
 
+  const descriptor1MetaEdName = domainEntity2MetaEdName;
+
   const domainEntitySubclass1MetaEdName = 'DomainEntitySubclass1Name';
   const domainEntitySubclass2MetaEdName = 'DomainEntitySubclass2Name';
 
@@ -48,6 +52,8 @@ describe('when enhancing domain', (): void => {
 
   const domainEntity1: DomainEntity = Object.assign(newDomainEntity(), { metaEdName: domainEntity1MetaEdName, namespace });
   const domainEntity2: DomainEntity = Object.assign(newDomainEntity(), { metaEdName: domainEntity2MetaEdName, namespace });
+
+  const descriptor1: Descriptor = Object.assign(newDescriptor(), { metaEdName: descriptor1MetaEdName, namespace });
 
   const domainEntitySubclass1: DomainEntitySubclass = Object.assign(newDomainEntitySubclass(), {
     metaEdName: domainEntitySubclass1MetaEdName,
@@ -83,12 +89,14 @@ describe('when enhancing domain', (): void => {
     addEntityForNamespace(association2);
     addEntityForNamespace(associationSubclass1);
     addEntityForNamespace(associationSubclass2);
+    addEntityForNamespace(descriptor1);
 
     domain.domainItems.push(
       Object.assign(newDomainItem(), {
         metaEdName: domainEntity1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -96,6 +104,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: domainEntity2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -103,6 +112,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: domainEntitySubclass1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -110,6 +120,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: domainEntitySubclass2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -117,6 +128,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: association1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -124,6 +136,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: association2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -131,6 +144,7 @@ describe('when enhancing domain', (): void => {
         metaEdName: associationSubclass1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -138,6 +152,15 @@ describe('when enhancing domain', (): void => {
         metaEdName: associationSubclass2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
+      }),
+    );
+    domain.domainItems.push(
+      Object.assign(newDomainItem(), {
+        metaEdName: descriptor1MetaEdName,
+        namespace,
+        referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'descriptor',
       }),
     );
 
@@ -179,6 +202,15 @@ describe('when enhancing domain', (): void => {
     expect(domain.domainItems[6].referencedEntity).toBe(associationSubclass1);
     expect(domain.domainItems[7].referencedEntity).toBe(associationSubclass2);
   });
+
+  it('should reference the correct entity when there are multiple with the same name', (): void => {
+    const domain: any = namespace.entity.domain.get(domainMetaEdName);
+    expect(domain.entities).toContain(domainEntity2);
+    expect(domain.entities).toContain(descriptor1);
+
+    expect(domain.domainItems[1].referencedEntity).toBe(domainEntity2);
+    expect(domain.domainItems[8].referencedEntity).toBe(descriptor1);
+  });
 });
 
 describe('when enhancing domain with reference to deprecated domain entity', (): void => {
@@ -213,6 +245,7 @@ describe('when enhancing domain with reference to deprecated domain entity', ():
         metaEdName: domainEntity1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -220,6 +253,7 @@ describe('when enhancing domain with reference to deprecated domain entity', ():
         metaEdName: domainEntity2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     enhance(metaEd);
@@ -296,6 +330,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: domainEntity1MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -303,6 +338,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: domainEntity2MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -310,6 +346,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: domainEntitySubclass1MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -317,6 +354,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: domainEntitySubclass2MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     domain.domainItems.push(
@@ -324,6 +362,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: association1MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -331,6 +370,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: association2MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -338,6 +378,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: associationSubclass1MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     domain.domainItems.push(
@@ -345,6 +386,7 @@ describe('when enhancing domain with references across namespaces', (): void => 
         metaEdName: associationSubclass2MetaEdName,
         namespace: extensionNamespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
 
@@ -436,6 +478,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: domainEntity1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     subdomain.domainItems.push(
@@ -443,6 +486,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: domainEntity2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     subdomain.domainItems.push(
@@ -450,6 +494,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: domainEntitySubclass1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     subdomain.domainItems.push(
@@ -457,6 +502,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: domainEntitySubclass2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'domainEntity',
       }),
     );
     subdomain.domainItems.push(
@@ -464,6 +510,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: association1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     subdomain.domainItems.push(
@@ -471,6 +518,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: association2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     subdomain.domainItems.push(
@@ -478,6 +526,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: associationSubclass1MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
     subdomain.domainItems.push(
@@ -485,6 +534,7 @@ describe('when enhancing subdomain', (): void => {
         metaEdName: associationSubclass2MetaEdName,
         namespace,
         referencedNamespaceName: namespace.namespaceName,
+        referencedType: 'association',
       }),
     );
 

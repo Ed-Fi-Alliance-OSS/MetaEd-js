@@ -30,6 +30,7 @@ export interface HandbookEntry {
   typeCharacteristics: string[];
   repositoryId: string;
   projectName: string;
+  domains: string[];
 }
 
 export function newHandbookEntry(): HandbookEntry {
@@ -57,5 +58,6 @@ export function newHandbookEntry(): HandbookEntry {
     typeCharacteristics: [],
     repositoryId: '',
     projectName: '',
+    domains: [],
   };
 }

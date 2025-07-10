@@ -26,6 +26,7 @@ import { enhance as timeIntervalEnhancer } from './enhancer/TimeIntervalEnhancer
 import { enhance as timeEnhancer } from './enhancer/TimeEnhancer';
 import { enhance as yearEnhancer } from './enhancer/YearEnhancer';
 import { enhance as modelReferencesUsedByEnhancer } from './enhancer/ModelReferencesUsedByEnhancer';
+import { enhance as domainEnhancer } from './enhancer/DomainEnhancer';
 import { generate as htmlGenerator } from './generator/EdFiDataHandbookAsHtmlIndexGenerator';
 import { generate as excelGenerator } from './generator/EdFiDataHandbookAsExcelGenerator';
 
@@ -55,6 +56,7 @@ export function initialize(): MetaEdPlugin {
       timeEnhancer,
       yearEnhancer,
       modelReferencesUsedByEnhancer,
+      domainEnhancer,
     ],
     generator: [htmlGenerator, excelGenerator],
     shortName: 'edfiHandbook',
