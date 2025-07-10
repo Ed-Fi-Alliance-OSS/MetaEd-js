@@ -13716,7 +13716,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Evaluation_EvaluationRatingLevel"
+                "$ref": "#/components/schemas/TPDM_Evaluation_RatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14337,7 +14337,7 @@
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationRating_EvaluationRatingResult"
+                "$ref": "#/components/schemas/TPDM_EvaluationRating_Result"
               },
               "minItems": 0,
               "type": "array",
@@ -14359,30 +14359,6 @@
             "performanceEvaluationRatingReference",
             "evaluationReference",
             "evaluationDate"
-          ],
-          "type": "object"
-        },
-        "TPDM_EvaluationRating_EvaluationRatingResult": {
-          "properties": {
-            "rating": {
-              "description": "The numerical summary rating or score for the evaluation.",
-              "type": "number"
-            },
-            "ratingResultTitle": {
-              "description": "The title of Rating Result.",
-              "maxLength": 50,
-              "minLength": 1,
-              "type": "string"
-            },
-            "resultDatatypeTypeDescriptor": {
-              "description": "The datatype of the result.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "ratingResultTitle",
-            "rating",
-            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -14475,6 +14451,30 @@
           ],
           "type": "object"
         },
+        "TPDM_EvaluationRating_Result": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
+          ],
+          "type": "object"
+        },
         "TPDM_EvaluationRating_Reviewer": {
           "properties": {
             "firstName": {
@@ -14500,7 +14500,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Evaluation_EvaluationRatingLevel": {
+        "TPDM_Evaluation_RatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14682,7 +14682,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_RatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14750,7 +14750,7 @@
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Result"
               },
               "minItems": 0,
               "type": "array",
@@ -14774,30 +14774,6 @@
             "personReference",
             "performanceEvaluationReference",
             "actualDate"
-          ],
-          "type": "object"
-        },
-        "TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult": {
-          "properties": {
-            "rating": {
-              "description": "The numerical summary rating or score for the evaluation.",
-              "type": "number"
-            },
-            "ratingResultTitle": {
-              "description": "The title of Rating Result.",
-              "maxLength": 50,
-              "minLength": 1,
-              "type": "string"
-            },
-            "resultDatatypeTypeDescriptor": {
-              "description": "The datatype of the result.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "ratingResultTitle",
-            "rating",
-            "resultDatatypeTypeDescriptor"
           ],
           "type": "object"
         },
@@ -14875,6 +14851,30 @@
           ],
           "type": "object"
         },
+        "TPDM_PerformanceEvaluationRating_Result": {
+          "properties": {
+            "rating": {
+              "description": "The numerical summary rating or score for the evaluation.",
+              "type": "number"
+            },
+            "ratingResultTitle": {
+              "description": "The title of Rating Result.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "resultDatatypeTypeDescriptor": {
+              "description": "The datatype of the result.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ratingResultTitle",
+            "rating",
+            "resultDatatypeTypeDescriptor"
+          ],
+          "type": "object"
+        },
         "TPDM_PerformanceEvaluationRating_Reviewer": {
           "properties": {
             "firstName": {
@@ -14913,7 +14913,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel": {
+        "TPDM_PerformanceEvaluation_RatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
