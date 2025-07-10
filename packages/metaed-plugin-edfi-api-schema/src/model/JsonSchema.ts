@@ -41,13 +41,13 @@ export type SchemaProperty =
   | {
       type: 'string';
       description: string;
-      format?: 'date' | 'date-time' | 'time';
+      format?: 'date' | 'date-time' | 'time' | 'double';
       minLength?: number;
       maxLength?: number;
       pattern?: string;
     }
   | { type: 'integer'; description: string; minimum?: number; maximum?: number }
-  | { type: 'number'; description: string; minimum?: number; maximum?: number }
+  | { type: 'number'; description: string; format: string; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
 
 /**

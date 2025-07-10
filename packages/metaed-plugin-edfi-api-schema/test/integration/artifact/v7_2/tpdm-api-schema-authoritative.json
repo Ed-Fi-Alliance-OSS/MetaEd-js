@@ -13201,27 +13201,32 @@
             "beginDate": {
               "description": "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "candidateIdentifier": {
               "description": "A unique alphanumeric code assigned to a candidate.",
               "maxLength": 32,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programName": {
               "description": "The name of the Educator Preparation Program.",
               "maxLength": 255,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -13544,7 +13549,8 @@
               "description": "A unique alphanumeric code assigned to a candidate.",
               "maxLength": 32,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -13652,17 +13658,20 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programName": {
               "description": "The name of the Educator Preparation Program.",
               "maxLength": 255,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -13707,7 +13716,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Evaluation_EvaluationRatingLevel"
+                "$ref": "#/components/schemas/TPDM_Evaluation_RatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13843,63 +13852,75 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationDate": {
               "description": "The date for the person's evaluation.",
               "format": "date-time",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationElementTitle": {
               "description": "The name or title of the evaluation element.",
               "maxLength": 255,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "personId": {
               "description": "A unique alphanumeric code assigned to a person.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -13942,49 +13963,58 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationElementTitle": {
               "description": "The name or title of the evaluation element.",
               "maxLength": 255,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14110,57 +14140,68 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationDate": {
               "description": "The date for the person's evaluation.",
               "format": "date-time",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "personId": {
               "description": "A unique alphanumeric code assigned to a person.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14202,43 +14243,51 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14288,7 +14337,7 @@
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationRating_EvaluationRatingResult"
+                "$ref": "#/components/schemas/TPDM_EvaluationRating_Result"
               },
               "minItems": 0,
               "type": "array",
@@ -14313,7 +14362,96 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRating_EvaluationRatingResult": {
+        "TPDM_EvaluationRating_ReceivedTraining": {
+          "properties": {
+            "interRaterReliabilityScore": {
+              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+              "type": "integer"
+            },
+            "receivedTrainingDate": {
+              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "TPDM_EvaluationRating_Reference": {
+          "properties": {
+            "educationOrganizationId": {
+              "description": "The identifier assigned to an education organization.",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "evaluationDate": {
+              "description": "The date for the person's evaluation.",
+              "format": "date-time",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "evaluationPeriodDescriptor": {
+              "description": "The period for the evaluation.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "evaluationTitle": {
+              "description": "The name or title of the evaluation.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "performanceEvaluationTitle": {
+              "description": "An assigned unique identifier for the performance evaluation.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "performanceEvaluationTypeDescriptor": {
+              "description": "The type of performance evaluation conducted.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "personId": {
+              "description": "A unique alphanumeric code assigned to a person.",
+              "maxLength": 32,
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "schoolYear": {
+              "description": "A school year between 1900 and 2100",
+              "maximum": 2100,
+              "minimum": 1900,
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "sourceSystemDescriptor": {
+              "description": "This descriptor defines the originating record source system for the person.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "termDescriptor": {
+              "description": "The term for the session during the school year.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            }
+          },
+          "required": [
+            "evaluationTitle",
+            "educationOrganizationId",
+            "evaluationPeriodDescriptor",
+            "performanceEvaluationTitle",
+            "performanceEvaluationTypeDescriptor",
+            "schoolYear",
+            "termDescriptor",
+            "evaluationDate",
+            "personId",
+            "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_EvaluationRating_Result": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -14334,85 +14472,6 @@
             "ratingResultTitle",
             "rating",
             "resultDatatypeTypeDescriptor"
-          ],
-          "type": "object"
-        },
-        "TPDM_EvaluationRating_ReceivedTraining": {
-          "properties": {
-            "interRaterReliabilityScore": {
-              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-              "type": "integer"
-            },
-            "receivedTrainingDate": {
-              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-              "format": "date",
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "TPDM_EvaluationRating_Reference": {
-          "properties": {
-            "educationOrganizationId": {
-              "description": "The identifier assigned to an education organization.",
-              "type": "integer"
-            },
-            "evaluationDate": {
-              "description": "The date for the person's evaluation.",
-              "format": "date-time",
-              "type": "string"
-            },
-            "evaluationPeriodDescriptor": {
-              "description": "The period for the evaluation.",
-              "type": "string"
-            },
-            "evaluationTitle": {
-              "description": "The name or title of the evaluation.",
-              "maxLength": 50,
-              "minLength": 1,
-              "type": "string"
-            },
-            "performanceEvaluationTitle": {
-              "description": "An assigned unique identifier for the performance evaluation.",
-              "maxLength": 50,
-              "minLength": 1,
-              "type": "string"
-            },
-            "performanceEvaluationTypeDescriptor": {
-              "description": "The type of performance evaluation conducted.",
-              "type": "string"
-            },
-            "personId": {
-              "description": "A unique alphanumeric code assigned to a person.",
-              "maxLength": 32,
-              "type": "string"
-            },
-            "schoolYear": {
-              "description": "A school year between 1900 and 2100",
-              "maximum": 2100,
-              "minimum": 1900,
-              "type": "integer"
-            },
-            "sourceSystemDescriptor": {
-              "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
-            },
-            "termDescriptor": {
-              "description": "The term for the session during the school year.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "evaluationTitle",
-            "educationOrganizationId",
-            "evaluationPeriodDescriptor",
-            "performanceEvaluationTitle",
-            "performanceEvaluationTypeDescriptor",
-            "schoolYear",
-            "termDescriptor",
-            "evaluationDate",
-            "personId",
-            "sourceSystemDescriptor"
           ],
           "type": "object"
         },
@@ -14441,7 +14500,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Evaluation_EvaluationRatingLevel": {
+        "TPDM_Evaluation_RatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14465,37 +14524,44 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14554,17 +14620,20 @@
           "properties": {
             "aidTypeDescriptor": {
               "description": "The classification of financial aid awarded to a person for the academic term/year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "beginDate": {
               "description": "The date the award was designated.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentUniqueId": {
               "description": "A unique alphanumeric code assigned to a student.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14613,7 +14682,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_RatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14681,7 +14750,7 @@
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult"
+                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Result"
               },
               "minItems": 0,
               "type": "array",
@@ -14708,7 +14777,81 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult": {
+        "TPDM_PerformanceEvaluationRating_ReceivedTraining": {
+          "properties": {
+            "interRaterReliabilityScore": {
+              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+              "type": "integer"
+            },
+            "receivedTrainingDate": {
+              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluationRating_Reference": {
+          "properties": {
+            "educationOrganizationId": {
+              "description": "The identifier assigned to an education organization.",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "evaluationPeriodDescriptor": {
+              "description": "The period for the evaluation.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "performanceEvaluationTitle": {
+              "description": "An assigned unique identifier for the performance evaluation.",
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "performanceEvaluationTypeDescriptor": {
+              "description": "The type of performance evaluation conducted.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "personId": {
+              "description": "A unique alphanumeric code assigned to a person.",
+              "maxLength": 32,
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "schoolYear": {
+              "description": "A school year between 1900 and 2100",
+              "maximum": 2100,
+              "minimum": 1900,
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "sourceSystemDescriptor": {
+              "description": "This descriptor defines the originating record source system for the person.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            },
+            "termDescriptor": {
+              "description": "The term for the session during the school year.",
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
+            }
+          },
+          "required": [
+            "educationOrganizationId",
+            "evaluationPeriodDescriptor",
+            "performanceEvaluationTitle",
+            "performanceEvaluationTypeDescriptor",
+            "schoolYear",
+            "termDescriptor",
+            "personId",
+            "sourceSystemDescriptor"
+          ],
+          "type": "object"
+        },
+        "TPDM_PerformanceEvaluationRating_Result": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -14729,72 +14872,6 @@
             "ratingResultTitle",
             "rating",
             "resultDatatypeTypeDescriptor"
-          ],
-          "type": "object"
-        },
-        "TPDM_PerformanceEvaluationRating_ReceivedTraining": {
-          "properties": {
-            "interRaterReliabilityScore": {
-              "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-              "type": "integer"
-            },
-            "receivedTrainingDate": {
-              "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
-              "format": "date",
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "TPDM_PerformanceEvaluationRating_Reference": {
-          "properties": {
-            "educationOrganizationId": {
-              "description": "The identifier assigned to an education organization.",
-              "type": "integer"
-            },
-            "evaluationPeriodDescriptor": {
-              "description": "The period for the evaluation.",
-              "type": "string"
-            },
-            "performanceEvaluationTitle": {
-              "description": "An assigned unique identifier for the performance evaluation.",
-              "maxLength": 50,
-              "minLength": 1,
-              "type": "string"
-            },
-            "performanceEvaluationTypeDescriptor": {
-              "description": "The type of performance evaluation conducted.",
-              "type": "string"
-            },
-            "personId": {
-              "description": "A unique alphanumeric code assigned to a person.",
-              "maxLength": 32,
-              "type": "string"
-            },
-            "schoolYear": {
-              "description": "A school year between 1900 and 2100",
-              "maximum": 2100,
-              "minimum": 1900,
-              "type": "integer"
-            },
-            "sourceSystemDescriptor": {
-              "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
-            },
-            "termDescriptor": {
-              "description": "The term for the session during the school year.",
-              "type": "string"
-            }
-          },
-          "required": [
-            "educationOrganizationId",
-            "evaluationPeriodDescriptor",
-            "performanceEvaluationTitle",
-            "performanceEvaluationTypeDescriptor",
-            "schoolYear",
-            "termDescriptor",
-            "personId",
-            "sourceSystemDescriptor"
           ],
           "type": "object"
         },
@@ -14836,7 +14913,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel": {
+        "TPDM_PerformanceEvaluation_RatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14860,31 +14937,37 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14932,53 +15015,63 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationElementTitle": {
               "description": "The name or title of the evaluation element.",
               "maxLength": 255,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
               "maxLength": 50,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "rubricRating": {
               "description": "The rating achieved for the rubric dimension.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -15017,26 +15110,31 @@
               "description": "Namespace for the survey.",
               "maxLength": 255,
               "minLength": 5,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "personId": {
               "description": "A unique alphanumeric code assigned to a person.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveyIdentifier": {
               "description": "The unique survey identifier from the survey tool.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveyResponseIdentifier": {
               "description": "The identifier of the survey typically from the survey application.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -15070,31 +15168,37 @@
               "description": "Namespace for the survey.",
               "maxLength": 255,
               "minLength": 5,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "personId": {
               "description": "A unique alphanumeric code assigned to a person.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveyIdentifier": {
               "description": "The unique survey identifier from the survey tool.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveyResponseIdentifier": {
               "description": "The identifier of the survey typically from the survey application.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveySectionTitle": {
               "description": "The title or label for the survey section.",
               "maxLength": 255,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -18877,6 +18981,7 @@
                 "properties": {
                   "rating": {
                     "description": "The numerical summary rating or score for the evaluation.",
+                    "format": "double",
                     "type": "number"
                   },
                   "ratingResultTitle": {
@@ -19444,10 +19549,12 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation element.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number"
             },
             "ratingLevels": {
@@ -19460,10 +19567,12 @@
                   },
                   "maxRating": {
                     "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   },
                   "minRating": {
                     "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   }
                 },
@@ -20007,6 +20116,7 @@
                 "properties": {
                   "rating": {
                     "description": "The numerical summary rating or score for the evaluation.",
+                    "format": "double",
                     "type": "number"
                   },
                   "ratingResultTitle": {
@@ -20394,10 +20504,12 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation Objective.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number"
             },
             "ratingLevels": {
@@ -20410,10 +20522,12 @@
                   },
                   "maxRating": {
                     "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   },
                   "minRating": {
                     "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   }
                 },
@@ -21371,6 +21485,7 @@
                 "properties": {
                   "rating": {
                     "description": "The numerical summary rating or score for the evaluation.",
+                    "format": "double",
                     "type": "number"
                   },
                   "ratingResultTitle": {
@@ -21960,10 +22075,12 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number"
             },
             "performanceEvaluationReference": {
@@ -22019,10 +22136,12 @@
                   },
                   "maxRating": {
                     "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   },
                   "minRating": {
                     "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   }
                 },
@@ -22246,6 +22365,7 @@
           "properties": {
             "aidAmount": {
               "description": "The amount of financial aid awarded to a person for the term/year.",
+              "format": "double",
               "type": "number"
             },
             "aidConditionDescription": {
@@ -23062,6 +23182,7 @@
                 "properties": {
                   "rating": {
                     "description": "The numerical summary rating or score for the evaluation.",
+                    "format": "double",
                     "type": "number"
                   },
                   "ratingResultTitle": {
@@ -23641,10 +23762,12 @@
                   },
                   "maxRating": {
                     "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   },
                   "minRating": {
                     "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+                    "format": "double",
                     "type": "number"
                   }
                 },

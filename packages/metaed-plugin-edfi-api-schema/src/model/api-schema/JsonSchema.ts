@@ -11,9 +11,15 @@
 export type SchemaProperty =
   | SchemaObject
   | SchemaArray
-  | { type: 'string'; description: string; format?: 'date' | 'date-time' | 'time'; minLength?: number; maxLength?: number }
+  | {
+      type: 'string';
+      description: string;
+      format?: 'date' | 'date-time' | 'time' | 'double';
+      minLength?: number;
+      maxLength?: number;
+    }
   | { type: 'integer'; description: string; minimum?: number; maximum?: number }
-  | { type: 'number'; description: string; minimum?: number; maximum?: number }
+  | { type: 'number'; description: string; format?: string; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
 
 /**

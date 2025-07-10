@@ -30,6 +30,9 @@ THE SOFTWARE.
 // These types are a simplified version of the MIT-licensed https://www.npmjs.com/package/openapi-types
 // with ODS/API-specific OpenAPI attributes added.
 
+// Ed-Fi OpenAPI extension constants
+export const ED_FI_IDENTITY_EXTENSION_KEY = 'x-Ed-Fi-isIdentity';
+
 /* eslint-disable no-use-before-define */
 
 export type Parameter = ReferenceObject | ParameterObject;

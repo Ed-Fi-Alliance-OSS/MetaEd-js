@@ -148,10 +148,12 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "optionalDecimalProperty": Object {
             "description": "doc3",
+            "format": "double",
             "type": "number",
           },
           "optionalPercentProperty": Object {
             "description": "doc5",
+            "format": "double",
             "type": "number",
           },
           "optionalShortProperty": Object {
@@ -164,6 +166,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredCurrencyProperty": Object {
             "description": "doc2",
+            "format": "double",
             "type": "number",
           },
           "requiredDateProperty": Object {
@@ -178,6 +181,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredDurationProperty": Object {
             "description": "doc4",
+            "format": "double",
             "type": "number",
           },
           "requiredIntegerProperty": Object {
@@ -323,6 +327,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "optionalDecimalProperty": Object {
                   "description": "doc3",
+                  "format": "double",
                   "type": "number",
                 },
               },
@@ -341,6 +346,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "optionalPercentProperty": Object {
                   "description": "doc5",
+                  "format": "double",
                   "type": "number",
                 },
               },
@@ -395,6 +401,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredCurrencyProperty": Object {
                   "description": "doc2",
+                  "format": "double",
                   "type": "number",
                 },
               },
@@ -451,6 +458,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredDurationProperty": Object {
                   "description": "doc4",
+                  "format": "double",
                   "type": "number",
                 },
               },

@@ -3397,11 +3397,13 @@
             "busId": {
               "description": "The unique identifier for the bus.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "busRouteNumber": {
               "description": "A unique identifier for the bus route.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -3472,7 +3474,8 @@
             "busId": {
               "description": "The unique identifier for the bus.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -3988,29 +3991,35 @@
             "beginDate": {
               "description": "The earliest date the student is involved with the program. Typically, this is the date the student becomes eligible for the program.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programEducationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "programName": {
               "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentUniqueId": {
               "description": "A unique alphanumeric code assigned to a student.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -4502,22 +4511,26 @@
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "graduationPlanTypeDescriptor": {
               "description": "The type of academic plan the student is following for graduation.",
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "graduationSchoolYear": {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
-              "type": "integer"
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentUniqueId": {
               "description": "A unique alphanumeric code assigned to a student.",
               "maxLength": 32,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -5137,18 +5150,22 @@
             },
             "expectedTransitTime": {
               "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
+              "format": "double",
               "type": "number"
             },
             "hoursPerWeek": {
               "description": "The number of hours per week in which the bus route is operational.",
+              "format": "double",
               "type": "number"
             },
             "operatingCost": {
               "description": "The approximate annual cost for the bus route.",
+              "format": "double",
               "type": "number"
             },
             "optimalCapacity": {
               "description": "The percentage of seats filled under optimal conditions.",
+              "format": "double",
               "type": "number"
             },
             "programs": {
@@ -5304,6 +5321,7 @@
             },
             "weeklyMileage": {
               "description": "The approximate weekly mileage for the bus route.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -6072,6 +6090,7 @@
                     },
                     "averageCarLineWait": {
                       "description": "The time spent per day waiting in the car line.",
+                      "format": "double",
                       "type": "number"
                     },
                     "becameParent": {
@@ -6084,6 +6103,7 @@
                         "properties": {
                           "ceilingHeight": {
                             "description": "The height of the ceiling in the rooms of the contact's home.",
+                            "format": "double",
                             "type": "number"
                           }
                         },
@@ -6098,6 +6118,7 @@
                     },
                     "coffeeSpend": {
                       "description": "How much the contact spends on coffee in a week.",
+                      "format": "double",
                       "type": "number"
                     },
                     "credentialFieldDescriptor": {
@@ -6191,6 +6212,7 @@
                     },
                     "gpa": {
                       "description": "The contact's high school GPA.",
+                      "format": "double",
                       "type": "number"
                     },
                     "graduationDate": {
@@ -6213,6 +6235,7 @@
                     },
                     "rainCertainty": {
                       "description": "The percent likelihood that it will rain when the contact volunteers to chaperone a field trip.",
+                      "format": "double",
                       "type": "number"
                     },
                     "studentProgramAssociations": {
@@ -7375,6 +7398,7 @@
             },
             "hoursPerDay": {
               "description": "The number of hours a student spends in the program each school day.",
+              "format": "double",
               "type": "number"
             },
             "identificationCode": {
@@ -7389,14 +7413,17 @@
             },
             "kilnReservationLength": {
               "description": "The number of clock minutes dedicated to the student's kiln reservation.",
+              "format": "double",
               "type": "number"
             },
             "masteredMediums": {
               "description": "Percentage of the mediums taught in the program which the student mastered.",
+              "format": "double",
               "type": "number"
             },
             "numberOfDaysInAttendance": {
               "description": "Number of days the student is in attendance at the program.",
+              "format": "double",
               "type": "number"
             },
             "portfolioPieces": {
@@ -7429,6 +7456,7 @@
             },
             "programFees": {
               "description": "Required program fees to purchase materials for the student.",
+              "format": "double",
               "type": "number"
             },
             "programParticipationStatuses": {
@@ -8089,10 +8117,12 @@
                     },
                     "bedtimeReadingRate": {
                       "description": "The average number of pages the contact reads with the student each day.",
+                      "format": "double",
                       "type": "number"
                     },
                     "bookBudget": {
                       "description": "The contact's estimated monthly budget dedicated to books for the student.",
+                      "format": "double",
                       "type": "number"
                     },
                     "booksBorrowed": {
@@ -8142,6 +8172,7 @@
                         "properties": {
                           "hoursPerWeek": {
                             "description": "Total number of hours per week a student and contact dedicates to reading.",
+                            "format": "double",
                             "type": "number"
                           }
                         },
@@ -8194,6 +8225,7 @@
                         "properties": {
                           "pagesRead": {
                             "description": "Total number of pages the contact has read the student.",
+                            "format": "double",
                             "type": "number"
                           }
                         },
@@ -8218,6 +8250,7 @@
                     },
                     "readingTimeSpent": {
                       "description": "The amount of time the contact spends reading to the student each day.",
+                      "format": "double",
                       "type": "number"
                     },
                     "staffEducationOrganizationEmploymentAssociations": {
@@ -9217,6 +9250,7 @@
             },
             "graduationFee": {
               "description": "Any fees the student must resolve prior to graduation, such as library fines and overdue lunch accounts.",
+              "format": "double",
               "type": "number"
             },
             "graduationPlanReference": {
@@ -9246,10 +9280,12 @@
             },
             "highSchoolDuration": {
               "description": "The number of years remaining prior to graduation as of when the plan became effective.",
+              "format": "double",
               "type": "number"
             },
             "hoursPerWeek": {
               "description": "The number of hours per week the student will attend to graduate.",
+              "format": "double",
               "type": "number"
             },
             "industryCredentials": {
@@ -9277,6 +9313,7 @@
             },
             "requiredAttendance": {
               "description": "The percentage of time the student must attend to graduate, relative to a full-time student.",
+              "format": "double",
               "type": "number"
             },
             "staffReference": {
@@ -9347,6 +9384,7 @@
             },
             "targetGPA": {
               "description": "The GPA the student is working toward.",
+              "format": "double",
               "type": "number"
             },
             "yearsAttendeds": {

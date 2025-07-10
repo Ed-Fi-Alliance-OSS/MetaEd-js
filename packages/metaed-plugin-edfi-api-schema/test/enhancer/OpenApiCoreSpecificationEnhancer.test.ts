@@ -341,6 +341,7 @@ describe('when building simple domain entity with all the simple non-collections
                   "maxLength": 30,
                   "minLength": 20,
                   "type": "string",
+                  "x-Ed-Fi-isIdentity": true,
                 },
               },
               "required": Array [
@@ -358,6 +359,9 @@ describe('when building simple domain entity with all the simple non-collections
                   "type": "integer",
                 },
               },
+              "required": Array [
+                "schoolYear",
+              ],
               "type": "object",
             },
           },
@@ -1543,6 +1547,7 @@ describe('when building simple domain entity with all the simple collections', (
               "maxLength": 30,
               "minLength": 20,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -1665,6 +1670,9 @@ describe('when building simple domain entity with all the simple collections', (
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -3169,11 +3177,13 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -3206,11 +3216,13 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -3263,16 +3275,19 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -3306,6 +3321,9 @@ describe('when building a domain entity referencing another referencing another 
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -3314,6 +3332,7 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4838,22 +4857,26 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4888,27 +4911,32 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4944,6 +4972,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -4952,6 +4983,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4987,17 +5019,20 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -5689,6 +5724,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -5719,6 +5755,9 @@ describe('when building domain entity with nested choice and inline commons', ()
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -6706,6 +6745,7 @@ describe('when building domain entity with scalar collection named with prefix o
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6723,6 +6763,9 @@ describe('when building domain entity with scalar collection named with prefix o
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -6955,6 +6998,7 @@ describe('when building an abstract domain entity', () => {
             "educationOrganizationId": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6972,6 +7016,9 @@ describe('when building an abstract domain entity', () => {
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }

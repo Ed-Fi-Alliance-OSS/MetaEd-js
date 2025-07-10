@@ -14,7 +14,7 @@ import {
   OpenApiReference,
 } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, uncapitalize } from '../Utility';
+import { dropPrefix, singularize, uncapitalize } from '../Utility';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
 export type SchoolYearOpenApis = {
@@ -40,6 +40,7 @@ export function newSchoolYearOpenApis(minSchoolYear: number, maxSchoolYear: numb
     properties: {
       schoolYear: schoolYearOpenApi,
     },
+    required: ['schoolYear'],
   };
 
   const schoolYearEnumerationRef = '#/components/schemas/EdFi_SchoolYearTypeReference';
@@ -114,7 +115,10 @@ export function openApiCollectionReferenceNameFor(
     propertiesChain.length > 0
       ? propertiesChain[0].parentEntity.namespace.namespaceName
       : property.parentEntity.namespace.namespaceName;
-  return `${namespace}_${parentEntitiesNameChain}_${propertyName}`;
+
+  // Avoid collision with the property name by dropping the prefix
+  const droppedPrefix = dropPrefix(parentEntitiesNameChain, propertyName);
+  return `${namespace}_${parentEntitiesNameChain}_${droppedPrefix}`;
 }
 
 /**

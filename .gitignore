@@ -97,3 +97,4 @@ eng/ApiSchema/*.zip
 
 # Local Claude configuration files
 CLAUDE.local.md
+junit.xml
