@@ -18,6 +18,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     authorizationPathways.push('StudentSchoolAssociationAuthorization' as AuthorizationPathway);
   }
 
+  const edfiStudentEducationOrganizationResponsibilityAssociation: TopLevelEntity | undefined = metaEd.namespace
+    .get('EdFi')
+    ?.entity.association.get('StudentEducationOrganizationResponsibilityAssociation');
+  // Flag StudentEducationOrganizationResponsibilityAssociation as defining the
+  // StudentEducationOrganizationResponsibilityAssociation pathway
+  if (edfiStudentEducationOrganizationResponsibilityAssociation) {
+    const { authorizationPathways } = edfiStudentEducationOrganizationResponsibilityAssociation.data
+      .edfiApiSchema as EntityApiSchemaData;
+    authorizationPathways.push('StudentEducationOrganizationResponsibilityAssociationAuthorization' as AuthorizationPathway);
+  }
+
   const edfiStudentContactAssociation: TopLevelEntity | undefined = metaEd.namespace
     .get('EdFi')
     ?.entity.association.get('StudentContactAssociation');
