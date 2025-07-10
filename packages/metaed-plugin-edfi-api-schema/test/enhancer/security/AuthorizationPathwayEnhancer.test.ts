@@ -102,6 +102,52 @@ describe('when building StudentSchoolAssociation', () => {
   });
 });
 
+describe('when building StudentEducationOrganizationResponsibilityAssociation', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const resourceName = 'StudentEducationOrganizationResponsibilityAssociation';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withStringIdentity('EducationOrganizationId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withStartAssociation(resourceName)
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('EducationOrganization', 'doc')
+      .withEndAssociation()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runEnhancers(metaEd);
+  });
+
+  it('should have the StudentEducationOrganizationResponsibilityAssociation pathway', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get(resourceName);
+    const { authorizationPathways } = entity?.data.edfiApiSchema as EntityApiSchemaData;
+    expect(authorizationPathways).toMatchInlineSnapshot(`
+      Array [
+        "StudentEducationOrganizationResponsibilityAssociationAuthorization",
+      ]
+    `);
+  });
+});
+
 describe('when building StudentContactAssociation', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
