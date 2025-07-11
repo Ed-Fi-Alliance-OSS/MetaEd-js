@@ -2293,13 +2293,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "contactLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2326,13 +2328,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "lastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2347,13 +2351,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "lastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2371,7 +2377,8 @@
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYearTypeReference": {
               "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
@@ -2388,7 +2395,8 @@
             "schoolYear": {
               "description": "A school year.",
               "maxLength": 20,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2401,7 +2409,8 @@
             "schoolYear": {
               "description": "A school year.",
               "maxLength": 20,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2428,7 +2437,8 @@
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2484,13 +2494,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "staffLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2551,19 +2563,22 @@
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2593,13 +2608,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [

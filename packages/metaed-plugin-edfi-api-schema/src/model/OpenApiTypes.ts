@@ -32,6 +32,9 @@ THE SOFTWARE.
 
 /* eslint-disable no-use-before-define */
 
+// Ed-Fi OpenAPI extension constants
+export const ED_FI_IDENTITY_EXTENSION_KEY = 'x-Ed-Fi-isIdentity';
+
 export type Parameter = ReferenceObject | ParameterObject;
 export interface Request {
   body?: any;

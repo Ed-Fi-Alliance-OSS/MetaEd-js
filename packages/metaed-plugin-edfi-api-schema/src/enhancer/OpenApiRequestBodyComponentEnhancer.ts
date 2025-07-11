@@ -16,6 +16,7 @@ import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
+import { ED_FI_IDENTITY_EXTENSION_KEY } from '../model/OpenApiTypes';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
 import { topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
@@ -253,6 +254,13 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
       property.type === 'schoolYearEnumeration'
         ? openApiPropertyForSchoolYearEnumeration(property, schoolYearOpenApis)
         : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis, propertyChain);
+
+    // Add x-Ed-Fi-isIdentity extension for identity properties that are NOT references
+    const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    const isSchoolYearReference = property.type === 'schoolYearEnumeration';
+    if (property.isPartOfIdentity && !apiMapping.isScalarReference && !isSchoolYearReference) {
+      openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
+    }
 
     openApiProperties[openApiObjectBaseName] = openApiProperty;
     addRequired(isOpenApiPropertyRequired(property, propertyModifier), openApiRoot, openApiObjectBaseName);

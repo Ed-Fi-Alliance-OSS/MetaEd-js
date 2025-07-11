@@ -415,6 +415,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "derivativeSourceEducationContents": Object {
             "items": Object {
@@ -1364,6 +1365,7 @@ describe('when building a domain entity with an inline common property with a de
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -1453,6 +1455,7 @@ describe('when building a domain entity with a common property with a descriptor
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -1920,6 +1923,7 @@ describe('when building domain entity with a scalar collection in a common colle
           "integerIdentity": Object {
             "description": "doc",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [

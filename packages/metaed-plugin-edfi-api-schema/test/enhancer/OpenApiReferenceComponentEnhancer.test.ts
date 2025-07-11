@@ -79,20 +79,24 @@ describe('when building simple domain entity with all the identities', () => {
           "booleanIdentity": Object {
             "description": "doc1",
             "type": "boolean",
+            "x-Ed-Fi-isIdentity": true,
           },
           "decimalIdentity": Object {
             "description": "doc2",
             "type": "number",
+            "x-Ed-Fi-isIdentity": true,
           },
           "integerIdentity": Object {
             "description": "doc3",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
           "stringIdentity": Object {
             "description": "doc4",
             "maxLength": 30,
             "minLength": 20,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -167,16 +171,19 @@ describe('when building a domain entity referencing another referencing another 
             "description": "doc4",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolId": Object {
             "description": "doc7",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "sectionIdentifier": Object {
             "description": "doc1",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -201,11 +208,13 @@ describe('when building a domain entity referencing another referencing another 
             "description": "doc4",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolId": Object {
             "description": "doc7",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -229,11 +238,13 @@ describe('when building a domain entity referencing another referencing another 
             "description": "doc5",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolId": Object {
             "description": "doc7",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -255,6 +266,7 @@ describe('when building a domain entity referencing another referencing another 
             "description": "doc7",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -327,27 +339,32 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "description": "doc3",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolId": Object {
             "description": "doc9",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
           "sectionIdentifier": Object {
             "description": "doc1",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "sessionName": Object {
             "description": "doc6",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -374,22 +391,26 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "description": "doc3",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolId": Object {
             "description": "doc9",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
           "sessionName": Object {
             "description": "doc6",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -415,17 +436,20 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "description": "doc9",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
           "sessionName": Object {
             "description": "doc6",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -448,6 +472,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "description": "doc9",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -532,6 +557,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -586,11 +612,13 @@ describe('when building domain entity with acronym property name', () => {
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "iepBeginDate": Object {
             "description": "doc",
             "format": "date-time",
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -668,6 +696,7 @@ describe('when building domain entity subclass with common collection and descri
           "communityOrganizationId": Object {
             "description": "doc",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -810,11 +839,13 @@ describe('when building a domain entity referencing another referencing another 
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "assigningEducationOrganizationId": Object {
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -899,15 +930,18 @@ describe(
             "assigningEducationOrganizationId": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "educationOrganizationId": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "unusedProperty": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
