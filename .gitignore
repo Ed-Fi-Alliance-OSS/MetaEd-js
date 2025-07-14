@@ -97,3 +97,6 @@ eng/ApiSchema/*.zip
 
 # Local Claude configuration files
 CLAUDE.local.md
+
+# Local JUnit test results
+junit.xml
