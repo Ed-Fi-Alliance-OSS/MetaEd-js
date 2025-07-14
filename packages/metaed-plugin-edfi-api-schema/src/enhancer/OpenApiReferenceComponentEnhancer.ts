@@ -60,9 +60,7 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
     );
 
     // Add x-Ed-Fi-isIdentity extension for identity properties
-    if (flattenedIdentityProperty.identityProperty.isPartOfIdentity) {
-      openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
-    }
+    openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
 
     // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check

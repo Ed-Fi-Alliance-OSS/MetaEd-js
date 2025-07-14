@@ -13105,7 +13105,8 @@
               "x-Ed-Fi-isIdentity": true
             },
             "candidateReference": {
-              "$ref": "#/components/schemas/TPDM_Candidate_Reference"
+              "$ref": "#/components/schemas/TPDM_Candidate_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "cohortYears": {
               "items": {
@@ -13124,7 +13125,8 @@
               "uniqueItems": false
             },
             "educatorPreparationProgramReference": {
-              "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram_Reference"
+              "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "endDate": {
               "description": "The end date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -13610,7 +13612,8 @@
               "type": "string"
             },
             "educationOrganizationReference": {
-              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference"
+              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "gradeLevels": {
               "items": {
@@ -13717,7 +13720,8 @@
               "type": "number"
             },
             "performanceEvaluationReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference"
+              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "ratingLevels": {
               "items": {
@@ -13745,7 +13749,8 @@
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
@@ -13812,10 +13817,12 @@
               "type": "string"
             },
             "evaluationElementReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveRatingReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "feedback": {
               "description": "Feedback provided to the evaluated person.",
@@ -14052,7 +14059,8 @@
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationReference": {
-              "$ref": "#/components/schemas/TPDM_Evaluation_Reference"
+              "$ref": "#/components/schemas/TPDM_Evaluation_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
@@ -14095,10 +14103,12 @@
               "type": "string"
             },
             "evaluationObjectiveReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationRatingReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationRating_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationRating_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "objectiveRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
@@ -14338,10 +14348,12 @@
               "type": "string"
             },
             "evaluationReference": {
-              "$ref": "#/components/schemas/TPDM_Evaluation_Reference"
+              "$ref": "#/components/schemas/TPDM_Evaluation_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationRatingReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Reference"
+              "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "results": {
               "items": {
@@ -14616,7 +14628,8 @@
               "type": "boolean"
             },
             "studentReference": {
-              "$ref": "#/components/schemas/EdFi_Student_Reference"
+              "$ref": "#/components/schemas/EdFi_Student_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -14661,7 +14674,8 @@
               "type": "string"
             },
             "educationOrganizationReference": {
-              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference"
+              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
@@ -14702,7 +14716,8 @@
               "uniqueItems": false
             },
             "schoolYearTypeReference": {
-              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference"
+              "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+              "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
@@ -14757,10 +14772,12 @@
               "type": "string"
             },
             "performanceEvaluationReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference"
+              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "results": {
               "items": {
@@ -15007,7 +15024,8 @@
               "type": "integer"
             },
             "evaluationElementReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference"
+              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "rubricRating": {
               "description": "The rating achieved for the rubric dimension.",
@@ -15107,10 +15125,12 @@
           "description": "The association provides information about the survey being taken and who the survey is about.",
           "properties": {
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveyResponseReference": {
-              "$ref": "#/components/schemas/EdFi_SurveyResponse_Reference"
+              "$ref": "#/components/schemas/EdFi_SurveyResponse_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -15165,10 +15185,12 @@
           "description": "This association provides information about the survey section and the person the survey section is about.",
           "properties": {
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "surveySectionResponseReference": {
-              "$ref": "#/components/schemas/EdFi_SurveySectionResponse_Reference"
+              "$ref": "#/components/schemas/EdFi_SurveySectionResponse_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [

@@ -3264,7 +3264,8 @@
           "description": "This is an example of a new domain entity.",
           "properties": {
             "busReference": {
-              "$ref": "#/components/schemas/Sample_Bus_Reference"
+              "$ref": "#/components/schemas/Sample_Bus_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "busRouteDirection": {
               "description": "The direction of the bus route.",
@@ -3808,7 +3809,8 @@
               "x-Ed-Fi-isIdentity": true
             },
             "educationOrganizationReference": {
-              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference"
+              "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "endDate": {
               "description": "The month, day, and year on which the student exited the program or stopped receiving services.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -3880,7 +3882,8 @@
               "uniqueItems": false
             },
             "programReference": {
-              "$ref": "#/components/schemas/EdFi_Program_Reference"
+              "$ref": "#/components/schemas/EdFi_Program_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "reasonExitedDescriptor": {
               "description": "The reason the student left the program within a school or district.",
@@ -3899,7 +3902,8 @@
               "uniqueItems": false
             },
             "studentReference": {
-              "$ref": "#/components/schemas/EdFi_Student_Reference"
+              "$ref": "#/components/schemas/EdFi_Student_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "styles": {
               "items": {
@@ -4350,7 +4354,8 @@
               "type": "number"
             },
             "graduationPlanReference": {
-              "$ref": "#/components/schemas/EdFi_GraduationPlan_Reference"
+              "$ref": "#/components/schemas/EdFi_GraduationPlan_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "highSchoolDuration": {
               "description": "The number of years remaining prior to graduation as of when the plan became effective.",
@@ -4388,7 +4393,8 @@
               "uniqueItems": false
             },
             "studentReference": {
-              "$ref": "#/components/schemas/EdFi_Student_Reference"
+              "$ref": "#/components/schemas/EdFi_Student_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "targetGPA": {
               "description": "The GPA the student is working toward.",

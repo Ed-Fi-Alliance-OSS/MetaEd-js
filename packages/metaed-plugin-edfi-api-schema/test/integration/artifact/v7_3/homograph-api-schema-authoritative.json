@@ -2255,7 +2255,8 @@
               "uniqueItems": false
             },
             "contactNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentSchoolAssociations": {
               "items": {
@@ -2458,7 +2459,8 @@
               "uniqueItems": false
             },
             "staffNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentSchoolAssociations": {
               "items": {
@@ -2532,7 +2534,8 @@
               "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
             },
             "studentNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2546,10 +2549,12 @@
           "description": "This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.",
           "properties": {
             "schoolReference": {
-              "$ref": "#/components/schemas/Homograph_School_Reference"
+              "$ref": "#/components/schemas/Homograph_School_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentReference": {
-              "$ref": "#/components/schemas/Homograph_Student_Reference"
+              "$ref": "#/components/schemas/Homograph_Student_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [

@@ -3160,6 +3160,7 @@ describe('when building a domain entity referencing another referencing another 
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/EdFi_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -3200,6 +3201,7 @@ describe('when building a domain entity referencing another referencing another 
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/EdFi_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -3242,6 +3244,7 @@ describe('when building a domain entity referencing another referencing another 
             },
             "courseOfferingReference": Object {
               "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
@@ -4837,9 +4840,11 @@ describe('when building a domain entity referencing CourseOffering with an impli
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/EdFi_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionReference": Object {
               "$ref": "#/components/schemas/EdFi_Session_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4890,6 +4895,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           "properties": Object {
             "courseOfferingReference": Object {
               "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
@@ -4993,9 +4999,11 @@ describe('when building a domain entity referencing CourseOffering with an impli
           "properties": Object {
             "schoolReference": Object {
               "$ref": "#/components/schemas/EdFi_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYearTypeReference": Object {
               "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",

@@ -256,9 +256,7 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
         : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis, propertyChain);
 
     // Add x-Ed-Fi-isIdentity extension for identity properties that are NOT references
-    const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-    const isSchoolYearReference = property.type === 'schoolYearEnumeration';
-    if (property.isPartOfIdentity && !apiMapping.isScalarReference && !isSchoolYearReference) {
+    if (property.isPartOfIdentity) {
       openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
     }
 
