@@ -437,6 +437,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-nullable": true,
           },
           "learningResourceMetadataURI": Object {
             "description": "doc",
@@ -1451,6 +1452,7 @@ describe('when building a domain entity with a common property with a descriptor
         "properties": Object {
           "availableCredits": Object {
             "$ref": "#/components/schemas/EdFi_Section_AvailableCredit",
+            "x-nullable": true,
           },
           "sectionIdentifier": Object {
             "description": "Documentation",

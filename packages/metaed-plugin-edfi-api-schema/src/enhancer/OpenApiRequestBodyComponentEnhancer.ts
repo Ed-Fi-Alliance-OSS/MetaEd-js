@@ -16,7 +16,12 @@ import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
-import { ED_FI_IDENTITY_EXTENSION_KEY } from '../model/OpenApiTypes';
+import {
+  ED_FI_DEPRECATED_EXTENSION_KEY,
+  ED_FI_DEPRECATED_REASONS_EXTENSION_KEY,
+  ED_FI_IDENTITY_EXTENSION_KEY,
+  ED_FI_NULLABLE_EXTENSION_KEY,
+} from '../model/OpenApiTypes';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
 import { topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
@@ -258,6 +263,15 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
     // Add x-Ed-Fi-isIdentity extension for identity properties that are NOT references
     if (property.isPartOfIdentity) {
       openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
+    }
+    // Add x-Ed-Fi-nullable extension for nullable identity properties
+    if (property.isOptional) {
+      openApiProperty[ED_FI_NULLABLE_EXTENSION_KEY] = true;
+    }
+    // Add x-Ed-Fi-deprecated extension for deprecated identity properties
+    if (property.isDeprecated) {
+      openApiProperty[ED_FI_DEPRECATED_EXTENSION_KEY] = true;
+      openApiProperty[ED_FI_DEPRECATED_REASONS_EXTENSION_KEY] = property.deprecationReason;
     }
 
     openApiProperties[openApiObjectBaseName] = openApiProperty;

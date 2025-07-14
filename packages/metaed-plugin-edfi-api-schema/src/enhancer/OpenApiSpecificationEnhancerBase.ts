@@ -18,6 +18,7 @@ import {
   Schemas,
   TagObject,
   ED_FI_IDENTITY_EXTENSION_KEY,
+  ED_FI_UPDATABLE_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
 import { pluralize } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
@@ -616,6 +617,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
     },
     summary: 'Updates a resource based on the resource identifier.',
     tags: [endpointName],
+    ...(entity.allowPrimaryKeyUpdates && { [ED_FI_UPDATABLE_EXTENSION_KEY]: true }),
   };
 }
 

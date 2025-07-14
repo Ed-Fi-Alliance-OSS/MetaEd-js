@@ -92,22 +92,27 @@ describe('when building simple domain entity with all the simple non-collections
           "optionalBooleanProperty": Object {
             "description": "doc1",
             "type": "boolean",
+            "x-nullable": true,
           },
           "optionalDecimalProperty": Object {
             "description": "doc3",
             "type": "number",
+            "x-nullable": true,
           },
           "optionalPercentProperty": Object {
             "description": "doc5",
             "type": "number",
+            "x-nullable": true,
           },
           "optionalShortProperty": Object {
             "description": "doc9",
             "type": "integer",
+            "x-nullable": true,
           },
           "optionalYear": Object {
             "description": "doc13",
             "type": "integer",
+            "x-nullable": true,
           },
           "requiredCurrencyProperty": Object {
             "description": "doc2",
@@ -140,6 +145,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "schoolYearTypeReference": Object {
             "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+            "x-nullable": true,
           },
           "stringIdentity": Object {
             "description": "doc10",
@@ -763,6 +769,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-nullable": true,
           },
           "learningResourceMetadataURI": Object {
             "description": "doc",
@@ -1254,6 +1261,7 @@ describe('when building domain entity with a descriptor with role name', () => {
           "assessedGradeLevelDescriptor": Object {
             "description": "doc",
             "type": "string",
+            "x-nullable": true,
           },
           "assessmentIdentifier": Object {
             "description": "doc",
@@ -1393,6 +1401,7 @@ describe('when building domain entity with a common with a choice', () => {
           },
           "contentStandard": Object {
             "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
+            "x-nullable": true,
           },
         },
         "required": Array [
@@ -1459,6 +1468,7 @@ describe('when building domain entity with a common and a common collection with
           },
           "period": Object {
             "$ref": "#/components/schemas/EdFi_Assessment_AssessmentPeriod",
+            "x-nullable": true,
           },
           "scores": Object {
             "items": Object {
@@ -1522,6 +1532,7 @@ describe('when building domain entity with an all-caps property', () => {
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-nullable": true,
           },
         },
         "required": Array [
@@ -1589,6 +1600,7 @@ describe('when building domain entity with a common with a domain entity referen
           },
           "contentStandard": Object {
             "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
+            "x-nullable": true,
           },
         },
         "required": Array [
@@ -1645,6 +1657,7 @@ describe('when building domain entity with two school year enumerations, one rol
         "properties": Object {
           "classOfSchoolYearTypeReference": Object {
             "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+            "x-nullable": true,
           },
           "schoolId": Object {
             "description": "doc",
@@ -1653,6 +1666,7 @@ describe('when building domain entity with two school year enumerations, one rol
           },
           "schoolYearTypeReference": Object {
             "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+            "x-nullable": true,
           },
         },
         "required": Array [
@@ -1709,6 +1723,7 @@ describe('when building domain entity with reference to domain entity with schoo
         "properties": Object {
           "calendarReference": Object {
             "$ref": "#/components/schemas/EdFi_Calendar_Reference",
+            "x-nullable": true,
           },
           "schoolId": Object {
             "description": "doc",
@@ -1992,6 +2007,7 @@ describe('when building a domain entity with an inline common property with a de
           "availableCreditTypeDescriptor": Object {
             "description": "Documentation",
             "type": "string",
+            "x-nullable": true,
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
@@ -2124,6 +2140,7 @@ describe('when building a domain entity with different string properties', () =>
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-nullable": true,
           },
           "stringRequired": Object {
             "description": "doc",
@@ -2194,6 +2211,7 @@ describe('when domain entity extension references domain entity in different nam
         "properties": Object {
           "referencedEntityNameReference": Object {
             "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
+            "x-nullable": true,
           },
         },
         "type": "object",

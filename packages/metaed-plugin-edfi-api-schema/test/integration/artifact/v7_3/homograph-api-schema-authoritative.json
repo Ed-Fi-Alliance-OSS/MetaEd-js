@@ -1926,7 +1926,8 @@
             "summary": "Updates a resource based on the resource identifier.",
             "tags": [
               "studentSchoolAssociations"
-            ]
+            ],
+            "x-Ed-Fi-isUpdatable": true
           }
         },
         "/homograph/students": {
@@ -2373,7 +2374,8 @@
           "description": "This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups.",
           "properties": {
             "address": {
-              "$ref": "#/components/schemas/Homograph_School_Address"
+              "$ref": "#/components/schemas/Homograph_School_Address",
+              "x-nullable": true
             },
             "schoolName": {
               "description": "The name of the school.",
@@ -2382,7 +2384,8 @@
               "x-Ed-Fi-isIdentity": true
             },
             "schoolYearTypeReference": {
-              "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
+              "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference",
+              "x-nullable": true
             }
           },
           "required": [

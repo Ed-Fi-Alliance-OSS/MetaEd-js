@@ -1325,11 +1325,13 @@
             },
             "averageCarLineWait": {
               "description": "The time spent per day waiting in the car line.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "becameParent": {
               "description": "The year in which the contact first became a contact.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "ceilingHeights": {
               "items": {
@@ -1341,19 +1343,23 @@
             },
             "coffeeSpend": {
               "description": "How much the contact spends on coffee in a week.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "credentialFieldDescriptor": {
               "description": "The field in which the contact holds a credential.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "cteProgramService": {
-              "$ref": "#/components/schemas/Sample_Contact_CTEProgramService"
+              "$ref": "#/components/schemas/Sample_Contact_CTEProgramService",
+              "x-nullable": true
             },
             "duration": {
               "description": "The amount of time the contact spends reading to his/her children at bedtime.",
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "educationContents": {
               "items": {
@@ -1373,12 +1379,14 @@
             },
             "gpa": {
               "description": "The contact's high school GPA.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "graduationDate": {
               "description": "The date the contact graduated high school.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "isSportsFan": {
               "description": "An indication as to whether the contact is a sports fan.",
@@ -1386,16 +1394,19 @@
             },
             "luckyNumber": {
               "description": "The contact's lucky number.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "preferredWakeUpTime": {
               "description": "The time the contact would prefer to wake up in the morning.",
               "format": "time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "rainCertainty": {
               "description": "The percent likelihood that it will rain when the contact volunteers to chaperone a field trip.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "studentProgramAssociations": {
               "items": {
@@ -1420,7 +1431,8 @@
           "description": "",
           "properties": {
             "cteProgramService": {
-              "$ref": "#/components/schemas/Sample_School_CTEProgramService"
+              "$ref": "#/components/schemas/Sample_School_CTEProgramService",
+              "x-nullable": true
             },
             "directlyOwnedBuses": {
               "items": {
@@ -1432,7 +1444,8 @@
             },
             "isExemplary": {
               "description": "An indication as to whether the school is exemplary.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             }
           },
           "type": "object"
@@ -1443,10 +1456,12 @@
             "firstPetOwnedDate": {
               "description": "The date the staff member adopted the first household pet.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "petPreference": {
-              "$ref": "#/components/schemas/Sample_Staff_PetPreference"
+              "$ref": "#/components/schemas/Sample_Staff_PetPreference",
+              "x-nullable": true
             },
             "pets": {
               "items": {
@@ -1479,7 +1494,8 @@
               "uniqueItems": false
             },
             "petPreference": {
-              "$ref": "#/components/schemas/Sample_Student_PetPreference"
+              "$ref": "#/components/schemas/Sample_Student_PetPreference",
+              "x-nullable": true
             },
             "pets": {
               "items": {
@@ -1497,12 +1513,14 @@
           "properties": {
             "analysisCompleted": {
               "description": "A unique identification code used to identify the student's artwork produced in the program.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "analysisDate": {
               "description": "The date and time the CTEProgram analysis was completed.",
               "format": "date-time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "type": "object"
@@ -1516,15 +1534,18 @@
             },
             "bedtimeReadingRate": {
               "description": "The average number of pages the contact reads with the student each day.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "bookBudget": {
               "description": "The contact's estimated monthly budget dedicated to books for the student.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "booksBorrowed": {
               "description": "The total number of books the contact has borrowed on behalf of the student to date.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "disciplines": {
               "items": {
@@ -1551,21 +1572,25 @@
               "uniqueItems": false
             },
             "interventionStudyReference": {
-              "$ref": "#/components/schemas/EdFi_InterventionStudy_Reference"
+              "$ref": "#/components/schemas/EdFi_InterventionStudy_Reference",
+              "x-nullable": true
             },
             "libraryDuration": {
               "description": "The actual or estimated number of clock minutes for a given library visit.",
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "libraryTime": {
               "description": "The student's regularly scheduled library time during the school day.",
               "format": "time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "libraryVisits": {
               "description": "Total number of visits a student is allowed to the library in a single school day.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "pagesReads": {
               "items": {
@@ -1578,16 +1603,19 @@
             "priorContactRestrictions": {
               "description": "Previous restrictions for student and/or teacher contact with the individual (e.g., the student may not be picked up by the individual).",
               "maxLength": 250,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "readGreenEggsAndHamDate": {
               "description": "Date on which the contact first read the student Green Eggs and Ham by Dr. Seuss.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "readingTimeSpent": {
               "description": "The amount of time the contact spends reading to the student each day.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "staffEducationOrganizationEmploymentAssociations": {
               "items": {
@@ -1599,10 +1627,12 @@
             },
             "studentRead": {
               "description": "The year in which the student's reading habits are being recorded.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "telephone": {
-              "$ref": "#/components/schemas/Sample_StudentContactAssociation_Telephone"
+              "$ref": "#/components/schemas/Sample_StudentContactAssociation_Telephone",
+              "x-nullable": true
             }
           },
           "required": [
@@ -1623,7 +1653,8 @@
               "uniqueItems": false
             },
             "favoriteProgramReference": {
-              "$ref": "#/components/schemas/EdFi_Program_Reference"
+              "$ref": "#/components/schemas/EdFi_Program_Reference",
+              "x-nullable": true
             },
             "studentCharacteristics": {
               "items": {
@@ -1641,7 +1672,8 @@
           "properties": {
             "membershipTypeDescriptor": {
               "description": "Membership Type identifies whether a school has primary responsibility for managing a specific student's curriculum or not.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "type": "object"
@@ -3275,11 +3307,14 @@
             "busRouteDuration": {
               "description": "The number of minutes per week in which the bus route is operational.",
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "busRouteNumber": {
               "description": "A unique identifier for the bus route.",
               "type": "integer",
+              "x-Ed-Fi-deprecatedReasons": "Expect removal of this element in a future release.",
+              "x-Ed-Fi-isDeprecated": true,
               "x-Ed-Fi-isIdentity": true
             },
             "busYears": {
@@ -3292,11 +3327,13 @@
             },
             "daily": {
               "description": "An indication as to whether the bus route operates every weekday.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "disabilityDescriptor": {
               "description": "The disability served by the bus route, if applicable.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "expectedTransitTime": {
               "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
@@ -3312,7 +3349,8 @@
             },
             "optimalCapacity": {
               "description": "The percentage of seats filled under optimal conditions.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "programs": {
               "items": {
@@ -3331,12 +3369,14 @@
               "uniqueItems": false
             },
             "staffEducationOrganizationAssignmentAssociationReference": {
-              "$ref": "#/components/schemas/EdFi_StaffEducationOrganizationAssignmentAssociation_Reference"
+              "$ref": "#/components/schemas/EdFi_StaffEducationOrganizationAssignmentAssociation_Reference",
+              "x-nullable": true
             },
             "startDate": {
               "description": "The date the bus route became operational.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "startTimes": {
               "items": {
@@ -3356,7 +3396,8 @@
             },
             "weeklyMileage": {
               "description": "The approximate weekly mileage for the bus route.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             }
           },
           "required": [
@@ -3406,6 +3447,7 @@
             "busRouteNumber": {
               "description": "A unique identifier for the bus route.",
               "type": "integer",
+              "x-Ed-Fi-isDeprecated": true,
               "x-Ed-Fi-isIdentity": true
             }
           },
@@ -3800,7 +3842,8 @@
               "description": "The total number of art pieces completed by the student during the program.",
               "maximum": 100,
               "minimum": 0,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "beginDate": {
               "description": "The earliest date the student is involved with the program. Typically, this is the date the student becomes eligible for the program.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -3815,47 +3858,57 @@
             "endDate": {
               "description": "The month, day, and year on which the student exited the program or stopped receiving services.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "exhibitDate": {
               "description": "Start date for the program's art exhibit to display the student's work.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "favoriteBook": {
-              "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_FavoriteBook"
+              "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_FavoriteBook",
+              "x-nullable": true
             },
             "hoursPerDay": {
               "description": "The number of hours a student spends in the program each school day.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "identificationCode": {
               "description": "A unique identification code used to identify the student's artwork produced in the program.",
               "maxLength": 60,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "kilnReservation": {
               "description": "The student's reserved time for use of the kiln.",
               "format": "time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "kilnReservationLength": {
               "description": "The number of clock minutes dedicated to the student's kiln reservation.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "masteredMediums": {
               "description": "Percentage of the mediums taught in the program which the student mastered.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "numberOfDaysInAttendance": {
               "description": "Number of days the student is in attendance at the program.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "portfolioPieces": {
               "description": "The total number of pieces in the student's portfolio.",
               "maximum": 100,
               "minimum": 0,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "portfolioYears": {
               "items": {
@@ -3871,7 +3924,8 @@
             },
             "programFees": {
               "description": "Required program fees to purchase materials for the student.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "programParticipationStatuses": {
               "items": {
@@ -3887,11 +3941,13 @@
             },
             "reasonExitedDescriptor": {
               "description": "The reason the student left the program within a school or district.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "servedOutsideOfRegularSession": {
               "description": "Indicates whether the student received services during the summer session or between sessions.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "services": {
               "items": {
@@ -4323,10 +4379,12 @@
             "commencementTime": {
               "description": "The time of day for the commencement ceremony.",
               "format": "time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "cteProgramService": {
-              "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_CTEProgramService"
+              "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_CTEProgramService",
+              "x-nullable": true
             },
             "descriptions": {
               "items": {
@@ -4351,7 +4409,8 @@
             },
             "graduationFee": {
               "description": "Any fees the student must resolve prior to graduation, such as library fines and overdue lunch accounts.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "graduationPlanReference": {
               "$ref": "#/components/schemas/EdFi_GraduationPlan_Reference",
@@ -4359,7 +4418,8 @@
             },
             "highSchoolDuration": {
               "description": "The number of years remaining prior to graduation as of when the plan became effective.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "hoursPerWeek": {
               "description": "The number of hours per week the student will attend to graduate.",
@@ -4375,14 +4435,17 @@
             },
             "isActivePlan": {
               "description": "An indication as to whether the plan is active.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "requiredAttendance": {
               "description": "The percentage of time the student must attend to graduate, relative to a full-time student.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "staffReference": {
-              "$ref": "#/components/schemas/EdFi_Staff_Reference"
+              "$ref": "#/components/schemas/EdFi_Staff_Reference",
+              "x-nullable": true
             },
             "studentContactAssociations": {
               "items": {

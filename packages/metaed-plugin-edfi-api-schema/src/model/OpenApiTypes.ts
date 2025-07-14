@@ -37,6 +37,7 @@ export const ED_FI_IDENTITY_EXTENSION_KEY = 'x-Ed-Fi-isIdentity';
 export const ED_FI_NULLABLE_EXTENSION_KEY = 'x-nullable';
 export const ED_FI_DEPRECATED_EXTENSION_KEY = 'x-Ed-Fi-isDeprecated';
 export const ED_FI_DEPRECATED_REASONS_EXTENSION_KEY = 'x-Ed-Fi-deprecatedReasons';
+export const ED_FI_UPDATABLE_EXTENSION_KEY = 'x-Ed-Fi-isUpdatable';
 
 export type Parameter = ReferenceObject | ParameterObject;
 export interface Request {
@@ -126,6 +127,7 @@ export type Operation<T extends {} = {}> = {
   deprecated?: boolean;
   security?: SecurityRequirementObject[];
   servers?: ServerObject[];
+  [ED_FI_UPDATABLE_EXTENSION_KEY]?: boolean;
 } & T;
 
 export interface ExternalDocumentationObject {

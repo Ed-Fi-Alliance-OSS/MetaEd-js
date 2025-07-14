@@ -267,22 +267,27 @@ describe('when building simple domain entity with all the simple non-collections
                 "optionalBooleanProperty": Object {
                   "description": "doc1",
                   "type": "boolean",
+                  "x-nullable": true,
                 },
                 "optionalDecimalProperty": Object {
                   "description": "doc3",
                   "type": "number",
+                  "x-nullable": true,
                 },
                 "optionalPercentProperty": Object {
                   "description": "doc5",
                   "type": "number",
+                  "x-nullable": true,
                 },
                 "optionalShortProperty": Object {
                   "description": "doc9",
                   "type": "integer",
+                  "x-nullable": true,
                 },
                 "optionalYear": Object {
                   "description": "doc13",
                   "type": "integer",
+                  "x-nullable": true,
                 },
                 "requiredCurrencyProperty": Object {
                   "description": "doc2",
@@ -315,6 +320,7 @@ describe('when building simple domain entity with all the simple non-collections
                 },
                 "schoolYearTypeReference": Object {
                   "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+                  "x-nullable": true,
                 },
                 "stringIdentity": Object {
                   "description": "doc10",
@@ -5675,6 +5681,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-nullable": true,
             },
             "learningResourceMetadataURI": Object {
               "description": "doc",

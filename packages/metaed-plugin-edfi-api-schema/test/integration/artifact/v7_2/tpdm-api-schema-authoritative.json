@@ -7515,33 +7515,40 @@
           "properties": {
             "boardCertificationIndicator": {
               "description": "Indicator that the credential was granted under the authority of a national Board Certification.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "certificationRouteDescriptor": {
               "description": "The process, program, or pathway used to obtain certification.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "certificationTitle": {
               "description": "The title of the certification obtained by the educator.",
               "maxLength": 64,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "credentialStatusDate": {
               "description": "The month, day, and year on which the credential status was effective.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "credentialStatusDescriptor": {
               "description": "The current status of the credential (e.g., active, suspended, etc.).",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "educatorRoleDescriptor": {
               "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-nullable": true
             },
             "studentAcademicRecords": {
               "items": {
@@ -7558,7 +7565,8 @@
           "description": "",
           "properties": {
             "postSecondaryInstitutionReference": {
-              "$ref": "#/components/schemas/EdFi_PostSecondaryInstitution_Reference"
+              "$ref": "#/components/schemas/EdFi_PostSecondaryInstitution_Reference",
+              "x-nullable": true
             }
           },
           "type": "object"
@@ -7567,7 +7575,8 @@
           "description": "",
           "properties": {
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-nullable": true
             }
           },
           "type": "object"
@@ -12913,11 +12922,13 @@
               "description": "The city the student was born in.",
               "maxLength": 30,
               "minLength": 2,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "birthCountryDescriptor": {
               "description": "The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "birthDate": {
               "description": "The month, day, and year on which an individual was born.",
@@ -12927,15 +12938,18 @@
             "birthInternationalProvince": {
               "description": "For students born outside of the U.S., the Province or jurisdiction in which an individual is born.",
               "maxLength": 150,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "birthSexDescriptor": {
               "description": "A person's sex at birth.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "birthStateAbbreviationDescriptor": {
               "description": "The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "candidateIdentifier": {
               "description": "A unique alphanumeric code assigned to a candidate.",
@@ -12947,7 +12961,8 @@
             "dateEnteredUS": {
               "description": "For students born outside of the U.S., the date the student entered the U.S.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "disabilities": {
               "items": {
@@ -12961,11 +12976,13 @@
               "description": "Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services.",
               "maxLength": 30,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "economicDisadvantaged": {
               "description": "An indication of inadequate financial condition of an individual's family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "electronicMails": {
               "items": {
@@ -12977,11 +12994,13 @@
             },
             "englishLanguageExamDescriptor": {
               "description": "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "firstGenerationStudent": {
               "description": "Indicator of whether individual is a first generation college student.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "firstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
@@ -12990,16 +13009,19 @@
             },
             "genderDescriptor": {
               "description": "The gender of the candidate.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "generationCodeSuffix": {
               "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
               "maxLength": 10,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "hispanicLatinoEthnicity": {
               "description": "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, \"Spanish origin,\" can be used in addition to \"Hispanic or Latino.\"",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "languages": {
               "items": {
@@ -13016,21 +13038,25 @@
             },
             "limitedEnglishProficiencyDescriptor": {
               "description": "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "maidenName": {
               "description": "The individual's maiden name.",
               "maxLength": 75,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "middleName": {
               "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
               "maxLength": 75,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "multipleBirthStatus": {
               "description": "Indicator of whether the student was born with other siblings (i.e., twins, triplets, etc.)",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "otherNames": {
               "items": {
@@ -13041,7 +13067,8 @@
               "uniqueItems": false
             },
             "personReference": {
-              "$ref": "#/components/schemas/EdFi_Person_Reference"
+              "$ref": "#/components/schemas/EdFi_Person_Reference",
+              "x-nullable": true
             },
             "personalIdentificationDocuments": {
               "items": {
@@ -13054,17 +13081,20 @@
             "personalTitlePrefix": {
               "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
               "maxLength": 30,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "preferredFirstName": {
               "description": "The first name the individual prefers, if different from their legal first name",
               "maxLength": 75,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "preferredLastSurname": {
               "description": "The last name the individual prefers, if different from their legal last name",
               "maxLength": 75,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "races": {
               "items": {
@@ -13076,7 +13106,8 @@
             },
             "sexDescriptor": {
               "description": "The sex of the candidate.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "telephones": {
               "items": {
@@ -13131,15 +13162,18 @@
             "endDate": {
               "description": "The end date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "eppProgramPathwayDescriptor": {
               "description": "The program pathway the candidate is following; for example: Residency, Internship, Traditional",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "reasonExitedDescriptor": {
               "description": "Reason exited for the association.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "required": [
@@ -13609,7 +13643,8 @@
           "properties": {
             "accreditationStatusDescriptor": {
               "description": "The current accreditation status of the Educator Preparation Program.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "educationOrganizationReference": {
               "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
@@ -13626,7 +13661,8 @@
             "programId": {
               "description": "A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.",
               "maxLength": 20,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "programName": {
               "description": "The name of the Educator Preparation Program.",
@@ -13694,7 +13730,8 @@
             "evaluationDescription": {
               "description": "The long description of the Evaluation.",
               "maxLength": 255,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationTitle": {
               "description": "The name or title of the evaluation.",
@@ -13705,19 +13742,23 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "interRaterReliabilityScore": {
               "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "performanceEvaluationReference": {
               "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
@@ -13754,15 +13795,18 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation element.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "ratingLevels": {
               "items": {
@@ -13774,7 +13818,8 @@
             },
             "sortOrder": {
               "description": "The sort order of this Evaluation Element.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             }
           },
           "required": [
@@ -13790,19 +13835,22 @@
               "description": "Area identified for person to refine or improve as part of the evaluation.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "areaOfReinforcement": {
               "description": "Area identified for reinforcement or positive feedback as part of the evaluation.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "comments": {
               "description": "Any comments about the performance evaluation to be captured.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "elementRatingResults": {
               "items": {
@@ -13814,7 +13862,8 @@
             },
             "evaluationElementRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationElementReference": {
               "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
@@ -13828,7 +13877,8 @@
               "description": "Feedback provided to the evaluated person.",
               "maxLength": 2048,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "required": [
@@ -14049,7 +14099,8 @@
             "evaluationObjectiveDescription": {
               "description": "The long description of the Evaluation Objective.",
               "maxLength": 255,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationObjectiveTitle": {
               "description": "The name or title of the evaluation Objective.",
@@ -14064,15 +14115,18 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation Objective.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "ratingLevels": {
               "items": {
@@ -14084,7 +14138,8 @@
             },
             "sortOrder": {
               "description": "The sort order of this Evaluation Objective.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             }
           },
           "required": [
@@ -14100,7 +14155,8 @@
               "description": "Any comments about the performance evaluation to be captured.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationObjectiveReference": {
               "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference",
@@ -14112,7 +14168,8 @@
             },
             "objectiveRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "objectiveRatingResults": {
               "items": {
@@ -14325,13 +14382,15 @@
             "actualDuration": {
               "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "comments": {
               "description": "Any comments about the evaluation to be captured.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationDate": {
               "description": "The date for the person's evaluation.",
@@ -14341,11 +14400,13 @@
             },
             "evaluationRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationRatingStatusDescriptor": {
               "description": "The Status of the poerformance evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "evaluationReference": {
               "$ref": "#/components/schemas/TPDM_Evaluation_Reference",
@@ -14372,7 +14433,8 @@
               "uniqueItems": false
             },
             "sectionReference": {
-              "$ref": "#/components/schemas/EdFi_Section_Reference"
+              "$ref": "#/components/schemas/EdFi_Section_Reference",
+              "x-nullable": true
             }
           },
           "required": [
@@ -14600,12 +14662,14 @@
           "properties": {
             "aidAmount": {
               "description": "The amount of financial aid awarded to a person for the term/year.",
-              "type": "number"
+              "type": "number",
+              "x-nullable": true
             },
             "aidConditionDescription": {
               "description": "The description of the condition (e.g., placement in a high need school) under which the aid was given.",
               "maxLength": 1024,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "aidTypeDescriptor": {
               "description": "The classification of financial aid awarded to a person for the academic term/year.",
@@ -14621,11 +14685,13 @@
             "endDate": {
               "description": "The date the award was removed.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "pellGrantRecipient": {
               "description": "Indicates a person who receives Pell Grant aid.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "studentReference": {
               "$ref": "#/components/schemas/EdFi_Student_Reference",
@@ -14671,7 +14737,8 @@
           "properties": {
             "academicSubjectDescriptor": {
               "description": "The description of the content or subject area of a performance evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "educationOrganizationReference": {
               "$ref": "#/components/schemas/EdFi_EducationOrganization_Reference",
@@ -14693,7 +14760,8 @@
             "performanceEvaluationDescription": {
               "description": "The long description of the Performance Evaluation.",
               "maxLength": 255,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "performanceEvaluationTitle": {
               "description": "An assigned unique identifier for the performance evaluation.",
@@ -14746,30 +14814,36 @@
             "actualDuration": {
               "description": "The actual or estimated number of clock minutes during which the performance evaluation was conducted.",
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "actualTime": {
               "description": "An indication of the the time at which the performance evaluation was conducted.",
               "format": "time",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "announced": {
               "description": "An indicator of whether the performance evaluation was announced or not.",
-              "type": "boolean"
+              "type": "boolean",
+              "x-nullable": true
             },
             "comments": {
               "description": "Any comments about the performance evaluation to be captured.",
               "maxLength": 1024,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "coteachingStyleObservedDescriptor": {
               "description": "A type of co-teaching observed as part of the performance evaluation.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "performanceEvaluationRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             },
             "performanceEvaluationReference": {
               "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
@@ -14798,7 +14872,8 @@
             "scheduleDate": {
               "description": "The month, day, and year on which the performance evaluation was scheduled.",
               "format": "date",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "required": [
@@ -15021,7 +15096,8 @@
             },
             "dimensionOrder": {
               "description": "The order for the rubric dimension.",
-              "type": "integer"
+              "type": "integer",
+              "x-nullable": true
             },
             "evaluationElementReference": {
               "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
@@ -15034,7 +15110,8 @@
             },
             "rubricRatingLevelDescriptor": {
               "description": "The rating level achieved for the rubric dimension.",
-              "type": "string"
+              "type": "string",
+              "x-nullable": true
             }
           },
           "required": [
