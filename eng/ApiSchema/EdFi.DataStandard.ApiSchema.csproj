@@ -3,20 +3,20 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>true</IsPackable>
-        <RootNamespace>EdFi.DataStandard52.ApiSchema</RootNamespace>
+        <RootNamespace>EdFi.DataStandard$(DataStandardVersion).ApiSchema</RootNamespace>
         <NoWarn>NU5110,NU5111</NoWarn>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.DataStandard52.ApiSchema</PackageId>        
-        <Id>EdFi.DataStandard52.ApiSchema</Id>
+        <PackageId>EdFi.DataStandard$(DataStandardVersion).ApiSchema</PackageId>        
+        <Id>EdFi.DataStandard$(DataStandardVersion).ApiSchema</Id>
         <NuspecProperties>version=$(PackageVersion);PackageId=$(PackageId)</NuspecProperties>
-        <title>Ed-Fi API Schema definition for Data Standard 5.2.0</title>
+        <title>Ed-Fi API Schema definition for the Data Standard</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
         <copyright>Copyright © 2025, Ed-Fi Alliance, LLC and contributors.</copyright>
-        <summary>API Schema definition file representing the core Ed-Fi Data Standard 5.2.0, without extensions.</summary>
-        <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard 5.2.0. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
-        <AssemblyName>EdFi.DataStandard52.ApiSchema</AssemblyName>
+        <summary>API Schema definition file representing the core Ed-Fi Data Standard, without extensions.</summary>
+        <description>The API Schema definition file can be used to generate a full API stack representing the Ed-Fi Data Standard. The file definition includes JSON Schema, along with other information required to build an Ed-Fi compatible application.</description>
+        <AssemblyName>EdFi.DataStandard$(DataStandardVersion).ApiSchema</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
