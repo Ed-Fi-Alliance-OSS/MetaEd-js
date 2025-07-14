@@ -148,7 +148,7 @@ export function openApiPropertyForNonReference(
 
     case 'descriptor':
     case 'enumeration':
-      return { type: 'string', description };
+      return { type: 'string', description, maxLength: 306 };
 
     case 'integer':
     case 'sharedInteger': {

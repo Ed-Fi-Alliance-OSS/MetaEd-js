@@ -3,6 +3,13 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+import {
+  ED_FI_DEPRECATED_EXTENSION_KEY,
+  ED_FI_DEPRECATED_REASONS_EXTENSION_KEY,
+  ED_FI_IDENTITY_EXTENSION_KEY,
+  ED_FI_NULLABLE_EXTENSION_KEY,
+} from './OpenApiTypes';
+
 /* eslint-disable no-use-before-define */
 
 /**
@@ -52,6 +59,10 @@ export type OpenApiProperty =
       minLength?: number;
       maxLength?: number;
       pattern?: string;
+      [ED_FI_IDENTITY_EXTENSION_KEY]?: boolean;
+      [ED_FI_NULLABLE_EXTENSION_KEY]?: boolean;
+      [ED_FI_DEPRECATED_EXTENSION_KEY]?: boolean;
+      [ED_FI_DEPRECATED_REASONS_EXTENSION_KEY]?: string[];
     }
   | { type: 'integer'; description: string; minimum?: number; maximum?: number }
   | { type: 'number'; description: string; minimum?: number; maximum?: number }

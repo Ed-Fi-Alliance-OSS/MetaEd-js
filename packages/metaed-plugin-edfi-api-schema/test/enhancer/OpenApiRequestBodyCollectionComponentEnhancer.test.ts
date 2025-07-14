@@ -409,12 +409,14 @@ describe('when building domain entity with nested choice and inline commons', ()
         "properties": Object {
           "contentClassDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "contentIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "derivativeSourceEducationContents": Object {
             "items": Object {
@@ -436,6 +438,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "doc",
             "maxLength": 30,
             "type": "string",
+            "x-nullable": true,
           },
           "learningResourceMetadataURI": Object {
             "description": "doc",
@@ -628,6 +631,7 @@ describe('when building domain entity with a simple common collection', () => {
             "properties": Object {
               "assessmentIdentificationSystemDescriptor": Object {
                 "description": "doc",
+                "maxLength": 306,
                 "type": "string",
               },
               "identificationCode": Object {
@@ -1364,6 +1368,7 @@ describe('when building a domain entity with an inline common property with a de
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -1449,10 +1454,12 @@ describe('when building a domain entity with a common property with a descriptor
         "properties": Object {
           "availableCredits": Object {
             "$ref": "#/components/schemas/EdFi_Section_AvailableCredit",
+            "x-nullable": true,
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [
@@ -1920,6 +1927,7 @@ describe('when building domain entity with a scalar collection in a common colle
           "integerIdentity": Object {
             "description": "doc",
             "type": "integer",
+            "x-Ed-Fi-isIdentity": true,
           },
         },
         "required": Array [

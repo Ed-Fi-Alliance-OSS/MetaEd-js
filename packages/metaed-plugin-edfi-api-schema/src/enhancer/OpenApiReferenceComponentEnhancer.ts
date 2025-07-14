@@ -7,6 +7,12 @@ import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiObject, OpenApiProperties, OpenApiProperty } from '../model/OpenApi';
+import {
+  ED_FI_DEPRECATED_EXTENSION_KEY,
+  ED_FI_DEPRECATED_REASONS_EXTENSION_KEY,
+  ED_FI_IDENTITY_EXTENSION_KEY,
+  ED_FI_NULLABLE_EXTENSION_KEY,
+} from '../model/OpenApiTypes';
 import { defaultPropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { findIdenticalRoleNamePatternPrefix, prependPrefixWithCollapse, uncapitalize } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
@@ -57,6 +63,19 @@ function openApiReferenceComponentFor(entity: TopLevelEntity, schoolYearOpenApis
       flattenedIdentityProperty.identityProperty,
       schoolYearOpenApis,
     );
+
+    // Add x-Ed-Fi-isIdentity extension for identity properties
+    openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
+    // Add x-Ed-Fi-nullable extension for nullable identity properties
+    if (flattenedIdentityProperty.identityProperty.isOptional) {
+      openApiProperty[ED_FI_NULLABLE_EXTENSION_KEY] = true;
+    }
+    // Add x-Ed-Fi-deprecated extension for deprecated identity properties
+    if (flattenedIdentityProperty.identityProperty.isDeprecated) {
+      openApiProperty[ED_FI_DEPRECATED_EXTENSION_KEY] = true;
+      openApiProperty[ED_FI_DEPRECATED_REASONS_EXTENSION_KEY] =
+        flattenedIdentityProperty.identityProperty.data.edfiApiSchema.deprecationReasons;
+    }
 
     // Note that this key/value usage of Object implicitly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check

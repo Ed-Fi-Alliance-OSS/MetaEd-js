@@ -1926,7 +1926,8 @@
             "summary": "Updates a resource based on the resource identifier.",
             "tags": [
               "studentSchoolAssociations"
-            ]
+            ],
+            "x-Ed-Fi-isUpdatable": true
           }
         },
         "/homograph/students": {
@@ -2255,7 +2256,8 @@
               "uniqueItems": false
             },
             "contactNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentSchoolAssociations": {
               "items": {
@@ -2293,13 +2295,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "contactLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2326,13 +2330,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "lastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2347,13 +2353,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "lastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2366,15 +2374,18 @@
           "description": "This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups.",
           "properties": {
             "address": {
-              "$ref": "#/components/schemas/Homograph_School_Address"
+              "$ref": "#/components/schemas/Homograph_School_Address",
+              "x-nullable": true
             },
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "schoolYearTypeReference": {
-              "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
+              "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference",
+              "x-nullable": true
             }
           },
           "required": [
@@ -2388,7 +2399,8 @@
             "schoolYear": {
               "description": "A school year.",
               "maxLength": 20,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2401,7 +2413,8 @@
             "schoolYear": {
               "description": "A school year.",
               "maxLength": 20,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2428,7 +2441,8 @@
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2448,7 +2462,8 @@
               "uniqueItems": false
             },
             "staffNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentSchoolAssociations": {
               "items": {
@@ -2484,13 +2499,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "staffLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2520,7 +2537,8 @@
               "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
             },
             "studentNameReference": {
-              "$ref": "#/components/schemas/Homograph_Name_Reference"
+              "$ref": "#/components/schemas/Homograph_Name_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2534,10 +2552,12 @@
           "description": "This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.",
           "properties": {
             "schoolReference": {
-              "$ref": "#/components/schemas/Homograph_School_Reference"
+              "$ref": "#/components/schemas/Homograph_School_Reference",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentReference": {
-              "$ref": "#/components/schemas/Homograph_Student_Reference"
+              "$ref": "#/components/schemas/Homograph_Student_Reference",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2551,19 +2571,22 @@
             "schoolName": {
               "description": "The name of the school.",
               "maxLength": 100,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentFirstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [
@@ -2593,13 +2616,15 @@
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             },
             "studentLastSurname": {
               "description": "The name borne in common by members of a family.",
               "maxLength": 75,
               "minLength": 1,
-              "type": "string"
+              "type": "string",
+              "x-Ed-Fi-isIdentity": true
             }
           },
           "required": [

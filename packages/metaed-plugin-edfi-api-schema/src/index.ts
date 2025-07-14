@@ -31,6 +31,7 @@ export type { ReferenceComponent, ReferenceGroup } from './model/ReferenceCompon
 export { topLevelApiNameOnEntity, pluralize, uncapitalize } from './Utility';
 export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
 export type { EqualityConstraint } from './model/EqualityConstraint';
+export { ED_FI_IDENTITY_EXTENSION_KEY } from './model/OpenApiTypes';
 
 export function initialize(): MetaEdPlugin {
   return {

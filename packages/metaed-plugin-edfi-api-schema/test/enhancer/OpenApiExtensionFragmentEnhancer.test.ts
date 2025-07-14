@@ -545,22 +545,27 @@ describe('when building simple domain entity with all the simple non-collections
             "optionalBooleanProperty": Object {
               "description": "doc1",
               "type": "boolean",
+              "x-nullable": true,
             },
             "optionalDecimalProperty": Object {
               "description": "doc3",
               "type": "number",
+              "x-nullable": true,
             },
             "optionalPercentProperty": Object {
               "description": "doc5",
               "type": "number",
+              "x-nullable": true,
             },
             "optionalShortProperty": Object {
               "description": "doc9",
               "type": "integer",
+              "x-nullable": true,
             },
             "optionalYear": Object {
               "description": "doc13",
               "type": "integer",
+              "x-nullable": true,
             },
             "requiredCurrencyProperty": Object {
               "description": "doc2",
@@ -593,12 +598,14 @@ describe('when building simple domain entity with all the simple non-collections
             },
             "schoolYearTypeReference": Object {
               "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+              "x-nullable": true,
             },
             "stringIdentity": Object {
               "description": "doc10",
               "maxLength": 30,
               "minLength": 20,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -619,6 +626,7 @@ describe('when building simple domain entity with all the simple non-collections
               "maxLength": 30,
               "minLength": 20,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -1121,6 +1129,7 @@ describe('when building simple domain entity with all the simple collections', (
               "maxLength": 30,
               "minLength": 20,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -1202,6 +1211,7 @@ describe('when building simple domain entity with all the simple collections', (
               "maxLength": 30,
               "minLength": 20,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2638,9 +2648,11 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/Extension_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2655,11 +2667,13 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2675,9 +2689,11 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/Extension_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2692,11 +2708,13 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2718,11 +2736,13 @@ describe('when building a domain entity referencing another referencing another 
             },
             "courseOfferingReference": Object {
               "$ref": "#/components/schemas/Extension_CourseOffering_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2749,16 +2769,19 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2775,6 +2798,7 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -2788,6 +2812,7 @@ describe('when building a domain entity referencing another referencing another 
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4142,12 +4167,15 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolReference": Object {
               "$ref": "#/components/schemas/Extension_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionReference": Object {
               "$ref": "#/components/schemas/Extension_Session_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4163,22 +4191,26 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4194,11 +4226,13 @@ describe('when building a domain entity referencing CourseOffering with an impli
           "properties": Object {
             "courseOfferingReference": Object {
               "$ref": "#/components/schemas/Extension_CourseOffering_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4213,27 +4247,32 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolId": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sectionIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4252,6 +4291,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4265,6 +4305,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4277,14 +4318,17 @@ describe('when building a domain entity referencing CourseOffering with an impli
           "properties": Object {
             "schoolReference": Object {
               "$ref": "#/components/schemas/Extension_School_Reference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYearTypeReference": Object {
               "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4300,17 +4344,20 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "schoolYear": Object {
               "description": "A school year between 1900 and 2100",
               "maximum": 2100,
               "minimum": 1900,
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "sessionName": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -4770,12 +4817,14 @@ describe('when building domain entity with nested choice and inline commons', ()
           "properties": Object {
             "contentClassDescriptor": Object {
               "description": "doc",
+              "maxLength": 306,
               "type": "string",
             },
             "contentIdentifier": Object {
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "derivativeSourceEducationContents": Object {
               "items": Object {
@@ -4797,6 +4846,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-nullable": true,
             },
             "learningResourceMetadataURI": Object {
               "description": "doc",
@@ -4853,6 +4903,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -5668,6 +5719,7 @@ describe('when building domain entity with scalar collection named with prefix o
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
             "suffixNames": Object {
               "items": Object {
@@ -5703,6 +5755,7 @@ describe('when building domain entity with scalar collection named with prefix o
               "description": "doc",
               "maxLength": 30,
               "type": "string",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -5784,6 +5837,7 @@ describe('when domain entity extension references domain entity in different nam
               "entityIdentity": Object {
                 "description": "doc",
                 "type": "integer",
+                "x-Ed-Fi-isIdentity": true,
               },
             },
             "required": Array [
@@ -5796,6 +5850,7 @@ describe('when domain entity extension references domain entity in different nam
               "entityIdentity": Object {
                 "description": "doc",
                 "type": "integer",
+                "x-Ed-Fi-isIdentity": true,
               },
             },
             "required": Array [
@@ -5809,6 +5864,7 @@ describe('when domain entity extension references domain entity in different nam
               "referencedIdentity": Object {
                 "description": "doc",
                 "type": "integer",
+                "x-Ed-Fi-isIdentity": true,
               },
             },
             "required": Array [
@@ -5821,6 +5877,7 @@ describe('when domain entity extension references domain entity in different nam
               "referencedIdentity": Object {
                 "description": "doc",
                 "type": "integer",
+                "x-Ed-Fi-isIdentity": true,
               },
             },
             "required": Array [
@@ -5855,6 +5912,7 @@ describe('when domain entity extension references domain entity in different nam
             "properties": Object {
               "referencedEntityNameReference": Object {
                 "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
+                "x-nullable": true,
               },
             },
             "type": "object",
@@ -6080,6 +6138,7 @@ describe('when domain entity in extension has a DS common collection', () => {
             "entityIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
             "services": Object {
               "items": Object {
@@ -6101,6 +6160,7 @@ describe('when domain entity in extension has a DS common collection', () => {
             "entityIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6192,6 +6252,7 @@ describe('when domain entity subclass in extension has a DS common collection', 
             "superclassIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6205,6 +6266,7 @@ describe('when domain entity subclass in extension has a DS common collection', 
             "superclassIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6298,6 +6360,7 @@ describe('when domain entity superclass in DS has a common collection', () => {
             "superclassIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6311,6 +6374,7 @@ describe('when domain entity superclass in DS has a common collection', () => {
             "superclassIdentity": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6367,6 +6431,7 @@ describe('when building an abstract domain entity', () => {
             "someAbstractEntityId": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
@@ -6379,6 +6444,7 @@ describe('when building an abstract domain entity', () => {
             "someAbstractEntityId": Object {
               "description": "doc",
               "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
           },
           "required": Array [
