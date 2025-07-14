@@ -98,6 +98,7 @@ describe('when building domain entity subclass with common collection and descri
             "properties": Object {
               "educationOrganizationIdentificationSystemDescriptor": Object {
                 "description": "doc",
+                "maxLength": 306,
                 "type": "string",
               },
               "identificationCode": Object {

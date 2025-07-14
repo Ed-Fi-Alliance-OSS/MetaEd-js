@@ -7520,6 +7520,7 @@
             },
             "certificationRouteDescriptor": {
               "description": "The process, program, or pathway used to obtain certification.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -7538,11 +7539,13 @@
             },
             "credentialStatusDescriptor": {
               "description": "The current status of the credential (e.g., active, suspended, etc.).",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
             "educatorRoleDescriptor": {
               "description": "The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -12927,6 +12930,7 @@
             },
             "birthCountryDescriptor": {
               "description": "The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -12943,11 +12947,13 @@
             },
             "birthSexDescriptor": {
               "description": "A person's sex at birth.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
             "birthStateAbbreviationDescriptor": {
               "description": "The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -12994,6 +13000,7 @@
             },
             "englishLanguageExamDescriptor": {
               "description": "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13009,6 +13016,7 @@
             },
             "genderDescriptor": {
               "description": "The gender of the candidate.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13038,6 +13046,7 @@
             },
             "limitedEnglishProficiencyDescriptor": {
               "description": "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13106,6 +13115,7 @@
             },
             "sexDescriptor": {
               "description": "The sex of the candidate.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13167,11 +13177,13 @@
             },
             "eppProgramPathwayDescriptor": {
               "description": "The program pathway the candidate is following; for example: Residency, Internship, Traditional",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
             "reasonExitedDescriptor": {
               "description": "Reason exited for the association.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             }
@@ -13187,6 +13199,7 @@
           "properties": {
             "cohortYearTypeDescriptor": {
               "description": "The type of cohort year (9th grade, graduation).",
+              "maxLength": 306,
               "type": "string"
             },
             "schoolYearTypeReference": {
@@ -13194,6 +13207,7 @@
             },
             "termDescriptor": {
               "description": "The term associated with the cohort year; for example, the intended term of graduation.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -13263,6 +13277,7 @@
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -13280,6 +13295,7 @@
           "properties": {
             "addressTypeDescriptor": {
               "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
+              "maxLength": 306,
               "type": "string"
             },
             "apartmentRoomSuiteNumber": {
@@ -13320,6 +13336,7 @@
             },
             "localeDescriptor": {
               "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
+              "maxLength": 306,
               "type": "string"
             },
             "longitude": {
@@ -13347,6 +13364,7 @@
             },
             "stateAbbreviationDescriptor": {
               "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
+              "maxLength": 306,
               "type": "string"
             },
             "streetNumberName": {
@@ -13376,10 +13394,12 @@
             },
             "disabilityDescriptor": {
               "description": "A disability category that describes a individual's impairment.",
+              "maxLength": 306,
               "type": "string"
             },
             "disabilityDeterminationSourceTypeDescriptor": {
               "description": "The source that provided the disability determination.",
+              "maxLength": 306,
               "type": "string"
             },
             "disabilityDiagnosis": {
@@ -13424,6 +13444,7 @@
             },
             "electronicMailTypeDescriptor": {
               "description": "The type of email listed for an individual or organization. For example: Home/Personal, Work, etc.)",
+              "maxLength": 306,
               "type": "string"
             },
             "primaryEmailAddressIndicator": {
@@ -13441,6 +13462,7 @@
           "properties": {
             "languageDescriptor": {
               "description": "A specification of which written or spoken communication is being used.",
+              "maxLength": 306,
               "type": "string"
             },
             "uses": {
@@ -13484,10 +13506,12 @@
             },
             "identificationDocumentUseDescriptor": {
               "description": "The primary function of the document used for establishing identity.",
+              "maxLength": 306,
               "type": "string"
             },
             "issuerCountryDescriptor": {
               "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+              "maxLength": 306,
               "type": "string"
             },
             "issuerDocumentIdentificationCode": {
@@ -13502,6 +13526,7 @@
             },
             "personalInformationVerificationDescriptor": {
               "description": "The category of the document relative to its purpose.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -13535,6 +13560,7 @@
             },
             "otherNameTypeDescriptor": {
               "description": "The types of alternate names for an individual.",
+              "maxLength": 306,
               "type": "string"
             },
             "personalTitlePrefix": {
@@ -13614,6 +13640,7 @@
             },
             "telephoneNumberTypeDescriptor": {
               "description": "The type of communication number listed for an individual or organization.",
+              "maxLength": 306,
               "type": "string"
             },
             "textMessageCapabilityIndicator": {
@@ -13643,6 +13670,7 @@
           "properties": {
             "accreditationStatusDescriptor": {
               "description": "The current accreditation status of the Educator Preparation Program.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13673,6 +13701,7 @@
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -13713,6 +13742,7 @@
             },
             "programTypeDescriptor": {
               "description": "The type of program.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -13742,6 +13772,7 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13795,6 +13826,7 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13862,6 +13894,7 @@
             },
             "evaluationElementRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -13901,6 +13934,7 @@
             },
             "resultDatatypeTypeDescriptor": {
               "description": "The datatype of the result.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -13940,6 +13974,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -13959,6 +13994,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -13977,11 +14013,13 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14006,6 +14044,7 @@
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "maxLength": 306,
               "type": "string"
             },
             "maxRating": {
@@ -14045,6 +14084,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14064,6 +14104,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14076,6 +14117,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14115,6 +14157,7 @@
             },
             "evaluationTypeDescriptor": {
               "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -14168,6 +14211,7 @@
             },
             "objectiveRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -14200,6 +14244,7 @@
             },
             "resultDatatypeTypeDescriptor": {
               "description": "The datatype of the result.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -14232,6 +14277,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14251,6 +14297,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14269,11 +14316,13 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14297,6 +14346,7 @@
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "maxLength": 306,
               "type": "string"
             },
             "maxRating": {
@@ -14329,6 +14379,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14348,6 +14399,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14360,6 +14412,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14400,11 +14453,13 @@
             },
             "evaluationRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
             "evaluationRatingStatusDescriptor": {
               "description": "The Status of the poerformance evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -14458,6 +14513,7 @@
             },
             "resultDatatypeTypeDescriptor": {
               "description": "The datatype of the result.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -14497,6 +14553,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14516,6 +14573,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14534,11 +14592,13 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14586,6 +14646,7 @@
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "maxLength": 306,
               "type": "string"
             },
             "maxRating": {
@@ -14611,6 +14672,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14630,6 +14692,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14642,6 +14705,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14673,6 +14737,7 @@
             },
             "aidTypeDescriptor": {
               "description": "The classification of financial aid awarded to a person for the academic term/year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14709,6 +14774,7 @@
           "properties": {
             "aidTypeDescriptor": {
               "description": "The classification of financial aid awarded to a person for the academic term/year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14737,6 +14803,7 @@
           "properties": {
             "academicSubjectDescriptor": {
               "description": "The description of the content or subject area of a performance evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -14746,6 +14813,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14772,6 +14840,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14789,6 +14858,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -14837,11 +14907,13 @@
             },
             "coteachingStyleObservedDescriptor": {
               "description": "A type of co-teaching observed as part of the performance evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
             "performanceEvaluationRatingLevelDescriptor": {
               "description": "The rating level achieved based upon the rating or score.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             },
@@ -14897,6 +14969,7 @@
             },
             "resultDatatypeTypeDescriptor": {
               "description": "The datatype of the result.",
+              "maxLength": 306,
               "type": "string"
             }
           },
@@ -14930,6 +15003,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14942,6 +15016,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -14960,11 +15035,13 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -15023,6 +15100,7 @@
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
+              "maxLength": 306,
               "type": "string"
             },
             "maxRating": {
@@ -15048,6 +15126,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -15060,6 +15139,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -15072,6 +15152,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -15110,6 +15191,7 @@
             },
             "rubricRatingLevelDescriptor": {
               "description": "The rating level achieved for the rubric dimension.",
+              "maxLength": 306,
               "type": "string",
               "x-nullable": true
             }
@@ -15144,6 +15226,7 @@
             },
             "evaluationPeriodDescriptor": {
               "description": "The period for the evaluation.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -15163,6 +15246,7 @@
             },
             "performanceEvaluationTypeDescriptor": {
               "description": "The type of performance evaluation conducted.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -15180,6 +15264,7 @@
             },
             "termDescriptor": {
               "description": "The term for the session during the school year.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             }
@@ -15233,6 +15318,7 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },
@@ -15293,6 +15379,7 @@
             },
             "sourceSystemDescriptor": {
               "description": "This descriptor defines the originating record source system for the person.",
+              "maxLength": 306,
               "type": "string",
               "x-Ed-Fi-isIdentity": true
             },

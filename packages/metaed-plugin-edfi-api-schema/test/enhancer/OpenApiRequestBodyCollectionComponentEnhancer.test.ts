@@ -409,6 +409,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "properties": Object {
           "contentClassDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "contentIdentifier": Object {
@@ -630,6 +631,7 @@ describe('when building domain entity with a simple common collection', () => {
             "properties": Object {
               "assessmentIdentificationSystemDescriptor": Object {
                 "description": "doc",
+                "maxLength": 306,
                 "type": "string",
               },
               "identificationCode": Object {

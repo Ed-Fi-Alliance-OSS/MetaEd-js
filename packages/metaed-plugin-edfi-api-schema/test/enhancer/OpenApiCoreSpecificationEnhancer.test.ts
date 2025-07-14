@@ -5653,6 +5653,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           "properties": Object {
             "contentClassDescriptor": Object {
               "description": "doc",
+              "maxLength": 306,
               "type": "string",
             },
             "contentIdentifier": Object {

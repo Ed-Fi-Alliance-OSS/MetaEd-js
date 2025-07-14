@@ -741,6 +741,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "properties": Object {
           "contentClassDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "contentIdentifier": Object {
@@ -1260,6 +1261,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "properties": Object {
           "assessedGradeLevelDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
             "x-nullable": true,
           },
@@ -2006,6 +2008,7 @@ describe('when building a domain entity with an inline common property with a de
         "properties": Object {
           "availableCreditTypeDescriptor": Object {
             "description": "Documentation",
+            "maxLength": 306,
             "type": "string",
             "x-nullable": true,
           },
