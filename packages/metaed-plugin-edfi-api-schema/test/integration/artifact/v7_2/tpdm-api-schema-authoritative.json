@@ -15639,34 +15639,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -15761,34 +15756,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -17699,34 +17689,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -17821,34 +17806,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -17943,34 +17923,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -18529,34 +18504,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -18651,34 +18621,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -18773,34 +18738,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -18895,34 +18855,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -21019,34 +20974,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -21141,34 +21091,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -21263,34 +21208,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -22140,34 +22080,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -22851,34 +22786,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -22973,34 +22903,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -23095,34 +23020,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -23795,34 +23715,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",
@@ -24599,34 +24514,29 @@
               "maxLength": 50,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "description": {
               "description": "The descriptor description",
               "maxLength": 1024,
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveBeginDate": {
               "description": "The descriptor effective begin date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "effectiveEndDate": {
               "description": "The descriptor effective end date",
               "format": "date",
-              "type": "string",
-              "x-nullable": true
+              "type": "string"
             },
             "namespace": {
               "description": "The descriptor namespace as a URI",
               "maxLength": 255,
               "minLength": 1,
               "pattern": "^(?!\\s).*(?<!\\s)$",
-              "type": "string",
-              "x-Ed-Fi-isIdentity": true
+              "type": "string"
             },
             "shortDescription": {
               "description": "The descriptor short description",

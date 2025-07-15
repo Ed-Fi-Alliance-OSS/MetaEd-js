@@ -43,7 +43,7 @@ import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/Proper
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 
-const ajv = new Ajv({ allErrors: true, strict: false });
+const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
 
 describe('when building simple domain entity with all the simple non-collections', () => {
@@ -2220,25 +2220,21 @@ describe('when building a descriptor', () => {
             "minLength": 1,
             "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
-            "x-Ed-Fi-isIdentity": true,
           },
           "description": Object {
             "description": "The descriptor description",
             "maxLength": 1024,
             "type": "string",
-            "x-nullable": true,
           },
           "effectiveBeginDate": Object {
             "description": "The descriptor effective begin date",
             "format": "date",
             "type": "string",
-            "x-nullable": true,
           },
           "effectiveEndDate": Object {
             "description": "The descriptor effective end date",
             "format": "date",
             "type": "string",
-            "x-nullable": true,
           },
           "namespace": Object {
             "description": "The descriptor namespace as a URI",
@@ -2246,7 +2242,6 @@ describe('when building a descriptor', () => {
             "minLength": 1,
             "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
-            "x-Ed-Fi-isIdentity": true,
           },
           "shortDescription": Object {
             "description": "The descriptor short description",
