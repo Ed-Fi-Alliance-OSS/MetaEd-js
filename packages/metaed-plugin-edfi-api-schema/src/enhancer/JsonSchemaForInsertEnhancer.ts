@@ -39,6 +39,7 @@ import {
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { parentPropertyModifier } from './JsonElementNamingHelper';
+import { ED_FI_IDENTITY_EXTENSION_KEY, ED_FI_NULLABLE_EXTENSION_KEY } from '../model/OpenApiTypes';
 
 const enhancerName = 'JsonSchemaForInsertEnhancer';
 
@@ -57,6 +58,7 @@ const descriptorSchema: SchemaRoot = {
       maxLength: 255,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
+      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
     },
     codeValue: {
       type: 'string',
@@ -64,6 +66,7 @@ const descriptorSchema: SchemaRoot = {
       maxLength: 50,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
+      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
     },
     shortDescription: {
       type: 'string',
@@ -76,16 +79,19 @@ const descriptorSchema: SchemaRoot = {
       type: 'string',
       description: 'The descriptor description',
       maxLength: 1024,
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
     effectiveBeginDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective begin date',
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
     effectiveEndDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective end date',
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
   },
   additionalProperties: false,
