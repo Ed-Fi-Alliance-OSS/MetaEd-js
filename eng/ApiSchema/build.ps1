@@ -38,16 +38,16 @@ param (
     $SchemaPackagingConfigFile,
 
     [string]
-    $ApiSchemaPackageType = ""
+    $ExtensionName = ""
 )
 
 $solutionRoot = "$PSScriptRoot"
 $applicationRoot = "$solutionRoot/"
-if($ApiSchemaPackageType -eq 'Core'){
-    $projectName = "EdFi.DataStandard52.ApiSchema"
+if($ExtensionName -eq 'Core'){
+    $projectName = "EdFi.DataStandard.ApiSchema"
 }
 else {
-    $projectName = "EdFi.$ApiSchemaPackageType.ApiSchema"
+    $projectName = "EdFi.$ExtensionName.ApiSchema"
 }
 
 $projectPath = "$applicationRoot/$projectName.csproj"
@@ -119,7 +119,7 @@ function Invoke-Build {
 }
 
 function BuildPackage {
-    $arguments = @("-c", "release", "-p:PackageVersion=$Version", "-p:PackageId=$projectName", "--output", $PSScriptRoot)
+    $arguments = @("-c", "release", "-p:PackageVersion=$Version", "--output", $PSScriptRoot)
     dotnet pack $projectPath @arguments
 }
 
@@ -152,28 +152,28 @@ function CopyMetaEdFiles {
         New-Item -ItemType Directory -Path $destinationPath -Force | Out-Null
     }
 
-    if($ApiSchemaPackageType -eq 'Core'){
+    if($ExtensionName -eq 'Core'){
         Copy-Item -Path ./MetaEdOutput/EdFi/ApiSchema/ApiSchema.json -Destination $solutionRoot
         Copy-Item -Path ./MetaEdOutput/EdFi/XSD/* -Destination $solutionRoot/xsd/
         Copy-Item -Path ./MetaEdOutput/EdFi/Interchange/* -Destination $solutionRoot/xsd/
     }
-    if($ApiSchemaPackageType -eq 'TPDM'){
-        Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
-        Copy-Item -Path ./MetaEdOutput/TPDM/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ApiSchemaPackageType-EXTENSION-Ed-Fi-Extended-Core.xsd"
+    if($ExtensionName -eq 'TPDM'){
+        Copy-Item -Path ./MetaEdOutput/TPDM/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ExtensionName-EXTENSION.json"
+        Copy-Item -Path ./MetaEdOutput/TPDM/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ExtensionName-EXTENSION-Ed-Fi-Extended-Core.xsd"
         Get-ChildItem -Path ./MetaEdOutput/TPDM/Interchange/ -File | ForEach-Object {
-            $newFileName = "$ApiSchemaPackageType-$($_.Name)"
+            $newFileName = "$ExtensionName-$($_.Name)"
             $destinationFile = Join-Path -Path "$solutionRoot/xsd" -ChildPath $newFileName
             Copy-Item -Path $_.FullName -Destination $destinationFile
         }
     }
-    if($ApiSchemaPackageType -eq 'Homograph'){
-        Copy-Item -Path ./MetaEdOutput/Homograph/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
+    if($ExtensionName -eq 'Homograph'){
+        Copy-Item -Path ./MetaEdOutput/Homograph/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ExtensionName-EXTENSION.json"
     }
-    if($ApiSchemaPackageType -eq 'Sample'){
-        Copy-Item -Path ./MetaEdOutput/Sample/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ApiSchemaPackageType-EXTENSION.json"
-        Copy-Item -Path ./MetaEdOutput/Sample/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ApiSchemaPackageType-EXTENSION-Ed-Fi-Extended-Core.xsd"
+    if($ExtensionName -eq 'Sample'){
+        Copy-Item -Path ./MetaEdOutput/Sample/ApiSchema/ApiSchema-EXTENSION.json -Destination "$solutionRoot/ApiSchema-$ExtensionName-EXTENSION.json"
+        Copy-Item -Path ./MetaEdOutput/Sample/XSD/EXTENSION-Ed-Fi-Extended-Core.xsd -Destination "$solutionRoot/xsd/$ExtensionName-EXTENSION-Ed-Fi-Extended-Core.xsd"
         Get-ChildItem -Path ./MetaEdOutput/Sample/Interchange/ -File | ForEach-Object {
-            $newFileName = "$ApiSchemaPackageType-$($_.Name)"
+            $newFileName = "$ExtensionName-$($_.Name)"
             $destinationFile = Join-Path -Path "$solutionRoot/xsd" -ChildPath $newFileName
             Copy-Item -Path $_.FullName -Destination $destinationFile
         }

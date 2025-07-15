@@ -21,15 +21,8 @@ env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
   ARTIFACTS_FEED_URL: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json
   VSS_NUGET_EXTERNAL_FEED_ENDPOINTS: '{"endpointCredentials": [{"endpoint": "${{ vars.AZURE_ARTIFACTS_FEED_URL }}","password": "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}"}]}'
-  TPDM_REPO_TAG: "Data-Standard-v5.2.0"
-  PROJECT_VERSION: "5.2.0"
-  PROJECT_DESCRIPTION: "The Ed-Fi Data Standard v5.2.0"
-  DATASTANDARD_REPO_TAG:  "DS-5.2.0-ME-3.0.0"
-  TECHNOLOGY_VERSION: "7.2.0"
-  REPOSITORY_DISPATCH_BRANCH: ${{ github.event.client_payload.branch }}
   HEAD_REF:  ${{ GITHUB.HEAD_REF }}
   REF_NAME:  ${{ GITHUB.REF_NAME }}
-  REPOSITORY_OWNER: ${{ GITHUB.REPOSITORY_OWNER }}
 
 jobs:
   run-metaed-project:
@@ -39,6 +32,37 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
+        ds:
+        - version: 'DS-3.3.1-b'
+          short-version: '33'
+          project-version: '3.3.1-b'
+          project-description: 'Latest Ed-Fi Data Model v3.3b'
+          tpdm-tag-name: 'Data-Standard-v3.3.1-b'
+          sample-tag-name: 'v5.4-patch1'
+          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-3.3b'
+          tpdm-path: 'Ed-Fi-TPDM-Model'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
+        - version: 'DS-4.0.0'
+          short-version: '40'
+          project-version: '4.0.0'
+          project-description: 'The Ed-Fi Data Model 4.0'
+          tpdm-tag-name: 'Data-Standard-v4.0.0-a'
+          sample-tag-name: 'v7.3-patch1'
+          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-4.0'
+          tpdm-path: 'Ed-Fi-TPDM-Model'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/4.0.0/Sample'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/4.0.0/Homograph'
+        - version: 'DS-5.2.0'
+          short-version: '52'
+          project-version: '5.2.0'
+          project-description: 'The Ed-Fi Data Standard v5.2.0'
+          tpdm-tag-name: 'Data-Standard-v5.2.0'
+          sample-tag-name: 'main'
+          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-5.2'
+          tpdm-path: 'Ed-Fi-TPDM-Model'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
     defaults:
       run:
         shell: pwsh
@@ -55,8 +79,8 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: Ed-Fi-Closed/Ed-Fi-TPDM-Model
-          path: MetaEdExtensionSource/
-          ref: ${{env.TPDM_REPO_TAG}}
+          path: Ed-Fi-TPDM-Model/
+          ref: ${{ matrix.ds.tpdm-tag-name }}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Checkout Ed-Fi-ODS-Implementation (for Homograph and Sample only)
@@ -64,39 +88,23 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-ODS-Implementation
-          path: MetaEdExtensionSource/
-
-      - name: Clean up folders except HomographMetaEd for MetaEdExtensionSource
-        if: matrix.config == 'Homograph'
-        shell: pwsh
-        run: |
-          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
-          Get-ChildItem MetaEdExtensionSource/Extensions/Homograph/ -Exclude HomographMetaEd | Remove-Item -Recurse -Force
-          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Homograph | Remove-Item -Recurse -Force
-
-          cd MetaEdExtensionSource/Extensions/Homograph/HomographMetaEd
-          mv * ../../..
-
-      - name: Clean up folders except SampleMetaEd for MetaEdExtensionSource
-        if: matrix.config == 'Sample'
-        shell: pwsh
-        run: |
-          Get-ChildItem MetaEdExtensionSource -Exclude Extensions | Remove-Item -Recurse -Force
-          Get-ChildItem MetaEdExtensionSource/Extensions/Sample/ -Exclude SampleMetaEd | Remove-Item -Recurse -Force
-          Get-ChildItem MetaEdExtensionSource/Extensions/ -Exclude Sample | Remove-Item -Recurse -Force
-
-          cd MetaEdExtensionSource/Extensions/Sample/SampleMetaEd
-          mv * ../../..
-
+          path: Ed-Fi-ODS-Implementation/
+          ref: ${{ matrix.ds.sample-tag-name }}
+          
       - name: Create MetaEdConfig
         working-directory: ./MetaEd-js/   
-        run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -ProjectVersion ${{ env.PROJECT_VERSION }} -ProjectDescription "${{ env.PROJECT_DESCRIPTION }}" -TechnologyVersion ${{ env.TECHNOLOGY_VERSION }} -MetaEdExtensionName ${{ matrix.config  }}
+        env:
+          CORE_PATH: ${{ matrix.ds.core-path }}
+          TPDM_PATH: ${{ matrix.ds.tpdm-path }}
+          SAMPLE_PATH: ${{ matrix.ds.sample-path }}
+          HOMOGRAPH_PATH: ${{ matrix.ds.homograph-path }}
+        run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion ${{ matrix.ds.project-version }} -ProjectDescription "${{ matrix.ds.project-description }}" -CoreProjectPath "${{ matrix.ds.core-path }}" -ExtensionProjectPath ([System.Environment]::GetEnvironmentVariable('${{ matrix.config }}_PATH'.ToUpper())) -ExtensionProjectName ${{ matrix.config }}
         shell: pwsh
 
-      - name: Print the created MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json config
+      - name: Print the created MetaEd config
         shell: pwsh
         run: |
-          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json"
+          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig.json"
           
           # Check if the file exists
           if (Test-Path $configFilePath) {
@@ -112,13 +120,13 @@ jobs:
 
       - name: Run MetaEd Project
         working-directory: ./MetaEd-js/      
-        run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig-${{ env.TECHNOLOGY_VERSION }}-DS-5.2-${{ matrix.config  }}.json"
+        run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig.json"
 
       - name: Upload MetaEdOutput as Artifact
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-${{ env.TECHNOLOGY_VERSION }}
+          name: MetaEdOutput-${{ matrix.config }}-${{ matrix.ds.version }}
           path: ${{ github.workspace }}/MetaEd-js/MetaEdOutput/**/*.* 
           if-no-files-found: error
           retention-days: 5
@@ -130,6 +138,13 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
+        ds:
+        - version: 'DS-3.3.1-b'
+          short-version: '33'
+        - version: 'DS-4.0.0'
+          short-version: '40'
+        - version: 'DS-5.2.0'
+          short-version: '52'
     defaults:
       run:
         shell: pwsh
@@ -144,7 +159,7 @@ jobs:
       - name: Get Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: MetaEdOutput-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-${{ env.TECHNOLOGY_VERSION }}
+          name: MetaEdOutput-${{ matrix.config }}-${{ matrix.ds.version }}
           path: ./MetaEd-js/MetaEdOutput
 
       - name: Display structure of downloaded files
@@ -153,7 +168,7 @@ jobs:
 
       - name: Move MetaEd ApiSchema Files
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ApiSchemaPackageType "${{ matrix.config  }}"
+        run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ExtensionName "${{ matrix.config }}"
 
       - name: Update Marker.js File
         if: matrix.config == 'Homograph'  || matrix.config == 'Sample' || matrix.config == 'TPDM'
@@ -167,21 +182,25 @@ jobs:
 
       - name: Run Build
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 Build -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType "${{ matrix.config }}"
+        run: ./eng/ApiSchema/build.ps1 Build -Version "1.0.${{ github.run_number }}" -ExtensionName "${{ matrix.config }}"
 
       - name: API Schema Package - Create NuGet File
         working-directory: ./MetaEd-js/      
-        run: ./eng/ApiSchema/build.ps1 Package -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType "${{ matrix.config }}"
+        env:
+          DataStandardVersion: '${{ matrix.ds.short-version }}'
+        run: ./eng/ApiSchema/build.ps1 Package -Version "1.0.${{ github.run_number }}" -ExtensionName "${{ matrix.config }}"
 
       - name: Publish Package
         working-directory: ./MetaEd-js/
-        run: ./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.${{ github.run_number }}" -ApiSchemaPackageType "${{ matrix.config }}"
+        env:
+          DataStandardVersion: '${{ matrix.ds.short-version }}'
+        run: ./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.${{ github.run_number }}" -ExtensionName "${{ matrix.config }}"
 
       - name: Upload Package as Artifact
         if: success()
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5  
         with:
-          name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-1.0.${{ github.run_number }}"
+          name: "EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ matrix.ds.version }}-1.0.${{ github.run_number }}"
           path: ./MetaEd-js/eng/ApiSchema/*.nupkg
           if-no-files-found: error
           retention-days: 30
@@ -192,6 +211,20 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
+        ds-version: ['DS-3.3.1-b', 'DS-4.0.0', 'DS-5.2.0']
+        exclude:
+        - config: "TPDM"
+          ds-version: 'DS-3.3.1-b'
+        - config: "TPDM"
+          ds-version: 'DS-4.0.0'
+        - config: "Homograph"
+          ds-version: 'DS-3.3.1-b'
+        - config: "Homograph"
+          ds-version: 'DS-4.0.0'  
+        - config: "Sample"
+          ds-version: 'DS-3.3.1-b'
+        - config: "Sample"
+          ds-version: 'DS-4.0.0'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -202,7 +235,7 @@ jobs:
       - name: Get Artifact
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ env.DATASTANDARD_REPO_TAG }}-1.0.${{ github.run_number }}
+          name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ matrix.ds-version }}-1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
         run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
