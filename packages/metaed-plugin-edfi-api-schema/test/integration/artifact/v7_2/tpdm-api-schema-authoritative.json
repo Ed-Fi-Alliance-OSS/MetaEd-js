@@ -15604,6 +15604,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -15719,6 +15731,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -17654,6 +17678,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -17771,6 +17807,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -17886,6 +17934,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -18469,6 +18529,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -18584,6 +18656,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -18703,6 +18787,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -18818,6 +18914,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -20939,6 +21047,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -21056,6 +21176,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -21171,6 +21303,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -22045,6 +22189,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -22751,6 +22907,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -22868,6 +23036,18 @@
               "type": "string"
             }
           ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -22983,6 +23163,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -23678,6 +23870,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
@@ -24477,6 +24681,18 @@
             {
               "path": "$.description",
               "type": "string"
+            }
+          ],
+          "effectiveBeginDate": [
+            {
+              "path": "$.effectiveBeginDate",
+              "type": "date"
+            }
+          ],
+          "effectiveEndDate": [
+            {
+              "path": "$.effectiveEndDate",
+              "type": "date"
             }
           ],
           "namespace": [
