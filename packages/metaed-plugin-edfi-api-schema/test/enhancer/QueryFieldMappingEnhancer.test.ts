@@ -1648,11 +1648,11 @@ describe('when building multiple descriptors', () => {
     // Verify the structure is correct
     expect(Object.keys(gradeLevelMapping)).toEqual([
       'codeValue',
+      'description',
       'effectiveBeginDate',
       'effectiveEndDate',
       'namespace',
       'shortDescription',
-      'description',
     ]);
   });
 });
