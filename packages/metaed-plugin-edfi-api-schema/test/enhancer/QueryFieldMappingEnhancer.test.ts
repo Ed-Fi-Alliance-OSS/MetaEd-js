@@ -1534,3 +1534,125 @@ describe('when building an Association subclass', () => {
     `);
   });
 });
+
+describe('when building a descriptor', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const descriptorName = 'StudentCharacteristic';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor(descriptorName)
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should have correct hard-coded queryFieldMapping for descriptors', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get(descriptorName);
+    const queryFieldMapping = removeSourcePropertyFromQueryFieldMapping(entity?.data.edfiApiSchema.queryFieldMapping);
+    expect(queryFieldMapping).toMatchInlineSnapshot(`
+      Object {
+        "codeValue": Array [
+          Object {
+            "path": "$.codeValue",
+            "type": "string",
+          },
+        ],
+        "description": Array [
+          Object {
+            "path": "$.description",
+            "type": "string",
+          },
+        ],
+        "effectiveBeginDate": Array [
+          Object {
+            "path": "$.effectiveBeginDate",
+            "type": "date",
+          },
+        ],
+        "effectiveEndDate": Array [
+          Object {
+            "path": "$.effectiveEndDate",
+            "type": "date",
+          },
+        ],
+        "namespace": Array [
+          Object {
+            "path": "$.namespace",
+            "type": "string",
+          },
+        ],
+        "shortDescription": Array [
+          Object {
+            "path": "$.shortDescription",
+            "type": "string",
+          },
+        ],
+      }
+    `);
+  });
+});
+
+describe('when building multiple descriptors', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('GradeLevel')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('AcademicSubject')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('StudentCharacteristic')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should have identical queryFieldMapping for all descriptors', () => {
+    const gradeLevelEntity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get('GradeLevel');
+    const academicSubjectEntity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get('AcademicSubject');
+    const studentCharacteristicEntity = metaEd.namespace.get(namespaceName)?.entity.descriptor.get('StudentCharacteristic');
+
+    const gradeLevelMapping = removeSourcePropertyFromQueryFieldMapping(
+      gradeLevelEntity?.data.edfiApiSchema.queryFieldMapping,
+    );
+    const academicSubjectMapping = removeSourcePropertyFromQueryFieldMapping(
+      academicSubjectEntity?.data.edfiApiSchema.queryFieldMapping,
+    );
+    const studentCharacteristicMapping = removeSourcePropertyFromQueryFieldMapping(
+      studentCharacteristicEntity?.data.edfiApiSchema.queryFieldMapping,
+    );
+
+    // All descriptors should have the same query field mapping
+    expect(gradeLevelMapping).toEqual(academicSubjectMapping);
+    expect(academicSubjectMapping).toEqual(studentCharacteristicMapping);
+
+    // Verify the structure is correct
+    expect(Object.keys(gradeLevelMapping)).toEqual([
+      'codeValue',
+      'effectiveBeginDate',
+      'effectiveEndDate',
+      'namespace',
+      'shortDescription',
+      'description',
+    ]);
+  });
+});

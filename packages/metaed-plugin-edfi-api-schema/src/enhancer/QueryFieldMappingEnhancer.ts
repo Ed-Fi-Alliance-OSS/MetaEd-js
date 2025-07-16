@@ -97,6 +97,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.queryFieldMapping = {
       codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
+      effectiveBeginDate: [{ path: '$.effectiveBeginDate' as JsonPath, type: 'date' }],
+      effectiveEndDate: [{ path: '$.effectiveEndDate' as JsonPath, type: 'date' }],
       namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
       shortDescription: [{ path: '$.shortDescription' as JsonPath, type: 'string' }],
       description: [{ path: '$.description' as JsonPath, type: 'string' }],
