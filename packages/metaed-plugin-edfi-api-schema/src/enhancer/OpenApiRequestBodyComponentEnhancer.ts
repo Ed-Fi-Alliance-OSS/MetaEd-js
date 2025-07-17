@@ -52,6 +52,7 @@ const descriptorOpenApi: OpenApiObject = {
       maxLength: 255,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
+      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
     },
     codeValue: {
       type: 'string',
@@ -59,6 +60,7 @@ const descriptorOpenApi: OpenApiObject = {
       maxLength: 50,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
+      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
     },
     shortDescription: {
       type: 'string',
@@ -71,16 +73,19 @@ const descriptorOpenApi: OpenApiObject = {
       type: 'string',
       description: 'The descriptor description',
       maxLength: 1024,
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
     effectiveBeginDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective begin date',
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
     effectiveEndDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective end date',
+      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
     },
   },
   required: ['namespace', 'codeValue', 'shortDescription'],

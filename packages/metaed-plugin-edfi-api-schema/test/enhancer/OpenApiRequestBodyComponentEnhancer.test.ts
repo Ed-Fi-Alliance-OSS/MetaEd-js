@@ -1779,21 +1779,25 @@ describe('when building a descriptor', () => {
             "minLength": 1,
             "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "description": Object {
             "description": "The descriptor description",
             "maxLength": 1024,
             "type": "string",
+            "x-nullable": true,
           },
           "effectiveBeginDate": Object {
             "description": "The descriptor effective begin date",
             "format": "date",
             "type": "string",
+            "x-nullable": true,
           },
           "effectiveEndDate": Object {
             "description": "The descriptor effective end date",
             "format": "date",
             "type": "string",
+            "x-nullable": true,
           },
           "id": Object {
             "description": "",
@@ -1805,6 +1809,7 @@ describe('when building a descriptor', () => {
             "minLength": 1,
             "pattern": "^(?!\\\\s).*(?<!\\\\s)$",
             "type": "string",
+            "x-Ed-Fi-isIdentity": true,
           },
           "shortDescription": Object {
             "description": "The descriptor short description",
