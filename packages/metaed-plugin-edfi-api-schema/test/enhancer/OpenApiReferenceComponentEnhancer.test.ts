@@ -83,6 +83,7 @@ describe('when building simple domain entity with all the identities', () => {
           },
           "decimalIdentity": Object {
             "description": "doc2",
+            "format": "double",
             "type": "number",
             "x-Ed-Fi-isIdentity": true,
           },

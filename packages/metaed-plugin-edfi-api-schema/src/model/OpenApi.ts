@@ -55,7 +55,7 @@ export type OpenApiProperty =
   | {
       type: 'string';
       description: string;
-      format?: 'date' | 'date-time' | 'time' | 'int32';
+      format?: 'date' | 'date-time' | 'time' | 'int32' | 'double';
       minLength?: number;
       maxLength?: number;
       pattern?: string;
@@ -65,7 +65,7 @@ export type OpenApiProperty =
       [ED_FI_DEPRECATED_REASONS_EXTENSION_KEY]?: string[];
     }
   | { type: 'integer'; description: string; minimum?: number; maximum?: number }
-  | { type: 'number'; description: string; minimum?: number; maximum?: number }
+  | { type: 'number'; description: string; format: 'double'; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
 
 /**

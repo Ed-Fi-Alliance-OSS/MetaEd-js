@@ -549,11 +549,13 @@ describe('when building simple domain entity with all the simple non-collections
             },
             "optionalDecimalProperty": Object {
               "description": "doc3",
+              "format": "double",
               "type": "number",
               "x-nullable": true,
             },
             "optionalPercentProperty": Object {
               "description": "doc5",
+              "format": "double",
               "type": "number",
               "x-nullable": true,
             },
@@ -569,6 +571,7 @@ describe('when building simple domain entity with all the simple non-collections
             },
             "requiredCurrencyProperty": Object {
               "description": "doc2",
+              "format": "double",
               "type": "number",
             },
             "requiredDateProperty": Object {
@@ -583,6 +586,7 @@ describe('when building simple domain entity with all the simple non-collections
             },
             "requiredDurationProperty": Object {
               "description": "doc4",
+              "format": "double",
               "type": "number",
             },
             "requiredIntegerProperty": Object {
@@ -1160,6 +1164,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "optionalDecimalProperty": Object {
               "description": "doc3",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1172,6 +1177,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "optionalPercentProperty": Object {
               "description": "doc5",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1223,6 +1229,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "requiredCurrencyProperty": Object {
               "description": "doc2",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1261,6 +1268,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "requiredDurationProperty": Object {
               "description": "doc4",
+              "format": "double",
               "type": "number",
             },
           },
@@ -5835,75 +5843,78 @@ describe('when domain entity extension references domain entity in different nam
 
   it('should be a correct schema for core namespace', () => {
     expect(coreNamespace.data.edfiApiSchema.openApiCoreResources.components.schemas).toMatchInlineSnapshot(`
-        Object {
-          "EdFi_EntityName": Object {
-            "description": "doc",
-            "properties": Object {
-              "entityIdentity": Object {
-                "description": "doc",
-                "type": "integer",
-                "x-Ed-Fi-isIdentity": true,
-              },
+      Object {
+        "EdFi_EntityName": Object {
+          "description": "doc",
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
-            "required": Array [
-              "entityIdentity",
-            ],
-            "type": "object",
           },
-          "EdFi_EntityName_Reference": Object {
-            "properties": Object {
-              "entityIdentity": Object {
-                "description": "doc",
-                "type": "integer",
-                "x-Ed-Fi-isIdentity": true,
-              },
+          "required": Array [
+            "entityIdentity",
+          ],
+          "type": "object",
+        },
+        "EdFi_EntityName_Reference": Object {
+          "properties": Object {
+            "entityIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
-            "required": Array [
-              "entityIdentity",
-            ],
-            "type": "object",
           },
-          "EdFi_ReferencedEntityName": Object {
-            "description": "doc",
-            "properties": Object {
-              "referencedIdentity": Object {
-                "description": "doc",
-                "type": "integer",
-                "x-Ed-Fi-isIdentity": true,
-              },
+          "required": Array [
+            "entityIdentity",
+          ],
+          "type": "object",
+        },
+        "EdFi_ReferencedEntityName": Object {
+          "description": "doc",
+          "properties": Object {
+            "referencedIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
-            "required": Array [
-              "referencedIdentity",
-            ],
-            "type": "object",
           },
-          "EdFi_ReferencedEntityName_Reference": Object {
-            "properties": Object {
-              "referencedIdentity": Object {
-                "description": "doc",
-                "type": "integer",
-                "x-Ed-Fi-isIdentity": true,
-              },
+          "required": Array [
+            "referencedIdentity",
+          ],
+          "type": "object",
+        },
+        "EdFi_ReferencedEntityName_Reference": Object {
+          "properties": Object {
+            "referencedIdentity": Object {
+              "description": "doc",
+              "type": "integer",
+              "x-Ed-Fi-isIdentity": true,
             },
-            "required": Array [
-              "referencedIdentity",
-            ],
-            "type": "object",
           },
-          "EdFi_SchoolYearTypeReference": Object {
-            "description": "A school year enumeration",
-            "properties": Object {
-              "schoolYear": Object {
-                "description": "A school year between 1900 and 2100",
-                "maximum": 2100,
-                "minimum": 1900,
-                "type": "integer",
-              },
+          "required": Array [
+            "referencedIdentity",
+          ],
+          "type": "object",
+        },
+        "EdFi_SchoolYearTypeReference": Object {
+          "description": "A school year enumeration",
+          "properties": Object {
+            "schoolYear": Object {
+              "description": "A school year between 1900 and 2100",
+              "maximum": 2100,
+              "minimum": 1900,
+              "type": "integer",
             },
-            "type": "object",
           },
-        }
-      `);
+          "required": Array [
+            "schoolYear",
+          ],
+          "type": "object",
+        },
+      }
+    `);
   });
 
   it('should be a correct ext for extension namespace that references core schema', () => {

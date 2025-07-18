@@ -271,11 +271,13 @@ describe('when building simple domain entity with all the simple non-collections
                 },
                 "optionalDecimalProperty": Object {
                   "description": "doc3",
+                  "format": "double",
                   "type": "number",
                   "x-nullable": true,
                 },
                 "optionalPercentProperty": Object {
                   "description": "doc5",
+                  "format": "double",
                   "type": "number",
                   "x-nullable": true,
                 },
@@ -291,6 +293,7 @@ describe('when building simple domain entity with all the simple non-collections
                 },
                 "requiredCurrencyProperty": Object {
                   "description": "doc2",
+                  "format": "double",
                   "type": "number",
                 },
                 "requiredDateProperty": Object {
@@ -305,6 +308,7 @@ describe('when building simple domain entity with all the simple non-collections
                 },
                 "requiredDurationProperty": Object {
                   "description": "doc4",
+                  "format": "double",
                   "type": "number",
                 },
                 "requiredIntegerProperty": Object {
@@ -366,6 +370,9 @@ describe('when building simple domain entity with all the simple non-collections
                   "type": "integer",
                 },
               },
+              "required": Array [
+                "schoolYear",
+              ],
               "type": "object",
             },
           },
@@ -1501,6 +1508,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "optionalDecimalProperty": Object {
               "description": "doc3",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1513,6 +1521,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "optionalPercentProperty": Object {
               "description": "doc5",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1564,6 +1573,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "requiredCurrencyProperty": Object {
               "description": "doc2",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1602,6 +1612,7 @@ describe('when building simple domain entity with all the simple collections', (
           "properties": Object {
             "requiredDurationProperty": Object {
               "description": "doc4",
+              "format": "double",
               "type": "number",
             },
           },
@@ -1675,6 +1686,9 @@ describe('when building simple domain entity with all the simple collections', (
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -3330,6 +3344,9 @@ describe('when building a domain entity referencing another referencing another 
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -4984,6 +5001,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
         "EdFi_School_Reference": Object {
@@ -5770,6 +5790,9 @@ describe('when building domain entity with nested choice and inline commons', ()
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -6781,6 +6804,9 @@ describe('when building domain entity with scalar collection named with prefix o
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }
@@ -7032,6 +7058,9 @@ describe('when building an abstract domain entity', () => {
               "type": "integer",
             },
           },
+          "required": Array [
+            "schoolYear",
+          ],
           "type": "object",
         },
       }

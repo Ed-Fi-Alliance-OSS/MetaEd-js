@@ -13873,11 +13873,13 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -13922,11 +13924,13 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation element.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -14014,6 +14018,7 @@
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
+              "format": "double",
               "type": "number"
             },
             "ratingResultTitle": {
@@ -14139,10 +14144,12 @@
             },
             "maxRating": {
               "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -14253,11 +14260,13 @@
             },
             "maxRating": {
               "description": "The maximum summary numerical rating or score for the evaluation Objective.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "minRating": {
               "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -14324,6 +14333,7 @@
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
+              "format": "double",
               "type": "number"
             },
             "ratingResultTitle": {
@@ -14441,10 +14451,12 @@
             },
             "maxRating": {
               "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -14593,6 +14605,7 @@
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
+              "format": "double",
               "type": "number"
             },
             "ratingResultTitle": {
@@ -14741,10 +14754,12 @@
             },
             "maxRating": {
               "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -14816,6 +14831,7 @@
           "properties": {
             "aidAmount": {
               "description": "The amount of financial aid awarded to a person for the term/year.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -15049,6 +15065,7 @@
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
+              "format": "double",
               "type": "number"
             },
             "ratingResultTitle": {
@@ -15195,10 +15212,12 @@
             },
             "maxRating": {
               "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             },
             "minRating": {
               "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
+              "format": "double",
               "type": "number"
             }
           },
