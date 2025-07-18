@@ -244,16 +244,24 @@ jobs:
 
       - name: Push Package to Azure Artifacts
         shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
         run: |
-         $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
+          $apiKey = $env:NUGET_API_KEY
+          $source = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json"
+    
+          $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
+
           if (-not $nupkgFiles) {
             Write-Error "No .nupkg files found"
             exit 1
           }
+
           foreach ($pkg in $nupkgFiles) {
             Write-Host "Pushing $($pkg.FullName)..."
+            Write-Host "Source: $source"
             dotnet nuget push $pkg.FullName `
-              --source "${{ env.ARTIFACTS_FEED_URL }}" `
-              --api-key "az" `
+              --source "$source" `
+              --api-key "$apiKey" `
               --skip-duplicate
           }
