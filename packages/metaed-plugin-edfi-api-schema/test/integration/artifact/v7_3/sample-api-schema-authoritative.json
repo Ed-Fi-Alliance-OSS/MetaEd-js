@@ -1340,6 +1340,7 @@
             },
             "averageCarLineWait": {
               "description": "The time spent per day waiting in the car line.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -1358,6 +1359,7 @@
             },
             "coffeeSpend": {
               "description": "How much the contact spends on coffee in a week.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -1395,6 +1397,7 @@
             },
             "gpa": {
               "description": "The contact's high school GPA.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -1421,6 +1424,7 @@
             },
             "rainCertainty": {
               "description": "The percent likelihood that it will rain when the contact volunteers to chaperone a field trip.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -1550,11 +1554,13 @@
             },
             "bedtimeReadingRate": {
               "description": "The average number of pages the contact reads with the student each day.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "bookBudget": {
               "description": "The contact's estimated monthly budget dedicated to books for the student.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -1630,6 +1636,7 @@
             },
             "readingTimeSpent": {
               "description": "The amount of time the contact spends reading to the student each day.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -3355,18 +3362,22 @@
             },
             "expectedTransitTime": {
               "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
+              "format": "double",
               "type": "number"
             },
             "hoursPerWeek": {
               "description": "The number of hours per week in which the bus route is operational.",
+              "format": "double",
               "type": "number"
             },
             "operatingCost": {
               "description": "The approximate annual cost for the bus route.",
+              "format": "double",
               "type": "number"
             },
             "optimalCapacity": {
               "description": "The percentage of seats filled under optimal conditions.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -3414,6 +3425,7 @@
             },
             "weeklyMileage": {
               "description": "The approximate weekly mileage for the bus route.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             }
@@ -3687,6 +3699,7 @@
           "properties": {
             "ceilingHeight": {
               "description": "The height of the ceiling in the rooms of the contact's home.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -3897,6 +3910,7 @@
             },
             "hoursPerDay": {
               "description": "The number of hours a student spends in the program each school day.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -3914,16 +3928,19 @@
             },
             "kilnReservationLength": {
               "description": "The number of clock minutes dedicated to the student's kiln reservation.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "masteredMediums": {
               "description": "Percentage of the mediums taught in the program which the student mastered.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "numberOfDaysInAttendance": {
               "description": "Number of days the student is in attendance at the program.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -3948,6 +3965,7 @@
             },
             "programFees": {
               "description": "Required program fees to purchase materials for the student.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -4193,6 +4211,7 @@
           "properties": {
             "hoursPerWeek": {
               "description": "Total number of hours per week a student and contact dedicates to reading.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -4205,6 +4224,7 @@
           "properties": {
             "pagesRead": {
               "description": "Total number of pages the contact has read the student.",
+              "format": "double",
               "type": "number"
             }
           },
@@ -4443,6 +4463,7 @@
             },
             "graduationFee": {
               "description": "Any fees the student must resolve prior to graduation, such as library fines and overdue lunch accounts.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -4452,11 +4473,13 @@
             },
             "highSchoolDuration": {
               "description": "The number of years remaining prior to graduation as of when the plan became effective.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
             "hoursPerWeek": {
               "description": "The number of hours per week the student will attend to graduate.",
+              "format": "double",
               "type": "number"
             },
             "industryCredentials": {
@@ -4474,6 +4497,7 @@
             },
             "requiredAttendance": {
               "description": "The percentage of time the student must attend to graduate, relative to a full-time student.",
+              "format": "double",
               "type": "number",
               "x-nullable": true
             },
@@ -4495,6 +4519,7 @@
             },
             "targetGPA": {
               "description": "The GPA the student is working toward.",
+              "format": "double",
               "type": "number"
             },
             "yearsAttendeds": {

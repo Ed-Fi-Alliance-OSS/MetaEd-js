@@ -138,7 +138,7 @@ export function openApiPropertyForNonReference(
     case 'duration':
     case 'percent':
     case 'sharedDecimal':
-      return { type: 'number', description };
+      return { type: 'number', format: 'double', description };
 
     case 'date':
       return { type: 'string', format: 'date', description };
