@@ -169,7 +169,6 @@ async function copyGeneratedToAuthoritative(artifactDir: string, description: st
 
     if (generatedFiles.length === 0) {
       log(`Warning: No generated files found in ${artifactDirPath}`, 'yellow');
-      return false;
     }
 
     let copiedCount = 0;

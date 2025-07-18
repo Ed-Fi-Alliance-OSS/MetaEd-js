@@ -38,7 +38,7 @@
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-    "update-authoritative": "npx ts-node test/integration/update-authoritative-files.ts",
+    "update-authoritative": "npx ts-node test/integration/update-authoritative-files.ts --run-tests",
     "update-authoritative:dry-run": "npx ts-node test/integration/update-authoritative-files.ts --dry-run"
   }
 }
