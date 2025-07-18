@@ -250,6 +250,13 @@ jobs:
           $apiKey = $env:NUGET_API_KEY
           $source = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json"
     
+          dotnet nuget add source `
+            --username "AzureDevOps" `
+            --password "$apiKey" `
+            --store-password-in-clear-text `
+            --name "EdFiFeed" `
+            "$source"
+
           $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
 
           if (-not $nupkgFiles) {
@@ -259,9 +266,7 @@ jobs:
 
           foreach ($pkg in $nupkgFiles) {
             Write-Host "Pushing $($pkg.FullName)..."
-            Write-Host "Source: $source"
             dotnet nuget push $pkg.FullName `
-              --source "$source" `
-              --api-key "$apiKey" `
+              --source "EdFiFeed" `
               --skip-duplicate
           }
