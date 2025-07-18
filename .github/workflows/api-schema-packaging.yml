@@ -268,5 +268,6 @@ jobs:
             Write-Host "Pushing $($pkg.FullName)..."
             dotnet nuget push $pkg.FullName `
               --source "EdFiFeed" `
+              --api-key "$apiKey" `
               --skip-duplicate
           }
