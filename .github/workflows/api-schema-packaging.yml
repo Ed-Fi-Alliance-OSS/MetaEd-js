@@ -245,19 +245,15 @@ jobs:
       - name: Push Package to Azure Artifacts
         shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" -OutFile "nuget.exe"
-
-          $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
+         $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
           if (-not $nupkgFiles) {
             Write-Error "No .nupkg files found"
             exit 1
           }
-
           foreach ($pkg in $nupkgFiles) {
             Write-Host "Pushing $($pkg.FullName)..."
-            ./nuget.exe push $pkg.FullName `
-              -Source "${{ env.ARTIFACTS_FEED_URL }}" `
-              -ApiKey VSTS `
-              -NonInteractive `
-              -SkipDuplicate
+            dotnet nuget push $pkg.FullName `
+              --source "${{ env.ARTIFACTS_FEED_URL }}" `
+              --api-key "${{ env.ARTIFACTS_API_KEY }}" `
+              --skip-duplicate
           }
