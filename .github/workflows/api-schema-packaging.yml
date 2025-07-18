@@ -17,6 +17,8 @@ on:
           - "false"
           - "true"
 
+permissions: read-all
+
 env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
   ARTIFACTS_FEED_URL: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json
@@ -26,7 +28,7 @@ env:
 
 jobs:
   run-metaed-project:
-    if: github.ref_protected # Don't allow this to run on PRs
+    # f: github.ref_protected 
     name: Run MetaEd Project 
     runs-on: ubuntu-latest
     strategy:
@@ -90,7 +92,7 @@ jobs:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-ODS-Implementation
           path: Ed-Fi-ODS-Implementation/
           ref: ${{ matrix.ds.sample-tag-name }}
-          
+
       - name: Create MetaEdConfig
         working-directory: ./MetaEd-js/   
         env:
@@ -100,23 +102,6 @@ jobs:
           HOMOGRAPH_PATH: ${{ matrix.ds.homograph-path }}
         run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion ${{ matrix.ds.project-version }} -ProjectDescription "${{ matrix.ds.project-description }}" -CoreProjectPath "${{ matrix.ds.core-path }}" -ExtensionProjectPath ([System.Environment]::GetEnvironmentVariable('${{ matrix.config }}_PATH'.ToUpper())) -ExtensionProjectName ${{ matrix.config }}
         shell: pwsh
-
-      - name: Print the created MetaEd config
-        shell: pwsh
-        run: |
-          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig.json"
-          
-          # Check if the file exists
-          if (Test-Path $configFilePath) {
-              # Read the JSON file content
-              $jsonContent = Get-Content -Path $configFilePath | Out-String
-              # Print the JSON content
-              Write-Host "MetaEd Configuration JSON Content:"
-              Write-Host $jsonContent
-          } else {
-              Write-Host "MetaEd configuration file does not exist at: $configFilePath"
-              exit 1
-          }
 
       - name: Run MetaEd Project
         working-directory: ./MetaEd-js/      
@@ -161,10 +146,6 @@ jobs:
         with:
           name: MetaEdOutput-${{ matrix.config }}-${{ matrix.ds.version }}
           path: ./MetaEd-js/MetaEdOutput
-
-      - name: Display structure of downloaded files
-        working-directory: ./MetaEd-js/MetaEdOutput
-        run: ls -R ./
 
       - name: Move MetaEd ApiSchema Files
         working-directory: ./MetaEd-js/
@@ -236,31 +217,26 @@ jobs:
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ matrix.ds-version }}-1.0.${{ github.run_number }}
+          path: ./nupkgs
 
-      - name: Install-credential-handler
-        run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
+      - name: Check for Azure token
+        if: ${{ env.ARTIFACTS_API_KEY == '' }}
+        run: | 
+          echo "::error::Missing Azure Token"
+          exit 1 
 
       - name: Push Package to Azure Artifacts
         run: |
-         $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
-         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
-         
-         echo "Artifacts List"
-         echo $artifacts
+         $nupkgFiles = Get-ChildItem -Path "./nupkgs" -Filter *.nupkg
+          if (-not $nupkgFiles) {
+            Write-Error "No .nupkg files found"
+            exit 1
+          }
 
-         $arguments = @{
-           NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
-           EdFiNuGetFeed = "${{ env.ARTIFACTS_FEED_URL }}"
-         }
-
-         if ($artifacts.Count -eq 0) {
-          throw "Cannot find a NuGet package $packageDir"
-         } 
-         else {
-            $artifacts | ForEach-Object {
-                echo "Package Files"             
-                $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
-                echo $arguments.PackageFile
-                ./eng/ApiSchema/build.ps1 PushPackage @arguments
-              }
-         }
+          foreach ($pkg in $nupkgFiles) {
+            Write-Host "Pushing $($pkg.FullName)..."
+            dotnet nuget push $pkg.FullName `
+              --source "${{ env.ARTIFACTS_FEED_URL }}" `
+              --api-key "${{ env.ARTIFACTS_API_KEY }}" `
+              --skip-duplicate
+          }
