@@ -242,6 +242,24 @@ jobs:
           echo "::error::Missing Azure Token"
           exit 1 
 
+      - name: Configure NuGet authentication
+        run: |
+          mkdir -p ~/.nuget
+          cat > ~/.nuget/NuGet.Config <<EOF
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <add key="AzureArtifacts" value="${{ env.ARTIFACTS_FEED_URL }}" />
+            </packageSources>
+            <packageSourceCredentials>
+              <AzureArtifacts>
+                <add key="Username" value="AzureDevOps" />
+                <add key="ClearTextPassword" value="${{ env.ARTIFACTS_API_KEY }}" />
+              </AzureArtifacts>
+            </packageSourceCredentials>
+          </configuration>
+          EOF
+
       - name: Push Package to Azure Artifacts
         shell: pwsh
         run: |
@@ -250,10 +268,10 @@ jobs:
             Write-Error "No .nupkg files found"
             exit 1
           }
+
           foreach ($pkg in $nupkgFiles) {
             Write-Host "Pushing $($pkg.FullName)..."
             dotnet nuget push $pkg.FullName `
-              --source "${{ env.ARTIFACTS_FEED_URL }}" `
-              --api-key "${{ env.ARTIFACTS_API_KEY }}" `
+              --source "AzureArtifacts" `
               --skip-duplicate
           }
