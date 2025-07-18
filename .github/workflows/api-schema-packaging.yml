@@ -243,9 +243,9 @@ jobs:
           exit 1 
 
       - name: Configure NuGet authentication
+        shell: pwsh
         run: |
-          mkdir -p ~/.nuget
-          cat > ~/.nuget/NuGet.Config <<EOF
+          $config = @"
           <?xml version="1.0" encoding="utf-8"?>
           <configuration>
             <packageSources>
@@ -258,7 +258,10 @@ jobs:
               </AzureArtifacts>
             </packageSourceCredentials>
           </configuration>
-          EOF
+          "@
+              $nugetPath = "$HOME/.nuget/NuGet"
+              New-Item -ItemType Directory -Path $nugetPath -Force | Out-Null
+              Set-Content -Path "$nugetPath/NuGet.Config" -Value $config
 
       - name: Push Package to Azure Artifacts
         shell: pwsh
