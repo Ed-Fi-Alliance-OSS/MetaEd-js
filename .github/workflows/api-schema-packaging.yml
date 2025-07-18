@@ -103,6 +103,23 @@ jobs:
         run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion ${{ matrix.ds.project-version }} -ProjectDescription "${{ matrix.ds.project-description }}" -CoreProjectPath "${{ matrix.ds.core-path }}" -ExtensionProjectPath ([System.Environment]::GetEnvironmentVariable('${{ matrix.config }}_PATH'.ToUpper())) -ExtensionProjectName ${{ matrix.config }}
         shell: pwsh
 
+      - name: Print the created MetaEd config
+        shell: pwsh
+        run: |
+          $configFilePath = "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig.json"
+          
+          # Check if the file exists
+          if (Test-Path $configFilePath) {
+              # Read the JSON file content
+              $jsonContent = Get-Content -Path $configFilePath | Out-String
+              # Print the JSON content
+              Write-Host "MetaEd Configuration JSON Content:"
+              Write-Host $jsonContent
+          } else {
+              Write-Host "MetaEd configuration file does not exist at: $configFilePath"
+              exit 1
+          }
+
       - name: Run MetaEd Project
         working-directory: ./MetaEd-js/      
         run: ./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "${{ github.workspace }}/MetaEd-js/eng/ApiSchema/MetaEdConfig.json"
