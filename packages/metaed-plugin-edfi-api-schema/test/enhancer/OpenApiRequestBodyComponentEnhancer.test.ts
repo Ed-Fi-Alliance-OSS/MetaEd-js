@@ -1874,6 +1874,9 @@ describe('when building a school year enumeration', () => {
             "type": "integer",
           },
         },
+        "required": Array [
+          "schoolYear",
+        ],
         "type": "object",
       }
     `);

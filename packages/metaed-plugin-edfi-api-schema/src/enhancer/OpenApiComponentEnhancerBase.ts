@@ -40,6 +40,7 @@ export function newSchoolYearOpenApis(minSchoolYear: number, maxSchoolYear: numb
     properties: {
       schoolYear: schoolYearOpenApi,
     },
+    required: ['schoolYear'],
   };
 
   const schoolYearEnumerationRef = '#/components/schemas/EdFi_SchoolYearTypeReference';
