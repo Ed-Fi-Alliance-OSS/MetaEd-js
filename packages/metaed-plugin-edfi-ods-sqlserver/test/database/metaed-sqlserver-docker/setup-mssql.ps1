@@ -8,7 +8,7 @@ $attempt = 0
 
 while ($attempt -lt $maxAttempts) {
     try {
-        $output = docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -C -Q "SELECT 1" 2>&1
+        $output = docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -C -Q "SELECT 1" 2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-Host "SQL Server is up - executing setup script" -ForegroundColor Green
             break
@@ -50,7 +50,7 @@ GO
 "@
 
 # Execute the setup script
-docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -C -Q $setupScript
+docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -C -Q $setupScript
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "ERROR: Failed to create database and login" -ForegroundColor Red
@@ -72,7 +72,7 @@ ALTER ROLE db_owner ADD MEMBER metaed;
 GO
 "@
 
-docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -C -d MetaEd_Ods_Integration_Tests -Q $permissionsScript
+docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -C -d MetaEd_Ods_Integration_Tests -Q $permissionsScript
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "ERROR: Failed to create user and grant permissions" -ForegroundColor Red
@@ -87,7 +87,7 @@ PRINT 'Setup completed successfully';
 GO
 "@
 
-docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEd!Test123' -C -Q $sysadminScript
+docker exec metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'MetaEdTest123' -C -Q $sysadminScript
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "ERROR: Failed to grant sysadmin role" -ForegroundColor Red

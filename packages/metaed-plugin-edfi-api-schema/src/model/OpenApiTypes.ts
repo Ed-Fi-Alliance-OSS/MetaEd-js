@@ -32,13 +32,6 @@ THE SOFTWARE.
 
 /* eslint-disable no-use-before-define */
 
-// Ed-Fi OpenAPI extension constants
-export const ED_FI_IDENTITY_EXTENSION_KEY = 'x-Ed-Fi-isIdentity';
-export const ED_FI_NULLABLE_EXTENSION_KEY = 'x-nullable';
-export const ED_FI_DEPRECATED_EXTENSION_KEY = 'x-Ed-Fi-isDeprecated';
-export const ED_FI_DEPRECATED_REASONS_EXTENSION_KEY = 'x-Ed-Fi-deprecatedReasons';
-export const ED_FI_UPDATABLE_EXTENSION_KEY = 'x-Ed-Fi-isUpdatable';
-
 export type Parameter = ReferenceObject | ParameterObject;
 export interface Request {
   body?: any;
@@ -112,6 +105,7 @@ export type PathItemObject<T extends {} = {}> = {
   head?: Operation<T>;
   patch?: Operation<T>;
   trace?: Operation<T>;
+  'x-Ed-Fi-domains'?: string[];
 };
 
 export type Operation<T extends {} = {}> = {
@@ -127,7 +121,7 @@ export type Operation<T extends {} = {}> = {
   deprecated?: boolean;
   security?: SecurityRequirementObject[];
   servers?: ServerObject[];
-  [ED_FI_UPDATABLE_EXTENSION_KEY]?: boolean;
+  'x-Ed-Fi-isUpdatable'?: boolean;
 } & T;
 
 export interface ExternalDocumentationObject {

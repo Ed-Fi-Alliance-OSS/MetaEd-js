@@ -6,7 +6,7 @@
 import { MetaEdPropertyFullName, MetaEdProjectName } from '@edfi/metaed-core';
 import { EqualityConstraint } from './EqualityConstraint';
 import { DocumentPaths } from './DocumentPaths';
-import { SchemaRoot } from './JsonSchema';
+import { SchemaRoot } from './JsonSchemaForInsert';
 import { MetaEdResourceName } from './MetaEdResourceName';
 import { JsonPath } from './JsonPath';
 import { QueryFieldMapping } from './QueryFieldMapping';
@@ -14,6 +14,9 @@ import { SecurableElements } from './SecurableElements';
 import { AuthorizationPathway } from './AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './DecimalPropertyValidationInfo';
 import { ArrayUniquenessConstraint } from './ArrayUniquenessConstraint';
+import { DomainName } from './DomainName';
+import { OpenApiDocumentTypeValue } from './OpenApiDocumentType';
+import { OpenApiFragment } from './OpenApiFragment';
 
 /**
  * API resource schema information common between all resources
@@ -23,6 +26,11 @@ export type BaseResourceSchema = {
    * The resource name. Typically, this is the entity metaEdName.
    */
   resourceName: MetaEdResourceName;
+
+  /**
+   * List of domain names that this resource belongs to.
+   */
+  domains: DomainName[];
 
   /**
    * The API document JSON schema that corresponds to this resource on insert.
@@ -81,6 +89,14 @@ export type BaseResourceSchema = {
    * Supports nested array structures with proper base paths and constraint hierarchies.
    */
   arrayUniquenessConstraints: ArrayUniquenessConstraint[];
+
+  /**
+   * OpenAPI fragments for this resource, keyed by document type.
+   * Each fragment contains partial OpenAPI specification data.
+   */
+  openApiFragments: {
+    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
+  };
 };
 
 /**

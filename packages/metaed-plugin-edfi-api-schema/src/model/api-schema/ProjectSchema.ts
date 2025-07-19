@@ -10,11 +10,12 @@ import { ResourceSchema } from './ResourceSchema';
 import { ResourceSchemaMapping } from './ResourceSchemaMapping';
 import { SemVer } from './SemVer';
 import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNameMapping';
-import { noDocument, type Document } from '../OpenApiTypes';
+import { type Document } from '../OpenApiTypes';
 import { ProjectEndpointName } from './ProjectEndpointName';
 import { EducationOrganizationHierarchy } from '../EducationOrganizationHierarchy';
 import { MetaEdResourceName } from './MetaEdResourceName';
-import { OpenApiExtensionFragments } from '../OpenApiExtensionFragments';
+import { DomainName } from './DomainName';
+import { OpenApiDocumentTypeValue } from './OpenApiDocumentType';
 
 /**
  * API project information
@@ -85,51 +86,32 @@ export type BaseProjectSchema = {
    * The EducationOrganization resource hierarchy
    */
   educationOrganizationHierarchy: EducationOrganizationHierarchy;
-};
 
-type CoreProjectSchema = BaseProjectSchema & {
+  /**
+   * The domain names defined for this project
+   */
+  domains: DomainName[];
+
   /**
    * Whether this is an extension project or a Data Standard project
    */
-  isExtensionProject: false;
+  isExtensionProject: boolean;
 
   /**
-   * The core OpenApi specification for resources DMS will use as a starting point
+   * Base OpenAPI documents for each document type (only for core projects)
    */
-  openApiCoreResources: Document;
-
-  /**
-   * The core OpenApi specification for descriptors DMS will use as a starting point
-   */
-  openApiCoreDescriptors: Document;
+  openApiBaseDocuments?: {
+    [documentType in OpenApiDocumentTypeValue]?: Document;
+  };
 };
 
-type ExtensionProjectSchema = BaseProjectSchema & {
-  /**
-   * Whether this is an extension project or a Data Standard project
-   */
-  isExtensionProject: true;
-
-  /**
-   * The extension OpenApi fragments DMS will incorporate into the resource OpenApi spec
-   */
-  openApiExtensionResourceFragments: OpenApiExtensionFragments;
-
-  /**
-   * The extension OpenApi fragments DMS will incorporate into the descriptor OpenApi spec
-   */
-  openApiExtensionDescriptorFragments: OpenApiExtensionFragments;
-};
-
-export type ProjectSchema = CoreProjectSchema | ExtensionProjectSchema;
+export type ProjectSchema = BaseProjectSchema;
 
 export const NoProjectSchema: ProjectSchema = {
   projectName: 'NoProjectName' as MetaEdProjectName,
   projectVersion: '0.0.0' as SemVer,
   projectEndpointName: 'NoProjectEndpointName' as ProjectEndpointName,
   isExtensionProject: false,
-  openApiCoreResources: noDocument,
-  openApiCoreDescriptors: noDocument,
   compatibleDsRange: null,
   description: 'NoProjectSchema',
   resourceSchemas: {},
@@ -138,4 +120,6 @@ export const NoProjectSchema: ProjectSchema = {
   abstractResources: {},
   educationOrganizationTypes: [],
   educationOrganizationHierarchy: {},
+  domains: [],
+  openApiBaseDocuments: {},
 };

@@ -10,6 +10,7 @@ import { Aggregate } from './domainMetadata/Aggregate';
 
 export interface TopLevelEntityEdfiOdsApi {
   aggregate: Aggregate;
+  domains: string[];
 }
 
 const enhancerName = 'TopLevelEntitySetupEnhancer';
@@ -19,6 +20,7 @@ export function addTopLevelEntityEdfiOdsApiTo(topLevelEntity: TopLevelEntity) {
 
   Object.assign(topLevelEntity.data.edfiOdsApi, {
     aggregate: NoAggregate,
+    domains: [],
   });
 }
 

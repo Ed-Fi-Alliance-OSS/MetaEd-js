@@ -17,8 +17,6 @@ import {
   PathsObject,
   Schemas,
   TagObject,
-  ED_FI_IDENTITY_EXTENSION_KEY,
-  ED_FI_UPDATABLE_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
 import { pluralize, deAcronym } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
@@ -370,7 +368,7 @@ const descriptorOpenApiParameters: Parameter[] = [
       maxLength: 50,
       type: 'string',
     },
-    [ED_FI_IDENTITY_EXTENSION_KEY]: true,
+    'x-Ed-Fi-isIdentity': true,
   },
   {
     name: 'description',
@@ -409,7 +407,7 @@ const descriptorOpenApiParameters: Parameter[] = [
       maxLength: 255,
       type: 'string',
     },
-    [ED_FI_IDENTITY_EXTENSION_KEY]: true,
+    'x-Ed-Fi-isIdentity': true,
   },
   {
     name: 'shortDescription',
@@ -444,8 +442,8 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
       in: 'query',
       description: sourceProperty.documentation,
       schema: schemaObjectFrom(sourceProperty),
+      ...(sourceProperty.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
     };
-    if (sourceProperty.isPartOfIdentity) parameter[ED_FI_IDENTITY_EXTENSION_KEY] = true;
 
     result.push(parameter);
   });
@@ -617,7 +615,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
     },
     summary: 'Updates a resource based on the resource identifier.',
     tags: [endpointName],
-    ...(entity.allowPrimaryKeyUpdates && { [ED_FI_UPDATABLE_EXTENSION_KEY]: true }),
+    ...(entity.allowPrimaryKeyUpdates && { 'x-Ed-Fi-isUpdatable': true }),
   };
 }
 
@@ -711,18 +709,20 @@ export function createPathsFrom(entity: TopLevelEntity): PathsObject {
   const paths: PathsObject = {};
 
   const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
-  const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+  const { endpointName, domains } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
   // Add to paths without "id"
   paths[`/${projectEndpointName}/${endpointName}`] = {
     post: createPostSectionFor(entity, endpointName),
     get: createGetByQuerySectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
   };
 
   paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
     get: createGetByIdSectionFor(entity, endpointName),
     put: createPutSectionFor(entity, endpointName),
     delete: createDeleteSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
   };
 
   return paths;

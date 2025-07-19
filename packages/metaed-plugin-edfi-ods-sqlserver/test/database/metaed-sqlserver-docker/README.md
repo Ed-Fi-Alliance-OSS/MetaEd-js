@@ -45,7 +45,7 @@ This directory contains the necessary files to set up a SQL Server 2022 containe
 - **Image:** Microsoft SQL Server 2022 Developer Edition
 - **Container Name:** `metaed-mssql`
 - **Port:** 1433 (default SQL Server port)
-- **SA Password:** `MetaEd!Test123`
+- **SA Password:** `MetaEdTest123`
 
 ### Database Configuration
 - **Database Name:** `MetaEd_Ods_Integration_Tests`
@@ -98,7 +98,7 @@ docker exec -it metaed-mssql /opt/mssql-tools18/bin/sqlcmd -S localhost -U metae
 2. **Connection timeout:** SQL Server takes 30-60 seconds to fully initialize on first run. The setup script will wait for it to be ready.
 
 3. **Authentication failed:** Ensure you're using the correct credentials:
-   - For SA account: username `sa`, password `MetaEd!Test123`
+   - For SA account: username `sa`, password `MetaEdTest123`
    - For test user: username `metaed`, password `metaed-test`
 
 4. **sqlcmd not found:** The 2022 image uses `/opt/mssql-tools18/bin/sqlcmd` (note the "18" in the path)

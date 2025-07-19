@@ -7,6 +7,8 @@ import { Enhancer } from '@edfi/metaed-core';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../model/EntityApiSchemaData';
 import { enhance as namespaceSetupEnhancer } from '../model/Namespace';
+import { enhance as namespaceDomainEnhancer } from './NamespaceDomainEnhancer';
+import { enhance as entityDomainEnhancer } from './ResourceDomainEnhancer';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from './SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from './ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from './ApiPropertyMappingEnhancer';
@@ -33,8 +35,8 @@ import { enhance as decimalPropertyValidationInfoEnhancer } from './DecimalPrope
 import { enhance as typeCoercionJsonPathsEnhancer } from './TypeCoercionJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
-import { enhance as openApiCoreSpecificationEnhancer } from './OpenApiCoreSpecificationEnhancer';
-import { enhance as openApiExtensionFragmentEnhancer } from './OpenApiExtensionFragmentEnhancer';
+import { enhance as openApiBaseDocumentEnhancer } from './OpenApiBaseDocumentEnhancer';
+import { enhance as openApiResourceFragmentEnhancer } from './OpenApiResourceFragmentEnhancer';
 import { enhance as namespaceSecurableElementEnhancer } from './security/NamespaceSecurableElementEnhancer';
 import { enhance as educationOrganizationSecurableElementEnhancer } from './security/EducationOrganizationSecurableElementEnhancer';
 import { enhance as educationOrganizationHierarchyEnhancer } from './security/EducationOrganizationHierarchyEnhancer';
@@ -53,6 +55,7 @@ export function enhancerList(): Enhancer[] {
     namespaceSetupEnhancer,
     entityPropertyApiSchemaDataSetupEnhancer,
     entityApiSchemaDataSetupEnhancer,
+    entityDomainEnhancer,
     subclassPropertyNamingCollisionEnhancer,
     referenceComponentEnhancer,
     apiPropertyMappingEnhancer,
@@ -79,8 +82,8 @@ export function enhancerList(): Enhancer[] {
     decimalPropertyValidationInfoEnhancer,
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
-    openApiCoreSpecificationEnhancer,
-    openApiExtensionFragmentEnhancer,
+    openApiBaseDocumentEnhancer,
+    openApiResourceFragmentEnhancer,
     namespaceSecurableElementEnhancer,
     educationOrganizationSecurableElementEnhancer,
     educationOrganizationHierarchyEnhancer,
@@ -88,6 +91,7 @@ export function enhancerList(): Enhancer[] {
     studentSecurableElementEnhancer,
     contactSecurableElementEnhancer,
     staffSecurableElementEnhancer,
+    namespaceDomainEnhancer,
     apiSchemaBuildingEnhancer,
     programRoleNameHardcodedSecurityDiminisher,
     organizationDepartmentHardcodedSecurityDiminisher,

@@ -15,9 +15,10 @@ import {
   DomainEntitySubclass,
   AssociationSubclass,
   MetaEdProjectName,
+  SchoolYearEnumeration,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { BaseProjectSchema, ProjectSchema } from '../model/api-schema/ProjectSchema';
+import { ProjectSchema } from '../model/api-schema/ProjectSchema';
 import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema, NonExtensionResourceSchema, ResourceExtensionSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
@@ -35,6 +36,7 @@ import { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { EducationOrganizationHierarchy } from '../model/EducationOrganizationHierarchy';
 import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
+import { OpenApiDocumentType } from '../model/api-schema/OpenApiDocumentType';
 
 /**
  * Removes the sourceProperty attributes from DocumentPathsMapping, which are not needed for stringification
@@ -77,6 +79,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   return {
     resourceName: entityApiSchemaData.resourceName,
+    domains: entityApiSchemaData.domains,
     isDescriptor: entity.type === 'descriptor',
     isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
@@ -100,6 +103,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     authorizationPathways: entityApiSchemaData.authorizationPathways,
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: false,
+    openApiFragments: entityApiSchemaData.openApiFragments,
   };
 }
 
@@ -111,6 +115,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   return {
     resourceName: entityApiSchemaData.resourceName,
+    domains: entityApiSchemaData.domains,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     documentPathsMapping: removeSourcePropertyFromDocumentPathsMapping(entityApiSchemaData.documentPathsMapping),
@@ -129,6 +134,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     authorizationPathways: [],
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: true,
+    openApiFragments: entityApiSchemaData.openApiFragments,
   };
 }
 
@@ -185,7 +191,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping = {};
     const abstractResources: AbstractResourceMapping = {};
 
-    const baseProjectSchema: BaseProjectSchema = {
+    const projectSchema: ProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
       projectEndpointName: namespace.projectName.toLowerCase() as ProjectEndpointName,
@@ -194,29 +200,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       resourceNameMapping,
       caseInsensitiveEndpointNameMapping,
       abstractResources,
-      compatibleDsRange: null,
+      compatibleDsRange: namespace.isExtension ? (metaEd.dataStandardVersion as SemVer) : null,
+      isExtensionProject: namespace.isExtension,
       educationOrganizationTypes: namespace.data.educationOrganizationTypes as MetaEdResourceName[],
       educationOrganizationHierarchy: namespace.data.educationOrganizationHierarchy as EducationOrganizationHierarchy,
+      domains: (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).domains,
+      openApiBaseDocuments: (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiBaseDocuments,
     };
-
-    let projectSchema: ProjectSchema;
-
-    if (namespace.isExtension) {
-      projectSchema = {
-        ...baseProjectSchema,
-        isExtensionProject: true,
-        compatibleDsRange: metaEd.dataStandardVersion as SemVer,
-        openApiExtensionResourceFragments: namespace.data.edfiApiSchema.openApiExtensionResourceFragments,
-        openApiExtensionDescriptorFragments: namespace.data.edfiApiSchema.openApiExtensionDescriptorFragments,
-      };
-    } else {
-      projectSchema = {
-        ...baseProjectSchema,
-        isExtensionProject: false,
-        openApiCoreResources: namespace.data.edfiApiSchema.openApiCoreResources,
-        openApiCoreDescriptors: namespace.data.edfiApiSchema.openApiCoreDescriptors,
-      };
-    }
 
     const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
     apiSchema.projectSchema = projectSchema;
@@ -224,8 +214,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntity').forEach((domainEntity) => {
       // Abstract entities are not resources (e.g. EducationOrganization)
       if ((domainEntity as DomainEntity).isAbstract) {
+        const entityApiSchemaData = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
         abstractResources[domainEntity.metaEdName] = {
-          identityJsonPaths: (domainEntity.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths,
+          identityJsonPaths: entityApiSchemaData.identityJsonPaths,
+          openApiFragment: entityApiSchemaData.openApiFragments?.[OpenApiDocumentType.RESOURCES],
         };
         return;
       }
@@ -239,8 +231,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // This is a workaround for the fact that the ODS/API required GeneralStudentProgramAssociation to
       // be abstract although there is no MetaEd language annotation to make an Association abstract.
       if (association.metaEdName === 'GeneralStudentProgramAssociation') {
+        const entityApiSchemaData = association.data.edfiApiSchema as EntityApiSchemaData;
         abstractResources[association.metaEdName] = {
-          identityJsonPaths: (association.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths,
+          identityJsonPaths: entityApiSchemaData.identityJsonPaths,
+          openApiFragment: entityApiSchemaData.openApiFragments?.[OpenApiDocumentType.RESOURCES],
         };
         return;
       }
@@ -277,7 +271,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     });
 
     if (!projectSchema.isExtensionProject) {
-      buildSchoolYearResourceSchema(resourceNameMapping, caseInsensitiveEndpointNameMapping, resourceSchemas);
+      const schoolYear = namespace.entity.schoolYearEnumeration.get('SchoolYear');
+      if (schoolYear != null) {
+        buildSchoolYearResourceSchema(
+          schoolYear as SchoolYearEnumeration,
+          metaEd.minSchoolYear,
+          metaEd.maxSchoolYear,
+          resourceNameMapping,
+          caseInsensitiveEndpointNameMapping,
+          resourceSchemas,
+        );
+      }
     }
   });
   return {
