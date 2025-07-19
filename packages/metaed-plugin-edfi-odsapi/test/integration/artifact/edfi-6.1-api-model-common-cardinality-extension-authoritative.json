@@ -172,6 +172,7 @@
       ],
       "isAbstract": false,
       "description": "CommonScalarCardinality",
+      "domains": [],
       "tableNames": {
         "sqlServer": "CommonScalarCardinality",
         "postgreSql": "CommonScalarCardinality"
@@ -250,6 +251,7 @@
       ],
       "isAbstract": false,
       "description": "doc",
+      "domains": [],
       "tableNames": {
         "sqlServer": "CommonScalarCardinalityLanguageCollection",
         "postgreSql": "CommonScalarCardinalityLanguageCollection"
@@ -327,6 +329,7 @@
       ],
       "isAbstract": false,
       "description": "doc",
+      "domains": [],
       "tableNames": {
         "sqlServer": "CommonScalarCardinalitySimpleCommon",
         "postgreSql": "CommonScalarCardinalitySimpleCommon"
@@ -469,6 +472,7 @@
       ],
       "isAbstract": false,
       "description": "PriorYearLeaver",
+      "domains": [],
       "tableNames": {
         "sqlServer": "PriorYearLeaver",
         "postgreSql": "PriorYearLeaver"
@@ -513,6 +517,7 @@
       ],
       "isAbstract": false,
       "description": "A method of written or spoken communication.",
+      "domains": [],
       "tableNames": {
         "sqlServer": "PriorYearLeaverLanguage",
         "postgreSql": "PriorYearLeaverLanguage"
@@ -558,6 +563,7 @@
       ],
       "isAbstract": false,
       "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
+      "domains": [],
       "tableNames": {
         "sqlServer": "PriorYearLeaverLanguageUse",
         "postgreSql": "PriorYearLeaverLanguageUse"
@@ -638,6 +644,7 @@
       ],
       "isAbstract": false,
       "description": "LanguageCollection being used",
+      "domains": [],
       "tableNames": {
         "sqlServer": "StudentEducationOrganizationAssociationLanguageCollection",
         "postgreSql": "StudentEducationOrganizationAssociationLanguageCollection"
@@ -718,6 +725,7 @@
       ],
       "isAbstract": false,
       "description": "LanguageSet being used",
+      "domains": [],
       "tableNames": {
         "sqlServer": "StudentEducationOrganizationAssociationLanguageSet",
         "postgreSql": "StudentEducationOrganizationAssociationLanguageSet"
@@ -765,6 +773,7 @@
       ],
       "isAbstract": false,
       "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
+      "domains": [],
       "tableNames": {
         "sqlServer": "StudentEducationOrganizationAssociationLanguageSetLanguageUse",
         "postgreSql": "StudentEducationOrganizationAssociationLanguageSetLanguageUse"
