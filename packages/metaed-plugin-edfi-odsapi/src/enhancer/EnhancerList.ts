@@ -23,6 +23,7 @@ import { enhance as interchangeItemSetupEnhancer } from '../model/InterchangeIte
 import { enhance as mergedInterchangeSetupEnhancer } from '../model/MergedInterchange';
 import { enhance as namespaceSetupEnhancer } from '../model/Namespace';
 import { enhance as topLevelEntitySetupEnhancer } from '../model/TopLevelEntity';
+import { enhance as topLevelEntityDomainEnhancer } from './apiModel/TopLevelEntityDomainEnhancer';
 
 import { enhance as createDomainModelDefinitionEnhancer } from './apiModel/CreateDomainModelDefinitionEnhancer';
 import { enhance as buildSchemaDefinitionEnhancerV3 } from './apiModel/BuildSchemaDefinitionEnhancerV3';
@@ -48,6 +49,7 @@ import { enhance as entityDefinitionPredefinedPropertyEnhancerV3 } from './apiMo
 import { enhance as entityDefinitionIdentifierEnhancer } from './apiModel/EntityDefinitionIdentifierEnhancer';
 import { enhance as entityDefinitionIdentifierEnhancerV3 } from './apiModel/EntityDefinitionIdentifierEnhancerV3dot2';
 import { enhance as entityDefinitionPropertyOrderEnhancer } from './apiModel/EntityDefinitionPropertyOrderEnhancer';
+import { enhance as entityDefinitionDomainEnhancer } from './apiModel/EntityDefinitionDomainEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -60,6 +62,7 @@ export function enhancerList(): Enhancer[] {
     mergedInterchangeSetupEnhancer,
     namespaceSetupEnhancer,
     topLevelEntitySetupEnhancer,
+    topLevelEntityDomainEnhancer,
 
     // Domain Metadata
     associationAggregateEnhancer,
@@ -101,5 +104,6 @@ export function enhancerList(): Enhancer[] {
     entityDefinitionIdentifierEnhancer,
     entityDefinitionIdentifierEnhancerV3,
     entityDefinitionPropertyOrderEnhancer,
+    entityDefinitionDomainEnhancer,
   ];
 }
