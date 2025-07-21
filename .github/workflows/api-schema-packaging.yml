@@ -25,9 +25,9 @@ env:
   REF_NAME:  ${{ GITHUB.REF_NAME }}
 
 jobs:
-  run-metaed-project:
-    
-    name: Run MetaEd Project 
+  run-metaed-project:    
+    if: github.ref_protected # Don't allow this to run on PRs 
+    name: Run MetaEd Project
     runs-on: ubuntu-latest
     strategy:
       matrix:
