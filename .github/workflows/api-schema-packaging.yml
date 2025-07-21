@@ -25,7 +25,7 @@ env:
   REF_NAME:  ${{ GITHUB.REF_NAME }}
 
 jobs:
-  run-metaed-project:    
+  run-metaed-project:
     if: github.ref_protected # Don't allow this to run on PRs 
     name: Run MetaEd Project
     runs-on: ubuntu-latest
@@ -162,6 +162,10 @@ jobs:
           name: MetaEdOutput-${{ matrix.config }}-${{ matrix.ds.version }}
           path: ./MetaEd-js/MetaEdOutput
 
+      - name: Display structure of downloaded files
+        working-directory: ./MetaEd-js/MetaEdOutput
+        run: ls -R ./
+
       - name: Move MetaEd ApiSchema Files
         working-directory: ./MetaEd-js/
         run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ExtensionName "${{ matrix.config }}"
@@ -234,14 +238,10 @@ jobs:
           name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ matrix.ds-version }}-1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
-        shell: pwsh
         run: |
           ./eng/ApiSchema/build.ps1 InstallCredentialHandler
 
       - name: Push Package to Azure Artifacts
-        shell: pwsh
-        env:
-          NUGET_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
         run: |
           $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
           $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
