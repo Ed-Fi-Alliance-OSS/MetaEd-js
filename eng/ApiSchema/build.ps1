@@ -6,7 +6,7 @@
 [CmdLetBinding()]
 param (
     [string]
-    [ValidateSet("DotNetClean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd", "MoveMetaEdSchema")]
+    [ValidateSet("DotNetClean", "Build", "BuildAndPublish", "PushPackage", "Unzip", "Package", "RunMetaEd", "MoveMetaEdSchema", "InstallCredentialHandler")]
     $Command = "Build",
 
     [string]
@@ -68,6 +68,31 @@ function PublishApi {
     $project = $applicationRoot
     $outputPath = "$project/publish"
     dotnet publish $projectPath -c $Configuration -o $outputPath --nologo
+}
+
+function InstallCredentialHandler {
+    # Does the same as: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) }"
+    # but this brings support for installing the provider on Linux.
+    # Additionally, it's less likely to hit GitHub rate limits because this downloads it directly, instead of making a
+    # request to https://api.github.com/repos/Microsoft/artifacts-credprovider/releases/latest to infer the latest version.
+
+    $downloadPath = Join-Path ([IO.Path]::GetTempPath()) 'cred-provider.zip'
+
+    $credProviderUrl = 'https://github.com/microsoft/artifacts-credprovider/releases/download/v1.4.1/Microsoft.Net6.NuGet.CredentialProvider.zip'
+    Write-Host "Downloading artifacts-credprovider from $credProviderUrl ..."
+    $webClient = New-Object System.Net.WebClient
+    $webClient.DownloadFile($credProviderUrl, $downloadPath)
+
+    Write-Host "Download complete."
+
+    if (-not (Test-Path $downloadPath)) {
+        throw "'$downloadPath' not found."
+    }
+
+    # The provider should be installed in the path: ~/.nuget/plugins/netcore/CredentialProvider.Microsoft/<binaries>
+    Write-Host "Extracting $downloadPath ..."
+    Expand-Archive -Force -Path $downloadPath -DestinationPath '~/.nuget/'
+    Write-Host "The artifacts-credprovider was successfully installed" -ForegroundColor Green
 }
 
 function PushPackage {
