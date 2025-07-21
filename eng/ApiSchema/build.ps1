@@ -215,6 +215,7 @@ switch ($Command) {
         Invoke-Build
         PublishApi
     }
+    InstallCredentialHandler { InstallCredentialHandler }
     Package { BuildPackage }
     PushPackage { 
         PushPackage -EdFiNuGetFeed $EdFiNuGetFeed -NuGetApiKey $NuGetApiKey -PackageFile $PackageFile -DryRun:$DryRun
