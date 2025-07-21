@@ -26,8 +26,8 @@ env:
 
 jobs:
   run-metaed-project:
-    if: github.ref_protected # Don't allow this to run on PRs
-    name: Run MetaEd Project 
+    if: github.ref_protected # Don't allow this to run on PRs 
+    name: Run MetaEd Project
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -90,7 +90,7 @@ jobs:
           repository: Ed-Fi-Alliance-OSS/Ed-Fi-ODS-Implementation
           path: Ed-Fi-ODS-Implementation/
           ref: ${{ matrix.ds.sample-tag-name }}
-          
+
       - name: Create MetaEdConfig
         working-directory: ./MetaEd-js/   
         env:
@@ -238,29 +238,30 @@ jobs:
           name: EdFi.ApiSchema-NuGet-${{ matrix.config }}-${{ matrix.ds-version }}-1.0.${{ github.run_number }}
 
       - name: Install-credential-handler
-        run: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"
+        run: |
+          ./eng/ApiSchema/build.ps1 InstallCredentialHandler
 
       - name: Push Package to Azure Artifacts
         run: |
-         $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
-         $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
-         
-         echo "Artifacts List"
-         echo $artifacts
+          $packageDir = "/home/runner/work/MetaEd-js/MetaEd-js"
+          $artifacts = (Get-ChildItem -Path $packageDir -Name -Include *.nupkg)
+          
+          echo "Artifacts List"
+          echo $artifacts
 
-         $arguments = @{
-           NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
-           EdFiNuGetFeed = "${{ env.ARTIFACTS_FEED_URL }}"
-         }
+          $arguments = @{
+            NuGetApiKey = "${{ env.ARTIFACTS_API_KEY }}"
+            EdFiNuGetFeed = "${{ env.ARTIFACTS_FEED_URL }}"
+          }
 
-         if ($artifacts.Count -eq 0) {
-          throw "Cannot find a NuGet package $packageDir"
-         } 
-         else {
-            $artifacts | ForEach-Object {
-                echo "Package Files"             
-                $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
-                echo $arguments.PackageFile
-                ./eng/ApiSchema/build.ps1 PushPackage @arguments
-              }
-         }
+          if ($artifacts.Count -eq 0) {
+            throw "Cannot find a NuGet package $packageDir"
+          } 
+          else {
+              $artifacts | ForEach-Object {
+                  echo "Package Files"             
+                  $arguments.PackageFile = Join-Path -Path $packageDir -ChildPath $_
+                  echo $arguments.PackageFile
+                  ./eng/ApiSchema/build.ps1 PushPackage @arguments
+                }
+          }
