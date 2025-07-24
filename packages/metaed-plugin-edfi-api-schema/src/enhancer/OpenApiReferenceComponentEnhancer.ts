@@ -14,7 +14,7 @@ import {
   ED_FI_NULLABLE_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
 import { defaultPropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { findIdenticalRoleNamePatternPrefix, prependPrefixWithCollapse, uncapitalize } from '../Utility';
+import { findIdenticalRoleNamePatternPrefix, prependPrefixWithCollapse, uncapitalize, deAcronym } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import {
   isOpenApiPropertyRequired,
@@ -106,7 +106,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         entity as TopLevelEntity,
         schoolYearOpenApis,
       );
-      entityApiOpenApiData.openApiReferenceComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}_Reference`;
+      entityApiOpenApiData.openApiReferenceComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
+        entity.metaEdName
+      }_Reference`;
     },
   );
 

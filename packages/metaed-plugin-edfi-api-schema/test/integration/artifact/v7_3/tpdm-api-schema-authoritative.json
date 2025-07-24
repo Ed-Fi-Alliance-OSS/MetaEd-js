@@ -177,7 +177,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_AccreditationStatusDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_AccreditationStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -216,7 +216,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_AccreditationStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_AccreditationStatusDescriptor"
                   }
                 }
               },
@@ -342,7 +342,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_AccreditationStatusDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_AccreditationStatusDescriptor"
                     }
                   }
                 },
@@ -402,7 +402,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_AccreditationStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_AccreditationStatusDescriptor"
                   }
                 }
               },
@@ -534,7 +534,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_AidTypeDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_AidTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -573,7 +573,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_AidTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_AidTypeDescriptor"
                   }
                 }
               },
@@ -699,7 +699,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_AidTypeDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_AidTypeDescriptor"
                     }
                   }
                 },
@@ -759,7 +759,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_AidTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_AidTypeDescriptor"
                   }
                 }
               },
@@ -891,7 +891,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CertificationRouteDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_CertificationRouteDescriptor"
                       },
                       "type": "array"
                     }
@@ -930,7 +930,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CertificationRouteDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CertificationRouteDescriptor"
                   }
                 }
               },
@@ -1056,7 +1056,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_CertificationRouteDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_CertificationRouteDescriptor"
                     }
                   }
                 },
@@ -1116,7 +1116,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CertificationRouteDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CertificationRouteDescriptor"
                   }
                 }
               },
@@ -1248,7 +1248,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CoteachingStyleObservedDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_CoteachingStyleObservedDescriptor"
                       },
                       "type": "array"
                     }
@@ -1287,7 +1287,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CoteachingStyleObservedDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CoteachingStyleObservedDescriptor"
                   }
                 }
               },
@@ -1413,7 +1413,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_CoteachingStyleObservedDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_CoteachingStyleObservedDescriptor"
                     }
                   }
                 },
@@ -1473,7 +1473,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CoteachingStyleObservedDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CoteachingStyleObservedDescriptor"
                   }
                 }
               },
@@ -1605,7 +1605,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CredentialStatusDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_CredentialStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -1644,7 +1644,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CredentialStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CredentialStatusDescriptor"
                   }
                 }
               },
@@ -1770,7 +1770,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_CredentialStatusDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_CredentialStatusDescriptor"
                     }
                   }
                 },
@@ -1830,7 +1830,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CredentialStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_CredentialStatusDescriptor"
                   }
                 }
               },
@@ -1962,7 +1962,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EducatorRoleDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EducatorRoleDescriptor"
                       },
                       "type": "array"
                     }
@@ -2001,7 +2001,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EducatorRoleDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EducatorRoleDescriptor"
                   }
                 }
               },
@@ -2127,7 +2127,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EducatorRoleDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EducatorRoleDescriptor"
                     }
                   }
                 },
@@ -2187,7 +2187,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EducatorRoleDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EducatorRoleDescriptor"
                   }
                 }
               },
@@ -2319,7 +2319,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EnglishLanguageExamDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EnglishLanguageExamDescriptor"
                       },
                       "type": "array"
                     }
@@ -2358,7 +2358,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EnglishLanguageExamDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EnglishLanguageExamDescriptor"
                   }
                 }
               },
@@ -2484,7 +2484,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EnglishLanguageExamDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EnglishLanguageExamDescriptor"
                     }
                   }
                 },
@@ -2544,7 +2544,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EnglishLanguageExamDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EnglishLanguageExamDescriptor"
                   }
                 }
               },
@@ -2676,7 +2676,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EPPProgramPathwayDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
                       },
                       "type": "array"
                     }
@@ -2715,7 +2715,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EPPProgramPathwayDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
                   }
                 }
               },
@@ -2841,7 +2841,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EPPProgramPathwayDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
                     }
                   }
                 },
@@ -2901,7 +2901,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EPPProgramPathwayDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
                   }
                 }
               },
@@ -3033,7 +3033,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevelDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationElementRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -3072,7 +3072,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElementRatingLevelDescriptor"
                   }
                 }
               },
@@ -3198,7 +3198,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevelDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationElementRatingLevelDescriptor"
                     }
                   }
                 },
@@ -3258,7 +3258,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElementRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElementRatingLevelDescriptor"
                   }
                 }
               },
@@ -3390,7 +3390,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationPeriodDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationPeriodDescriptor"
                       },
                       "type": "array"
                     }
@@ -3429,7 +3429,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationPeriodDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationPeriodDescriptor"
                   }
                 }
               },
@@ -3555,7 +3555,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationPeriodDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationPeriodDescriptor"
                     }
                   }
                 },
@@ -3615,7 +3615,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationPeriodDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationPeriodDescriptor"
                   }
                 }
               },
@@ -3747,7 +3747,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationRatingLevelDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -3786,7 +3786,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRatingLevelDescriptor"
                   }
                 }
               },
@@ -3912,7 +3912,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationRatingLevelDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationRatingLevelDescriptor"
                     }
                   }
                 },
@@ -3972,7 +3972,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRatingLevelDescriptor"
                   }
                 }
               },
@@ -4104,7 +4104,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationRatingStatusDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationRatingStatusDescriptor"
                       },
                       "type": "array"
                     }
@@ -4143,7 +4143,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRatingStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRatingStatusDescriptor"
                   }
                 }
               },
@@ -4269,7 +4269,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationRatingStatusDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationRatingStatusDescriptor"
                     }
                   }
                 },
@@ -4329,7 +4329,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRatingStatusDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRatingStatusDescriptor"
                   }
                 }
               },
@@ -4461,7 +4461,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationTypeDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -4500,7 +4500,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationTypeDescriptor"
                   }
                 }
               },
@@ -4626,7 +4626,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationTypeDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationTypeDescriptor"
                     }
                   }
                 },
@@ -4686,7 +4686,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationTypeDescriptor"
                   }
                 }
               },
@@ -4818,7 +4818,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_GenderDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_GenderDescriptor"
                       },
                       "type": "array"
                     }
@@ -4857,7 +4857,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_GenderDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_GenderDescriptor"
                   }
                 }
               },
@@ -4983,7 +4983,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_GenderDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_GenderDescriptor"
                     }
                   }
                 },
@@ -5043,7 +5043,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_GenderDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_GenderDescriptor"
                   }
                 }
               },
@@ -5175,7 +5175,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevelDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_ObjectiveRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -5214,7 +5214,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_ObjectiveRatingLevelDescriptor"
                   }
                 }
               },
@@ -5340,7 +5340,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevelDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_ObjectiveRatingLevelDescriptor"
                     }
                   }
                 },
@@ -5400,7 +5400,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_ObjectiveRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_ObjectiveRatingLevelDescriptor"
                   }
                 }
               },
@@ -5532,7 +5532,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevelDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -5571,7 +5571,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRatingLevelDescriptor"
                   }
                 }
               },
@@ -5697,7 +5697,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevelDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRatingLevelDescriptor"
                     }
                   }
                 },
@@ -5757,7 +5757,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRatingLevelDescriptor"
                   }
                 }
               },
@@ -5889,7 +5889,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationTypeDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationTypeDescriptor"
                       },
                       "type": "array"
                     }
@@ -5928,7 +5928,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationTypeDescriptor"
                   }
                 }
               },
@@ -6054,7 +6054,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_PerformanceEvaluationTypeDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationTypeDescriptor"
                     }
                   }
                 },
@@ -6114,7 +6114,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationTypeDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationTypeDescriptor"
                   }
                 }
               },
@@ -6246,7 +6246,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_RubricRatingLevelDescriptor"
+                        "$ref": "#/components/schemas/Tpdm_RubricRatingLevelDescriptor"
                       },
                       "type": "array"
                     }
@@ -6285,7 +6285,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_RubricRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_RubricRatingLevelDescriptor"
                   }
                 }
               },
@@ -6411,7 +6411,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_RubricRatingLevelDescriptor"
+                      "$ref": "#/components/schemas/Tpdm_RubricRatingLevelDescriptor"
                     }
                   }
                 },
@@ -6471,7 +6471,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_RubricRatingLevelDescriptor"
+                    "$ref": "#/components/schemas/Tpdm_RubricRatingLevelDescriptor"
                   }
                 }
               },
@@ -6514,7 +6514,7 @@
         }
       },
       "newSchemas": {
-        "TPDM_AccreditationStatusDescriptor": {
+        "Tpdm_AccreditationStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6570,7 +6570,7 @@
           ],
           "type": "object"
         },
-        "TPDM_AidTypeDescriptor": {
+        "Tpdm_AidTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6626,7 +6626,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CertificationRouteDescriptor": {
+        "Tpdm_CertificationRouteDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6682,7 +6682,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CoteachingStyleObservedDescriptor": {
+        "Tpdm_CoteachingStyleObservedDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6738,7 +6738,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CredentialStatusDescriptor": {
+        "Tpdm_CredentialStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6794,7 +6794,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EPPProgramPathwayDescriptor": {
+        "Tpdm_EPPProgramPathwayDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6850,7 +6850,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EducatorRoleDescriptor": {
+        "Tpdm_EducatorRoleDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6906,7 +6906,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EnglishLanguageExamDescriptor": {
+        "Tpdm_EnglishLanguageExamDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -6962,7 +6962,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElementRatingLevelDescriptor": {
+        "Tpdm_EvaluationElementRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7018,7 +7018,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationPeriodDescriptor": {
+        "Tpdm_EvaluationPeriodDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7074,7 +7074,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRatingLevelDescriptor": {
+        "Tpdm_EvaluationRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7130,7 +7130,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRatingStatusDescriptor": {
+        "Tpdm_EvaluationRatingStatusDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7186,7 +7186,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationTypeDescriptor": {
+        "Tpdm_EvaluationTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7242,7 +7242,7 @@
           ],
           "type": "object"
         },
-        "TPDM_GenderDescriptor": {
+        "Tpdm_GenderDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7298,7 +7298,7 @@
           ],
           "type": "object"
         },
-        "TPDM_ObjectiveRatingLevelDescriptor": {
+        "Tpdm_ObjectiveRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7354,7 +7354,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRatingLevelDescriptor": {
+        "Tpdm_PerformanceEvaluationRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7410,7 +7410,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationTypeDescriptor": {
+        "Tpdm_PerformanceEvaluationTypeDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7466,7 +7466,7 @@
           ],
           "type": "object"
         },
-        "TPDM_RubricRatingLevelDescriptor": {
+        "Tpdm_RubricRatingLevelDescriptor": {
           "description": "An Ed-Fi Descriptor",
           "properties": {
             "codeValue": {
@@ -7645,7 +7645,7 @@
             },
             "studentAcademicRecords": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Credential_StudentAcademicRecord"
+                "$ref": "#/components/schemas/Tpdm_Credential_StudentAcademicRecord"
               },
               "minItems": 0,
               "type": "array",
@@ -7748,7 +7748,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                        "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation"
                       },
                       "type": "array"
                     }
@@ -7787,7 +7787,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                    "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation"
                   }
                 }
               },
@@ -7913,7 +7913,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                      "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation"
                     }
                   }
                 },
@@ -7973,7 +7973,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation"
+                    "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation"
                   }
                 }
               },
@@ -8274,7 +8274,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_Candidate"
+                        "$ref": "#/components/schemas/Tpdm_Candidate"
                       },
                       "type": "array"
                     }
@@ -8313,7 +8313,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_Candidate"
+                    "$ref": "#/components/schemas/Tpdm_Candidate"
                   }
                 }
               },
@@ -8439,7 +8439,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_Candidate"
+                      "$ref": "#/components/schemas/Tpdm_Candidate"
                     }
                   }
                 },
@@ -8499,7 +8499,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_Candidate"
+                    "$ref": "#/components/schemas/Tpdm_Candidate"
                   }
                 }
               },
@@ -8614,7 +8614,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                        "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram"
                       },
                       "type": "array"
                     }
@@ -8653,7 +8653,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                    "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram"
                   }
                 }
               },
@@ -8779,7 +8779,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                      "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram"
                     }
                   }
                 },
@@ -8839,7 +8839,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram"
+                    "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram"
                   }
                 }
               },
@@ -8964,7 +8964,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationElementRating"
                       },
                       "type": "array"
                     }
@@ -9003,7 +9003,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElementRating"
                   }
                 }
               },
@@ -9129,7 +9129,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationElementRating"
                     }
                   }
                 },
@@ -9189,7 +9189,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElementRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElementRating"
                   }
                 }
               },
@@ -9312,7 +9312,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationElement"
                       },
                       "type": "array"
                     }
@@ -9351,7 +9351,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElement"
                   }
                 }
               },
@@ -9477,7 +9477,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationElement"
                     }
                   }
                 },
@@ -9537,7 +9537,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationElement"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationElement"
                   }
                 }
               },
@@ -9632,7 +9632,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating"
                       },
                       "type": "array"
                     }
@@ -9671,7 +9671,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating"
                   }
                 }
               },
@@ -9797,7 +9797,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating"
                     }
                   }
                 },
@@ -9857,7 +9857,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating"
                   }
                 }
               },
@@ -9989,7 +9989,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationObjective"
                       },
                       "type": "array"
                     }
@@ -10028,7 +10028,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationObjective"
                   }
                 }
               },
@@ -10154,7 +10154,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationObjective"
                     }
                   }
                 },
@@ -10214,7 +10214,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationObjective"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationObjective"
                   }
                 }
               },
@@ -10337,7 +10337,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                        "$ref": "#/components/schemas/Tpdm_EvaluationRating"
                       },
                       "type": "array"
                     }
@@ -10376,7 +10376,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRating"
                   }
                 }
               },
@@ -10502,7 +10502,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                      "$ref": "#/components/schemas/Tpdm_EvaluationRating"
                     }
                   }
                 },
@@ -10562,7 +10562,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_EvaluationRating"
+                    "$ref": "#/components/schemas/Tpdm_EvaluationRating"
                   }
                 }
               },
@@ -10694,7 +10694,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_Evaluation"
+                        "$ref": "#/components/schemas/Tpdm_Evaluation"
                       },
                       "type": "array"
                     }
@@ -10733,7 +10733,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_Evaluation"
+                    "$ref": "#/components/schemas/Tpdm_Evaluation"
                   }
                 }
               },
@@ -10859,7 +10859,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_Evaluation"
+                      "$ref": "#/components/schemas/Tpdm_Evaluation"
                     }
                   }
                 },
@@ -10919,7 +10919,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_Evaluation"
+                    "$ref": "#/components/schemas/Tpdm_Evaluation"
                   }
                 }
               },
@@ -11050,7 +11050,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_FinancialAid"
+                        "$ref": "#/components/schemas/Tpdm_FinancialAid"
                       },
                       "type": "array"
                     }
@@ -11089,7 +11089,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_FinancialAid"
+                    "$ref": "#/components/schemas/Tpdm_FinancialAid"
                   }
                 }
               },
@@ -11215,7 +11215,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_FinancialAid"
+                      "$ref": "#/components/schemas/Tpdm_FinancialAid"
                     }
                   }
                 },
@@ -11275,7 +11275,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_FinancialAid"
+                    "$ref": "#/components/schemas/Tpdm_FinancialAid"
                   }
                 }
               },
@@ -11422,7 +11422,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                        "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating"
                       },
                       "type": "array"
                     }
@@ -11461,7 +11461,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating"
                   }
                 }
               },
@@ -11587,7 +11587,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                      "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating"
                     }
                   }
                 },
@@ -11647,7 +11647,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating"
                   }
                 }
               },
@@ -11792,7 +11792,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                        "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation"
                       },
                       "type": "array"
                     }
@@ -11831,7 +11831,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation"
                   }
                 }
               },
@@ -11957,7 +11957,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                      "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation"
                     }
                   }
                 },
@@ -12017,7 +12017,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_PerformanceEvaluation"
+                    "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation"
                   }
                 }
               },
@@ -12130,7 +12130,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_RubricDimension"
+                        "$ref": "#/components/schemas/Tpdm_RubricDimension"
                       },
                       "type": "array"
                     }
@@ -12169,7 +12169,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_RubricDimension"
+                    "$ref": "#/components/schemas/Tpdm_RubricDimension"
                   }
                 }
               },
@@ -12295,7 +12295,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_RubricDimension"
+                      "$ref": "#/components/schemas/Tpdm_RubricDimension"
                     }
                   }
                 },
@@ -12355,7 +12355,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_RubricDimension"
+                    "$ref": "#/components/schemas/Tpdm_RubricDimension"
                   }
                 }
               },
@@ -12431,7 +12431,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                        "$ref": "#/components/schemas/Tpdm_SurveyResponsePersonTargetAssociation"
                       },
                       "type": "array"
                     }
@@ -12470,7 +12470,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                    "$ref": "#/components/schemas/Tpdm_SurveyResponsePersonTargetAssociation"
                   }
                 }
               },
@@ -12596,7 +12596,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                      "$ref": "#/components/schemas/Tpdm_SurveyResponsePersonTargetAssociation"
                     }
                   }
                 },
@@ -12656,7 +12656,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_SurveyResponsePersonTargetAssociation"
+                    "$ref": "#/components/schemas/Tpdm_SurveyResponsePersonTargetAssociation"
                   }
                 }
               },
@@ -12732,7 +12732,7 @@
                   "application/json": {
                     "schema": {
                       "items": {
-                        "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                        "$ref": "#/components/schemas/Tpdm_SurveySectionResponsePersonTargetAssociation"
                       },
                       "type": "array"
                     }
@@ -12771,7 +12771,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                    "$ref": "#/components/schemas/Tpdm_SurveySectionResponsePersonTargetAssociation"
                   }
                 }
               },
@@ -12897,7 +12897,7 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                      "$ref": "#/components/schemas/Tpdm_SurveySectionResponsePersonTargetAssociation"
                     }
                   }
                 },
@@ -12957,7 +12957,7 @@
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/TPDM_SurveySectionResponsePersonTargetAssociation"
+                    "$ref": "#/components/schemas/Tpdm_SurveySectionResponsePersonTargetAssociation"
                   }
                 }
               },
@@ -13000,12 +13000,12 @@
         }
       },
       "newSchemas": {
-        "TPDM_Candidate": {
+        "Tpdm_Candidate": {
           "description": "A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.",
           "properties": {
             "addresses": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Address"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Address"
               },
               "minItems": 0,
               "type": "array",
@@ -13062,7 +13062,7 @@
             },
             "disabilities": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Disability"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Disability"
               },
               "minItems": 0,
               "type": "array",
@@ -13082,7 +13082,7 @@
             },
             "electronicMails": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_ElectronicMail"
+                "$ref": "#/components/schemas/Tpdm_Candidate_ElectronicMail"
               },
               "minItems": 0,
               "type": "array",
@@ -13123,7 +13123,7 @@
             },
             "languages": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Language"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Language"
               },
               "minItems": 0,
               "type": "array",
@@ -13159,7 +13159,7 @@
             },
             "otherNames": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_OtherName"
+                "$ref": "#/components/schemas/Tpdm_Candidate_OtherName"
               },
               "minItems": 0,
               "type": "array",
@@ -13171,7 +13171,7 @@
             },
             "personalIdentificationDocuments": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Name_PersonalIdentificationDocument"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Name_PersonalIdentificationDocument"
               },
               "minItems": 0,
               "type": "array",
@@ -13197,7 +13197,7 @@
             },
             "races": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Race"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Race"
               },
               "minItems": 0,
               "type": "array",
@@ -13211,7 +13211,7 @@
             },
             "telephones": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Telephone"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Telephone"
               },
               "minItems": 0,
               "type": "array",
@@ -13226,7 +13226,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CandidateEducatorPreparationProgramAssociation": {
+        "Tpdm_CandidateEducatorPreparationProgramAssociation": {
           "description": "Information about the association between the Teacher Candidate and the EducatorPreparationProgram",
           "properties": {
             "beginDate": {
@@ -13236,12 +13236,12 @@
               "x-Ed-Fi-isIdentity": true
             },
             "candidateReference": {
-              "$ref": "#/components/schemas/TPDM_Candidate_Reference",
+              "$ref": "#/components/schemas/Tpdm_Candidate_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "cohortYears": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation_CohortYear"
+                "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation_CohortYear"
               },
               "minItems": 0,
               "type": "array",
@@ -13249,14 +13249,14 @@
             },
             "degreeSpecializations": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization"
+                "$ref": "#/components/schemas/Tpdm_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization"
               },
               "minItems": 0,
               "type": "array",
               "uniqueItems": false
             },
             "educatorPreparationProgramReference": {
-              "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram_Reference",
+              "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "endDate": {
@@ -13285,7 +13285,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CandidateEducatorPreparationProgramAssociation_CohortYear": {
+        "Tpdm_CandidateEducatorPreparationProgramAssociation_CohortYear": {
           "properties": {
             "cohortYearTypeDescriptor": {
               "description": "The type of cohort year (9th grade, graduation).",
@@ -13307,7 +13307,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization": {
+        "Tpdm_CandidateEducatorPreparationProgramAssociation_DegreeSpecialization": {
           "properties": {
             "beginDate": {
               "description": "The month, day, and year on which the Teacher Candidate first declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -13338,7 +13338,7 @@
           ],
           "type": "object"
         },
-        "TPDM_CandidateEducatorPreparationProgramAssociation_Reference": {
+        "Tpdm_CandidateEducatorPreparationProgramAssociation_Reference": {
           "properties": {
             "beginDate": {
               "description": "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -13381,7 +13381,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Address": {
+        "Tpdm_Candidate_Address": {
           "properties": {
             "addressTypeDescriptor": {
               "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
@@ -13441,7 +13441,7 @@
             },
             "periods": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_Period"
+                "$ref": "#/components/schemas/Tpdm_Candidate_Period"
               },
               "minItems": 0,
               "type": "array",
@@ -13472,11 +13472,11 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Disability": {
+        "Tpdm_Candidate_Disability": {
           "properties": {
             "designations": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_DisabilityDesignation"
+                "$ref": "#/components/schemas/Tpdm_Candidate_DisabilityDesignation"
               },
               "minItems": 0,
               "type": "array",
@@ -13507,7 +13507,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_DisabilityDesignation": {
+        "Tpdm_Candidate_DisabilityDesignation": {
           "properties": {
             "disabilityDesignationDescriptor": {
               "description": "Whether the disability is IDEA, Section 504, or other disability designation.",
@@ -13520,7 +13520,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_ElectronicMail": {
+        "Tpdm_Candidate_ElectronicMail": {
           "properties": {
             "doNotPublishIndicator": {
               "description": "An indication that the electronic email address should not be published.",
@@ -13548,7 +13548,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Language": {
+        "Tpdm_Candidate_Language": {
           "properties": {
             "languageDescriptor": {
               "description": "A specification of which written or spoken communication is being used.",
@@ -13557,7 +13557,7 @@
             },
             "uses": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Candidate_LanguageUse"
+                "$ref": "#/components/schemas/Tpdm_Candidate_LanguageUse"
               },
               "minItems": 0,
               "type": "array",
@@ -13569,7 +13569,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_LanguageUse": {
+        "Tpdm_Candidate_LanguageUse": {
           "properties": {
             "languageUseDescriptor": {
               "description": "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).",
@@ -13582,7 +13582,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Name_PersonalIdentificationDocument": {
+        "Tpdm_Candidate_Name_PersonalIdentificationDocument": {
           "properties": {
             "documentExpirationDate": {
               "description": "The day when the document  expires, if null then never expires.",
@@ -13626,7 +13626,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_OtherName": {
+        "Tpdm_Candidate_OtherName": {
           "properties": {
             "firstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
@@ -13666,7 +13666,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Period": {
+        "Tpdm_Candidate_Period": {
           "properties": {
             "beginDate": {
               "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -13684,7 +13684,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Race": {
+        "Tpdm_Candidate_Race": {
           "properties": {
             "raceDescriptor": {
               "description": "The general racial category which most clearly reflects the individual's recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races.",
@@ -13697,7 +13697,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Reference": {
+        "Tpdm_Candidate_Reference": {
           "properties": {
             "candidateIdentifier": {
               "description": "A unique alphanumeric code assigned to a candidate.",
@@ -13712,7 +13712,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Candidate_Telephone": {
+        "Tpdm_Candidate_Telephone": {
           "properties": {
             "doNotPublishIndicator": {
               "description": "An indication that the telephone number should not be published.",
@@ -13744,7 +13744,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Credential_StudentAcademicRecord": {
+        "Tpdm_Credential_StudentAcademicRecord": {
           "properties": {
             "studentAcademicRecordReference": {
               "$ref": "#/components/schemas/EdFi_StudentAcademicRecord_Reference"
@@ -13755,7 +13755,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EducatorPreparationProgram": {
+        "Tpdm_EducatorPreparationProgram": {
           "description": "The Educator Preparation Program is designed to prepare students to become licensed educators.",
           "properties": {
             "accreditationStatusDescriptor": {
@@ -13770,7 +13770,7 @@
             },
             "gradeLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EducatorPreparationProgram_GradeLevel"
+                "$ref": "#/components/schemas/Tpdm_EducatorPreparationProgram_GradeLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13803,7 +13803,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EducatorPreparationProgram_GradeLevel": {
+        "Tpdm_EducatorPreparationProgram_GradeLevel": {
           "properties": {
             "gradeLevelDescriptor": {
               "description": "The grade levels served at the EPP Program.",
@@ -13816,7 +13816,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EducatorPreparationProgram_Reference": {
+        "Tpdm_EducatorPreparationProgram_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -13844,7 +13844,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Evaluation": {
+        "Tpdm_Evaluation": {
           "description": "An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.",
           "properties": {
             "evaluationDescription": {
@@ -13884,12 +13884,12 @@
               "x-nullable": true
             },
             "performanceEvaluationReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
+              "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_Evaluation_EvaluationRatingLevel"
+                "$ref": "#/components/schemas/Tpdm_Evaluation_EvaluationRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13902,7 +13902,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElement": {
+        "Tpdm_EvaluationElement": {
           "description": "The lowest-level Elements or criterion of performance being evaluated by rubric, quantitative measure, or aggregate survey response.",
           "properties": {
             "evaluationElementTitle": {
@@ -13913,7 +13913,7 @@
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationObjective_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationTypeDescriptor": {
@@ -13936,7 +13936,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationElement_ElementRatingLevel"
+                "$ref": "#/components/schemas/Tpdm_EvaluationElement_ElementRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -13954,7 +13954,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElementRating": {
+        "Tpdm_EvaluationElementRating": {
           "description": "The lowest-level rating for an Evaluation Element for an individual educator.",
           "properties": {
             "areaOfRefinement": {
@@ -13980,7 +13980,7 @@
             },
             "elementRatingResults": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationElementRating_ElementRatingResult"
+                "$ref": "#/components/schemas/Tpdm_EvaluationElementRating_ElementRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -13993,11 +13993,11 @@
               "x-nullable": true
             },
             "evaluationElementReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationElement_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationObjectiveRatingReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "feedback": {
@@ -14014,7 +14014,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElementRating_ElementRatingResult": {
+        "Tpdm_EvaluationElementRating_ElementRatingResult": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -14040,7 +14040,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElementRating_Reference": {
+        "Tpdm_EvaluationElementRating_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14135,7 +14135,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElement_ElementRatingLevel": {
+        "Tpdm_EvaluationElement_ElementRatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14158,7 +14158,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationElement_Reference": {
+        "Tpdm_EvaluationElement_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14232,7 +14232,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjective": {
+        "Tpdm_EvaluationObjective": {
           "description": "A subcomponent of an Evaluation, a specific educator Objective or domain of performance that is being evaluated.",
           "properties": {
             "evaluationObjectiveDescription": {
@@ -14249,7 +14249,7 @@
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationReference": {
-              "$ref": "#/components/schemas/TPDM_Evaluation_Reference",
+              "$ref": "#/components/schemas/Tpdm_Evaluation_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationTypeDescriptor": {
@@ -14272,7 +14272,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationObjective_ObjectiveRatingLevel"
+                "$ref": "#/components/schemas/Tpdm_EvaluationObjective_ObjectiveRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14290,7 +14290,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjectiveRating": {
+        "Tpdm_EvaluationObjectiveRating": {
           "description": "The rating for the component Evaluation Objective for an individual educator.",
           "properties": {
             "comments": {
@@ -14301,11 +14301,11 @@
               "x-nullable": true
             },
             "evaluationObjectiveReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationObjective_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationObjective_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "evaluationRatingReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationRating_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationRating_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "objectiveRatingLevelDescriptor": {
@@ -14316,7 +14316,7 @@
             },
             "objectiveRatingResults": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationObjectiveRating_ObjectiveRatingResult"
+                "$ref": "#/components/schemas/Tpdm_EvaluationObjectiveRating_ObjectiveRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -14329,7 +14329,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjectiveRating_ObjectiveRatingResult": {
+        "Tpdm_EvaluationObjectiveRating_ObjectiveRatingResult": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -14355,7 +14355,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjectiveRating_Reference": {
+        "Tpdm_EvaluationObjectiveRating_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14442,7 +14442,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjective_ObjectiveRatingLevel": {
+        "Tpdm_EvaluationObjective_ObjectiveRatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14465,7 +14465,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationObjective_Reference": {
+        "Tpdm_EvaluationObjective_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14531,7 +14531,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRating": {
+        "Tpdm_EvaluationRating": {
           "description": "The summary weighting for the Evaluation instrument for an individual educator.",
           "properties": {
             "actualDuration": {
@@ -14566,16 +14566,16 @@
               "x-nullable": true
             },
             "evaluationReference": {
-              "$ref": "#/components/schemas/TPDM_Evaluation_Reference",
+              "$ref": "#/components/schemas/Tpdm_Evaluation_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "performanceEvaluationRatingReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Reference",
+              "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationRating_EvaluationRatingResult"
+                "$ref": "#/components/schemas/Tpdm_EvaluationRating_EvaluationRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -14583,7 +14583,7 @@
             },
             "reviewers": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_EvaluationRating_Reviewer"
+                "$ref": "#/components/schemas/Tpdm_EvaluationRating_Reviewer"
               },
               "minItems": 0,
               "type": "array",
@@ -14601,7 +14601,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRating_EvaluationRatingResult": {
+        "Tpdm_EvaluationRating_EvaluationRatingResult": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -14627,7 +14627,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRating_ReceivedTraining": {
+        "Tpdm_EvaluationRating_ReceivedTraining": {
           "properties": {
             "interRaterReliabilityScore": {
               "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
@@ -14641,7 +14641,7 @@
           },
           "type": "object"
         },
-        "TPDM_EvaluationRating_Reference": {
+        "Tpdm_EvaluationRating_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14720,7 +14720,7 @@
           ],
           "type": "object"
         },
-        "TPDM_EvaluationRating_Reviewer": {
+        "Tpdm_EvaluationRating_Reviewer": {
           "properties": {
             "firstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
@@ -14733,7 +14733,7 @@
               "type": "string"
             },
             "receivedTraining": {
-              "$ref": "#/components/schemas/TPDM_EvaluationRating_ReceivedTraining"
+              "$ref": "#/components/schemas/Tpdm_EvaluationRating_ReceivedTraining"
             },
             "reviewerPersonReference": {
               "$ref": "#/components/schemas/EdFi_Person_Reference"
@@ -14745,7 +14745,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Evaluation_EvaluationRatingLevel": {
+        "Tpdm_Evaluation_EvaluationRatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -14768,7 +14768,7 @@
           ],
           "type": "object"
         },
-        "TPDM_Evaluation_Reference": {
+        "Tpdm_Evaluation_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -14826,7 +14826,7 @@
           ],
           "type": "object"
         },
-        "TPDM_FinancialAid": {
+        "Tpdm_FinancialAid": {
           "description": "This entity represents the financial aid a person is awarded.",
           "properties": {
             "aidAmount": {
@@ -14876,7 +14876,7 @@
           ],
           "type": "object"
         },
-        "TPDM_FinancialAid_Reference": {
+        "Tpdm_FinancialAid_Reference": {
           "properties": {
             "aidTypeDescriptor": {
               "description": "The classification of financial aid awarded to a person for the academic term/year.",
@@ -14904,7 +14904,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation": {
+        "Tpdm_PerformanceEvaluation": {
           "description": "A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.",
           "properties": {
             "academicSubjectDescriptor": {
@@ -14925,7 +14925,7 @@
             },
             "gradeLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_GradeLevel"
+                "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation_GradeLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14952,7 +14952,7 @@
             },
             "ratingLevels": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel"
+                "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation_PerformanceEvaluationRatingLevel"
               },
               "minItems": 0,
               "type": "array",
@@ -14979,7 +14979,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating": {
+        "Tpdm_PerformanceEvaluationRating": {
           "description": "The summary rating for a Performance Evaluation across all Evaluation instruments for an individual educator.",
           "properties": {
             "actualDate": {
@@ -15024,7 +15024,7 @@
               "x-nullable": true
             },
             "performanceEvaluationReference": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluation_Reference",
+              "$ref": "#/components/schemas/Tpdm_PerformanceEvaluation_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "personReference": {
@@ -15033,7 +15033,7 @@
             },
             "results": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult"
+                "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating_PerformanceEvaluationRatingResult"
               },
               "minItems": 0,
               "type": "array",
@@ -15041,7 +15041,7 @@
             },
             "reviewers": {
               "items": {
-                "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_Reviewer"
+                "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating_Reviewer"
               },
               "minItems": 0,
               "type": "array",
@@ -15061,7 +15061,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating_PerformanceEvaluationRatingResult": {
+        "Tpdm_PerformanceEvaluationRating_PerformanceEvaluationRatingResult": {
           "properties": {
             "rating": {
               "description": "The numerical summary rating or score for the evaluation.",
@@ -15087,7 +15087,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating_ReceivedTraining": {
+        "Tpdm_PerformanceEvaluationRating_ReceivedTraining": {
           "properties": {
             "interRaterReliabilityScore": {
               "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
@@ -15101,7 +15101,7 @@
           },
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating_Reference": {
+        "Tpdm_PerformanceEvaluationRating_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -15165,7 +15165,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluationRating_Reviewer": {
+        "Tpdm_PerformanceEvaluationRating_Reviewer": {
           "properties": {
             "firstName": {
               "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
@@ -15178,7 +15178,7 @@
               "type": "string"
             },
             "receivedTraining": {
-              "$ref": "#/components/schemas/TPDM_PerformanceEvaluationRating_ReceivedTraining"
+              "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating_ReceivedTraining"
             },
             "reviewerPersonReference": {
               "$ref": "#/components/schemas/EdFi_Person_Reference"
@@ -15190,7 +15190,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation_GradeLevel": {
+        "Tpdm_PerformanceEvaluation_GradeLevel": {
           "properties": {
             "gradeLevelDescriptor": {
               "description": "The grade levels involved with the performance evaluation.",
@@ -15203,7 +15203,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation_PerformanceEvaluationRatingLevel": {
+        "Tpdm_PerformanceEvaluation_PerformanceEvaluationRatingLevel": {
           "properties": {
             "evaluationRatingLevelDescriptor": {
               "description": "The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).",
@@ -15226,7 +15226,7 @@
           ],
           "type": "object"
         },
-        "TPDM_PerformanceEvaluation_Reference": {
+        "Tpdm_PerformanceEvaluation_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -15276,7 +15276,7 @@
           ],
           "type": "object"
         },
-        "TPDM_RubricDimension": {
+        "Tpdm_RubricDimension": {
           "description": "The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.",
           "properties": {
             "criterionDescription": {
@@ -15290,7 +15290,7 @@
               "x-nullable": true
             },
             "evaluationElementReference": {
-              "$ref": "#/components/schemas/TPDM_EvaluationElement_Reference",
+              "$ref": "#/components/schemas/Tpdm_EvaluationElement_Reference",
               "x-Ed-Fi-isIdentity": true
             },
             "rubricRating": {
@@ -15312,7 +15312,7 @@
           ],
           "type": "object"
         },
-        "TPDM_RubricDimension_Reference": {
+        "Tpdm_RubricDimension_Reference": {
           "properties": {
             "educationOrganizationId": {
               "description": "The identifier assigned to an education organization.",
@@ -15392,7 +15392,7 @@
           ],
           "type": "object"
         },
-        "TPDM_SurveyResponsePersonTargetAssociation": {
+        "Tpdm_SurveyResponsePersonTargetAssociation": {
           "description": "The association provides information about the survey being taken and who the survey is about.",
           "properties": {
             "personReference": {
@@ -15410,7 +15410,7 @@
           ],
           "type": "object"
         },
-        "TPDM_SurveyResponsePersonTargetAssociation_Reference": {
+        "Tpdm_SurveyResponsePersonTargetAssociation_Reference": {
           "properties": {
             "namespace": {
               "description": "Namespace for the survey.",
@@ -15453,7 +15453,7 @@
           ],
           "type": "object"
         },
-        "TPDM_SurveySectionResponsePersonTargetAssociation": {
+        "Tpdm_SurveySectionResponsePersonTargetAssociation": {
           "description": "This association provides information about the survey section and the person the survey section is about.",
           "properties": {
             "personReference": {
@@ -15471,7 +15471,7 @@
           ],
           "type": "object"
         },
-        "TPDM_SurveySectionResponsePersonTargetAssociation_Reference": {
+        "Tpdm_SurveySectionResponsePersonTargetAssociation_Reference": {
           "properties": {
             "namespace": {
               "description": "Namespace for the survey.",

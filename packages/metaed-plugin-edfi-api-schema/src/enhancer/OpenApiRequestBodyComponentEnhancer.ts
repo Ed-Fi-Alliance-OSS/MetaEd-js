@@ -23,7 +23,7 @@ import {
   ED_FI_NULLABLE_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import { deAcronym, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
   openApiObjectFrom,
   isOpenApiPropertyRequired,
@@ -304,21 +304,27 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = buildOpenApiRequestBody(entity as TopLevelEntity, schoolYearOpenApis);
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
+      entity.metaEdName
+    }`;
   });
 
   // Attach descriptor OpenApiRequestBody to each descriptor
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = descriptorOpenApi;
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
+      entity.metaEdName
+    }`;
   });
 
   // Attach school year enumeration OpenApiRequestBody
   getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = schoolYearOpenApis.schoolYearEnumerationOpenApi;
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${entity.namespace.namespaceName}_${entity.metaEdName}`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
+      entity.metaEdName
+    }`;
   });
 
   return {

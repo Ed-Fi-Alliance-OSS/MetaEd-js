@@ -20,7 +20,7 @@ import {
   ED_FI_IDENTITY_EXTENSION_KEY,
   ED_FI_UPDATABLE_EXTENSION_KEY,
 } from '../model/OpenApiTypes';
-import { pluralize } from '../Utility';
+import { pluralize, deAcronym } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
 
@@ -215,7 +215,7 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
           },
         },
       },
@@ -470,7 +470,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
             schema: {
               type: 'array',
               items: {
-                $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
+                $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
               },
             },
           },
@@ -526,7 +526,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         content: {
           'application/json': {
             schema: {
-              $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
+              $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
             },
           },
         },
@@ -581,7 +581,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${entity.namespace.namespaceName}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
           },
         },
       },
