@@ -14,7 +14,7 @@ import {
   OpenApiReference,
 } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, uncapitalize } from '../Utility';
+import { deAcronym, singularize, uncapitalize } from '../Utility';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
 export type SchoolYearOpenApis = {
@@ -82,7 +82,9 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
  */
 export function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
   return {
-    $ref: `#/components/schemas/${property.referencedNamespaceName}_${property.referencedEntity.metaEdName}_Reference`,
+    $ref: `#/components/schemas/${deAcronym(property.referencedNamespaceName)}_${
+      property.referencedEntity.metaEdName
+    }_Reference`,
   };
 }
 
@@ -115,7 +117,7 @@ export function openApiCollectionReferenceNameFor(
     propertiesChain.length > 0
       ? propertiesChain[0].parentEntity.namespace.namespaceName
       : property.parentEntity.namespace.namespaceName;
-  return `${namespace}_${parentEntitiesNameChain}_${propertyName}`;
+  return `${deAcronym(namespace)}_${parentEntitiesNameChain}_${propertyName}`;
 }
 
 /**

@@ -16,6 +16,7 @@ import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import { createSchemasFrom, createPathsFrom, createTagsFrom, sortTagsByName } from './OpenApiSpecificationEnhancerBase';
 import { Exts } from '../model/OpenApiExtensionFragments';
 import { PathsObject, Schemas, TagObject } from '../model/OpenApiTypes';
+import { deAcronym } from '../Utility';
 
 /**
  * Enhancer that creates the OpenApi spec fragments for an extension.
@@ -48,7 +49,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     // Schemas for extensions to existing endpoints
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach(
       (entity: TopLevelEntity) => {
-        exts[`${entity.baseEntityNamespaceName}_${entity.metaEdName}`] = (
+        exts[`${deAcronym(entity.baseEntityNamespaceName)}_${entity.metaEdName}`] = (
           entity.data.edfiApiSchema as EntityApiSchemaData
         ).openApiRequestBodyComponent;
 

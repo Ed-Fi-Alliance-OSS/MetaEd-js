@@ -64,6 +64,12 @@ export function capitalize(text: string): string {
   return text.charAt(0).toUpperCase() + text.substring(1);
 }
 
+export function deAcronym(text: string): string {
+  if (text == null || typeof text !== 'string') return '';
+  // Convert sequences of uppercase letters to upper camel case (e.g., "TPDM" -> "Tpdm")
+  return text.replace(/[A-Z]+/g, (match) => match.charAt(0).toUpperCase() + match.slice(1).toLowerCase());
+}
+
 const pluralEdgeCases = {
   accommodation: 'accommodations',
   Accommodation: 'Accommodations',
