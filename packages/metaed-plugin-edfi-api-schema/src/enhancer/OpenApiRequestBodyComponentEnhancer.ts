@@ -261,11 +261,11 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
 
     const openApiProperty: OpenApiProperty = {
       ...baseOpenApiProperty,
-      // Add x-Ed-Fi-isIdentity extension for identity properties that are NOT references
+      // x-Ed-Fi-isIdentity for identity properties
       ...(property.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
-      // Add x-Ed-Fi-nullable extension for nullable identity properties
+      // x-Ed-Fi-nullable for optional properties
       ...(property.isOptional && { 'x-nullable': true }),
-      // Add x-Ed-Fi-deprecated extension for deprecated identity properties
+      // x-Ed-Fi-deprecated for deprecated properties
       ...(property.isDeprecated && {
         'x-Ed-Fi-isDeprecated': true,
         'x-Ed-Fi-deprecatedReasons': property.deprecationReason,
