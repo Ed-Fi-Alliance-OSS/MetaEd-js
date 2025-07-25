@@ -16,6 +16,7 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { createSchemasFrom, createPathsFrom, createTagsFrom } from './OpenApiSpecificationEnhancerBase';
 import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
+import { deAcronym } from '../Utility';
 
 /**
  * Creates an OpenAPI fragment for a resource entity
@@ -64,7 +65,7 @@ function createExtensionFragment(entity: TopLevelEntity): OpenApiFragment {
 
   // For extensions, add the extension schema to the exts mapping
   fragment.exts = {
-    [`${entity.baseEntityNamespaceName}_${entity.metaEdName}`]: entityApiSchemaData.openApiRequestBodyComponent,
+    [`${deAcronym(entity.baseEntityNamespaceName)}_${entity.metaEdName}`]: entityApiSchemaData.openApiRequestBodyComponent,
   };
 
   return fragment;
