@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-xsd",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.77",
+  "version": "4.5.2-dev.78",
   "description": "Ed-Fi XSD plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -13,9 +13,9 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.5.2-dev.77",
-    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.77",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "4.5.2-dev.77",
+    "@edfi/metaed-core": "4.5.2-dev.78",
+    "@edfi/metaed-plugin-edfi-unified": "4.5.2-dev.78",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.5.2-dev.78",
     "@xmldom/xmldom": "^0.8.10",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
