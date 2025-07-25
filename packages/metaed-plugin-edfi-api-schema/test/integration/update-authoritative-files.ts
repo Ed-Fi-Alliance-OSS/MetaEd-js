@@ -53,24 +53,28 @@ MetaEd API Schema Authoritative File Updater
 =============================================
 
 This script automates the workflow for updating authoritative API schema files.
-It runs all AuthoritativeCompare tests and copies the newly generated JSON files
-to their corresponding authoritative files.
+It can optionally run all AuthoritativeCompare tests before copying the newly 
+generated JSON files to their corresponding authoritative files.
 
 Usage:
   npx ts-node test/integration/update-authoritative-files.ts [options]
   npm run update-authoritative [-- options]
 
 Options:
+  --run-tests      Run AuthoritativeCompare tests before copying files
   --dry-run, -n    Show what would be done without actually doing it
   --verbose, -v    Show detailed output
   --help, -h       Show this help message
 
 Examples:
-  npx ts-node test/integration/update-authoritative-files.ts
+  npx ts-node test/integration/update-authoritative-files.ts --run-tests
   npx ts-node test/integration/update-authoritative-files.ts --dry-run
   npx ts-node test/integration/update-authoritative-files.ts --verbose
   npm run update-authoritative
   npm run update-authoritative:dry-run
+
+Note: Without --run-tests, the script assumes generated files already exist
+and will only copy them to their authoritative locations.
 `);
   process.exit(0);
 }

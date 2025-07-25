@@ -97,6 +97,8 @@ eng/ApiSchema/*.zip
 
 # Local Claude configuration files
 CLAUDE.local.md
+.mcp.json
+memory-bank/
 
 # Local JUnit test results
 junit.xml

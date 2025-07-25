@@ -17,6 +17,7 @@ export interface EntityDefinition {
   description: string;
   isDeprecated?: boolean;
   deprecationReasons?: string[];
+  domains: string[];
 }
 
 export function newEntityDefinition(): EntityDefinition {
@@ -27,5 +28,6 @@ export function newEntityDefinition(): EntityDefinition {
     identifiers: [],
     isAbstract: false,
     description: '',
+    domains: [],
   };
 }

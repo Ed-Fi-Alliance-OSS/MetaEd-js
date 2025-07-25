@@ -3,14 +3,18 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  ED_FI_DEPRECATED_EXTENSION_KEY,
-  ED_FI_DEPRECATED_REASONS_EXTENSION_KEY,
-  ED_FI_IDENTITY_EXTENSION_KEY,
-  ED_FI_NULLABLE_EXTENSION_KEY,
-} from './OpenApiTypes';
-
 /* eslint-disable no-use-before-define */
+
+/**
+ * Common Ed-Fi extensions that can be applied to OpenAPI properties
+ */
+type EdFiOpenApiObjectExtensions = {
+  'x-Ed-Fi-isIdentity'?: boolean;
+  'x-nullable'?: boolean;
+  'x-Ed-Fi-isDeprecated'?: boolean;
+  // Yes, it's not an array
+  'x-Ed-Fi-deprecatedReasons'?: string;
+};
 
 /**
  * The set of properties on a OpenApiObject.
@@ -25,7 +29,7 @@ export type OpenApiObject = {
   description?: string;
   properties: OpenApiProperties;
   required?: string[];
-};
+} & EdFiOpenApiObjectExtensions;
 
 /**
  * The OpenApiProperty representing a reference to another OpenApiObject
@@ -43,7 +47,7 @@ export type OpenApiArray = {
   items: OpenApiProperty;
   minItems: number;
   uniqueItems: false;
-};
+} & EdFiOpenApiObjectExtensions;
 
 /**
  * OpenApiProperty is either an object, array, reference or simple type
@@ -52,21 +56,31 @@ export type OpenApiProperty =
   | OpenApiObject
   | OpenApiArray
   | OpenApiReference
-  | {
+  | ({
       type: 'string';
       description: string;
       format?: 'date' | 'date-time' | 'time' | 'int32' | 'double';
       minLength?: number;
       maxLength?: number;
       pattern?: string;
-      [ED_FI_IDENTITY_EXTENSION_KEY]?: boolean;
-      [ED_FI_NULLABLE_EXTENSION_KEY]?: boolean;
-      [ED_FI_DEPRECATED_EXTENSION_KEY]?: boolean;
-      [ED_FI_DEPRECATED_REASONS_EXTENSION_KEY]?: string[];
-    }
-  | { type: 'integer'; description: string; minimum?: number; maximum?: number }
-  | { type: 'number'; description: string; format: 'double'; minimum?: number; maximum?: number }
-  | { type: 'boolean'; description: string };
+    } & EdFiOpenApiObjectExtensions)
+  | ({
+      type: 'integer';
+      description: string;
+      minimum?: number;
+      maximum?: number;
+    } & EdFiOpenApiObjectExtensions)
+  | ({
+      type: 'number';
+      description: string;
+      format: 'double';
+      minimum?: number;
+      maximum?: number;
+    } & EdFiOpenApiObjectExtensions)
+  | ({
+      type: 'boolean';
+      description: string;
+    } & EdFiOpenApiObjectExtensions);
 
 /**
  * The null object OpenApiProperty

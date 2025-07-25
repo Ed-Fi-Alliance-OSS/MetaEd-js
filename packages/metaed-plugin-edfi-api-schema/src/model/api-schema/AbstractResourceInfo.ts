@@ -3,12 +3,18 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { DocumentObjectKey } from './DocumentObjectKey';
+import { JsonPath } from './JsonPath';
+import { OpenApiFragment } from './OpenApiFragment';
 
 export type AbstractResourceInfo = {
   /**
-   * A list of the DocumentObjectKey paths that are part of the identity for this resource, in lexical order.
-   * Duplicates due to key unification are removed.
+   * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
-  identityPathOrder: DocumentObjectKey[];
+  identityJsonPaths: JsonPath[];
+
+  /**
+   * OpenAPI fragment for this abstract resource (schemas only, no paths or tags).
+   * Optional during transition phase.
+   */
+  openApiFragment?: OpenApiFragment;
 };

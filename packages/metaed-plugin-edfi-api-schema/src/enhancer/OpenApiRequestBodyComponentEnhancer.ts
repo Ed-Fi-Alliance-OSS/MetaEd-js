@@ -16,12 +16,6 @@ import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
-import {
-  ED_FI_DEPRECATED_EXTENSION_KEY,
-  ED_FI_DEPRECATED_REASONS_EXTENSION_KEY,
-  ED_FI_IDENTITY_EXTENSION_KEY,
-  ED_FI_NULLABLE_EXTENSION_KEY,
-} from '../model/OpenApiTypes';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
 import { deAcronym, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import {
@@ -52,7 +46,7 @@ const descriptorOpenApi: OpenApiObject = {
       maxLength: 255,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
-      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
+      'x-Ed-Fi-isIdentity': true,
     },
     codeValue: {
       type: 'string',
@@ -60,7 +54,7 @@ const descriptorOpenApi: OpenApiObject = {
       maxLength: 50,
       minLength: 1,
       pattern: '^(?!\\s).*(?<!\\s)$',
-      [ED_FI_IDENTITY_EXTENSION_KEY]: true,
+      'x-Ed-Fi-isIdentity': true,
     },
     shortDescription: {
       type: 'string',
@@ -73,19 +67,19 @@ const descriptorOpenApi: OpenApiObject = {
       type: 'string',
       description: 'The descriptor description',
       maxLength: 1024,
-      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
+      'x-nullable': true,
     },
     effectiveBeginDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective begin date',
-      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
+      'x-nullable': true,
     },
     effectiveEndDate: {
       type: 'string',
       format: 'date',
       description: 'The descriptor effective end date',
-      [ED_FI_NULLABLE_EXTENSION_KEY]: true,
+      'x-nullable': true,
     },
   },
   required: ['namespace', 'codeValue', 'shortDescription'],
@@ -260,24 +254,23 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
     const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
     const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));
 
-    const openApiProperty: OpenApiProperty =
+    const baseOpenApiProperty =
       property.type === 'schoolYearEnumeration'
         ? openApiPropertyForSchoolYearEnumeration(property, schoolYearOpenApis)
         : openApiPropertyFor(property, propertyModifier, schoolYearOpenApis, propertyChain);
 
-    // Add x-Ed-Fi-isIdentity extension for identity properties that are NOT references
-    if (property.isPartOfIdentity) {
-      openApiProperty[ED_FI_IDENTITY_EXTENSION_KEY] = true;
-    }
-    // Add x-Ed-Fi-nullable extension for nullable identity properties
-    if (property.isOptional) {
-      openApiProperty[ED_FI_NULLABLE_EXTENSION_KEY] = true;
-    }
-    // Add x-Ed-Fi-deprecated extension for deprecated identity properties
-    if (property.isDeprecated) {
-      openApiProperty[ED_FI_DEPRECATED_EXTENSION_KEY] = true;
-      openApiProperty[ED_FI_DEPRECATED_REASONS_EXTENSION_KEY] = property.deprecationReason;
-    }
+    const openApiProperty: OpenApiProperty = {
+      ...baseOpenApiProperty,
+      // x-Ed-Fi-isIdentity for identity properties
+      ...(property.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
+      // x-Ed-Fi-nullable for optional properties
+      ...(property.isOptional && { 'x-nullable': true }),
+      // x-Ed-Fi-deprecated for deprecated properties
+      ...(property.isDeprecated && {
+        'x-Ed-Fi-isDeprecated': true,
+        'x-Ed-Fi-deprecatedReasons': property.deprecationReason,
+      }),
+    };
 
     openApiProperties[openApiObjectBaseName] = openApiProperty;
     addRequired(isOpenApiPropertyRequired(property, propertyModifier), openApiRoot, openApiObjectBaseName);

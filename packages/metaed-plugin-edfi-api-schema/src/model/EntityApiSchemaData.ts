@@ -26,12 +26,20 @@ import { OpenApiRequestBodyCollectionSchema } from './OpenApiRequestBodyCollecti
 import { AuthorizationPathway } from './api-schema/AuthorizationPathway';
 import { DecimalPropertyValidationInfo } from './api-schema/DecimalPropertyValidationInfo';
 import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstraint';
+import { DomainName } from './api-schema/DomainName';
+import { OpenApiFragment } from './api-schema/OpenApiFragment';
+import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
 
 export type EntityApiSchemaData = {
   /**
    * API shape metadata for this entity.
    */
   apiMapping: ApiEntityMapping;
+
+  /**
+   * List of domain names that this entity belongs to.
+   */
+  domains: DomainName[];
 
   /**
    * The API document JSON schema that corresponds to this MetaEd entity.
@@ -194,6 +202,13 @@ export type EntityApiSchemaData = {
    * Supports nested array structures with proper base paths and constraint hierarchies.
    */
   arrayUniquenessConstraints: ArrayUniquenessConstraint[];
+
+  /**
+   * OpenAPI fragments for this entity, organized by document type.
+   */
+  openApiFragments: {
+    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
+  };
 };
 
 /**
@@ -204,6 +219,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
 
   Object.assign(entity.data.edfiApiSchema, {
     apiMapping: NoApiEntityMapping,
+    domains: [],
     jsonSchemaForInsert: NoSchemaRoot,
     openApiRequestBodyComponent: NoOpenApiObject,
     openApiRequestBodyComponentPropertyName: '',
@@ -227,6 +243,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     staffSecurableElements: [],
     arrayUniquenessConstraints: [],
     dateJsonPaths: [],
+    openApiFragments: {},
   });
 }
 

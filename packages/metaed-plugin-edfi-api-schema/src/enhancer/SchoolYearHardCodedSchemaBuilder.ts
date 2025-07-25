@@ -3,6 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+import { SchoolYearEnumeration } from '@edfi/metaed-core';
 import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
 import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
@@ -15,6 +16,9 @@ import { JsonPath } from '../model/api-schema/JsonPath';
 import { EndpointName } from '../model/api-schema/EndpointName';
 import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import { DecimalPropertyValidationInfo } from '../model/api-schema/DecimalPropertyValidationInfo';
+import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
+import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
+import { createResourceFragment } from './OpenApiResourceFragmentEnhancer';
 
 function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: DocumentObjectKey]: DocumentPaths } {
   const documentPathsMapping: { [key: DocumentObjectKey]: DocumentPaths } = {};
@@ -29,7 +33,25 @@ function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: Docum
   return documentPathsMapping;
 }
 
+function buildOpenApiFragment(
+  schoolYearEnumeration: SchoolYearEnumeration,
+  minSchoolYear: number,
+  maxSchoolYear: number,
+): OpenApiFragment {
+  const fragment: OpenApiFragment = createResourceFragment(schoolYearEnumeration);
+
+  const schoolYearOpenApis: SchoolYearOpenApis = newSchoolYearOpenApis(minSchoolYear, maxSchoolYear);
+  Object.assign(fragment.components.schemas, {
+    EdFi_SchoolYearTypeReference: schoolYearOpenApis.schoolYearEnumerationOpenApi,
+  });
+
+  return fragment;
+}
+
 export function buildSchoolYearResourceSchema(
+  schoolYearEnumeration: SchoolYearEnumeration,
+  minSchoolYear: number,
+  maxSchoolYear: number,
   resourceNameMapping: ResourceNameMapping,
   caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping,
   resourceSchemaMapping: ResourceSchemaMapping,
@@ -44,6 +66,7 @@ export function buildSchoolYearResourceSchema(
 
   resourceSchemaMapping[endpointName] = {
     resourceName: 'SchoolYearType' as MetaEdResourceName,
+    domains: [],
     isDescriptor: false,
     isSchoolYearEnumeration: true,
     allowIdentityUpdates: false,
@@ -104,5 +127,8 @@ export function buildSchoolYearResourceSchema(
     securableElements: { Namespace: [], EducationOrganization: [], Student: [], Contact: [], Staff: [] },
     authorizationPathways: [],
     arrayUniquenessConstraints: [],
+    openApiFragments: {
+      resources: buildOpenApiFragment(schoolYearEnumeration, minSchoolYear, maxSchoolYear),
+    },
   } as ResourceSchema;
 }

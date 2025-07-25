@@ -5,15 +5,16 @@
 
 import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { ApiSchema, newApiSchema } from './api-schema/ApiSchema';
-import { noDocument, type Document } from './OpenApiTypes';
-import { OpenApiExtensionFragments } from './OpenApiExtensionFragments';
+import { type Document } from './OpenApiTypes';
+import { DomainName } from './api-schema/DomainName';
+import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
 
 export type NamespaceEdfiApiSchema = {
   apiSchema: ApiSchema;
-  openApiCoreResources: Document;
-  openApiCoreDescriptors: Document;
-  openApiExtensionResourceFragments: OpenApiExtensionFragments;
-  openApiExtensionDescriptorFragments: OpenApiExtensionFragments;
+  domains: DomainName[];
+  openApiBaseDocuments?: {
+    [documentType in OpenApiDocumentTypeValue]?: Document;
+  };
 };
 
 const enhancerName = 'NamespaceSetupEnhancer';
@@ -23,10 +24,7 @@ export function addNamespaceEdfiApiSchema(namespace: Namespace) {
 
   Object.assign(namespace.data.edfiApiSchema, {
     apiSchema: newApiSchema(),
-    openApiCoreResources: noDocument,
-    openApiCoreDescriptors: noDocument,
-    openApiExtensionResourceFragments: {},
-    openApiExtensionDescriptorFragments: {},
+    domains: [],
   });
 }
 
