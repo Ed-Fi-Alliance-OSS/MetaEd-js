@@ -297,27 +297,27 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = buildOpenApiRequestBody(entity as TopLevelEntity, schoolYearOpenApis);
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
-      entity.metaEdName
-    }`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+      entity.metaEdName,
+    )}`;
   });
 
   // Attach descriptor OpenApiRequestBody to each descriptor
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = descriptorOpenApi;
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
-      entity.metaEdName
-    }`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+      entity.metaEdName,
+    )}`;
   });
 
   // Attach school year enumeration OpenApiRequestBody
   getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
     const entityApiOpenApiData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiOpenApiData.openApiRequestBodyComponent = schoolYearOpenApis.schoolYearEnumerationOpenApi;
-    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
-      entity.metaEdName
-    }`;
+    entityApiOpenApiData.openApiRequestBodyComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+      entity.metaEdName,
+    )}`;
   });
 
   return {

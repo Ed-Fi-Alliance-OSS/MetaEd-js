@@ -213,7 +213,9 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+              normalizeDescriptorName(entity),
+            )}`,
           },
         },
       },
@@ -468,7 +470,9 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
             schema: {
               type: 'array',
               items: {
-                $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+                $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+                  normalizeDescriptorName(entity),
+                )}`,
               },
             },
           },
@@ -524,7 +528,9 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         content: {
           'application/json': {
             schema: {
-              $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+              $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+                normalizeDescriptorName(entity),
+              )}`,
             },
           },
         },
@@ -579,7 +585,9 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+              normalizeDescriptorName(entity),
+            )}`,
           },
         },
       },

@@ -3282,7 +3282,20 @@
                   ],
                   "type": "object"
                 },
-                "Sample_Contact_CTEProgramService": {
+                "Sample_Contact_CeilingHeight": {
+                  "properties": {
+                    "ceilingHeight": {
+                      "description": "The height of the ceiling in the rooms of the contact's home.",
+                      "format": "double",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "ceilingHeight"
+                  ],
+                  "type": "object"
+                },
+                "Sample_Contact_CteProgramService": {
                   "properties": {
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
@@ -3311,19 +3324,6 @@
                   },
                   "required": [
                     "cteProgramServiceDescriptor"
-                  ],
-                  "type": "object"
-                },
-                "Sample_Contact_CeilingHeight": {
-                  "properties": {
-                    "ceilingHeight": {
-                      "description": "The height of the ceiling in the rooms of the contact's home.",
-                      "format": "double",
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "ceilingHeight"
                   ],
                   "type": "object"
                 },
@@ -3459,7 +3459,7 @@
                     "x-nullable": true
                   },
                   "cteProgramService": {
-                    "$ref": "#/components/schemas/Sample_Contact_CTEProgramService",
+                    "$ref": "#/components/schemas/Sample_Contact_CteProgramService",
                     "x-nullable": true
                   },
                   "duration": {
@@ -4859,7 +4859,7 @@
           "resources": {
             "components": {
               "schemas": {
-                "Sample_School_CTEProgramService": {
+                "Sample_School_CteProgramService": {
                   "properties": {
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
@@ -4909,7 +4909,7 @@
                 "description": "",
                 "properties": {
                   "cteProgramService": {
-                    "$ref": "#/components/schemas/Sample_School_CTEProgramService",
+                    "$ref": "#/components/schemas/Sample_School_CteProgramService",
                     "x-nullable": true
                   },
                   "directlyOwnedBuses": {
@@ -6865,7 +6865,7 @@
               }
             },
             "exts": {
-              "EdFi_StudentCTEProgramAssociation": {
+              "EdFi_StudentCteProgramAssociation": {
                 "description": "",
                 "properties": {
                   "analysisCompleted": {
@@ -8901,7 +8901,7 @@
                       "x-nullable": true
                     },
                     "cteProgramService": {
-                      "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_CTEProgramService",
+                      "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_CteProgramService",
                       "x-nullable": true
                     },
                     "descriptions": {
@@ -9020,7 +9020,19 @@
                   ],
                   "type": "object"
                 },
-                "Sample_StudentGraduationPlanAssociation_CTEProgramService": {
+                "Sample_StudentGraduationPlanAssociation_CareerPathwayCode": {
+                  "properties": {
+                    "careerPathwayCode": {
+                      "description": "The code representing the student's intended career pathway after graduation.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "careerPathwayCode"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentGraduationPlanAssociation_CteProgramService": {
                   "properties": {
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
@@ -9049,18 +9061,6 @@
                   },
                   "required": [
                     "cteProgramServiceDescriptor"
-                  ],
-                  "type": "object"
-                },
-                "Sample_StudentGraduationPlanAssociation_CareerPathwayCode": {
-                  "properties": {
-                    "careerPathwayCode": {
-                      "description": "The code representing the student's intended career pathway after graduation.",
-                      "type": "integer"
-                    }
-                  },
-                  "required": [
-                    "careerPathwayCode"
                   ],
                   "type": "object"
                 },

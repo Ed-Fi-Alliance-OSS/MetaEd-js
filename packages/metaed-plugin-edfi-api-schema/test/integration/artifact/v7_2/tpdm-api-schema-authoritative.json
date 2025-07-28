@@ -8623,7 +8623,7 @@
           "descriptors": {
             "components": {
               "schemas": {
-                "Tpdm_EPPProgramPathwayDescriptor": {
+                "Tpdm_EppProgramPathwayDescriptor": {
                   "description": "An Ed-Fi Descriptor",
                   "properties": {
                     "codeValue": {
@@ -8773,7 +8773,7 @@
                         "application/json": {
                           "schema": {
                             "items": {
-                              "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
+                              "$ref": "#/components/schemas/Tpdm_EppProgramPathwayDescriptor"
                             },
                             "type": "array"
                           }
@@ -8812,7 +8812,7 @@
                     "content": {
                       "application/json": {
                         "schema": {
-                          "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
+                          "$ref": "#/components/schemas/Tpdm_EppProgramPathwayDescriptor"
                         }
                       }
                     },
@@ -8940,7 +8940,7 @@
                       "content": {
                         "application/json": {
                           "schema": {
-                            "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
+                            "$ref": "#/components/schemas/Tpdm_EppProgramPathwayDescriptor"
                           }
                         }
                       },
@@ -9000,7 +9000,7 @@
                     "content": {
                       "application/json": {
                         "schema": {
-                          "$ref": "#/components/schemas/Tpdm_EPPProgramPathwayDescriptor"
+                          "$ref": "#/components/schemas/Tpdm_EppProgramPathwayDescriptor"
                         }
                       }
                     },

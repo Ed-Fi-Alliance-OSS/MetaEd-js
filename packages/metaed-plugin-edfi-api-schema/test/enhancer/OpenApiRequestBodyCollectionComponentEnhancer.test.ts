@@ -432,7 +432,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "derivativeSourceURIs": Object {
             "items": Object {
-              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
+              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceUri",
             },
             "minItems": 0,
             "type": "array",
@@ -451,7 +451,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "requiredURIs": Object {
             "items": Object {
-              "$ref": "#/components/schemas/EdFi_EducationContent_RequiredURI",
+              "$ref": "#/components/schemas/EdFi_EducationContent_RequiredUri",
             },
             "minItems": 1,
             "type": "array",
@@ -487,7 +487,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
         },
         Object {
-          "propertyName": "EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
+          "propertyName": "EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceUri",
           "schema": Object {
             "properties": Object {
               "derivativeSourceURI": Object {
@@ -503,7 +503,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
         },
         Object {
-          "propertyName": "EdFi_EducationContent_RequiredURI",
+          "propertyName": "EdFi_EducationContent_RequiredUri",
           "schema": Object {
             "properties": Object {
               "requiredURI": Object {

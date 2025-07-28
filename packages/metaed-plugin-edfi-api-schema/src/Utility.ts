@@ -66,8 +66,21 @@ export function capitalize(text: string): string {
 
 export function deAcronym(text: string): string {
   if (text == null || typeof text !== 'string') return '';
-  // Convert sequences of uppercase letters to upper camel case (e.g., "TPDM" -> "Tpdm")
-  return text.replace(/[A-Z]+/g, (match) => match.charAt(0).toUpperCase() + match.slice(1).toLowerCase());
+  // Convert sequences of uppercase letters to upper camel case
+  // If followed by lowercase letters, keep the last uppercase letter capitalized (e.g., "IDEAPart" -> "IdeaPart")
+  // If not followed by lowercase letters, convert normally (e.g., "TPDM" -> "Tpdm")
+  return text.replace(/[A-Z]+/g, (match, offset) => {
+    // Check if this match is followed by lowercase letters
+    const nextChar = text.charAt(offset + match.length);
+    const isFollowedByLowercase = nextChar && /[a-z]/.test(nextChar);
+
+    if (isFollowedByLowercase && match.length > 1) {
+      // Keep the last letter capitalized as it starts the next word
+      return match.charAt(0).toUpperCase() + match.slice(1, -1).toLowerCase() + match.slice(-1);
+    }
+    // Normal conversion: first letter uppercase, rest lowercase
+    return match.charAt(0).toUpperCase() + match.slice(1).toLowerCase();
+  });
 }
 
 const pluralEdgeCases = {
