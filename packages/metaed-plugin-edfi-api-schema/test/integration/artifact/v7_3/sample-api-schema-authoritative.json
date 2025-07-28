@@ -402,7 +402,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -514,16 +514,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -534,7 +525,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the ArtMedium resource to be created or updated."
+                    "description": "The JSON representation of the ArtMedium resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "ArtMedium"
                   },
                   "responses": {
                     "204": {
@@ -1226,6 +1219,10 @@
                       "format": "double",
                       "type": "number"
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "operatingCost": {
                       "description": "The approximate annual cost for the bus route.",
                       "format": "double",
@@ -1638,7 +1635,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -1750,16 +1747,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -1770,7 +1758,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the BusRoute resource to be created or updated."
+                    "description": "The JSON representation of the BusRoute resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "BusRoute"
                   },
                   "responses": {
                     "204": {
@@ -1996,6 +1986,10 @@
                       "maxLength": 60,
                       "type": "string",
                       "x-Ed-Fi-isIdentity": true
+                    },
+                    "id": {
+                      "description": "",
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -2164,7 +2158,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -2276,16 +2270,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -2296,7 +2281,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Bus resource to be created or updated."
+                    "description": "The JSON representation of the Bus resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Bus"
                   },
                   "responses": {
                     "204": {
@@ -3496,6 +3483,10 @@
                     "type": "string",
                     "x-nullable": true
                   },
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "isSportsFan": {
                     "description": "An indication as to whether the contact is a sports fan.",
                     "type": "boolean"
@@ -3884,7 +3875,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -3996,16 +3987,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -4016,7 +3998,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the FavoriteBookCategory resource to be created or updated."
+                    "description": "The JSON representation of the FavoriteBookCategory resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "FavoriteBookCategory"
                   },
                   "responses": {
                     "204": {
@@ -4448,7 +4432,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -4560,16 +4544,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -4580,7 +4555,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the MembershipType resource to be created or updated."
+                    "description": "The JSON representation of the MembershipType resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "MembershipType"
                   },
                   "responses": {
                     "204": {
@@ -4920,6 +4897,10 @@
                     "type": "array",
                     "uniqueItems": false
                   },
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "isExemplary": {
                     "description": "An indication as to whether the school is exemplary.",
                     "type": "boolean",
@@ -5132,6 +5113,10 @@
                     "format": "date",
                     "type": "string",
                     "x-nullable": true
+                  },
+                  "id": {
+                    "description": "",
+                    "type": "string"
                   },
                   "petPreference": {
                     "$ref": "#/components/schemas/Sample_Staff_PetPreference",
@@ -5901,6 +5886,10 @@
                       "type": "number",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "identificationCode": {
                       "description": "A unique identification code used to identify the student's artwork produced in the program.",
                       "maxLength": 60,
@@ -6458,7 +6447,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -6570,16 +6559,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -6590,7 +6570,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the StudentArtProgramAssociation resource to be created or updated."
+                    "description": "The JSON representation of the StudentArtProgramAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "StudentArtProgramAssociation"
                   },
                   "responses": {
                     "204": {
@@ -6878,6 +6860,10 @@
                     "format": "date-time",
                     "type": "string",
                     "x-nullable": true
+                  },
+                  "id": {
+                    "description": "",
+                    "type": "string"
                   }
                 },
                 "type": "object"
@@ -7559,6 +7545,10 @@
                     "minItems": 0,
                     "type": "array",
                     "uniqueItems": false
+                  },
+                  "id": {
+                    "description": "",
+                    "type": "string"
                   },
                   "interventionStudyReference": {
                     "$ref": "#/components/schemas/EdFi_InterventionStudy_Reference",
@@ -8251,6 +8241,10 @@
                   "favoriteProgramReference": {
                     "$ref": "#/components/schemas/EdFi_Program_Reference",
                     "x-nullable": true
+                  },
+                  "id": {
+                    "description": "",
+                    "type": "string"
                   },
                   "studentCharacteristics": {
                     "items": {
@@ -8946,6 +8940,10 @@
                       "format": "double",
                       "type": "number"
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "industryCredentials": {
                       "items": {
                         "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_IndustryCredential"
@@ -9413,7 +9411,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -9525,16 +9523,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -9545,7 +9534,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the StudentGraduationPlanAssociation resource to be created or updated."
+                    "description": "The JSON representation of the StudentGraduationPlanAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "StudentGraduationPlanAssociation"
                   },
                   "responses": {
                     "204": {
@@ -9791,6 +9782,10 @@
               "EdFi_StudentSchoolAssociation": {
                 "description": "",
                 "properties": {
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "membershipTypeDescriptor": {
                     "description": "Membership Type identifies whether a school has primary responsibility for managing a specific student's curriculum or not.",
                     "maxLength": 306,
@@ -9987,6 +9982,10 @@
               "EdFi_StudentSectionAssociation": {
                 "description": "",
                 "properties": {
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "relatedGeneralStudentProgramAssociations": {
                     "items": {
                       "$ref": "#/components/schemas/Sample_StudentSectionAssociation_RelatedGeneralStudentProgramAssociation"
@@ -10384,6 +10383,10 @@
                     "minItems": 0,
                     "type": "array",
                     "uniqueItems": false
+                  },
+                  "id": {
+                    "description": "",
+                    "type": "string"
                   },
                   "petPreference": {
                     "$ref": "#/components/schemas/Sample_Student_PetPreference",

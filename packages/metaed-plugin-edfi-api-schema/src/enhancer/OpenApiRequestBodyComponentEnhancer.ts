@@ -240,7 +240,12 @@ export function openApiPropertyFor(
  * Builds an OpenApi request body that corresponds to a given MetaEd entity.
  */
 function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpenApis: SchoolYearOpenApis): OpenApiObject {
-  const openApiProperties: OpenApiProperties = {};
+  const openApiProperties: OpenApiProperties = {
+    id: {
+      type: 'string',
+      description: '',
+    }
+  };
 
   const openApiRoot: OpenApiObject = {
     type: 'object',

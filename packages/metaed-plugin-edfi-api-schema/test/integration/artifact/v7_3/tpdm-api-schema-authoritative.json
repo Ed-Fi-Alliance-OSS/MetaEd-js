@@ -455,7 +455,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -567,16 +567,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -587,7 +578,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the AccreditationStatus resource to be created or updated."
+                    "description": "The JSON representation of the AccreditationStatus resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "AccreditationStatus"
                   },
                   "responses": {
                     "204": {
@@ -1019,7 +1012,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -1131,16 +1124,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -1151,7 +1135,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the AidType resource to be created or updated."
+                    "description": "The JSON representation of the AidType resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "AidType"
                   },
                   "responses": {
                     "204": {
@@ -1640,6 +1626,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "reasonExitedDescriptor": {
                       "description": "Reason exited for the association.",
                       "maxLength": 306,
@@ -1925,7 +1915,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -2037,16 +2027,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -2057,7 +2038,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the CandidateEducatorPreparationProgramAssociation resource to be created or updated."
+                    "description": "The JSON representation of the CandidateEducatorPreparationProgramAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "CandidateEducatorPreparationProgramAssociation"
                   },
                   "responses": {
                     "204": {
@@ -3536,6 +3519,10 @@
                       "type": "boolean",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "languages": {
                       "items": {
                         "$ref": "#/components/schemas/Tpdm_Candidate_Language"
@@ -4367,7 +4354,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -4479,16 +4466,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -4499,7 +4477,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Candidate resource to be created or updated."
+                    "description": "The JSON representation of the Candidate resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Candidate"
                   },
                   "responses": {
                     "204": {
@@ -5057,7 +5037,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -5169,16 +5149,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -5189,7 +5160,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the CertificationRoute resource to be created or updated."
+                    "description": "The JSON representation of the CertificationRoute resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "CertificationRoute"
                   },
                   "responses": {
                     "204": {
@@ -5621,7 +5594,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -5733,16 +5706,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -5753,7 +5717,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the CoteachingStyleObserved resource to be created or updated."
+                    "description": "The JSON representation of the CoteachingStyleObserved resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "CoteachingStyleObserved"
                   },
                   "responses": {
                     "204": {
@@ -6185,7 +6151,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -6297,16 +6263,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -6317,7 +6274,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the CredentialStatus resource to be created or updated."
+                    "description": "The JSON representation of the CredentialStatus resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "CredentialStatus"
                   },
                   "responses": {
                     "204": {
@@ -6718,6 +6677,10 @@
                     "type": "string",
                     "x-nullable": true
                   },
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "personReference": {
                     "$ref": "#/components/schemas/EdFi_Person_Reference",
                     "x-nullable": true
@@ -6936,6 +6899,10 @@
                       "minItems": 0,
                       "type": "array",
                       "uniqueItems": false
+                    },
+                    "id": {
+                      "description": "",
+                      "type": "string"
                     },
                     "programId": {
                       "description": "A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.",
@@ -7182,7 +7149,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -7294,16 +7261,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -7314,7 +7272,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EducatorPreparationProgram resource to be created or updated."
+                    "description": "The JSON representation of the EducatorPreparationProgram resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EducatorPreparationProgram"
                   },
                   "responses": {
                     "204": {
@@ -7744,7 +7704,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -7856,16 +7816,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -7876,7 +7827,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EducatorRole resource to be created or updated."
+                    "description": "The JSON representation of the EducatorRole resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EducatorRole"
                   },
                   "responses": {
                     "204": {
@@ -8308,7 +8261,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -8420,16 +8373,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -8440,7 +8384,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EnglishLanguageExam resource to be created or updated."
+                    "description": "The JSON representation of the EnglishLanguageExam resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EnglishLanguageExam"
                   },
                   "responses": {
                     "204": {
@@ -8872,7 +8818,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -8984,16 +8930,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -9004,7 +8941,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EPPProgramPathway resource to be created or updated."
+                    "description": "The JSON representation of the EPPProgramPathway resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EPPProgramPathway"
                   },
                   "responses": {
                     "204": {
@@ -9436,7 +9375,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -9548,16 +9487,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -9568,7 +9498,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationElementRatingLevel resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationElementRatingLevel resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationElementRatingLevel"
                   },
                   "responses": {
                     "204": {
@@ -10256,6 +10188,10 @@
                       "minLength": 1,
                       "type": "string",
                       "x-nullable": true
+                    },
+                    "id": {
+                      "description": "",
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -10572,7 +10508,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -10684,16 +10620,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -10704,7 +10631,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationElementRating resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationElementRating resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationElementRating"
                   },
                   "responses": {
                     "204": {
@@ -11206,6 +11135,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "maxRating": {
                       "description": "The maximum summary numerical rating or score for the evaluation element.",
                       "format": "double",
@@ -11520,7 +11453,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -11632,16 +11565,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -11652,7 +11576,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationElement resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationElement resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationElement"
                   },
                   "responses": {
                     "204": {
@@ -12276,6 +12202,10 @@
                       "$ref": "#/components/schemas/Tpdm_EvaluationRating_Reference",
                       "x-Ed-Fi-isIdentity": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "objectiveRatingLevelDescriptor": {
                       "description": "The rating level achieved based upon the rating or score.",
                       "maxLength": 306,
@@ -12567,7 +12497,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -12679,16 +12609,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -12699,7 +12620,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationObjectiveRating resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationObjectiveRating resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationObjectiveRating"
                   },
                   "responses": {
                     "204": {
@@ -13181,6 +13104,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "maxRating": {
                       "description": "The maximum summary numerical rating or score for the evaluation Objective.",
                       "format": "double",
@@ -13496,7 +13423,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -13608,16 +13535,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -13628,7 +13546,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationObjective resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationObjective resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationObjective"
                   },
                   "responses": {
                     "204": {
@@ -14106,7 +14026,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -14218,16 +14138,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -14238,7 +14149,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationPeriod resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationPeriod resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationPeriod"
                   },
                   "responses": {
                     "204": {
@@ -14670,7 +14583,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -14782,16 +14695,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -14802,7 +14706,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationRatingLevel resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationRatingLevel resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationRatingLevel"
                   },
                   "responses": {
                     "204": {
@@ -15234,7 +15140,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -15346,16 +15252,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -15366,7 +15263,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationRatingStatus resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationRatingStatus resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationRatingStatus"
                   },
                   "responses": {
                     "204": {
@@ -16134,6 +16033,10 @@
                       "$ref": "#/components/schemas/Tpdm_Evaluation_Reference",
                       "x-Ed-Fi-isIdentity": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "performanceEvaluationRatingReference": {
                       "$ref": "#/components/schemas/Tpdm_PerformanceEvaluationRating_Reference",
                       "x-Ed-Fi-isIdentity": true
@@ -16494,7 +16397,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -16606,16 +16509,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -16626,7 +16520,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationRating resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationRating resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationRating"
                   },
                   "responses": {
                     "204": {
@@ -17137,7 +17033,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -17249,16 +17145,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -17269,7 +17156,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the EvaluationType resource to be created or updated."
+                    "description": "The JSON representation of the EvaluationType resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "EvaluationType"
                   },
                   "responses": {
                     "204": {
@@ -17683,6 +17572,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "interRaterReliabilityScore": {
                       "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
                       "type": "integer",
@@ -17994,7 +17887,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -18106,16 +17999,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -18126,7 +18010,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Evaluation resource to be created or updated."
+                    "description": "The JSON representation of the Evaluation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Evaluation"
                   },
                   "responses": {
                     "204": {
@@ -18461,6 +18347,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "pellGrantRecipient": {
                       "description": "Indicates a person who receives Pell Grant aid.",
                       "type": "boolean",
@@ -18699,7 +18589,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -18811,16 +18701,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -18831,7 +18712,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the FinancialAid resource to be created or updated."
+                    "description": "The JSON representation of the FinancialAid resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "FinancialAid"
                   },
                   "responses": {
                     "204": {
@@ -19270,7 +19153,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -19382,16 +19265,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -19402,7 +19276,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Gender resource to be created or updated."
+                    "description": "The JSON representation of the Gender resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Gender"
                   },
                   "responses": {
                     "204": {
@@ -19834,7 +19710,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -19946,16 +19822,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -19966,7 +19833,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the ObjectiveRatingLevel resource to be created or updated."
+                    "description": "The JSON representation of the ObjectiveRatingLevel resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "ObjectiveRatingLevel"
                   },
                   "responses": {
                     "204": {
@@ -20398,7 +20267,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -20510,16 +20379,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -20530,7 +20390,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the PerformanceEvaluationRatingLevel resource to be created or updated."
+                    "description": "The JSON representation of the PerformanceEvaluationRatingLevel resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "PerformanceEvaluationRatingLevel"
                   },
                   "responses": {
                     "204": {
@@ -21138,6 +21000,10 @@
                       "type": "string",
                       "x-nullable": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "performanceEvaluationRatingLevelDescriptor": {
                       "description": "The rating level achieved based upon the rating or score.",
                       "maxLength": 306,
@@ -21520,7 +21386,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -21632,16 +21498,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -21652,7 +21509,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the PerformanceEvaluationRating resource to be created or updated."
+                    "description": "The JSON representation of the PerformanceEvaluationRating resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "PerformanceEvaluationRating"
                   },
                   "responses": {
                     "204": {
@@ -22148,7 +22007,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -22260,16 +22119,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -22280,7 +22130,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the PerformanceEvaluationType resource to be created or updated."
+                    "description": "The JSON representation of the PerformanceEvaluationType resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "PerformanceEvaluationType"
                   },
                   "responses": {
                     "204": {
@@ -22706,6 +22558,10 @@
                       "type": "array",
                       "uniqueItems": false
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "performanceEvaluationDescription": {
                       "description": "The long description of the Performance Evaluation.",
                       "maxLength": 255,
@@ -23047,7 +22903,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -23159,16 +23015,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -23179,7 +23026,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the PerformanceEvaluation resource to be created or updated."
+                    "description": "The JSON representation of the PerformanceEvaluation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "PerformanceEvaluation"
                   },
                   "responses": {
                     "204": {
@@ -23545,6 +23394,10 @@
                       "$ref": "#/components/schemas/Tpdm_EvaluationElement_Reference",
                       "x-Ed-Fi-isIdentity": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "rubricRating": {
                       "description": "The rating achieved for the rubric dimension.",
                       "type": "integer",
@@ -23819,7 +23672,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -23931,16 +23784,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -23951,7 +23795,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the RubricDimension resource to be created or updated."
+                    "description": "The JSON representation of the RubricDimension resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "RubricDimension"
                   },
                   "responses": {
                     "204": {
@@ -24429,7 +24275,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -24541,16 +24387,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -24561,7 +24398,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the RubricRatingLevel resource to be created or updated."
+                    "description": "The JSON representation of the RubricRatingLevel resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "RubricRatingLevel"
                   },
                   "responses": {
                     "204": {
@@ -24746,6 +24585,10 @@
               "EdFi_School": {
                 "description": "",
                 "properties": {
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "postSecondaryInstitutionReference": {
                     "$ref": "#/components/schemas/EdFi_PostSecondaryInstitution_Reference",
                     "x-nullable": true
@@ -24918,6 +24761,10 @@
                 "Tpdm_SurveyResponsePersonTargetAssociation": {
                   "description": "The association provides information about the survey being taken and who the survey is about.",
                   "properties": {
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "personReference": {
                       "$ref": "#/components/schemas/EdFi_Person_Reference",
                       "x-Ed-Fi-isIdentity": true
@@ -25113,7 +24960,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -25225,16 +25072,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -25245,7 +25083,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the SurveyResponsePersonTargetAssociation resource to be created or updated."
+                    "description": "The JSON representation of the SurveyResponsePersonTargetAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "SurveyResponsePersonTargetAssociation"
                   },
                   "responses": {
                     "204": {
@@ -25435,6 +25275,10 @@
               "EdFi_SurveyResponse": {
                 "description": "",
                 "properties": {
+                  "id": {
+                    "description": "",
+                    "type": "string"
+                  },
                   "personReference": {
                     "$ref": "#/components/schemas/EdFi_Person_Reference",
                     "x-nullable": true
@@ -25630,6 +25474,10 @@
                 "Tpdm_SurveySectionResponsePersonTargetAssociation": {
                   "description": "This association provides information about the survey section and the person the survey section is about.",
                   "properties": {
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "personReference": {
                       "$ref": "#/components/schemas/EdFi_Person_Reference",
                       "x-Ed-Fi-isIdentity": true
@@ -25832,7 +25680,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -25944,16 +25792,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -25964,7 +25803,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the SurveySectionResponsePersonTargetAssociation resource to be created or updated."
+                    "description": "The JSON representation of the SurveySectionResponsePersonTargetAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "SurveySectionResponsePersonTargetAssociation"
                   },
                   "responses": {
                     "204": {

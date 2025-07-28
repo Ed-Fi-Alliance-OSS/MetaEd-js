@@ -281,6 +281,10 @@
                       "$ref": "#/components/schemas/Homograph_Name_Reference",
                       "x-Ed-Fi-isIdentity": true
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "studentSchoolAssociations": {
                       "items": {
                         "$ref": "#/components/schemas/Homograph_Contact_StudentSchoolAssociation"
@@ -482,7 +486,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -594,16 +598,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -614,7 +609,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Contact resource to be created or updated."
+                    "description": "The JSON representation of the Contact resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Contact"
                   },
                   "responses": {
                     "204": {
@@ -774,6 +771,10 @@
                       "minLength": 1,
                       "type": "string",
                       "x-Ed-Fi-isIdentity": true
+                    },
+                    "id": {
+                      "description": "",
+                      "type": "string"
                     },
                     "lastSurname": {
                       "description": "The name borne in common by members of a family.",
@@ -971,7 +972,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -1083,16 +1084,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -1103,7 +1095,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Name resource to be created or updated."
+                    "description": "The JSON representation of the Name resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Name"
                   },
                   "responses": {
                     "204": {
@@ -1240,6 +1234,10 @@
                 "Homograph_SchoolYearType": {
                   "description": "Identifier for a school year.",
                   "properties": {
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "schoolYear": {
                       "description": "A school year.",
                       "maxLength": 20,
@@ -1413,7 +1411,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -1525,16 +1523,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -1545,7 +1534,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the SchoolYearType resource to be created or updated."
+                    "description": "The JSON representation of the SchoolYearType resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "SchoolYearType"
                   },
                   "responses": {
                     "204": {
@@ -1732,6 +1723,10 @@
                     "address": {
                       "$ref": "#/components/schemas/Homograph_School_Address",
                       "x-nullable": true
+                    },
+                    "id": {
+                      "description": "",
+                      "type": "string"
                     },
                     "schoolName": {
                       "description": "The name of the school.",
@@ -1935,7 +1930,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -2047,16 +2042,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -2067,7 +2053,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the School resource to be created or updated."
+                    "description": "The JSON representation of the School resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "School"
                   },
                   "responses": {
                     "204": {
@@ -2353,6 +2341,10 @@
                       "type": "array",
                       "uniqueItems": false
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "staffNameReference": {
                       "$ref": "#/components/schemas/Homograph_Name_Reference",
                       "x-Ed-Fi-isIdentity": true
@@ -2556,7 +2548,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -2668,16 +2660,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -2688,7 +2671,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Staff resource to be created or updated."
+                    "description": "The JSON representation of the Staff resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Staff"
                   },
                   "responses": {
                     "204": {
@@ -2889,6 +2874,10 @@
                 "Homograph_StudentSchoolAssociation": {
                   "description": "This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.",
                   "properties": {
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "schoolReference": {
                       "$ref": "#/components/schemas/Homograph_School_Reference",
                       "x-Ed-Fi-isIdentity": true
@@ -3071,7 +3060,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -3183,16 +3172,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -3203,7 +3183,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the StudentSchoolAssociation resource to be created or updated."
+                    "description": "The JSON representation of the StudentSchoolAssociation resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "StudentSchoolAssociation"
                   },
                   "responses": {
                     "204": {
@@ -3437,6 +3419,10 @@
                     "address": {
                       "$ref": "#/components/schemas/Homograph_Student_Address"
                     },
+                    "id": {
+                      "description": "",
+                      "type": "string"
+                    },
                     "schoolYearTypeReference": {
                       "$ref": "#/components/schemas/Homograph_SchoolYearType_Reference"
                     },
@@ -3637,7 +3623,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "responses": {
@@ -3749,16 +3735,7 @@
                       }
                     },
                     {
-                      "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
+                      "$ref": "#/components/parameters/If-Match"
                     }
                   ],
                   "requestBody": {
@@ -3769,7 +3746,9 @@
                         }
                       }
                     },
-                    "description": "The JSON representation of the Student resource to be created or updated."
+                    "description": "The JSON representation of the Student resource to be created or updated.",
+                    "required": true,
+                    "x-bodyName": "Student"
                   },
                   "responses": {
                     "204": {
