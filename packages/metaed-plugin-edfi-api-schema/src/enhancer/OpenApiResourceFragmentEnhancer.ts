@@ -65,7 +65,8 @@ function createExtensionFragment(entity: TopLevelEntity): OpenApiFragment {
 
   // For extensions, add the extension schema to the exts mapping
   fragment.exts = {
-    [`${deAcronym(entity.baseEntityNamespaceName)}_${entity.metaEdName}`]: entityApiSchemaData.openApiRequestBodyComponent,
+    [`${deAcronym(entity.baseEntityNamespaceName)}_${deAcronym(entity.metaEdName)}`]:
+      entityApiSchemaData.openApiRequestBodyComponent,
   };
 
   return fragment;

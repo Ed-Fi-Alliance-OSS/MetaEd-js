@@ -97,9 +97,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         entity as TopLevelEntity,
         schoolYearOpenApis,
       );
-      entityApiOpenApiData.openApiReferenceComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${
-        entity.metaEdName
-      }_Reference`;
+      entityApiOpenApiData.openApiReferenceComponentPropertyName = `${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+        entity.metaEdName,
+      )}_Reference`;
     },
   );
 

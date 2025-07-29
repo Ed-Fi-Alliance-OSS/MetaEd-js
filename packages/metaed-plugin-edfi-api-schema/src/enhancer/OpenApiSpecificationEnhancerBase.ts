@@ -127,6 +127,15 @@ export function createHardcodedComponentParameters(): { [key: string]: Reference
         format: 'int64',
       },
     },
+    'If-Match': {
+      name: 'If-Match',
+      in: 'header',
+      description:
+        'The previously returned ETag header value, used here to prevent the unnecessary data transfer of an unchanged resource.',
+      schema: {
+        type: 'string',
+      },
+    },
     'If-None-Match': {
       name: 'If-None-Match',
       in: 'header',
@@ -213,7 +222,9 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+              normalizeDescriptorName(entity),
+            )}`,
           },
         },
       },
@@ -285,7 +296,7 @@ function newStaticGetByQueryParameters(): Parameter[] {
   ];
 }
 
-function newStaticByIdParameters(): Parameter[] {
+function newStaticGetByIdParameters(): Parameter[] {
   return [
     {
       name: 'id',
@@ -298,6 +309,23 @@ function newStaticByIdParameters(): Parameter[] {
     },
     {
       $ref: '#/components/parameters/If-None-Match',
+    },
+  ];
+}
+
+function newStaticUpdateByIdParameters(): Parameter[] {
+  return [
+    {
+      name: 'id',
+      in: 'path',
+      description: 'A resource identifier that uniquely identifies the resource.',
+      required: true,
+      schema: {
+        type: 'string',
+      },
+    },
+    {
+      $ref: '#/components/parameters/If-Match',
     },
   ];
 }
@@ -468,7 +496,9 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
             schema: {
               type: 'array',
               items: {
-                $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+                $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+                  normalizeDescriptorName(entity),
+                )}`,
               },
             },
           },
@@ -507,7 +537,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
     parameters: [
-      ...newStaticByIdParameters(),
+      ...newStaticGetByIdParameters(),
       {
         name: 'Use-Snapshot',
         in: 'header',
@@ -524,7 +554,9 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         content: {
           'application/json': {
             schema: {
-              $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+              $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+                normalizeDescriptorName(entity),
+              )}`,
             },
           },
         },
@@ -562,27 +594,20 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
     description:
       'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
     operationId: `put${extensionPrefix}${entity.metaEdName}`,
-    parameters: [
-      ...newStaticByIdParameters(),
-      {
-        name: 'Use-Snapshot',
-        in: 'header',
-        description: 'Indicates if the configured Snapshot should be used.',
-        schema: {
-          type: 'boolean',
-          default: false,
-        },
-      },
-    ],
+    parameters: [...newStaticUpdateByIdParameters()],
     requestBody: {
-      description: `The JSON representation of the ${entity.metaEdName} resource to be created or updated.`,
       content: {
         'application/json': {
           schema: {
-            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${normalizeDescriptorName(entity)}`,
+            $ref: `#/components/schemas/${deAcronym(entity.namespace.namespaceName)}_${deAcronym(
+              normalizeDescriptorName(entity),
+            )}`,
           },
         },
       },
+      description: `The JSON representation of the ${entity.metaEdName} resource to be created or updated.`,
+      required: true,
+      'x-bodyName': entity.metaEdName,
     },
     responses: {
       '204': {
@@ -628,7 +653,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
     description:
       "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
     operationId: `delete${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
-    parameters: newStaticByIdParameters(),
+    parameters: newStaticUpdateByIdParameters(),
     responses: {
       '204': {
         $ref: '#/components/responses/Updated',

@@ -82,9 +82,9 @@ export function isOpenApiPropertyRequired(property: EntityProperty, propertyModi
  */
 export function openApiReferenceFor(property: ReferentialProperty): OpenApiReference {
   return {
-    $ref: `#/components/schemas/${deAcronym(property.referencedNamespaceName)}_${
-      property.referencedEntity.metaEdName
-    }_Reference`,
+    $ref: `#/components/schemas/${deAcronym(property.referencedNamespaceName)}_${deAcronym(
+      property.referencedEntity.metaEdName,
+    )}_Reference`,
   };
 }
 
@@ -117,7 +117,7 @@ export function openApiCollectionReferenceNameFor(
     propertiesChain.length > 0
       ? propertiesChain[0].parentEntity.namespace.namespaceName
       : property.parentEntity.namespace.namespaceName;
-  return `${deAcronym(namespace)}_${parentEntitiesNameChain}_${propertyName}`;
+  return `${deAcronym(namespace)}_${deAcronym(parentEntitiesNameChain)}_${deAcronym(propertyName)}`;
 }
 
 /**

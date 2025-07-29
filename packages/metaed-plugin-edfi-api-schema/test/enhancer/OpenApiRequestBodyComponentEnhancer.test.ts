@@ -89,6 +89,10 @@ describe('when building simple domain entity with all the simple non-collections
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "optionalBooleanProperty": Object {
             "description": "doc1",
             "type": "boolean",
@@ -225,6 +229,10 @@ describe('when building simple domain entity with all the simple collections', (
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "optionalBooleanProperties": Object {
             "items": Object {
               "$ref": "#/components/schemas/EdFi_DomainEntityName_OptionalBooleanProperty",
@@ -417,6 +425,10 @@ describe('when building a domain entity referencing another referencing another 
             "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -441,6 +453,10 @@ describe('when building a domain entity referencing another referencing another 
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "localCourseCode": Object {
             "description": "doc",
             "maxLength": 30,
@@ -474,6 +490,10 @@ describe('when building a domain entity referencing another referencing another 
             "type": "string",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "schoolReference": Object {
             "$ref": "#/components/schemas/EdFi_School_Reference",
             "x-Ed-Fi-isIdentity": true,
@@ -495,6 +515,10 @@ describe('when building a domain entity referencing another referencing another 
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "schoolId": Object {
             "description": "doc",
             "maxLength": 30,
@@ -573,6 +597,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
             "$ref": "#/components/schemas/EdFi_CourseOffering_Reference",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -596,6 +624,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "localCourseCode": Object {
             "description": "doc",
             "maxLength": 30,
@@ -628,6 +660,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "schoolReference": Object {
             "$ref": "#/components/schemas/EdFi_School_Reference",
             "x-Ed-Fi-isIdentity": true,
@@ -660,6 +696,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "schoolId": Object {
             "description": "doc",
             "maxLength": 30,
@@ -764,7 +804,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "derivativeSourceURIs": Object {
             "items": Object {
-              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceURI",
+              "$ref": "#/components/schemas/EdFi_EducationContent_LearningResourceChoice_LearningResource_EducationContentSource_DerivativeSourceUri",
             },
             "minItems": 0,
             "type": "array",
@@ -776,6 +816,10 @@ describe('when building domain entity with nested choice and inline commons', ()
             "type": "string",
             "x-nullable": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "learningResourceMetadataURI": Object {
             "description": "doc",
             "maxLength": 30,
@@ -783,7 +827,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
           "requiredURIs": Object {
             "items": Object {
-              "$ref": "#/components/schemas/EdFi_EducationContent_RequiredURI",
+              "$ref": "#/components/schemas/EdFi_EducationContent_RequiredUri",
             },
             "minItems": 1,
             "type": "array",
@@ -847,6 +891,10 @@ describe('when building domain entity with scalar collection named with prefix o
             "maxLength": 30,
             "type": "string",
             "x-Ed-Fi-isIdentity": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "suffixNames": Object {
             "items": Object {
@@ -923,6 +971,10 @@ describe('when building domain entity with Association/DomainEntity collection n
             "type": "array",
             "uniqueItems": false,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
         },
         "required": Array [
           "contentIdentifier",
@@ -976,6 +1028,10 @@ describe('when building domain entity with acronym property name', () => {
             "maxLength": 30,
             "type": "string",
             "x-Ed-Fi-isIdentity": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "iepBeginDate": Object {
             "description": "doc",
@@ -1047,6 +1103,10 @@ describe('when building domain entity with a simple common collection', () => {
             "description": "doc",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "identificationCodes": Object {
             "items": Object {
@@ -1131,6 +1191,10 @@ describe('when building domain entity subclass with common collection and descri
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "identificationCodes": Object {
             "items": Object {
               "$ref": "#/components/schemas/EdFi_EducationOrganization_EducationOrganizationIdentificationCode",
@@ -1206,6 +1270,10 @@ describe('when building association with a common collection in a common collect
             "type": "array",
             "uniqueItems": false,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "studentId": Object {
             "description": "doc",
             "type": "integer",
@@ -1274,6 +1342,10 @@ describe('when building domain entity with a descriptor with role name', () => {
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
         },
         "required": Array [
           "assessmentIdentifier",
@@ -1338,6 +1410,10 @@ describe('when building domain entity with a descriptor collection with role nam
             "description": "doc",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
         },
         "required": Array [
@@ -1409,6 +1485,10 @@ describe('when building domain entity with a common with a choice', () => {
             "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
             "x-nullable": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
         },
         "required": Array [
           "assessmentIdentifier",
@@ -1472,6 +1552,10 @@ describe('when building domain entity with a common and a common collection with
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "period": Object {
             "$ref": "#/components/schemas/EdFi_Assessment_AssessmentPeriod",
             "x-nullable": true,
@@ -1533,6 +1617,10 @@ describe('when building domain entity with an all-caps property', () => {
             "description": "doc",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "uri": Object {
             "description": "doc",
@@ -1608,6 +1696,10 @@ describe('when building domain entity with a common with a domain entity referen
             "$ref": "#/components/schemas/EdFi_Assessment_ContentStandard",
             "x-nullable": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
         },
         "required": Array [
           "assessmentIdentifier",
@@ -1664,6 +1756,10 @@ describe('when building domain entity with two school year enumerations, one rol
           "classOfSchoolYearTypeReference": Object {
             "$ref": "#/components/schemas/EdFi_SchoolYearTypeReference",
             "x-nullable": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "schoolId": Object {
             "description": "doc",
@@ -1730,6 +1826,10 @@ describe('when building domain entity with reference to domain entity with schoo
           "calendarReference": Object {
             "$ref": "#/components/schemas/EdFi_Calendar_Reference",
             "x-nullable": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "schoolId": Object {
             "description": "doc",
@@ -1940,6 +2040,10 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "studentUniqueId": Object {
             "description": "",
             "maxLength": 100,
@@ -2024,6 +2128,10 @@ describe('when building a domain entity with an inline common property with a de
             "type": "string",
             "x-nullable": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
@@ -2088,6 +2196,10 @@ describe('when building a domain entity referencing another using a shortenTo di
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "identity1": Object {
             "description": "doc",
             "maxLength": 30,
@@ -2145,6 +2257,10 @@ describe('when building a domain entity with different string properties', () =>
       Object {
         "description": "doc",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "stringIdentity": Object {
             "description": "doc",
             "maxLength": 30,
@@ -2224,6 +2340,10 @@ describe('when domain entity extension references domain entity in different nam
       Object {
         "description": "",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "referencedEntityNameReference": Object {
             "$ref": "#/components/schemas/EdFi_ReferencedEntityName_Reference",
             "x-nullable": true,
