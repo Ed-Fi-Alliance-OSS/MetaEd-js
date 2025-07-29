@@ -282,7 +282,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "studentSchoolAssociations": {
@@ -773,7 +773,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "lastSurname": {
@@ -1235,7 +1235,7 @@
                   "description": "Identifier for a school year.",
                   "properties": {
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "schoolYear": {
@@ -1725,7 +1725,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "schoolName": {
@@ -2342,7 +2342,7 @@
                       "uniqueItems": false
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "staffNameReference": {
@@ -2875,7 +2875,7 @@
                   "description": "This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.",
                   "properties": {
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "schoolReference": {
@@ -3420,7 +3420,7 @@
                       "$ref": "#/components/schemas/Homograph_Student_Address"
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "schoolYearTypeReference": {

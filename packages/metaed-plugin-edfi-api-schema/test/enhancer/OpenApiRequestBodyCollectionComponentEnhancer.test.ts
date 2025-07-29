@@ -444,6 +444,10 @@ describe('when building domain entity with nested choice and inline commons', ()
             "type": "string",
             "x-nullable": true,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "learningResourceMetadataURI": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1369,6 +1373,10 @@ describe('when building a domain entity with an inline common property with a de
             "type": "array",
             "uniqueItems": false,
           },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "Documentation",
             "type": "integer",
@@ -1459,6 +1467,10 @@ describe('when building a domain entity with a common property with a descriptor
           "availableCredits": Object {
             "$ref": "#/components/schemas/EdFi_Section_AvailableCredit",
             "x-nullable": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
@@ -1711,6 +1723,10 @@ describe('when domain entity extension references domain entity collection in di
       Object {
         "description": "",
         "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
           "referencedEntityNames": Object {
             "items": Object {
               "$ref": "#/components/schemas/Extension_EntityName_ReferencedEntityName",
@@ -1927,6 +1943,10 @@ describe('when building domain entity with a scalar collection in a common colle
             "minItems": 0,
             "type": "array",
             "uniqueItems": false,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
           },
           "integerIdentity": Object {
             "description": "doc",

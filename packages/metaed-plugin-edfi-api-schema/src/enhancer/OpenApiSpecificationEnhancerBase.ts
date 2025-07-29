@@ -594,9 +594,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
     description:
       'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
     operationId: `put${extensionPrefix}${entity.metaEdName}`,
-    parameters: [
-      ...newStaticUpdateByIdParameters()
-    ],
+    parameters: [...newStaticUpdateByIdParameters()],
     requestBody: {
       content: {
         'application/json': {

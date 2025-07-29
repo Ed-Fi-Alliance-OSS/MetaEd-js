@@ -1220,7 +1220,7 @@
                       "type": "number"
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "operatingCost": {
@@ -1988,7 +1988,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     }
                   },
@@ -3484,7 +3484,7 @@
                     "x-nullable": true
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "isSportsFan": {
@@ -4898,7 +4898,7 @@
                     "uniqueItems": false
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "isExemplary": {
@@ -5115,7 +5115,7 @@
                     "x-nullable": true
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "petPreference": {
@@ -5887,7 +5887,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "identificationCode": {
@@ -6862,7 +6862,7 @@
                     "x-nullable": true
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   }
                 },
@@ -7547,7 +7547,7 @@
                     "uniqueItems": false
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "interventionStudyReference": {
@@ -8243,7 +8243,7 @@
                     "x-nullable": true
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "studentCharacteristics": {
@@ -8941,7 +8941,7 @@
                       "type": "number"
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "industryCredentials": {
@@ -9783,7 +9783,7 @@
                 "description": "",
                 "properties": {
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "membershipTypeDescriptor": {
@@ -9983,7 +9983,7 @@
                 "description": "",
                 "properties": {
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "relatedGeneralStudentProgramAssociations": {
@@ -10385,7 +10385,7 @@
                     "uniqueItems": false
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "petPreference": {

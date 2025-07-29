@@ -243,8 +243,8 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
   const openApiProperties: OpenApiProperties = {
     id: {
       type: 'string',
-      description: '',
-    }
+      description: 'A unique system-generated resource identifier.',
+    },
   };
 
   const openApiRoot: OpenApiObject = {

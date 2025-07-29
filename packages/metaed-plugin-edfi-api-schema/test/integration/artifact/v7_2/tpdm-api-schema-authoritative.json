@@ -1627,7 +1627,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "reasonExitedDescriptor": {
@@ -3520,7 +3520,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "languages": {
@@ -6678,7 +6678,7 @@
                     "x-nullable": true
                   },
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "personReference": {
@@ -6901,7 +6901,7 @@
                       "uniqueItems": false
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "programId": {
@@ -10190,7 +10190,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     }
                   },
@@ -11136,7 +11136,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "maxRating": {
@@ -12203,7 +12203,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "objectiveRatingLevelDescriptor": {
@@ -13105,7 +13105,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "maxRating": {
@@ -16034,7 +16034,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "performanceEvaluationRatingReference": {
@@ -17573,7 +17573,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "interRaterReliabilityScore": {
@@ -18348,7 +18348,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "pellGrantRecipient": {
@@ -21001,7 +21001,7 @@
                       "x-nullable": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "performanceEvaluationRatingLevelDescriptor": {
@@ -22559,7 +22559,7 @@
                       "uniqueItems": false
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "performanceEvaluationDescription": {
@@ -23395,7 +23395,7 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "rubricRating": {
@@ -24586,7 +24586,7 @@
                 "description": "",
                 "properties": {
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "postSecondaryInstitutionReference": {
@@ -24762,7 +24762,7 @@
                   "description": "The association provides information about the survey being taken and who the survey is about.",
                   "properties": {
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "personReference": {
@@ -25276,7 +25276,7 @@
                 "description": "",
                 "properties": {
                   "id": {
-                    "description": "",
+                    "description": "A unique system-generated resource identifier.",
                     "type": "string"
                   },
                   "personReference": {
@@ -25475,7 +25475,7 @@
                   "description": "This association provides information about the survey section and the person the survey section is about.",
                   "properties": {
                     "id": {
-                      "description": "",
+                      "description": "A unique system-generated resource identifier.",
                       "type": "string"
                     },
                     "personReference": {
