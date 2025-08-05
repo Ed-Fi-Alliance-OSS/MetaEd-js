@@ -29,6 +29,7 @@ export type SchoolYearOpenApis = {
 export function newSchoolYearOpenApis(minSchoolYear: number, maxSchoolYear: number): SchoolYearOpenApis {
   const schoolYearOpenApi: OpenApiProperty = {
     type: 'integer',
+    format: 'int32',
     description: `A school year between ${minSchoolYear} and ${maxSchoolYear}`,
     minimum: minSchoolYear,
     maximum: maxSchoolYear,
@@ -155,8 +156,12 @@ export function openApiPropertyForNonReference(
 
     case 'integer':
     case 'sharedInteger': {
-      const result: OpenApiProperty = { type: 'integer', description };
       const integerProperty: IntegerProperty = property as IntegerProperty;
+      const result: OpenApiProperty = {
+        type: 'integer',
+        description,
+        format: integerProperty.hasBigHint ? 'int64' : 'int32',
+      };
       if (integerProperty.minValue) result.minimum = Number(integerProperty.minValue);
       if (integerProperty.maxValue) result.maximum = Number(integerProperty.maxValue);
       return result;
@@ -164,7 +169,7 @@ export function openApiPropertyForNonReference(
 
     case 'short':
     case 'sharedShort': {
-      const result: OpenApiProperty = { type: 'integer', description };
+      const result: OpenApiProperty = { type: 'integer', description, format: 'int32' };
       const shortProperty: ShortProperty = property as ShortProperty;
       if (shortProperty.minValue) result.minimum = Number(shortProperty.minValue);
       if (shortProperty.maxValue) result.maximum = Number(shortProperty.maxValue);
@@ -192,7 +197,7 @@ export function openApiPropertyForNonReference(
       return schoolYearOpenApi;
 
     case 'year':
-      return { type: 'integer', description };
+      return { type: 'integer', description, format: 'int32' };
 
     case 'choice':
     case 'inlineCommon':

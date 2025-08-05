@@ -1179,12 +1179,14 @@
                     },
                     "busRouteDuration": {
                       "description": "The number of minutes per week in which the bus route is operational.",
+                      "format": "int32",
                       "minimum": 1,
                       "type": "integer",
                       "x-nullable": true
                     },
                     "busRouteNumber": {
                       "description": "A unique identifier for the bus route.",
+                      "format": "int32",
                       "type": "integer",
                       "x-Ed-Fi-deprecatedReasons": "Expect removal of this element in a future release.",
                       "x-Ed-Fi-isDeprecated": true,
@@ -1300,6 +1302,7 @@
                   "properties": {
                     "busYear": {
                       "description": "The years in which the bus route has been in active.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -1329,6 +1332,7 @@
                     },
                     "busRouteNumber": {
                       "description": "A unique identifier for the bus route.",
+                      "format": "int32",
                       "type": "integer",
                       "x-Ed-Fi-deprecatedReasons": "Expect removal of this element in a future release.",
                       "x-Ed-Fi-isDeprecated": true,
@@ -1375,6 +1379,7 @@
                     },
                     "orderOfPriority": {
                       "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+                      "format": "int32",
                       "minimum": 1,
                       "type": "integer"
                     },
@@ -3422,6 +3427,7 @@
                   },
                   "becameParent": {
                     "description": "The year in which the contact first became a contact.",
+                    "format": "int32",
                     "type": "integer",
                     "x-nullable": true
                   },
@@ -3451,6 +3457,7 @@
                   },
                   "duration": {
                     "description": "The amount of time the contact spends reading to his/her children at bedtime.",
+                    "format": "int32",
                     "minimum": 1,
                     "type": "integer",
                     "x-nullable": true
@@ -3493,6 +3500,7 @@
                   },
                   "luckyNumber": {
                     "description": "The contact's lucky number.",
+                    "format": "int32",
                     "type": "integer",
                     "x-nullable": true
                   },
@@ -5089,10 +5097,12 @@
                   "properties": {
                     "maximumWeight": {
                       "description": "The preferred maximum weight of a household pet.",
+                      "format": "int32",
                       "type": "integer"
                     },
                     "minimumWeight": {
                       "description": "The preferred minimum weight of a household pet.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -5849,6 +5859,7 @@
                     },
                     "artPieces": {
                       "description": "The total number of art pieces completed by the student during the program.",
+                      "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
                       "type": "integer",
@@ -5922,6 +5933,7 @@
                     },
                     "portfolioPieces": {
                       "description": "The total number of pieces in the student's portfolio.",
+                      "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
                       "type": "integer",
@@ -6048,6 +6060,7 @@
                     },
                     "artPieces": {
                       "description": "This is documentation.",
+                      "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
                       "type": "integer"
@@ -6062,6 +6075,7 @@
                   "properties": {
                     "portfolioYear": {
                       "description": "The of year(s) of work included in the student's portfolio.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -6080,11 +6094,13 @@
                     },
                     "educationOrganizationId": {
                       "description": "The identifier assigned to an education organization.",
+                      "format": "int64",
                       "type": "integer",
                       "x-Ed-Fi-isIdentity": true
                     },
                     "programEducationOrganizationId": {
                       "description": "The identifier assigned to an education organization.",
+                      "format": "int64",
                       "type": "integer",
                       "x-Ed-Fi-isIdentity": true
                     },
@@ -7471,6 +7487,7 @@
                     },
                     "orderOfPriority": {
                       "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+                      "format": "int32",
                       "minimum": 1,
                       "type": "integer"
                     },
@@ -7519,6 +7536,7 @@
                   },
                   "booksBorrowed": {
                     "description": "The total number of books the contact has borrowed on behalf of the student to date.",
+                    "format": "int32",
                     "type": "integer",
                     "x-nullable": true
                   },
@@ -7556,6 +7574,7 @@
                   },
                   "libraryDuration": {
                     "description": "The actual or estimated number of clock minutes for a given library visit.",
+                    "format": "int32",
                     "minimum": 1,
                     "type": "integer",
                     "x-nullable": true
@@ -7568,6 +7587,7 @@
                   },
                   "libraryVisits": {
                     "description": "Total number of visits a student is allowed to the library in a single school day.",
+                    "format": "int32",
                     "type": "integer",
                     "x-nullable": true
                   },
@@ -7607,6 +7627,7 @@
                   },
                   "studentRead": {
                     "description": "The year in which the student's reading habits are being recorded.",
+                    "format": "int32",
                     "type": "integer",
                     "x-nullable": true
                   },
@@ -9022,6 +9043,7 @@
                   "properties": {
                     "careerPathwayCode": {
                       "description": "The code representing the student's intended career pathway after graduation.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -9105,6 +9127,7 @@
                   "properties": {
                     "educationOrganizationId": {
                       "description": "The identifier assigned to an education organization.",
+                      "format": "int64",
                       "type": "integer",
                       "x-Ed-Fi-isIdentity": true
                     },
@@ -9116,6 +9139,7 @@
                     },
                     "graduationSchoolYear": {
                       "description": "A school year between 1900 and 2100",
+                      "format": "int32",
                       "maximum": 2100,
                       "minimum": 1900,
                       "type": "integer",
@@ -9151,6 +9175,7 @@
                   "properties": {
                     "yearsAttended": {
                       "description": "The number of years the student will have attended high school by the time of graduation.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -10273,6 +10298,7 @@
                   "properties": {
                     "mimimumTankVolume": {
                       "description": "The minimum tank volume this aquatic pet requires.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },
@@ -10317,6 +10343,7 @@
                     },
                     "artPieces": {
                       "description": "This is documentation.",
+                      "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
                       "type": "integer"
@@ -10349,10 +10376,12 @@
                   "properties": {
                     "maximumWeight": {
                       "description": "The preferred maximum weight of a household pet.",
+                      "format": "int32",
                       "type": "integer"
                     },
                     "minimumWeight": {
                       "description": "The preferred minimum weight of a household pet.",
+                      "format": "int32",
                       "type": "integer"
                     }
                   },

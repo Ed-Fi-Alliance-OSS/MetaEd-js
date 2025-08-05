@@ -89,6 +89,7 @@ describe('when building simple domain entity with all the identities', () => {
           },
           "integerIdentity": Object {
             "description": "doc3",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -350,6 +351,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
+            "format": "int32",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
@@ -402,6 +404,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
+            "format": "int32",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
@@ -441,6 +444,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
+            "format": "int32",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
@@ -696,6 +700,7 @@ describe('when building domain entity subclass with common collection and descri
         "properties": Object {
           "communityOrganizationId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -930,11 +935,13 @@ describe(
           "properties": Object {
             "assigningEducationOrganizationId": Object {
               "description": "doc",
+              "format": "int32",
               "type": "integer",
               "x-Ed-Fi-isIdentity": true,
             },
             "educationOrganizationId": Object {
               "description": "doc",
+              "format": "int32",
               "type": "integer",
               "x-Ed-Fi-isIdentity": true,
             },
