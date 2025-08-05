@@ -91,14 +91,6 @@ export type BaseResourceSchema = {
   arrayUniquenessConstraints: ArrayUniquenessConstraint[];
 
   /**
-   * OpenAPI fragments for this resource, keyed by document type.
-   * Each fragment contains partial OpenAPI specification data.
-   */
-  openApiFragments: {
-    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
-  };
-
-  /**
    * Whether this resource is a descriptor. Descriptors are treated differently from other resources
    */
   isDescriptor: boolean;
@@ -117,6 +109,14 @@ export type BaseResourceSchema = {
    * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
   identityJsonPaths: JsonPath[];
+
+  /**
+   * OpenAPI fragments for this resource, keyed by document type.
+   * Each fragment contains partial OpenAPI specification data.
+   */
+  openApiFragments: {
+    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
+  };
 };
 
 /**
