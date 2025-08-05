@@ -97,14 +97,6 @@ export type BaseResourceSchema = {
   openApiFragments: {
     [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
   };
-};
-
-/**
- * API resource schema information common between regular and subclass resources for
- * non-extensions
- */
-export type NonExtensionResourceSchema = BaseResourceSchema & {
-  isResourceExtension: false;
 
   /**
    * Whether this resource is a descriptor. Descriptors are treated differently from other resources
@@ -125,7 +117,14 @@ export type NonExtensionResourceSchema = BaseResourceSchema & {
    * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
   identityJsonPaths: JsonPath[];
+};
 
+/**
+ * API resource schema information common between regular and subclass resources for
+ * non-extensions
+ */
+export type NonExtensionResourceSchema = BaseResourceSchema & {
+  isResourceExtension: false;
   /**
    * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
    */
@@ -160,10 +159,6 @@ export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSche
  */
 export type ResourceExtensionSchema = BaseResourceSchema & {
   isResourceExtension: true;
-  allowIdentityUpdates: boolean;
-  identityJsonPaths: JsonPath[];
-  isDescriptor: boolean;
-  isSchoolYearEnumeration: boolean;
 };
 
 /**
