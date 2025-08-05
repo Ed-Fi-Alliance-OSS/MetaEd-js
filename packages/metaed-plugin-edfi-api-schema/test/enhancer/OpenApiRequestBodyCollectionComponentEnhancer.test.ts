@@ -247,6 +247,7 @@ describe('when building simple domain entity with all the simple collections', (
             "properties": Object {
               "requiredIntegerProperty": Object {
                 "description": "doc8",
+                "format": "int32",
                 "maximum": 10,
                 "minimum": 5,
                 "type": "integer",
@@ -264,6 +265,7 @@ describe('when building simple domain entity with all the simple collections', (
             "properties": Object {
               "optionalShortProperty": Object {
                 "description": "doc9",
+                "format": "int32",
                 "type": "integer",
               },
             },
@@ -312,6 +314,7 @@ describe('when building simple domain entity with all the simple collections', (
             "properties": Object {
               "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
+                "format": "int32",
                 "maximum": 2100,
                 "minimum": 1900,
                 "type": "integer",
@@ -329,6 +332,7 @@ describe('when building simple domain entity with all the simple collections', (
             "properties": Object {
               "optionalYear": Object {
                 "description": "doc14",
+                "format": "int32",
                 "type": "integer",
               },
             },
@@ -739,10 +743,12 @@ describe('when building association with a common collection in a common collect
             "properties": Object {
               "beginDate": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
               "endDate": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
             },
@@ -1379,6 +1385,7 @@ describe('when building a domain entity with an inline common property with a de
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1474,6 +1481,7 @@ describe('when building a domain entity with a common property with a descriptor
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1868,6 +1876,7 @@ describe('when building domain entity with a scalar collection in a common colle
             "properties": Object {
               "integerCollection": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
             },
@@ -1950,6 +1959,7 @@ describe('when building domain entity with a scalar collection in a common colle
           },
           "integerIdentity": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -2024,6 +2034,7 @@ describe('when building domain entity with a scalar collection in a common colle
             "properties": Object {
               "integerCollection": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
             },
@@ -2063,6 +2074,7 @@ describe('when building domain entity with a scalar collection in a common colle
             "properties": Object {
               "integerCollection": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
             },

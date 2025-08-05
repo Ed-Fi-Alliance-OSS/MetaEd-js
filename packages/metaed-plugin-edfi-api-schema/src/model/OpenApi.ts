@@ -59,7 +59,7 @@ export type OpenApiProperty =
   | ({
       type: 'string';
       description: string;
-      format?: 'date' | 'date-time' | 'time' | 'int32' | 'double';
+      format?: 'date' | 'date-time' | 'time' | 'int32' | 'int64' | 'double';
       minLength?: number;
       maxLength?: number;
       pattern?: string;
@@ -67,6 +67,7 @@ export type OpenApiProperty =
   | ({
       type: 'integer';
       description: string;
+      format: 'int32' | 'int64';
       minimum?: number;
       maximum?: number;
     } & EdFiOpenApiObjectExtensions)

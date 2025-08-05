@@ -290,6 +290,7 @@ describe('when domain entity subclass in extension has a DS common collection', 
               },
               "serviceIdentity": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
             },

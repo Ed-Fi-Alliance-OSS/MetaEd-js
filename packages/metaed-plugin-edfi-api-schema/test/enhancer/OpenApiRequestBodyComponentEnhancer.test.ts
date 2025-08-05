@@ -112,11 +112,13 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "optionalShortProperty": Object {
             "description": "doc9",
+            "format": "int32",
             "type": "integer",
             "x-nullable": true,
           },
           "optionalYear": Object {
             "description": "doc13",
+            "format": "int32",
             "type": "integer",
             "x-nullable": true,
           },
@@ -142,6 +144,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredIntegerProperty": Object {
             "description": "doc8",
+            "format": "int32",
             "maximum": 10,
             "minimum": 5,
             "type": "integer",
@@ -1101,6 +1104,7 @@ describe('when building domain entity with a simple common collection', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1188,6 +1192,7 @@ describe('when building domain entity subclass with common collection and descri
         "properties": Object {
           "communityOrganizationId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1276,6 +1281,7 @@ describe('when building association with a common collection in a common collect
           },
           "studentId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1339,6 +1345,7 @@ describe('when building domain entity with a descriptor with role name', () => {
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1408,6 +1415,7 @@ describe('when building domain entity with a descriptor collection with role nam
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1478,6 +1486,7 @@ describe('when building domain entity with a common with a choice', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1549,6 +1558,7 @@ describe('when building domain entity with a common and a common collection with
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1615,6 +1625,7 @@ describe('when building domain entity with an all-caps property', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1689,6 +1700,7 @@ describe('when building domain entity with a common with a domain entity referen
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1763,6 +1775,7 @@ describe('when building domain entity with two school year enumerations, one rol
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1833,6 +1846,7 @@ describe('when building domain entity with reference to domain entity with schoo
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
@@ -1969,6 +1983,7 @@ describe('when building a school year enumeration', () => {
         "properties": Object {
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
+            "format": "int32",
             "maximum": 2100,
             "minimum": 1900,
             "type": "integer",
@@ -2134,6 +2149,7 @@ describe('when building a domain entity with an inline common property with a de
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
+            "format": "int32",
             "type": "integer",
             "x-Ed-Fi-isIdentity": true,
           },
