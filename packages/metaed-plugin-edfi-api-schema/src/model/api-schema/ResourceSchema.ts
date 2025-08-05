@@ -164,7 +164,6 @@ export type ResourceExtensionSchema = BaseResourceSchema & {
   identityJsonPaths: JsonPath[];
   isDescriptor: boolean;
   isSchoolYearEnumeration: boolean;
-  isSubclass: boolean;
 };
 
 /**

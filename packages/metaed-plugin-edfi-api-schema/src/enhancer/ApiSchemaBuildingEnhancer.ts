@@ -140,7 +140,6 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     identityJsonPaths: entityApiSchemaData.identityJsonPaths ?? [],
     isDescriptor: entity.type === 'descriptor',
     isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
-    isSubclass: false,
   };
 }
 
@@ -273,7 +272,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntityExtension', 'associationExtension').forEach((entity) => {
       const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
-      resourceSchemas[endpointName] = buildResourceExtensionSchema(entity as TopLevelEntity);
+      resourceSchemas[endpointName] = { ...buildResourceExtensionSchema(entity as TopLevelEntity), isSubclass: false };
     });
 
     if (!projectSchema.isExtensionProject) {
