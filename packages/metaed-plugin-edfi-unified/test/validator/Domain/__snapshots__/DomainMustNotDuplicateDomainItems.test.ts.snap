@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`when validating domain entity domain item duplicates domain items should have one validation failure 1`] = `"Domain Entity Domain Item 'DomainEntityName' has a duplicate Domain Item."`;
+exports[`when validating domain entity domain item duplicates domain items should have one validation failure 1`] = `"Domain Item 'DomainEntityName' of type 'domainEntity' has a duplicate within the same type."`;
 
 exports[`when validating domain entity domain item duplicates domain items should have one validation failure 2`] = `
 Object {
@@ -10,7 +10,7 @@ Object {
 }
 `;
 
-exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 1`] = `"Domain Entity Domain Item 'DomainEntityName' has a duplicate Domain Item."`;
+exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 1`] = `"Domain Item 'DomainEntityName' of type 'domainEntity' has a duplicate within the same type."`;
 
 exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 2`] = `
 Object {
@@ -20,7 +20,7 @@ Object {
 }
 `;
 
-exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 3`] = `"Domain Entity Domain Item 'DomainEntityName2' has a duplicate Domain Item."`;
+exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 3`] = `"Domain Item 'DomainEntityName2' of type 'domainEntity' has a duplicate within the same type."`;
 
 exports[`when validating domain entity domain item has multiple duplicate domain items should have multiple validation failures 4`] = `
 Object {

@@ -124,3 +124,87 @@ describe('when validating domain entity domain item has multiple duplicate domai
     expect(failures[1].sourceMap).toMatchSnapshot();
   });
 });
+
+describe('when validating domain items with same name but different referenced types', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const domainName = 'DomainName';
+  const sharedName = 'Student';
+
+  let failures: ValidationFailure[];
+  let coreNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomain(domainName)
+      .withDocumentation('doc')
+      .withDomainEntityDomainItem(sharedName)
+      .withDescriptorDomainItem(sharedName)
+      .withAssociationDomainItem(sharedName)
+      .withCommonDomainItem(sharedName)
+      .withFooterDocumentation('FooterDocumentation')
+      .withEndDomain()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get('EdFi');
+    failures = validate(metaEd);
+  });
+
+  it('should build one domain entity', (): void => {
+    expect(coreNamespace.entity.domain.size).toBe(1);
+  });
+
+  it('should have no validation failures', (): void => {
+    expect(failures).toHaveLength(0);
+  });
+
+  it('should have four domain items with the same name', (): void => {
+    const domain: any = Array.from(coreNamespace.entity.domain.values())[0];
+    expect(domain.domainItems).toHaveLength(4);
+    expect(domain.domainItems.every((item: any) => item.metaEdName === sharedName)).toBe(true);
+  });
+});
+
+describe('when validating domain items with duplicates within same referenced type', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const domainName = 'DomainName';
+  const sharedName = 'Student';
+
+  let failures: ValidationFailure[];
+  let coreNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomain(domainName)
+      .withDocumentation('doc')
+      .withDomainEntityDomainItem(sharedName)
+      .withDomainEntityDomainItem(sharedName) // Duplicate within domainEntity type
+      .withDescriptorDomainItem(sharedName)
+      .withDescriptorDomainItem(sharedName) // Duplicate within descriptor type
+      .withAssociationDomainItem('Teacher') // No duplicate
+      .withCommonDomainItem('Address') // No duplicate
+      .withFooterDocumentation('FooterDocumentation')
+      .withEndDomain()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get('EdFi');
+    failures = validate(metaEd);
+  });
+
+  it('should build one domain entity', (): void => {
+    expect(coreNamespace.entity.domain.size).toBe(1);
+  });
+
+  it('should have two validation failures', (): void => {
+    expect(failures).toHaveLength(2);
+    expect(failures[0].validatorName).toBe('DomainMustNotDuplicateDomainItems');
+    expect(failures[0].message).toContain('domainEntity');
+    expect(failures[1].validatorName).toBe('DomainMustNotDuplicateDomainItems');
+    expect(failures[1].message).toContain('descriptor');
+  });
+});
