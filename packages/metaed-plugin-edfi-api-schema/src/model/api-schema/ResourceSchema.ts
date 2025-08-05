@@ -160,6 +160,11 @@ export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSche
  */
 export type ResourceExtensionSchema = BaseResourceSchema & {
   isResourceExtension: true;
+  allowIdentityUpdates: boolean;
+  identityJsonPaths: JsonPath[];
+  isDescriptor: boolean;
+  isSchoolYearEnumeration: boolean;
+  isSubclass: boolean;
 };
 
 /**

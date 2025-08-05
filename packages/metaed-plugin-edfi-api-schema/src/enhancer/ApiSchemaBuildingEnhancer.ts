@@ -135,6 +135,12 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: true,
     openApiFragments: entityApiSchemaData.openApiFragments,
+    // Additional properties specific to resource extensions
+    allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
+    identityJsonPaths: entityApiSchemaData.identityJsonPaths ?? [],
+    isDescriptor: entity.type === 'descriptor',
+    isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
+    isSubclass: false,
   };
 }
 

@@ -2354,6 +2354,7 @@
         }
       },
       "contacts": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
             "nestedConstraints": [
@@ -2759,7 +2760,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -4659,6 +4665,7 @@
         }
       },
       "schools": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -4741,7 +4748,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -4927,6 +4939,7 @@
         }
       },
       "staffs": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
             "paths": [
@@ -4987,7 +5000,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -6771,6 +6789,7 @@
         "superclassResourceName": "GeneralStudentProgramAssociation"
       },
       "studentCTEProgramAssociations": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -6805,7 +6824,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -6886,6 +6910,7 @@
         }
       },
       "studentContactAssociations": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
             "paths": [
@@ -7135,7 +7160,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -7639,6 +7669,7 @@
         }
       },
       "studentEducationOrganizationAssociations": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
             "nestedConstraints": [
@@ -7873,7 +7904,12 @@
             "targetJsonPath": "$.educationOrganizationReference.educationOrganizationId"
           }
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -9714,6 +9750,7 @@
         }
       },
       "studentSchoolAssociations": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -9742,7 +9779,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -9813,6 +9855,7 @@
         }
       },
       "studentSectionAssociations": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -9876,7 +9919,12 @@
             "targetJsonPath": "$.studentReference.studentUniqueId"
           }
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -10015,6 +10063,7 @@
         }
       },
       "students": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
           {
             "paths": [
@@ -10126,7 +10175,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
