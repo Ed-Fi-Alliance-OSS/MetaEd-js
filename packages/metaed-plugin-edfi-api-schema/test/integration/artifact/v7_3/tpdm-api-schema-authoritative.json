@@ -6381,6 +6381,7 @@
         }
       },
       "credentials": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -6502,7 +6503,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -24534,6 +24540,7 @@
         }
       },
       "schools": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -24567,7 +24574,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
@@ -25213,6 +25225,7 @@
         }
       },
       "surveyResponses": {
+        "allowIdentityUpdates": false,
         "arrayUniquenessConstraints": [
         ],
         "authorizationPathways": [
@@ -25251,7 +25264,12 @@
         ],
         "equalityConstraints": [
         ],
+        "identityJsonPaths": [
+        ],
+        "isDescriptor": false,
         "isResourceExtension": true,
+        "isSchoolYearEnumeration": false,
+        "isSubclass": false,
         "jsonSchemaForInsert": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
