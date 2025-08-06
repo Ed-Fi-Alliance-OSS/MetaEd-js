@@ -213,7 +213,6 @@ export function openApiPropertyForNonReference(
       if (property.parentEntity.type === 'common') {
         // For a common, the school year ends up being nested under a reference object
         const result: OpenApiProperty = { $ref: schoolYearEnumerationRef };
-        if (property.isOptional) result['x-nullable'] = true;
         return result;
       }
 
