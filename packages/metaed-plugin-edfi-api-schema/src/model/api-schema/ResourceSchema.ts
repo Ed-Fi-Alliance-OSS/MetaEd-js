@@ -91,22 +91,6 @@ export type BaseResourceSchema = {
   arrayUniquenessConstraints: ArrayUniquenessConstraint[];
 
   /**
-   * OpenAPI fragments for this resource, keyed by document type.
-   * Each fragment contains partial OpenAPI specification data.
-   */
-  openApiFragments: {
-    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
-  };
-};
-
-/**
- * API resource schema information common between regular and subclass resources for
- * non-extensions
- */
-export type NonExtensionResourceSchema = BaseResourceSchema & {
-  isResourceExtension: false;
-
-  /**
    * Whether this resource is a descriptor. Descriptors are treated differently from other resources
    */
   isDescriptor: boolean;
@@ -126,6 +110,21 @@ export type NonExtensionResourceSchema = BaseResourceSchema & {
    */
   identityJsonPaths: JsonPath[];
 
+  /**
+   * OpenAPI fragments for this resource, keyed by document type.
+   * Each fragment contains partial OpenAPI specification data.
+   */
+  openApiFragments: {
+    [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
+  };
+};
+
+/**
+ * API resource schema information common between regular and subclass resources for
+ * non-extensions
+ */
+export type NonExtensionResourceSchema = BaseResourceSchema & {
+  isResourceExtension: false;
   /**
    * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
    */
