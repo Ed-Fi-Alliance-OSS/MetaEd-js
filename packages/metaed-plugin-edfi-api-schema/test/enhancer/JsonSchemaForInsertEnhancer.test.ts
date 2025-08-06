@@ -11,6 +11,7 @@ import {
   DomainEntityBuilder,
   ChoiceBuilder,
   CommonBuilder,
+  CommonSubclassBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
@@ -26,6 +27,7 @@ import {
   choiceReferenceEnhancer,
   inlineCommonReferenceEnhancer,
   commonReferenceEnhancer,
+  commonSubclassBaseClassEnhancer,
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
@@ -3016,3 +3018,284 @@ describe(
     });
   },
 );
+
+describe('when building domain entity with CommonSubclass property that inherits from Common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('Pet', 'doc', false, true)
+      .withCommonProperty('AquaticPet', 'doc', false, true)
+      .withEndDomainEntity()
+      .withStartCommon('Pet')
+      .withDocumentation('doc')
+      .withStringProperty('PetName', 'doc', true, false, '20', '3')
+      .withBooleanProperty('IsFixed', 'doc', false, false)
+      .withEndCommon()
+      .withStartCommonSubclass('AquaticPet', 'Pet')
+      .withDocumentation('doc')
+      .withIntegerProperty('MimimumTankVolume', 'doc', true, false)
+      .withEndCommonSubclass()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonSubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    commonSubclassBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should generate correct schema for domain entity with CommonSubclass property', () => {
+    const entity = namespace.entity.domainEntity.get('Student');
+    const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
+    expect(schema).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "doc",
+          "properties": Object {
+            "aquaticPets": Object {
+              "items": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "isFixed": Object {
+                    "description": "doc",
+                    "type": "boolean",
+                  },
+                  "mimimumTankVolume": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                  "petName": Object {
+                    "description": "doc",
+                    "maxLength": 20,
+                    "minLength": 3,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                },
+                "required": Array [
+                  "mimimumTankVolume",
+                  "petName",
+                ],
+                "type": "object",
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false,
+            },
+            "pets": Object {
+              "items": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "isFixed": Object {
+                    "description": "doc",
+                    "type": "boolean",
+                  },
+                  "petName": Object {
+                    "description": "doc",
+                    "maxLength": 20,
+                    "minLength": 3,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                },
+                "required": Array [
+                  "petName",
+                ],
+                "type": "object",
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false,
+            },
+            "studentUniqueId": Object {
+              "description": "doc",
+              "maxLength": 32,
+              "pattern": "^(?!\\\\s)(.*\\\\S)$",
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "studentUniqueId",
+          ],
+          "title": "EdFi.Student",
+          "type": "object",
+        }
+      `);
+  });
+});
+
+describe('when building domain entity with CommonSubclass with complex inheritance chain', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withStringIdentity('SchoolId', 'doc', '32')
+      .withCommonProperty('Vehicle', 'doc', false, true)
+      .withCommonProperty('ElectricVehicle', 'doc', false, true)
+      .withEndDomainEntity()
+      .withStartCommon('Vehicle')
+      .withDocumentation('doc')
+      .withStringProperty('Make', 'doc', true, false, '50')
+      .withStringProperty('Model', 'doc', true, false, '50')
+      .withIntegerProperty('Year', 'doc', false, false)
+      .withBooleanProperty('IsOperational', 'doc', false, false)
+      .withEndCommon()
+      .withStartCommonSubclass('ElectricVehicle', 'Vehicle')
+      .withDocumentation('doc')
+      .withDecimalProperty('BatteryCapacity', 'doc', true, false, '5', '2')
+      .withIntegerProperty('Range', 'doc', false, false)
+      .withBooleanProperty('FastChargeCapable', 'doc', true, false)
+      .withEndCommonSubclass()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonSubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    commonSubclassBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should generate correct schema with all inherited properties and correct types', () => {
+    const entity = namespace.entity.domainEntity.get('School');
+    const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
+    expect(schema).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "description": "doc",
+          "properties": Object {
+            "electricVehicles": Object {
+              "items": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "batteryCapacity": Object {
+                    "description": "doc",
+                    "type": "number",
+                  },
+                  "fastChargeCapable": Object {
+                    "description": "doc",
+                    "type": "boolean",
+                  },
+                  "isOperational": Object {
+                    "description": "doc",
+                    "type": "boolean",
+                  },
+                  "make": Object {
+                    "description": "doc",
+                    "maxLength": 50,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                  "model": Object {
+                    "description": "doc",
+                    "maxLength": 50,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                  "range": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                  "year": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                },
+                "required": Array [
+                  "batteryCapacity",
+                  "fastChargeCapable",
+                  "make",
+                  "model",
+                ],
+                "type": "object",
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false,
+            },
+            "schoolId": Object {
+              "description": "doc",
+              "maxLength": 32,
+              "pattern": "^(?!\\\\s)(.*\\\\S)$",
+              "type": "string",
+            },
+            "vehicles": Object {
+              "items": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "isOperational": Object {
+                    "description": "doc",
+                    "type": "boolean",
+                  },
+                  "make": Object {
+                    "description": "doc",
+                    "maxLength": 50,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                  "model": Object {
+                    "description": "doc",
+                    "maxLength": 50,
+                    "pattern": "^(?!\\\\s*$).+",
+                    "type": "string",
+                  },
+                  "year": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                },
+                "required": Array [
+                  "make",
+                  "model",
+                ],
+                "type": "object",
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false,
+            },
+          },
+          "required": Array [
+            "schoolId",
+          ],
+          "title": "EdFi.School",
+          "type": "object",
+        }
+      `);
+  });
+});
