@@ -9,6 +9,7 @@ import {
   DomainEntityBuilder,
   ChoiceBuilder,
   CommonBuilder,
+  CommonSubclassBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
@@ -27,6 +28,7 @@ import {
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
+  commonSubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
@@ -3465,5 +3467,263 @@ describe('when building domain entity referencing another which has inline commo
         ],
       }
     `);
+  });
+});
+
+describe('when building domain entity with CommonSubclass property that inherits from Common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Student')
+      .withDocumentation('A learner or someone who is enrolled in an educational course.')
+      .withStringIdentity('StudentUniqueId', 'A unique identifier for the student', '32')
+      .withCommonProperty('Address', 'The address of the student', false, true)
+      .withCommonProperty('PhysicalAddress', 'The physical address of the student', false, true)
+      .withEndDomainEntity()
+      .withStartCommon('Address')
+      .withDocumentation('A physical or mailing address.')
+      .withStringProperty(
+        'StreetNumberName',
+        'The street number and street name or post office box number of an address.',
+        true,
+        false,
+        '150',
+      )
+      .withStringProperty('City', 'The name of the city in which an address is located.', true, false, '30')
+      .withStringProperty(
+        'PostalCode',
+        'The five or nine digit zip code or overseas postal code portion of an address.',
+        false,
+        false,
+        '17',
+      )
+      .withEndCommon()
+      .withStartCommonSubclass('PhysicalAddress', 'Address')
+      .withDocumentation('The physical address of a student.')
+      .withStringProperty(
+        'BuildingName',
+        'Name of the building on the site, if more than one building shares the same address.',
+        false,
+        false,
+        '20',
+      )
+      .withBooleanProperty('IsMailingAddress', 'An indication that the address is a mailing address.', true, false)
+      .withEndCommonSubclass()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonSubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    commonSubclassBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should generate correct JSON paths for CommonSubclass with inherited properties', () => {
+    const entity = namespace.entity.domainEntity.get('Student');
+    const mappings: Snapshotable = snapshotify(entity);
+
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].city",
+            "propertyName": "City",
+          },
+        ],
+        "Address.PostalCode": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].postalCode",
+            "propertyName": "PostalCode",
+          },
+        ],
+        "Address.StreetNumberName": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].streetNumberName",
+            "propertyName": "StreetNumberName",
+          },
+        ],
+        "PhysicalAddress.BuildingName": Array [
+          Object {
+            "entityName": "PhysicalAddress",
+            "jsonPath": "$.physicalAddresses[*].buildingName",
+            "propertyName": "BuildingName",
+          },
+        ],
+        "PhysicalAddress.City": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].city",
+            "propertyName": "City",
+          },
+        ],
+        "PhysicalAddress.IsMailingAddress": Array [
+          Object {
+            "entityName": "PhysicalAddress",
+            "jsonPath": "$.physicalAddresses[*].isMailingAddress",
+            "propertyName": "IsMailingAddress",
+          },
+        ],
+        "PhysicalAddress.PostalCode": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].postalCode",
+            "propertyName": "PostalCode",
+          },
+        ],
+        "PhysicalAddress.StreetNumberName": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].streetNumberName",
+            "propertyName": "StreetNumberName",
+          },
+        ],
+        "StudentUniqueId": Array [
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentUniqueId",
+            "propertyName": "StudentUniqueId",
+          },
+        ],
+      }
+    `);
+
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": true,
+        "Address.PostalCode": true,
+        "Address.StreetNumberName": true,
+        "PhysicalAddress.BuildingName": true,
+        "PhysicalAddress.City": true,
+        "PhysicalAddress.IsMailingAddress": true,
+        "PhysicalAddress.PostalCode": true,
+        "PhysicalAddress.StreetNumberName": true,
+        "StudentUniqueId": true,
+      }
+    `);
+
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": "City",
+        "Address.PostalCode": "PostalCode",
+        "Address.StreetNumberName": "StreetNumberName",
+        "PhysicalAddress.BuildingName": "BuildingName",
+        "PhysicalAddress.City": "City",
+        "PhysicalAddress.IsMailingAddress": "IsMailingAddress",
+        "PhysicalAddress.PostalCode": "PostalCode",
+        "PhysicalAddress.StreetNumberName": "StreetNumberName",
+        "StudentUniqueId": "StudentUniqueId",
+      }
+    `);
+
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": false,
+        "Address.PostalCode": false,
+        "Address.StreetNumberName": false,
+        "PhysicalAddress.BuildingName": false,
+        "PhysicalAddress.City": false,
+        "PhysicalAddress.IsMailingAddress": false,
+        "PhysicalAddress.PostalCode": false,
+        "PhysicalAddress.StreetNumberName": false,
+        "StudentUniqueId": false,
+      }
+    `);
+  });
+
+  it('should include both inherited and own properties in CommonSubclass JSON paths', () => {
+    const entity = namespace.entity.domainEntity.get('Student');
+    const mappings: Snapshotable = snapshotify(entity);
+
+    // Get all PhysicalAddress property paths
+    const physicalAddressPaths = Object.keys(mappings.jsonPaths).filter((key) => key.startsWith('PhysicalAddress.'));
+
+    // Should have 5 properties total: 3 inherited (StreetNumberName, City, PostalCode) + 2 own (BuildingName, IsMailingAddress)
+    expect(physicalAddressPaths).toHaveLength(5);
+
+    // Check that inherited properties are present
+    expect(physicalAddressPaths).toContain('PhysicalAddress.StreetNumberName');
+    expect(physicalAddressPaths).toContain('PhysicalAddress.City');
+    expect(physicalAddressPaths).toContain('PhysicalAddress.PostalCode');
+
+    // Check that own properties are present
+    expect(physicalAddressPaths).toContain('PhysicalAddress.BuildingName');
+    expect(physicalAddressPaths).toContain('PhysicalAddress.IsMailingAddress');
+
+    // Verify that inherited properties have correct JSON paths
+    // Note: For inherited properties, entityName is still the base Common entity
+    expect(mappings.jsonPaths['PhysicalAddress.StreetNumberName']).toEqual([
+      {
+        entityName: 'Address',
+        jsonPath: '$.physicalAddresses[*].streetNumberName',
+        propertyName: 'StreetNumberName',
+      },
+    ]);
+
+    expect(mappings.jsonPaths['PhysicalAddress.City']).toEqual([
+      {
+        entityName: 'Address',
+        jsonPath: '$.physicalAddresses[*].city',
+        propertyName: 'City',
+      },
+    ]);
+
+    // Verify that own properties have correct JSON paths
+    expect(mappings.jsonPaths['PhysicalAddress.BuildingName']).toEqual([
+      {
+        entityName: 'PhysicalAddress',
+        jsonPath: '$.physicalAddresses[*].buildingName',
+        propertyName: 'BuildingName',
+      },
+    ]);
+
+    expect(mappings.jsonPaths['PhysicalAddress.IsMailingAddress']).toEqual([
+      {
+        entityName: 'PhysicalAddress',
+        jsonPath: '$.physicalAddresses[*].isMailingAddress',
+        propertyName: 'IsMailingAddress',
+      },
+    ]);
+  });
+
+  it('should maintain separate JSON paths for base Common and CommonSubclass properties', () => {
+    const entity = namespace.entity.domainEntity.get('Student');
+    const mappings: Snapshotable = snapshotify(entity);
+
+    // Base Common (Address) should have its own paths
+    const addressPaths = Object.keys(mappings.jsonPaths).filter(
+      (key) => key.startsWith('Address.') && !key.startsWith('PhysicalAddress.'),
+    );
+    expect(addressPaths).toHaveLength(3);
+
+    // CommonSubclass (PhysicalAddress) should have paths for all properties (inherited + own)
+    const physicalAddressPaths = Object.keys(mappings.jsonPaths).filter((key) => key.startsWith('PhysicalAddress.'));
+    expect(physicalAddressPaths).toHaveLength(5);
+
+    // Verify that Address paths point to different JSON locations than PhysicalAddress paths
+    expect(mappings.jsonPaths['Address.StreetNumberName'][0].jsonPath).toBe('$.addresses[*].streetNumberName');
+    expect(mappings.jsonPaths['PhysicalAddress.StreetNumberName'][0].jsonPath).toBe(
+      '$.physicalAddresses[*].streetNumberName',
+    );
+
+    expect(mappings.jsonPaths['Address.City'][0].jsonPath).toBe('$.addresses[*].city');
+    expect(mappings.jsonPaths['PhysicalAddress.City'][0].jsonPath).toBe('$.physicalAddresses[*].city');
   });
 });

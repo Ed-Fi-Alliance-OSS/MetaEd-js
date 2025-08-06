@@ -10137,7 +10137,8 @@
         "arrayUniquenessConstraints": [
           {
             "paths": [
-              "$._ext.sample.aquaticPets[*].mimimumTankVolume"
+              "$._ext.sample.aquaticPets[*].mimimumTankVolume",
+              "$._ext.sample.aquaticPets[*].petName"
             ]
           },
           {
@@ -10162,6 +10163,7 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+          "$._ext.sample.aquaticPets[*].isFixed",
           "$._ext.sample.pets[*].isFixed"
         ],
         "dateJsonPaths": [
@@ -10171,12 +10173,26 @@
         "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
+          "AquaticPet.IsFixed": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.aquaticPets[*].isFixed",
+            "type": "boolean"
+          },
           "AquaticPet.MimimumTankVolume": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.aquaticPets[*].mimimumTankVolume",
             "type": "number"
+          },
+          "AquaticPet.PetName": {
+            "isPartOfIdentity": true,
+            "isReference": false,
+            "isRequired": true,
+            "path": "$._ext.sample.aquaticPets[*].petName",
+            "type": "string"
           },
           "FavoriteBook.BookTitle": {
             "isPartOfIdentity": false,
@@ -10268,13 +10284,25 @@
                       "items": {
                         "additionalProperties": false,
                         "properties": {
+                          "isFixed": {
+                            "description": "An indication as to whether the pet has been spayed/neutered.",
+                            "type": "boolean"
+                          },
                           "mimimumTankVolume": {
                             "description": "The minimum tank volume this aquatic pet requires.",
                             "type": "integer"
+                          },
+                          "petName": {
+                            "description": "The pet's name.",
+                            "maxLength": 20,
+                            "minLength": 3,
+                            "pattern": "^(?!\\s)(.*\\S)$",
+                            "type": "string"
                           }
                         },
                         "required": [
-                          "mimimumTankVolume"
+                          "mimimumTankVolume",
+                          "petName"
                         ],
                         "type": "object"
                       },
@@ -10395,14 +10423,26 @@
               "schemas": {
                 "Sample_Student_AquaticPet": {
                   "properties": {
+                    "isFixed": {
+                      "description": "An indication as to whether the pet has been spayed/neutered.",
+                      "type": "boolean",
+                      "x-nullable": true
+                    },
                     "mimimumTankVolume": {
                       "description": "The minimum tank volume this aquatic pet requires.",
                       "format": "int32",
                       "type": "integer"
+                    },
+                    "petName": {
+                      "description": "The pet's name.",
+                      "maxLength": 20,
+                      "minLength": 3,
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "mimimumTankVolume"
+                    "mimimumTankVolume",
+                    "petName"
                   ],
                   "type": "object"
                 },

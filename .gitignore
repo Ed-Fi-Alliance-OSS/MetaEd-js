@@ -99,6 +99,7 @@ eng/ApiSchema/*.zip
 CLAUDE.local.md
 .mcp.json
 memory-bank/
+.plans/
 
 # Local JUnit test results
 junit.xml

@@ -11,12 +11,15 @@ import {
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
   CommonBuilder,
+  CommonSubclassBuilder,
   ChoiceBuilder,
 } from '@edfi/metaed-core';
 import {
   choiceReferenceEnhancer,
   domainEntityReferenceEnhancer,
   inlineCommonReferenceEnhancer,
+  commonSubclassBaseClassEnhancer,
+  commonReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -956,6 +959,163 @@ describe('when building domain entity with scalar collection named with prefix o
         "metaEdType": "string",
         "referenceCollectionName": "",
         "topLevelName": "SuffixNames",
+      }
+    `);
+  });
+});
+
+describe('when building CommonSubclass with inherited properties', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartCommon('BaseCommon')
+      .withDocumentation('doc')
+      .withStringProperty('BaseProperty', 'doc', false, false, '50')
+      .withIntegerProperty('BaseIdentifier', 'doc', true, false)
+      .withEndCommon()
+
+      .withStartCommonSubclass('StudentCommon', 'BaseCommon')
+      .withDocumentation('doc')
+      .withStringProperty('StudentSpecificProperty', 'doc', false, false, '30')
+      .withBooleanProperty('IsActive', 'doc', false, false)
+      .withEndCommonSubclass()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('StudentCommon', 'doc', false, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonSubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    // Run enhancers in correct order
+    commonSubclassBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should correctly handle inherited properties from base Common', () => {
+    // Test inherited string property from base common
+    const inheritedStringProperty = metaEd.propertyIndex.string.find((p) => p.metaEdName === 'BaseProperty');
+    expect(inheritedStringProperty?.parentEntity.metaEdName).toBe('BaseCommon');
+    expect(inheritedStringProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "BaseProperty",
+        "descriptorCollectionName": "",
+        "fullName": "BaseProperty",
+        "fullNamePreservingPrefix": "BaseProperty",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "BaseProperty",
+        "metaEdType": "string",
+        "referenceCollectionName": "",
+        "topLevelName": "BaseProperty",
+      }
+    `);
+
+    // Test inherited integer identity property from base common
+    const inheritedIntegerProperty = metaEd.propertyIndex.integer.find((p) => p.metaEdName === 'BaseIdentifier');
+    expect(inheritedIntegerProperty?.parentEntity.metaEdName).toBe('BaseCommon');
+    expect(inheritedIntegerProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "BaseIdentifier",
+        "descriptorCollectionName": "",
+        "fullName": "BaseIdentifier",
+        "fullNamePreservingPrefix": "BaseIdentifier",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "BaseIdentifier",
+        "metaEdType": "integer",
+        "referenceCollectionName": "",
+        "topLevelName": "BaseIdentifier",
+      }
+    `);
+
+    // Test own property from CommonSubclass
+    const ownStringProperty = metaEd.propertyIndex.string.find((p) => p.metaEdName === 'StudentSpecificProperty');
+    expect(ownStringProperty?.parentEntity.metaEdName).toBe('StudentCommon');
+    expect(ownStringProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "StudentSpecificProperty",
+        "descriptorCollectionName": "",
+        "fullName": "StudentSpecificProperty",
+        "fullNamePreservingPrefix": "StudentSpecificProperty",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "StudentSpecificProperty",
+        "metaEdType": "string",
+        "referenceCollectionName": "",
+        "topLevelName": "StudentSpecificProperty",
+      }
+    `);
+
+    // Test own boolean property from CommonSubclass
+    const ownBooleanProperty = metaEd.propertyIndex.boolean.find((p) => p.metaEdName === 'IsActive');
+    expect(ownBooleanProperty?.parentEntity.metaEdName).toBe('StudentCommon');
+    expect(ownBooleanProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "IsActive",
+        "descriptorCollectionName": "",
+        "fullName": "IsActive",
+        "fullNamePreservingPrefix": "IsActive",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "IsActive",
+        "metaEdType": "boolean",
+        "referenceCollectionName": "",
+        "topLevelName": "IsActive",
+      }
+    `);
+
+    // Test the common property reference in the domain entity
+    const commonProperty = metaEd.propertyIndex.common.find((p) => p.metaEdName === 'StudentCommon');
+    expect(commonProperty?.parentEntity.metaEdName).toBe('Student');
+    expect(commonProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "StudentCommon",
+        "descriptorCollectionName": "",
+        "fullName": "Common",
+        "fullNamePreservingPrefix": "StudentCommon",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": true,
+        "isScalarReference": false,
+        "metaEdName": "StudentCommon",
+        "metaEdType": "commonSubclass",
+        "referenceCollectionName": "",
+        "topLevelName": "Common",
       }
     `);
   });
