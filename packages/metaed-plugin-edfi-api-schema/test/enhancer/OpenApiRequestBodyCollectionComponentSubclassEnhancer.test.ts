@@ -287,6 +287,7 @@ describe('when domain entity subclass in extension has a DS common collection', 
                 "description": "doc",
                 "format": "date",
                 "type": "string",
+                "x-nullable": true,
               },
               "serviceIdentity": Object {
                 "description": "doc",
