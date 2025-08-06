@@ -1375,13 +1375,15 @@
                   "properties": {
                     "doNotPublishIndicator": {
                       "description": "An indication that the telephone number should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "orderOfPriority": {
                       "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
                       "format": "int32",
                       "minimum": 1,
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     },
                     "telephoneNumber": {
                       "description": "The telephone number including the area code, and extension, if applicable.",
@@ -1395,7 +1397,8 @@
                     },
                     "textMessageCapabilityIndicator": {
                       "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3186,12 +3189,14 @@
                     "apartmentRoomSuiteNumber": {
                       "description": "The apartment, room, or suite number of an address.",
                       "maxLength": 50,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "buildingSiteNumber": {
                       "description": "The number of the building on the site, if more than one building shares the same address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "city": {
                       "description": "The name of the city in which an address is located.",
@@ -3202,37 +3207,44 @@
                     "congressionalDistrict": {
                       "description": "The congressional district in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "countyFIPSCode": {
                       "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
                       "maxLength": 5,
                       "minLength": 3,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "doNotPublishIndicator": {
                       "description": "An indication that the address should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "latitude": {
                       "description": "The geographic latitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "localeDescriptor": {
                       "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "longitude": {
                       "description": "The geographic longitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "nameOfCounty": {
                       "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "periods": {
                       "items": {
@@ -3298,7 +3310,8 @@
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
                       "maxLength": 120,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "cteProgramServiceDescriptor": {
                       "description": "Indicates the service being provided to the student by the CTE program.",
@@ -3307,17 +3320,20 @@
                     },
                     "primaryIndicator": {
                       "description": "True if service is a primary service.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "serviceBeginDate": {
                       "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "serviceEndDate": {
                       "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3359,7 +3375,8 @@
                     "endDate": {
                       "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -4861,7 +4878,8 @@
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
                       "maxLength": 120,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "cteProgramServiceDescriptor": {
                       "description": "Indicates the service being provided to the student by the CTE program.",
@@ -4870,17 +4888,20 @@
                     },
                     "primaryIndicator": {
                       "description": "True if service is a primary service.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "serviceBeginDate": {
                       "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "serviceEndDate": {
                       "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -5097,7 +5118,8 @@
                   "properties": {
                     "isFixed": {
                       "description": "An indication as to whether the pet has been spayed/neutered.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "petName": {
                       "description": "The pet's name.",
@@ -6056,7 +6078,8 @@
                       "description": "This is documentation.",
                       "maxLength": 200,
                       "minLength": 1,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "favoriteBookCategoryDescriptor": {
                       "description": "This is documentation.",
@@ -6081,7 +6104,8 @@
                       "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -6155,12 +6179,14 @@
                   "properties": {
                     "primaryIndicator": {
                       "description": "True if service is a primary service.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "serviceBeginDate": {
                       "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "serviceDescriptor": {
                       "description": "Indicates the service being provided to the student by the program.",
@@ -6170,7 +6196,8 @@
                     "serviceEndDate": {
                       "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -7513,13 +7540,15 @@
                   "properties": {
                     "doNotPublishIndicator": {
                       "description": "An indication that the telephone number should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "orderOfPriority": {
                       "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
                       "format": "int32",
                       "minimum": 1,
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     },
                     "telephoneNumber": {
                       "description": "The telephone number including the area code, and extension, if applicable.",
@@ -7533,7 +7562,8 @@
                     },
                     "textMessageCapabilityIndicator": {
                       "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -8156,12 +8186,14 @@
                     "apartmentRoomSuiteNumber": {
                       "description": "The apartment, room, or suite number of an address.",
                       "maxLength": 50,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "buildingSiteNumber": {
                       "description": "The number of the building on the site, if more than one building shares the same address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "city": {
                       "description": "The name of the city in which an address is located.",
@@ -8172,37 +8204,44 @@
                     "congressionalDistrict": {
                       "description": "The congressional district in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "countyFIPSCode": {
                       "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
                       "maxLength": 5,
                       "minLength": 3,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "doNotPublishIndicator": {
                       "description": "An indication that the address should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "latitude": {
                       "description": "The geographic latitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "localeDescriptor": {
                       "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "longitude": {
                       "description": "The geographic longitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "nameOfCounty": {
                       "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "periods": {
                       "items": {
@@ -8247,7 +8286,8 @@
                     "endDate": {
                       "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -8260,7 +8300,8 @@
                     "designatedBy": {
                       "description": "The person, organization, or department that designated the characteristic.",
                       "maxLength": 60,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "periods": {
                       "items": {
@@ -9093,7 +9134,8 @@
                     "cipCode": {
                       "description": "Number and description of the CIP code associated with the student's CTE program.",
                       "maxLength": 120,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "cteProgramServiceDescriptor": {
                       "description": "Indicates the service being provided to the student by the CTE program.",
@@ -9102,17 +9144,20 @@
                     },
                     "primaryIndicator": {
                       "description": "True if service is a primary service.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "serviceBeginDate": {
                       "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "serviceEndDate": {
                       "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -10375,7 +10420,8 @@
                       "description": "This is documentation.",
                       "maxLength": 200,
                       "minLength": 1,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "favoriteBookCategoryDescriptor": {
                       "description": "This is documentation.",
@@ -10400,7 +10446,8 @@
                       "format": "int32",
                       "maximum": 100,
                       "minimum": 0,
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -10412,7 +10459,8 @@
                   "properties": {
                     "isFixed": {
                       "description": "An indication as to whether the pet has been spayed/neutered.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "petName": {
                       "description": "The pet's name.",

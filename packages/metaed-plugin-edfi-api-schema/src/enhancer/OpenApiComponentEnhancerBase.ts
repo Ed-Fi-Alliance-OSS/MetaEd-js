@@ -134,25 +134,40 @@ export function openApiPropertyForNonReference(
   const description: string = property.documentation;
 
   switch (property.type) {
-    case 'boolean':
-      return { type: 'boolean', description };
+    case 'boolean': {
+      const result: OpenApiProperty = { type: 'boolean', description };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
     case 'currency':
     case 'decimal':
     case 'duration':
     case 'percent':
-    case 'sharedDecimal':
-      return { type: 'number', format: 'double', description };
+    case 'sharedDecimal': {
+      const result: OpenApiProperty = { type: 'number', format: 'double', description };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
-    case 'date':
-      return { type: 'string', format: 'date', description };
+    case 'date': {
+      const result: OpenApiProperty = { type: 'string', format: 'date', description };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
-    case 'datetime':
-      return { type: 'string', format: 'date-time', description };
+    case 'datetime': {
+      const result: OpenApiProperty = { type: 'string', format: 'date-time', description };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
     case 'descriptor':
-    case 'enumeration':
-      return { type: 'string', description, maxLength: 306 };
+    case 'enumeration': {
+      const result: OpenApiProperty = { type: 'string', description, maxLength: 306 };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
     case 'integer':
     case 'sharedInteger': {
@@ -164,6 +179,7 @@ export function openApiPropertyForNonReference(
       };
       if (integerProperty.minValue) result.minimum = Number(integerProperty.minValue);
       if (integerProperty.maxValue) result.maximum = Number(integerProperty.maxValue);
+      if (integerProperty.isOptional) result['x-nullable'] = true;
       return result;
     }
 
@@ -173,6 +189,7 @@ export function openApiPropertyForNonReference(
       const shortProperty: ShortProperty = property as ShortProperty;
       if (shortProperty.minValue) result.minimum = Number(shortProperty.minValue);
       if (shortProperty.maxValue) result.maximum = Number(shortProperty.maxValue);
+      if (shortProperty.isOptional) result['x-nullable'] = true;
       return result;
     }
 
@@ -182,22 +199,34 @@ export function openApiPropertyForNonReference(
       const stringProperty: StringProperty = property as StringProperty;
       if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
       if (stringProperty.maxLength) result.maxLength = Number(stringProperty.maxLength);
+      if (stringProperty.isOptional) result['x-nullable'] = true;
       return result;
     }
 
-    case 'time':
-      return { type: 'string', format: 'time', description };
+    case 'time': {
+      const result: OpenApiProperty = { type: 'string', format: 'time', description };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
-    case 'schoolYearEnumeration':
+    case 'schoolYearEnumeration': {
       if (property.parentEntity.type === 'common') {
         // For a common, the school year ends up being nested under a reference object
-        return { $ref: schoolYearEnumerationRef };
+        const result: OpenApiProperty = { $ref: schoolYearEnumerationRef };
+        if (property.isOptional) result['x-nullable'] = true;
+        return result;
       }
 
-      return schoolYearOpenApi;
+      const result: OpenApiProperty = { ...schoolYearOpenApi };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
-    case 'year':
-      return { type: 'integer', description, format: 'int32' };
+    case 'year': {
+      const result: OpenApiProperty = { type: 'integer', description, format: 'int32' };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
 
     case 'choice':
     case 'inlineCommon':

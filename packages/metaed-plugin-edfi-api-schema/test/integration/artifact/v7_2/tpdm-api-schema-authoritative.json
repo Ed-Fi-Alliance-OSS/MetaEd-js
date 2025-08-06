@@ -1657,7 +1657,8 @@
                     "termDescriptor": {
                       "description": "The term associated with the cohort year; for example, the intended term of graduation.",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -1676,7 +1677,8 @@
                     "endDate": {
                       "description": "The month, day, and year on which the Teacher Candidate exited the declared specialization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "majorSpecialization": {
                       "description": "The major area for a degree or area of specialization for a certificate.",
@@ -1688,7 +1690,8 @@
                       "description": "The minor area for a degree or area of specialization for a certificate.",
                       "maxLength": 255,
                       "minLength": 1,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3639,12 +3642,14 @@
                     "apartmentRoomSuiteNumber": {
                       "description": "The apartment, room, or suite number of an address.",
                       "maxLength": 50,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "buildingSiteNumber": {
                       "description": "The number of the building on the site, if more than one building shares the same address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "city": {
                       "description": "The name of the city in which an address is located.",
@@ -3655,37 +3660,44 @@
                     "congressionalDistrict": {
                       "description": "The congressional district in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "countyFIPSCode": {
                       "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
                       "maxLength": 5,
                       "minLength": 3,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "doNotPublishIndicator": {
                       "description": "An indication that the address should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "latitude": {
                       "description": "The geographic latitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "localeDescriptor": {
                       "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "longitude": {
                       "description": "The geographic longitude of the physical address.",
                       "maxLength": 20,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "nameOfCounty": {
                       "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "periods": {
                       "items": {
@@ -3738,17 +3750,20 @@
                     "disabilityDeterminationSourceTypeDescriptor": {
                       "description": "The source that provided the disability determination.",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "disabilityDiagnosis": {
                       "description": "A description of the disability diagnosis.",
                       "maxLength": 80,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "orderOfDisability": {
                       "description": "The order by severity of individual's disabilities: 1- Primary, 2 -  Secondary, 3 - Tertiary, etc.",
                       "format": "int32",
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3773,7 +3788,8 @@
                   "properties": {
                     "doNotPublishIndicator": {
                       "description": "An indication that the electronic email address should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "electronicMailAddress": {
                       "description": "The electronic mail (e-mail) address listed for an individual or organization.",
@@ -3788,7 +3804,8 @@
                     },
                     "primaryEmailAddressIndicator": {
                       "description": "An indication that the electronic mail address should be used as the principal electronic mail address for an individual or organization.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3836,12 +3853,14 @@
                     "documentExpirationDate": {
                       "description": "The day when the document  expires, if null then never expires.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "documentTitle": {
                       "description": "The title of the document given by the issuer.",
                       "maxLength": 60,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "identificationDocumentUseDescriptor": {
                       "description": "The primary function of the document used for establishing identity.",
@@ -3851,17 +3870,20 @@
                     "issuerCountryDescriptor": {
                       "description": "Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
                       "maxLength": 306,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "issuerDocumentIdentificationCode": {
                       "description": "The unique identifier on the issuer's identification system.",
                       "maxLength": 60,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "issuerName": {
                       "description": "Name of the entity or institution that issued the document.",
                       "maxLength": 150,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "personalInformationVerificationDescriptor": {
                       "description": "The category of the document relative to its purpose.",
@@ -3885,7 +3907,8 @@
                     "generationCodeSuffix": {
                       "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
                       "maxLength": 10,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "lastSurname": {
                       "description": "The name borne in common by members of a family.",
@@ -3895,7 +3918,8 @@
                     "middleName": {
                       "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
                       "maxLength": 75,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "otherNameTypeDescriptor": {
                       "description": "The types of alternate names for an individual.",
@@ -3905,7 +3929,8 @@
                     "personalTitlePrefix": {
                       "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
                       "maxLength": 30,
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3925,7 +3950,8 @@
                     "endDate": {
                       "description": "The month, day, and year for the end of the period.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -3965,13 +3991,15 @@
                   "properties": {
                     "doNotPublishIndicator": {
                       "description": "An indication that the telephone number should not be published.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     },
                     "orderOfPriority": {
                       "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
                       "format": "int32",
                       "minimum": 1,
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     },
                     "telephoneNumber": {
                       "description": "The telephone number including the area code, and extension, if applicable.",
@@ -3985,7 +4013,8 @@
                     },
                     "textMessageCapabilityIndicator": {
                       "description": "An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.",
-                      "type": "boolean"
+                      "type": "boolean",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -11194,12 +11223,14 @@
                     "maxRating": {
                       "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     },
                     "minRating": {
                       "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -13168,12 +13199,14 @@
                     "maxRating": {
                       "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     },
                     "minRating": {
                       "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -16121,12 +16154,14 @@
                     "interRaterReliabilityScore": {
                       "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
                       "format": "int32",
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     },
                     "receivedTrainingDate": {
                       "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "type": "object"
@@ -17647,12 +17682,14 @@
                     "maxRating": {
                       "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     },
                     "minRating": {
                       "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     }
                   },
                   "required": [
@@ -21107,12 +21144,14 @@
                     "interRaterReliabilityScore": {
                       "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
                       "format": "int32",
-                      "type": "integer"
+                      "type": "integer",
+                      "x-nullable": true
                     },
                     "receivedTrainingDate": {
                       "description": "The date on which the person administering the performance meausre received training on how to conduct performance measures.",
                       "format": "date",
-                      "type": "string"
+                      "type": "string",
+                      "x-nullable": true
                     }
                   },
                   "type": "object"
@@ -22664,12 +22703,14 @@
                     "maxRating": {
                       "description": "The maximum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     },
                     "minRating": {
                       "description": "The minimum numerical rating or score to achieve the evaluation rating level.",
                       "format": "double",
-                      "type": "number"
+                      "type": "number",
+                      "x-nullable": true
                     }
                   },
                   "required": [
