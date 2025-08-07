@@ -80,11 +80,21 @@ describe('when validating subdomain entity domain item has duplicate domain item
   });
 
   it('should have one validation failure', (): void => {
-    expect(failures).toHaveLength(1);
-    expect(failures[0].validatorName).toBe('SubdomainMustNotDuplicateDomainItems');
-    expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Subdomain Entity Domain Item 'DomainEntityName' of type 'domainEntity' has a duplicate within the same type.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 5,
+            "tokenText": "DomainEntityName",
+          },
+          "validatorName": "SubdomainMustNotDuplicateDomainItems",
+        },
+      ]
+    `);
   });
 });
 
@@ -124,14 +134,109 @@ describe('when validating subdomain entity domain item has multiple duplicate do
   });
 
   it('should have multiple validation failures', (): void => {
-    expect(failures).toHaveLength(2);
-    expect(failures[0].validatorName).toBe('SubdomainMustNotDuplicateDomainItems');
-    expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
-    expect(failures[1].validatorName).toBe('SubdomainMustNotDuplicateDomainItems');
-    expect(failures[1].category).toBe('error');
-    expect(failures[1].message).toMatchSnapshot();
-    expect(failures[1].sourceMap).toMatchSnapshot();
+    expect(failures).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Subdomain Entity Domain Item 'DomainEntityName' of type 'domainEntity' has a duplicate within the same type.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 6,
+            "tokenText": "DomainEntityName",
+          },
+          "validatorName": "SubdomainMustNotDuplicateDomainItems",
+        },
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Subdomain Entity Domain Item 'DomainEntityName2' of type 'domainEntity' has a duplicate within the same type.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 9,
+            "tokenText": "DomainEntityName2",
+          },
+          "validatorName": "SubdomainMustNotDuplicateDomainItems",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when validating subdomain items with same name but different referenced types', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const domainName = 'DomainName';
+  const subdomainName = 'SubdomainName';
+  const sharedName = 'Student';
+
+  let failures: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartSubdomain(subdomainName, domainName)
+      .withDocumentation('doc')
+      .withDomainEntityDomainItem(sharedName)
+      .withDescriptorDomainItem(sharedName)
+      .withAssociationDomainItem(sharedName)
+      .withCommonDomainItem(sharedName)
+      .withEndSubdomain()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainBuilder(metaEd, []));
+
+    failures = validate(metaEd);
+  });
+
+  it('should have no validation failures', (): void => {
+    expect(failures).toHaveLength(0);
+  });
+});
+
+describe('when validating subdomain items with duplicates within same referenced type', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const domainName = 'DomainName';
+  const subdomainName = 'SubdomainName';
+  const sharedName = 'GradingPeriod';
+
+  let failures: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartSubdomain(subdomainName, domainName)
+      .withDocumentation('doc')
+      .withDomainEntityDomainItem(sharedName)
+      // Duplicate domainEntity
+      .withDomainEntityDomainItem(sharedName)
+      // Not duplicate though same name
+      .withDescriptorDomainItem(sharedName)
+      .withCommonDomainItem('Address')
+      .withEndSubdomain()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainBuilder(metaEd, []));
+
+    failures = validate(metaEd);
+  });
+
+  it('should have one validation failure', (): void => {
+    expect(failures).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Subdomain Entity Domain Item 'GradingPeriod' of type 'domainEntity' has a duplicate within the same type.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 5,
+            "tokenText": "GradingPeriod",
+          },
+          "validatorName": "SubdomainMustNotDuplicateDomainItems",
+        },
+      ]
+    `);
   });
 });
