@@ -184,6 +184,7 @@ export { TopLevelEntity, TopLevelEntitySourceMap } from './model/TopLevelEntity'
 // Null Objects
 export { NoMapTypeEnumeration } from './model/MapTypeEnumeration';
 export { NoTopLevelEntity } from './model/TopLevelEntity';
+export { NoCommonExtension } from './model/CommonExtension';
 export { NoSharedSimple } from './model/SharedSimple';
 export { NoNamespace } from './model/Namespace';
 export { NoInterchangeItem } from './model/InterchangeItem';

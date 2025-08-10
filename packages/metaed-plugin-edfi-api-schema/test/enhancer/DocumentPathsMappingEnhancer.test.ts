@@ -19,6 +19,8 @@ import {
   newPluginEnvironment,
   AssociationBuilder,
   AssociationSubclassBuilder,
+  DomainEntityExtensionBuilder,
+  CommonExtensionBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -48,6 +50,7 @@ import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJs
 import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 import { enhance } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { removeSourcePropertyFromDocumentPathsMapping } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 
@@ -2758,6 +2761,142 @@ describe('when building domain entity referencing another which has inline commo
           "isRequired": false,
           "path": "$.periodId",
           "type": "number",
+        },
+      }
+    `);
+  });
+});
+
+describe('when building domain entity extension with common extension override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Sample';
+  const commonName = 'Address';
+  const domainEntityName = 'Student';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('City', 'doc', false, false, '30')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty(commonName, 'doc', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${coreNamespaceName}.${commonName}`, 'doc', true, false)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${coreNamespaceName}.${commonName}`)
+      .withStringProperty('ExtensionProperty', 'doc', false, false, '50')
+      .withBooleanProperty('IsVerified', 'doc', true, false)
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []));
+
+    const coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    const extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+    if (coreNamespace && extensionNamespace) {
+      extensionNamespace.dependencies.push(coreNamespace);
+    }
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    mergeDirectiveEqualityConstraintEnhancer(metaEd);
+    resourceNameEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct documentPathsMapping for base Student entity with common properties', () => {
+    const entity = metaEd.namespace.get(coreNamespaceName)?.entity.domainEntity.get(domainEntityName);
+    const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+      entity?.data.edfiApiSchema.documentPathsMapping,
+    );
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": false,
+          "path": "$.address.city",
+          "type": "string",
+        },
+        "Address.StreetNumberName": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.address.streetNumberName",
+          "type": "string",
+        },
+        "StudentUniqueId": Object {
+          "isPartOfIdentity": true,
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.studentUniqueId",
+          "type": "string",
+        },
+      }
+    `);
+  });
+
+  it('should be correct documentPathsMapping for DomainEntityExtension with common extension override', () => {
+    const entity = metaEd.namespace.get(extensionNamespaceName)?.entity.domainEntityExtension.get(domainEntityName);
+
+    const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+      entity?.data.edfiApiSchema.documentPathsMapping,
+    );
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": false,
+          "path": "$._ext.edfi.address.city",
+          "type": "string",
+        },
+        "Address.ExtensionProperty": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": false,
+          "path": "$._ext.edfi.address._ext.edfi.extensionProperty",
+          "type": "string",
+        },
+        "Address.IsVerified": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": true,
+          "path": "$._ext.edfi.address._ext.edfi.isVerified",
+          "type": "boolean",
+        },
+        "Address.StreetNumberName": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": true,
+          "path": "$._ext.edfi.address.streetNumberName",
+          "type": "string",
         },
       }
     `);

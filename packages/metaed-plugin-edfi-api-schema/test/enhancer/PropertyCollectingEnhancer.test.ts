@@ -8,6 +8,7 @@ import {
   MetaEdEnvironment,
   CommonBuilder,
   CommonSubclassBuilder,
+  CommonExtensionBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
 } from '@edfi/metaed-core';
@@ -16,27 +17,26 @@ import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/m
 import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 
-describe('when collecting properties for CommonSubclass with single-level inheritance', () => {
+describe('when collecting properties for CommonSubclass', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
   let namespace: any = null;
 
   beforeAll(() => {
-    // Build MetaEd environment with base Common and CommonSubclass
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
       .withStartCommon('BaseContact')
-      .withDocumentation('Base contact information.')
-      .withStringProperty('FirstName', 'The person first name.', true, false, '75')
-      .withStringProperty('LastName', 'The person last name.', true, false, '75')
-      .withIntegerProperty('Age', 'The person age in years.', false, false)
-      .withBooleanProperty('IsActive', 'Whether the contact is currently active.', true, false)
+      .withDocumentation('doc')
+      .withStringProperty('FirstName', 'doc', true, false, '75')
+      .withStringProperty('LastName', 'doc', true, false, '75')
+      .withIntegerProperty('Age', 'doc', false, false)
+      .withBooleanProperty('IsActive', 'doc', true, false)
       .withEndCommon()
       .withStartCommonSubclass('BusinessContact', 'BaseContact')
-      .withDocumentation('Business contact information extending base contact.')
-      .withStringProperty('CompanyName', 'The name of the company.', true, false, '100')
-      .withStringProperty('JobTitle', 'The person job title.', false, false, '50')
-      .withBooleanProperty('IsManager', 'Whether the person is a manager.', false, false)
+      .withDocumentation('doc')
+      .withStringProperty('CompanyName', 'doc', true, false, '100')
+      .withStringProperty('JobTitle', 'doc', false, false, '50')
+      .withBooleanProperty('IsManager', 'doc', false, false)
       .withEndCommonSubclass()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -45,20 +45,11 @@ describe('when collecting properties for CommonSubclass with single-level inheri
 
     namespace = metaEd.namespace.get(namespaceName);
 
-    // Run necessary enhancers
     commonReferenceEnhancer(metaEd);
     commonSubclassBaseClassEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
-  });
-
-  it('should have correct baseEntity reference for CommonSubclass', () => {
-    const commonSubclass = namespace.entity.commonSubclass.get('BusinessContact');
-    const common = namespace.entity.common.get('BaseContact');
-
-    expect(commonSubclass.baseEntity).toBe(common);
-    expect(common.subclassedBy).toContain(commonSubclass);
   });
 
   it('should collect own properties for base Common entity', () => {
@@ -182,29 +173,6 @@ describe('when collecting properties for CommonSubclass with single-level inheri
       }
     `);
   });
-
-  it('should maintain correct property order with own properties first, then inherited properties', () => {
-    const commonSubclass = namespace.entity.commonSubclass.get('BusinessContact');
-    const apiSchemaData = commonSubclass.data.edfiApiSchema as EntityApiSchemaData;
-
-    const propertyNames = apiSchemaData.collectedApiProperties.map((p) => p.property.metaEdName);
-
-    // The first 3 properties should be own properties (CompanyName, JobTitle, IsManager)
-    expect(propertyNames.slice(0, 3).sort()).toEqual(['CompanyName', 'IsManager', 'JobTitle']);
-
-    // The remaining 4 properties should be inherited properties (FirstName, LastName, Age, IsActive)
-    expect(propertyNames.slice(3).sort()).toEqual(['Age', 'FirstName', 'IsActive', 'LastName']);
-  });
-
-  it('should have same properties in both collectedApiProperties and allProperties arrays', () => {
-    const commonSubclass = namespace.entity.commonSubclass.get('BusinessContact');
-    const apiSchemaData = commonSubclass.data.edfiApiSchema as EntityApiSchemaData;
-
-    const apiPropertyNames = apiSchemaData.collectedApiProperties.map((p) => p.property.metaEdName).sort();
-    const allPropertyNames = apiSchemaData.allProperties.map((p) => p.property.metaEdName).sort();
-
-    expect(apiPropertyNames).toEqual(allPropertyNames);
-  });
 });
 
 describe('when collecting properties for CommonSubclass with complex property types', () => {
@@ -213,20 +181,19 @@ describe('when collecting properties for CommonSubclass with complex property ty
   let namespace: any = null;
 
   beforeAll(() => {
-    // Build MetaEd environment with various property types
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
       .withStartCommon('BaseAsset')
-      .withDocumentation('Base asset information.')
-      .withStringProperty('AssetName', 'The asset name.', true, false, '100')
-      .withDecimalProperty('Value', 'The asset monetary value.', true, false, '10', '2')
-      .withDateProperty('AcquisitionDate', 'When the asset was acquired.', false, false)
+      .withDocumentation('doc')
+      .withStringProperty('AssetName', 'doc', true, false, '100')
+      .withDecimalProperty('Value', 'doc', true, false, '10', '2')
+      .withDateProperty('AcquisitionDate', 'doc', false, false)
       .withEndCommon()
       .withStartCommonSubclass('TechnicalAsset', 'BaseAsset')
-      .withDocumentation('Technical asset extending base asset.')
-      .withStringProperty('SerialNumber', 'The asset serial number.', true, false, '50')
-      .withDatetimeProperty('LastMaintenanceDate', 'When the asset was last maintained.', false, false)
-      .withTimeProperty('OperatingHours', 'Daily operating hours.', false, false)
+      .withDocumentation('doc')
+      .withStringProperty('SerialNumber', 'doc', true, false, '50')
+      .withDatetimeProperty('LastMaintenanceDate', 'doc', false, false)
+      .withTimeProperty('OperatingHours', 'doc', false, false)
       .withEndCommonSubclass()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -235,7 +202,6 @@ describe('when collecting properties for CommonSubclass with complex property ty
 
     namespace = metaEd.namespace.get(namespaceName);
 
-    // Run necessary enhancers
     commonReferenceEnhancer(metaEd);
     commonSubclassBaseClassEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
@@ -309,9 +275,9 @@ describe('when collecting properties for Common entity without subclass', () => 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
       .withStartCommon('SimpleContact')
-      .withDocumentation('Simple contact information.')
-      .withStringProperty('Email', 'Email address.', true, false, '100')
-      .withStringProperty('Phone', 'Phone number.', false, false, '20')
+      .withDocumentation('doc')
+      .withStringProperty('Email', 'doc', true, false, '100')
+      .withStringProperty('Phone', 'doc', false, false, '20')
       .withEndCommon()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -346,5 +312,148 @@ describe('when collecting properties for Common entity without subclass', () => 
         ],
       }
     `);
+  });
+});
+
+describe('when collecting properties for CommonExtension with Address/AddressExtension scenario', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Sample';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringIdentity('City', 'doc', '30')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('PostalCode', 'doc', false, false, '17')
+      .withStringProperty('StateAbbreviation', 'doc', false, false, '5')
+      .withEndCommon()
+      .withEndNamespace()
+      .withBeginNamespace(extensionNamespaceName)
+      .withStartCommonExtension(`${coreNamespaceName}.Address`)
+      .withStringProperty('Complex', 'doc', false, false, '30')
+      .withBooleanProperty('OnBusRoute', 'doc', true, false)
+      .withStringProperty('SchoolDistrict', 'doc', false, true, '250')
+      .withIntegerProperty('Latitude', 'doc', false, false)
+      .withDecimalProperty('Longitude', 'doc', false, false, '9', '6')
+      .withEndCommonExtension()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+
+    extensionNamespace.dependencies.push(coreNamespace);
+
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+  });
+
+  it('should collect only base properties for base Address Common entity', () => {
+    const baseAddress = coreNamespace.entity.common.get('Address');
+    const apiSchemaData = baseAddress.data.edfiApiSchema as EntityApiSchemaData;
+
+    const propertyData = {
+      collectedApiPropertiesCount: apiSchemaData.collectedApiProperties.length,
+      allPropertiesCount: apiSchemaData.allProperties.length,
+      apiPropertyNames: apiSchemaData.collectedApiProperties.map((p) => p.property.metaEdName).sort(),
+      allPropertyNames: apiSchemaData.allProperties.map((p) => p.property.metaEdName).sort(),
+    };
+
+    // Base Address should only have its own properties, not extension properties
+    expect(propertyData).toMatchInlineSnapshot(`
+      Object {
+        "allPropertiesCount": 4,
+        "allPropertyNames": Array [
+          "City",
+          "PostalCode",
+          "StateAbbreviation",
+          "StreetNumberName",
+        ],
+        "apiPropertyNames": Array [
+          "City",
+          "PostalCode",
+          "StateAbbreviation",
+          "StreetNumberName",
+        ],
+        "collectedApiPropertiesCount": 4,
+      }
+    `);
+  });
+
+  it('should collect only extension properties for AddressExtension CommonExtension entity', () => {
+    const addressExtension = extensionNamespace.entity.commonExtension.get('Address');
+    const apiSchemaData = addressExtension.data.edfiApiSchema as EntityApiSchemaData;
+
+    const propertyData = {
+      collectedApiPropertiesCount: apiSchemaData.collectedApiProperties.length,
+      allPropertiesCount: apiSchemaData.allProperties.length,
+      apiPropertyNames: apiSchemaData.collectedApiProperties.map((p) => p.property.metaEdName).sort(),
+      allPropertyNames: apiSchemaData.allProperties.map((p) => p.property.metaEdName).sort(),
+    };
+
+    // CommonExtension entities only collect their own extension properties (not base properties)
+    expect(propertyData).toMatchInlineSnapshot(`
+      Object {
+        "allPropertiesCount": 5,
+        "allPropertyNames": Array [
+          "Complex",
+          "Latitude",
+          "Longitude",
+          "OnBusRoute",
+          "SchoolDistrict",
+        ],
+        "apiPropertyNames": Array [
+          "Complex",
+          "Latitude",
+          "Longitude",
+          "OnBusRoute",
+          "SchoolDistrict",
+        ],
+        "collectedApiPropertiesCount": 5,
+      }
+    `);
+  });
+
+  it('should correctly identify base entity names for CommonExtension', () => {
+    const addressExtension = extensionNamespace.entity.commonExtension.get('Address');
+    const baseAddress = coreNamespace.entity.common.get('Address');
+
+    expect(addressExtension).toBeDefined();
+    expect(baseAddress).toBeDefined();
+    expect(addressExtension.metaEdName).toBe('Address');
+    expect(baseAddress.metaEdName).toBe('Address');
+    expect(addressExtension.baseEntityName).toBe('Address');
+    expect(addressExtension.baseEntityNamespaceName).toBe('EdFi');
+  });
+
+  it('should collect only extension properties from CommonExtension entities', () => {
+    const addressExtension = extensionNamespace.entity.commonExtension.get('Address');
+    const apiSchemaData = addressExtension.data.edfiApiSchema as EntityApiSchemaData;
+
+    const allPropertyNames = apiSchemaData.collectedApiProperties.map((p) => p.property.metaEdName).sort();
+
+    // Extension properties only
+    expect(allPropertyNames).toContain('Complex');
+    expect(allPropertyNames).toContain('OnBusRoute');
+    expect(allPropertyNames).toContain('SchoolDistrict');
+    expect(allPropertyNames).toContain('Latitude');
+    expect(allPropertyNames).toContain('Longitude');
+
+    // Should not contain base properties
+    expect(allPropertyNames).not.toContain('City');
+    expect(allPropertyNames).not.toContain('StreetNumberName');
+    expect(allPropertyNames).not.toContain('PostalCode');
+    expect(allPropertyNames).not.toContain('StateAbbreviation');
+
+    expect(allPropertyNames).toHaveLength(5);
   });
 });

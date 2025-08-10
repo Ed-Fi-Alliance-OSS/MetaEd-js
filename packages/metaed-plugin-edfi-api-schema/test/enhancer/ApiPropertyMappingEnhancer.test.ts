@@ -13,6 +13,9 @@ import {
   CommonBuilder,
   CommonSubclassBuilder,
   ChoiceBuilder,
+  DomainEntityExtensionBuilder,
+  CommonExtensionBuilder,
+  newNamespace,
 } from '@edfi/metaed-core';
 import {
   choiceReferenceEnhancer,
@@ -24,6 +27,11 @@ import {
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
+import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
+import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
+import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
+
 import { enhance } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 
 describe('when building simple domain entity referencing another referencing another with identity', () => {
@@ -993,7 +1001,6 @@ describe('when building CommonSubclass with inherited properties', () => {
       .sendToListener(new CommonSubclassBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-    // Run enhancers in correct order
     commonSubclassBaseClassEnhancer(metaEd);
     commonReferenceEnhancer(metaEd);
     domainEntityReferenceEnhancer(metaEd);
@@ -1116,6 +1123,121 @@ describe('when building CommonSubclass with inherited properties', () => {
         "metaEdType": "commonSubclass",
         "referenceCollectionName": "",
         "topLevelName": "Common",
+      }
+    `);
+  });
+});
+
+describe('when building comprehensive Address/AddressExtension scenario with CommonExtension via override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Sample';
+  const commonName = 'Address';
+  const domainEntityName = 'Student';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+  const validationFailures: any[] = [];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withStringIdentity('City', 'doc', '30')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('PostalCode', 'doc', false, false, '17')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty(commonName, 'doc', false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${coreNamespaceName}.${commonName}`, 'doc', false, true)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${coreNamespaceName}.${commonName}`)
+      .withStringProperty('Complex', 'doc', false, false, '30')
+      .withBooleanProperty('OnBusRoute', 'doc', true, false)
+      .withStringProperty('SchoolDistrict', 'doc', false, true, '250')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonExtensionBuilder(metaEd, validationFailures));
+
+    coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+
+    // Set up namespace dependencies properly
+    extensionNamespace.dependencies.push(coreNamespace ?? newNamespace());
+
+    // Run all enhancers in proper order
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct apiMapping for common property', () => {
+    // Test the common property reference in the domain entity
+    const commonProperty = metaEd.propertyIndex.common.find((p) => p.metaEdName === commonName && !p.isExtensionOverride);
+
+    expect(commonProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "Addresses",
+        "descriptorCollectionName": "",
+        "fullName": "Address",
+        "fullNamePreservingPrefix": "Address",
+        "isChoice": false,
+        "isCommonCollection": true,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "Address",
+        "metaEdType": "common",
+        "referenceCollectionName": "",
+        "topLevelName": "Addresses",
+      }
+    `);
+  });
+
+  it('should be correct apiMapping for common extension override property', () => {
+    // Test the common property reference in the domain entity
+    const commonProperty = metaEd.propertyIndex.common.find((p) => p.metaEdName === commonName && p.isExtensionOverride);
+
+    expect(commonProperty?.data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "Addresses",
+        "descriptorCollectionName": "",
+        "fullName": "Address",
+        "fullNamePreservingPrefix": "Address",
+        "isChoice": false,
+        "isCommonCollection": true,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "Address",
+        "metaEdType": "common",
+        "referenceCollectionName": "",
+        "topLevelName": "Addresses",
       }
     `);
   });

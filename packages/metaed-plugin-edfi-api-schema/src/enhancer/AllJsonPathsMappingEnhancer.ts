@@ -16,6 +16,8 @@ import {
   InlineCommonProperty,
   ChoiceProperty,
   MetaEdPropertyPath,
+  CommonExtension,
+  NoCommonExtension,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -31,6 +33,7 @@ import {
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { parentPropertyModifier } from './JsonElementNamingHelper';
+import { ApiPropertyMapping } from '../model/ApiPropertyMapping';
 
 const enhancerName = 'AllJsonPathsMappingEnhancer';
 
@@ -211,7 +214,67 @@ function jsonPathsForScalarCommonProperty(
       allProperty.propertyModifier,
     );
 
-    const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+    const { apiMapping } = allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+    jsonPathsFor(
+      allProperty.property,
+      concatenatedPropertyModifier,
+      jsonPathsMapping,
+      initialPropertyPath,
+      `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
+      appendNextJsonPathName(currentJsonPath, apiMapping.topLevelName, allProperty.property, concatenatedPropertyModifier),
+      isTopLevel,
+      isArrayIdentity,
+    );
+  });
+
+  // After processing base properties, check if this is a CommonExtension override
+  const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+  if (referencedCommonExtension !== NoCommonExtension) {
+    jsonPathsForCommonExtensionProperties(
+      referencedCommonExtension,
+      property,
+      propertyModifier,
+      jsonPathsMapping,
+      initialPropertyPath,
+      currentPropertyPath,
+      currentJsonPath,
+      isTopLevel,
+      isArrayIdentity,
+    );
+  }
+}
+
+/**
+ * Adds JSON Paths to the jsonPathsMapping for CommonExtension properties.
+ * Processes extension properties with nested _ext paths.
+ */
+function jsonPathsForCommonExtensionProperties(
+  commonExtension: CommonExtension,
+  _property: CommonProperty,
+  propertyModifier: PropertyModifier,
+  jsonPathsMapping: JsonPathsMapping,
+  initialPropertyPath: MetaEdPropertyPath,
+  currentPropertyPath: MetaEdPropertyPath,
+  currentJsonPath: JsonPath,
+  isTopLevel: boolean,
+  isArrayIdentity: boolean,
+) {
+  const projectName: string = commonExtension.namespace.projectName.toLowerCase();
+  const { allProperties } = commonExtension.data.edfiApiSchema as EntityApiSchemaData;
+
+  allProperties.forEach((allProperty) => {
+    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+      propertyModifier,
+      allProperty.propertyModifier,
+    );
+
+    const childPropertyApiMapping: ApiPropertyMapping = (
+      allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData
+    ).apiMapping;
+
+    const extensionJsonPath: JsonPath = `${currentJsonPath}._ext.${projectName}` as JsonPath;
 
     jsonPathsFor(
       allProperty.property,
@@ -220,7 +283,7 @@ function jsonPathsForScalarCommonProperty(
       initialPropertyPath,
       `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
       appendNextJsonPathName(
-        currentJsonPath,
+        extensionJsonPath,
         childPropertyApiMapping.topLevelName,
         allProperty.property,
         concatenatedPropertyModifier,
@@ -232,7 +295,7 @@ function jsonPathsForScalarCommonProperty(
 }
 
 /**
- * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given scalar common property.
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given common collection property.
  */
 function jsonPathsForCommonCollection(
   property: CommonProperty,
@@ -252,7 +315,7 @@ function jsonPathsForCommonCollection(
       allProperty.propertyModifier,
     );
 
-    const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+    const { apiMapping } = allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
     jsonPathsFor(
       allProperty.property,
@@ -260,16 +323,28 @@ function jsonPathsForCommonCollection(
       jsonPathsMapping,
       initialPropertyPath,
       `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
-      appendNextJsonPathName(
-        currentJsonPath,
-        childPropertyApiMapping.topLevelName,
-        allProperty.property,
-        concatenatedPropertyModifier,
-      ),
+      appendNextJsonPathName(currentJsonPath, apiMapping.topLevelName, allProperty.property, concatenatedPropertyModifier),
       isTopLevel,
       isArrayIdentity || allProperty.property.isPartOfIdentity,
     );
   });
+
+  // After processing base properties, check if this is a CommonExtension override
+  const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+  if (referencedCommonExtension !== NoCommonExtension) {
+    jsonPathsForCommonExtensionProperties(
+      referencedCommonExtension,
+      property,
+      propertyModifier,
+      jsonPathsMapping,
+      initialPropertyPath,
+      currentPropertyPath,
+      currentJsonPath,
+      isTopLevel,
+      isArrayIdentity,
+    );
+  }
 }
 
 /**

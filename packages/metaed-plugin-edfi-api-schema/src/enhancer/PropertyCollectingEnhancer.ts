@@ -34,6 +34,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       collectAllProperties(allProperties, property);
     });
 
+    // Add base Common properties to CommonSubclass
     if (entity.type === 'commonSubclass') {
       const { baseEntity } = entity as CommonSubclass;
       if (baseEntity != null) {

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 // SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
@@ -21,6 +22,8 @@ import {
   DomainEntityExtensionBuilder,
   newNamespace,
   AssociationBuilder,
+  CommonExtensionBuilder,
+  AssociationExtensionBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -44,6 +47,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
@@ -3033,16 +3037,19 @@ describe('when building domain entity with CommonSubclass property that inherits
       .withCommonProperty('Pet', 'doc', false, true)
       .withCommonProperty('AquaticPet', 'doc', false, true)
       .withEndDomainEntity()
+
       .withStartCommon('Pet')
       .withDocumentation('doc')
       .withStringProperty('PetName', 'doc', true, false, '20', '3')
       .withBooleanProperty('IsFixed', 'doc', false, false)
       .withEndCommon()
+
       .withStartCommonSubclass('AquaticPet', 'Pet')
       .withDocumentation('doc')
       .withIntegerProperty('MimimumTankVolume', 'doc', true, false)
       .withEndCommonSubclass()
       .withEndNamespace()
+
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonSubclassBuilder(metaEd, []))
@@ -3157,6 +3164,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
       .withCommonProperty('Vehicle', 'doc', false, true)
       .withCommonProperty('ElectricVehicle', 'doc', false, true)
       .withEndDomainEntity()
+
       .withStartCommon('Vehicle')
       .withDocumentation('doc')
       .withStringProperty('Make', 'doc', true, false, '50')
@@ -3164,6 +3172,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
       .withIntegerProperty('Year', 'doc', false, false)
       .withBooleanProperty('IsOperational', 'doc', false, false)
       .withEndCommon()
+
       .withStartCommonSubclass('ElectricVehicle', 'Vehicle')
       .withDocumentation('doc')
       .withDecimalProperty('BatteryCapacity', 'doc', true, false, '5', '2')
@@ -3171,6 +3180,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
       .withBooleanProperty('FastChargeCapable', 'doc', true, false)
       .withEndCommonSubclass()
       .withEndNamespace()
+
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonSubclassBuilder(metaEd, []))
@@ -3297,5 +3307,415 @@ describe('when building domain entity with CommonSubclass with complex inheritan
           "type": "object",
         }
       `);
+  });
+});
+
+describe('when domain entity extension has common extension override property with matching common extension', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const core = 'EdFi';
+  const extension = 'Extension';
+  const commonName = 'TestCommon';
+  const domainEntityName = 'TestEntity';
+  const extensionProperty = 'ExtensionProperty';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(core)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('CommonId', 'doc')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityId', 'doc')
+      .withCommonProperty(commonName, 'doc', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extension)
+      .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${core}.${commonName}`)
+      .withStringProperty(extensionProperty, 'doc', false, false, '50')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get(core);
+    extensionNamespace = metaEd.namespace.get(extension);
+    extensionNamespace.dependencies.push(coreNamespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should include common extension schema in domain entity with extension override', () => {
+    const entity = extensionNamespace.entity.domainEntityExtension.get(domainEntityName);
+    const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
+    expect(schema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {
+              "edfi": Object {
+                "additionalProperties": true,
+                "description": "edfi extension properties collection",
+                "properties": Object {
+                  "testCommon": Object {
+                    "additionalProperties": false,
+                    "properties": Object {
+                      "_ext": Object {
+                        "additionalProperties": false,
+                        "description": "Extension properties",
+                        "properties": Object {
+                          "edfi": Object {
+                            "additionalProperties": false,
+                            "description": "edfi extension properties",
+                            "properties": Object {
+                              "extensionProperty": Object {
+                                "description": "doc",
+                                "maxLength": 50,
+                                "type": "string",
+                              },
+                            },
+                            "type": "object",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "commonId": Object {
+                        "description": "doc",
+                        "type": "integer",
+                      },
+                    },
+                    "required": Array [
+                      "commonId",
+                    ],
+                    "type": "object",
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "testCommon",
+        ],
+        "title": "EdFi.TestEntity",
+        "type": "object",
+      }
+    `);
+  });
+});
+
+describe('when association extension has common extension override property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const core = 'EdFi';
+  const extension = 'Extension';
+  const commonName = 'AssociationCommon';
+  const associationName = 'TestAssociation';
+  const domainEntity1 = 'Entity1';
+  const domainEntity2 = 'Entity2';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(core)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('CommonId', 'doc')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntity1)
+      .withDocumentation('doc')
+      .withIntegerIdentity('Entity1Id', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(domainEntity2)
+      .withDocumentation('doc')
+      .withIntegerIdentity('Entity2Id', 'doc')
+      .withEndDomainEntity()
+
+      .withStartAssociation(associationName)
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty(domainEntity1, 'doc')
+      .withAssociationDomainEntityProperty(domainEntity2, 'doc')
+      .withCommonProperty(commonName, 'doc', true, false)
+      .withEndAssociation()
+      .withEndNamespace()
+
+      .withBeginNamespace(extension)
+      .withStartAssociationExtension(`${core}.${associationName}`)
+      .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
+      .withEndAssociationExtension()
+
+      .withStartCommonExtension(`${core}.${commonName}`)
+      .withBooleanProperty('ExtensionFlag', 'doc', false, false)
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new AssociationExtensionBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get(core);
+    extensionNamespace = metaEd.namespace.get(extension);
+
+    extensionNamespace.dependencies.push(coreNamespace);
+
+    associationReferenceEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should include common extension schema in association with extension override', () => {
+    const entity = extensionNamespace.entity.associationExtension.get(associationName);
+    const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
+    expect(schema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {
+              "edfi": Object {
+                "additionalProperties": true,
+                "description": "edfi extension properties collection",
+                "properties": Object {
+                  "common": Object {
+                    "additionalProperties": false,
+                    "properties": Object {
+                      "_ext": Object {
+                        "additionalProperties": false,
+                        "description": "Extension properties",
+                        "properties": Object {
+                          "edfi": Object {
+                            "additionalProperties": false,
+                            "description": "edfi extension properties",
+                            "properties": Object {
+                              "extensionFlag": Object {
+                                "description": "doc",
+                                "type": "boolean",
+                              },
+                            },
+                            "type": "object",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "commonId": Object {
+                        "description": "doc",
+                        "type": "integer",
+                      },
+                    },
+                    "required": Array [
+                      "commonId",
+                    ],
+                    "type": "object",
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "common",
+        ],
+        "title": "EdFi.TestAssociation",
+        "type": "object",
+      }
+    `);
+  });
+});
+
+describe('when extension override property has collection modifier', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const core = 'EdFi';
+  const extension = 'Extension';
+  const commonName = 'CollectionCommon';
+  const domainEntityName = 'CollectionEntity';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(core)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('CollectionId', 'doc')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityId', 'doc')
+      .withCommonProperty(commonName, 'doc', true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extension)
+      .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, true)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${core}.${commonName}`)
+      .withDecimalProperty('ExtensionAmount', 'doc', false, false, '10', '2')
+      .withIntegerProperty('ExtensionCount', 'doc', true, true)
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []));
+
+    coreNamespace = metaEd.namespace.get(core);
+    extensionNamespace = metaEd.namespace.get(extension);
+
+    extensionNamespace.dependencies.push(coreNamespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+  it('should include common extension schema in domain entity with extension override', () => {
+    const entity = extensionNamespace.entity.domainEntityExtension.get(domainEntityName);
+    const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
+    expect(schema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {
+              "edfi": Object {
+                "additionalProperties": true,
+                "description": "edfi extension properties collection",
+                "properties": Object {
+                  "collectionCommons": Object {
+                    "items": Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "_ext": Object {
+                          "additionalProperties": false,
+                          "description": "Extension properties",
+                          "properties": Object {
+                            "edfi": Object {
+                              "additionalProperties": false,
+                              "description": "edfi extension properties",
+                              "properties": Object {
+                                "extensionAmount": Object {
+                                  "description": "doc",
+                                  "type": "number",
+                                },
+                                "extensionCounts": Object {
+                                  "items": Object {
+                                    "additionalProperties": false,
+                                    "properties": Object {
+                                      "extensionCount": Object {
+                                        "description": "doc",
+                                        "type": "integer",
+                                      },
+                                    },
+                                    "required": Array [
+                                      "extensionCount",
+                                    ],
+                                    "type": "object",
+                                  },
+                                  "minItems": 1,
+                                  "type": "array",
+                                  "uniqueItems": false,
+                                },
+                              },
+                              "required": Array [
+                                "extensionCounts",
+                              ],
+                              "type": "object",
+                            },
+                          },
+                          "type": "object",
+                        },
+                        "collectionId": Object {
+                          "description": "doc",
+                          "type": "integer",
+                        },
+                      },
+                      "required": Array [
+                        "collectionId",
+                      ],
+                      "type": "object",
+                    },
+                    "minItems": 0,
+                    "type": "array",
+                    "uniqueItems": false,
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "collectionCommons",
+        ],
+        "title": "EdFi.CollectionEntity",
+        "type": "object",
+      }
+    `);
   });
 });

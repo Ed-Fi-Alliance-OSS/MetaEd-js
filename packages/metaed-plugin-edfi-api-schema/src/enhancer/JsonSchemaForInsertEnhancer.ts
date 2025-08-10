@@ -16,6 +16,8 @@ import {
   StringProperty,
   IntegerProperty,
   ShortProperty,
+  CommonExtension,
+  NoCommonExtension,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -121,6 +123,65 @@ function schemaArrayFrom(schemaArrayElement: SchemaProperty): SchemaArray {
 }
 
 /**
+ * Builds a JSON schema for a Common Extension that includes the
+ * extension properties under the _ext namespace structure.
+ */
+function buildCommonExtensionSchema(
+  commonExtension: CommonExtension,
+  propertyModifier: PropertyModifier,
+  schoolYearSchemas: SchoolYearSchemas,
+): SchemaObject {
+  const extensionSchemaProperties: SchemaProperties = {};
+  const extensionRequired: string[] = [];
+
+  const commonExtensionApiSchemaData: EntityApiSchemaData = commonExtension.data.edfiApiSchema as EntityApiSchemaData;
+
+  commonExtensionApiSchemaData.collectedApiProperties.forEach((collectedApiProperty) => {
+    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+      propertyModifier,
+      collectedApiProperty.propertyModifier,
+    );
+
+    const propertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+    const schemaPropertyName: string = uncapitalize(
+      prefixedName(propertyApiMapping.topLevelName, concatenatedPropertyModifier),
+    );
+
+    const schemaProperty: SchemaProperty = schemaPropertyFor(
+      collectedApiProperty.property,
+      concatenatedPropertyModifier,
+      schoolYearSchemas,
+    );
+
+    extensionSchemaProperties[schemaPropertyName] = schemaProperty;
+    if (isSchemaPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
+      extensionRequired.push(schemaPropertyName);
+    }
+  });
+
+  const projectName = commonExtension.namespace.projectName.toLowerCase();
+
+  const result: SchemaProperties = {
+    _ext: {
+      description: 'Extension properties',
+      type: 'object',
+      properties: {
+        [projectName]: {
+          description: `${projectName} extension properties`,
+          type: 'object',
+          properties: extensionSchemaProperties,
+          additionalProperties: false,
+          ...(extensionRequired.length > 0 && { required: extensionRequired }),
+        },
+      },
+      additionalProperties: false,
+    },
+  };
+
+  return schemaObjectFrom(result, []);
+}
+
+/**
  * Determines whether the schema property for this entity property is required
  */
 function isSchemaPropertyRequired(property: EntityProperty, propertyModifier: PropertyModifier): boolean {
@@ -223,6 +284,17 @@ function schemaObjectForScalarCommonProperty(
       required.push(schemaPropertyName);
     }
   });
+
+  // Check if this property is using the extension override mechanism
+  if (property.isExtensionOverride) {
+    const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+    if (referencedCommonExtension !== NoCommonExtension) {
+      const extensionSchema = buildCommonExtensionSchema(referencedCommonExtension, propertyModifier, schoolYearSchemas);
+      Object.assign(schemaProperties, extensionSchema.properties);
+    }
+  }
+
   return schemaObjectFrom(schemaProperties, required);
 }
 
@@ -517,7 +589,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     additionalProperties: false,
   };
 
-  // Build schemas for each domain entity and association
   getAllEntitiesOfType(
     metaEd,
     'domainEntity',
