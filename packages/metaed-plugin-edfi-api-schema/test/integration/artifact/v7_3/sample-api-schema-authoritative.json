@@ -3290,6 +3290,49 @@
               "schemas": {
                 "Sample_Contact_Address": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "complex": {
+                              "description": "The apartment or housing complex name.",
+                              "maxLength": 255,
+                              "minLength": 1,
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "onBusRoute": {
+                              "description": "An indicator if the address is on a bus route.",
+                              "type": "boolean"
+                            },
+                            "schoolDistricts": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                              },
+                              "minItems": 1,
+                              "type": "array",
+                              "uniqueItems": false
+                            },
+                            "terms": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_Term"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "required": [
+                            "onBusRoute",
+                            "schoolDistricts"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "addressTypeDescriptor": {
                       "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                       "maxLength": 306,
@@ -8468,6 +8511,49 @@
               "schemas": {
                 "Sample_StudentEducationOrganizationAssociation_Address": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "complex": {
+                              "description": "The apartment or housing complex name.",
+                              "maxLength": 255,
+                              "minLength": 1,
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "onBusRoute": {
+                              "description": "An indicator if the address is on a bus route.",
+                              "type": "boolean"
+                            },
+                            "schoolDistricts": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                              },
+                              "minItems": 1,
+                              "type": "array",
+                              "uniqueItems": false
+                            },
+                            "terms": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_Term"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "required": [
+                            "onBusRoute",
+                            "schoolDistricts"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "addressTypeDescriptor": {
                       "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                       "maxLength": 306,
@@ -8587,6 +8673,26 @@
                 },
                 "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "studentNeeds": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_StudentCharacteristic_StudentNeed"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "designatedBy": {
                       "description": "The person, organization, or department that designated the characteristic.",
                       "maxLength": 60,

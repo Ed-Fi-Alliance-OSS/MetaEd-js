@@ -16,6 +16,7 @@ import {
   EnumerationBuilder,
   newPluginEnvironment,
   DomainEntityExtensionBuilder,
+  CommonExtensionBuilder,
   newNamespace,
 } from '@edfi/metaed-core';
 import {
@@ -33,6 +34,7 @@ import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/Ent
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
@@ -2365,6 +2367,189 @@ describe('when domain entity extension references domain entity in different nam
             "x-nullable": true,
           },
         },
+        "type": "object",
+      }
+    `);
+  });
+});
+
+describe('when building domain entity with scalar common property with extension override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'Student';
+  const extensionNamespace = 'Extension';
+  let namespace: any = null;
+  let extNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('Demographics', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('Demographics')
+      .withDocumentation('doc')
+      .withStringProperty('FirstName', 'doc', true, false, '75')
+      .withStringProperty('LastName', 'doc', true, false, '75')
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespace)
+      .withStartDomainEntityExtension(`${namespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${namespaceName}.Demographics`, 'doc', false, false)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${namespaceName}.Demographics`)
+      .withStringProperty('MiddleName', 'doc', false, false, '50')
+      .withStringProperty('PreferredName', 'doc', false, false, '50')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+    extNamespace = metaEd.namespace.get(extensionNamespace);
+    extNamespace.dependencies.push(namespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema with extension properties nested under _ext', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "doc",
+        "properties": Object {
+          "demographics": Object {
+            "$ref": "#/components/schemas/EdFi_Student_Demographic",
+            "x-nullable": true,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
+          "studentUniqueId": Object {
+            "description": "doc",
+            "maxLength": 32,
+            "type": "string",
+            "x-Ed-Fi-isIdentity": true,
+          },
+        },
+        "required": Array [
+          "studentUniqueId",
+        ],
+        "type": "object",
+      }
+    `);
+  });
+});
+
+describe('when building domain entity with common collection with extension override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'Student';
+  const extensionNamespace = 'Extension';
+  let namespace: any = null;
+  let extNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('Address', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('City', 'doc', true, false, '30')
+      .withStringProperty('StateAbbreviation', 'doc', true, false, '2')
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespace)
+      .withStartDomainEntityExtension(`${namespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${namespaceName}.Address`, 'doc', false, true)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${namespaceName}.Address`)
+      .withStringProperty('County', 'doc', false, false, '30')
+      .withStringProperty('Country', 'doc', false, false, '50')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+    extNamespace = metaEd.namespace.get(extensionNamespace);
+    extNamespace.dependencies.push(namespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema for common collection with extensions', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "doc",
+        "properties": Object {
+          "addresses": Object {
+            "items": Object {
+              "$ref": "#/components/schemas/EdFi_Student_Address",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
+          "studentUniqueId": Object {
+            "description": "doc",
+            "maxLength": 32,
+            "type": "string",
+            "x-Ed-Fi-isIdentity": true,
+          },
+        },
+        "required": Array [
+          "studentUniqueId",
+        ],
         "type": "object",
       }
     `);
