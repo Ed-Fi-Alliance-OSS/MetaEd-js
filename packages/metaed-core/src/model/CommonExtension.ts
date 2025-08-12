@@ -7,12 +7,13 @@ import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
 import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 
 /**
- *
+ * Source map type for CommonExtension, tracking the original source locations
+ * of elements within a common extension definition.
  */
 export type CommonExtensionSourceMap = TopLevelEntitySourceMap;
 
 /**
- *
+ * Creates a new CommonExtensionSourceMap with default values.
  */
 export function newCommonExtensionSourceMap(): CommonExtensionSourceMap {
   return newTopLevelEntitySourceMap();
@@ -23,7 +24,7 @@ export interface CommonExtension extends TopLevelEntity {
 }
 
 /**
- *
+ * Creates a new CommonExtension with default values.
  */
 export function newCommonExtension(): CommonExtension {
   return {
@@ -35,7 +36,8 @@ export function newCommonExtension(): CommonExtension {
 }
 
 /**
- *
+ * A frozen CommonExtension instance representing no common extension.
+ * Used as a default/null object pattern to avoid null checks.
  */
 export const NoCommonExtension: CommonExtension = deepFreeze({
   ...newCommonExtension(),
