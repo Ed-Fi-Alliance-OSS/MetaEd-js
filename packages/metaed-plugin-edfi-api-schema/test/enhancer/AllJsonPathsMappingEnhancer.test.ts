@@ -9,6 +9,7 @@ import {
   DomainEntityBuilder,
   ChoiceBuilder,
   CommonBuilder,
+  CommonSubclassBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
@@ -19,6 +20,7 @@ import {
   DomainEntityExtensionBuilder,
   newNamespace,
   AssociationBuilder,
+  CommonExtensionBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -27,6 +29,7 @@ import {
   commonReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
+  commonSubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
@@ -39,6 +42,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 import { enhance } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 import { JsonPath } from '../../src/model/api-schema/JsonPath';
 
@@ -3463,6 +3467,448 @@ describe('when building domain entity referencing another which has inline commo
             "propertyName": "PeriodId",
           },
         ],
+      }
+    `);
+  });
+});
+
+describe('when building domain entity with CommonSubclass property that inherits from Common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('Address', 'doc', false, true)
+      .withCommonProperty('PhysicalAddress', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartCommon('Address')
+      .withDocumentation('doc')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('City', 'doc', true, false, '30')
+      .withStringProperty('PostalCode', 'doc', false, false, '17')
+      .withEndCommon()
+
+      .withStartCommonSubclass('PhysicalAddress', 'Address')
+      .withDocumentation('doc')
+      .withStringProperty('BuildingName', 'doc', false, false, '20')
+      .withBooleanProperty('IsMailingAddress', 'doc', true, false)
+      .withEndCommonSubclass()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new CommonSubclassBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    commonSubclassBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should generate correct JSON paths for CommonSubclass with inherited properties', () => {
+    const entity = namespace.entity.domainEntity.get('Student');
+    const mappings: Snapshotable = snapshotify(entity);
+
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].city",
+            "propertyName": "City",
+          },
+        ],
+        "Address.PostalCode": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].postalCode",
+            "propertyName": "PostalCode",
+          },
+        ],
+        "Address.StreetNumberName": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.addresses[*].streetNumberName",
+            "propertyName": "StreetNumberName",
+          },
+        ],
+        "PhysicalAddress.BuildingName": Array [
+          Object {
+            "entityName": "PhysicalAddress",
+            "jsonPath": "$.physicalAddresses[*].buildingName",
+            "propertyName": "BuildingName",
+          },
+        ],
+        "PhysicalAddress.City": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].city",
+            "propertyName": "City",
+          },
+        ],
+        "PhysicalAddress.IsMailingAddress": Array [
+          Object {
+            "entityName": "PhysicalAddress",
+            "jsonPath": "$.physicalAddresses[*].isMailingAddress",
+            "propertyName": "IsMailingAddress",
+          },
+        ],
+        "PhysicalAddress.PostalCode": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].postalCode",
+            "propertyName": "PostalCode",
+          },
+        ],
+        "PhysicalAddress.StreetNumberName": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.physicalAddresses[*].streetNumberName",
+            "propertyName": "StreetNumberName",
+          },
+        ],
+        "StudentUniqueId": Array [
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentUniqueId",
+            "propertyName": "StudentUniqueId",
+          },
+        ],
+      }
+    `);
+
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": true,
+        "Address.PostalCode": true,
+        "Address.StreetNumberName": true,
+        "PhysicalAddress.BuildingName": true,
+        "PhysicalAddress.City": true,
+        "PhysicalAddress.IsMailingAddress": true,
+        "PhysicalAddress.PostalCode": true,
+        "PhysicalAddress.StreetNumberName": true,
+        "StudentUniqueId": true,
+      }
+    `);
+
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": "City",
+        "Address.PostalCode": "PostalCode",
+        "Address.StreetNumberName": "StreetNumberName",
+        "PhysicalAddress.BuildingName": "BuildingName",
+        "PhysicalAddress.City": "City",
+        "PhysicalAddress.IsMailingAddress": "IsMailingAddress",
+        "PhysicalAddress.PostalCode": "PostalCode",
+        "PhysicalAddress.StreetNumberName": "StreetNumberName",
+        "StudentUniqueId": "StudentUniqueId",
+      }
+    `);
+
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": false,
+        "Address.PostalCode": false,
+        "Address.StreetNumberName": false,
+        "PhysicalAddress.BuildingName": false,
+        "PhysicalAddress.City": false,
+        "PhysicalAddress.IsMailingAddress": false,
+        "PhysicalAddress.PostalCode": false,
+        "PhysicalAddress.StreetNumberName": false,
+        "StudentUniqueId": false,
+      }
+    `);
+  });
+});
+
+describe('when building domain entity extension with common extension override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Sample';
+  const commonName = 'Address';
+  const domainEntityName = 'Student';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+  const validationFailures: any[] = [];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('CommonId', 'doc')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withIntegerIdentity('EntityId', 'doc')
+      .withCommonProperty(commonName, 'doc', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${coreNamespaceName}.${commonName}`, 'doc', true, false)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${coreNamespaceName}.${commonName}`)
+      .withStringProperty('ExtensionProperty', 'doc', false, false, '50')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonExtensionBuilder(metaEd, validationFailures));
+
+    coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+
+    extensionNamespace.dependencies.push(coreNamespace ?? newNamespace());
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping for Student entity with base common addresses', () => {
+    const entity = coreNamespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Address.CommonId": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$.address.commonId",
+            "propertyName": "CommonId",
+          },
+        ],
+        "EntityId": Array [
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.entityId",
+            "propertyName": "EntityId",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for DomainEntityExtension with common extension override', () => {
+    const entity = extensionNamespace.entity.domainEntityExtension.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Address.CommonId": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.address.commonId",
+            "propertyName": "CommonId",
+          },
+        ],
+        "Address.ExtensionProperty": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.address._ext.edfi.extensionProperty",
+            "propertyName": "ExtensionProperty",
+          },
+        ],
+      }
+    `);
+
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Address.CommonId": true,
+        "Address.ExtensionProperty": true,
+      }
+    `);
+
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Address.CommonId": "CommonId",
+        "Address.ExtensionProperty": "ExtensionProperty",
+      }
+    `);
+
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Address.CommonId": false,
+        "Address.ExtensionProperty": false,
+      }
+    `);
+  });
+});
+
+describe('when building comprehensive Address/AddressExtension scenario with CommonExtension via override', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'Sample';
+  const commonName = 'Address';
+  const domainEntityName = 'Student';
+  let coreNamespace: any = null;
+  let extensionNamespace: any = null;
+  const validationFailures: any[] = [];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(coreNamespaceName)
+      .withStartCommon(commonName)
+      .withDocumentation('doc')
+      .withStringIdentity('City', 'doc', '30')
+      .withStringProperty('StreetNumberName', 'doc', true, false, '150')
+      .withStringProperty('PostalCode', 'doc', false, false, '17')
+      .withEndCommon()
+
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty(commonName, 'doc', false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace(extensionNamespaceName)
+      .withStartDomainEntityExtension(`${coreNamespaceName}.${domainEntityName}`)
+      .withCommonExtensionOverrideProperty(`${coreNamespaceName}.${commonName}`, 'doc', false, true)
+      .withEndDomainEntityExtension()
+
+      .withStartCommonExtension(`${coreNamespaceName}.${commonName}`)
+      .withStringProperty('Complex', 'doc', false, false, '30')
+      .withBooleanProperty('OnBusRoute', 'doc', true, false)
+      .withStringProperty('SchoolDistrict', 'doc', false, true, '250')
+      .withEndCommonExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityBuilder(metaEd, validationFailures))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonBuilder(metaEd, validationFailures))
+      .sendToListener(new CommonExtensionBuilder(metaEd, validationFailures));
+
+    coreNamespace = metaEd.namespace.get(coreNamespaceName);
+    extensionNamespace = metaEd.namespace.get(extensionNamespaceName);
+
+    // Set up namespace dependencies properly
+    extensionNamespace.dependencies.push(coreNamespace ?? newNamespace());
+
+    // Run all enhancers in proper order
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping for DomainEntityExtension with common extension override', () => {
+    const entity = extensionNamespace.entity.domainEntityExtension.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*].city",
+            "propertyName": "City",
+          },
+        ],
+        "Address.Complex": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.complex",
+            "propertyName": "Complex",
+          },
+        ],
+        "Address.OnBusRoute": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.onBusRoute",
+            "propertyName": "OnBusRoute",
+          },
+        ],
+        "Address.PostalCode": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*].postalCode",
+            "propertyName": "PostalCode",
+          },
+        ],
+        "Address.SchoolDistrict": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.schoolDistricts[*].schoolDistrict",
+            "propertyName": "SchoolDistrict",
+          },
+        ],
+        "Address.StreetNumberName": Array [
+          Object {
+            "entityName": "Address",
+            "jsonPath": "$._ext.edfi.addresses[*].streetNumberName",
+            "propertyName": "StreetNumberName",
+          },
+        ],
+      }
+    `);
+
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": true,
+        "Address.Complex": true,
+        "Address.OnBusRoute": true,
+        "Address.PostalCode": true,
+        "Address.SchoolDistrict": true,
+        "Address.StreetNumberName": true,
+      }
+    `);
+
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": "City",
+        "Address.Complex": "Complex",
+        "Address.OnBusRoute": "OnBusRoute",
+        "Address.PostalCode": "PostalCode",
+        "Address.SchoolDistrict": "SchoolDistrict",
+        "Address.StreetNumberName": "StreetNumberName",
+      }
+    `);
+
+    expect(mappings.isArrayIdentity).toMatchInlineSnapshot(`
+      Object {
+        "Address.City": true,
+        "Address.Complex": false,
+        "Address.OnBusRoute": false,
+        "Address.PostalCode": false,
+        "Address.SchoolDistrict": true,
+        "Address.StreetNumberName": false,
       }
     `);
   });

@@ -12,6 +12,7 @@ import { enhance as entityDomainEnhancer } from './ResourceDomainEnhancer';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from './SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from './ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from './ApiPropertyMappingEnhancer';
+import { enhance as commonExtensionOverrideResolverEnhancer } from './CommonExtensionOverrideResolverEnhancer';
 import { enhance as apiEntityMappingEnhancer } from './ApiEntityMappingEnhancer';
 import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
@@ -59,6 +60,7 @@ export function enhancerList(): Enhancer[] {
     subclassPropertyNamingCollisionEnhancer,
     referenceComponentEnhancer,
     apiPropertyMappingEnhancer,
+    commonExtensionOverrideResolverEnhancer,
     propertyCollectingEnhancer,
     subclassPropertyCollectingEnhancer,
     apiEntityMappingEnhancer,

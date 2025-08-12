@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity, CommonSubclass } from '@edfi/metaed-core';
 import { CollectedProperty } from '../model/CollectedProperty';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { defaultPropertyModifier } from '../model/PropertyModifier';
@@ -33,6 +33,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       collectApiProperties(collectedApiProperties, property, defaultPropertyModifier, []);
       collectAllProperties(allProperties, property);
     });
+
+    // Add base Common properties to CommonSubclass
+    if (entity.type === 'commonSubclass') {
+      const { baseEntity } = entity as CommonSubclass;
+      if (baseEntity != null) {
+        baseEntity.properties.forEach((property) => {
+          collectApiProperties(collectedApiProperties, property, defaultPropertyModifier, []);
+          collectAllProperties(allProperties, property);
+        });
+      }
+    }
 
     (entity.data.edfiApiSchema as EntityApiSchemaData).collectedApiProperties = collectedApiProperties;
     (entity.data.edfiApiSchema as EntityApiSchemaData).allProperties = allProperties;

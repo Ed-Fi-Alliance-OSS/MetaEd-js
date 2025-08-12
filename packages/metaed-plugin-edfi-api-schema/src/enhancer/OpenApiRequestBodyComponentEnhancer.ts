@@ -11,6 +11,8 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
+  CommonExtension,
+  NoCommonExtension,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -110,6 +112,64 @@ function addRequired(isRequired: boolean, openApiObject: OpenApiObject, openApiP
 }
 
 /**
+ * Builds an OpenApi object for a common extension, creating the nested _ext.{projectName} structure.
+ */
+function buildCommonExtensionOpenApi(
+  commonExtension: CommonExtension,
+  propertyModifier: PropertyModifier,
+  schoolYearOpenApis: SchoolYearOpenApis,
+): OpenApiObject {
+  const extensionOpenApiProperties: OpenApiProperties = {};
+  const extensionRequired: string[] = [];
+
+  const commonExtensionApiSchemaData: EntityApiSchemaData = commonExtension.data.edfiApiSchema as EntityApiSchemaData;
+
+  commonExtensionApiSchemaData.collectedApiProperties.forEach((collectedApiProperty) => {
+    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+      propertyModifier,
+      collectedApiProperty.propertyModifier,
+    );
+
+    const propertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+    const openApiPropertyName: string = uncapitalize(
+      prefixedName(propertyApiMapping.topLevelName, concatenatedPropertyModifier),
+    );
+
+    // eslint-disable-next-line no-use-before-define
+    const openApiProperty: OpenApiProperty = openApiPropertyFor(
+      collectedApiProperty.property,
+      concatenatedPropertyModifier,
+      schoolYearOpenApis,
+      collectedApiProperty.propertyChain,
+    );
+
+    extensionOpenApiProperties[openApiPropertyName] = openApiProperty;
+    if (isOpenApiPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
+      extensionRequired.push(openApiPropertyName);
+    }
+  });
+
+  const projectName = commonExtension.namespace.projectName.toLowerCase();
+
+  const result: OpenApiProperties = {
+    _ext: {
+      description: 'Extension properties',
+      type: 'object',
+      properties: {
+        [projectName]: {
+          description: `${projectName} extension properties`,
+          type: 'object',
+          properties: extensionOpenApiProperties,
+          ...(extensionRequired.length > 0 && { required: extensionRequired }),
+        } as any,
+      },
+    } as any,
+  };
+
+  return openApiObjectFrom(result, []);
+}
+
+/**
  * Returns an OpenApi fragment that specifies the API body element shape
  * corresponding to the given scalar common property.
  */
@@ -148,6 +208,17 @@ export function openApiObjectForScalarCommonProperty(
       required.push(openApiPropertyName);
     }
   });
+
+  // Check if this property is using the extension override mechanism
+  if (property.isExtensionOverride) {
+    const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+    if (referencedCommonExtension !== NoCommonExtension) {
+      const extensionOpenApi = buildCommonExtensionOpenApi(referencedCommonExtension, propertyModifier, schoolYearOpenApis);
+      Object.assign(openApiProperties, extensionOpenApi.properties);
+    }
+  }
+
   return openApiObjectFrom(openApiProperties, required);
 }
 

@@ -2369,6 +2369,18 @@
               {
                 "basePath": "$._ext.sample.addresses[*]",
                 "paths": [
+                  "$._ext.sample.schoolDistricts[*].schoolDistrict"
+                ]
+              },
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$._ext.sample.terms[*].termDescriptor"
+                ]
+              },
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
@@ -2400,6 +2412,7 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+          "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
           "$._ext.sample.addresses[*].doNotPublishIndicator",
           "$._ext.sample.cteProgramService.primaryIndicator",
           "$._ext.sample.isSportsFan"
@@ -2458,6 +2471,13 @@
             "path": "$._ext.sample.addresses[*].city",
             "type": "string"
           },
+          "Address.Complex": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.complex",
+            "type": "string"
+          },
           "Address.CongressionalDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
@@ -2510,6 +2530,13 @@
             "path": "$._ext.sample.addresses[*].nameOfCounty",
             "type": "string"
           },
+          "Address.OnBusRoute": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": true,
+            "path": "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
+            "type": "boolean"
+          },
           "Address.Period.BeginDate": {
             "isPartOfIdentity": true,
             "isReference": false,
@@ -2531,6 +2558,13 @@
             "path": "$._ext.sample.addresses[*].postalCode",
             "type": "string"
           },
+          "Address.SchoolDistrict": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
+            "type": "string"
+          },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
             "isPartOfIdentity": true,
@@ -2546,6 +2580,16 @@
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].streetNumberName",
+            "type": "string"
+          },
+          "Address.TermDescriptor": {
+            "isDescriptor": true,
+            "isPartOfIdentity": false,
+            "isReference": true,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor",
+            "projectName": "Ed-Fi",
+            "resourceName": "TermDescriptor",
             "type": "string"
           },
           "Author": {
@@ -2791,6 +2835,71 @@
                       "items": {
                         "additionalProperties": false,
                         "properties": {
+                          "_ext": {
+                            "additionalProperties": false,
+                            "description": "Extension properties",
+                            "properties": {
+                              "sample": {
+                                "additionalProperties": false,
+                                "description": "sample extension properties",
+                                "properties": {
+                                  "complex": {
+                                    "description": "The apartment or housing complex name.",
+                                    "maxLength": 255,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "onBusRoute": {
+                                    "description": "An indicator if the address is on a bus route.",
+                                    "type": "boolean"
+                                  },
+                                  "schoolDistricts": {
+                                    "items": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "schoolDistrict": {
+                                          "description": "The school district in which the address is located.",
+                                          "maxLength": 250,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "schoolDistrict"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "minItems": 1,
+                                    "type": "array",
+                                    "uniqueItems": false
+                                  },
+                                  "terms": {
+                                    "items": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "termDescriptor": {
+                                          "description": "An Ed-Fi Descriptor",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "termDescriptor"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "minItems": 0,
+                                    "type": "array",
+                                    "uniqueItems": false
+                                  }
+                                },
+                                "required": [
+                                  "onBusRoute",
+                                  "schoolDistricts"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "addressTypeDescriptor": {
                             "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                             "type": "string"
@@ -3181,6 +3290,49 @@
               "schemas": {
                 "Sample_Contact_Address": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "complex": {
+                              "description": "The apartment or housing complex name.",
+                              "maxLength": 255,
+                              "minLength": 1,
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "onBusRoute": {
+                              "description": "An indicator if the address is on a bus route.",
+                              "type": "boolean"
+                            },
+                            "schoolDistricts": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                              },
+                              "minItems": 1,
+                              "type": "array",
+                              "uniqueItems": false
+                            },
+                            "terms": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_Term"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "required": [
+                            "onBusRoute",
+                            "schoolDistricts"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "addressTypeDescriptor": {
                       "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                       "maxLength": 306,
@@ -7727,6 +7879,18 @@
               {
                 "basePath": "$._ext.sample.addresses[*]",
                 "paths": [
+                  "$._ext.sample.schoolDistricts[*].schoolDistrict"
+                ]
+              },
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
+                  "$._ext.sample.terms[*].termDescriptor"
+                ]
+              },
+              {
+                "basePath": "$._ext.sample.addresses[*]",
+                "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
@@ -7744,6 +7908,12 @@
               {
                 "basePath": "$._ext.sample.studentCharacteristics[*]",
                 "paths": [
+                  "$._ext.sample.studentNeeds[*].beginDate"
+                ]
+              },
+              {
+                "basePath": "$._ext.sample.studentCharacteristics[*]",
+                "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
@@ -7756,11 +7926,15 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
-          "$._ext.sample.addresses[*].doNotPublishIndicator"
+          "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
+          "$._ext.sample.addresses[*].doNotPublishIndicator",
+          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator"
         ],
         "dateJsonPaths": [
           "$._ext.sample.addresses[*].periods[*].beginDate",
           "$._ext.sample.addresses[*].periods[*].endDate",
+          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
+          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
           "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
           "$._ext.sample.studentCharacteristics[*].periods[*].endDate"
         ],
@@ -7798,6 +7972,13 @@
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].city",
+            "type": "string"
+          },
+          "Address.Complex": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.complex",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
@@ -7852,6 +8033,13 @@
             "path": "$._ext.sample.addresses[*].nameOfCounty",
             "type": "string"
           },
+          "Address.OnBusRoute": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": true,
+            "path": "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
+            "type": "boolean"
+          },
           "Address.Period.BeginDate": {
             "isPartOfIdentity": true,
             "isReference": false,
@@ -7873,6 +8061,13 @@
             "path": "$._ext.sample.addresses[*].postalCode",
             "type": "string"
           },
+          "Address.SchoolDistrict": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
+            "type": "string"
+          },
           "Address.StateAbbreviationDescriptor": {
             "isDescriptor": true,
             "isPartOfIdentity": true,
@@ -7888,6 +8083,16 @@
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.addresses[*].streetNumberName",
+            "type": "string"
+          },
+          "Address.TermDescriptor": {
+            "isDescriptor": true,
+            "isPartOfIdentity": false,
+            "isReference": true,
+            "isRequired": false,
+            "path": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor",
+            "projectName": "Ed-Fi",
+            "resourceName": "TermDescriptor",
             "type": "string"
           },
           "FavoriteProgram": {
@@ -7945,6 +8150,27 @@
             "projectName": "Ed-Fi",
             "resourceName": "StudentCharacteristicDescriptor",
             "type": "string"
+          },
+          "StudentCharacteristic.StudentNeed.BeginDate": {
+            "isPartOfIdentity": true,
+            "isReference": false,
+            "isRequired": true,
+            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
+            "type": "date"
+          },
+          "StudentCharacteristic.StudentNeed.EndDate": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
+            "type": "date"
+          },
+          "StudentCharacteristic.StudentNeed.PrimaryStudentNeedIndicator": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator",
+            "type": "boolean"
           }
         },
         "domains": [
@@ -7978,6 +8204,71 @@
                       "items": {
                         "additionalProperties": false,
                         "properties": {
+                          "_ext": {
+                            "additionalProperties": false,
+                            "description": "Extension properties",
+                            "properties": {
+                              "sample": {
+                                "additionalProperties": false,
+                                "description": "sample extension properties",
+                                "properties": {
+                                  "complex": {
+                                    "description": "The apartment or housing complex name.",
+                                    "maxLength": 255,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "onBusRoute": {
+                                    "description": "An indicator if the address is on a bus route.",
+                                    "type": "boolean"
+                                  },
+                                  "schoolDistricts": {
+                                    "items": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "schoolDistrict": {
+                                          "description": "The school district in which the address is located.",
+                                          "maxLength": 250,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "schoolDistrict"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "minItems": 1,
+                                    "type": "array",
+                                    "uniqueItems": false
+                                  },
+                                  "terms": {
+                                    "items": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "termDescriptor": {
+                                          "description": "An Ed-Fi Descriptor",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "termDescriptor"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "minItems": 0,
+                                    "type": "array",
+                                    "uniqueItems": false
+                                  }
+                                },
+                                "required": [
+                                  "onBusRoute",
+                                  "schoolDistricts"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "addressTypeDescriptor": {
                             "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                             "type": "string"
@@ -8116,6 +8407,48 @@
                       "items": {
                         "additionalProperties": false,
                         "properties": {
+                          "_ext": {
+                            "additionalProperties": false,
+                            "description": "Extension properties",
+                            "properties": {
+                              "sample": {
+                                "additionalProperties": false,
+                                "description": "sample extension properties",
+                                "properties": {
+                                  "studentNeeds": {
+                                    "items": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "beginDate": {
+                                          "description": "The month, day, and year for the start of the period.",
+                                          "format": "date",
+                                          "type": "string"
+                                        },
+                                        "endDate": {
+                                          "description": "The month, day, and year for the end of the period.",
+                                          "format": "date",
+                                          "type": "string"
+                                        },
+                                        "primaryStudentNeedIndicator": {
+                                          "description": "Indicates the parent characteristic is a primary student need.",
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "beginDate"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "minItems": 0,
+                                    "type": "array",
+                                    "uniqueItems": false
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "designatedBy": {
                             "description": "The person, organization, or department that designated the characteristic.",
                             "maxLength": 60,
@@ -8178,6 +8511,49 @@
               "schemas": {
                 "Sample_StudentEducationOrganizationAssociation_Address": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "complex": {
+                              "description": "The apartment or housing complex name.",
+                              "maxLength": 255,
+                              "minLength": 1,
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "onBusRoute": {
+                              "description": "An indicator if the address is on a bus route.",
+                              "type": "boolean"
+                            },
+                            "schoolDistricts": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                              },
+                              "minItems": 1,
+                              "type": "array",
+                              "uniqueItems": false
+                            },
+                            "terms": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_Address_Term"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "required": [
+                            "onBusRoute",
+                            "schoolDistricts"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "addressTypeDescriptor": {
                       "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
                       "maxLength": 306,
@@ -8297,6 +8673,26 @@
                 },
                 "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic": {
                   "properties": {
+                    "_ext": {
+                      "description": "Extension properties",
+                      "properties": {
+                        "sample": {
+                          "description": "sample extension properties",
+                          "properties": {
+                            "studentNeeds": {
+                              "items": {
+                                "$ref": "#/components/schemas/Sample_StudentCharacteristic_StudentNeed"
+                              },
+                              "minItems": 0,
+                              "type": "array",
+                              "uniqueItems": false
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "designatedBy": {
                       "description": "The person, organization, or department that designated the characteristic.",
                       "maxLength": 60,
@@ -10137,7 +10533,8 @@
         "arrayUniquenessConstraints": [
           {
             "paths": [
-              "$._ext.sample.aquaticPets[*].mimimumTankVolume"
+              "$._ext.sample.aquaticPets[*].mimimumTankVolume",
+              "$._ext.sample.aquaticPets[*].petName"
             ]
           },
           {
@@ -10162,6 +10559,7 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+          "$._ext.sample.aquaticPets[*].isFixed",
           "$._ext.sample.pets[*].isFixed"
         ],
         "dateJsonPaths": [
@@ -10171,12 +10569,26 @@
         "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
+          "AquaticPet.IsFixed": {
+            "isPartOfIdentity": false,
+            "isReference": false,
+            "isRequired": false,
+            "path": "$._ext.sample.aquaticPets[*].isFixed",
+            "type": "boolean"
+          },
           "AquaticPet.MimimumTankVolume": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
             "path": "$._ext.sample.aquaticPets[*].mimimumTankVolume",
             "type": "number"
+          },
+          "AquaticPet.PetName": {
+            "isPartOfIdentity": true,
+            "isReference": false,
+            "isRequired": true,
+            "path": "$._ext.sample.aquaticPets[*].petName",
+            "type": "string"
           },
           "FavoriteBook.BookTitle": {
             "isPartOfIdentity": false,
@@ -10268,13 +10680,25 @@
                       "items": {
                         "additionalProperties": false,
                         "properties": {
+                          "isFixed": {
+                            "description": "An indication as to whether the pet has been spayed/neutered.",
+                            "type": "boolean"
+                          },
                           "mimimumTankVolume": {
                             "description": "The minimum tank volume this aquatic pet requires.",
                             "type": "integer"
+                          },
+                          "petName": {
+                            "description": "The pet's name.",
+                            "maxLength": 20,
+                            "minLength": 3,
+                            "pattern": "^(?!\\s)(.*\\S)$",
+                            "type": "string"
                           }
                         },
                         "required": [
-                          "mimimumTankVolume"
+                          "mimimumTankVolume",
+                          "petName"
                         ],
                         "type": "object"
                       },
@@ -10395,14 +10819,26 @@
               "schemas": {
                 "Sample_Student_AquaticPet": {
                   "properties": {
+                    "isFixed": {
+                      "description": "An indication as to whether the pet has been spayed/neutered.",
+                      "type": "boolean",
+                      "x-nullable": true
+                    },
                     "mimimumTankVolume": {
                       "description": "The minimum tank volume this aquatic pet requires.",
                       "format": "int32",
                       "type": "integer"
+                    },
+                    "petName": {
+                      "description": "The pet's name.",
+                      "maxLength": 20,
+                      "minLength": 3,
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "mimimumTankVolume"
+                    "mimimumTankVolume",
+                    "petName"
                   ],
                   "type": "object"
                 },

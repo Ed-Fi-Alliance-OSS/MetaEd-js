@@ -3,7 +3,15 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, EnhancerResult, EntityProperty, NoEntityProperty, getAllProperties } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  EntityProperty,
+  NoEntityProperty,
+  getAllProperties,
+  CommonExtension,
+  NoCommonExtension,
+} from '@edfi/metaed-core';
 import { ApiPropertyMapping, NoApiPropertyMapping } from './ApiPropertyMapping';
 import { NoReferenceElement, ReferenceComponent } from './ReferenceComponent';
 
@@ -27,6 +35,11 @@ export type EntityPropertyApiSchemaData = {
    * The ReferenceComponent object graph for this property.
    */
   referenceComponent: ReferenceComponent;
+
+  /**
+   * If this is a common extension property, this is the referenced CommonExtension.
+   */
+  referencedCommonExtension: CommonExtension;
 };
 
 /**
@@ -40,6 +53,7 @@ export function addEntityPropertyApiSchemaDataTo(property: EntityProperty) {
     namingCollisionWithSuperclassProperty: NoEntityProperty,
     namingCollisionWithSubclassProperties: [],
     referenceComponent: NoReferenceElement,
+    referencedCommonExtension: NoCommonExtension,
   });
 }
 
