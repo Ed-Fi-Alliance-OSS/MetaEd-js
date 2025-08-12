@@ -118,6 +118,7 @@ function buildCommonExtensionOpenApi(
   commonExtension: CommonExtension,
   propertyModifier: PropertyModifier,
   schoolYearOpenApis: SchoolYearOpenApis,
+  propertiesChain: EntityProperty[] = [],
 ): OpenApiObject {
   const extensionOpenApiProperties: OpenApiProperties = {};
   const extensionRequired: string[] = [];
@@ -140,7 +141,7 @@ function buildCommonExtensionOpenApi(
       collectedApiProperty.property,
       concatenatedPropertyModifier,
       schoolYearOpenApis,
-      collectedApiProperty.propertyChain,
+      propertiesChain.concat(collectedApiProperty.propertyChain),
     );
 
     extensionOpenApiProperties[openApiPropertyName] = openApiProperty;
@@ -214,7 +215,12 @@ export function openApiObjectForScalarCommonProperty(
     const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
     if (referencedCommonExtension !== NoCommonExtension) {
-      const extensionOpenApi = buildCommonExtensionOpenApi(referencedCommonExtension, propertyModifier, schoolYearOpenApis);
+      const extensionOpenApi = buildCommonExtensionOpenApi(
+        referencedCommonExtension,
+        propertyModifier,
+        schoolYearOpenApis,
+        propertiesChain,
+      );
       Object.assign(openApiProperties, extensionOpenApi.properties);
     }
   }
