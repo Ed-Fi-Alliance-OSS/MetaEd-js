@@ -3309,7 +3309,7 @@
                             },
                             "schoolDistricts": {
                               "items": {
-                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                                "$ref": "#/components/schemas/Sample_Contact_Address_SchoolDistrict"
                               },
                               "minItems": 1,
                               "type": "array",
@@ -3317,7 +3317,7 @@
                             },
                             "terms": {
                               "items": {
-                                "$ref": "#/components/schemas/Sample_Address_Term"
+                                "$ref": "#/components/schemas/Sample_Contact_Address_Term"
                               },
                               "minItems": 0,
                               "type": "array",
@@ -3428,6 +3428,32 @@
                     "stateAbbreviationDescriptor",
                     "postalCode",
                     "addressTypeDescriptor"
+                  ],
+                  "type": "object"
+                },
+                "Sample_Contact_Address_SchoolDistrict": {
+                  "properties": {
+                    "schoolDistrict": {
+                      "description": "The school district in which the address is located.",
+                      "maxLength": 250,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "schoolDistrict"
+                  ],
+                  "type": "object"
+                },
+                "Sample_Contact_Address_Term": {
+                  "properties": {
+                    "termDescriptor": {
+                      "description": "Terms applicable to this address.",
+                      "maxLength": 306,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "termDescriptor"
                   ],
                   "type": "object"
                 },
@@ -8530,7 +8556,7 @@
                             },
                             "schoolDistricts": {
                               "items": {
-                                "$ref": "#/components/schemas/Sample_Address_SchoolDistrict"
+                                "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_Address_SchoolDistrict"
                               },
                               "minItems": 1,
                               "type": "array",
@@ -8538,7 +8564,7 @@
                             },
                             "terms": {
                               "items": {
-                                "$ref": "#/components/schemas/Sample_Address_Term"
+                                "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_Address_Term"
                               },
                               "minItems": 0,
                               "type": "array",
@@ -8652,6 +8678,32 @@
                   ],
                   "type": "object"
                 },
+                "Sample_StudentEducationOrganizationAssociation_Address_SchoolDistrict": {
+                  "properties": {
+                    "schoolDistrict": {
+                      "description": "The school district in which the address is located.",
+                      "maxLength": 250,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "schoolDistrict"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentEducationOrganizationAssociation_Address_Term": {
+                  "properties": {
+                    "termDescriptor": {
+                      "description": "Terms applicable to this address.",
+                      "maxLength": 306,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "termDescriptor"
+                  ],
+                  "type": "object"
+                },
                 "Sample_StudentEducationOrganizationAssociation_Period": {
                   "properties": {
                     "beginDate": {
@@ -8681,7 +8733,7 @@
                           "properties": {
                             "studentNeeds": {
                               "items": {
-                                "$ref": "#/components/schemas/Sample_StudentCharacteristic_StudentNeed"
+                                "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed"
                               },
                               "minItems": 0,
                               "type": "array",
@@ -8715,6 +8767,30 @@
                   },
                   "required": [
                     "studentCharacteristicDescriptor"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed": {
+                  "properties": {
+                    "beginDate": {
+                      "description": "The month, day, and year for the start of the period.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "description": "The month, day, and year for the end of the period.",
+                      "format": "date",
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "primaryStudentNeedIndicator": {
+                      "description": "Indicates the parent characteristic is a primary student need.",
+                      "type": "boolean",
+                      "x-nullable": true
+                    }
+                  },
+                  "required": [
+                    "beginDate"
                   ],
                   "type": "object"
                 }
