@@ -28,8 +28,8 @@ jest.setTimeout(40000);
 
 describe('when generating add column changeversion and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-column-changeversion');
-  const authoritativeCoreFilename = 'AddColumnChangeVersion-v5.0-Authoritative.sql';
-  const generatedCoreFilename = 'AddColumnChangeVersion-v5.0.sql';
+  const authoritativeCoreFilename = 'AddColumnChangeVersion-v5.0-authoritative.sql';
+  const generatedCoreFilename = 'AddColumnChangeVersion-v5.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -91,10 +91,10 @@ describe('when generating add column changeversion and comparing to ODS/API 5.0 
 describe('when generating add column changeversion with simple extensions and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-column-changeversion');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'AddColumnChangeVersion-v6.0-Authoritative.sql';
-  const generatedCoreFilename = 'AddColumnChangeVersion-v6.0.sql';
-  const authoritativeExtensionFilename = 'sample-AddColumnChangeVersion-v6.0-Authoritative.sql';
-  const generatedExtensionFilename = 'sample-AddColumnChangeVersion-v6.0.sql';
+  const authoritativeCoreFilename = 'AddColumnChangeVersion-v6.0-authoritative.sql';
+  const generatedCoreFilename = 'AddColumnChangeVersion-v6.0-generated.sql';
+  const authoritativeExtensionFilename = 'sample-AddColumnChangeVersion-v6.0-authoritative.sql';
+  const generatedExtensionFilename = 'sample-AddColumnChangeVersion-v6.0-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;

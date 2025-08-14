@@ -85,12 +85,12 @@ describe('when generating ods tables file with simple merges for ODS/API 7.2', (
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
-    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
-    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
-    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}.sql`;
-    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-Authoritative.sql`;
+    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-generated.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-authoritative.sql`;
 
     await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
     await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
@@ -178,12 +178,12 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
     [, , generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
-    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
-    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
-    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}.sql`;
-    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-Authoritative.sql`;
+    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-generated.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-authoritative.sql`;
 
     await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
     await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
@@ -271,12 +271,12 @@ describe('when generating EducationOrganizationAuthorizationIndexes with simple 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
-    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
-    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
-    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}.sql`;
-    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-Authoritative.sql`;
+    generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-generated.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-authoritative.sql`;
 
     await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
     await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);

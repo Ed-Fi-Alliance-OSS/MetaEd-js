@@ -16,8 +16,14 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
+  const isVersion73Plus = versionSatisfies(targetTechnologyVersion, '>=7.3.0');
 
   metaEd.namespace.forEach((namespace) => {
+    // For v7.3+, only generate for EdFi namespace (skip extension namespaces)
+    if (isVersion73Plus && namespace.isExtension) {
+      return;
+    }
+
     const generatedResult: string = template().createChangeVersionSequence({
       useLicenseHeader,
       isStyle6dot0,

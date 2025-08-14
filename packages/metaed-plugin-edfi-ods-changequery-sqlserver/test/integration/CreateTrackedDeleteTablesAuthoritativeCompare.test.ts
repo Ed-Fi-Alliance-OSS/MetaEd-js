@@ -28,8 +28,8 @@ jest.setTimeout(40000);
 
 describe('when generating change event scripts and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/tracking-table');
-  const authoritativeFilename = 'TrackedDeleteTables-v5.0-Authoritative.sql';
-  const generatedFilename = 'TrackedDeleteTables-v5.0.sql';
+  const authoritativeFilename = 'TrackedDeleteTables-v5.0-authoritative.sql';
+  const generatedFilename = 'TrackedDeleteTables-v5.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -91,10 +91,10 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/tracking-table');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TrackedDeleteTables-v5.0-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v5.0-Authoritative.sql';
-  const generatedCoreFilename = 'TrackedDeleteTables-v5.0.sql';
-  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v5.0.sql';
+  const authoritativeCoreFilename = 'TrackedDeleteTables-v5.0-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v5.0-authoritative.sql';
+  const generatedCoreFilename = 'TrackedDeleteTables-v5.0-generated.sql';
+  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v5.0-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
@@ -176,8 +176,8 @@ describe('when generating change event scripts with simple extensions and compar
 
 describe('when generating change event scripts and comparing to ODS/API 5.0 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/tracking-table');
-  const authoritativeFilename = 'TrackedDeleteTables-v5.0-Alliance-Authoritative.sql';
-  const generatedFilename = 'TrackedDeleteTables-v5.0-Alliance.sql';
+  const authoritativeFilename = 'TrackedDeleteTables-v5.0-Alliance-authoritative.sql';
+  const generatedFilename = 'TrackedDeleteTables-v5.0-Alliance-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -240,10 +240,10 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 5.0 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/tracking-table');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TrackedDeleteTables-v5.0-Alliance-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v5.0-Alliance-Authoritative.sql';
-  const generatedCoreFilename = 'TrackedDeleteTables-v5.0-Alliance.sql';
-  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v5.0-Alliance.sql';
+  const authoritativeCoreFilename = 'TrackedDeleteTables-v5.0-Alliance-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v5.0-Alliance-authoritative.sql';
+  const generatedCoreFilename = 'TrackedDeleteTables-v5.0-Alliance-generated.sql';
+  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v5.0-Alliance-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
@@ -327,10 +327,10 @@ describe('when generating change event scripts with simple extensions and compar
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/tracking-table');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TrackedDeleteTables-v6.0-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v6.0-Authoritative.sql';
-  const generatedCoreFilename = 'TrackedDeleteTables-v6.0.sql';
-  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v6.0.sql';
+  const authoritativeCoreFilename = 'TrackedDeleteTables-v6.0-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TrackedDeleteTables-v6.0-authoritative.sql';
+  const generatedCoreFilename = 'TrackedDeleteTables-v6.0-generated.sql';
+  const generatedExtensionFilename = 'sample-TrackedDeleteTables-v6.0-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
