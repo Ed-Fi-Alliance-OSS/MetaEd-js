@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
+import { GeneratorResult, MetaEdEnvironment, versionSatisfies, PluginEnvironment } from '@edfi/metaed-core';
 import { generateCreateChangeVersionSequence } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
 import { getTemplateFileContents, databaseSpecificFolderName } from './ChangeQueryGeneratorBase';
@@ -11,9 +11,16 @@ import { getTemplateFileContents, databaseSpecificFolderName } from './ChangeQue
 const generatorName = `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`;
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isVersion73Plus = versionSatisfies(targetTechnologyVersion, '>=7.3.0');
+
+  const templateFileName = isVersion73Plus
+    ? '0020-CreateChangeVersionSequence.sql'
+    : '0020-CreateChangeVersionSequenceV72x.sql';
+
   const results = generateCreateChangeVersionSequence(
     metaEd,
-    getTemplateFileContents('0020-CreateChangeVersionSequence.sql'),
+    getTemplateFileContents(templateFileName),
     databaseSpecificFolderName,
   );
   return {

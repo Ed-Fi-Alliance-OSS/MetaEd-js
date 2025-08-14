@@ -26,8 +26,8 @@ jest.setTimeout(40000);
 
 describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
-  const authoritativeFilename = 'CreatedByOwnership-v5.0-Authoritative.sql';
-  const generatedFilename = 'CreatedByOwnership-v5.0.sql';
+  const authoritativeFilename = 'CreatedByOwnership-v5.0-authoritative.sql';
+  const generatedFilename = 'CreatedByOwnership-v5.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -87,8 +87,8 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
 
 describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.0 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
-  const authoritativeFilename = 'CreatedByOwnership-v5.0-Alliance-Authoritative.sql';
-  const generatedFilename = 'CreatedByOwnership-v5.0-Alliance.sql';
+  const authoritativeFilename = 'CreatedByOwnership-v5.0-Alliance-authoritative.sql';
+  const generatedFilename = 'CreatedByOwnership-v5.0-Alliance-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 

@@ -27,8 +27,8 @@ jest.setTimeout(40000);
 
 describe('when generating change event scripts and comparing to ODS/API 7.3 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/indirect-update-trigger');
-  const authoritativeFilename = 'IndirectUpdateTrigger-v7.3-Authoritative.sql';
-  const generatedFilename = 'IndirectUpdateTrigger-v7.3.sql';
+  const authoritativeFilename = 'IndirectUpdateTrigger-v7.3-authoritative.sql';
+  const generatedFilename = 'IndirectUpdateTrigger-v7.3-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -89,8 +89,8 @@ describe('when generating change event scripts and comparing to ODS/API 7.3 auth
 
 describe('when generating change event scripts and comparing to ODS/API 7.3 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/indirect-update-trigger');
-  const authoritativeFilename = 'IndirectUpdateTrigger-v7.3-Alliance-Authoritative.sql';
-  const generatedFilename = 'IndirectUpdateTrigger-v7.3-Alliance.sql';
+  const authoritativeFilename = 'IndirectUpdateTrigger-v7.3-Alliance-authoritative.sql';
+  const generatedFilename = 'IndirectUpdateTrigger-v7.3-Alliance-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 

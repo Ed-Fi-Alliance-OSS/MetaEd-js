@@ -19,35 +19,8 @@ dist/
 /packages/metaed-plugin-edfi-xsd/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*-Authoritative.xsd
 
-0004-Tables.diff
-0004-Tables.sql
-0004-Tables.html
-
-Simple-0004-Extension-extension-Tables.sql
-Transcript-0004-Extension-extension-Tables.sql
-
-0020-SchoolYears.sql
-0020-Tables.sql
-0020-Tables.diff
-0020-Tables.html
-0030-ForeignKeys.sql
-0040-IdColumnUniqueIndexes.sql
-0050-ExtendedProperties.sql
-1410-CreateIndex-EdOrgIdsRelationship-AuthPerformance.sql
-1460-AggregateIdColumns.sql
-1465-UpdateIndex-EdOrgIdsRelationship-AuthPerformance.sql
-
-Simple-0004-Extension-Extension-Tables.sql
-Transcript-0004-Extension-Extension-Tables.sql
-Simple-0020-Extension-Extension-Tables.sql
-TPDM-0020-TPDM-TPDM-Tables.sql
-TPDM-0030-TPDM-TPDM-ForeignKeys.sql
-SimpleType-0020-Extension-Extension-Tables.sql
-Transcript-0020-Extension-Extension-Tables.sql
-Simple-0030-Extension-Extension-ForeignKeys.sql
-SimpleType-0030-Extension-Extension-ForeignKeys.sql
-Transcript-0030-Extension-Extension-ForeignKeys.sql
-SimpleType-1410-Extension-Extension-CreateIndex-EdOrgIdsRelationship-AuthPerformance.sql
+/packages/metaed-plugin-edfi-ods-postgresql/test/integration/artifact/**/*-generated.sql
+/packages/metaed-plugin-edfi-ods-sqlserver/test/integration/artifact/**/*-generated.sql
 
 /packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
@@ -56,32 +29,11 @@ SimpleType-1410-Extension-Extension-CreateIndex-EdOrgIdsRelationship-AuthPerform
 
 /packages/metaed-odsapi-deploy/test/integration/output/*
 
-TrackedDeleteTables-v6.0.sql
-sample-TrackedDeleteTables-v6.0.sql
-DeleteTrackingTrigger-v5.0.sql
-DeleteTrackingTrigger-v5.0-Alliance.sql
-DeleteTrackingTrigger-v6.0.sql
-DeleteTrackingTrigger-v6.0-Alliance.sql
-sample-DeleteTrackingTrigger-v5.0.sql
-sample-DeleteTrackingTrigger-v5.0-Alliance.sql
-sample-DeleteTrackingTrigger-v6.0.sql
-sample-DeleteTrackingTrigger-v6.0-Alliance.sql
-TriggerUpdateChangeVersion-v5.0.sql
-TriggerUpdateChangeVersion-v5.0-Alliance.sql
-TriggerUpdateChangeVersion-v6.0.sql
-TriggerUpdateChangeVersion-v6.0-Alliance.sql
-sample-TriggerUpdateChangeVersion-v6.0.sql
-sample-TriggerUpdateChangeVersion-v6.0-Alliance.sql
-AddColumnChangeVersion-v5.0.sql
-AddColumnChangeVersion-v6.0.sql
-sample-AddColumnChangeVersion-v6.0.sql
-AddIndexChangeVersion-v5.0.sql
-AddIndexChangeVersion-v6.0.sql
-IndirectUpdateTrigger-v7.3-Alliance.sql
-IndirectUpdateTrigger-v7.3.sql
+/packages/metaed-plugin-edfi-ods-changequery-postgresql/test/integration/artifact/**/*-generated.sql
+/packages/metaed-plugin-edfi-ods-changequery-sqlserver/test/integration/artifact/**/*-generated.sql
 
-CreatedByOwnership-v5.0.sql
-CreatedByOwnership-v5.0-Alliance.sql
+/packages/metaed-plugin-edfi-ods-recordownership-postgresql/test/integration/artifact/**/*-generated.sql
+/packages/metaed-plugin-edfi-ods-recordownership-sqlserver/test/integration/artifact/**/*-generated.sql
 
 MetaEdOutput-Experimental/
 MetaEdOutput/
@@ -103,3 +55,11 @@ memory-bank/
 
 # Local JUnit test results
 junit.xml
+
+# Python cache directories
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Memory ingestion scripts
+scripts/memory-ingestion/
