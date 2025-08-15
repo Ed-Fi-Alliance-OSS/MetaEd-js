@@ -32,6 +32,7 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
     isUsiTable: isStyle6dot0 && isUsiTable(table),
+    isRootTableWithVolatileKeys: false, // unused in postgresql
   };
 }
 

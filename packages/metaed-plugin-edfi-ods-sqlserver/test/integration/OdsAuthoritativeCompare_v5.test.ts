@@ -101,8 +101,8 @@ describe('when generating ods and comparing it to data standard 3.2c authoritati
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsSqlServer.OdsGenerator')).generatedOutput,
     );
     coreFileBaseName = path.basename(coreResult.fileName, '.sql');
-    generatedCoreOds = `${outputDirectory}/${coreFileBaseName}.sql`;
-    authoritativeCoreOds = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOds = `${outputDirectory}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOds = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     expect(coreResult).toBeDefined();
     await fs.writeFile(generatedCoreOds, coreResult.resultString);
@@ -194,12 +194,12 @@ describe('when generating ods with simple extensions and comparing it to data st
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
-    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
-    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
-    generatedExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}.sql`;
-    authoritativeExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}-Authoritative.sql`;
+    generatedExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}-generated.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}-authoritative.sql`;
 
     await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
     await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
@@ -286,12 +286,12 @@ describe('when generating ods with student transcript extensions and comparing i
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     const coreFileBaseName: string = path.basename(generatedCoreOutput.fileName, '.sql');
-    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}.sql`;
-    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
+    generatedCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-generated.sql`;
+    authoritativeCoreOdsFilename = `${artifactPath}/${coreFileBaseName}-authoritative.sql`;
 
     const extensionFileBaseName: string = path.basename(generatedExtensionOutput.fileName, '.sql');
-    generatedExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}.sql`;
-    authoritativeExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}-Authoritative.sql`;
+    generatedExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}-generated.sql`;
+    authoritativeExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}-authoritative.sql`;
 
     await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
     await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);

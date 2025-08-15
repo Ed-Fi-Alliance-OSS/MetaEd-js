@@ -221,10 +221,17 @@ export function generateCreateChangesSchema(
   literalOutputContent: string,
   databaseFolderName: string,
 ) {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isVersion73Plus = versionSatisfies(targetTechnologyVersion, '>=7.3.0');
+
   const results: GeneratedOutput[] = [];
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
   metaEd.namespace.forEach((namespace) => {
+    if (isVersion73Plus && namespace.isExtension) {
+      return;
+    }
+
     results.push({
       name: 'ODS Change Event: CreateChangesSchema',
       namespace: namespace.namespaceName,
@@ -243,11 +250,18 @@ export function generateCreateChangeVersionSequence(
   literalOutputContent: string,
   databaseFolderName: string,
 ) {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isVersion73Plus = versionSatisfies(targetTechnologyVersion, '>=7.3.0');
+
   const results: GeneratedOutput[] = [];
 
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
   metaEd.namespace.forEach((namespace) => {
+    if (isVersion73Plus && namespace.isExtension) {
+      return;
+    }
+
     results.push({
       name: 'ODS Change Event: CreateChangeVersionSequence',
       namespace: namespace.namespaceName,
