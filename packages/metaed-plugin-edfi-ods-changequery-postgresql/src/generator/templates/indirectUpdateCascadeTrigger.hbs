@@ -7,26 +7,33 @@
 
 {{/if}}
 {{/if}}
+DO $$
+BEGIN
 {{#triggers}}
-CREATE OR REPLACE FUNCTION {{{mainTableSchema}}}.update_{{{mainTableName}}}_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION {{{mainTableSchema}}}.{{{triggerName}}}()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF {{#checkForUpdateColumnNames}}NEW.{{{this}}} IS DISTINCT FROM OLD.{{{this}}}
       {{#unless @last}} OR {{/unless}}{{/checkForUpdateColumnNames}} THEN
        -- Update the LastModifiedDate in the root table to the current UTC time
-       UPDATE {{{mainTableSchema}}}.{{{mainTableName}}} rt
+       UPDATE {{{mainTableSchema}}}.{{{mainTableNameCasePreserved}}} rt
        SET LastModifiedDate = NOW()
        WHERE {{#fkToMainTableColumnNames}}rt.{{{foreignTableColumnName}}} = NEW.{{{parentTableColumnName}}}{{#unless @last}}
          AND {{/unless}}{{/fkToMainTableColumnNames}};
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_{{{subTableSchema}}}_{{{subTableName}}}_afterupdate
-AFTER UPDATE ON {{{subTableSchema}}}.{{{subTableName}}}
-FOR EACH ROW
-EXECUTE FUNCTION {{{mainTableSchema}}}.update_{{{mainTableName}}}_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = '{{{subTableSchema}}}' AND event_object_table = '{{{subTableName}}}') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON {{{subTableSchema}}}.{{{subTableName}}}
+  FOR EACH ROW
+  EXECUTE FUNCTION {{{mainTableSchema}}}.{{{triggerName}}}();
+END IF;
 
 {{/triggers}}
+END
+$$;

@@ -1,5 +1,8 @@
-CREATE OR REPLACE FUNCTION edfi.update_Assessment_lastmodifieddate()
-RETURNS TRIGGER AS $$
+DO $$
+BEGIN
+CREATE OR REPLACE FUNCTION edfi.Assessment_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.LocalCourseCode IS DISTINCT FROM OLD.LocalCourseCode
@@ -16,15 +19,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_AssessmentSection_afterupdate
-AFTER UPDATE ON edfi.AssessmentSection
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_Assessment_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'assessmentsection') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.assessmentsection
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.Assessment_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_BellSchedule_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.BellSchedule_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.ClassPeriodName IS DISTINCT FROM OLD.ClassPeriodName
@@ -38,15 +44,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_BellScheduleClassPeriod_afterupdate
-AFTER UPDATE ON edfi.BellScheduleClassPeriod
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_BellSchedule_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'bellscheduleclassperiod') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.bellscheduleclassperiod
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.BellSchedule_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_CourseTranscript_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.CourseTranscript_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.LocalCourseCode IS DISTINCT FROM OLD.LocalCourseCode
@@ -68,15 +77,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_CourseTranscriptSection_afterupdate
-AFTER UPDATE ON edfi.CourseTranscriptSection
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_CourseTranscript_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'coursetranscriptsection') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.coursetranscriptsection
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.CourseTranscript_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_ReportCard_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.ReportCard_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.BeginDate IS DISTINCT FROM OLD.BeginDate
@@ -103,15 +115,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_ReportCardGrade_afterupdate
-AFTER UPDATE ON edfi.ReportCardGrade
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_ReportCard_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'reportcardgrade') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.reportcardgrade
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.ReportCard_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_Section_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.Section_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.ClassPeriodName IS DISTINCT FROM OLD.ClassPeriodName
@@ -128,15 +143,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_SectionClassPeriod_afterupdate
-AFTER UPDATE ON edfi.SectionClassPeriod
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_Section_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'sectionclassperiod') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.sectionclassperiod
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.Section_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_StudentCohortAssociation_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.StudentCohortAssociation_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.LocalCourseCode IS DISTINCT FROM OLD.LocalCourseCode
@@ -155,15 +173,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_StudentCohortAssociationSection_afterupdate
-AFTER UPDATE ON edfi.StudentCohortAssociationSection
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_StudentCohortAssociation_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'studentcohortassociationsection') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.studentcohortassociationsection
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.StudentCohortAssociation_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_StudentCompetencyObjective_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.StudentCompetencyObjective_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.BeginDate IS DISTINCT FROM OLD.BeginDate
@@ -188,15 +209,18 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_StudentCompetencyObjectiveStudentSectionAssociation_afterupdate
-AFTER UPDATE ON edfi.StudentCompetencyObjectiveStudentSectionAssociation
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_StudentCompetencyObjective_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'studentcompetencyobjectivestudentsectionassociation') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.studentcompetencyobjectivestudentsectionassociation
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.StudentCompetencyObjective_UpdLastModDate();
+END IF;
 
-CREATE OR REPLACE FUNCTION edfi.update_StudentSectionAttendanceEvent_lastmodifieddate()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION edfi.StudentSectionAttendanceEvent_UpdLastModDate()
+RETURNS trigger AS
+$BODY$
 BEGIN
     -- Check if any volatile foreign key values have changed
     IF NEW.ClassPeriodName IS DISTINCT FROM OLD.ClassPeriodName
@@ -216,10 +240,14 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_edfi_StudentSectionAttendanceEventClassPeriod_afterupdate
-AFTER UPDATE ON edfi.StudentSectionAttendanceEventClassPeriod
-FOR EACH ROW
-EXECUTE FUNCTION edfi.update_StudentSectionAttendanceEvent_lastmodifieddate();
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updaterootlastmodifieddate' AND event_object_schema = 'edfi' AND event_object_table = 'studentsectionattendanceeventclassperiod') THEN
+CREATE TRIGGER updaterootlastmodifieddate
+  AFTER UPDATE ON edfi.studentsectionattendanceeventclassperiod
+  FOR EACH ROW
+  EXECUTE FUNCTION edfi.StudentSectionAttendanceEvent_UpdLastModDate();
+END IF;
 
+END
+$$;
