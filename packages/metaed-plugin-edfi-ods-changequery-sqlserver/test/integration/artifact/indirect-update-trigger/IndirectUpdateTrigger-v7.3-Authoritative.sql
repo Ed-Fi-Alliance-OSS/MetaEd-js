@@ -1,3 +1,6 @@
+DROP TRIGGER IF EXISTS [edfi].[edfi_AssessmentSection_TR_Assessment_Update]
+GO
+
 CREATE TRIGGER [edfi].[edfi_AssessmentSection_TR_Assessment_Update]
 ON [edfi].[AssessmentSection]
 AFTER UPDATE
@@ -23,6 +26,9 @@ BEGIN
 END;
 GO
 
+DROP TRIGGER IF EXISTS [edfi].[edfi_BellScheduleClassPeriod_TR_BellSchedule_Update]
+GO
+
 CREATE TRIGGER [edfi].[edfi_BellScheduleClassPeriod_TR_BellSchedule_Update]
 ON [edfi].[BellScheduleClassPeriod]
 AFTER UPDATE
@@ -43,6 +49,9 @@ BEGIN
                AND rt.SchoolId = i.SchoolId;
     END
 END;
+GO
+
+DROP TRIGGER IF EXISTS [edfi].[edfi_CourseTranscriptSection_TR_CourseTranscript_Update]
 GO
 
 CREATE TRIGGER [edfi].[edfi_CourseTranscriptSection_TR_CourseTranscript_Update]
@@ -73,6 +82,9 @@ BEGIN
                AND rt.TermDescriptorId = i.TermDescriptorId;
     END
 END;
+GO
+
+DROP TRIGGER IF EXISTS [edfi].[edfi_ReportCardGrade_TR_ReportCard_Update]
 GO
 
 CREATE TRIGGER [edfi].[edfi_ReportCardGrade_TR_ReportCard_Update]
@@ -110,6 +122,9 @@ BEGIN
 END;
 GO
 
+DROP TRIGGER IF EXISTS [edfi].[edfi_SectionClassPeriod_TR_Section_Update]
+GO
+
 CREATE TRIGGER [edfi].[edfi_SectionClassPeriod_TR_Section_Update]
 ON [edfi].[SectionClassPeriod]
 AFTER UPDATE
@@ -133,6 +148,9 @@ BEGIN
                AND rt.SessionName = i.SessionName;
     END
 END;
+GO
+
+DROP TRIGGER IF EXISTS [edfi].[edfi_StudentCohortAssociationSection_TR_StudentCohortAssociation_Update]
 GO
 
 CREATE TRIGGER [edfi].[edfi_StudentCohortAssociationSection_TR_StudentCohortAssociation_Update]
@@ -160,6 +178,9 @@ BEGIN
                AND rt.StudentUSI = i.StudentUSI;
     END
 END;
+GO
+
+DROP TRIGGER IF EXISTS [edfi].[edfi_StudentCompetencyObjectiveStudentSectionAssociation_TR_StudentCompetencyObjective_Update]
 GO
 
 CREATE TRIGGER [edfi].[edfi_StudentCompetencyObjectiveStudentSectionAssociation_TR_StudentCompetencyObjective_Update]
@@ -193,6 +214,9 @@ BEGIN
                AND rt.StudentUSI = i.StudentUSI;
     END
 END;
+GO
+
+DROP TRIGGER IF EXISTS [edfi].[edfi_StudentSectionAttendanceEventClassPeriod_TR_StudentSectionAttendanceEvent_Update]
 GO
 
 CREATE TRIGGER [edfi].[edfi_StudentSectionAttendanceEventClassPeriod_TR_StudentSectionAttendanceEvent_Update]

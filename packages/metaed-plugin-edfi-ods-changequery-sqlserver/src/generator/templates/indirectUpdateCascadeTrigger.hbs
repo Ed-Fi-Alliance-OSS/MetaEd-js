@@ -8,8 +8,11 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
-CREATE TRIGGER [{{{subTableSchema}}}].[{{{subTableSchema}}}_{{{subTableName}}}_TR_{{{mainTableName}}}_Update]
-ON [{{{subTableSchema}}}].[{{{subTableName}}}]
+DROP TRIGGER IF EXISTS [{{{subTableSchema}}}].[{{{subTableSchema}}}_{{{subTableNameCasePreserved}}}_TR_{{{mainTableNameCasePreserved}}}_Update]
+GO
+
+CREATE TRIGGER [{{{subTableSchema}}}].[{{{subTableSchema}}}_{{{subTableNameCasePreserved}}}_TR_{{{mainTableNameCasePreserved}}}_Update]
+ON [{{{subTableSchema}}}].[{{{subTableNameCasePreserved}}}]
 AFTER UPDATE
 AS
 BEGIN
@@ -22,7 +25,7 @@ BEGIN
         -- Update the LastModifiedDate in the root table to the current UTC time
         UPDATE rt
         SET rt.LastModifiedDate = GETUTCDATE()
-        FROM [{{{mainTableSchema}}}].[{{{mainTableName}}}] rt
+        FROM [{{{mainTableSchema}}}].[{{{mainTableNameCasePreserved}}}] rt
         INNER JOIN inserted i
             ON {{#fkToMainTableColumnNames}}rt.{{{foreignTableColumnName}}} = i.{{{parentTableColumnName}}}{{#unless @last}}
                AND {{/unless}}{{/fkToMainTableColumnNames}};
