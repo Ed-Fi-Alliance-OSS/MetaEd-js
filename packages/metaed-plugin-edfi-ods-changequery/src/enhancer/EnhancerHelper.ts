@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import R from 'ramda';
-import hash from 'hash.js';
 import {
   getAllEntitiesOfType,
   MetaEdEnvironment,
@@ -15,14 +14,7 @@ import {
   PluginEnvironment,
   SemVer,
 } from '@edfi/metaed-core';
-import {
-  Column,
-  flattenNameComponentsFromGroup,
-  ForeignKey,
-  Table,
-  tableEntities,
-  TopLevelEntityEdfiOds,
-} from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Column, ForeignKey, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { AddColumnChangeVersionForTable } from '../model/AddColumnChangeVersionForTable';
@@ -254,28 +246,4 @@ export function disciplineActionWithResponsibilitySchoolColumn(table: Table): Co
   }
 
   return table.columns.find((c) => c.columnId === 'ResponsibilitySchoolId');
-}
-
-function createHashLength6(text: string): string {
-  return hash.sha256().update(text).digest('hex').substr(0, 6);
-}
-
-export function postgresqlTriggerName(table: Table, triggerSuffix: string): string {
-  const overallMaxLength = 63;
-  const separator = '_';
-
-  const tableName = flattenNameComponentsFromGroup(table.nameGroup)
-    .map((nameComponent) => nameComponent.name)
-    .join('');
-
-  const proposedTriggerName = `${tableName}${separator}${triggerSuffix}`;
-
-  if (proposedTriggerName.length <= overallMaxLength) return proposedTriggerName;
-
-  const triggerHash: string = createHashLength6(tableName);
-
-  const allowedLengthBeforeHash =
-    overallMaxLength - separator.length - triggerHash.length - separator.length - triggerSuffix.length;
-
-  return `${tableName.substr(0, allowedLengthBeforeHash)}${separator}${triggerHash}${separator}${triggerSuffix}`;
 }

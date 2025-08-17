@@ -12,13 +12,9 @@ import {
   Namespace,
 } from '@edfi/metaed-core';
 import { ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { buildTriggerFunctionNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
 import { IndirectUpdateCascadeTrigger } from '../model/IndirectUpdateCascadeTrigger';
-import {
-  indirectUpdateCascadeTriggerEntities,
-  pluginEnvironment,
-  pairedForeignKeyColumnNamesFrom,
-  postgresqlTriggerName,
-} from './EnhancerHelper';
+import { indirectUpdateCascadeTriggerEntities, pluginEnvironment, pairedForeignKeyColumnNamesFrom } from './EnhancerHelper';
 
 const enhancerName = 'IndirectUpdateCascadeTriggerEnhancer';
 
@@ -61,7 +57,7 @@ export function enhance(
           );
 
           result.push({
-            triggerName: postgresqlTriggerName(fkToMainTable.foreignTable, 'UpdLastModDate'),
+            triggerName: buildTriggerFunctionNameFrom(fkToMainTable.foreignTable, 'UpdLastModDate'),
             mainTableSchema: fkToMainTable.foreignTable.schema,
             mainTableName: fkToMainTable.foreignTable.data[databasePluginName].tableName.toLowerCase(),
             mainTableNameCasePreserved: fkToMainTable.foreignTable.data[databasePluginName].tableName,

@@ -23,7 +23,11 @@ import { enhance as namespaceSetupEnhancer } from './model/Namespace';
 export { ColumnDataTypes } from './model/ColumnDataTypes';
 
 export { enhance as postgreSqlTableSetupEnhancer } from './model/Table';
-export { enhance as postgreSqlTableNamingEnhancer } from './enhancer/PostgresqlTableNamingEnhancer';
+export {
+  enhance as postgreSqlTableNamingEnhancer,
+  buildTableNameFrom,
+  buildTriggerFunctionNameFrom,
+} from './enhancer/PostgresqlTableNamingEnhancer';
 export {
   enhance as postgreSqlColumnNamingEnhancer,
   constructColumnNameFrom,

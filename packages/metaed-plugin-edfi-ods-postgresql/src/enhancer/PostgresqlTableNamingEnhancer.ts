@@ -15,6 +15,7 @@ import {
 import { TableEdfiOdsPostgresql } from '../model/Table';
 
 const enhancerName = 'PostgresqlTableNamingEnhancer';
+const maxPostgresqlIdentifierNameLength = 63;
 
 type TableNaming = {
   tableName: string;
@@ -22,30 +23,38 @@ type TableNaming = {
   truncatedTableNameHash: string;
 };
 
-export function postgresqlPrimaryKeyName(collapsedName: string, truncatedTableNameHash: string): string {
-  const overallMaxLength = 63;
+function postgresqlPrimaryKeyName(collapsedName: string, truncatedTableNameHash: string): string {
   const untruncatedName = `${collapsedName}_PK`;
-  if (untruncatedName.length <= overallMaxLength) return untruncatedName;
+  if (untruncatedName.length <= maxPostgresqlIdentifierNameLength) return untruncatedName;
 
   const maxLengthBeforeHash = 50;
-  return `${untruncatedName.substr(0, maxLengthBeforeHash)}_${truncatedTableNameHash}_PK`;
+  return `${untruncatedName.substring(0, maxLengthBeforeHash)}_${truncatedTableNameHash}_PK`;
+}
+
+function createHash(text: string): string {
+  return hash.sha256().update(text).digest('hex');
 }
 
 function tableNameHash(nameGroup: TableNameGroup): string {
   const untruncatedName = flattenNameComponentsFromGroup(nameGroup)
     .map((nameComponent) => nameComponent.name)
     .join('');
-  return hash.sha256().update(untruncatedName).digest('hex');
+  return createHash(untruncatedName);
 }
 
-export function constructTableNameFrom(nameGroup: TableNameGroup): TableNaming {
-  const overallMaxLength = 63;
+/**
+ * Generates a table name, primary key name, and hash that conform to
+ * PostgreSQL's maximum identifier length of 63 characters. If the table/PK name
+ * exceeds this limit, it truncates the name and appends a 6-character hash to
+ * ensure uniqueness.
+ */
+export function buildTableNameFrom(nameGroup: TableNameGroup): TableNaming {
   const truncatedTableNameHash = tableNameHash(nameGroup).substring(0, 6);
 
   const collapsedName = constructCollapsedNameFrom(nameGroup);
   const primaryKeyName = postgresqlPrimaryKeyName(collapsedName, truncatedTableNameHash);
 
-  if (collapsedName.length <= overallMaxLength) {
+  if (collapsedName.length <= maxPostgresqlIdentifierNameLength) {
     return { tableName: collapsedName, primaryKeyName, truncatedTableNameHash };
   }
 
@@ -59,13 +68,39 @@ export function constructTableNameFrom(nameGroup: TableNameGroup): TableNaming {
   };
 }
 
+/**
+ * Generates a trigger function name that conforms to PostgreSQL's
+ * maximum identifier length of 63 characters. The name is constructed by combining
+ * the table name with the given suffix. If the resulting name
+ * exceeds the length limit, it truncates the table name portion
+ * and includes a 6-character hash to maintain uniqueness.
+ */
+export function buildTriggerFunctionNameFrom(table: Table, triggerSuffix: string): string {
+  const separator = '_';
+
+  const tableName = flattenNameComponentsFromGroup(table.nameGroup)
+    .map((nameComponent) => nameComponent.name)
+    .join('');
+
+  const proposedTriggerName = `${tableName}${separator}${triggerSuffix}`;
+
+  if (proposedTriggerName.length <= maxPostgresqlIdentifierNameLength) return proposedTriggerName;
+
+  const triggerHash: string = createHash(tableName).substring(0, 6);
+
+  const allowedLengthBeforeHash =
+    maxPostgresqlIdentifierNameLength - separator.length - triggerHash.length - separator.length - triggerSuffix.length;
+
+  return `${tableName.substring(0, allowedLengthBeforeHash)}${separator}${triggerHash}${separator}${triggerSuffix}`;
+}
+
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const tables: Map<string, Table> = tableEntities(metaEd, namespace);
 
     tables.forEach((table: Table) => {
       if (table.data.edfiOdsPostgresql == null) table.data.edfiOdsPostgresql = {};
-      Object.assign(table.data.edfiOdsPostgresql as TableEdfiOdsPostgresql, constructTableNameFrom(table.nameGroup));
+      Object.assign(table.data.edfiOdsPostgresql as TableEdfiOdsPostgresql, buildTableNameFrom(table.nameGroup));
     });
   });
 

@@ -12,13 +12,14 @@ import {
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME, postgresqlTriggerName, changeDataColumnsWithHardcodesFor } from './EnhancerHelper';
+import { buildTriggerFunctionNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
+import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsWithHardcodesFor } from './EnhancerHelper';
 
 export function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrackingTrigger {
   return {
     ...newDeleteTrackingTrigger(),
     triggerSchema: `tracked_deletes_${table.schema}`,
-    triggerName: postgresqlTriggerName(table, 'TR_DelTrkg'),
+    triggerName: buildTriggerFunctionNameFrom(table, 'TR_DelTrkg'),
     targetTableSchema: table.schema,
     targetTableName: table.data.edfiOdsPostgresql.tableName,
     deleteTrackingTableSchema: `tracked_deletes_${table.schema}`,
@@ -34,7 +35,7 @@ export function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrac
   return {
     ...newDeleteTrackingTrigger(),
     triggerSchema: `tracked_changes_${table.schema}`,
-    triggerName: postgresqlTriggerName(table, 'deleted').toLowerCase(),
+    triggerName: buildTriggerFunctionNameFrom(table, 'deleted').toLowerCase(),
     targetTableSchema: table.schema,
     targetTableName: table.data.edfiOdsPostgresql.tableName.toLowerCase(),
     targetTableNameCasePreserved: table.data.edfiOdsPostgresql.tableName,
