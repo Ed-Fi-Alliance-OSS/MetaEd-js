@@ -6,20 +6,26 @@
 import { PairedForeignKeyColumnName } from './PairedForeignKeyColumnName';
 
 export type IndirectUpdateCascadeTrigger = {
+  triggerName: string;
   mainTableSchema: string;
   mainTableName: string;
+  mainTableNameCasePreserved: string;
   subTableSchema: string;
   subTableName: string;
+  subTableNameCasePreserved: string;
   checkForUpdateColumnNames: string[];
   fkToMainTableColumnNames: PairedForeignKeyColumnName[];
 };
 
 export function newIndirectUpdateCascadeTrigger(): IndirectUpdateCascadeTrigger {
   return {
+    triggerName: '',
     mainTableSchema: '',
     mainTableName: '',
+    mainTableNameCasePreserved: '',
     subTableSchema: '',
     subTableName: '',
+    subTableNameCasePreserved: '',
     checkForUpdateColumnNames: [],
     fkToMainTableColumnNames: [],
   };

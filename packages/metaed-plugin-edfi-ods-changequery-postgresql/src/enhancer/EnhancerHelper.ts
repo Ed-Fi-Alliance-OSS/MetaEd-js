@@ -3,14 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import hash from 'hash.js';
-import {
-  Table,
-  flattenNameComponentsFromGroup,
-  Column,
-  ColumnNameComponent,
-  newColumnNameComponent,
-} from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Table, Column, ColumnNameComponent, newColumnNameComponent } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityProperty } from '@edfi/metaed-core';
 import {
   ChangeDataColumn,
@@ -20,30 +13,6 @@ import {
 import { ColumnDataTypes, constructColumnNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
 
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsPostgresql';
-
-function createHashLength6(text: string): string {
-  return hash.sha256().update(text).digest('hex').substr(0, 6);
-}
-
-export function postgresqlTriggerName(table: Table, triggerSuffix: string): string {
-  const overallMaxLength = 63;
-  const separator = '_';
-
-  const tableName = flattenNameComponentsFromGroup(table.nameGroup)
-    .map((nameComponent) => nameComponent.name)
-    .join('');
-
-  const proposedTriggerName = `${tableName}${separator}${triggerSuffix}`;
-
-  if (proposedTriggerName.length <= overallMaxLength) return proposedTriggerName;
-
-  const triggerHash: string = createHashLength6(tableName);
-
-  const allowedLengthBeforeHash =
-    overallMaxLength - separator.length - triggerHash.length - separator.length - triggerSuffix.length;
-
-  return `${tableName.substr(0, allowedLengthBeforeHash)}${separator}${triggerHash}${separator}${triggerSuffix}`;
-}
 
 function isBaseDescriptorTableIdColumn(table: Table, column: Column) {
   return table.tableId === 'Descriptor' && table.schema === 'edfi' && column.columnId === 'DescriptorId';

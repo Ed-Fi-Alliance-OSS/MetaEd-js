@@ -16,6 +16,7 @@
     "@edfi/metaed-core": "4.5.2-dev.86",
     "@edfi/metaed-plugin-edfi-ods-relational": "4.5.2-dev.86",
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.5.2-dev.86",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "4.5.2-dev.86",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.5.2-dev.86",
     "handlebars": "^4.7.7",
     "ramda": "^0.29.0"

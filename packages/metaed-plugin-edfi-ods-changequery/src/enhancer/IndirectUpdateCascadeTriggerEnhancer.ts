@@ -12,6 +12,7 @@ import {
   Namespace,
 } from '@edfi/metaed-core';
 import { ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { buildTriggerFunctionNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
 import { IndirectUpdateCascadeTrigger } from '../model/IndirectUpdateCascadeTrigger';
 import { indirectUpdateCascadeTriggerEntities, pluginEnvironment, pairedForeignKeyColumnNamesFrom } from './EnhancerHelper';
 
@@ -56,10 +57,13 @@ export function enhance(
           );
 
           result.push({
+            triggerName: buildTriggerFunctionNameFrom(fkToMainTable.foreignTable, 'UpdLastModDate'),
             mainTableSchema: fkToMainTable.foreignTable.schema,
-            mainTableName: fkToMainTable.foreignTable.data[databasePluginName].tableName,
+            mainTableName: fkToMainTable.foreignTable.data[databasePluginName].tableName.toLowerCase(),
+            mainTableNameCasePreserved: fkToMainTable.foreignTable.data[databasePluginName].tableName,
             subTableSchema: fkToMainTable.parentTable.schema,
-            subTableName: fkToMainTable.parentTable.data[databasePluginName].tableName,
+            subTableName: fkToMainTable.parentTable.data[databasePluginName].tableName.toLowerCase(),
+            subTableNameCasePreserved: fkToMainTable.parentTable.data[databasePluginName].tableName,
             checkForUpdateColumnNames,
             fkToMainTableColumnNames: pairedForeignKeyColumnNamesFrom(fkToMainTable, databasePluginName),
           });
