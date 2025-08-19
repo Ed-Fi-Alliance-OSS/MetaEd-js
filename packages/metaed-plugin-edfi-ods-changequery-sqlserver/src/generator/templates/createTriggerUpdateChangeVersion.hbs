@@ -15,7 +15,7 @@ GO
 {{/if}}
 CREATE TRIGGER [{{{schema}}}].[{{{triggerName}}}] ON [{{{schema}}}].[{{{tableName}}}] AFTER UPDATE AS
 BEGIN
-{{#if isRootTableWithVolatileKeys}}
+{{#if isRootTableWithIndirectVolatileKeys}}
     SET NOCOUNT ON;
     UPDATE u
     SET 
