@@ -25,7 +25,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM {{{schema}}}.{{{tableName}}} u
+    FROM [{{{schema}}}].[{{{tableName}}}] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 {{else}}
