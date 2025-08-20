@@ -28,8 +28,8 @@ jest.setTimeout(40000);
 
 describe('when generating change event scripts and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
-  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.0-Authoritative.sql';
-  const generatedFilename = 'TriggerUpdateChangeVersion-v5.0.sql';
+  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.0-authoritative.sql';
+  const generatedFilename = 'TriggerUpdateChangeVersion-v5.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -92,10 +92,10 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v5.0-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-Authoritative.sql';
-  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v5.0.sql';
-  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0.sql';
+  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v5.0-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-authoritative.sql';
+  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v5.0-generated.sql';
+  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
@@ -177,8 +177,8 @@ describe('when generating change event scripts with simple extensions and compar
 
 describe('when generating change event scripts and comparing to ODS/API 5.0 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
-  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-Authoritative.sql';
-  const generatedFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance.sql';
+  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-authoritative.sql';
+  const generatedFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -242,10 +242,10 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 5.0 authoritative artifacts in Alliance mode', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-Alliance-Authoritative.sql';
-  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance.sql';
-  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-Alliance.sql';
+  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-Alliance-authoritative.sql';
+  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v5.0-Alliance-generated.sql';
+  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v5.0-Alliance-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
@@ -329,10 +329,10 @@ describe('when generating change event scripts with simple extensions and compar
 describe('when generating change event scripts with simple extensions and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
-  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v6.0-Authoritative.sql';
-  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v6.0-Authoritative.sql';
-  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v6.0.sql';
-  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v6.0.sql';
+  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v6.0-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v6.0-authoritative.sql';
+  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v6.0-generated.sql';
+  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v6.0-generated.sql';
 
   let generatedCoreOutput: GeneratedOutput;
   let generatedExtensionOutput: GeneratedOutput;
@@ -367,6 +367,91 @@ describe('when generating change event scripts with simple extensions and compar
       metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '4.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+    );
+
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no extension file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+describe('when generating change event scripts with simple extensions and comparing to ODS/API 7.3.0 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
+  const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
+  const authoritativeCoreFilename = 'TriggerUpdateChangeVersion-v7.3-authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-TriggerUpdateChangeVersion-v7.3-authoritative.sql';
+  const generatedCoreFilename = 'TriggerUpdateChangeVersion-v7.3-generated.sql';
+  const generatedExtensionFilename = 'sample-TriggerUpdateChangeVersion-v7.3-generated.sql';
+
+  let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', sampleExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '5.2.0',
+          description: '',
+        },
+        {
+          projectName: 'Sample',
+          namespaceName: 'Sample',
+          projectExtension: 'Sample',
+          projectVersion: '3.2.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

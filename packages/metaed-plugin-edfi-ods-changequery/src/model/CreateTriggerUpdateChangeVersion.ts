@@ -16,6 +16,7 @@ export interface CreateTriggerUpdateChangeVersion extends HasTableName {
   omitDiscriminator: boolean;
   includeNamespace: boolean;
   isUsiTable: boolean;
+  isRootTableWithIndirectVolatileKeys: boolean;
 }
 
 export function newCreateTriggerUpdateChangeVersion(): CreateTriggerUpdateChangeVersion {
@@ -30,5 +31,6 @@ export function newCreateTriggerUpdateChangeVersion(): CreateTriggerUpdateChange
     omitDiscriminator: false,
     includeNamespace: false,
     isUsiTable: false,
+    isRootTableWithIndirectVolatileKeys: false,
   };
 }

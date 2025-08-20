@@ -18,6 +18,7 @@ const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
 function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): CreateTriggerUpdateChangeVersion {
   const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
+  const is7dot3plus = versionSatisfies(targetTechnologyVersion, '>=7.3.0');
   return {
     schema: table.schema,
     tableName: table.data.edfiOdsSqlServer.tableName,
@@ -29,6 +30,8 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
     isUsiTable: isStyle6dot0 && isUsiTable(table),
+    isRootTableWithIndirectVolatileKeys:
+      is7dot3plus && table.isAggregateRootTable && table.foreignKeys.some((fk) => fk.withUpdateCascade),
   };
 }
 

@@ -15,13 +15,26 @@ GO
 {{/if}}
 CREATE TRIGGER [{{{schema}}}].[{{{triggerName}}}] ON [{{{schema}}}].[{{{tableName}}}] AFTER UPDATE AS
 BEGIN
+{{#if isRootTableWithIndirectVolatileKeys}}
+    SET NOCOUNT ON;
+    UPDATE u
+    SET 
+        ChangeVersion = NEXT VALUE FOR [changes].[ChangeVersionSequence],
+        LastModifiedDate = 
+            CASE 
+                WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
+                ELSE i.LastModifiedDate
+            END
+    FROM {{{schema}}}.{{{tableName}}} u
+    INNER JOIN inserted i ON i.Id = u.Id
+    INNER JOIN deleted d ON d.Id = u.Id;
+{{else}}
     SET NOCOUNT ON;
     UPDATE [{{{schema}}}].[{{{tableName}}}]
     SET ChangeVersion = (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM [{{{schema}}}].[{{{tableName}}}] u
     WHERE EXISTS (SELECT 1 FROM inserted i WHERE i.id = u.id);
-{{#if isUsiTable}}
-
+{{/if}}{{#if isUsiTable}}
     ---- Add key change entry when UniqueId is modified
     INSERT INTO [tracked_changes_edfi].[{{{tableName}}}] (
         Old{{{tableName}}}USI, Old{{{tableName}}}UniqueId, 

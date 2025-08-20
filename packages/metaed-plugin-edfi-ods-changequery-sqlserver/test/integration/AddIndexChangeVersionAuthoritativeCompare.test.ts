@@ -28,8 +28,8 @@ jest.setTimeout(40000);
 
 describe('when generating add index changeversion and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-index-changeversion');
-  const authoritativeCoreFilename = 'AddIndexChangeVersion-v5.0-Authoritative.sql';
-  const generatedCoreFilename = 'AddIndexChangeVersion-v5.0.sql';
+  const authoritativeCoreFilename = 'AddIndexChangeVersion-v5.0-authoritative.sql';
+  const generatedCoreFilename = 'AddIndexChangeVersion-v5.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -92,8 +92,8 @@ describe('when generating add index changeversion and comparing to ODS/API 5.0 a
 
 describe('when generating add index changeversion and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-index-changeversion');
-  const authoritativeCoreFilename = 'AddIndexChangeVersion-v6.0-Authoritative.sql';
-  const generatedCoreFilename = 'AddIndexChangeVersion-v6.0.sql';
+  const authoritativeCoreFilename = 'AddIndexChangeVersion-v6.0-authoritative.sql';
+  const generatedCoreFilename = 'AddIndexChangeVersion-v6.0-generated.sql';
 
   let generatedOutput: GeneratedOutput;
 
