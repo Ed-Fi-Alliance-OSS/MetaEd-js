@@ -285,7 +285,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.CourseOffering u
+    FROM [edfi].[CourseOffering] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -540,7 +540,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.Grade u
+    FROM [edfi].[Grade] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -586,7 +586,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.GradebookEntry u
+    FROM [edfi].[GradebookEntry] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1011,7 +1011,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.Section u
+    FROM [edfi].[Section] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1045,7 +1045,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.SectionAttendanceTakenEvent u
+    FROM [edfi].[SectionAttendanceTakenEvent] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1261,7 +1261,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StaffSectionAssociation u
+    FROM [edfi].[StaffSectionAssociation] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1363,7 +1363,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StudentAssessmentRegistration u
+    FROM [edfi].[StudentAssessmentRegistration] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 END	
@@ -1500,7 +1500,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StudentGradebookEntry u
+    FROM [edfi].[StudentGradebookEntry] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1634,7 +1634,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StudentSchoolAttendanceEvent u
+    FROM [edfi].[StudentSchoolAttendanceEvent] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1676,7 +1676,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StudentSectionAssociation u
+    FROM [edfi].[StudentSectionAssociation] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1714,7 +1714,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.StudentSectionAttendanceEvent u
+    FROM [edfi].[StudentSectionAttendanceEvent] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
@@ -1782,7 +1782,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.Survey u
+    FROM [edfi].[Survey] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 END	
@@ -1906,7 +1906,7 @@ BEGIN
                 WHEN i.LastModifiedDate = d.LastModifiedDate THEN GETUTCDATE()
                 ELSE i.LastModifiedDate
             END
-    FROM edfi.SurveySectionAssociation u
+    FROM [edfi].[SurveySectionAssociation] u
     INNER JOIN inserted i ON i.Id = u.Id
     INNER JOIN deleted d ON d.Id = u.Id;
 
