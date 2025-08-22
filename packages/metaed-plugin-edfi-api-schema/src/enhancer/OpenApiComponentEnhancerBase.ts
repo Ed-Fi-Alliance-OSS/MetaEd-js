@@ -142,7 +142,6 @@ export function openApiPropertyForNonReference(
 
     case 'currency':
     case 'decimal':
-    case 'duration':
     case 'percent':
     case 'sharedDecimal': {
       const result: OpenApiProperty = { type: 'number', format: 'double', description };
@@ -165,6 +164,12 @@ export function openApiPropertyForNonReference(
     case 'descriptor':
     case 'enumeration': {
       const result: OpenApiProperty = { type: 'string', description, maxLength: 306 };
+      if (property.isOptional) result['x-nullable'] = true;
+      return result;
+    }
+
+    case 'duration': {
+      const result: OpenApiProperty = { type: 'string', description, maxLength: 30 };
       if (property.isOptional) result['x-nullable'] = true;
       return result;
     }

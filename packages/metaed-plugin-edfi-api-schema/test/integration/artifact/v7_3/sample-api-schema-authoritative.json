@@ -744,7 +744,7 @@
             "isReference": false,
             "isRequired": true,
             "path": "$.expectedTransitTime",
-            "type": "number"
+            "type": "string"
           },
           "HoursPerWeek": {
             "isPartOfIdentity": false,
@@ -964,7 +964,7 @@
             },
             "expectedTransitTime": {
               "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
-              "type": "number"
+              "type": "string"
             },
             "hoursPerWeek": {
               "description": "The number of hours per week in which the bus route is operational.",
@@ -1152,7 +1152,6 @@
           "$.busRouteDuration",
           "$.busRouteNumber",
           "$.busYears[*].busYear",
-          "$.expectedTransitTime",
           "$.hoursPerWeek",
           "$.operatingCost",
           "$.optimalCapacity",
@@ -1213,8 +1212,8 @@
                     },
                     "expectedTransitTime": {
                       "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
-                      "format": "double",
-                      "type": "number"
+                      "maxLength": 30,
+                      "type": "string"
                     },
                     "hoursPerWeek": {
                       "description": "The number of hours per week in which the bus route is operational.",
@@ -1868,7 +1867,7 @@
           "expectedTransitTime": [
             {
               "path": "$.expectedTransitTime",
-              "type": "number"
+              "type": "string"
             }
           ],
           "hoursPerWeek": [
@@ -2604,7 +2603,7 @@
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.averageCarLineWait",
-            "type": "number"
+            "type": "string"
           },
           "BecameParent": {
             "isPartOfIdentity": false,
@@ -3030,7 +3029,7 @@
                     },
                     "averageCarLineWait": {
                       "description": "The time spent per day waiting in the car line.",
-                      "type": "number"
+                      "type": "string"
                     },
                     "becameParent": {
                       "description": "The year in which the contact first became a contact.",
@@ -3273,7 +3272,6 @@
           "type": "object"
         },
         "numericJsonPaths": [
-          "$._ext.sample.averageCarLineWait",
           "$._ext.sample.becameParent",
           "$._ext.sample.ceilingHeights[*].ceilingHeight",
           "$._ext.sample.coffeeSpend",
@@ -3622,8 +3620,8 @@
                   },
                   "averageCarLineWait": {
                     "description": "The time spent per day waiting in the car line.",
-                    "format": "double",
-                    "type": "number",
+                    "maxLength": 30,
+                    "type": "string",
                     "x-nullable": true
                   },
                   "becameParent": {
@@ -5557,7 +5555,7 @@
             "isReference": false,
             "isRequired": false,
             "path": "$.kilnReservationLength",
-            "type": "number"
+            "type": "string"
           },
           "MasteredMediums": {
             "isPartOfIdentity": false,
@@ -5860,7 +5858,7 @@
             },
             "kilnReservationLength": {
               "description": "The number of clock minutes dedicated to the student's kiln reservation.",
-              "type": "number"
+              "type": "string"
             },
             "masteredMediums": {
               "description": "Percentage of the mediums taught in the program which the student mastered.",
@@ -6052,7 +6050,6 @@
           "$.educationOrganizationReference.educationOrganizationId",
           "$.favoriteBook.artMedia[*].artPieces",
           "$.hoursPerDay",
-          "$.kilnReservationLength",
           "$.masteredMediums",
           "$.numberOfDaysInAttendance",
           "$.portfolioPieces",
@@ -6133,8 +6130,8 @@
                     },
                     "kilnReservationLength": {
                       "description": "The number of clock minutes dedicated to the student's kiln reservation.",
-                      "format": "double",
-                      "type": "number",
+                      "maxLength": 30,
+                      "type": "string",
                       "x-nullable": true
                     },
                     "masteredMediums": {
@@ -6923,7 +6920,7 @@
           "kilnReservationLength": [
             {
               "path": "$.kilnReservationLength",
-              "type": "number"
+              "type": "string"
             }
           ],
           "masteredMediums": [
@@ -7299,7 +7296,7 @@
             "isReference": false,
             "isRequired": false,
             "path": "$._ext.sample.readingTimeSpent",
-            "type": "number"
+            "type": "string"
           },
           "StaffEducationOrganizationEmploymentAssociation": {
             "isDescriptor": false,
@@ -7535,7 +7532,7 @@
                     },
                     "readingTimeSpent": {
                       "description": "The amount of time the contact spends reading to the student each day.",
-                      "type": "number"
+                      "type": "string"
                     },
                     "staffEducationOrganizationEmploymentAssociations": {
                       "items": {
@@ -7642,7 +7639,6 @@
           "$._ext.sample.libraryDuration",
           "$._ext.sample.libraryVisits",
           "$._ext.sample.pagesReads[*].pagesRead",
-          "$._ext.sample.readingTimeSpent",
           "$._ext.sample.staffEducationOrganizationEmploymentAssociations[*].staffEducationOrganizationEmploymentAssociationReference.educationOrganizationId",
           "$._ext.sample.studentRead",
           "$._ext.sample.telephone.orderOfPriority"
@@ -7851,8 +7847,8 @@
                   },
                   "readingTimeSpent": {
                     "description": "The amount of time the contact spends reading to the student each day.",
-                    "format": "double",
-                    "type": "number",
+                    "maxLength": 30,
+                    "type": "string",
                     "x-nullable": true
                   },
                   "staffEducationOrganizationEmploymentAssociations": {
@@ -9024,7 +9020,7 @@
             "isReference": false,
             "isRequired": false,
             "path": "$.highSchoolDuration",
-            "type": "number"
+            "type": "string"
           },
           "HoursPerWeek": {
             "isPartOfIdentity": false,
@@ -9289,7 +9285,7 @@
             },
             "highSchoolDuration": {
               "description": "The number of years remaining prior to graduation as of when the plan became effective.",
-              "type": "number"
+              "type": "string"
             },
             "hoursPerWeek": {
               "description": "The number of hours per week the student will attend to graduate.",
@@ -9429,7 +9425,6 @@
           "$.graduationFee",
           "$.graduationPlanReference.educationOrganizationId",
           "$.graduationPlanReference.graduationSchoolYear",
-          "$.highSchoolDuration",
           "$.hoursPerWeek",
           "$.requiredAttendance",
           "$.targetGPA",
@@ -9501,8 +9496,8 @@
                     },
                     "highSchoolDuration": {
                       "description": "The number of years remaining prior to graduation as of when the plan became effective.",
-                      "format": "double",
-                      "type": "number",
+                      "maxLength": 30,
+                      "type": "string",
                       "x-nullable": true
                     },
                     "hoursPerWeek": {
@@ -10214,7 +10209,7 @@
           "highSchoolDuration": [
             {
               "path": "$.highSchoolDuration",
-              "type": "number"
+              "type": "string"
             }
           ],
           "hoursPerWeek": [

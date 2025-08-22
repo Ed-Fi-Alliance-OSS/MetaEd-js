@@ -178,7 +178,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredDurationProperty": Object {
             "description": "doc4",
-            "type": "number",
+            "type": "string",
           },
           "requiredIntegerProperty": Object {
             "description": "doc8",
@@ -451,7 +451,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredDurationProperty": Object {
                   "description": "doc4",
-                  "type": "number",
+                  "type": "string",
                 },
               },
               "required": Array [
