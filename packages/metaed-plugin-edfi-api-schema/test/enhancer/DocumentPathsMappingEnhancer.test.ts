@@ -178,7 +178,7 @@ describe('when building simple domain entity with all the simple non-collections
           "isReference": false,
           "isRequired": true,
           "path": "$.requiredDurationProperty",
-          "type": "number",
+          "type": "string",
         },
         "RequiredIntegerProperty": Object {
           "isPartOfIdentity": false,
@@ -323,7 +323,7 @@ describe('when building simple domain entity with all the simple collections', (
           "isReference": false,
           "isRequired": false,
           "path": "$.requiredDurationProperties[*].requiredDurationProperty",
-          "type": "number",
+          "type": "string",
         },
         "RequiredIntegerProperty": Object {
           "isPartOfIdentity": false,

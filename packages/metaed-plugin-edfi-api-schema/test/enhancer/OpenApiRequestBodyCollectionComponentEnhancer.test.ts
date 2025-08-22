@@ -187,8 +187,8 @@ describe('when building simple domain entity with all the simple collections', (
             "properties": Object {
               "requiredDurationProperty": Object {
                 "description": "doc4",
-                "format": "double",
-                "type": "number",
+                "maxLength": 30,
+                "type": "string",
               },
             },
             "required": Array [

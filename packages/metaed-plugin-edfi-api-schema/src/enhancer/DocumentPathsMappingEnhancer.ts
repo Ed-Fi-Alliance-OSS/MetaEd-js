@@ -73,7 +73,6 @@ function getPathType(propertyType: PropertyType): PathType {
       return 'boolean';
     case 'currency':
     case 'decimal':
-    case 'duration':
     case 'percent':
     case 'sharedDecimal':
     case 'integer':
@@ -87,6 +86,7 @@ function getPathType(propertyType: PropertyType): PathType {
     case 'datetime':
       return 'date-time';
     case 'descriptor':
+    case 'duration':
     case 'enumeration':
     case 'sharedString':
     case 'string':

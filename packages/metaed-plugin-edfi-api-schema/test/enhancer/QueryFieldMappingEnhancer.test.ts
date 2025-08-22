@@ -163,7 +163,7 @@ describe('when building simple domain entity with all the simple non-collections
         "requiredDurationProperty": Array [
           Object {
             "path": "$.requiredDurationProperty",
-            "type": "number",
+            "type": "string",
           },
         ],
         "requiredIntegerProperty": Array [

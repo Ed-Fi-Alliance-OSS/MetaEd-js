@@ -142,8 +142,8 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredDurationProperty": Object {
             "description": "doc4",
-            "format": "double",
-            "type": "number",
+            "maxLength": 30,
+            "type": "string",
           },
           "requiredIntegerProperty": Object {
             "description": "doc8",

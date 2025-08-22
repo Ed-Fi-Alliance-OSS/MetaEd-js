@@ -28,7 +28,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const numericTypes = [
       'currency',
       'decimal',
-      'duration',
       'integer',
       'percent',
       'schoolYearEnumeration',

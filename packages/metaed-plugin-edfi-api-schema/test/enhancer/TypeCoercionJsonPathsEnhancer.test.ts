@@ -124,20 +124,19 @@ describe('when building simple domain entity with all the simple non-collections
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const numericJsonPaths = entity?.data.edfiApiSchema.numericJsonPaths;
     expect(numericJsonPaths).toMatchInlineSnapshot(`
-        Array [
-          "$.optionalDecimalProperty",
-          "$.optionalPercentProperty",
-          "$.optionalSharedDecimalProperty",
-          "$.optionalSharedIntegerProperty",
-          "$.optionalSharedShortProperty",
-          "$.optionalShortProperty",
-          "$.optionalYear",
-          "$.requiredCurrencyProperty",
-          "$.requiredDurationProperty",
-          "$.requiredIntegerProperty",
-          "$.schoolYearTypeReference.schoolYear",
-        ]
-      `);
+      Array [
+        "$.optionalDecimalProperty",
+        "$.optionalPercentProperty",
+        "$.optionalSharedDecimalProperty",
+        "$.optionalSharedIntegerProperty",
+        "$.optionalSharedShortProperty",
+        "$.optionalShortProperty",
+        "$.optionalYear",
+        "$.requiredCurrencyProperty",
+        "$.requiredIntegerProperty",
+        "$.schoolYearTypeReference.schoolYear",
+      ]
+    `);
   });
 
   it('should be correct dateTimeJsonPaths for DomainEntityName', () => {
@@ -301,7 +300,6 @@ describe('when building domain entity extension with all the simple non-collecti
         "$._ext.edfi.optionalShortProperty",
         "$._ext.edfi.optionalYear",
         "$._ext.edfi.requiredCurrencyProperty",
-        "$._ext.edfi.requiredDurationProperty",
         "$._ext.edfi.requiredIntegerProperty",
         "$._ext.edfi.schoolYearTypeReference.schoolYear",
       ]

@@ -316,7 +316,6 @@ function schemaPropertyForNonReference(
 
     case 'currency':
     case 'decimal':
-    case 'duration':
     case 'percent':
     case 'sharedDecimal':
       return { type: 'number', description };
@@ -328,6 +327,7 @@ function schemaPropertyForNonReference(
       return { type: 'string', format: 'date-time', description };
 
     case 'descriptor':
+    case 'duration':
     case 'enumeration':
       return { type: 'string', description };
 
