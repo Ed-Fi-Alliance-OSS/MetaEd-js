@@ -116,6 +116,12 @@ export type DescriptorReferencePath = DocumentPathBase & {
    * Type of the descriptor reference path
    */
   type: PathType;
+
+  /**
+   * The query field name for this descriptor path.
+   * This is the semantic field name derived from the model.
+   */
+  queryFieldName: string;
 };
 
 /**
@@ -136,6 +142,12 @@ export type ScalarPath = DocumentPathBase & {
    * Type of the scalar
    */
   type: PathType;
+
+  /**
+   * The query field name for this scalar path.
+   * This is the semantic field name derived from the model.
+   */
+  queryFieldName: string;
 };
 
 /**

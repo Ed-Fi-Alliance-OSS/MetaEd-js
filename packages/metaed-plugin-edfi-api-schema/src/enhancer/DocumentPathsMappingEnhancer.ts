@@ -15,7 +15,15 @@ import {
   PropertyType,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { normalizeDescriptorPropertyPath } from '../Utility';
+import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
+import {
+  normalizeDescriptorPropertyPath,
+  uncapitalize,
+  findIdenticalRoleNamePatternPrefix,
+  prependPrefixWithCollapse,
+} from '../Utility';
+import { parentPropertyModifier } from './JsonElementNamingHelper';
+import { prefixedName, defaultPropertyModifier } from '../model/PropertyModifier';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DescriptorReferencePath, DocumentReferencePaths, ScalarPath } from '../model/api-schema/DocumentPaths';
@@ -139,6 +147,7 @@ function adjustForMerges(referencingJsonPathsInfo: JsonPathsInfo, fromReferencin
 function matchupJsonPaths(
   fromReferencingEntity: JsonPathsMapping,
   fromReferencedEntity: JsonPathsMapping,
+  referenceProperty: ReferentialProperty,
 ): ReferenceJsonPaths[] {
   const result: ReferenceJsonPaths[] = [];
 
@@ -164,10 +173,34 @@ function matchupJsonPaths(
       matchingJsonPathsInfo.jsonPathPropertyPairs.length === 1 &&
       scalarPropertyTypes.includes(matchingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type)
     ) {
+      // Calculate the query field name semantically using the reference property's role name
+      const { sourceProperty, flattenedIdentityProperty } = mergeAdjustedReferencingJsonPathsInfo.jsonPathPropertyPairs[0];
+      const { apiMapping } = sourceProperty.data.edfiApiSchema as EntityPropertyApiSchemaData;
+
+      // Get the special prefix if there's an identical role name pattern
+      const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
+
+      // Apply parent property modifier if needed
+      const propertyModifier = parentPropertyModifier(flattenedIdentityProperty, defaultPropertyModifier);
+
+      // Calculate the final name with all transformations
+      let queryFieldName = prefixedName(apiMapping.fullName, propertyModifier);
+      if (specialPrefix !== '') {
+        queryFieldName = prependPrefixWithCollapse(queryFieldName, specialPrefix);
+      }
+
+      // Apply role name prefix if role name differs from metaEdName
+      if (referenceProperty.roleName !== referenceProperty.metaEdName) {
+        queryFieldName = prependPrefixWithCollapse(queryFieldName, referenceProperty.roleName);
+      }
+
+      queryFieldName = uncapitalize(queryFieldName);
+
       result.push({
         referenceJsonPath: mergeAdjustedReferencingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: matchingJsonPathsInfo.jsonPathPropertyPairs[0].jsonPath,
         type: getPathType(mergeAdjustedReferencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type),
+        queryFieldName,
       });
     }
   });
@@ -194,6 +227,7 @@ function buildReferenceJsonPaths(
   startOfPropertyPath: string,
   referencedEntity: TopLevelEntity,
   allJsonPathsMapping: JsonPathsMapping,
+  referenceProperty: ReferentialProperty,
 ): ReferenceJsonPaths[] {
   const deepScalarPaths: JsonPathsMapping = findDeepScalarPaths(allJsonPathsMapping, startOfPropertyPath);
   const propertyPathsLikeReferencedEntity: JsonPathsMapping = removePropertyPathPrefixes(
@@ -205,6 +239,7 @@ function buildReferenceJsonPaths(
   const matchedReferenceJsonPathsArray: ReferenceJsonPaths[] = matchupJsonPaths(
     propertyPathsLikeReferencedEntity,
     referencedEntityAllJsonPathsMapping,
+    referenceProperty,
   );
 
   const dedupedReferenceJsonPathsArray: ReferenceJsonPaths[] = dedupeReferenceJsonPaths(matchedReferenceJsonPathsArray);
@@ -233,6 +268,7 @@ function buildDocumentReferencePaths(
       startOfPropertyPath,
       referenceProperty.referencedEntity,
       allJsonPathsMapping,
+      referenceProperty,
     ),
     sourceProperty: referenceProperty,
     isRequired: referenceProperty.isRequired || referenceProperty.isPartOfIdentity,
@@ -249,6 +285,12 @@ function buildDescriptorPath(
   const { referencedEntity } = property as ReferentialProperty;
   const referencedEntityApiSchemaData = referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
 
+  // Extract the query field name from the JsonPath that was semantically built
+  // The JsonPath format is $.fieldName or $.parent[*].fieldName
+  const { jsonPath } = jsonPathPropertyPairs[0];
+  const lastDotIndex = jsonPath.lastIndexOf('.');
+  const queryFieldName = lastDotIndex >= 0 ? jsonPath.substring(lastDotIndex + 1) : jsonPath.substring(2);
+
   return {
     isReference: true,
     isDescriptor: true,
@@ -257,6 +299,7 @@ function buildDescriptorPath(
     path: jsonPathPropertyPairs[0].jsonPath,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
+    queryFieldName,
     isRequired:
       jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
     isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
@@ -265,6 +308,10 @@ function buildDescriptorPath(
 
 function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): DocumentReferencePaths {
   invariant(jsonPathPropertyPairs.length === 1, 'SchoolYear should only have one path');
+
+  // For school year, the query field name is always 'schoolYear' regardless of role names
+  // This is because the identityJsonPath is hardcoded to '$.schoolYear'
+  const queryFieldName = 'schoolYear';
 
   return {
     isReference: true,
@@ -276,6 +323,7 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
         referenceJsonPath: jsonPathPropertyPairs[0].jsonPath,
         identityJsonPath: '$.schoolYear' as JsonPath,
         type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
+        queryFieldName,
       },
     ],
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
@@ -287,11 +335,19 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
 
 function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarPath {
   invariant(jsonPathPropertyPairs.length === 1, 'Scalar should only have one path');
+
+  // Extract the query field name from the JsonPath that was semantically built
+  // The JsonPath format is $.fieldName or $.parent[*].fieldName
+  const { jsonPath } = jsonPathPropertyPairs[0];
+  const lastDotIndex = jsonPath.lastIndexOf('.');
+  const queryFieldName = lastDotIndex >= 0 ? jsonPath.substring(lastDotIndex + 1) : jsonPath.substring(2);
+
   return {
     path: jsonPathPropertyPairs[0].jsonPath,
     isReference: false,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
+    queryFieldName,
     isRequired:
       jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
     isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,

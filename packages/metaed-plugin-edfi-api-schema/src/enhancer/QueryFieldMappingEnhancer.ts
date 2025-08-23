@@ -8,18 +8,10 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
-import { DocumentPaths } from '../model/api-schema/DocumentPaths';
+import { DocumentPaths, DocumentReferencePaths } from '../model/api-schema/DocumentPaths';
 import { ReferenceJsonPaths } from '../model/api-schema/ReferenceJsonPaths';
 import { PathType } from '../model/api-schema/PathType';
-
-/**
- * Returns the last part of a JsonPath
- */
-function endOfPath(jsonPath: JsonPath): string {
-  const endRegex = /[^.]+$/;
-  const match = jsonPath.match(endRegex);
-  return match == null ? '' : match[0];
-}
+// Removed endOfPath function - no longer needed as we use semantic queryFieldName
 
 /**
  * Collections are not included in queries, test for them with JsonPath notation
@@ -35,22 +27,21 @@ function addTo(
   queryFieldMapping: QueryFieldMapping,
   jsonPath: JsonPath,
   pathType: PathType,
+  queryFieldName: string,
   sourceProperty?: EntityProperty,
 ) {
-  const queryField = endOfPath(jsonPath);
-
   // Initialize array if not exists
-  if (queryFieldMapping[queryField] == null) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
+  if (queryFieldMapping[queryFieldName] == null) {
+    queryFieldMapping[queryFieldName] = [{ path: jsonPath, type: pathType, sourceProperty }];
   }
   // Avoid duplicates
-  if (queryFieldMapping[queryField][0].path !== jsonPath) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
+  if (queryFieldMapping[queryFieldName][0].path !== jsonPath) {
+    queryFieldMapping[queryFieldName] = [{ path: jsonPath, type: pathType, sourceProperty }];
   }
 }
 
 /**
- * Extracts query fields for a given DocumentPathsMapping purely by string manipulation.
+ * Extracts query fields for a given DocumentPathsMapping using semantic model information.
  */
 function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): QueryFieldMapping {
   const result: QueryFieldMapping = {};
@@ -58,7 +49,8 @@ function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): Quer
     // ScalarPath
     if (!documentPaths.isReference) {
       if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
+        // Use the semantic queryFieldName from the ScalarPath
+        addTo(result, documentPaths.path, documentPaths.type, documentPaths.queryFieldName, documentPaths.sourceProperty);
       }
       return;
     }
@@ -66,15 +58,39 @@ function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): Quer
     // DescriptorReferencePath
     if (documentPaths.isDescriptor) {
       if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
+        // Use the semantic queryFieldName from the DescriptorReferencePath
+        addTo(result, documentPaths.path, documentPaths.type, documentPaths.queryFieldName, documentPaths.sourceProperty);
       }
       return;
     }
 
-    // DocumentReferencePaths
-    documentPaths.referenceJsonPaths.forEach((referenceJsonPaths: ReferenceJsonPaths) => {
+    // DocumentReferencePaths - use the semantic queryFieldName from ReferenceJsonPaths
+    const referencePaths = documentPaths as DocumentReferencePaths;
+    referencePaths.referenceJsonPaths.forEach((referenceJsonPaths: ReferenceJsonPaths) => {
       if (isNotCollectionPath(referenceJsonPaths.referenceJsonPath)) {
-        addTo(result, referenceJsonPaths.referenceJsonPath, referenceJsonPaths.type, documentPaths.sourceProperty);
+        // Use the semantic queryFieldName that was added to ReferenceJsonPaths
+        const queryField = referenceJsonPaths.queryFieldName;
+
+        // Initialize array if not exists
+        if (result[queryField] == null) {
+          result[queryField] = [
+            {
+              path: referenceJsonPaths.referenceJsonPath,
+              type: referenceJsonPaths.type,
+              sourceProperty: referencePaths.sourceProperty,
+            },
+          ];
+        }
+        // Avoid duplicates
+        if (result[queryField][0].path !== referenceJsonPaths.referenceJsonPath) {
+          result[queryField] = [
+            {
+              path: referenceJsonPaths.referenceJsonPath,
+              type: referenceJsonPaths.type,
+              sourceProperty: referencePaths.sourceProperty,
+            },
+          ];
+        }
       }
     });
   });
@@ -106,7 +122,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   });
 
   return {
-    enhancerName: 'DocumentPathsMappingEnhancer',
+    enhancerName: 'QueryFieldMappingEnhancer',
     success: true,
   };
 }

@@ -3054,6 +3054,7 @@ describe('when building a Domain Entity subclass', () => {
           "isReference": false,
           "isRequired": true,
           "path": "$.schoolId",
+          "queryFieldName": "schoolId",
           "type": "number",
         },
         "SubclassProperty": Object {
@@ -3061,6 +3062,7 @@ describe('when building a Domain Entity subclass', () => {
           "isReference": false,
           "isRequired": true,
           "path": "$.subclassProperty",
+          "queryFieldName": "subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
@@ -3068,6 +3070,7 @@ describe('when building a Domain Entity subclass', () => {
           "isReference": false,
           "isRequired": true,
           "path": "$.superclassProperty",
+          "queryFieldName": "superclassProperty",
           "type": "number",
         },
       }
@@ -3269,11 +3272,13 @@ describe('when building an Association subclass', () => {
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.programId",
+              "queryFieldName": "programId",
               "referenceJsonPath": "$.programReference.programId",
               "type": "number",
             },
             Object {
               "identityJsonPath": "$.programName",
+              "queryFieldName": "programName",
               "referenceJsonPath": "$.programReference.programName",
               "type": "string",
             },
@@ -3289,11 +3294,13 @@ describe('when building an Association subclass', () => {
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.schoolId",
+              "queryFieldName": "schoolId",
               "referenceJsonPath": "$.schoolReference.schoolId",
               "type": "number",
             },
             Object {
               "identityJsonPath": "$.schoolName",
+              "queryFieldName": "schoolName",
               "referenceJsonPath": "$.schoolReference.schoolName",
               "type": "string",
             },
@@ -3305,6 +3312,7 @@ describe('when building an Association subclass', () => {
           "isReference": false,
           "isRequired": true,
           "path": "$.subclassProperty",
+          "queryFieldName": "subclassProperty",
           "type": "number",
         },
         "SuperclassProperty": Object {
@@ -3312,6 +3320,7 @@ describe('when building an Association subclass', () => {
           "isReference": false,
           "isRequired": true,
           "path": "$.superclassProperty",
+          "queryFieldName": "superclassProperty",
           "type": "number",
         },
       }
@@ -3455,6 +3464,7 @@ describe('when domain entity extension references domain entity in different nam
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.referencedIdentity",
+              "queryFieldName": "referencedIdentity",
               "referenceJsonPath": "$._ext.edfi.referencedEntityNameReference.referencedIdentity",
               "type": "number",
             },

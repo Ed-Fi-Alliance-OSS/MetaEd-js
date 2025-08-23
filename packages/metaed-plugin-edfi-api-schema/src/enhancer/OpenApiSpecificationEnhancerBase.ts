@@ -7,6 +7,7 @@ import { invariant } from 'ts-invariant';
 import { type TopLevelEntity, EntityProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
+import type { PathType } from '../model/api-schema/PathType';
 import {
   Operation,
   Parameter,
@@ -332,8 +333,37 @@ function newStaticUpdateByIdParameters(): Parameter[] {
 
 /**
  * Returns an OpenAPI schema object corresponding to the given property based on its type.
+ * For reference identity fields, this uses PathType information to determine the schema.
  */
-function schemaObjectFrom(property: EntityProperty): SchemaObject {
+function schemaObjectFrom(property: EntityProperty, pathType?: PathType): SchemaObject {
+  // If pathType is provided (for reference identity fields), use it to determine the schema
+  if (pathType) {
+    switch (pathType) {
+      case 'boolean':
+        return { type: 'boolean' };
+      case 'date':
+        return { type: 'string', format: 'date' };
+      case 'date-time':
+        return { type: 'string', format: 'date-time' };
+      case 'number':
+        return { type: 'number', format: 'double' };
+      case 'string':
+        // For string types in reference identity fields, we need appropriate maxLength
+        // Common Ed-Fi identity field maxLengths:
+        // - assessmentIdentifier: 60
+        // - namespace: 255
+        // - Most other identity fields: 255 (default)
+        // Since we don't have access to the specific field metadata here,
+        // we'll use a reasonable default that works for most cases
+        return { type: 'string', maxLength: 255 };
+      case 'time':
+        return { type: 'string' };
+      default:
+        return { type: 'string', maxLength: 255 };
+    }
+  }
+
+  // Original logic for non-reference fields
   switch (property.type) {
     case 'boolean':
       return { type: 'boolean' };
@@ -462,14 +492,25 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
     invariant(pathInfo.length > 0, 'There should be at least one pathInfo in a queryFieldMapping');
     invariant(pathInfo[0].sourceProperty != null, 'There should be a sourceProperty on pathInfos');
     const { sourceProperty } = pathInfo[0];
+    const { path } = pathInfo[0];
+    const { type: pathType } = pathInfo[0];
 
-    if (['association', 'choice', 'common', 'domainEntity', 'inlineCommon'].includes(sourceProperty.type)) return;
+    // Reference identity fields (e.g., $.assessmentReference.assessmentIdentifier) should be included
+    // as query parameters. These have type 'domainEntity' but represent flattened identity fields.
+    const isReferenceIdentityField = path.includes('Reference.');
+
+    // Skip non-scalar types EXCEPT for reference identity fields
+    if (
+      !isReferenceIdentityField &&
+      ['association', 'choice', 'common', 'domainEntity', 'inlineCommon'].includes(sourceProperty.type)
+    )
+      return;
 
     const parameter: Parameter = {
       name: fieldName,
       in: 'query',
       description: sourceProperty.documentation,
-      schema: schemaObjectFrom(sourceProperty),
+      schema: schemaObjectFrom(sourceProperty, isReferenceIdentityField ? pathType : undefined),
       ...(sourceProperty.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
     };
 

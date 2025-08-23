@@ -30,4 +30,10 @@ export type ReferenceJsonPaths = {
    * Type of the reference JsonPath
    */
   type: PathType;
+
+  /**
+   * The query field name for this reference path element.
+   * This is the semantic field name derived from the model, not extracted from the JsonPath string.
+   */
+  queryFieldName: string;
 };

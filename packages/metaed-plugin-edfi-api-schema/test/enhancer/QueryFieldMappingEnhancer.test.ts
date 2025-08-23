@@ -29,6 +29,7 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
   associationSubclassBaseClassEnhancer,
+  associationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -1158,7 +1159,7 @@ describe('when building domain entity with a common with a domain entity referen
             "type": "number",
           },
         ],
-        "educationOrganizationId": Array [
+        "mandatingEducationOrganizationId": Array [
           Object {
             "path": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
             "type": "number",
@@ -1654,5 +1655,67 @@ describe('when building multiple descriptors', () => {
       'namespace',
       'shortDescription',
     ]);
+  });
+});
+
+describe('when building entity with EducationOrganization reference with role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      // Create EducationOrganization entity
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('Education Organization')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndDomainEntity()
+
+      // Create AssessmentAdministration entity
+      .withStartDomainEntity('AssessmentAdministration')
+      .withDocumentation('Assessment Administration')
+      .withStringIdentity('AdministrationId', 'doc', '30')
+      .withDomainEntityIdentity('EducationOrganization', 'doc', 'Assigning')
+      .withEndDomainEntity()
+
+      // Create Student entity
+      .withStartDomainEntity('Student')
+      .withDocumentation('Student')
+      .withStringIdentity('StudentId', 'doc', '30')
+      .withEndDomainEntity()
+
+      // Create StudentAssessmentRegistration association
+      .withStartAssociation('StudentAssessmentRegistration')
+      .withDocumentation('Student Assessment Registration')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('AssessmentAdministration', 'doc')
+      .withEndAssociation()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    associationReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should use role name in query field for education organization reference', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentAssessmentRegistration');
+    const queryFieldMapping = removeSourcePropertyFromQueryFieldMapping(entity?.data.edfiApiSchema.queryFieldMapping);
+
+    // The query field should be "assigningEducationOrganizationId" not "educationOrganizationId"
+    expect(queryFieldMapping).toHaveProperty('assigningEducationOrganizationId');
+    expect(queryFieldMapping).not.toHaveProperty('educationOrganizationId');
+
+    // Verify the path is correct
+    expect(queryFieldMapping?.assigningEducationOrganizationId?.[0]?.path).toBe(
+      '$.assessmentAdministrationReference.assigningEducationOrganizationId',
+    );
+
+    // Also verify we have the other expected fields
+    expect(queryFieldMapping).toHaveProperty('studentId');
+    expect(queryFieldMapping).toHaveProperty('administrationId');
   });
 });
