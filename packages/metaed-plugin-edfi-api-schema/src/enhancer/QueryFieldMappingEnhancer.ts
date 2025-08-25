@@ -3,110 +3,244 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, EntityProperty } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  Namespace,
+  TopLevelEntity,
+  getAllEntitiesOfType,
+  EntityProperty,
+  newEntityProperty,
+} from '@edfi/metaed-core';
+import { Table, tableEntities, Column, canonicalColumnNameFor } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
-import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
-import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
-import { DocumentPaths } from '../model/api-schema/DocumentPaths';
-import { ReferenceJsonPaths } from '../model/api-schema/ReferenceJsonPaths';
 import { PathType } from '../model/api-schema/PathType';
+import { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
+import { findMergeJsonPathsMapping, uncapitalize } from '../Utility';
+import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
+import { JsonPathsInfo } from '../model/JsonPathsMapping';
+
+const usiSuffix = 'USI';
 
 /**
- * Returns the last part of a JsonPath
+ * Maps Column Type to PathType for query field mappings
  */
-function endOfPath(jsonPath: JsonPath): string {
-  const endRegex = /[^.]+$/;
-  const match = jsonPath.match(endRegex);
-  return match == null ? '' : match[0];
-}
+function pathTypeFrom(column: Column): PathType {
+  // Descriptor columns reference the synthetic Descriptor table in ODS, but descriptor query fields are strings
+  if (column.sourceEntityProperties.some((property: EntityProperty) => property.type === 'descriptor')) return 'string';
 
-/**
- * Collections are not included in queries, test for them with JsonPath notation
- */
-function isNotCollectionPath(jsonPath: JsonPath): boolean {
-  return !jsonPath.includes('[*]');
-}
-
-/**
- * Add a JsonPath to a QueryFieldMapping
- */
-function addTo(
-  queryFieldMapping: QueryFieldMapping,
-  jsonPath: JsonPath,
-  pathType: PathType,
-  sourceProperty?: EntityProperty,
-) {
-  const queryField = endOfPath(jsonPath);
-
-  // Initialize array if not exists
-  if (queryFieldMapping[queryField] == null) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
+  switch (column.type) {
+    case 'boolean':
+      return 'boolean';
+    case 'date':
+      return 'date';
+    case 'datetime':
+      return 'date-time';
+    case 'time':
+      return 'time';
+    case 'string':
+      return 'string';
+    case 'integer':
+    case 'bigint':
+    case 'short':
+    case 'decimal':
+    case 'currency':
+    case 'percent':
+    case 'duration':
+    case 'year':
+      return 'number';
+    default:
+      return 'string';
   }
-  // Avoid duplicates
-  if (queryFieldMapping[queryField][0].path !== jsonPath) {
-    queryFieldMapping[queryField] = [{ path: jsonPath, type: pathType, sourceProperty }];
-  }
 }
 
 /**
- * Extracts query fields for a given DocumentPathsMapping purely by string manipulation.
+ * Creates standard query field mapping for descriptors
  */
-function queryFieldMappingFrom(documentPathsMapping: DocumentPathsMapping): QueryFieldMapping {
-  const result: QueryFieldMapping = {};
-  Object.values(documentPathsMapping).forEach((documentPaths: DocumentPaths) => {
-    // ScalarPath
-    if (!documentPaths.isReference) {
-      if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
-      }
-      return;
-    }
-
-    // DescriptorReferencePath
-    if (documentPaths.isDescriptor) {
-      if (isNotCollectionPath(documentPaths.path)) {
-        addTo(result, documentPaths.path, documentPaths.type, documentPaths.sourceProperty);
-      }
-      return;
-    }
-
-    // DocumentReferencePaths
-    documentPaths.referenceJsonPaths.forEach((referenceJsonPaths: ReferenceJsonPaths) => {
-      if (isNotCollectionPath(referenceJsonPaths.referenceJsonPath)) {
-        addTo(result, referenceJsonPaths.referenceJsonPath, referenceJsonPaths.type, documentPaths.sourceProperty);
-      }
-    });
-  });
-  return result;
+function createDescriptorQueryFieldMapping(): { [queryField: string]: QueryFieldPathInfo[] } {
+  return {
+    codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
+    description: [{ path: '$.description' as JsonPath, type: 'string' }],
+    effectiveBeginDate: [{ path: '$.effectiveBeginDate' as JsonPath, type: 'date' }],
+    effectiveEndDate: [{ path: '$.effectiveEndDate' as JsonPath, type: 'date' }],
+    namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
+    shortDescription: [{ path: '$.shortDescription' as JsonPath, type: 'string' }],
+  };
 }
 
 /**
- * Derives mapping of API query fields for a document from the document paths mapping
+ * Derive the query field name from the column name components
  */
-export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-      edfiApiSchemaData.queryFieldMapping = queryFieldMappingFrom(edfiApiSchemaData.documentPathsMapping);
-    },
+function queryFieldNameFrom(column: Column): string {
+  const descriptorSource: EntityProperty | undefined = column.sourceEntityProperties.find(
+    (property: EntityProperty) => property.type === 'descriptor',
   );
 
-  // Descriptors all have the same query fields
-  getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
-    const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-    edfiApiSchemaData.queryFieldMapping = {
-      codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
-      description: [{ path: '$.description' as JsonPath, type: 'string' }],
-      effectiveBeginDate: [{ path: '$.effectiveBeginDate' as JsonPath, type: 'date' }],
-      effectiveEndDate: [{ path: '$.effectiveEndDate' as JsonPath, type: 'date' }],
-      namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
-      shortDescription: [{ path: '$.shortDescription' as JsonPath, type: 'string' }],
+  return uncapitalize(
+    // If a column is for a descriptor drop the "Id" suffix because it's a reference to the Descriptor lookup table
+    descriptorSource != null ? canonicalColumnNameFor(column).replace(/Id$/, '') : canonicalColumnNameFor(column),
+  );
+}
+
+/**
+ * Add a query field path info to the mapping
+ */
+function addQueryFieldPathInfo(
+  queryFieldMapping: QueryFieldMapping,
+  queryFieldName: string,
+  pathInfo: QueryFieldPathInfo,
+): void {
+  if (queryFieldMapping[queryFieldName] == null) {
+    queryFieldMapping[queryFieldName] = [];
+  }
+
+  // Check if this exact path already exists to avoid duplicates
+  const existingPath = queryFieldMapping[queryFieldName].find(
+    (existing) => existing.path === pathInfo.path && existing.type === pathInfo.type,
+  );
+
+  if (!existingPath) {
+    queryFieldMapping[queryFieldName].push(pathInfo);
+  }
+}
+
+/**
+ * Handle USI columns by constructing a synthetic QueryFieldMapping
+ */
+function addUniqueIdColumn(column: Column, queryFieldMapping: QueryFieldMapping): void {
+  const columnName = canonicalColumnNameFor(column);
+  if (!columnName.endsWith(usiSuffix)) return;
+
+  // Extract the entity/role name from the column name
+  const namePrefix = columnName.substring(0, columnName.length - usiSuffix.length);
+
+  // Check if this represents the entity's own identifier or a reference to another entity
+  const referenceProperty = column.sourceEntityProperties.find((property: EntityProperty) =>
+    ['domainEntity', 'association'].includes(property.type),
+  );
+
+  let queryFieldName: string;
+  let jsonPath: JsonPath;
+
+  if (referenceProperty == null) {
+    // This is the entity's own identifier
+    queryFieldName = `${uncapitalize(namePrefix)}UniqueId`;
+    jsonPath = `$.${queryFieldName}` as JsonPath;
+  } else {
+    // This is a FK column
+    queryFieldName = `${uncapitalize(namePrefix)}UniqueId`;
+    jsonPath = `$.${uncapitalize(namePrefix)}Reference.${uncapitalize(referenceProperty.metaEdName)}UniqueId` as JsonPath;
+  }
+
+  const queryFieldPathInfo: QueryFieldPathInfo = {
+    path: jsonPath,
+    type: 'string',
+    sourceProperty: { ...newEntityProperty(), type: 'string' },
+  };
+
+  addQueryFieldPathInfo(queryFieldMapping, queryFieldName, queryFieldPathInfo);
+}
+
+/**
+ * Adds queryFieldMapping based on that
+ */
+function addQueryFieldMappingsFrom(column: Column, entity: TopLevelEntity, queryFieldMapping: QueryFieldMapping): void {
+  const jsonPathsInfo: JsonPathsInfo | null = findMergeJsonPathsMapping(entity, column.propertyPath);
+
+  // Handle synthetic columns
+  if (jsonPathsInfo == null) {
+    // USI columns need conversion to UniqueId
+    if (column.isFromUsiProperty) {
+      addUniqueIdColumn(column, queryFieldMapping);
+      return;
+    }
+    // Other synthetic columns don't map to anything
+    return;
+  }
+
+  // Handle regular columns with JSON path mappings
+  jsonPathsInfo.jsonPathPropertyPairs.forEach((pair) => {
+    const queryFieldPathInfo: QueryFieldPathInfo = {
+      path: pair.jsonPath,
+      type: pathTypeFrom(column),
+      sourceProperty: pair.sourceProperty,
     };
+
+    addQueryFieldPathInfo(queryFieldMapping, queryFieldNameFrom(column), queryFieldPathInfo);
+  });
+}
+
+/**
+ * Processes a single table to generate query field mappings for its entity
+ */
+function createQueryFieldMappingsFrom(table: Table): void {
+  // Skip descriptors as they're handled separately
+  if (table.parentEntity.type === 'descriptor') {
+    return;
+  }
+
+  // Skip synthetic tables
+  if (table.existenceReason.isSynthetic) {
+    return;
+  }
+
+  // Only process main tables for an entity
+  if (!table.existenceReason.isEntityMainTable) {
+    return;
+  }
+
+  // Starts off with synthetic id field
+  const queryFieldMapping: QueryFieldMapping = {
+    id: [
+      {
+        path: '$.id' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+  };
+
+  table.columns.forEach((column) => {
+    addQueryFieldMappingsFrom(column, table.parentEntity, queryFieldMapping);
+  });
+
+  // if this is a subclass table, we also need columns from the superclass table
+  if (table.parentEntity.type === 'associationSubclass' || table.parentEntity.type === 'domainEntitySubclass') {
+    const superclassTable: Table = table.parentEntity.baseEntity?.data.edfiOdsRelational.odsEntityTable;
+    superclassTable.columns.forEach((column) => {
+      // We skip the superclass PK columns - the subclass table already has them due to its FK to superclass table
+      if (column.isPartOfPrimaryKey) return;
+      addQueryFieldMappingsFrom(column, superclassTable.parentEntity, queryFieldMapping);
+    });
+  }
+
+  (table.parentEntity.data.edfiApiSchema as EntityApiSchemaData).queryFieldMapping = queryFieldMapping;
+}
+
+/**
+ * Generates query field mappings from relational table columns.
+ */
+export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  // Handle descriptors directly
+  getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
+    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    if (entityApiSchemaData) {
+      const queryFieldMapping = createDescriptorQueryFieldMapping();
+      entityApiSchemaData.queryFieldMapping = queryFieldMapping;
+    }
+  });
+
+  // Handle everything else through tables
+  metaEd.namespace.forEach((namespace: Namespace) => {
+    const tables = tableEntities(metaEd, namespace);
+    tables.forEach((table: Table) => {
+      createQueryFieldMappingsFrom(table);
+    });
   });
 
   return {
-    enhancerName: 'DocumentPathsMappingEnhancer',
+    enhancerName: 'QueryFieldMappingEnhancer',
     success: true,
   };
 }

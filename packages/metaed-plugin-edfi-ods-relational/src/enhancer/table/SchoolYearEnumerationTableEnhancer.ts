@@ -48,6 +48,8 @@ function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table 
       ...newTableExistenceReason(),
       isEntityMainTable: true,
       parentEntity: entity,
+      isSchoolYearType: true,
+      isSynthetic: true,
     },
     namespace,
     schema: namespace.namespaceName.toLowerCase(),
