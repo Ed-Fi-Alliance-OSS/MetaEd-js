@@ -14,11 +14,12 @@ import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping
 import { capitalize } from '../Utility';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { EndpointName } from '../model/api-schema/EndpointName';
-import { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import { DecimalPropertyValidationInfo } from '../model/api-schema/DecimalPropertyValidationInfo';
 import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { createResourceFragment } from './OpenApiResourceFragmentEnhancer';
+import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import { removeSourcePropertyFromQueryFieldMapping } from './ApiSchemaBuildingEnhancer';
 
 function buildDocumentPathsMapping(documentObjectPaths: string[]): { [key: DocumentObjectKey]: DocumentPaths } {
   const documentPathsMapping: { [key: DocumentObjectKey]: DocumentPaths } = {};
@@ -104,26 +105,9 @@ export function buildSchoolYearResourceSchema(
     isSubclass: false,
     isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
-    queryFieldMapping: {
-      currentSchoolYear: [
-        {
-          path: '$.currentSchoolYear' as JsonPath,
-          type: 'boolean',
-        },
-      ],
-      schoolYear: [
-        {
-          path: '$.schoolYear' as JsonPath,
-          type: 'number',
-        },
-      ],
-      schoolYearDescription: [
-        {
-          path: '$.schoolYearDescription' as JsonPath,
-          type: 'string',
-        },
-      ],
-    } as QueryFieldMapping,
+    queryFieldMapping: removeSourcePropertyFromQueryFieldMapping(
+      (schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData).queryFieldMapping,
+    ),
     securableElements: { Namespace: [], EducationOrganization: [], Student: [], Contact: [], Staff: [] },
     authorizationPathways: [],
     arrayUniquenessConstraints: [],

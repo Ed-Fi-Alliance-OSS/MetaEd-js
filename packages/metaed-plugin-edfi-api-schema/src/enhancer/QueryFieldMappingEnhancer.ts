@@ -180,6 +180,11 @@ function createQueryFieldMappingsFrom(table: Table): void {
     return;
   }
 
+  // Skip schoolYearEnumeration as it's handled separately
+  if (table.parentEntity.type === 'schoolYearEnumeration') {
+    return;
+  }
+
   // Skip synthetic tables
   if (table.existenceReason.isSynthetic) {
     return;
@@ -219,6 +224,42 @@ function createQueryFieldMappingsFrom(table: Table): void {
 }
 
 /**
+ * Creates standard query field mapping for SchoolYearEnumeration
+ */
+function createSchoolYearEnumerationQueryFieldMapping(): { [queryField: string]: QueryFieldPathInfo[] } {
+  return {
+    id: [
+      {
+        path: '$.id' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+    schoolYear: [
+      {
+        path: '$.schoolYear' as JsonPath,
+        type: 'number',
+        sourceProperty: { ...newEntityProperty(), type: 'short' },
+      },
+    ],
+    currentSchoolYear: [
+      {
+        path: '$.currentSchoolYear' as JsonPath,
+        type: 'boolean',
+        sourceProperty: { ...newEntityProperty(), type: 'boolean' },
+      },
+    ],
+    schoolYearDescription: [
+      {
+        path: '$.schoolYearDescription' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+  };
+}
+
+/**
  * Generates query field mappings from relational table columns.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
@@ -227,6 +268,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     if (entityApiSchemaData) {
       const queryFieldMapping = createDescriptorQueryFieldMapping();
+      entityApiSchemaData.queryFieldMapping = queryFieldMapping;
+    }
+  });
+
+  // Handle SchoolYearEnumeration directly
+  getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
+    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    if (entityApiSchemaData) {
+      const queryFieldMapping = createSchoolYearEnumerationQueryFieldMapping();
       entityApiSchemaData.queryFieldMapping = queryFieldMapping;
     }
   });
