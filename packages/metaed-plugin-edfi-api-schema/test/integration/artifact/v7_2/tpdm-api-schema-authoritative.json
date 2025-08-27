@@ -1776,11 +1776,61 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
                       "description": "The begin date for the association.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
                       "in": "query",
                       "name": "beginDate",
                       "schema": {
                         "format": "date",
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a candidate.",
+                      "in": "query",
+                      "name": "candidateIdentifier",
+                      "schema": {
+                        "maxLength": 32,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name of the Educator Preparation Program.",
+                      "in": "query",
+                      "name": "programName",
+                      "schema": {
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of program.",
+                      "in": "query",
+                      "name": "programTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
@@ -1795,18 +1845,18 @@
                       }
                     },
                     {
-                      "description": "Reason exited for the association.",
+                      "description": "The program pathway the candidate is following; for example: Residency, Internship, Traditional",
                       "in": "query",
-                      "name": "reasonExitedDescriptor",
+                      "name": "eppProgramPathwayDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
                       }
                     },
                     {
-                      "description": "The program pathway the candidate is following; for example: Residency, Internship, Traditional",
+                      "description": "Reason exited for the association.",
                       "in": "query",
-                      "name": "eppProgramPathwayDescriptor",
+                      "name": "reasonExitedDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
@@ -2121,6 +2171,12 @@
           "eppProgramPathwayDescriptor": [
             {
               "path": "$.eppProgramPathwayDescriptor",
+              "type": "string"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
               "type": "string"
             }
           ],
@@ -4055,6 +4111,14 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
                       "description": "A unique alphanumeric code assigned to a candidate.",
                       "in": "query",
                       "name": "candidateIdentifier",
@@ -4066,18 +4130,161 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
+                      "description": "The city the student was born in.",
                       "in": "query",
-                      "name": "personalTitlePrefix",
+                      "name": "birthCity",
                       "schema": {
                         "maxLength": 30,
+                        "minLength": 2,
                         "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
+                      "in": "query",
+                      "name": "birthCountryDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The month, day, and year on which an individual was born.",
+                      "in": "query",
+                      "name": "birthDate",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "For students born outside of the U.S., the Province or jurisdiction in which an individual is born.",
+                      "in": "query",
+                      "name": "birthInternationalProvince",
+                      "schema": {
+                        "maxLength": 150,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A person's sex at birth.",
+                      "in": "query",
+                      "name": "birthSexDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.",
+                      "in": "query",
+                      "name": "birthStateAbbreviationDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "For students born outside of the U.S., the date the student entered the U.S.",
+                      "in": "query",
+                      "name": "dateEnteredUS",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services.",
+                      "in": "query",
+                      "name": "displacementStatus",
+                      "schema": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "An indication of inadequate financial condition of an individual's family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy.",
+                      "in": "query",
+                      "name": "economicDisadvantaged",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).",
+                      "in": "query",
+                      "name": "englishLanguageExamDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Indicator of whether individual is a first generation college student.",
+                      "in": "query",
+                      "name": "firstGenerationStudent",
+                      "schema": {
+                        "type": "boolean"
                       }
                     },
                     {
                       "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                       "in": "query",
                       "name": "firstName",
+                      "schema": {
+                        "maxLength": 75,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The gender of the candidate.",
+                      "in": "query",
+                      "name": "genderDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
+                      "in": "query",
+                      "name": "generationCodeSuffix",
+                      "schema": {
+                        "maxLength": 10,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, \"Spanish origin,\" can be used in addition to \"Hispanic or Latino.\"",
+                      "in": "query",
+                      "name": "hispanicLatinoEthnicity",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "The name borne in common by members of a family.",
+                      "in": "query",
+                      "name": "lastSurname",
+                      "schema": {
+                        "maxLength": 75,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.",
+                      "in": "query",
+                      "name": "limitedEnglishProficiencyDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The individual's maiden name.",
+                      "in": "query",
+                      "name": "maidenName",
                       "schema": {
                         "maxLength": 75,
                         "type": "string"
@@ -4093,31 +4300,31 @@
                       }
                     },
                     {
-                      "description": "The name borne in common by members of a family.",
+                      "description": "Indicator of whether the student was born with other siblings (i.e., twins, triplets, etc.)",
                       "in": "query",
-                      "name": "lastSurname",
+                      "name": "multipleBirthStatus",
                       "schema": {
-                        "maxLength": 75,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "A prefix used to denote the title, degree, position, or seniority of the individual.",
+                      "in": "query",
+                      "name": "personalTitlePrefix",
+                      "schema": {
+                        "maxLength": 30,
                         "type": "string"
                       }
                     },
                     {
-                      "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
+                      "description": "A unique alphanumeric code assigned to a person.",
                       "in": "query",
-                      "name": "generationCodeSuffix",
+                      "name": "personId",
                       "schema": {
-                        "maxLength": 10,
+                        "maxLength": 32,
                         "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The individual's maiden name.",
-                      "in": "query",
-                      "name": "maidenName",
-                      "schema": {
-                        "maxLength": 75,
-                        "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The first name the individual prefers, if different from their legal first name",
@@ -4147,137 +4354,14 @@
                       }
                     },
                     {
-                      "description": "The month, day, and year on which an individual was born.",
+                      "description": "This descriptor defines the originating record source system for the person.",
                       "in": "query",
-                      "name": "birthDate",
-                      "schema": {
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The city the student was born in.",
-                      "in": "query",
-                      "name": "birthCity",
-                      "schema": {
-                        "maxLength": 30,
-                        "minLength": 2,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.",
-                      "in": "query",
-                      "name": "birthStateAbbreviationDescriptor",
+                      "name": "sourceSystemDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
-                      }
-                    },
-                    {
-                      "description": "For students born outside of the U.S., the Province or jurisdiction in which an individual is born.",
-                      "in": "query",
-                      "name": "birthInternationalProvince",
-                      "schema": {
-                        "maxLength": 150,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.",
-                      "in": "query",
-                      "name": "birthCountryDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "For students born outside of the U.S., the date the student entered the U.S.",
-                      "in": "query",
-                      "name": "dateEnteredUS",
-                      "schema": {
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Indicator of whether the student was born with other siblings (i.e., twins, triplets, etc.)",
-                      "in": "query",
-                      "name": "multipleBirthStatus",
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "description": "A person's sex at birth.",
-                      "in": "query",
-                      "name": "birthSexDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, \"Spanish origin,\" can be used in addition to \"Hispanic or Latino.\"",
-                      "in": "query",
-                      "name": "hispanicLatinoEthnicity",
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "description": "An indication of inadequate financial condition of an individual's family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy.",
-                      "in": "query",
-                      "name": "economicDisadvantaged",
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "description": "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.",
-                      "in": "query",
-                      "name": "limitedEnglishProficiencyDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services.",
-                      "in": "query",
-                      "name": "displacementStatus",
-                      "schema": {
-                        "maxLength": 30,
-                        "minLength": 1,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The gender of the candidate.",
-                      "in": "query",
-                      "name": "genderDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).",
-                      "in": "query",
-                      "name": "englishLanguageExamDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Indicator of whether individual is a first generation college student.",
-                      "in": "query",
-                      "name": "firstGenerationStudent",
-                      "schema": {
-                        "type": "boolean"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -4655,6 +4739,12 @@
             {
               "path": "$.hispanicLatinoEthnicity",
               "type": "boolean"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "lastSurname": [
@@ -7043,13 +7133,22 @@
                       }
                     },
                     {
-                      "description": "A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.",
+                      "description": "",
                       "in": "query",
-                      "name": "programId",
+                      "name": "id",
                       "schema": {
-                        "maxLength": 20,
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The name of the Educator Preparation Program.",
@@ -7078,6 +7177,15 @@
                       "name": "accreditationStatusDescriptor",
                       "schema": {
                         "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.",
+                      "in": "query",
+                      "name": "programId",
+                      "schema": {
+                        "maxLength": 20,
                         "type": "string"
                       }
                     }
@@ -7373,6 +7481,12 @@
             {
               "path": "$.educationOrganizationReference.educationOrganizationId",
               "type": "number"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "programId": [
@@ -10394,13 +10508,136 @@
                       }
                     },
                     {
-                      "description": "The rating level achieved based upon the rating or score.",
+                      "description": "",
                       "in": "query",
-                      "name": "evaluationElementRatingLevelDescriptor",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The date for the person's evaluation.",
+                      "in": "query",
+                      "name": "evaluationDate",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation element.",
+                      "in": "query",
+                      "name": "evaluationElementTitle",
+                      "schema": {
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation Objective.",
+                      "in": "query",
+                      "name": "evaluationObjectiveTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "Area identified for person to refine or improve as part of the evaluation.",
@@ -10429,6 +10666,15 @@
                       "schema": {
                         "maxLength": 1024,
                         "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The rating level achieved based upon the rating or score.",
+                      "in": "query",
+                      "name": "evaluationElementRatingLevelDescriptor",
+                      "schema": {
+                        "maxLength": 306,
                         "type": "string"
                       }
                     },
@@ -10744,7 +10990,7 @@
           ],
           "educationOrganizationId": [
             {
-              "path": "$.evaluationElementReference.educationOrganizationId",
+              "path": "$.evaluationObjectiveRatingReference.educationOrganizationId",
               "type": "number"
             }
           ],
@@ -10768,19 +11014,19 @@
           ],
           "evaluationObjectiveTitle": [
             {
-              "path": "$.evaluationElementReference.evaluationObjectiveTitle",
+              "path": "$.evaluationObjectiveRatingReference.evaluationObjectiveTitle",
               "type": "string"
             }
           ],
           "evaluationPeriodDescriptor": [
             {
-              "path": "$.evaluationElementReference.evaluationPeriodDescriptor",
+              "path": "$.evaluationObjectiveRatingReference.evaluationPeriodDescriptor",
               "type": "string"
             }
           ],
           "evaluationTitle": [
             {
-              "path": "$.evaluationElementReference.evaluationTitle",
+              "path": "$.evaluationObjectiveRatingReference.evaluationTitle",
               "type": "string"
             }
           ],
@@ -10790,15 +11036,21 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "performanceEvaluationTitle": [
             {
-              "path": "$.evaluationElementReference.performanceEvaluationTitle",
+              "path": "$.evaluationObjectiveRatingReference.performanceEvaluationTitle",
               "type": "string"
             }
           ],
           "performanceEvaluationTypeDescriptor": [
             {
-              "path": "$.evaluationElementReference.performanceEvaluationTypeDescriptor",
+              "path": "$.evaluationObjectiveRatingReference.performanceEvaluationTypeDescriptor",
               "type": "string"
             }
           ],
@@ -10810,8 +11062,8 @@
           ],
           "schoolYear": [
             {
-              "path": "$.evaluationElementReference.schoolYear",
-              "type": "string"
+              "path": "$.evaluationObjectiveRatingReference.schoolYear",
+              "type": "number"
             }
           ],
           "sourceSystemDescriptor": [
@@ -10822,7 +11074,7 @@
           ],
           "termDescriptor": [
             {
-              "path": "$.evaluationElementReference.termDescriptor",
+              "path": "$.evaluationObjectiveRatingReference.termDescriptor",
               "type": "string"
             }
           ]
@@ -11346,6 +11598,24 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The name or title of the evaluation element.",
                       "in": "query",
                       "name": "evaluationElementTitle",
@@ -11357,21 +11627,85 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The sort order of this Evaluation Element.",
+                      "description": "The name or title of the evaluation Objective.",
                       "in": "query",
-                      "name": "sortOrder",
+                      "name": "evaluationObjectiveTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
                       "schema": {
                         "format": "int32",
                         "type": "integer"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
+                      "description": "The term for the session during the school year.",
                       "in": "query",
-                      "name": "minRating",
+                      "name": "termDescriptor",
                       "schema": {
-                        "format": "double",
-                        "type": "number"
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+                      "in": "query",
+                      "name": "evaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
                       }
                     },
                     {
@@ -11384,12 +11718,21 @@
                       }
                     },
                     {
-                      "description": "The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).",
+                      "description": "The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.",
                       "in": "query",
-                      "name": "evaluationTypeDescriptor",
+                      "name": "minRating",
                       "schema": {
-                        "maxLength": 306,
-                        "type": "string"
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The sort order of this Evaluation Element.",
+                      "in": "query",
+                      "name": "sortOrder",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
                       }
                     }
                   ],
@@ -11710,6 +12053,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "maxRating": [
             {
               "path": "$.maxRating",
@@ -11737,7 +12086,7 @@
           "schoolYear": [
             {
               "path": "$.evaluationObjectiveReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "sortOrder": [
@@ -12420,13 +12769,125 @@
                       }
                     },
                     {
-                      "description": "The rating level achieved based upon the rating or score.",
+                      "description": "",
                       "in": "query",
-                      "name": "objectiveRatingLevelDescriptor",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The date for the person's evaluation.",
+                      "in": "query",
+                      "name": "evaluationDate",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation Objective.",
+                      "in": "query",
+                      "name": "evaluationObjectiveTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "Any comments about the performance evaluation to be captured.",
@@ -12435,6 +12896,15 @@
                       "schema": {
                         "maxLength": 1024,
                         "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The rating level achieved based upon the rating or score.",
+                      "in": "query",
+                      "name": "objectiveRatingLevelDescriptor",
+                      "schema": {
+                        "maxLength": 306,
                         "type": "string"
                       }
                     }
@@ -12728,7 +13198,7 @@
           ],
           "educationOrganizationId": [
             {
-              "path": "$.evaluationObjectiveReference.educationOrganizationId",
+              "path": "$.evaluationRatingReference.educationOrganizationId",
               "type": "number"
             }
           ],
@@ -12746,13 +13216,19 @@
           ],
           "evaluationPeriodDescriptor": [
             {
-              "path": "$.evaluationObjectiveReference.evaluationPeriodDescriptor",
+              "path": "$.evaluationRatingReference.evaluationPeriodDescriptor",
               "type": "string"
             }
           ],
           "evaluationTitle": [
             {
               "path": "$.evaluationObjectiveReference.evaluationTitle",
+              "type": "string"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
               "type": "string"
             }
           ],
@@ -12764,13 +13240,13 @@
           ],
           "performanceEvaluationTitle": [
             {
-              "path": "$.evaluationObjectiveReference.performanceEvaluationTitle",
+              "path": "$.evaluationRatingReference.performanceEvaluationTitle",
               "type": "string"
             }
           ],
           "performanceEvaluationTypeDescriptor": [
             {
-              "path": "$.evaluationObjectiveReference.performanceEvaluationTypeDescriptor",
+              "path": "$.evaluationRatingReference.performanceEvaluationTypeDescriptor",
               "type": "string"
             }
           ],
@@ -12782,8 +13258,8 @@
           ],
           "schoolYear": [
             {
-              "path": "$.evaluationObjectiveReference.schoolYear",
-              "type": "string"
+              "path": "$.evaluationRatingReference.schoolYear",
+              "type": "number"
             }
           ],
           "sourceSystemDescriptor": [
@@ -12794,7 +13270,7 @@
           ],
           "termDescriptor": [
             {
-              "path": "$.evaluationObjectiveReference.termDescriptor",
+              "path": "$.evaluationRatingReference.termDescriptor",
               "type": "string"
             }
           ]
@@ -13314,12 +13790,92 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The name or title of the evaluation Objective.",
                       "in": "query",
                       "name": "evaluationObjectiveTitle",
                       "schema": {
                         "maxLength": 50,
                         "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
@@ -13334,21 +13890,12 @@
                       }
                     },
                     {
-                      "description": "The sort order of this Evaluation Objective.",
+                      "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
                       "in": "query",
-                      "name": "sortOrder",
+                      "name": "evaluationTypeDescriptor",
                       "schema": {
-                        "format": "int32",
-                        "type": "integer"
-                      }
-                    },
-                    {
-                      "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
-                      "in": "query",
-                      "name": "minRating",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
+                        "maxLength": 306,
+                        "type": "string"
                       }
                     },
                     {
@@ -13361,12 +13908,21 @@
                       }
                     },
                     {
-                      "description": "The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).",
+                      "description": "The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.",
                       "in": "query",
-                      "name": "evaluationTypeDescriptor",
+                      "name": "minRating",
                       "schema": {
-                        "maxLength": 306,
-                        "type": "string"
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The sort order of this Evaluation Objective.",
+                      "in": "query",
+                      "name": "sortOrder",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
                       }
                     }
                   ],
@@ -13687,6 +14243,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "maxRating": [
             {
               "path": "$.maxRating",
@@ -13714,7 +14276,7 @@
           "schoolYear": [
             {
               "path": "$.evaluationReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "sortOrder": [
@@ -16304,6 +16866,24 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The date for the person's evaluation.",
                       "in": "query",
                       "name": "evaluationDate",
@@ -16312,6 +16892,107 @@
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
+                      "in": "query",
+                      "name": "actualDuration",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Any comments about the evaluation to be captured.",
+                      "in": "query",
+                      "name": "comments",
+                      "schema": {
+                        "maxLength": 1024,
+                        "minLength": 1,
+                        "type": "string"
+                      }
                     },
                     {
                       "description": "The rating level achieved based upon the rating or score.",
@@ -16332,23 +17013,44 @@
                       }
                     },
                     {
-                      "description": "Any comments about the evaluation to be captured.",
+                      "description": "The local code assigned by the School that identifies the course offering provided for the instruction of students.",
                       "in": "query",
-                      "name": "comments",
+                      "name": "localCourseCode",
                       "schema": {
-                        "maxLength": 1024,
-                        "minLength": 1,
+                        "maxLength": 60,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
+                      "description": "The identifier assigned to a school. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
                       "in": "query",
-                      "name": "actualDuration",
+                      "name": "schoolId",
                       "schema": {
-                        "format": "int32",
+                        "format": "int64",
                         "type": "integer"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The local identifier assigned to a section.",
+                      "in": "query",
+                      "name": "sectionIdentifier",
+                      "schema": {
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the calendar for the academic session.",
+                      "in": "query",
+                      "name": "sessionName",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -16644,7 +17346,7 @@
           ],
           "educationOrganizationId": [
             {
-              "path": "$.evaluationReference.educationOrganizationId",
+              "path": "$.performanceEvaluationRatingReference.educationOrganizationId",
               "type": "number"
             }
           ],
@@ -16656,7 +17358,7 @@
           ],
           "evaluationPeriodDescriptor": [
             {
-              "path": "$.evaluationReference.evaluationPeriodDescriptor",
+              "path": "$.performanceEvaluationRatingReference.evaluationPeriodDescriptor",
               "type": "string"
             }
           ],
@@ -16678,6 +17380,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "localCourseCode": [
             {
               "path": "$.sectionReference.localCourseCode",
@@ -16686,7 +17394,7 @@
           ],
           "performanceEvaluationTitle": [
             {
-              "path": "$.evaluationReference.performanceEvaluationTitle",
+              "path": "$.performanceEvaluationRatingReference.performanceEvaluationTitle",
               "type": "string"
             }
           ],
@@ -16710,8 +17418,8 @@
           ],
           "schoolYear": [
             {
-              "path": "$.sectionReference.schoolYear",
-              "type": "string"
+              "path": "$.performanceEvaluationRatingReference.schoolYear",
+              "type": "number"
             }
           ],
           "sectionIdentifier": [
@@ -16734,7 +17442,7 @@
           ],
           "termDescriptor": [
             {
-              "path": "$.evaluationReference.termDescriptor",
+              "path": "$.performanceEvaluationRatingReference.termDescriptor",
               "type": "string"
             }
           ]
@@ -17789,6 +18497,34 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The name or title of the evaluation.",
                       "in": "query",
                       "name": "evaluationTitle",
@@ -17800,30 +18536,53 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The long description of the Evaluation.",
                       "in": "query",
                       "name": "evaluationDescription",
                       "schema": {
                         "maxLength": 255,
                         "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
-                      "in": "query",
-                      "name": "minRating",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The maximum summary numerical rating or score for the evaluation.",
-                      "in": "query",
-                      "name": "maxRating",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
                       }
                     },
                     {
@@ -17842,6 +18601,24 @@
                       "schema": {
                         "format": "int32",
                         "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "The maximum summary numerical rating or score for the evaluation.",
+                      "in": "query",
+                      "name": "maxRating",
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.",
+                      "in": "query",
+                      "name": "minRating",
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
                       }
                     }
                   ],
@@ -18156,6 +18933,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "interRaterReliabilityScore": [
             {
               "path": "$.interRaterReliabilityScore",
@@ -18189,7 +18972,7 @@
           "schoolYear": [
             {
               "path": "$.performanceEvaluationReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "termDescriptor": [
@@ -18492,30 +19275,10 @@
                       }
                     },
                     {
-                      "description": "The date the award was designated.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "description": "",
                       "in": "query",
-                      "name": "beginDate",
+                      "name": "id",
                       "schema": {
-                        "format": "date",
-                        "type": "string"
-                      },
-                      "x-Ed-Fi-isIdentity": true
-                    },
-                    {
-                      "description": "The date the award was removed.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                      "in": "query",
-                      "name": "endDate",
-                      "schema": {
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The description of the condition (e.g., placement in a high need school) under which the aid was given.",
-                      "in": "query",
-                      "name": "aidConditionDescription",
-                      "schema": {
-                        "maxLength": 1024,
                         "type": "string"
                       }
                     },
@@ -18530,12 +19293,48 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
+                      "description": "The date the award was designated.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "in": "query",
+                      "name": "beginDate",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "studentUniqueId",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
                       "description": "The amount of financial aid awarded to a person for the term/year.",
                       "in": "query",
                       "name": "aidAmount",
                       "schema": {
                         "format": "double",
                         "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The description of the condition (e.g., placement in a high need school) under which the aid was given.",
+                      "in": "query",
+                      "name": "aidConditionDescription",
+                      "schema": {
+                        "maxLength": 1024,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The date the award was removed.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "in": "query",
+                      "name": "endDate",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
                       }
                     },
                     {
@@ -18856,6 +19655,12 @@
             {
               "path": "$.endDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "pellGrantRecipient": [
@@ -21279,11 +22084,117 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier for the school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The month, day, and year on which the performance evaluation was conducted.",
                       "in": "query",
                       "name": "actualDate",
                       "schema": {
                         "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The actual or estimated number of clock minutes during which the performance evaluation was conducted.",
+                      "in": "query",
+                      "name": "actualDuration",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "An indication of the the time at which the performance evaluation was conducted.",
+                      "in": "query",
+                      "name": "actualTime",
+                      "schema": {
                         "type": "string"
                       }
                     },
@@ -21315,15 +22226,6 @@
                       }
                     },
                     {
-                      "description": "The actual or estimated number of clock minutes during which the performance evaluation was conducted.",
-                      "in": "query",
-                      "name": "actualDuration",
-                      "schema": {
-                        "format": "int32",
-                        "type": "integer"
-                      }
-                    },
-                    {
                       "description": "The rating level achieved based upon the rating or score.",
                       "in": "query",
                       "name": "performanceEvaluationRatingLevelDescriptor",
@@ -21338,14 +22240,6 @@
                       "name": "scheduleDate",
                       "schema": {
                         "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "An indication of the the time at which the performance evaluation was conducted.",
-                      "in": "query",
-                      "name": "actualTime",
-                      "schema": {
                         "type": "string"
                       }
                     }
@@ -21679,6 +22573,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "performanceEvaluationRatingLevelDescriptor": [
             {
               "path": "$.performanceEvaluationRatingLevelDescriptor",
@@ -21712,7 +22612,7 @@
           "schoolYear": [
             {
               "path": "$.performanceEvaluationReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "sourceSystemDescriptor": [
@@ -22802,31 +23702,40 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "An assigned unique identifier for the performance evaluation.",
                       "in": "query",
                       "name": "performanceEvaluationTitle",
                       "schema": {
                         "maxLength": 50,
                         "minLength": 1,
-                        "type": "string"
-                      },
-                      "x-Ed-Fi-isIdentity": true
-                    },
-                    {
-                      "description": "The long description of the Performance Evaluation.",
-                      "in": "query",
-                      "name": "performanceEvaluationDescription",
-                      "schema": {
-                        "maxLength": 255,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The term for the session during the school year.",
-                      "in": "query",
-                      "name": "termDescriptor",
-                      "schema": {
-                        "maxLength": 306,
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
@@ -22852,9 +23761,9 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The period for the evaluation.",
+                      "description": "The term for the session during the school year.",
                       "in": "query",
-                      "name": "evaluationPeriodDescriptor",
+                      "name": "termDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
@@ -22867,6 +23776,15 @@
                       "name": "academicSubjectDescriptor",
                       "schema": {
                         "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The long description of the Performance Evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationDescription",
+                      "schema": {
+                        "maxLength": 255,
                         "type": "string"
                       }
                     }
@@ -23170,6 +24088,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "performanceEvaluationDescription": [
             {
               "path": "$.performanceEvaluationDescription",
@@ -23191,7 +24115,7 @@
           "schoolYear": [
             {
               "path": "$.schoolYearTypeReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "termDescriptor": [
@@ -23608,6 +24532,88 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation element.",
+                      "in": "query",
+                      "name": "evaluationElementTitle",
+                      "schema": {
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation Objective.",
+                      "in": "query",
+                      "name": "evaluationObjectiveTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The period for the evaluation.",
+                      "in": "query",
+                      "name": "evaluationPeriodDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name or title of the evaluation.",
+                      "in": "query",
+                      "name": "evaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "An assigned unique identifier for the performance evaluation.",
+                      "in": "query",
+                      "name": "performanceEvaluationTitle",
+                      "schema": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of performance evaluation conducted.",
+                      "in": "query",
+                      "name": "performanceEvaluationTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "The rating achieved for the rubric dimension.",
                       "in": "query",
                       "name": "rubricRating",
@@ -23618,13 +24624,24 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The rating level achieved for the rubric dimension.",
+                      "description": "The identifier for the school year.",
                       "in": "query",
-                      "name": "rubricRatingLevelDescriptor",
+                      "name": "schoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The term for the session during the school year.",
+                      "in": "query",
+                      "name": "termDescriptor",
                       "schema": {
                         "maxLength": 306,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The criterion description for the rubric dimension.",
@@ -23642,6 +24659,15 @@
                       "schema": {
                         "format": "int32",
                         "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "The rating level achieved for the rubric dimension.",
+                      "in": "query",
+                      "name": "rubricRatingLevelDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
                       }
                     }
                   ],
@@ -23968,6 +24994,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "performanceEvaluationTitle": [
             {
               "path": "$.evaluationElementReference.performanceEvaluationTitle",
@@ -23995,7 +25027,7 @@
           "schoolYear": [
             {
               "path": "$.evaluationElementReference.schoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "termDescriptor": [
@@ -24938,6 +25970,65 @@
                       "schema": {
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Namespace for the survey.",
+                      "in": "query",
+                      "name": "namespace",
+                      "schema": {
+                        "maxLength": 255,
+                        "minLength": 5,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The unique survey identifier from the survey tool.",
+                      "in": "query",
+                      "name": "surveyIdentifier",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier of the survey typically from the survey application.",
+                      "in": "query",
+                      "name": "surveyResponseIdentifier",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -25219,6 +26310,12 @@
           }
         },
         "queryFieldMapping": {
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.surveyResponseReference.namespace",
@@ -25664,6 +26761,75 @@
                       "schema": {
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Namespace for the survey.",
+                      "in": "query",
+                      "name": "namespace",
+                      "schema": {
+                        "maxLength": 255,
+                        "minLength": 5,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A unique alphanumeric code assigned to a person.",
+                      "in": "query",
+                      "name": "personId",
+                      "schema": {
+                        "maxLength": 32,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "This descriptor defines the originating record source system for the person.",
+                      "in": "query",
+                      "name": "sourceSystemDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The unique survey identifier from the survey tool.",
+                      "in": "query",
+                      "name": "surveyIdentifier",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier of the survey typically from the survey application.",
+                      "in": "query",
+                      "name": "surveyResponseIdentifier",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The title or label for the survey section.",
+                      "in": "query",
+                      "name": "surveySectionTitle",
+                      "schema": {
+                        "maxLength": 255,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -25945,6 +27111,12 @@
           }
         },
         "queryFieldMapping": {
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.surveySectionResponseReference.namespace",
