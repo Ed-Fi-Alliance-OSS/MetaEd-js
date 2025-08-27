@@ -1,10 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unneeded-ternary */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-console */
-/* eslint-disable consistent-return */
 
 const fs = require('fs');
 const path = require('path');
