@@ -379,6 +379,36 @@
                       "schema": {
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+                      "in": "query",
+                      "name": "contactFirstName",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name borne in common by members of a family.",
+                      "in": "query",
+                      "name": "contactLastSurname",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -660,15 +690,21 @@
           }
         },
         "queryFieldMapping": {
-          "firstName": [
+          "contactFirstName": [
             {
               "path": "$.contactNameReference.firstName",
               "type": "string"
             }
           ],
-          "lastSurname": [
+          "contactLastSurname": [
             {
               "path": "$.contactNameReference.lastSurname",
+              "type": "string"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
               "type": "string"
             }
           ]
@@ -835,6 +871,14 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
                     },
                     {
                       "description": "",
@@ -1152,6 +1196,12 @@
               "type": "string"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "lastSurname": [
             {
               "path": "$.lastSurname",
@@ -1286,6 +1336,14 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
                     },
                     {
                       "description": "",
@@ -1585,6 +1643,12 @@
           }
         },
         "queryFieldMapping": {
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "schoolYear": [
             {
               "path": "$.schoolYear",
@@ -1804,6 +1868,14 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
                       "description": "The name of the school.",
                       "in": "query",
                       "name": "schoolName",
@@ -1814,12 +1886,11 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "The name of the city in which an address is located.",
+                      "description": "A school year.",
                       "in": "query",
-                      "name": "city",
+                      "name": "schoolYear",
                       "schema": {
-                        "maxLength": 30,
-                        "minLength": 2,
+                        "maxLength": 20,
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
@@ -2104,9 +2175,9 @@
           }
         },
         "queryFieldMapping": {
-          "city": [
+          "id": [
             {
-              "path": "$.address.city",
+              "path": "$.id",
               "type": "string"
             }
           ],
@@ -2441,6 +2512,36 @@
                       "schema": {
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+                      "in": "query",
+                      "name": "staffFirstName",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name borne in common by members of a family.",
+                      "in": "query",
+                      "name": "staffLastSurname",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -2722,13 +2823,19 @@
           }
         },
         "queryFieldMapping": {
-          "firstName": [
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
+          "staffFirstName": [
             {
               "path": "$.staffNameReference.firstName",
               "type": "string"
             }
           ],
-          "lastSurname": [
+          "staffLastSurname": [
             {
               "path": "$.staffNameReference.lastSurname",
               "type": "string"
@@ -2953,6 +3060,46 @@
                       "schema": {
                         "type": "string"
                       }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The name of the school.",
+                      "in": "query",
+                      "name": "schoolName",
+                      "schema": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+                      "in": "query",
+                      "name": "studentFirstName",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name borne in common by members of a family.",
+                      "in": "query",
+                      "name": "studentLastSurname",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     }
                   ],
                   "responses": {
@@ -3235,6 +3382,12 @@
           }
         },
         "queryFieldMapping": {
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "schoolName": [
             {
               "path": "$.schoolReference.schoolName",
@@ -3507,12 +3660,41 @@
                       }
                     },
                     {
-                      "description": "The name of the city in which an address is located.",
+                      "description": "",
                       "in": "query",
-                      "name": "city",
+                      "name": "id",
                       "schema": {
-                        "maxLength": 30,
-                        "minLength": 2,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
+                      "in": "query",
+                      "name": "studentFirstName",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The name borne in common by members of a family.",
+                      "in": "query",
+                      "name": "studentLastSurname",
+                      "schema": {
+                        "maxLength": 75,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "A school year.",
+                      "in": "query",
+                      "name": "schoolYear",
+                      "schema": {
+                        "maxLength": 20,
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
@@ -3797,27 +3979,27 @@
           }
         },
         "queryFieldMapping": {
-          "city": [
+          "id": [
             {
-              "path": "$.address.city",
-              "type": "string"
-            }
-          ],
-          "firstName": [
-            {
-              "path": "$.studentNameReference.firstName",
-              "type": "string"
-            }
-          ],
-          "lastSurname": [
-            {
-              "path": "$.studentNameReference.lastSurname",
+              "path": "$.id",
               "type": "string"
             }
           ],
           "schoolYear": [
             {
               "path": "$.schoolYearTypeReference.schoolYear",
+              "type": "string"
+            }
+          ],
+          "studentFirstName": [
+            {
+              "path": "$.studentNameReference.firstName",
+              "type": "string"
+            }
+          ],
+          "studentLastSurname": [
+            {
+              "path": "$.studentNameReference.lastSurname",
               "type": "string"
             }
           ]

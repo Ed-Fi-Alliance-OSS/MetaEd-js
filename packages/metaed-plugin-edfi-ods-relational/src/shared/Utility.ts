@@ -6,6 +6,7 @@
 import { defaultPluginTechVersion, MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { TableNameGroup, isTableNameGroup, isTableNameComponent, TableNameComponent } from '../model/database/Table';
 import { flattenNameComponentsFromGroup } from '../model/database/TableNameGroupHelper';
+import { Column, ColumnNameComponent } from '../model/database/Column';
 
 export function prependRoleNameToMetaEdName(metaEdName: string, roleName: string) {
   return roleName + metaEdName;
@@ -32,6 +33,21 @@ export function appendOverlapCollapsing(accumulated: string, current: string): s
   if (indexOfOverlap < 0) return accumulated + current;
   if (indexOfOverlap <= current.length) return accumulated + current.substring(indexOfOverlap);
   return accumulated;
+}
+
+function simpleColumnNameComponentCollapse(columnNameComponent: ColumnNameComponent[]): string {
+  return columnNameComponent.map((nameComponent) => nameComponent.name).reduce(appendOverlapCollapsing, '');
+}
+
+function constructColumnNameFrom(columnNameComponent: ColumnNameComponent[]): string {
+  return simpleColumnNameComponentCollapse(columnNameComponent);
+}
+
+/**
+ * Gets the canonical column name - the naturally expected column name independent of database
+ */
+export function canonicalColumnNameFor(column: Column): string {
+  return constructColumnNameFrom(column.nameComponents);
 }
 
 export function simpleTableNameGroupCollapse(nameGroup: TableNameGroup): string {

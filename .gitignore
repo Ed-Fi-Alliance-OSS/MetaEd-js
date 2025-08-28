@@ -26,6 +26,7 @@ dist/
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
 
 /packages/metaed-plugin-edfi-api-schema/test/integration/artifact/**/*-generated.json
+openapi-comparison-results.json
 
 /packages/metaed-odsapi-deploy/test/integration/output/*
 

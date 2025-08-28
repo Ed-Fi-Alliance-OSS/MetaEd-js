@@ -1438,12 +1438,40 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The unique identifier for the bus.",
+                      "in": "query",
+                      "name": "busId",
+                      "schema": {
+                        "maxLength": 60,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
                       "description": "A unique identifier for the bus route.",
                       "in": "query",
                       "name": "busRouteNumber",
                       "schema": {
                         "format": "int32",
                         "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "Month, day, and year of the start or effective date of a staff member's employment, contract, or relationship with the education organization.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "in": "query",
+                      "name": "beginDate",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
                     },
@@ -1457,11 +1485,57 @@
                       }
                     },
                     {
+                      "description": "The number of minutes per week in which the bus route is operational.",
+                      "in": "query",
+                      "name": "busRouteDuration",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      }
+                    },
+                    {
                       "description": "An indication as to whether the bus route operates every weekday.",
                       "in": "query",
                       "name": "daily",
                       "schema": {
                         "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "The disability served by the bus route, if applicable.",
+                      "in": "query",
+                      "name": "disabilityDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
+                      "in": "query",
+                      "name": "expectedTransitTime",
+                      "schema": {
+                        "maxLength": 30,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The number of hours per week in which the bus route is operational.",
+                      "in": "query",
+                      "name": "hoursPerWeek",
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
                       }
                     },
                     {
@@ -1471,6 +1545,33 @@
                       "schema": {
                         "format": "double",
                         "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The percentage of seats filled under optimal conditions.",
+                      "in": "query",
+                      "name": "optimalCapacity",
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The titles of employment, official status, or rank of education staff.",
+                      "in": "query",
+                      "name": "staffClassificationDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "staffUniqueId",
+                      "schema": {
+                        "type": "string"
                       }
                     },
                     {
@@ -1489,51 +1590,6 @@
                       "schema": {
                         "format": "double",
                         "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The approximate amount of time, in minutes, for the bus route operation each day.",
-                      "in": "query",
-                      "name": "expectedTransitTime",
-                      "schema": {
-                        "maxLength": 30,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "The percentage of seats filled under optimal conditions.",
-                      "in": "query",
-                      "name": "optimalCapacity",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The number of hours per week in which the bus route is operational.",
-                      "in": "query",
-                      "name": "hoursPerWeek",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The number of minutes per week in which the bus route is operational.",
-                      "in": "query",
-                      "name": "busRouteDuration",
-                      "schema": {
-                        "format": "int32",
-                        "type": "integer"
-                      }
-                    },
-                    {
-                      "description": "The disability served by the bus route, if applicable.",
-                      "in": "query",
-                      "name": "disabilityDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
                       }
                     }
                   ],
@@ -1876,6 +1932,12 @@
               "type": "number"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "operatingCost": [
             {
               "path": "$.operatingCost",
@@ -1896,7 +1958,7 @@
           ],
           "staffUniqueId": [
             {
-              "path": "$.staffEducationOrganizationAssignmentAssociationReference.staffUniqueId",
+              "path": "$.staffReference.staffEducationOrganizationAssignmentAssociationUniqueId",
               "type": "string"
             }
           ],
@@ -2040,6 +2102,14 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
                     },
                     {
                       "description": "",
@@ -2342,6 +2412,12 @@
           "busId": [
             {
               "path": "$.busId",
+              "type": "string"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
               "type": "string"
             }
           ]
@@ -6425,12 +6501,78 @@
                       }
                     },
                     {
-                      "description": "A unique identification code used to identify the student's artwork produced in the program.",
+                      "description": "",
                       "in": "query",
-                      "name": "identificationCode",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The earliest date the student is involved with the program. Typically, this is the date the student becomes eligible for the program.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "in": "query",
+                      "name": "beginDate",
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "programEducationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The formal name of the program of instruction, training, services, or benefits available through federal, state, or local agencies.",
+                      "in": "query",
+                      "name": "programName",
                       "schema": {
                         "maxLength": 60,
                         "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of program.",
+                      "in": "query",
+                      "name": "programTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "studentUniqueId",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The total number of art pieces completed by the student during the program.",
+                      "in": "query",
+                      "name": "artPieces",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
                       }
                     },
                     {
@@ -6443,44 +6585,6 @@
                       }
                     },
                     {
-                      "description": "Required program fees to purchase materials for the student.",
-                      "in": "query",
-                      "name": "programFees",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "This is documentation.",
-                      "in": "query",
-                      "name": "favoriteBookCategoryDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      },
-                      "x-Ed-Fi-isIdentity": true
-                    },
-                    {
-                      "description": "This is documentation.",
-                      "in": "query",
-                      "name": "bookTitle",
-                      "schema": {
-                        "maxLength": 200,
-                        "minLength": 1,
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Number of days the student is in attendance at the program.",
-                      "in": "query",
-                      "name": "numberOfDaysInAttendance",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
                       "description": "The number of hours a student spends in the program each school day.",
                       "in": "query",
                       "name": "hoursPerDay",
@@ -6490,11 +6594,12 @@
                       }
                     },
                     {
-                      "description": "Indicator that the student participated in art education at a private agency or institution.",
+                      "description": "A unique identification code used to identify the student's artwork produced in the program.",
                       "in": "query",
-                      "name": "privateArtProgram",
+                      "name": "identificationCode",
                       "schema": {
-                        "type": "boolean"
+                        "maxLength": 60,
+                        "type": "string"
                       }
                     },
                     {
@@ -6515,12 +6620,21 @@
                       }
                     },
                     {
-                      "description": "The total number of art pieces completed by the student during the program.",
+                      "description": "Percentage of the mediums taught in the program which the student mastered.",
                       "in": "query",
-                      "name": "artPieces",
+                      "name": "masteredMediums",
                       "schema": {
-                        "format": "int32",
-                        "type": "integer"
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of days the student is in attendance at the program.",
+                      "in": "query",
+                      "name": "numberOfDaysInAttendance",
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
                       }
                     },
                     {
@@ -6533,23 +6647,21 @@
                       }
                     },
                     {
-                      "description": "Percentage of the mediums taught in the program which the student mastered.",
+                      "description": "Indicator that the student participated in art education at a private agency or institution.",
                       "in": "query",
-                      "name": "masteredMediums",
+                      "name": "privateArtProgram",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Required program fees to purchase materials for the student.",
+                      "in": "query",
+                      "name": "programFees",
                       "schema": {
                         "format": "double",
                         "type": "number"
                       }
-                    },
-                    {
-                      "description": "The earliest date the student is involved with the program. Typically, this is the date the student becomes eligible for the program.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                      "in": "query",
-                      "name": "beginDate",
-                      "schema": {
-                        "format": "date",
-                        "type": "string"
-                      },
-                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The month, day, and year on which the student exited the program or stopped receiving services.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
@@ -6869,12 +6981,6 @@
               "type": "date"
             }
           ],
-          "bookTitle": [
-            {
-              "path": "$.favoriteBook.bookTitle",
-              "type": "string"
-            }
-          ],
           "educationOrganizationId": [
             {
               "path": "$.educationOrganizationReference.educationOrganizationId",
@@ -6893,16 +6999,16 @@
               "type": "date"
             }
           ],
-          "favoriteBookCategoryDescriptor": [
-            {
-              "path": "$.favoriteBook.favoriteBookCategoryDescriptor",
-              "type": "string"
-            }
-          ],
           "hoursPerDay": [
             {
               "path": "$.hoursPerDay",
               "type": "number"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "identificationCode": [
@@ -6947,6 +7053,12 @@
               "type": "boolean"
             }
           ],
+          "programEducationOrganizationId": [
+            {
+              "path": "$.programReference.educationOrganizationId",
+              "type": "number"
+            }
+          ],
           "programFees": [
             {
               "path": "$.programFees",
@@ -6979,7 +7091,7 @@
           ],
           "studentUniqueId": [
             {
-              "path": "$.studentReference.studentUniqueId",
+              "path": "$.studentReference.generalStudentProgramAssociationUniqueId",
               "type": "string"
             }
           ]
@@ -9764,6 +9876,60 @@
                       }
                     },
                     {
+                      "description": "",
+                      "in": "query",
+                      "name": "id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The identifier assigned to an education organization.",
+                      "in": "query",
+                      "name": "educationOrganizationId",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The type of academic plan the student is following for graduation.",
+                      "in": "query",
+                      "name": "graduationPlanTypeDescriptor",
+                      "schema": {
+                        "maxLength": 306,
+                        "type": "string"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "The school year the student is expected to graduate.",
+                      "in": "query",
+                      "name": "graduationSchoolYear",
+                      "schema": {
+                        "format": "int32",
+                        "type": "integer"
+                      },
+                      "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "studentUniqueId",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The time of day for the commencement ceremony.",
+                      "in": "query",
+                      "name": "commencementTime",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
                       "description": "The date the plan went into effect.",
                       "in": "query",
                       "name": "effectiveDate",
@@ -9773,26 +9939,9 @@
                       }
                     },
                     {
-                      "description": "An indication as to whether the plan is active.",
-                      "in": "query",
-                      "name": "isActivePlan",
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
                       "description": "Any fees the student must resolve prior to graduation, such as library fines and overdue lunch accounts.",
                       "in": "query",
                       "name": "graduationFee",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The GPA the student is working toward.",
-                      "in": "query",
-                      "name": "targetGPA",
                       "schema": {
                         "format": "double",
                         "type": "number"
@@ -9808,23 +9957,6 @@
                       }
                     },
                     {
-                      "description": "The percentage of time the student must attend to graduate, relative to a full-time student.",
-                      "in": "query",
-                      "name": "requiredAttendance",
-                      "schema": {
-                        "format": "double",
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "description": "The time of day for the commencement ceremony.",
-                      "in": "query",
-                      "name": "commencementTime",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "The number of hours per week the student will attend to graduate.",
                       "in": "query",
                       "name": "hoursPerWeek",
@@ -9834,48 +9966,37 @@
                       }
                     },
                     {
-                      "description": "Indicates the service being provided to the student by the CTE program.",
+                      "description": "An indication as to whether the plan is active.",
                       "in": "query",
-                      "name": "cteProgramServiceDescriptor",
-                      "schema": {
-                        "maxLength": 306,
-                        "type": "string"
-                      },
-                      "x-Ed-Fi-isIdentity": true
-                    },
-                    {
-                      "description": "True if service is a primary service.",
-                      "in": "query",
-                      "name": "primaryIndicator",
+                      "name": "isActivePlan",
                       "schema": {
                         "type": "boolean"
                       }
                     },
                     {
-                      "description": "First date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "description": "The percentage of time the student must attend to graduate, relative to a full-time student.",
                       "in": "query",
-                      "name": "serviceBeginDate",
+                      "name": "requiredAttendance",
                       "schema": {
-                        "format": "date",
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "staffUniqueId",
+                      "schema": {
                         "type": "string"
                       }
                     },
                     {
-                      "description": "Last date the student was in this option for the current school year.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                      "description": "The GPA the student is working toward.",
                       "in": "query",
-                      "name": "serviceEndDate",
+                      "name": "targetGPA",
                       "schema": {
-                        "format": "date",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "description": "Number and description of the CIP code associated with the student's CTE program.",
-                      "in": "query",
-                      "name": "cipCode",
-                      "schema": {
-                        "maxLength": 120,
-                        "type": "string"
+                        "format": "double",
+                        "type": "number"
                       }
                     }
                   ],
@@ -10158,22 +10279,10 @@
           }
         },
         "queryFieldMapping": {
-          "cipCode": [
-            {
-              "path": "$.cteProgramService.cipCode",
-              "type": "string"
-            }
-          ],
           "commencementTime": [
             {
               "path": "$.commencementTime",
               "type": "time"
-            }
-          ],
-          "cteProgramServiceDescriptor": [
-            {
-              "path": "$.cteProgramService.cteProgramServiceDescriptor",
-              "type": "string"
             }
           ],
           "educationOrganizationId": [
@@ -10203,7 +10312,7 @@
           "graduationSchoolYear": [
             {
               "path": "$.graduationPlanReference.graduationSchoolYear",
-              "type": "string"
+              "type": "number"
             }
           ],
           "highSchoolDuration": [
@@ -10218,15 +10327,15 @@
               "type": "number"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "isActivePlan": [
             {
               "path": "$.isActivePlan",
-              "type": "boolean"
-            }
-          ],
-          "primaryIndicator": [
-            {
-              "path": "$.cteProgramService.primaryIndicator",
               "type": "boolean"
             }
           ],
@@ -10234,18 +10343,6 @@
             {
               "path": "$.requiredAttendance",
               "type": "number"
-            }
-          ],
-          "serviceBeginDate": [
-            {
-              "path": "$.cteProgramService.serviceBeginDate",
-              "type": "date"
-            }
-          ],
-          "serviceEndDate": [
-            {
-              "path": "$.cteProgramService.serviceEndDate",
-              "type": "date"
             }
           ],
           "staffUniqueId": [

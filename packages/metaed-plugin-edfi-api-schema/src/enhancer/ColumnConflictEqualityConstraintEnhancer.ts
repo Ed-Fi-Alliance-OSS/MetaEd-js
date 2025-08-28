@@ -104,8 +104,8 @@ function extractConstraintInfo(table: Table, conflictPair: ColumnConflictPair): 
 
   const { equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-  const firstPathMapping = findMergeJsonPathsMapping(entity, firstColumn.propertyPath);
-  const secondPathMapping = findMergeJsonPathsMapping(entity, secondColumn.propertyPath);
+  const firstPathMapping: JsonPathsInfo | null = findMergeJsonPathsMapping(entity, firstColumn.propertyPath);
+  const secondPathMapping: JsonPathsInfo | null = findMergeJsonPathsMapping(entity, secondColumn.propertyPath);
 
   invariant(
     firstPathMapping != null,

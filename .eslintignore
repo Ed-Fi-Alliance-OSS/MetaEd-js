@@ -9,3 +9,4 @@ build/
 jest.ci-config.js
 jest-setup.js
 jest.config.js
+packages/metaed-plugin-edfi-api-schema/test/integration/manual/compare-openapi-parameters.js

@@ -74,6 +74,9 @@ export interface TableExistenceReason {
 
   /** is this the hardcoded base descriptor table known as Descriptor */
   isBaseDescriptor: boolean;
+
+  /** is this the SchoolYearType table that materializes from an 'Enumeration SchoolYear' entity */
+  isSchoolYearType: boolean;
 }
 
 export function newTableExistenceReason(): TableExistenceReason {
@@ -85,6 +88,7 @@ export function newTableExistenceReason(): TableExistenceReason {
     isSubclassTable: false,
     isSynthetic: false,
     isBaseDescriptor: false,
+    isSchoolYearType: false,
   };
 }
 

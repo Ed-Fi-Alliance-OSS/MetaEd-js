@@ -72,6 +72,7 @@ export {
   simpleTableNameGroupCollapse,
   constructCollapsedNameFrom,
   shouldApplyLicenseHeader,
+  canonicalColumnNameFor,
 } from './shared/Utility';
 
 // Enhancer for testing
