@@ -38,5 +38,6 @@ export function initialize(): MetaEdPlugin {
     validator: [],
     generator: [apiSchemaGenerator],
     shortName: 'edfiApiSchema',
+    configurationSchemas: new Map(),
   };
 }

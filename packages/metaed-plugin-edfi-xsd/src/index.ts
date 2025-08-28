@@ -92,5 +92,6 @@ export function initialize(): MetaEdPlugin {
     enhancer: enhancerList(),
     generator: [generateXsd, generateSchemaAnnotation, generateInterchange],
     shortName: 'edfiXsd',
+    configurationSchemas: new Map(),
   };
 }

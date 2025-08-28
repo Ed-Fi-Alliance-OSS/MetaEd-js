@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when loading a project with one invalid and one valid plugin configuration file should report a validation error for unified plugin 1`] = `"\\"config\\" is required at path config"`;
+
+exports[`when loading a project with two invalid plugin configuration files should report a validation error for each one 1`] = `"\\"config\\" is required at path config"`;
+
+exports[`when loading a project with two invalid plugin configuration files should report a validation error for each one 2`] = `"Rule named \\"rule123\\" is not a valid plugin rule."`;
+
+exports[`when loading a project with two invalid plugin configuration files should report a validation error for each one 3`] = `"Rule named \\"rule456\\" is not a valid plugin rule."`;

@@ -60,5 +60,6 @@ export function initialize(): MetaEdPlugin {
     ],
     generator: [htmlGenerator, excelGenerator],
     shortName: 'edfiHandbook',
+    configurationSchemas: new Map(),
   };
 }
