@@ -600,6 +600,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -1438,14 +1444,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "The unique identifier for the bus.",
                       "in": "query",
                       "name": "busId",
@@ -2102,14 +2100,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -4356,6 +4346,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -4911,6 +4907,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -6491,14 +6493,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -9866,14 +9860,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",

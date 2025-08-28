@@ -381,14 +381,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                       "in": "query",
                       "name": "contactFirstName",
@@ -881,14 +873,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                       "in": "query",
                       "name": "firstName",
@@ -1336,14 +1320,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -1858,14 +1834,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -2514,14 +2482,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
                       "in": "query",
                       "name": "staffFirstName",
@@ -3052,14 +3012,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -3650,14 +3602,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
