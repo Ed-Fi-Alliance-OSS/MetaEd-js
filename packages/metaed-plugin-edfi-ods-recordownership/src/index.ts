@@ -16,5 +16,6 @@ export function initialize(): MetaEdPlugin {
     enhancer: [recordOwnershipTableSetupEnhancer, addOwnershipTokenColumnTableEnhancer],
     generator: [],
     shortName: 'edfiOdsRecordOwnership',
+    configurationSchemas: new Map(),
   };
 }

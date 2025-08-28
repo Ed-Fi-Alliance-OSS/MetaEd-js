@@ -12,5 +12,6 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [xmlDataDictionaryGenerator],
     shortName: 'edfiXmlDictionary',
+    configurationSchemas: new Map(),
   };
 }

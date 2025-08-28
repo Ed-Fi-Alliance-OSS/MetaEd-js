@@ -56,5 +56,6 @@ export function initialize(): MetaEdPlugin {
       updateEducationOrganizationAuthorizationIndexesGenerator,
     ],
     shortName: 'edfiOdsPostgresql',
+    configurationSchemas: new Map(),
   };
 }

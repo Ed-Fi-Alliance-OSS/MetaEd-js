@@ -20,6 +20,9 @@ export interface PluginEnvironment {
 
   // plugin-wide additional data
   data?: any;
+
+  // plugin-wide configuration data
+  config?: any;
 }
 
 /**
@@ -30,4 +33,5 @@ export const newPluginEnvironment: () => PluginEnvironment = () => ({
   namespace: new Map(),
   targetTechnologyVersion: '0.0.0',
   data: {},
+  config: {},
 });
