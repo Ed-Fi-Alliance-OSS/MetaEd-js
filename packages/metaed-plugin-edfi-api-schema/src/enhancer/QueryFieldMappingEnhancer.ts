@@ -47,9 +47,10 @@ function pathTypeFrom(column: Column): PathType {
     case 'decimal':
     case 'currency':
     case 'percent':
-    case 'duration':
     case 'year':
       return 'number';
+    case 'duration':
+      return 'string';
     default:
       return 'string';
   }

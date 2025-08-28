@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when a domain entity extension extends a domain entity with a required property should have validation failures: when a domain entity extension extends a domain entity with a required property should have validation failure -> message 1`] = `"Domain Entity Extension EntityName is an extension with required property RequiredProperty.  The ODS/API does not currently support this pattern."`;
 
