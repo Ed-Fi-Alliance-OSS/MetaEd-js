@@ -22,5 +22,6 @@ export function initialize(): MetaEdPlugin {
       InterchangeOrderMetadataGenerator,
     ],
     shortName: 'edfiOdsApi',
+    configurationSchemas: new Map(),
   };
 }

@@ -46,6 +46,7 @@ export interface ModelBase {
   metaEdName: string;
   namespace: Namespace;
   data: any;
+  config?: any;
 }
 
 /**
@@ -61,6 +62,7 @@ export function newModelBase(): ModelBase {
     metaEdName: '',
     namespace: NoNamespace,
     data: {},
+    config: {},
   };
 }
 
@@ -70,4 +72,4 @@ export function newModelBase(): ModelBase {
 export const NoModelBase: ModelBase = deepFreeze({
   ...newModelBase(),
   metaEdName: 'NoModelBase',
-});
+} as ModelBase);
