@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-odsapi-deploy-console",
   "main": "dist/index.js",
-  "version": "4.5.2-dev.91",
+  "version": "4.5.2-dev.92",
   "description": "MetaEd console deployment for the ODS/API",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -13,9 +13,9 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.5.2-dev.91",
-    "@edfi/metaed-default-plugins": "4.5.2-dev.91",
-    "@edfi/metaed-odsapi-deploy": "4.5.2-dev.91",
+    "@edfi/metaed-core": "4.5.2-dev.92",
+    "@edfi/metaed-default-plugins": "4.5.2-dev.92",
+    "@edfi/metaed-odsapi-deploy": "4.5.2-dev.92",
     "chalk": "^4.1.2",
     "yargs": "^17.7.2"
   },
