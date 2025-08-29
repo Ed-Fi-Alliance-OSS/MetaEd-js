@@ -653,6 +653,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -1208,6 +1214,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -1766,14 +1778,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -4111,14 +4115,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "A unique alphanumeric code assigned to a candidate.",
                       "in": "query",
                       "name": "candidateIdentifier",
@@ -5357,6 +5353,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -5914,6 +5916,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -6469,6 +6477,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -7123,14 +7137,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -8055,6 +8061,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -8610,6 +8622,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -9169,6 +9187,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -9724,6 +9748,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -10498,14 +10528,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -11588,14 +11610,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -12769,14 +12783,6 @@
                       }
                     },
                     {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
                       "description": "The identifier assigned to an education organization.",
                       "in": "query",
                       "name": "educationOrganizationId",
@@ -13780,14 +13786,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -14839,6 +14837,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -15396,6 +15400,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -15951,6 +15961,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -16856,14 +16872,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -17998,6 +18006,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -18487,14 +18501,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -19265,14 +19271,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -20220,6 +20218,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -20777,6 +20781,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -21332,6 +21342,12 @@
             {
               "path": "$.effectiveEndDate",
               "type": "date"
+            }
+          ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
             }
           ],
           "namespace": [
@@ -22074,14 +22090,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -23175,6 +23183,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -23692,14 +23706,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -24522,14 +24528,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -25584,6 +25582,12 @@
               "type": "date"
             }
           ],
+          "id": [
+            {
+              "path": "$.id",
+              "type": "string"
+            }
+          ],
           "namespace": [
             {
               "path": "$.namespace",
@@ -25962,14 +25966,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",
@@ -26753,14 +26749,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
-                    },
-                    {
-                      "description": "",
-                      "in": "query",
-                      "name": "id",
-                      "schema": {
-                        "type": "string"
-                      }
                     },
                     {
                       "description": "",

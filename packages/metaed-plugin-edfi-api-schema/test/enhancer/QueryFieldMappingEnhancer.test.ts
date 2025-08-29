@@ -1729,6 +1729,12 @@ describe('when building a descriptor', () => {
             "type": "date",
           },
         ],
+        "id": Array [
+          Object {
+            "path": "$.id",
+            "type": "string",
+          },
+        ],
         "namespace": Array [
           Object {
             "path": "$.namespace",
@@ -1792,14 +1798,17 @@ describe('when building multiple descriptors', () => {
     expect(academicSubjectMapping).toEqual(studentCharacteristicMapping);
 
     // Verify the structure is correct
-    expect(Object.keys(gradeLevelMapping)).toEqual([
-      'codeValue',
-      'description',
-      'effectiveBeginDate',
-      'effectiveEndDate',
-      'namespace',
-      'shortDescription',
-    ]);
+    expect(Object.keys(gradeLevelMapping)).toMatchInlineSnapshot(`
+      Array [
+        "id",
+        "codeValue",
+        "description",
+        "effectiveBeginDate",
+        "effectiveEndDate",
+        "namespace",
+        "shortDescription",
+      ]
+    `);
   });
 });
 

@@ -61,12 +61,55 @@ function pathTypeFrom(column: Column): PathType {
  */
 function createDescriptorQueryFieldMapping(): { [queryField: string]: QueryFieldPathInfo[] } {
   return {
-    codeValue: [{ path: '$.codeValue' as JsonPath, type: 'string' }],
-    description: [{ path: '$.description' as JsonPath, type: 'string' }],
-    effectiveBeginDate: [{ path: '$.effectiveBeginDate' as JsonPath, type: 'date' }],
-    effectiveEndDate: [{ path: '$.effectiveEndDate' as JsonPath, type: 'date' }],
-    namespace: [{ path: '$.namespace' as JsonPath, type: 'string' }],
-    shortDescription: [{ path: '$.shortDescription' as JsonPath, type: 'string' }],
+    id: [
+      {
+        path: '$.id' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+    codeValue: [
+      {
+        path: '$.codeValue' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+    description: [
+      {
+        path: '$.description' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+    effectiveBeginDate: [
+      {
+        path: '$.effectiveBeginDate' as JsonPath,
+        type: 'date',
+        sourceProperty: { ...newEntityProperty(), type: 'date' },
+      },
+    ],
+    effectiveEndDate: [
+      {
+        path: '$.effectiveEndDate' as JsonPath,
+        type: 'date',
+        sourceProperty: { ...newEntityProperty(), type: 'date' },
+      },
+    ],
+    namespace: [
+      {
+        path: '$.namespace' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
+    shortDescription: [
+      {
+        path: '$.shortDescription' as JsonPath,
+        type: 'string',
+        sourceProperty: { ...newEntityProperty(), type: 'string' },
+      },
+    ],
   };
 }
 

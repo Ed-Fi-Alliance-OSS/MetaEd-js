@@ -285,14 +285,6 @@ function newStaticGetByQueryParameters(): Parameter[] {
     {
       $ref: '#/components/parameters/totalCount',
     },
-    {
-      name: 'id',
-      in: 'query',
-      description: '',
-      schema: {
-        type: 'string',
-      },
-    },
   ];
 }
 
@@ -388,6 +380,14 @@ function schemaObjectFrom(property: EntityProperty): SchemaObject {
 
 // All descriptor documents have the same OpenAPI get by query parameters
 const descriptorOpenApiParameters: Parameter[] = [
+  {
+    name: 'id',
+    in: 'query',
+    description: '',
+    schema: {
+      type: 'string',
+    },
+  },
   {
     name: 'codeValue',
     in: 'query',
