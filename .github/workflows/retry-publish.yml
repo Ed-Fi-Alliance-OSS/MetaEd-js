@@ -20,11 +20,16 @@ jobs:
   retry-publish:
     name: Retry Publish
 
-    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    uses: Ed-Fi-Alliance-OSS/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
       bump: "none"
       retry: true
       debug_enabled: ${{ github.event.inputs.debug_enabled }}
+      
+    # Define explicit permissions for the job
+    permissions:
+      contents: write # Needed for version bumping and pushing changes
+      
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
