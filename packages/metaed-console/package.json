@@ -23,6 +23,9 @@
     "semver": "^7.5.4",
     "yargs": "^17.7.2"
   },
+  "devDependencies": {
+    "@edfi/ed-fi-model-3.3b": "3.0.3"
+  },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",
