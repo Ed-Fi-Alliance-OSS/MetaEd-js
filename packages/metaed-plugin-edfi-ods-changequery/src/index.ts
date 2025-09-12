@@ -66,5 +66,6 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [],
     shortName: 'edfiOdsChangeQuery',
+    configurationSchemas: new Map(),
   };
 }

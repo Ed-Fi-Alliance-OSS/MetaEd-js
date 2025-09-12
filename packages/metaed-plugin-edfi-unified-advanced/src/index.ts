@@ -37,5 +37,6 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [],
     shortName: 'edfiUnifiedAdvanced',
+    configurationSchemas: new Map(),
   };
 }

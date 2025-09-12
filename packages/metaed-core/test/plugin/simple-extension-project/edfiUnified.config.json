@@ -1,0 +1,3 @@
+{
+  "this is an invalid configuration file and should cause a validation error": true
+}

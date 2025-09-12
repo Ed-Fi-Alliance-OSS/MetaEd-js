@@ -20,6 +20,7 @@ import { initializeNamespaces } from './InitializeNamespaces';
 import { State } from '../State';
 import { PluginEnvironment } from '../plugin/PluginEnvironment';
 import { setupPlugins } from '../plugin/PluginSetup';
+import { loadPluginConfiguration } from '../plugin/LoadPluginConfiguration';
 import { Logger } from '../Logger';
 
 export async function executePipeline(state: State): Promise<{ state: State; failure: boolean }> {
@@ -53,6 +54,23 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
   await walkBuilders(state);
 
   initializeNamespaces(state);
+  await nextMacroTask();
+
+  Logger.debug('Loading plugin configurations');
+  try {
+    await loadPluginConfiguration(state);
+    if (state.validationFailure.some((vf) => vf.category === 'error' && vf.validatorName === 'LoadPluginConfiguration')) {
+      failure = true;
+      return { state, failure };
+    }
+  } catch (err) {
+    const message = `Failed to load plugin configurations: ${err.message}`;
+    Logger.error(`  ${message}`);
+    state.pipelineFailure.push({ category: 'error', message });
+    Logger.error(err.stack);
+    failure = true;
+    return { state, failure };
+  }
   await nextMacroTask();
 
   Logger.info('Running plugins');

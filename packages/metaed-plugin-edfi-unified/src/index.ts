@@ -395,5 +395,11 @@ function enhancerList(): Enhancer[] {
 }
 
 export function initialize(): MetaEdPlugin {
-  return { validator: validatorList(), enhancer: enhancerList(), generator: [], shortName: 'edfiUnified' };
+  return {
+    validator: validatorList(),
+    enhancer: enhancerList(),
+    generator: [],
+    shortName: 'edfiUnified',
+    configurationSchemas: new Map(),
+  };
 }
