@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 import * as R from 'ramda';
 import deepmerge from 'deepmerge';
 import { getEntitiesOfTypeForNamespaces } from '../model/EntityRepository';
@@ -9,14 +14,24 @@ import { ConfigurationRule, ConfigurationMatches } from './ConfigurationSchema';
 import { PluginConfiguration } from './PluginConfiguration';
 import { PluginEnvironment } from './PluginEnvironment';
 
+/**
+ * Filters and returns only extension namespaces from the namespace repository.
+ */
 function extensionNamespaces(namespaceRepository: Map<string, Namespace>): Namespace[] {
   return [...namespaceRepository.values()].filter((n) => n.isExtension);
 }
 
+/**
+ * Filters and returns only core (non-extension) namespaces from the namespace repository.
+ */
 function coreNamespaces(namespaceRepository: Map<string, Namespace>): Namespace[] {
   return [...namespaceRepository.values()].filter((n) => !n.isExtension);
 }
 
+/**
+ * Finds and returns namespaces that match the given configuration criteria.
+ * Handles core, extension, and specific namespace matching patterns.
+ */
 function findMatchingNamespaces(
   namespaceRepository: Map<string, Namespace>,
   matches: ConfigurationMatches,
@@ -51,6 +66,10 @@ function findMatchingNamespaces(
   return [...namespaceRepository.values()];
 }
 
+/**
+ * Finds and returns entities that match the given configuration criteria.
+ * Filters by namespace, entity type, and optionally by entity name.
+ */
 function findMatchingEntities(
   namespaceRepository: Map<string, Namespace>,
   matches: ConfigurationMatches,
@@ -95,6 +114,10 @@ function findMatchingEntities(
   return foundEntities;
 }
 
+/**
+ * Applies configuration rules to the model by annotating entities with configuration data.
+ * Processes both plugin-wide and entity-specific configuration rules.
+ */
 export function annotateModelWithConfiguration(
   pluginConfiguration: PluginConfiguration,
   pluginEnvironment: PluginEnvironment,
