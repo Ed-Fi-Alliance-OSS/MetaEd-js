@@ -519,7 +519,18 @@ describe('when config rule is for a single named namespace that does not exist',
 
   it('should not be valid', (): void => {
     expect(result).toHaveLength(1);
-    expect(result[0]).toMatchSnapshot();
+    expect(result[0]).toMatchInlineSnapshot(`
+      Object {
+        "category": "error",
+        "fileMap": Object {
+          "fullPath": "file/path",
+          "lineNumber": 0,
+        },
+        "message": "Namespace 'invalid' in configuration file does not match a MetaEd project namespace. Either include a project with that namespace or remove the configuration entry.",
+        "sourceMap": null,
+        "validatorName": "AnnotateModelWithConfiguration",
+      }
+    `);
   });
 
   it('should not annotate plugin environment', (): void => {
@@ -685,7 +696,18 @@ describe('when config rule is for a single entity type in a single named namespa
 
   it('should not be valid', (): void => {
     expect(result).toHaveLength(1);
-    expect(result[0]).toMatchSnapshot();
+    expect(result[0]).toMatchInlineSnapshot(`
+      Object {
+        "category": "error",
+        "fileMap": Object {
+          "fullPath": "file/path",
+          "lineNumber": 0,
+        },
+        "message": "Entity name 'invalid' in configuration file does not match any entities of the given type and namespace criteria.",
+        "sourceMap": null,
+        "validatorName": "AnnotateModelWithConfiguration",
+      }
+    `);
   });
 
   it('should not annotate plugin environment', (): void => {
@@ -956,7 +978,18 @@ describe('when config rule has multiple match definitions where one is invalid',
 
   it('should not be valid', (): void => {
     expect(result).toHaveLength(1);
-    expect(result[0]).toMatchSnapshot();
+    expect(result[0]).toMatchInlineSnapshot(`
+      Object {
+        "category": "error",
+        "fileMap": Object {
+          "fullPath": "file/path",
+          "lineNumber": 0,
+        },
+        "message": "Entity name 'invalid' in configuration file does not match any entities of the given type and namespace criteria.",
+        "sourceMap": null,
+        "validatorName": "AnnotateModelWithConfiguration",
+      }
+    `);
   });
 
   it('should not annotate plugin environment', (): void => {

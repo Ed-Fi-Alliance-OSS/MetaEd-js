@@ -63,11 +63,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       );
     }
 
-    // Override previous securable element
-    entity.data.edfiApiSchema.educationOrganizationSecurableElements[0] = {
-      metaEdName: parentJsonPathPair.sourceProperty.fullPropertyName,
-      jsonPath: parentJsonPathPair.jsonPath,
-    };
+    // Replace existing securable elements
+    entity.data.edfiApiSchema.educationOrganizationSecurableElements = [
+      {
+        metaEdName: parentJsonPathPair.sourceProperty.fullPropertyName,
+        jsonPath: parentJsonPathPair.jsonPath,
+      },
+    ];
   });
 
   return {

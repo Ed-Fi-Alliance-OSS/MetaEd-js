@@ -79,9 +79,13 @@ describe('when loading a project with two invalid plugin configuration files', (
 
   it('should report a validation error for each one', async () => {
     expect(state.validationFailure).toHaveLength(3);
-    expect(state.validationFailure[0].message).toMatchSnapshot();
-    expect(state.validationFailure[1].message).toMatchSnapshot();
-    expect(state.validationFailure[2].message).toMatchSnapshot();
+    expect(state.validationFailure[0].message).toMatchInlineSnapshot(`"\\"config\\" is required at path config"`);
+    expect(state.validationFailure[1].message).toMatchInlineSnapshot(
+      `"Rule named \\"rule123\\" is not a valid plugin rule."`,
+    );
+    expect(state.validationFailure[2].message).toMatchInlineSnapshot(
+      `"Rule named \\"rule456\\" is not a valid plugin rule."`,
+    );
   });
 });
 
@@ -158,7 +162,7 @@ describe('when loading a project with one invalid and one valid plugin configura
 
   it('should report a validation error for unified plugin', async () => {
     expect(state.validationFailure).toHaveLength(2);
-    expect(state.validationFailure[0].message).toMatchSnapshot();
+    expect(state.validationFailure[0].message).toMatchInlineSnapshot(`"\\"config\\" is required at path config"`);
   });
 
   it('should annotate xsd plugin with config data', async () => {
