@@ -319,4 +319,57 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.exts).toHaveProperty(expectedExtName);
     });
   });
+
+  describe('when testing projectEndpointName transformation', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'SpecialEducation';
+    const domainEntityName = 'Student';
+    let namespace: any = null;
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName, namespaceName)
+        .withStartDomainEntity(domainEntityName)
+        .withDocumentation('A student')
+        .withStringIdentity('StudentUniqueId', 'doc', '30', '20')
+        .withBooleanProperty('Active', 'Is active', true, false)
+        .withEndDomainEntity()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      runPrerequisiteEnhancers(metaEd);
+      enhance(metaEd);
+
+      namespace = metaEd.namespace.get(namespaceName);
+    });
+
+    it('should create paths with special-education endpoint prefix', () => {
+      const student = namespace.entity.domainEntity.get('Student');
+      const studentApiData = student.data.edfiApiSchema;
+      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES];
+
+      expect(fragment).toBeDefined();
+      expect(fragment?.paths).toBeDefined();
+      expect(fragment?.paths?.['/special-education/students']).toBeDefined();
+      expect(fragment?.paths?.['/special-education/students/{id}']).toBeDefined();
+    });
+
+    it('should create correct HTTP methods for special-education paths', () => {
+      const student = namespace.entity.domainEntity.get('Student');
+      const studentApiData = student.data.edfiApiSchema;
+      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES];
+
+      const collectionPath = fragment?.paths?.['/special-education/students'];
+      const itemPath = fragment?.paths?.['/special-education/students/{id}'];
+
+      expect(collectionPath?.post).toBeDefined();
+      expect(collectionPath?.get).toBeDefined();
+      expect(itemPath?.get).toBeDefined();
+      expect(itemPath?.put).toBeDefined();
+      expect(itemPath?.delete).toBeDefined();
+    });
+  });
 });
