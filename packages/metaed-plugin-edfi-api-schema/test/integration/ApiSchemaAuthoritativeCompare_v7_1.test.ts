@@ -14,6 +14,7 @@ import {
   loadFiles,
   setupPlugins,
   initializeNamespaces,
+  loadPluginConfiguration,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
@@ -36,6 +37,7 @@ describe('when generating ods and comparing it to data standard 5.0 authoritativ
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.1.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/'],
+      pluginConfigDirectories: [path.resolve(__dirname)],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -60,6 +62,7 @@ describe('when generating ods and comparing it to data standard 5.0 authoritativ
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
+    await loadPluginConfiguration(state);
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       await runEnhancers(metaEdPlugin, state);

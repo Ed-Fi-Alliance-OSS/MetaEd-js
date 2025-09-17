@@ -14,6 +14,7 @@ import {
   loadFiles,
   setupPlugins,
   initializeNamespaces,
+  loadPluginConfiguration,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
@@ -38,6 +39,7 @@ describe('when generating ApiSchema for data standard 5.2 and TPDM 1.1 for ODS/A
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.3.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', path.resolve(__dirname, './tpdm-project')],
+      pluginConfigDirectories: [path.resolve(__dirname)],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -69,6 +71,7 @@ describe('when generating ApiSchema for data standard 5.2 and TPDM 1.1 for ODS/A
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
+    await loadPluginConfiguration(state);
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       await runEnhancers(metaEdPlugin, state);
@@ -150,6 +153,7 @@ describe('when generating ApiSchema for data standard 5.2 and Sample 1.1 for ODS
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
+    await loadPluginConfiguration(state);
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       await runEnhancers(metaEdPlugin, state);
@@ -219,6 +223,7 @@ describe('when generating ApiSchema for data standard 5.2 and Homograph 1.0 for 
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
+    await loadPluginConfiguration(state);
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       await runEnhancers(metaEdPlugin, state);

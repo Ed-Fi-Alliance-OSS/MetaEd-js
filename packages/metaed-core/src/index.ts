@@ -18,6 +18,7 @@ export {
 export { executePipeline } from './pipeline/Pipeline';
 export { createMetaEdFile } from './file/MetaEdFile';
 export { setupPlugins } from './plugin/PluginSetup';
+export { loadPluginConfiguration } from './plugin/LoadPluginConfiguration';
 export { loadFiles } from './file/FileSystemFilenameLoader';
 export { initializeNamespaces } from './pipeline/InitializeNamespaces';
 export { newState } from './State';
