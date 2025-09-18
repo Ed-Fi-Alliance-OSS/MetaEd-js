@@ -107,7 +107,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas).toBeDefined();
       expect(fragment?.components?.schemas?.EdFi_Student).toBeDefined();
       expect(fragment?.paths).toBeDefined();
-      expect(fragment?.paths?.['/edfi/students']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/students']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('students');
@@ -155,7 +155,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas).toBeDefined();
       expect(fragment?.components?.schemas?.EdFi_GradeLevelDescriptor).toBeDefined();
       expect(fragment?.paths).toBeDefined();
-      expect(fragment?.paths?.['/edfi/gradeLevelDescriptors']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('gradeLevelDescriptors');
@@ -251,7 +251,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       // Verify the fragments contain the expected data
       const fragment = schoolResourceSchema?.openApiFragments?.[OpenApiDocumentType.RESOURCES];
       expect(fragment?.components?.schemas?.EdFi_School).toBeDefined();
-      expect(fragment?.paths?.['/edfi/schools']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/schools']).toBeDefined();
       expect(fragment?.tags?.[0].name).toBe('schools');
     });
   });
