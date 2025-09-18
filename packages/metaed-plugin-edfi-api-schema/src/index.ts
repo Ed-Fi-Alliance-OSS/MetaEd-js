@@ -4,9 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import type { MetaEdPlugin } from '@edfi/metaed-core';
-import * as Joi from 'joi';
 import { enhancerList } from './enhancer/EnhancerList';
 import { generate as apiSchemaGenerator } from './generator/ApiSchemaGenerator';
+import {
+  educationOrganizationIdentitySecurableElementsSchema,
+  educationOrganizationSecurableElementsSchema,
+} from './model/ConfigurationSchema';
 
 export { enhance as entityApiSchemaDataSetupEnhancer } from './model/EntityApiSchemaData';
 export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
@@ -37,32 +40,12 @@ export function initialize(): MetaEdPlugin {
   const configurationSchemas = new Map();
 
   // Schema for direct property mapping rule
-  configurationSchemas.set(
-    'educationOrganizationSecurableElements',
-    Joi.object().keys({
-      versionRange: Joi.string(),
-      mode: Joi.string().valid('append', 'replace').default('append'),
-      securableElements: Joi.array()
-        .items(
-          Joi.object().keys({
-            propertyPath: Joi.string().required(),
-            requiredIdentityProperty: Joi.string().required(),
-            description: Joi.string(),
-          }),
-        )
-        .min(1)
-        .required(),
-    }),
-  );
+  configurationSchemas.set('educationOrganizationSecurableElements', educationOrganizationSecurableElementsSchema());
 
   // Schema for identity search rule
   configurationSchemas.set(
     'educationOrganizationIdentitySecurableElements',
-    Joi.object().keys({
-      versionRange: Joi.string(),
-      roleName: Joi.string().required(),
-      description: Joi.string(),
-    }),
+    educationOrganizationIdentitySecurableElementsSchema(),
   );
 
   return {

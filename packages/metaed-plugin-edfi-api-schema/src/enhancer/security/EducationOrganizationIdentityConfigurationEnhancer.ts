@@ -15,12 +15,8 @@ import {
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
 import { EducationOrganizationSecurableElement } from '../../model/api-schema/EducationOrganizationSecurableElement';
-
-interface IdentitySecurityConfiguration {
-  versionRange?: string;
-  roleName: string;
-  description?: string;
-}
+import { EducationOrganizationIdentitySecurableElementsConfig } from '../../model/ConfigurationSchema';
+import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
 
 /**
  * Processes configuration-based education organization identity security elements.
@@ -55,13 +51,18 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     ) as TopLevelEntity[]
   ).forEach((entity) => {
     // Check if entity has identity security configuration
-    const identityConfig = entity.config?.edfiApiSchema as IdentitySecurityConfiguration | undefined;
-    if (!identityConfig?.roleName) {
+    const securableElementsConfig = entity.config?.edfiApiSchema as
+      | EducationOrganizationIdentitySecurableElementsConfig
+      | undefined;
+    if (!securableElementsConfig?.roleName) {
       return;
     }
 
     // Check version constraint if specified
-    if (identityConfig.versionRange && !versionSatisfies(metaEd.dataStandardVersion, identityConfig.versionRange)) {
+    if (
+      securableElementsConfig.versionRange &&
+      !versionSatisfies(metaEd.dataStandardVersion, securableElementsConfig.versionRange)
+    ) {
       return;
     }
 
@@ -73,17 +74,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // Search all identity properties for matching role names
     identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
-      const jsonPathsInfo = allJsonPathsMapping[identityFullname];
+      const jsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[identityFullname];
       if (!jsonPathsInfo) {
         return;
       }
 
-      const matchingPairs = jsonPathsInfo.jsonPathPropertyPairs.filter((jppp) => {
+      const matchingPairs: JsonPathPropertyPair[] = jsonPathsInfo.jsonPathPropertyPairs.filter((jppp) => {
         const { sourceProperty, flattenedIdentityProperty } = jppp;
 
         // Check if any property in the chain has the target role name
         const hasTargetRoleName = [sourceProperty, ...flattenedIdentityProperty.propertyChain].some(
-          (property) => property.roleName === identityConfig.roleName,
+          (property) => property.roleName === securableElementsConfig.roleName,
         );
 
         // Check if the parent entity is an EducationOrganization
@@ -92,10 +93,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         return hasTargetRoleName && hasEdOrgParent;
       });
 
-      matchingPairs.forEach((match) => {
-        results.set(match.jsonPath, {
-          metaEdName: match.sourceProperty.metaEdName,
-          jsonPath: match.jsonPath,
+      matchingPairs.forEach((jppp: JsonPathPropertyPair) => {
+        results.set(jppp.jsonPath, {
+          metaEdName: jppp.sourceProperty.metaEdName,
+          jsonPath: jppp.jsonPath,
         });
       });
     });

@@ -14,23 +14,11 @@ import {
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
-
-interface SecurableElementConfig {
-  propertyPath: string;
-  requiredIdentityProperty: string;
-  description?: string;
-}
-
-interface SecurityConfiguration {
-  versionRange?: string;
-  mode?: 'append' | 'replace';
-  securableElements: SecurableElementConfig[];
-}
+import { EducationOrganizationSecurableElementsConfig } from '../../model/ConfigurationSchema';
 
 /**
  * Processes configuration-based education organization security elements.
- * Reads configuration from entity.config?.edfiApiSchema and applies direct property mappings
- * to educationOrganizationSecurableElements.
+ * Reads configuration applies direct property mappings to educationOrganizationSecurableElements.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const enhancerName = 'EducationOrganizationConfigurationEnhancer';
@@ -47,26 +35,28 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       'associationExtension',
     ) as TopLevelEntity[]
   ).forEach((entity) => {
-    // Check if entity has security configuration
-    const securityConfig = entity.config?.edfiApiSchema as SecurityConfiguration | undefined;
-    if (!securityConfig?.securableElements) {
+    const securableElementsConfig = entity.config?.edfiApiSchema as EducationOrganizationSecurableElementsConfig | undefined;
+    if (!securableElementsConfig?.securableElements) {
       return;
     }
 
     // Check version constraint if specified
-    if (securityConfig.versionRange && !versionSatisfies(metaEd.dataStandardVersion, securityConfig.versionRange)) {
+    if (
+      securableElementsConfig.versionRange &&
+      !versionSatisfies(metaEd.dataStandardVersion, securableElementsConfig.versionRange)
+    ) {
       return;
     }
 
     const { allJsonPathsMapping, educationOrganizationSecurableElements } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
     // Handle mode: replace clears existing elements
-    if (securityConfig.mode === 'replace') {
+    if (securableElementsConfig.mode === 'replace') {
       educationOrganizationSecurableElements.length = 0;
     }
 
     // Process each configured securable element
-    securityConfig.securableElements.forEach((elementConfig) => {
+    securableElementsConfig.securableElements.forEach((elementConfig) => {
       const jsonPathsInfo: JsonPathsInfo = allJsonPathsMapping[elementConfig.propertyPath as MetaEdPropertyPath];
 
       if (!jsonPathsInfo) {
