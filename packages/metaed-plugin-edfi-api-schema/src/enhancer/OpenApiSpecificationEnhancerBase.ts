@@ -18,7 +18,7 @@ import {
   Schemas,
   TagObject,
 } from '../model/OpenApiTypes';
-import { pluralize, deAcronym } from '../Utility';
+import { pluralize, deAcronym, createUriSegment } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
 
@@ -733,7 +733,7 @@ export function createSchemasFrom(entity: TopLevelEntity): Schemas {
 export function createPathsFrom(entity: TopLevelEntity): PathsObject {
   const paths: PathsObject = {};
 
-  const projectEndpointName: ProjectEndpointName = entity.namespace.projectName.toLowerCase() as ProjectEndpointName;
+  const projectEndpointName: ProjectEndpointName = createUriSegment(entity.namespace.projectName) as ProjectEndpointName;
   const { endpointName, domains } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
   // Add to paths without "id"

@@ -224,3 +224,76 @@ export function normalizeDescriptorPropertyPath(propertyPath: string, shouldAddD
 
   return `${propertyPath}Descriptor`;
 }
+
+/**
+ * Returns a string that has the first character converted to upper-case.
+ */
+function toMixedCase(text: string): string {
+  if (!text || text.length === 1) {
+    return text;
+  }
+  return text.charAt(0).toUpperCase() + text.substring(1);
+}
+
+/**
+ * Breaks the supplied text into individual words using mixed-casing conventions augmented by delimiters.
+ * This overload accepts a custom casing function to process each term.
+ *
+ * @param compositeTerm The text to normalize
+ * @param applyCasing Function to apply casing to each term
+ * @param delimiters Additional delimiter characters to split on
+ * @returns Normalized text with spaces between words
+ */
+export function normalizeCompositeTermForDisplayWithCasing(
+  compositeTerm: string,
+  applyCasing: (term: string) => string,
+  ...delimiters: string[]
+): string {
+  const delimiterExpression = delimiters.length === 0 ? '' : `(?=[${delimiters.map((c) => `\\${c}`).join('')}])?`;
+
+  // Regex pattern to match word boundaries in camelCase/PascalCase text:
+  // - Multiple uppercase letters not followed by lowercase (acronyms like "HTTP")
+  // - Uppercase letters followed by uppercase then lowercase (start of new word like "XMLParser")
+  // - Optional uppercase letter followed by lowercase letters/numbers (words like "test" or "Test")
+  // - Uppercase letter followed by lowercase/numbers (words like "A1")
+  const pattern = new RegExp(
+    `(?:[A-Z]{2,}(?![a-z])|[A-Z]+(?=[A-Z][a-z0-9])|[A-Z]?[a-z]+|[A-Z][a-z0-9]*)${delimiterExpression}`,
+    'g',
+  );
+
+  const matches = compositeTerm.match(pattern) || [];
+  const processedTerms: string[] = [];
+
+  matches.forEach((match) => {
+    processedTerms.push(applyCasing(match));
+  });
+
+  return processedTerms.join(' ');
+}
+
+/**
+ * Breaks the supplied text into individual words using mixed-casing conventions augmented by delimiters.
+ * This is the simple overload that applies mixed case to each term.
+ */
+export function normalizeCompositeTermForDisplay(compositeTerm: string, ...delimiters: string[]): string {
+  return normalizeCompositeTermForDisplayWithCasing(compositeTerm, toMixedCase, ...delimiters);
+}
+
+/**
+ * Returns a string that is converted to Uri-Segment format casing, by converting all composite
+ * terms (that are not 2 letter abbreviations) to camel case (hyphenated text terms are processed individually).
+ *
+ * Code ported from https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-ODS/blob/main/Application/EdFi.Ods.Common/SchemaNameMapProvider.cs
+ *
+ * @param text The text to convert to URI segment format
+ * @returns URI segment formatted string (lowercase with hyphens)
+ */
+export function createUriSegment(text: string): string {
+  // Special case (preserve state-level upper-cased abbreviations)
+  const STATE_ABBREVIATION_REGEX = /^[A-Z]{2}$/;
+  if (STATE_ABBREVIATION_REGEX.test(text)) {
+    return text;
+  }
+
+  return normalizeCompositeTermForDisplay(text, ' ', '-').replace(/ /g, '-').toLowerCase();
+}

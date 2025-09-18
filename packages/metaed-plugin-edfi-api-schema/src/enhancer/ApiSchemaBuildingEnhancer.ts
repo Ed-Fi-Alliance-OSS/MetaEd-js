@@ -23,7 +23,7 @@ import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema, NonExtensionResourceSchema, ResourceExtensionSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
-import { uncapitalize } from '../Utility';
+import { createUriSegment, uncapitalize } from '../Utility';
 import { AbstractResourceMapping } from '../model/api-schema/AbstractResourceMapping';
 import { CaseInsensitiveEndpointNameMapping } from '../model/api-schema/CaseInsensitiveEndpointNameMapping';
 import { buildSchoolYearResourceSchema } from './SchoolYearHardCodedSchemaBuilder';
@@ -199,7 +199,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const projectSchema: ProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
-      projectEndpointName: namespace.projectName.toLowerCase() as ProjectEndpointName,
+      projectEndpointName: createUriSegment(namespace.projectName) as ProjectEndpointName,
       description: namespace.projectDescription,
       resourceSchemas,
       resourceNameMapping,

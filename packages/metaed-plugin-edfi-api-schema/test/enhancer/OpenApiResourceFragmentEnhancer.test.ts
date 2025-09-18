@@ -107,7 +107,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas).toBeDefined();
       expect(fragment?.components?.schemas?.EdFi_Student).toBeDefined();
       expect(fragment?.paths).toBeDefined();
-      expect(fragment?.paths?.['/edfi/students']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/students']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('students');
@@ -155,7 +155,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas).toBeDefined();
       expect(fragment?.components?.schemas?.EdFi_GradeLevelDescriptor).toBeDefined();
       expect(fragment?.paths).toBeDefined();
-      expect(fragment?.paths?.['/edfi/gradeLevelDescriptors']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('gradeLevelDescriptors');
@@ -251,7 +251,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       // Verify the fragments contain the expected data
       const fragment = schoolResourceSchema?.openApiFragments?.[OpenApiDocumentType.RESOURCES];
       expect(fragment?.components?.schemas?.EdFi_School).toBeDefined();
-      expect(fragment?.paths?.['/edfi/schools']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/schools']).toBeDefined();
       expect(fragment?.tags?.[0].name).toBe('schools');
     });
   });
@@ -317,6 +317,44 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       // Check the exts mapping
       const expectedExtName = `${studentExtension.baseEntityNamespaceName}_${studentExtension.metaEdName}`;
       expect(fragment?.exts).toHaveProperty(expectedExtName);
+    });
+  });
+
+  describe('when testing projectEndpointName transformation', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'SpecialEducation';
+    const domainEntityName = 'Student';
+    let namespace: any = null;
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName, namespaceName)
+        .withStartDomainEntity(domainEntityName)
+        .withDocumentation('A student')
+        .withStringIdentity('StudentUniqueId', 'doc', '30', '20')
+        .withBooleanProperty('Active', 'Is active', true, false)
+        .withEndDomainEntity()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      runPrerequisiteEnhancers(metaEd);
+      enhance(metaEd);
+
+      namespace = metaEd.namespace.get(namespaceName);
+    });
+
+    it('should create paths with special-education endpoint prefix', () => {
+      const student = namespace.entity.domainEntity.get('Student');
+      const studentApiData = student.data.edfiApiSchema;
+      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES];
+
+      expect(fragment).toBeDefined();
+      expect(fragment?.paths).toBeDefined();
+      expect(fragment?.paths?.['/special-education/students']).toBeDefined();
+      expect(fragment?.paths?.['/special-education/students/{id}']).toBeDefined();
     });
   });
 });
