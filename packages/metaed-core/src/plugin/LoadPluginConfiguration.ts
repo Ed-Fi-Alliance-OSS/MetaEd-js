@@ -124,17 +124,17 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
 
       try {
         // Find configuration file (prefers .jsonnet over .json)
-        const configPath = await findConfigurationFile(searchDirectory, pluginShortName);
-        if (configPath) {
+        const configPath: string | null = await findConfigurationFile(searchDirectory, pluginShortName);
+        if (configPath != null) {
           // Load and evaluate the configuration file
-          const configData = await loadConfigurationFile(configPath, {
+          const configurationObject = await loadConfigurationFile(configPath, {
             externalVariables: state.metaEdConfiguration.externalVariables || {},
           });
 
           // Create plugin configuration object with filepath and config data
           const pluginConfiguration: PluginConfiguration = {
             filepath: configPath,
-            configObject: sliceConfigFromObject(configData),
+            configObject: sliceConfigFromObject(configurationObject),
           };
 
           // Validate the configuration against plugin schemas
