@@ -3,9 +3,6 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import fs from 'node:fs';
-import path from 'path';
-import { cosmiconfig } from 'cosmiconfig';
 import { State } from '../State';
 import { ValidationFailure, ValidationFailureCategory } from '../validator/ValidationFailure';
 import { PluginConfiguration } from './PluginConfiguration';
@@ -15,18 +12,7 @@ import { JoiSchema, JoiResult, JoiErrorDetail } from './JoiTypes';
 import { ConfigurationSchema, ConfigurationRule } from './ConfigurationSchema';
 import { configurationStructureSchema } from './ConfigurationSchema';
 import { annotateModelWithConfiguration } from './AnnotateModelWithConfiguration';
-
-/**
- * Checks if a file exists at the specified path.
- */
-async function fileExists(filepath: string): Promise<boolean> {
-  try {
-    await fs.promises.access(filepath, fs.constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
+import { loadConfigurationFile, findConfigurationFile } from './JsonnetConfigLoader';
 
 /**
  * Extracts only the 'config' property from an object.
@@ -118,6 +104,7 @@ function validatePluginConfiguration(
 /**
  * Loads and validates configuration files for all plugins.
  * Searches for configuration files in specified directories and applies them to the model.
+ * Supports both JSON (.config.json) and Jsonnet (.config.jsonnet) configuration files.
  */
 export async function loadPluginConfiguration(state: State): Promise<void> {
   // Determine which directories to search for configuration files
@@ -134,43 +121,42 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       const pluginShortName: string = metaEdPlugin.shortName;
-      // Build expected configuration file path: {directory}/{pluginName}.config.json
-      const expectedConfigPath = path.join(searchDirectory, `${pluginShortName}.config.json`);
+
       try {
-        // Check if configuration file exists
-        const exists = await fileExists(expectedConfigPath);
-        if (exists) {
-          // Use cosmiconfig to load and parse the configuration file
-          const explorer = cosmiconfig(pluginShortName);
-          const cosmicResult = await explorer.load(expectedConfigPath);
-          if (cosmicResult && cosmicResult.config) {
-            // Create plugin configuration object with filepath and config data
-            const pluginConfiguration: PluginConfiguration = {
-              filepath: expectedConfigPath,
-              configObject: sliceConfigFromObject(cosmicResult.config),
-            };
+        // Find configuration file (prefers .jsonnet over .json)
+        const configPath: string | null = await findConfigurationFile(searchDirectory, pluginShortName);
+        if (configPath != null) {
+          // Load and evaluate the configuration file
+          const configurationObject = await loadConfigurationFile(configPath, {
+            externalVariables: state.metaEdConfiguration.externalVariables || {},
+          });
 
-            // Validate the configuration against plugin schemas
-            const failuresForPluginConfiguration: ValidationFailure[] = validatePluginConfiguration(
-              pluginConfiguration,
-              metaEdPlugin.configurationSchemas || new Map(),
-            );
+          // Create plugin configuration object with filepath and config data
+          const pluginConfiguration: PluginConfiguration = {
+            filepath: configPath,
+            configObject: sliceConfigFromObject(configurationObject),
+          };
 
-            if (failuresForPluginConfiguration.length > 0) {
-              state.validationFailure.push(...failuresForPluginConfiguration);
-            } else {
-              // Configuration is valid, apply it to the model
-              const pluginEnvironment: PluginEnvironment | undefined = state.metaEd.plugin.get(pluginShortName);
-              if (pluginEnvironment != null) {
-                // Annotate model entities with configuration data
-                const annotationFailuresForPlugin: ValidationFailure[] = annotateModelWithConfiguration(
-                  pluginConfiguration,
-                  pluginEnvironment,
-                  state.metaEd.namespace,
-                );
-                // Add any annotation failures to state
-                state.validationFailure.push(...annotationFailuresForPlugin);
-              }
+          // Validate the configuration against plugin schemas
+          const failuresForPluginConfiguration: ValidationFailure[] = validatePluginConfiguration(
+            pluginConfiguration,
+            metaEdPlugin.configurationSchemas || new Map(),
+          );
+
+          if (failuresForPluginConfiguration.length > 0) {
+            state.validationFailure.push(...failuresForPluginConfiguration);
+          } else {
+            // Configuration is valid, apply it to the model
+            const pluginEnvironment: PluginEnvironment | undefined = state.metaEd.plugin.get(pluginShortName);
+            if (pluginEnvironment != null) {
+              // Annotate model entities with configuration data
+              const annotationFailuresForPlugin: ValidationFailure[] = annotateModelWithConfiguration(
+                pluginConfiguration,
+                pluginEnvironment,
+                state.metaEd.namespace,
+              );
+              // Add any annotation failures to state
+              state.validationFailure.push(...annotationFailuresForPlugin);
             }
           }
         }
@@ -182,7 +168,7 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
           message: err.message,
           sourceMap: null,
           fileMap: {
-            fullPath: expectedConfigPath,
+            fullPath: `${searchDirectory}/${pluginShortName}.config.[json|jsonnet]`,
             lineNumber: 0,
           },
         });

@@ -180,7 +180,9 @@ describe('when config has invalid entity type', (): void => {
   it('should not be valid', (): void => {
     const result = configurationStructureSchema.validate(configToTest, { abortEarly: false });
     expect(result.error).not.toBeNull();
-    expect(result.error).toMatchSnapshot();
+    expect(result.error).toMatchInlineSnapshot(
+      `[ValidationError: "config.matches.entity" must be one of [association, associationExtension, associationSubclass, choice, common, commonExtension, commonSubclass, descriptor, domainEntity, domainEntityExtension, domainEntitySubclass, enumeration, schoolYearEnumeration]]`,
+    );
   });
 });
 
@@ -203,7 +205,7 @@ describe('when config has matches with core flag along with namespace', (): void
   it('should not be valid', (): void => {
     const result = configurationStructureSchema.validate(configToTest, { abortEarly: false });
     expect(result.error).not.toBeNull();
-    expect(result.error).toMatchSnapshot();
+    expect(result.error).toMatchInlineSnapshot(`[ValidationError: "namespace" conflict with forbidden peer "core"]`);
   });
 });
 
@@ -226,7 +228,7 @@ describe('when config has matches with extensions flag along with namespace', ()
   it('should not be valid', (): void => {
     const result = configurationStructureSchema.validate(configToTest, { abortEarly: false });
     expect(result.error).not.toBeNull();
-    expect(result.error).toMatchSnapshot();
+    expect(result.error).toMatchInlineSnapshot(`[ValidationError: "namespace" conflict with forbidden peer "extensions"]`);
   });
 });
 
@@ -247,7 +249,9 @@ describe('when config has matches with entityName but without entity type', (): 
   it('should not be valid', (): void => {
     const result = configurationStructureSchema.validate(configToTest, { abortEarly: false });
     expect(result.error).not.toBeNull();
-    expect(result.error).toMatchSnapshot();
+    expect(result.error).toMatchInlineSnapshot(
+      `[ValidationError: "config.matches.entity" is required. "entityName" missing required peer "entity"]`,
+    );
   });
 });
 
@@ -268,6 +272,8 @@ describe('when config has invalid matches field', (): void => {
   it('should not be valid', (): void => {
     const result = configurationStructureSchema.validate(configToTest, { abortEarly: false });
     expect(result.error).not.toBeNull();
-    expect(result.error).toMatchSnapshot();
+    expect(result.error).toMatchInlineSnapshot(
+      `[ValidationError: "config.matches.entity" is required. "config.matches.invalid" is not allowed]`,
+    );
   });
 });

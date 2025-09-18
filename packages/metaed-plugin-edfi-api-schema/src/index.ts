@@ -6,6 +6,10 @@
 import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 import { generate as apiSchemaGenerator } from './generator/ApiSchemaGenerator';
+import {
+  educationOrganizationIdentitySecurableElementsSchema,
+  educationOrganizationSecurableElementsSchema,
+} from './model/ConfigurationSchema';
 
 export { enhance as entityApiSchemaDataSetupEnhancer } from './model/EntityApiSchemaData';
 export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
@@ -33,11 +37,22 @@ export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
 export type { EqualityConstraint } from './model/EqualityConstraint';
 
 export function initialize(): MetaEdPlugin {
+  const configurationSchemas = new Map();
+
+  // Schema for direct property mapping rule
+  configurationSchemas.set('educationOrganizationSecurableElements', educationOrganizationSecurableElementsSchema());
+
+  // Schema for identity search rule
+  configurationSchemas.set(
+    'educationOrganizationIdentitySecurableElements',
+    educationOrganizationIdentitySecurableElementsSchema(),
+  );
+
   return {
     enhancer: enhancerList(),
     validator: [],
     generator: [apiSchemaGenerator],
     shortName: 'edfiApiSchema',
-    configurationSchemas: new Map(),
+    configurationSchemas,
   };
 }

@@ -34,6 +34,10 @@ export type MetaEdConfiguration = {
 
   // pluginConfigDirectories is an override for the directories to look for plugin configuration files
   pluginConfigDirectories: string[];
+
+  // externalVariables are passed to Jsonnet configuration files for dynamic evaluation
+  externalVariables?: Record<string, string>;
+
   allianceMode: boolean;
   suppressPrereleaseVersion: boolean;
 };
