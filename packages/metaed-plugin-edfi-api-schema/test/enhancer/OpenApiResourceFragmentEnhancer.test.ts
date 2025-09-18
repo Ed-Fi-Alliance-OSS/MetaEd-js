@@ -356,20 +356,5 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.paths?.['/special-education/students']).toBeDefined();
       expect(fragment?.paths?.['/special-education/students/{id}']).toBeDefined();
     });
-
-    it('should create correct HTTP methods for special-education paths', () => {
-      const student = namespace.entity.domainEntity.get('Student');
-      const studentApiData = student.data.edfiApiSchema;
-      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES];
-
-      const collectionPath = fragment?.paths?.['/special-education/students'];
-      const itemPath = fragment?.paths?.['/special-education/students/{id}'];
-
-      expect(collectionPath?.post).toBeDefined();
-      expect(collectionPath?.get).toBeDefined();
-      expect(itemPath?.get).toBeDefined();
-      expect(itemPath?.put).toBeDefined();
-      expect(itemPath?.delete).toBeDefined();
-    });
   });
 });

@@ -3465,3 +3465,35 @@ describe('when domain entity extension references domain entity in different nam
     `);
   });
 });
+
+describe('when testing projectEndpointName transformation in ApiSchemaBuildingEnhancer', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'SpecialEducation';
+  const domainEntityName = 'Student';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName, namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('A student')
+      .withStringIdentity('StudentUniqueId', 'doc', '30', '20')
+      .withBooleanProperty('Active', 'Is active', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should transform projectEndpointName to kebab-case', () => {
+    const namespace = metaEd.namespace.get(namespaceName);
+    const namespaceApiSchema = namespace?.data.edfiApiSchema;
+    const projectSchema = namespaceApiSchema?.apiSchema.projectSchema;
+
+    expect(projectSchema).toBeDefined();
+    expect(projectSchema?.projectEndpointName).toBe('special-education');
+  });
+});
