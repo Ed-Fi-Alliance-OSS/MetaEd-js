@@ -92,7 +92,7 @@ jobs:
           ref: ${{ matrix.ds.sample-tag-name }}
 
       - name: Create MetaEdConfig
-        working-directory: ./MetaEd-js/   
+        working-directory: ./MetaEd-js/
         env:
           CORE_PATH: ${{ matrix.ds.core-path }}
           TPDM_PATH: ${{ matrix.ds.tpdm-path }}

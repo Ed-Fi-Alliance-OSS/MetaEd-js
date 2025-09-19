@@ -13,6 +13,7 @@ import { ConfigurationSchema, ConfigurationRule } from './ConfigurationSchema';
 import { configurationStructureSchema } from './ConfigurationSchema';
 import { annotateModelWithConfiguration } from './AnnotateModelWithConfiguration';
 import { loadConfigurationFile, findConfigurationFile } from './JsonnetConfigLoader';
+import { Logger } from '../Logger';
 
 /**
  * Extracts only the 'config' property from an object.
@@ -121,11 +122,13 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
     // eslint-disable-next-line no-restricted-syntax
     for (const metaEdPlugin of state.metaEdPlugins) {
       const pluginShortName: string = metaEdPlugin.shortName;
+      Logger.debug(`Searching for configuration file for plugin: ${pluginShortName} in directory: ${searchDirectory}`);
 
       try {
         // Find configuration file (prefers .jsonnet over .json)
         const configPath: string | null = await findConfigurationFile(searchDirectory, pluginShortName);
         if (configPath != null) {
+          Logger.info(`Found configuration file for plugin '${pluginShortName}': ${configPath}`);
           // Load and evaluate the configuration file
           const configurationObject = await loadConfigurationFile(configPath, {
             externalVariables: state.metaEdConfiguration.externalVariables || {},
@@ -144,8 +147,12 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
           );
 
           if (failuresForPluginConfiguration.length > 0) {
+            Logger.warn(
+              `Configuration validation failed for plugin '${pluginShortName}' with ${failuresForPluginConfiguration.length} error(s)`,
+            );
             state.validationFailure.push(...failuresForPluginConfiguration);
           } else {
+            Logger.debug(`Successfully validated configuration for plugin '${pluginShortName}'`);
             // Configuration is valid, apply it to the model
             const pluginEnvironment: PluginEnvironment | undefined = state.metaEd.plugin.get(pluginShortName);
             if (pluginEnvironment != null) {
@@ -159,6 +166,8 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
               state.validationFailure.push(...annotationFailuresForPlugin);
             }
           }
+        } else {
+          Logger.debug(`No configuration file found for plugin '${pluginShortName}' in directory: ${searchDirectory}`);
         }
       } catch (err) {
         // Handle any errors during configuration loading

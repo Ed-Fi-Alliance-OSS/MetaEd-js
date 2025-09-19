@@ -148,6 +148,35 @@ function BuildPackage {
     dotnet pack $projectPath @arguments
 }
 
+function CopyPluginConfigurationFiles {
+    # Copy the edfiApiSchema.config.json file to the core project directory
+
+    # Parse the MetaEdConfig to get project paths
+    $metaEdConfig = Get-Content -Path $SchemaPackagingConfigFile | ConvertFrom-Json
+    $projectPaths = $metaEdConfig.metaEdConfiguration.projectPaths
+
+    # Source configuration file path
+    $sourceConfigPath = "$PSScriptRoot/../../packages/metaed-plugin-edfi-api-schema/test/integration/edfiApiSchema.config.json"
+
+    if (Test-Path -Path $sourceConfigPath) {
+        # Only copy to the first project path (core)
+        if ($projectPaths.Count -gt 0) {
+            $coreProjectPath = $projectPaths[0]
+            if (Test-Path -Path $coreProjectPath) {
+                $destinationPath = "$coreProjectPath/edfiApiSchema.config.json"
+                Copy-Item -Path $sourceConfigPath -Destination $destinationPath -Force
+                Write-Host "Copied edfiApiSchema.config.json to core: $destinationPath"
+            }
+            else {
+                Write-Warning "Core project path not found: $coreProjectPath"
+            }
+        }
+    }
+    else {
+        Write-Warning "Source configuration file not found: $sourceConfigPath"
+    }
+}
+
 function RunMetaEd {
     # Run MetadEd Project
     npm config set registry https://registry.npmjs.org/
@@ -159,6 +188,9 @@ function RunMetaEd {
     # Get Working Dir
     Get-Location
     Get-ChildItem
+
+    # Copy plugin configuration files to project directories
+    CopyPluginConfigurationFiles
 
     <#
     After building the project from the parent directory, we need to confirm
