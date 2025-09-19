@@ -99,7 +99,7 @@ function findMatchingEntities(
     if (entityMatch.length === 0) {
       validationFailures.push({
         validatorName: 'AnnotateModelWithConfiguration',
-        category: 'error',
+        category: 'warning',
         message: `Entity name '${entityNameInMatches}' in configuration file does not match any entities of the given type and namespace criteria.`,
         sourceMap: null,
         fileMap: {
