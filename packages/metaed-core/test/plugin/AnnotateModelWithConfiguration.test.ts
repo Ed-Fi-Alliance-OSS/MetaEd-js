@@ -698,7 +698,7 @@ describe('when config rule is for a single entity type in a single named namespa
     expect(result).toHaveLength(1);
     expect(result[0]).toMatchInlineSnapshot(`
       Object {
-        "category": "error",
+        "category": "warning",
         "fileMap": Object {
           "fullPath": "file/path",
           "lineNumber": 0,
@@ -980,7 +980,7 @@ describe('when config rule has multiple match definitions where one is invalid',
     expect(result).toHaveLength(1);
     expect(result[0]).toMatchInlineSnapshot(`
       Object {
-        "category": "error",
+        "category": "warning",
         "fileMap": Object {
           "fullPath": "file/path",
           "lineNumber": 0,
