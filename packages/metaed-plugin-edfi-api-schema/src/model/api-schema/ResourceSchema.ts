@@ -17,6 +17,7 @@ import { ArrayUniquenessConstraint } from './ArrayUniquenessConstraint';
 import { DomainName } from './DomainName';
 import { OpenApiDocumentTypeValue } from './OpenApiDocumentType';
 import { OpenApiFragment } from './OpenApiFragment';
+import { FlatteningMetadata } from '../flattening';
 
 /**
  * API resource schema information common between all resources
@@ -117,6 +118,12 @@ export type BaseResourceSchema = {
   openApiFragments: {
     [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
   };
+
+  /**
+   * Metadata for flattening this resource to relational database tables.
+   * Contains the complete table hierarchy including nested collections.
+   */
+  flatteningMetadata?: FlatteningMetadata;
 };
 
 /**

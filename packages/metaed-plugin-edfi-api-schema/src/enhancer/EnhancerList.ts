@@ -48,6 +48,13 @@ import { enhance as staffSecurableElementEnhancer } from './security/StaffSecura
 import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessConstraintEnhancer';
 import { enhance as educationOrganizationConfigurationEnhancer } from './security/EducationOrganizationConfigurationEnhancer';
 import { enhance as educationOrganizationIdentityConfigurationEnhancer } from './security/EducationOrganizationIdentityConfigurationEnhancer';
+import { enhance as flatteningMetadataInitializerEnhancer } from './flattening/FlatteningMetadataInitializerEnhancer';
+import { enhance as tableStructureAnalyzerEnhancer } from './flattening/TableStructureAnalyzerEnhancer';
+import { enhance as columnMappingBuilderEnhancer } from './flattening/ColumnMappingBuilderEnhancer';
+import { enhance as collectionTableBuilderEnhancer } from './flattening/CollectionTableBuilderEnhancer';
+import { enhance as referenceResolverEnhancer } from './flattening/ReferenceResolverEnhancer';
+import { enhance as sqlTypeMapperEnhancer } from './flattening/SqlTypeMapperEnhancer';
+import { enhance as polymorphicReferenceEnhancer } from './flattening/PolymorphicReferenceEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -94,6 +101,14 @@ export function enhancerList(): Enhancer[] {
     educationOrganizationConfigurationEnhancer,
     educationOrganizationIdentityConfigurationEnhancer,
     namespaceDomainEnhancer,
+    // Flattening metadata enhancers
+    flatteningMetadataInitializerEnhancer,
+    tableStructureAnalyzerEnhancer,
+    columnMappingBuilderEnhancer,
+    collectionTableBuilderEnhancer,
+    referenceResolverEnhancer,
+    sqlTypeMapperEnhancer,
+    polymorphicReferenceEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

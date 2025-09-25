@@ -29,6 +29,7 @@ import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstrain
 import { DomainName } from './api-schema/DomainName';
 import { OpenApiFragment } from './api-schema/OpenApiFragment';
 import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
+import { FlatteningMetadata } from './flattening/FlatteningMetadata';
 
 export type EntityApiSchemaData = {
   /**
@@ -209,6 +210,12 @@ export type EntityApiSchemaData = {
   openApiFragments: {
     [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
   };
+
+  /**
+   * Metadata for flattening this entity to relational database tables.
+   * Contains the complete table hierarchy including nested collections.
+   */
+  flatteningMetadata?: FlatteningMetadata;
 };
 
 /**

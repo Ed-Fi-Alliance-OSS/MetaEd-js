@@ -1,0 +1,111 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+import { BrandType } from '@edfi/metaed-core';
+import type { TopLevelEntity } from '@edfi/metaed-core';
+import type { TableMetadata } from '../../../model/flattening/TableMetadata';
+
+export type TableBaseName = BrandType<string, 'TableBaseName'>;
+export type TableJsonPath = BrandType<string, 'TableJsonPath'>;
+export type TableDiscriminator = BrandType<string, 'TableDiscriminator'>;
+
+/**
+ * Cast a string value to a table base name brand.
+ */
+export function toTableBaseName(value: string): TableBaseName {
+  return value as TableBaseName;
+}
+
+/**
+ * Cast a string value to a table JSON path brand.
+ */
+export function toTableJsonPath(value: string): TableJsonPath {
+  return value as TableJsonPath;
+}
+
+/**
+ * Cast a string value to a table discriminator brand.
+ */
+export function toTableDiscriminator(value: string): TableDiscriminator {
+  return value as TableDiscriminator;
+}
+
+function isExtensionEntity(entity: TopLevelEntity): boolean {
+  return entity.type === 'domainEntityExtension' || entity.type === 'associationExtension';
+}
+
+function deriveExtensionBaseName(entity: TopLevelEntity): TableBaseName {
+  const baseEntity = entity.baseEntity;
+  if (baseEntity) {
+    return toTableBaseName(`${baseEntity.metaEdName}Extension`);
+  }
+
+  return toTableBaseName(`${entity.metaEdName}Extension`);
+}
+
+function deriveRootBaseName(entity: TopLevelEntity): TableBaseName {
+  if (isExtensionEntity(entity)) {
+    return deriveExtensionBaseName(entity);
+  }
+
+  return toTableBaseName(entity.metaEdName);
+}
+
+/**
+ * Create the root table metadata object for a resource.
+ */
+export function createRootTable(entity: TopLevelEntity, discriminatorValue?: TableDiscriminator): TableMetadata {
+  const baseName = deriveRootBaseName(entity);
+  const isExtensionTable = isExtensionEntity(entity);
+
+  return {
+    baseName: baseName as string,
+    jsonPath: '$',
+    columns: [],
+    childTables: [],
+    ...(isExtensionTable ? { isExtensionTable: true } : {}),
+    ...(discriminatorValue ? { discriminatorValue: discriminatorValue as string } : {}),
+  };
+}
+
+/**
+ * Create metadata for a child table that represents a collection.
+ */
+export function createChildTable(
+  baseName: TableBaseName,
+  jsonPath: TableJsonPath,
+  isExtensionTable = false,
+  discriminatorValue?: TableDiscriminator,
+): TableMetadata {
+  return {
+    baseName: baseName as string,
+    jsonPath: jsonPath as string,
+    columns: [],
+    childTables: [],
+    ...(isExtensionTable ? { isExtensionTable: true } : {}),
+    ...(discriminatorValue ? { discriminatorValue: discriminatorValue as string } : {}),
+  };
+}
+
+/**
+ * Append a child table to the supplied parent while preserving immutability.
+ */
+export function appendChildTable(parent: TableMetadata, child: TableMetadata): TableMetadata {
+  return {
+    ...parent,
+    childTables: [...parent.childTables, child],
+  };
+}
+
+/**
+ * Deep clone a table structure to protect against accidental mutation.
+ */
+export function cloneTable(table: TableMetadata): TableMetadata {
+  return {
+    ...table,
+    columns: table.columns.map((column) => ({ ...column })),
+    childTables: table.childTables.map(cloneTable),
+  };
+}
