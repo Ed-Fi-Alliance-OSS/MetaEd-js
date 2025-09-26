@@ -60,8 +60,7 @@ function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment): void {
   entityPropertyApiSchemaDataSetupEnhancer(metaEd);
   entityApiSchemaDataSetupEnhancer(metaEd);
 
-  // API mapping enhancers - order is important!
-  apiEntityMappingEnhancer(metaEd);
+  // API mapping enhancers - order matches production EnhancerList
   referenceComponentEnhancer(metaEd);
   propertyCollectingEnhancer(metaEd);
   apiPropertyMappingEnhancer(metaEd);
@@ -70,6 +69,8 @@ function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment): void {
   // Run property collecting again to get nested properties
   propertyCollectingEnhancer(metaEd);
   apiPropertyMappingEnhancer(metaEd);
+
+  apiEntityMappingEnhancer(metaEd);
 
   // JSON path mapping
   allJsonPathsMappingEnhancer(metaEd);

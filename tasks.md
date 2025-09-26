@@ -7,7 +7,7 @@
 
 ## FlatteningMetadataInitializerEnhancer
 - [x] Refactor enhancer to derive root table names/flags from entity metadata without string heuristics
-- [ ] Update enhancer to capture superclass identity context for downstream use
+- [x] Update enhancer to capture superclass identity context for downstream use
 - [x] Write unit tests validating initializer behaviour for core, extension, and subclass entities
 
 ## FlatteningTableStructureEnhancer

@@ -3,7 +3,19 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { TableMetadata } from './TableMetadata';
+import type { MetaEdPropertyFullName } from '@edfi/metaed-core';
+import type { TableMetadata } from './TableMetadata';
+
+/**
+ * Metadata describing how a subclass maps to its superclass identity.
+ * Enables downstream enhancers to mark columns that participate in superclass joins.
+ */
+export type SuperclassIdentityMetadata = {
+  /**
+   * Fully-qualified MetaEd property name for the identity property renamed from the superclass.
+   */
+  identityPropertyFullName: MetaEdPropertyFullName;
+};
 
 /**
  * Root flattening metadata structure for a resource.
@@ -16,4 +28,10 @@ export interface FlatteningMetadata {
    * Contains recursive structure for all nested collections.
    */
   table: TableMetadata;
+
+  /**
+   * Identity information inherited from a superclass when the resource is a subclass.
+   * Undefined for non-subclass resources.
+   */
+  superclassIdentity?: SuperclassIdentityMetadata;
 }

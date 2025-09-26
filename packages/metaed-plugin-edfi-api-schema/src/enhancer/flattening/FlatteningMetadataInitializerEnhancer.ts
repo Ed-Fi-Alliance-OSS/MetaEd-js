@@ -4,9 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType } from '@edfi/metaed-core';
-import type { TopLevelEntity } from '@edfi/metaed-core';
+import type { MetaEdPropertyFullName, TopLevelEntity } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
-import { FlatteningMetadata } from '../../model/flattening/FlatteningMetadata';
+import { FlatteningMetadata, SuperclassIdentityMetadata } from '../../model/flattening/FlatteningMetadata';
 import { createRootTable } from './helpers/TableBuilder';
 import type { TableDiscriminator } from './helpers/TableBuilder';
 
@@ -39,6 +39,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const flatteningMetadata: FlatteningMetadata = {
       table: rootTable,
     };
+
+    if (topLevelEntity.type === 'domainEntitySubclass' || topLevelEntity.type === 'associationSubclass') {
+      const identityRename = topLevelEntity.properties.find((property) => property.isIdentityRename);
+      if (identityRename != null) {
+        const superclassIdentity: SuperclassIdentityMetadata = {
+          identityPropertyFullName: identityRename.fullPropertyName as MetaEdPropertyFullName,
+        };
+        flatteningMetadata.superclassIdentity = superclassIdentity;
+      }
+    }
 
     apiSchemaData.flatteningMetadata = flatteningMetadata;
   });

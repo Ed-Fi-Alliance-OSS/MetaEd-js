@@ -4,13 +4,21 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
+  AssociationBuilder,
+  AssociationSubclassBuilder,
   DomainEntityBuilder,
+  DomainEntitySubclassBuilder,
   MetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
 } from '@edfi/metaed-core';
-import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
+import {
+  associationReferenceEnhancer,
+  associationSubclassBaseClassEnhancer,
+  domainEntityReferenceEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
+} from '@edfi/metaed-plugin-edfi-unified';
 import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
@@ -68,6 +76,83 @@ describe('FlatteningMetadata Enhancers', () => {
       expect(apiSchemaData.flatteningMetadata?.table.jsonPath).toBe('$');
       expect(apiSchemaData.flatteningMetadata?.table.columns).toEqual([]);
       expect(apiSchemaData.flatteningMetadata?.table.childTables).toEqual([]);
+    });
+
+    it('should capture superclass identity metadata for domain entity subclasses', () => {
+      const subclassMetaEd = newMetaEdEnvironment();
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+        .withStartAbstractEntity('EducationOrganization')
+        .withDocumentation('Base education organization')
+        .withIntegerIdentity('EducationOrganizationId', 'Education organization identifier')
+        .withEndAbstractEntity()
+        .withStartDomainEntitySubclass('School', 'EducationOrganization')
+        .withDocumentation('School subclass')
+        .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'School identifier')
+        .withEndDomainEntitySubclass()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(subclassMetaEd, []))
+        .sendToListener(new DomainEntityBuilder(subclassMetaEd, []))
+        .sendToListener(new DomainEntitySubclassBuilder(subclassMetaEd, []));
+
+      domainEntitySubclassBaseClassEnhancer(subclassMetaEd);
+      domainEntityReferenceEnhancer(subclassMetaEd);
+      entityPropertyApiSchemaDataSetupEnhancer(subclassMetaEd);
+      entityApiSchemaDataSetupEnhancer(subclassMetaEd);
+
+      const result = flatteningMetadataInitializer(subclassMetaEd);
+      expect(result.success).toBe(true);
+
+      const school = subclassMetaEd.namespace.get('EdFi')?.entity.domainEntitySubclass.get('School');
+      const apiSchemaData = school?.data.edfiApiSchema as EntityApiSchemaData;
+
+      expect(apiSchemaData.flatteningMetadata?.superclassIdentity).toBeDefined();
+      expect(apiSchemaData.flatteningMetadata?.superclassIdentity?.identityPropertyFullName).toBe('SchoolId');
+    });
+
+    it('should capture superclass identity metadata for association subclasses', () => {
+      const subclassMetaEd = newMetaEdEnvironment();
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+        .withStartDomainEntity('Student')
+        .withDocumentation('Student entity')
+        .withStringIdentity('StudentUniqueId', 'Student unique identifier', '32')
+        .withEndDomainEntity()
+        .withStartAssociation('StudentProgramAssociation')
+        .withDocumentation('Base association')
+        .withDomainEntityProperty('Student', 'Student reference', true, false)
+        .withIntegerIdentity('ProgramId', 'Program identifier')
+        .withEndAssociation()
+        .withStartAssociationSubclass('StudentProgramSchoolAssociation', 'StudentProgramAssociation')
+        .withDocumentation('Association subclass')
+        .withIntegerIdentityRename('SchoolProgramId', 'ProgramId', 'Renamed program identifier')
+        .withEndAssociationSubclass()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(subclassMetaEd, []))
+        .sendToListener(new DomainEntityBuilder(subclassMetaEd, []))
+        .sendToListener(new AssociationBuilder(subclassMetaEd, []))
+        .sendToListener(new AssociationSubclassBuilder(subclassMetaEd, []));
+
+      domainEntityReferenceEnhancer(subclassMetaEd);
+      associationReferenceEnhancer(subclassMetaEd);
+      associationSubclassBaseClassEnhancer(subclassMetaEd);
+      entityPropertyApiSchemaDataSetupEnhancer(subclassMetaEd);
+      entityApiSchemaDataSetupEnhancer(subclassMetaEd);
+
+      const result = flatteningMetadataInitializer(subclassMetaEd);
+      expect(result.success).toBe(true);
+
+      const association = subclassMetaEd.namespace
+        .get('EdFi')
+        ?.entity.associationSubclass.get('StudentProgramSchoolAssociation');
+      const apiSchemaData = association?.data.edfiApiSchema as EntityApiSchemaData;
+
+      expect(apiSchemaData.flatteningMetadata?.superclassIdentity).toBeDefined();
+      expect(apiSchemaData.flatteningMetadata?.superclassIdentity?.identityPropertyFullName).toBe(
+        'SchoolProgramId',
+      );
     });
   });
 
