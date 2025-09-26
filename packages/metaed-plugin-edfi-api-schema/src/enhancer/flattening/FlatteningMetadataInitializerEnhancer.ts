@@ -7,7 +7,8 @@ import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType } from '@edfi/m
 import type { TopLevelEntity } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { FlatteningMetadata } from '../../model/flattening/FlatteningMetadata';
-import { createRootTable, toTableDiscriminator } from './helpers/TableBuilder';
+import { createRootTable } from './helpers/TableBuilder';
+import type { TableDiscriminator } from './helpers/TableBuilder';
 
 /**
  * Initializes the flattening metadata structure for entities that need it.
@@ -30,7 +31,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const discriminator =
       topLevelEntity.type === 'domainEntitySubclass' || topLevelEntity.type === 'associationSubclass'
-        ? toTableDiscriminator(topLevelEntity.metaEdName)
+        ? (topLevelEntity.metaEdName as TableDiscriminator)
         : undefined;
 
     const rootTable = createRootTable(topLevelEntity, discriminator);

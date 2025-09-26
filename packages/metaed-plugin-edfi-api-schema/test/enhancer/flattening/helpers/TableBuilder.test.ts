@@ -8,9 +8,11 @@ import {
   createRootTable,
   createChildTable,
   appendChildTable,
-  toTableBaseName,
-  toTableJsonPath,
-  toTableDiscriminator,
+} from '../../../../src/enhancer/flattening/helpers/TableBuilder';
+import type {
+  TableBaseName,
+  TableJsonPath,
+  TableDiscriminator,
 } from '../../../../src/enhancer/flattening/helpers/TableBuilder';
 
 function buildEntity(type: string, name: string) {
@@ -36,7 +38,7 @@ describe('TableBuilder helpers', () => {
     const extension = buildEntity('domainEntityExtension', 'School');
     extension.baseEntity = baseEntity;
 
-    const table = createRootTable(extension, toTableDiscriminator('School'));
+    const table = createRootTable(extension, 'School' as TableDiscriminator);
 
     expect(table.baseName).toBe('SchoolExtension');
     expect(table.isExtensionTable).toBe(true);
@@ -47,7 +49,7 @@ describe('TableBuilder helpers', () => {
     const entity = buildEntity('domainEntity', 'School');
 
     const root = createRootTable(entity);
-    const child = createChildTable(toTableBaseName('SchoolAddress'), toTableJsonPath('$.addresses[*]'));
+    const child = createChildTable('SchoolAddress' as TableBaseName, '$.addresses[*]' as TableJsonPath);
 
     const updated = appendChildTable(root, child);
 

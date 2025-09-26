@@ -8,13 +8,8 @@ import type { TopLevelEntity } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { EntityPropertyApiSchemaData } from '../../model/EntityPropertyApiSchemaData';
 import type { TableMetadata } from '../../model/flattening/TableMetadata';
-import {
-  createChildTable,
-  toTableBaseName,
-  toTableJsonPath,
-  TableBaseName,
-  TableJsonPath,
-} from './helpers/TableBuilder';
+import { createChildTable } from './helpers/TableBuilder';
+import type { TableBaseName, TableJsonPath } from './helpers/TableBuilder';
 
 const MAX_COLLECTION_DEPTH = 2;
 
@@ -71,10 +66,10 @@ function buildChildTablesForEntity(
       return;
     }
 
-    const childBaseName = toTableBaseName(`${parentBaseName as string}${property.metaEdName}`);
+    const childBaseName = `${parentBaseName as string}${property.metaEdName}` as TableBaseName;
     const parentJsonPathValue = parentJsonPath as string;
     const childJsonPathValue = `${parentJsonPathValue}.${collectionName}[*]`;
-    const childJsonPath = toTableJsonPath(childJsonPathValue);
+    const childJsonPath = childJsonPathValue as TableJsonPath;
 
     const canRecurse = depth + 1 < MAX_COLLECTION_DEPTH;
     const referencedEntity = canRecurse ? resolveReferencedEntity(property) : undefined;
@@ -117,8 +112,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     }
 
     const rootTable = flatteningMetadata.table;
-    const parentBaseName = toTableBaseName(rootTable.baseName);
-    const parentJsonPath = toTableJsonPath(rootTable.jsonPath);
+    const parentBaseName = rootTable.baseName as TableBaseName;
+    const parentJsonPath = rootTable.jsonPath as TableJsonPath;
     const isExtensionTable = rootTable.isExtensionTable === true;
 
     const childTables = buildChildTablesForEntity(topLevelEntity, parentBaseName, parentJsonPath, isExtensionTable, 0);

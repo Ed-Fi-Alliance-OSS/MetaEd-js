@@ -8,21 +8,6 @@ import type { ColumnMetadata } from '../../../model/flattening/ColumnMetadata';
 import type { ColumnType } from '../../../model/flattening/ColumnType';
 import type { EntityApiSchemaData } from '../../../model/EntityApiSchemaData';
 import type { DecimalPropertyValidationInfo } from '../../../model/api-schema/DecimalPropertyValidationInfo';
-import type { JsonPath } from '../../../model/api-schema/JsonPath';
-
-/**
- * Normalize JsonPath values for comparison while respecting the brand type.
- */
-function normalizeJsonPath(path: JsonPath | string): string {
-  return path.toString();
-}
-
-/**
- * Convert a list of JsonPath values into a lookup set.
- */
-function asPathSet(paths: JsonPath[] | undefined): Set<string> {
-  return new Set((paths ?? []).map(normalizeJsonPath));
-}
 
 /**
  * Resolve the absolute JSON path for a column given the containing table path.
@@ -50,7 +35,7 @@ function findDecimalInfo(
   infos: DecimalPropertyValidationInfo[] | undefined,
   path: string,
 ): DecimalPropertyValidationInfo | undefined {
-  return infos?.find((info) => normalizeJsonPath(info.path) === path);
+  return infos?.find((info) => String(info.path) === path);
 }
 
 /**
@@ -186,22 +171,22 @@ export function deriveTypeInfo(
     };
   }
 
-  const booleanPaths = asPathSet(apiSchemaData.booleanJsonPaths);
+  const booleanPaths = new Set((apiSchemaData.booleanJsonPaths ?? []).map((value) => String(value)));
   if (booleanPaths.has(absolutePath)) {
     return { columnType: 'boolean' };
   }
 
-  const datePaths = asPathSet(apiSchemaData.dateJsonPaths);
+  const datePaths = new Set((apiSchemaData.dateJsonPaths ?? []).map((value) => String(value)));
   if (datePaths.has(absolutePath)) {
     return { columnType: 'date' };
   }
 
-  const dateTimePaths = asPathSet(apiSchemaData.dateTimeJsonPaths);
+  const dateTimePaths = new Set((apiSchemaData.dateTimeJsonPaths ?? []).map((value) => String(value)));
   if (dateTimePaths.has(absolutePath)) {
     return { columnType: 'datetime' };
   }
 
-  const numericPaths = asPathSet(apiSchemaData.numericJsonPaths);
+  const numericPaths = new Set((apiSchemaData.numericJsonPaths ?? []).map((value) => String(value)));
   if (numericPaths.has(absolutePath)) {
     return { columnType: 'integer' };
   }

@@ -3,34 +3,12 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { BrandType } from '@edfi/metaed-core';
 import type { TopLevelEntity } from '@edfi/metaed-core';
 import type { TableMetadata } from '../../../model/flattening/TableMetadata';
 
-export type TableBaseName = BrandType<string, 'TableBaseName'>;
-export type TableJsonPath = BrandType<string, 'TableJsonPath'>;
-export type TableDiscriminator = BrandType<string, 'TableDiscriminator'>;
-
-/**
- * Cast a string value to a table base name brand.
- */
-export function toTableBaseName(value: string): TableBaseName {
-  return value as TableBaseName;
-}
-
-/**
- * Cast a string value to a table JSON path brand.
- */
-export function toTableJsonPath(value: string): TableJsonPath {
-  return value as TableJsonPath;
-}
-
-/**
- * Cast a string value to a table discriminator brand.
- */
-export function toTableDiscriminator(value: string): TableDiscriminator {
-  return value as TableDiscriminator;
-}
+export type TableBaseName = string & { readonly tableBaseNameBrand: unique symbol };
+export type TableJsonPath = string & { readonly tableJsonPathBrand: unique symbol };
+export type TableDiscriminator = string & { readonly tableDiscriminatorBrand: unique symbol };
 
 function isExtensionEntity(entity: TopLevelEntity): boolean {
   return entity.type === 'domainEntityExtension' || entity.type === 'associationExtension';
@@ -39,10 +17,10 @@ function isExtensionEntity(entity: TopLevelEntity): boolean {
 function deriveExtensionBaseName(entity: TopLevelEntity): TableBaseName {
   const baseEntity = entity.baseEntity;
   if (baseEntity) {
-    return toTableBaseName(`${baseEntity.metaEdName}Extension`);
+    return `${baseEntity.metaEdName}Extension` as TableBaseName;
   }
 
-  return toTableBaseName(`${entity.metaEdName}Extension`);
+  return `${entity.metaEdName}Extension` as TableBaseName;
 }
 
 function deriveRootBaseName(entity: TopLevelEntity): TableBaseName {
@@ -50,7 +28,7 @@ function deriveRootBaseName(entity: TopLevelEntity): TableBaseName {
     return deriveExtensionBaseName(entity);
   }
 
-  return toTableBaseName(entity.metaEdName);
+  return entity.metaEdName as TableBaseName;
 }
 
 /**

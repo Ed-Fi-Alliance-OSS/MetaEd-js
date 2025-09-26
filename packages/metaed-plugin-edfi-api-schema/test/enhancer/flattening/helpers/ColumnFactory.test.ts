@@ -15,7 +15,7 @@ import {
   toColumnName,
   toColumnMaxLength,
 } from '../../../../src/enhancer/flattening/helpers/ColumnFactory';
-import { toTableBaseName } from '../../../../src/enhancer/flattening/helpers/TableBuilder';
+import type { TableBaseName } from '../../../../src/enhancer/flattening/helpers/TableBuilder';
 
 describe('ColumnFactory helpers', () => {
   it('creates identity columns with defaults', () => {
@@ -34,7 +34,7 @@ describe('ColumnFactory helpers', () => {
   });
 
   it('creates parent reference columns', () => {
-    const column = createParentReferenceColumn(toTableBaseName('School'));
+    const column = createParentReferenceColumn('School' as TableBaseName);
     expect(column.columnName).toBe('School_Id');
     expect(column.isParentReference).toBe(true);
     expect(column.columnType).toBe('bigint');
