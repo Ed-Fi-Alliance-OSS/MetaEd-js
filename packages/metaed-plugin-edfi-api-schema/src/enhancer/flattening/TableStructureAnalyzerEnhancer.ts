@@ -9,7 +9,8 @@ import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { EntityPropertyApiSchemaData } from '../../model/EntityPropertyApiSchemaData';
 import type { TableMetadata } from '../../model/flattening/TableMetadata';
 import { createChildTable } from './helpers/TableBuilder';
-import type { TableBaseName, TableJsonPath } from './helpers/TableBuilder';
+import type { TableBaseName } from './helpers/TableBuilder';
+import type { JsonPath } from '../../model/api-schema/JsonPath';
 
 const MAX_COLLECTION_DEPTH = 2;
 
@@ -36,7 +37,7 @@ function resolveReferencedEntity(property: any): ReferentialProperty['referenced
 function buildChildTablesForEntity(
   entity: TopLevelEntity | undefined,
   parentBaseName: TableBaseName,
-  parentJsonPath: TableJsonPath,
+  parentJsonPath: JsonPath,
   isExtensionTable: boolean,
   depth: number,
 ): TableMetadata[] {
@@ -66,10 +67,8 @@ function buildChildTablesForEntity(
       return;
     }
 
-    const childBaseName = `${parentBaseName as string}${property.metaEdName}` as TableBaseName;
-    const parentJsonPathValue = parentJsonPath as string;
-    const childJsonPathValue = `${parentJsonPathValue}.${collectionName}[*]`;
-    const childJsonPath = childJsonPathValue as TableJsonPath;
+    const childBaseName = `${parentBaseName}${property.metaEdName}` as TableBaseName;
+    const childJsonPath = `${parentJsonPath}.${collectionName}[*]` as JsonPath;
 
     const canRecurse = depth + 1 < MAX_COLLECTION_DEPTH;
     const referencedEntity = canRecurse ? resolveReferencedEntity(property) : undefined;
@@ -113,7 +112,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const rootTable = flatteningMetadata.table;
     const parentBaseName = rootTable.baseName as TableBaseName;
-    const parentJsonPath = rootTable.jsonPath as TableJsonPath;
+    const parentJsonPath = rootTable.jsonPath as JsonPath;
     const isExtensionTable = rootTable.isExtensionTable === true;
 
     const childTables = buildChildTablesForEntity(topLevelEntity, parentBaseName, parentJsonPath, isExtensionTable, 0);

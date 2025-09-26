@@ -11,9 +11,9 @@ import {
 } from '../../../../src/enhancer/flattening/helpers/TableBuilder';
 import type {
   TableBaseName,
-  TableJsonPath,
   TableDiscriminator,
 } from '../../../../src/enhancer/flattening/helpers/TableBuilder';
+import type { JsonPath } from '../../../../src/model/api-schema/JsonPath';
 
 function buildEntity(type: string, name: string) {
   const entity = newTopLevelEntity();
@@ -49,7 +49,7 @@ describe('TableBuilder helpers', () => {
     const entity = buildEntity('domainEntity', 'School');
 
     const root = createRootTable(entity);
-    const child = createChildTable('SchoolAddress' as TableBaseName, '$.addresses[*]' as TableJsonPath);
+    const child = createChildTable('SchoolAddress' as TableBaseName, '$.addresses[*]' as JsonPath);
 
     const updated = appendChildTable(root, child);
 

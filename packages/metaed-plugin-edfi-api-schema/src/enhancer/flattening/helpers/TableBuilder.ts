@@ -5,9 +5,9 @@
 
 import type { TopLevelEntity } from '@edfi/metaed-core';
 import type { TableMetadata } from '../../../model/flattening/TableMetadata';
+import type { JsonPath } from '../../../model/api-schema/JsonPath';
 
 export type TableBaseName = string & { readonly tableBaseNameBrand: unique symbol };
-export type TableJsonPath = string & { readonly tableJsonPathBrand: unique symbol };
 export type TableDiscriminator = string & { readonly tableDiscriminatorBrand: unique symbol };
 
 function isExtensionEntity(entity: TopLevelEntity): boolean {
@@ -39,12 +39,12 @@ export function createRootTable(entity: TopLevelEntity, discriminatorValue?: Tab
   const isExtensionTable = isExtensionEntity(entity);
 
   return {
-    baseName: baseName as string,
+    baseName,
     jsonPath: '$',
     columns: [],
     childTables: [],
     ...(isExtensionTable ? { isExtensionTable: true } : {}),
-    ...(discriminatorValue ? { discriminatorValue: discriminatorValue as string } : {}),
+    ...(discriminatorValue ? { discriminatorValue } : {}),
   };
 }
 
@@ -53,17 +53,17 @@ export function createRootTable(entity: TopLevelEntity, discriminatorValue?: Tab
  */
 export function createChildTable(
   baseName: TableBaseName,
-  jsonPath: TableJsonPath,
+  jsonPath: JsonPath,
   isExtensionTable = false,
   discriminatorValue?: TableDiscriminator,
 ): TableMetadata {
   return {
-    baseName: baseName as string,
-    jsonPath: jsonPath as string,
+    baseName,
+    jsonPath,
     columns: [],
     childTables: [],
     ...(isExtensionTable ? { isExtensionTable: true } : {}),
-    ...(discriminatorValue ? { discriminatorValue: discriminatorValue as string } : {}),
+    ...(discriminatorValue ? { discriminatorValue } : {}),
   };
 }
 
