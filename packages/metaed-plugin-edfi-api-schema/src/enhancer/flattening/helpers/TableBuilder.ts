@@ -38,14 +38,22 @@ export function createRootTable(entity: TopLevelEntity, discriminatorValue?: Tab
   const baseName = deriveRootBaseName(entity);
   const isExtensionTable = isExtensionEntity(entity);
 
-  return {
+  const table: TableMetadata = {
     baseName,
     jsonPath: '$',
     columns: [],
     childTables: [],
-    ...(isExtensionTable ? { isExtensionTable: true } : {}),
-    ...(discriminatorValue ? { discriminatorValue } : {}),
   };
+
+  if (isExtensionTable) {
+    table.isExtensionTable = true;
+  }
+
+  if (discriminatorValue != null) {
+    table.discriminatorValue = discriminatorValue;
+  }
+
+  return table;
 }
 
 /**
@@ -57,14 +65,22 @@ export function createChildTable(
   isExtensionTable = false,
   discriminatorValue?: TableDiscriminator,
 ): TableMetadata {
-  return {
+  const table: TableMetadata = {
     baseName,
     jsonPath,
     columns: [],
     childTables: [],
-    ...(isExtensionTable ? { isExtensionTable: true } : {}),
-    ...(discriminatorValue ? { discriminatorValue } : {}),
   };
+
+  if (isExtensionTable) {
+    table.isExtensionTable = true;
+  }
+
+  if (discriminatorValue != null) {
+    table.discriminatorValue = discriminatorValue;
+  }
+
+  return table;
 }
 
 /**

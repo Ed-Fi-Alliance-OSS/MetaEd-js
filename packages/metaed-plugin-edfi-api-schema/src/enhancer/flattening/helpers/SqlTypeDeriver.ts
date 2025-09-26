@@ -121,10 +121,13 @@ function mapSchemaPropertyToColumnType(schemaProperty: SchemaProperty | undefine
       return { columnType: 'time' };
     }
 
-    return {
-      columnType: 'string',
-      ...(schemaProperty.maxLength != null ? { maxLength: schemaProperty.maxLength.toString() } : {}),
-    };
+    const result: { columnType: ColumnType; maxLength?: string } = { columnType: 'string' };
+
+    if (schemaProperty.maxLength != null) {
+      result.maxLength = schemaProperty.maxLength.toString();
+    }
+
+    return result;
   }
 
   if (schemaProperty.type === 'integer') {
@@ -164,11 +167,17 @@ export function deriveTypeInfo(
 
   const decimalInfo = findDecimalInfo(apiSchemaData.decimalPropertyValidationInfos, absolutePath);
   if (decimalInfo) {
-    return {
-      columnType: 'decimal',
-      ...(decimalInfo.totalDigits != null ? { precision: decimalInfo.totalDigits.toString() } : {}),
-      ...(decimalInfo.decimalPlaces != null ? { scale: decimalInfo.decimalPlaces.toString() } : {}),
-    };
+    const result: DerivedTypeInfo = { columnType: 'decimal' };
+
+    if (decimalInfo.totalDigits != null) {
+      result.precision = decimalInfo.totalDigits.toString();
+    }
+
+    if (decimalInfo.decimalPlaces != null) {
+      result.scale = decimalInfo.decimalPlaces.toString();
+    }
+
+    return result;
   }
 
   const booleanPaths = new Set((apiSchemaData.booleanJsonPaths ?? []).map((value) => String(value)));
