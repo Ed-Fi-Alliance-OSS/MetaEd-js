@@ -12,8 +12,6 @@ import { createChildTable } from './helpers/TableBuilder';
 import type { TableBaseName } from './helpers/TableBuilder';
 import type { JsonPath } from '../../model/api-schema/JsonPath';
 
-const MAX_COLLECTION_DEPTH = 2;
-
 function shouldCreateChildTable(property: any, apiMapping: EntityPropertyApiSchemaData['apiMapping']): boolean {
   if (!property.isCollection) {
     return false;
@@ -39,7 +37,6 @@ function buildChildTablesForEntity(
   parentBaseName: TableBaseName,
   parentJsonPath: JsonPath,
   isExtensionTable: boolean,
-  depth: number,
 ): TableMetadata[] {
   if (!entity?.data?.edfiApiSchema) {
     return [];
@@ -50,7 +47,7 @@ function buildChildTablesForEntity(
   const childTables: TableMetadata[] = [];
 
   collectedProperties.forEach((collectedProperty) => {
-    const property = collectedProperty.property;
+    const { property } = collectedProperty;
     const propertyApiSchemaData = property.data.edfiApiSchema as EntityPropertyApiSchemaData | undefined;
     const apiMapping = propertyApiSchemaData?.apiMapping;
 
@@ -70,11 +67,8 @@ function buildChildTablesForEntity(
     const childBaseName = `${parentBaseName}${property.metaEdName}` as TableBaseName;
     const childJsonPath = `${parentJsonPath}.${collectionName}[*]` as JsonPath;
 
-    const canRecurse = depth + 1 < MAX_COLLECTION_DEPTH;
-    const referencedEntity = canRecurse ? resolveReferencedEntity(property) : undefined;
-    const nestedChildTables = canRecurse
-      ? buildChildTablesForEntity(referencedEntity, childBaseName, childJsonPath, isExtensionTable, depth + 1)
-      : [];
+    const referencedEntity = resolveReferencedEntity(property);
+    const nestedChildTables = buildChildTablesForEntity(referencedEntity, childBaseName, childJsonPath, isExtensionTable);
 
     const childTable = createChildTable(childBaseName, childJsonPath, isExtensionTable, undefined);
     childTables.push({
@@ -104,7 +98,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     const apiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     const topLevelEntity = entity as TopLevelEntity;
-    const flatteningMetadata = apiSchemaData.flatteningMetadata;
+    const { flatteningMetadata } = apiSchemaData;
 
     if (!flatteningMetadata) {
       return;
@@ -115,7 +109,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const parentJsonPath = rootTable.jsonPath as JsonPath;
     const isExtensionTable = rootTable.isExtensionTable === true;
 
-    const childTables = buildChildTablesForEntity(topLevelEntity, parentBaseName, parentJsonPath, isExtensionTable, 0);
+    const childTables = buildChildTablesForEntity(topLevelEntity, parentBaseName, parentJsonPath, isExtensionTable);
 
     apiSchemaData.flatteningMetadata = {
       table: {
@@ -126,7 +120,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   });
 
   return {
-    enhancerName: 'TableStructureAnalyzerEnhancer',
+    enhancerName: 'FlatteningTableStructureEnhancer',
     success: true,
   };
 }

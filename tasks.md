@@ -16,7 +16,7 @@
 - [x] Write unit tests covering simple resources, nested collections, and extension scenarios
 
 ## FlatteningColumnBuilderEnhancer
-- [ ] Reimplement column population using helper factories for root and child tables
+- [ ] Reimplement column population for root and child tables
 - [ ] Guarantee parent reference columns and natural key propagation are emitted exactly once
 - [ ] Write unit tests verifying scalar, identity, and parent reference column creation
 
@@ -53,3 +53,5 @@
 ## Documentation & Review
 - [ ] Update architecture or README notes describing the new enhancer flow and helper modules
 - [ ] Prepare change summary and testing evidence for review once implementation is complete
+- [ ] Remind user to add documentation to memory MCP
+ 

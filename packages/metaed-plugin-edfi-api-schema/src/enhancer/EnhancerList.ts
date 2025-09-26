@@ -49,7 +49,7 @@ import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessC
 import { enhance as educationOrganizationConfigurationEnhancer } from './security/EducationOrganizationConfigurationEnhancer';
 import { enhance as educationOrganizationIdentityConfigurationEnhancer } from './security/EducationOrganizationIdentityConfigurationEnhancer';
 import { enhance as flatteningMetadataInitializerEnhancer } from './flattening/FlatteningMetadataInitializerEnhancer';
-import { enhance as tableStructureAnalyzerEnhancer } from './flattening/TableStructureAnalyzerEnhancer';
+import { enhance as flatteningTableStructureEnhancer } from './flattening/FlatteningTableStructureEnhancer';
 import { enhance as columnMappingBuilderEnhancer } from './flattening/ColumnMappingBuilderEnhancer';
 import { enhance as collectionTableBuilderEnhancer } from './flattening/CollectionTableBuilderEnhancer';
 import { enhance as referenceResolverEnhancer } from './flattening/ReferenceResolverEnhancer';
@@ -103,7 +103,7 @@ export function enhancerList(): Enhancer[] {
     namespaceDomainEnhancer,
     // Flattening metadata enhancers
     flatteningMetadataInitializerEnhancer,
-    tableStructureAnalyzerEnhancer,
+    flatteningTableStructureEnhancer,
     columnMappingBuilderEnhancer,
     collectionTableBuilderEnhancer,
     referenceResolverEnhancer,

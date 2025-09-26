@@ -22,7 +22,7 @@ import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { enhance as flatteningMetadataInitializer } from '../../../src/enhancer/flattening/FlatteningMetadataInitializerEnhancer';
-import { enhance as tableStructureAnalyzer } from '../../../src/enhancer/flattening/TableStructureAnalyzerEnhancer';
+import { enhance as flatteningTableStructureEnhancer } from '../../../src/enhancer/flattening/FlatteningTableStructureEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../../src/enhancer/ReferenceComponentEnhancer';
@@ -63,7 +63,7 @@ function getTableMetadata(env: MetaEdEnvironment, namespace: string, entityName:
   return apiSchemaData?.flatteningMetadata?.table;
 }
 
-describe('TableStructureAnalyzerEnhancer', () => {
+describe('FlatteningTableStructureEnhancer', () => {
   let metaEd: MetaEdEnvironment;
 
   beforeEach(() => {
@@ -93,10 +93,10 @@ describe('TableStructureAnalyzerEnhancer', () => {
       runPrerequisiteEnhancers(metaEd);
 
       // Run the enhancer under test
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
 
       expect(result.success).toBe(true);
-      expect(result.enhancerName).toBe('TableStructureAnalyzerEnhancer');
+      expect(result.enhancerName).toBe('FlatteningTableStructureEnhancer');
 
       // Check that child table was created
       expect(getTableMetadata(metaEd, 'EdFi', 'School')).toMatchInlineSnapshot(`
@@ -136,7 +136,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'Student')).toMatchInlineSnapshot(`
@@ -180,7 +180,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'School')).toMatchInlineSnapshot(`
@@ -241,7 +241,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       documentPathsMappingEnhancer(metaEd);
       flatteningMetadataInitializer(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'StudentAssessment')).toMatchInlineSnapshot(`
@@ -280,7 +280,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'EducationOrganization')).toMatchInlineSnapshot(`
@@ -321,7 +321,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'School')).toMatchInlineSnapshot(`
@@ -365,7 +365,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'School')).toMatchInlineSnapshot(`
@@ -416,7 +416,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'Student')).toMatchInlineSnapshot(`
@@ -469,7 +469,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       const schoolTable = getTableMetadata(metaEd, 'EdFi', 'School');
@@ -484,7 +484,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       expect(periodTable?.jsonPath).toBe('$.GradeLevels[*].Periods[*]');
     });
 
-    it('should prevent deeper nesting beyond two levels', () => {
+    it('should support nested collections beyond two levels', () => {
       // Collections within collections are limited to prevent infinite recursion
       MetaEdTextBuilder.build()
         .withBeginNamespace('EdFi')
@@ -524,17 +524,25 @@ describe('TableStructureAnalyzerEnhancer', () => {
       apiPropertyMappingEnhancer(metaEd);
       flatteningMetadataInitializer(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       const schoolTable = getTableMetadata(metaEd, 'EdFi', 'School');
       const level1Table = schoolTable?.childTables[0];
       const level2Table = level1Table?.childTables[0];
 
-      // Level 3 should not be created because path already contains 2 array levels
+      // Level 3 should be created when collections are nested beyond two levels
       expect(schoolTable?.childTables).toHaveLength(1);
       expect(level1Table?.childTables).toHaveLength(1);
-      expect(level2Table?.childTables).toHaveLength(0);
+      expect(level2Table?.childTables).toHaveLength(1);
+      expect(level2Table?.childTables[0]).toMatchInlineSnapshot(`
+        Object {
+          "baseName": "SchoolLevel1Level2Level3",
+          "childTables": Array [],
+          "columns": Array [],
+          "jsonPath": "$.Level1s[*].Level2s[*].Level3s[*]",
+        }
+      `);
     });
 
     it('should process referenced entity collections recursively', () => {
@@ -561,7 +569,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'School')).toMatchInlineSnapshot(`
@@ -610,7 +618,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'Student')).toMatchInlineSnapshot(`
@@ -654,7 +662,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       // Only inline commons should create child tables
@@ -695,7 +703,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       // Scalar references should not create child tables
@@ -746,7 +754,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       documentPathsMappingEnhancer(metaEd);
       flatteningMetadataInitializer(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       const extensionEntity = metaEd.namespace.get('SampleExtension')?.entity.domainEntityExtension.get('Student');
@@ -790,7 +798,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       const schoolEntity = metaEd.namespace.get('EdFi')?.entity.domainEntitySubclass.get('School');
@@ -831,7 +839,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
 
       runPrerequisiteEnhancers(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       expect(getTableMetadata(metaEd, 'EdFi', 'SimpleEntity')).toMatchInlineSnapshot(`
@@ -872,7 +880,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       flatteningMetadataInitializer(metaEd);
 
       // Run without full API mapping setup
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       // Without apiMapping, child tables won't be created
@@ -902,7 +910,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       entityPropertyApiSchemaDataSetupEnhancer(metaEd);
       entityApiSchemaDataSetupEnhancer(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       // Entity should be skipped if no flattening metadata
@@ -933,7 +941,7 @@ describe('TableStructureAnalyzerEnhancer', () => {
       apiPropertyMappingEnhancer(metaEd);
       flatteningMetadataInitializer(metaEd);
 
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
       expect(result.success).toBe(true);
 
       // Should still create child table even if referenced entity is undefined

@@ -23,7 +23,7 @@ import { EntityApiSchemaData } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { enhance as flatteningMetadataInitializer } from '../../../src/enhancer/flattening/FlatteningMetadataInitializerEnhancer';
-import { enhance as tableStructureAnalyzer } from '../../../src/enhancer/flattening/TableStructureAnalyzerEnhancer';
+import { enhance as flatteningTableStructureEnhancer } from '../../../src/enhancer/flattening/FlatteningTableStructureEnhancer';
 import { enhance as columnMappingBuilder } from '../../../src/enhancer/flattening/ColumnMappingBuilderEnhancer';
 import { enhance as sqlTypeMapper } from '../../../src/enhancer/flattening/SqlTypeMapperEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../../src/enhancer/PropertyCollectingEnhancer';
@@ -221,7 +221,7 @@ describe('FlatteningMetadata Enhancers', () => {
     });
   });
 
-  describe('TableStructureAnalyzerEnhancer', () => {
+  describe('FlatteningTableStructureEnhancer', () => {
     it('should process entity types correctly', () => {
       // Run prerequisite enhancers
       flatteningMetadataInitializer(metaEd);
@@ -229,10 +229,10 @@ describe('FlatteningMetadata Enhancers', () => {
       apiPropertyMappingEnhancer(metaEd);
 
       // Run the table structure analyzer
-      const result = tableStructureAnalyzer(metaEd);
+      const result = flatteningTableStructureEnhancer(metaEd);
 
       expect(result.success).toBe(true);
-      expect(result.enhancerName).toBe('TableStructureAnalyzerEnhancer');
+      expect(result.enhancerName).toBe('FlatteningTableStructureEnhancer');
 
       // Check that the table structure was analyzed
       const student = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Student');

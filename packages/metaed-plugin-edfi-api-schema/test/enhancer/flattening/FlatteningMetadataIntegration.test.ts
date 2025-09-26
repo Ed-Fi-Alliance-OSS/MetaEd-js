@@ -27,7 +27,7 @@ import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../sr
 
 // Import all flattening enhancers
 import { enhance as flatteningMetadataInitializer } from '../../../src/enhancer/flattening/FlatteningMetadataInitializerEnhancer';
-import { enhance as tableStructureAnalyzer } from '../../../src/enhancer/flattening/TableStructureAnalyzerEnhancer';
+import { enhance as flatteningTableStructureEnhancer } from '../../../src/enhancer/flattening/FlatteningTableStructureEnhancer';
 import { enhance as columnMappingBuilder } from '../../../src/enhancer/flattening/ColumnMappingBuilderEnhancer';
 import { enhance as collectionTableBuilder } from '../../../src/enhancer/flattening/CollectionTableBuilderEnhancer';
 import { enhance as referenceResolver } from '../../../src/enhancer/flattening/ReferenceResolverEnhancer';
@@ -85,7 +85,7 @@ function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment): void {
  */
 function runFlatteningEnhancers(metaEd: MetaEdEnvironment): void {
   flatteningMetadataInitializer(metaEd);
-  tableStructureAnalyzer(metaEd);
+  flatteningTableStructureEnhancer(metaEd);
   columnMappingBuilder(metaEd);
   collectionTableBuilder(metaEd);
   referenceResolver(metaEd);
