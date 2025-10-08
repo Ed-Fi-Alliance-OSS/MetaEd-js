@@ -5,11 +5,11 @@
 
 import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { PropertyModifier } from '../PropertyModifier';
-import { FlatteningTableAnchor } from './FlatteningTableAnchor';
+import { CollectionTableSource } from './CollectionTableSource';
 
 /**
  * Flattening-aware view of a collected property. Supplies the full MetaEd property path as well as
- * the collection anchor the property belongs to so downstream enhancers can determine table
+ * the collection source the property belongs to so downstream enhancers can determine table
  * membership without recomputing traversal metadata.
  */
 export type FlatteningPropertyChain = {
@@ -30,25 +30,25 @@ export type FlatteningPropertyChain = {
 
   /**
    * Dot-separated property path composed of each element in propertyChain.
-   * Aligns with keys in document paths and JSON path mappings.
+   * Aligns with keys in DocumentPaths and JsonPathsMappings.
    */
   fullPropertyPath: MetaEdPropertyPath;
 
   /**
-   * The collection property that anchors a flattening table, if any.
+   * The collection property that materializes as a flattening table, if any.
    * Null indicates the property belongs to the root resource table.
    */
-  owningCollection: FlatteningTableAnchor | null;
+  owningCollection: CollectionTableSource | null;
 
   /**
    * Property chain scoped to the owning collection. For root-level properties this matches propertyChain.
-   * For collection members the chain excludes the collection anchor.
+   * For collection members the chain excludes the collection source.
    */
   relativePropertyChain: EntityProperty[];
 
   /**
    * Dot-separated property path corresponding to relativePropertyChain. Empty string when the path
-   * resolves to the collection anchor itself.
+   * resolves to the collection source itself.
    */
   relativePropertyPath: MetaEdPropertyPath;
 };

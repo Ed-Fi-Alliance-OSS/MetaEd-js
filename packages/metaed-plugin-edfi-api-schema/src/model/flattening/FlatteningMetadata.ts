@@ -7,7 +7,7 @@ import type { MetaEdPropertyFullName } from '@edfi/metaed-core';
 import type { TableMetadata } from './TableMetadata';
 
 /**
- * Metadata describing how a subclass maps to its superclass identity.
+ * ResourceSchema metadata describing how a subclass maps to its superclass identity.
  * Enables downstream enhancers to mark columns that participate in superclass joins.
  */
 export type SuperclassIdentityMetadata = {
@@ -18,7 +18,7 @@ export type SuperclassIdentityMetadata = {
 };
 
 /**
- * Root flattening metadata structure for a resource.
+ * ResourceSchema metadata for the root flattening metadata structure
  * Contains the complete table hierarchy for flattening a resource to relational tables.
  */
 export type FlatteningMetadata = {

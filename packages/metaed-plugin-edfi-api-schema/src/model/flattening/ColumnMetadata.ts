@@ -6,13 +6,13 @@
 import { ColumnType } from './ColumnType';
 
 /**
- * Metadata for a single column in a flattened table.
+ * ResourceSchema metadata for a single column in a flattened table.
  * Includes information about the source JSON path, column properties,
  * and relationships to other tables.
  */
 export type ColumnMetadata = {
   /**
-   * JSON path relative to the table's jsonPath.
+   * JSON path to the source document element.
    * Optional for generated columns like parent references.
    */
   jsonPath?: string;

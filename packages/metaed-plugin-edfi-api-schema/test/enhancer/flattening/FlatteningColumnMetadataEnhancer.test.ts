@@ -130,7 +130,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
-                "jsonPath": "$.optionalBooleanProperties[*]",
               },
               Object {
                 "baseName": "DomainEntityNameRequiredIntegerProperty",
@@ -149,7 +148,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
-                "jsonPath": "$.requiredIntegerProperties[*]",
               },
             ],
             "columns": Array [
@@ -182,7 +180,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                 "jsonPath": "$.educationContentDescriptor",
               },
             ],
-            "jsonPath": "$",
           },
         }
       `);
@@ -263,7 +260,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
-                "jsonPath": "$.contentStandard",
               },
               Object {
                 "baseName": "AssessmentAssessedGradeLevel",
@@ -282,7 +278,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
-                "jsonPath": "$.assessedGradeLevels[*]",
               },
             ],
             "columns": Array [
@@ -294,7 +289,6 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                 "jsonPath": "$.assessmentIdentifier",
               },
             ],
-            "jsonPath": "$",
           },
         }
       `);
@@ -381,12 +375,10 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
                   },
                 ],
                 "isExtensionTable": true,
-                "jsonPath": "$._ext.edfi.collectionCommons[*]",
               },
             ],
             "columns": Array [],
             "isExtensionTable": true,
-            "jsonPath": "$",
           },
         }
       `);

@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 /**
- * Flattening metadata for abstract superclass resources.
+ * ApiSchema metadata for superclass resources.
  * Used to define union views that combine multiple concrete subclasses.
  */
 export type AbstractResourceFlatteningMetadata = {

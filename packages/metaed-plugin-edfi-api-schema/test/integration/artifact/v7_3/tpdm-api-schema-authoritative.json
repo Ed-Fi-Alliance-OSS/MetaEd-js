@@ -1468,7 +1468,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.degreeSpecializations[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "CandidateEducatorPreparationProgramAssociationCohortYear",
@@ -1501,8 +1501,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.cohortYears[*]"
+                ]
               }
             ],
             "columns": [
@@ -1545,8 +1544,7 @@
                 "isRequired": false,
                 "jsonPath": "$.eppProgramPathwayDescriptor"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -3097,8 +3095,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.personalIdentificationDocuments[*]"
+                ]
               },
               {
                 "baseName": "CandidateOtherName",
@@ -3153,8 +3150,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.otherNames[*]"
+                ]
               },
               {
                 "baseName": "CandidateAddress",
@@ -3183,8 +3179,7 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ],
-                    "jsonPath": "$.addresses[*].periods[*]"
+                    ]
                   }
                 ],
                 "columns": [
@@ -3293,8 +3288,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.addresses[*]"
+                ]
               },
               {
                 "baseName": "CandidateTelephone",
@@ -3340,8 +3334,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.telephones[*]"
+                ]
               },
               {
                 "baseName": "CandidateElectronicMail",
@@ -3381,8 +3374,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.electronicMails[*]"
+                ]
               },
               {
                 "baseName": "CandidateRace",
@@ -3401,8 +3393,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.races[*]"
+                ]
               },
               {
                 "baseName": "CandidateLanguage",
@@ -3424,8 +3415,7 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ],
-                    "jsonPath": "$.languages[*].uses[*]"
+                    ]
                   }
                 ],
                 "columns": [
@@ -3442,8 +3432,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.languages[*]"
+                ]
               },
               {
                 "baseName": "CandidateDisability",
@@ -3465,8 +3454,7 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ],
-                    "jsonPath": "$.disabilities[*].designations[*]"
+                    ]
                   }
                 ],
                 "columns": [
@@ -3502,8 +3490,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.disabilities[*]"
+                ]
               }
             ],
             "columns": [
@@ -3676,8 +3663,7 @@
                 "fromReferencePath": "Person",
                 "isRequired": false
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -7428,8 +7414,7 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true,
-                "jsonPath": "$._ext.tpdm.studentAcademicRecords[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -7477,8 +7462,7 @@
                 "jsonPath": "$._ext.tpdm.educatorRoleDescriptor"
               }
             ],
-            "isExtensionTable": true,
-            "jsonPath": "$"
+            "isExtensionTable": true
           }
         },
         "identityJsonPaths": [
@@ -7806,8 +7790,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.gradeLevels[*]"
+                ]
               }
             ],
             "columns": [
@@ -7846,8 +7829,7 @@
                 "isRequired": false,
                 "jsonPath": "$.accreditationStatusDescriptor"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -11015,7 +10997,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.elementRatingResults[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -11067,8 +11049,7 @@
                 "jsonPath": "$.feedback",
                 "maxLength": "2048"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -12325,7 +12306,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.ratingLevels[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -12372,8 +12353,7 @@
                 "isRequired": false,
                 "jsonPath": "$.evaluationTypeDescriptor"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -13510,7 +13490,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.objectiveRatingResults[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -13541,8 +13521,7 @@
                 "jsonPath": "$.comments",
                 "maxLength": "1024"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -14671,7 +14650,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.ratingLevels[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -14725,8 +14704,7 @@
                 "isRequired": false,
                 "jsonPath": "$.evaluationTypeDescriptor"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -17608,7 +17586,7 @@
                         "isRequired": true
                       }
                     ],
-                    "jsonPath": "$.reviewers[*]"
+                    "isExtensionTable": true
                   }
                 ],
                 "columns": [
@@ -17641,7 +17619,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.reviewers[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "EvaluationRatingEvaluationRatingResult",
@@ -17678,7 +17656,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.results[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -17734,8 +17712,7 @@
                 "isRequired": false,
                 "jsonPath": "$.actualDuration"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -19661,7 +19638,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.ratingLevels[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -19715,8 +19692,7 @@
                 "isRequired": false,
                 "jsonPath": "$.interRaterReliabilityScore"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -20673,8 +20649,7 @@
                 "isRequired": false,
                 "jsonPath": "$.pellGrantRecipient"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -23235,7 +23210,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.results[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "PerformanceEvaluationRatingReviewer",
@@ -23264,7 +23239,7 @@
                         "isRequired": true
                       }
                     ],
-                    "jsonPath": "$.reviewers[*]"
+                    "isExtensionTable": true
                   }
                 ],
                 "columns": [
@@ -23297,7 +23272,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.reviewers[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -23364,8 +23339,7 @@
                 "isRequired": false,
                 "jsonPath": "$.actualTime"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -25169,7 +25143,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.ratingLevels[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "PerformanceEvaluationGradeLevel",
@@ -25188,8 +25162,7 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ],
-                "jsonPath": "$.gradeLevels[*]"
+                ]
               }
             ],
             "columns": [
@@ -25249,8 +25222,7 @@
                 "isRequired": false,
                 "jsonPath": "$.academicSubjectDescriptor"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -26172,8 +26144,7 @@
                 "isRequired": false,
                 "jsonPath": "$.dimensionOrder"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -27584,8 +27555,7 @@
                 "isRequired": false
               }
             ],
-            "isExtensionTable": true,
-            "jsonPath": "$"
+            "isExtensionTable": true
           }
         },
         "identityJsonPaths": [
@@ -27756,8 +27726,7 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -28372,8 +28341,7 @@
                 "isRequired": false
               }
             ],
-            "isExtensionTable": true,
-            "jsonPath": "$"
+            "isExtensionTable": true
           }
         },
         "identityJsonPaths": [
@@ -28565,8 +28533,7 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [

@@ -119,11 +119,9 @@ describe('FlatteningStructureAssemblerEnhancer', () => {
                 "baseName": "DomainEntityNameOptionalBooleanProperty",
                 "childTables": Array [],
                 "columns": Array [],
-                "jsonPath": "$.optionalBooleanProperties[*]",
               },
             ],
             "columns": Array [],
-            "jsonPath": "$",
           },
         }
       `);
@@ -168,7 +166,7 @@ describe('FlatteningStructureAssemblerEnhancer', () => {
       flatteningTableHierarchyEnhancer(metaEd);
     });
 
-    it('creates a child table for the common property with the correct jsonPath', () => {
+    it('creates a child table for the common property', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(entityName);
       expect(entity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
         Object {
@@ -179,11 +177,9 @@ describe('FlatteningStructureAssemblerEnhancer', () => {
                 "baseName": "AssessmentContentStandard",
                 "childTables": Array [],
                 "columns": Array [],
-                "jsonPath": "$.contentStandard",
               },
             ],
             "columns": Array [],
-            "jsonPath": "$",
           },
         }
       `);
@@ -248,15 +244,12 @@ describe('FlatteningStructureAssemblerEnhancer', () => {
                     "baseName": "StudentEducationOrganizationAssociationAddressPeriod",
                     "childTables": Array [],
                     "columns": Array [],
-                    "jsonPath": "$.addresses[*].periods[*]",
                   },
                 ],
                 "columns": Array [],
-                "jsonPath": "$.addresses[*]",
               },
             ],
             "columns": Array [],
-            "jsonPath": "$",
           },
         }
       `);
@@ -318,27 +311,25 @@ describe('FlatteningStructureAssemblerEnhancer', () => {
       flatteningTableHierarchyEnhancer(metaEd);
     });
 
-    it('marks extension tables and preserves extension jsonPaths', () => {
+    it('marks extension tables when sourced from extension overrides', () => {
       const extensionEntity = metaEd.namespace.get(extensionNamespace)?.entity.domainEntityExtension.get(domainEntityName);
       expect(extensionEntity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
-        Object {
-          "table": Object {
-            "baseName": "CollectionEntityExtension",
-            "childTables": Array [
-              Object {
-                "baseName": "CollectionEntityExtensionCollectionCommon",
-                "childTables": Array [],
-                "columns": Array [],
-                "isExtensionTable": true,
-                "jsonPath": "$._ext.edfi.collectionCommons[*]",
-              },
-            ],
-            "columns": Array [],
-            "isExtensionTable": true,
-            "jsonPath": "$",
-          },
-        }
-      `);
+      Object {
+        "table": Object {
+          "baseName": "CollectionEntityExtension",
+          "childTables": Array [
+            Object {
+              "baseName": "CollectionEntityExtensionCollectionCommon",
+              "childTables": Array [],
+              "columns": Array [],
+              "isExtensionTable": true,
+            },
+          ],
+          "columns": Array [],
+          "isExtensionTable": true,
+        },
+      }
+    `);
     });
   });
 });

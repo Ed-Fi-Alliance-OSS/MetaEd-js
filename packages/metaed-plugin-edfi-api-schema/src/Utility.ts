@@ -108,6 +108,13 @@ export function dropPrefix(prefix: string, str: string) {
 }
 
 /**
+ * Determines the canonical role name prefix for a property, honoring shortenTo overrides.
+ */
+export function canonicalRoleNamePrefix(property: EntityProperty): string {
+  return property.shortenTo === '' ? property.roleName : property.shortenTo;
+}
+
+/**
  * In the ODS/API, top level names on document bodies can be different for the same property, depending
  * on the names of other properties on the same entity.
  *
@@ -158,7 +165,7 @@ export function adjustedFullPropertyName(property: EntityProperty): string {
   }
 
   // If "shorten to" is specified, it overrides all role name rules and is simply the prefix
-  const roleNamePrefix = property.shortenTo === '' ? property.roleName : property.shortenTo;
+  const roleNamePrefix = canonicalRoleNamePrefix(property);
   return roleNamePrefix + property.metaEdName;
 }
 

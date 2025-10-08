@@ -170,7 +170,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.studentSchoolAssociations[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "ContactAddress",
@@ -192,7 +192,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.addresses[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -203,8 +203,7 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -830,8 +829,7 @@
                 "jsonPath": "$.lastSurname",
                 "maxLength": "75"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -1333,8 +1331,7 @@
                 "jsonPath": "$.schoolYear",
                 "maxLength": "20"
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -1822,7 +1819,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.address"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -1840,8 +1837,7 @@
                 "fromReferencePath": "SchoolYearType",
                 "isRequired": false
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -2424,7 +2420,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.studentSchoolAssociations[*]"
+                "isExtensionTable": true
               },
               {
                 "baseName": "StaffAddress",
@@ -2446,7 +2442,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.addresses[*]"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -2457,8 +2453,7 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -3099,8 +3094,7 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [
@@ -3691,7 +3685,7 @@
                     "isRequired": true
                   }
                 ],
-                "jsonPath": "$.address"
+                "isExtensionTable": true
               }
             ],
             "columns": [
@@ -3708,8 +3702,7 @@
                 "fromReferencePath": "SchoolYearType",
                 "isRequired": true
               }
-            ],
-            "jsonPath": "$"
+            ]
           }
         },
         "identityJsonPaths": [

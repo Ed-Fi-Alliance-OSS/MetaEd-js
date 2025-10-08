@@ -49,8 +49,9 @@ build/package-lock.json
 
 eng/ApiSchema/*.zip
 
-# Local Claude configuration files
+# Local agent configuration files
 CLAUDE.local.md
+AGENTS.md
 
 # Local JUnit test results
 junit.xml

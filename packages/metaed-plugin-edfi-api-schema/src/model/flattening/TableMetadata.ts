@@ -6,7 +6,7 @@
 import { ColumnMetadata } from './ColumnMetadata';
 
 /**
- * Recursive table structure for representing flattened resource tables.
+ * ResourceSchema metadata for representing flattened resource tables
  * Supports nested collections through the childTables property.
  */
 export type TableMetadata = {
@@ -16,13 +16,6 @@ export type TableMetadata = {
    * Examples: 'Student', 'SchoolAddress', 'StudentAssessmentScoreResult'
    */
   baseName: string;
-
-  /**
-   * Absolute JSON path from document root.
-   * Includes [*] notation for array elements.
-   * Examples: '$', '$.addresses[*]', '$.studentObjectiveAssessments[*].scoreResults[*]'
-   */
-  jsonPath: string;
 
   /**
    * Column definitions for this table.

@@ -13,11 +13,11 @@ import type { JsonPath } from '../../model/api-schema/JsonPath';
 import type { JsonPathsMapping } from '../../model/JsonPathsMapping';
 import type { EntityPropertyApiSchemaData } from '../../model/EntityPropertyApiSchemaData';
 import { FlatteningPropertyChain } from '../../model/flattening/FlatteningPropertyChain';
-import { FlatteningTableAnchor } from '../../model/flattening/FlatteningTableAnchor';
+import { CollectionTableSource } from '../../model/flattening/CollectionTableSource';
 
 /**
  * Converts the provided property chain into a MetaEd dot-separated property path.
- * Returns an empty branded string when the chain is empty (root-level anchor).
+ * Returns an empty branded string when the chain is empty (root-level table).
  */
 function propertyChainPath(chain: EntityProperty[]): MetaEdPropertyPath {
   if (chain.length === 0) return '' as MetaEdPropertyPath;
@@ -34,11 +34,11 @@ function lastIndexOf(propertyChain: EntityProperty[], target: EntityProperty): n
 }
 
 /**
- * Scans a property chain from leaf to root to locate the owning collection.
+ * Scans a property chain from leaf to root to locate the collection that materializes into a child table.
  * Inline commons and choices are skipped because they do not materialize tables.
  * Returns null if there is no collection in the chain
  */
-function findCollectionAnchor(propertyChain: EntityProperty[]): FlatteningTableAnchor | null {
+function findCollectionSource(propertyChain: EntityProperty[]): CollectionTableSource | null {
   for (let index = propertyChain.length - 1; index >= 0; index -= 1) {
     const candidate: EntityProperty = propertyChain[index];
     const isCollection: boolean = candidate.isCollection || candidate.isOptionalCollection;
@@ -99,9 +99,9 @@ function buildFlatteningPropertyChain(
   const fullPropertyPath: MetaEdPropertyPath = propertyChainPath(propertyChain);
 
   // Identify the collection (if any) that introduces a child table for this property.
-  const owningCollectionAnchor: FlatteningTableAnchor | null = findCollectionAnchor(propertyChain);
+  const owningCollectionSource: CollectionTableSource | null = findCollectionSource(propertyChain);
 
-  if (owningCollectionAnchor == null) {
+  if (owningCollectionSource == null) {
     // Root-level properties map directly to the collected chain; relative chain/path mirrors the full chain.
     return {
       property: collectedProperty.property,
@@ -116,17 +116,17 @@ function buildFlatteningPropertyChain(
 
   // For collection-owned properties, drop the collection segment so relative paths start at the child table.
   const relativePropertyChain: EntityProperty[] = propertyChain.slice(
-    lastIndexOf(propertyChain, owningCollectionAnchor.property) + 1,
+    lastIndexOf(propertyChain, owningCollectionSource.property) + 1,
   );
   const relativePropertyPath: MetaEdPropertyPath =
     relativePropertyChain.length === 0 ? ('' as MetaEdPropertyPath) : propertyChainPath(relativePropertyChain);
 
-  // Enrich the anchor with the actual container JsonPath, leveraging the existing mapping (may still be null).
-  const owningCollection: FlatteningTableAnchor = {
-    ...owningCollectionAnchor,
+  // Enrich the source with the actual container JsonPath, leveraging the existing mapping (may still be null).
+  const owningCollection: CollectionTableSource = {
+    ...owningCollectionSource,
     collectionJsonPath: collectionContainerPathFor(
-      owningCollectionAnchor.propertyPath,
-      owningCollectionAnchor.property,
+      owningCollectionSource.propertyPath,
+      owningCollectionSource.property,
       allJsonPathsMapping,
     ),
   };
