@@ -25,6 +25,9 @@ export { enhance as subclassApiEntityMappingEnhancer } from './enhancer/Subclass
 export { enhance as subclassPropertyCollectingEnhancer } from './enhancer/SubclassPropertyCollectingEnhancer';
 export { enhance as subclassPropertyNamingCollisionEnhancer } from './enhancer/SubclassPropertyNamingCollisionEnhancer';
 export { enhance as apiSchemaBuildingEnhancer } from './enhancer/ApiSchemaBuildingEnhancer';
+export { enhance as flatteningTableHierarchyEnhancer } from './enhancer/flattening/FlatteningTableHierarchyEnhancer';
+export { enhance as flatteningColumnMetadataEnhancer } from './enhancer/flattening/FlatteningColumnMetadataEnhancer';
+export { enhance as abstractResourceFlatteningMetadataEnhancer } from './enhancer/flattening/AbstractResourceFlatteningMetadataEnhancer';
 
 export type { CollectedProperty } from './model/CollectedProperty';
 export type { EntityApiSchemaData } from './model/EntityApiSchemaData';

@@ -148,6 +148,65 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "Contact",
+            "childTables": [
+              {
+                "baseName": "ContactStudentSchoolAssociation",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "StudentSchoolAssociation_Id",
+                    "columnType": "bigint",
+                    "fromReferencePath": "StudentSchoolAssociation",
+                    "isRequired": true
+                  },
+                  {
+                    "columnName": "Contact_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.studentSchoolAssociations[*]"
+              },
+              {
+                "baseName": "ContactAddress",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "City",
+                    "columnType": "string",
+                    "isNaturalKey": true,
+                    "isRequired": true,
+                    "jsonPath": "$.addresses[*].city",
+                    "maxLength": "30"
+                  },
+                  {
+                    "columnName": "Contact_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.addresses[*]"
+              }
+            ],
+            "columns": [
+              {
+                "columnName": "Contact_Name_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "ContactName",
+                "isNaturalKey": true,
+                "isRequired": true
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.contactNameReference.firstName",
           "$.contactNameReference.lastSurname"
@@ -749,6 +808,32 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "Name",
+            "childTables": [
+            ],
+            "columns": [
+              {
+                "columnName": "FirstName",
+                "columnType": "string",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.firstName",
+                "maxLength": "75"
+              },
+              {
+                "columnName": "LastSurname",
+                "columnType": "string",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.lastSurname",
+                "maxLength": "75"
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.firstName",
           "$.lastSurname"
@@ -1234,6 +1319,24 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "SchoolYearType",
+            "childTables": [
+            ],
+            "columns": [
+              {
+                "columnName": "SchoolYear",
+                "columnType": "string",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.schoolYear",
+                "maxLength": "20"
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.schoolYear"
         ],
@@ -1695,6 +1798,52 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "School",
+            "childTables": [
+              {
+                "baseName": "SchoolAddress",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "City",
+                    "columnType": "string",
+                    "isNaturalKey": true,
+                    "isRequired": true,
+                    "jsonPath": "$.address.city",
+                    "maxLength": "30"
+                  },
+                  {
+                    "columnName": "School_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.address"
+              }
+            ],
+            "columns": [
+              {
+                "columnName": "SchoolName",
+                "columnType": "string",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.schoolName",
+                "maxLength": "100"
+              },
+              {
+                "columnName": "SchoolYearType_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "SchoolYearType",
+                "isRequired": false
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.schoolName"
         ],
@@ -2253,6 +2402,65 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "Staff",
+            "childTables": [
+              {
+                "baseName": "StaffStudentSchoolAssociation",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "StudentSchoolAssociation_Id",
+                    "columnType": "bigint",
+                    "fromReferencePath": "StudentSchoolAssociation",
+                    "isRequired": true
+                  },
+                  {
+                    "columnName": "Staff_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.studentSchoolAssociations[*]"
+              },
+              {
+                "baseName": "StaffAddress",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "City",
+                    "columnType": "string",
+                    "isNaturalKey": true,
+                    "isRequired": true,
+                    "jsonPath": "$.addresses[*].city",
+                    "maxLength": "30"
+                  },
+                  {
+                    "columnName": "Staff_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.addresses[*]"
+              }
+            ],
+            "columns": [
+              {
+                "columnName": "Staff_Name_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "StaffName",
+                "isNaturalKey": true,
+                "isRequired": true
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.staffNameReference.firstName",
           "$.staffNameReference.lastSurname"
@@ -2871,6 +3079,30 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "StudentSchoolAssociation",
+            "childTables": [
+            ],
+            "columns": [
+              {
+                "columnName": "Student_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "Student",
+                "isNaturalKey": true,
+                "isRequired": true
+              },
+              {
+                "columnName": "School_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "School",
+                "isNaturalKey": true,
+                "isRequired": true
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.schoolReference.schoolName",
           "$.studentReference.studentFirstName",
@@ -3435,6 +3667,51 @@
         ],
         "equalityConstraints": [
         ],
+        "flatteningMetadata": {
+          "table": {
+            "baseName": "Student",
+            "childTables": [
+              {
+                "baseName": "StudentAddress",
+                "childTables": [
+                ],
+                "columns": [
+                  {
+                    "columnName": "City",
+                    "columnType": "string",
+                    "isNaturalKey": true,
+                    "isRequired": true,
+                    "jsonPath": "$.address.city",
+                    "maxLength": "30"
+                  },
+                  {
+                    "columnName": "Student_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true
+                  }
+                ],
+                "jsonPath": "$.address"
+              }
+            ],
+            "columns": [
+              {
+                "columnName": "Student_Name_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "StudentName",
+                "isNaturalKey": true,
+                "isRequired": true
+              },
+              {
+                "columnName": "SchoolYearType_Id",
+                "columnType": "bigint",
+                "fromReferencePath": "SchoolYearType",
+                "isRequired": true
+              }
+            ],
+            "jsonPath": "$"
+          }
+        },
         "identityJsonPaths": [
           "$.studentNameReference.firstName",
           "$.studentNameReference.lastSurname"

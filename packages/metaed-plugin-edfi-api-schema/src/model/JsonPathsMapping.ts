@@ -44,6 +44,11 @@ type BaseJsonPathsInfo = {
    * collection. Only used for AllJsonPathsMapping.
    */
   isArrayIdentity: boolean;
+
+  /**
+   * When the property represents a collection, this captures the canonical JSON path to the array container (e.g. `$.addresses[*]`).
+   */
+  collectionContainerJsonPath?: JsonPath;
 };
 
 /**

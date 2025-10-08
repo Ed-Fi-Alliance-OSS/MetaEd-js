@@ -29,6 +29,8 @@ import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstrain
 import { DomainName } from './api-schema/DomainName';
 import { OpenApiFragment } from './api-schema/OpenApiFragment';
 import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
+import { FlatteningMetadata } from './flattening/FlatteningMetadata';
+import { AbstractResourceFlatteningMetadata } from './flattening/AbstractResourceFlatteningMetadata';
 
 export type EntityApiSchemaData = {
   /**
@@ -94,6 +96,25 @@ export type EntityApiSchemaData = {
    * The JsonPaths array is always in sorted order.
    */
   allJsonPathsMapping: JsonPathsMapping;
+
+  /**
+   * Canonical JSON paths to collection containers keyed by MetaEd property paths. Used by downstream
+   * flattening logic when the document paths map does not expose array-level entries.
+   */
+  collectionContainerPaths: { [key: string]: JsonPath };
+
+  /**
+   * Flattening-only catalog of collection container JsonPaths normalized to top-level property chains.
+   * Populated by the flattening collection container catalog enhancer after AllJsonPathsMapping runs.
+   */
+  flatteningCollectionContainerPaths: { [key: string]: JsonPath };
+
+  /**
+   * Alias document path entries keyed by MetaEd property paths that are absent from the primary
+   * documentPathsMapping. These entries preserve collection container JsonPaths so consumers do not
+   * need to infer them through string manipulation.
+   */
+  documentPathsMappingAliases: DocumentPathsMapping;
 
   /**
    * A mapping of dot-separated MetaEd property paths to corresponding JsonPaths to data elements
@@ -209,6 +230,18 @@ export type EntityApiSchemaData = {
   openApiFragments: {
     [documentType in OpenApiDocumentTypeValue]?: OpenApiFragment;
   };
+
+  /**
+   * Metadata for flattening this entity to relational database tables.
+   * Contains the complete table hierarchy including nested collections.
+   */
+  flatteningMetadata?: FlatteningMetadata;
+
+  /**
+   * Flattening information specific to abstract resources for union view generation.
+   * Present only when the entity is abstract or treated as abstract in downstream pipelines.
+   */
+  abstractResourceFlatteningMetadata?: AbstractResourceFlatteningMetadata;
 };
 
 /**
@@ -228,6 +261,9 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     openApiReferenceComponentPropertyName: '',
     collectedApiProperties: [],
     allJsonPathsMapping: {},
+    collectionContainerPaths: {},
+    flatteningCollectionContainerPaths: {},
+    documentPathsMappingAliases: {},
     mergeJsonPathsMapping: {},
     equalityConstraints: [],
     endpointName: '' as EndpointName,

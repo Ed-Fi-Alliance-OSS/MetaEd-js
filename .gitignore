@@ -26,6 +26,7 @@ dist/
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
 
 /packages/metaed-plugin-edfi-api-schema/test/integration/artifact/**/*-generated.json
+/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/**/*-generated-flattening-report.txt
 openapi-comparison-results.json
 
 /packages/metaed-odsapi-deploy/test/integration/output/*
@@ -50,10 +51,6 @@ eng/ApiSchema/*.zip
 
 # Local Claude configuration files
 CLAUDE.local.md
-.mcp.json
-memory-bank/
-.plans/
-.claude/
 
 # Local JUnit test results
 junit.xml
@@ -62,6 +59,3 @@ junit.xml
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Memory ingestion scripts
-scripts/memory-ingestion/
