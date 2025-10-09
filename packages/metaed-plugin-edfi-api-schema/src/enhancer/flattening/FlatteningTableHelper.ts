@@ -142,6 +142,5 @@ export function deriveTableSuffix(node: FlatteningTableNode): string {
       }
     }
   }
-
   return suffix;
 }

@@ -8,14 +8,15 @@ import {
   EntityProperty,
   MetaEdEnvironment,
   MetaEdPropertyPath,
+  ReferentialProperty,
   StringProperty,
   TopLevelEntity,
   getAllEntitiesOfType,
-  type EnhancerResult,
   type AssociationProperty,
   type ChoiceProperty,
   type CommonProperty,
   type DomainEntityProperty,
+  type EnhancerResult,
   type InlineCommonProperty,
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
@@ -32,13 +33,89 @@ import { buildFlatteningPropertyChains } from './FlatteningPropertyChainBuilder'
 import { FlatteningPropertyChain } from '../../model/flattening/FlatteningPropertyChain';
 
 /**
- * Aggregated lookup structures tying MetaEd property paths to their concrete flattening tables.
+ * Captures a table definition along with helper state used while populating column metadata.
  */
-type TableLookupResult = {
-  orderedNodes: FlatteningTableNode[];
+type TableAssembly = {
+  /**
+   * Path that identifies the table within the flattening hierarchy.
+   */
+  tablePath: TablePath;
+  /**
+   * Assembled table metadata that will be attached to the ApiSchema.
+   */
+  metadata: TableMetadata;
+  /**
+   * Tracks emitted column signatures to avoid duplicate scalar/reference columns.
+   */
+  processedKeys: Set<string>;
+  /**
+   * Synthetic parent reference column that should be appended after all data columns.
+   */
+  parentReferenceColumn?: ColumnMetadata;
+};
+
+/**
+ * Represents the outcome of building the table hierarchy, including lookup structures.
+ */
+type TablePreparation = {
+  /**
+   * Root table assembly that anchors the hierarchy.
+   */
+  rootAssembly: TableAssembly;
+  /**
+   * Lookup from table path to the working assembly used while building columns.
+   */
+  assembliesByPath: Map<TablePath, TableAssembly>;
+  /**
+   * Table nodes keyed by MetaEd property path for quick traversal.
+   */
   nodesByPath: Map<MetaEdPropertyPath, FlatteningTableNode>;
-  tablesByPath: Map<TablePath, TableMetadata>;
-  pathByTable: Map<TableMetadata, TablePath>;
+};
+
+/**
+ * Captures precomputed property chains used while resolving canonical property paths.
+ */
+type ChainLookup = {
+  /**
+   * Canonical property chains derived from the flattening property chain builder.
+   */
+  chainsByPath: Map<MetaEdPropertyPath, FlatteningPropertyChain>;
+  /**
+   * Property chains collected from ApiSchema.
+   */
+  collectedChainsByPath: Map<MetaEdPropertyPath, EntityProperty[]>;
+};
+
+/**
+ * Represents the outcome of mapping a canonical property path to a table and property chain.
+ */
+type ChainResolution = {
+  /**
+   * Entity property chain that leads to the resolved table.
+   */
+  chain: EntityProperty[];
+  /**
+   * Flattening table path that owns the chain's terminal property.
+   */
+  tablePath: TablePath;
+  /**
+   * Optional modifier hint indicating if ancestors mark the property as optional.
+   */
+  modifierOptionalDueToParent: boolean | undefined;
+};
+
+/**
+ * Aggregates state used while emitting column metadata.
+ */
+type ColumnProcessingContext = {
+  /**
+   * Assemblies keyed by table path for in-place column accumulation.
+   */
+  assembliesByPath: Map<TablePath, TableAssembly>;
+  /**
+   * Canonical reference paths already processed, preventing duplicate scalar emissions.
+   */
+  referencePropertyPaths: Set<MetaEdPropertyPath>;
 };
 
 const entityTypesToEnhance = [
@@ -51,53 +128,94 @@ const entityTypesToEnhance = [
 ] as const;
 
 /**
- * Resolves the ordered table nodes and builds forward/backward lookup maps so column derivation
- * can jump from a MetaEd property path straight to the corresponding TableMetadata entry.
+ * Builds the root table metadata for the supplied entity.
  */
-function buildFlatteningTableLookup(entity: TopLevelEntity, flatteningRoot: TableMetadata): TableLookupResult {
-  const nodesByPath = collectTableNodes(entity);
-  const orderedNodes = sortTableNodes(nodesByPath);
-  const tablesByPath: Map<TablePath, TableMetadata> = new Map([[ROOT_TABLE_PATH, flatteningRoot]]);
-  const pathByTable: Map<TableMetadata, TablePath> = new Map([[flatteningRoot, ROOT_TABLE_PATH]]);
-
-  orderedNodes.forEach((node) => {
-    // Every non-root node must have a previously registered parent table.
-    const parentTable = tablesByPath.get(node.parentPath);
-    invariant(
-      parentTable != null,
-      `Parent table "${node.parentPath}" not found while preparing column derivation for "${node.tablePath}"`,
-    );
-
-    // Identify the child table by combining the parent's base name with the computed suffix.
-    const expectedChildBaseName = `${parentTable.baseName}${deriveTableSuffix(node)}`;
-    const childTable = parentTable.childTables.find((table) => table.baseName === expectedChildBaseName);
-    invariant(
-      childTable != null,
-      `Unable to locate table "${expectedChildBaseName}" under parent "${parentTable.baseName}"`,
-    );
-
-    // Register the table for path-based lookup and, reciprocally, allow metadata → path lookups.
-    tablesByPath.set(node.tablePath, childTable);
-    pathByTable.set(childTable, node.tablePath);
-  });
+function createRootTable(entity: TopLevelEntity): TableMetadata {
+  const isExtensionEntity = entity.type === 'domainEntityExtension' || entity.type === 'associationExtension';
+  const isSubclassEntity = entity.type === 'domainEntitySubclass' || entity.type === 'associationSubclass';
+  const baseName =
+    isExtensionEntity && !entity.metaEdName.endsWith(entity.namespace.extensionEntitySuffix)
+      ? `${entity.metaEdName}${entity.namespace.extensionEntitySuffix}`
+      : entity.metaEdName;
 
   return {
-    orderedNodes,
-    nodesByPath,
-    tablesByPath,
-    pathByTable,
+    baseName,
+    columns: [],
+    childTables: [],
+    ...(isExtensionEntity ? { isExtensionTable: true } : {}),
+    ...(isSubclassEntity ? { discriminatorValue: baseName } : {}),
   };
 }
 
 /**
- * Builds a synthetic parent reference column linking a child table back to its parent table.
+ * Determines whether a child table should be marked as part of an extension payload.
+ * DMS-832 will provide more robust extension support.
  */
-function buildParentReferenceColumn(parentTable: TableMetadata): ColumnMetadata {
+function derivesExtensionTable(property: EntityProperty, parentTable: TableMetadata): boolean {
+  if (parentTable.isExtensionTable === true) return true;
+
+  if (property.type === 'common') {
+    const commonProperty = property as CommonProperty;
+    if (commonProperty.isExtensionOverride) return true;
+  }
+
+  const { referencedEntity } = property as ReferentialProperty;
+  if (referencedEntity?.namespace.isExtension === true) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Builds an assembly for the root table and initializes lookup structures for additional tables.
+ */
+function initializeTablePreparation(entity: TopLevelEntity): TablePreparation {
+  const nodesByPath = collectTableNodes(entity);
+  const orderedNodes = sortTableNodes(nodesByPath);
+  const rootMetadata = createRootTable(entity);
+  const rootAssembly: TableAssembly = {
+    tablePath: ROOT_TABLE_PATH,
+    metadata: rootMetadata,
+    processedKeys: new Set(),
+  };
+  const assembliesByPath: Map<TablePath, TableAssembly> = new Map([[ROOT_TABLE_PATH, rootAssembly]]);
+
+  orderedNodes.forEach((node) => {
+    const parentAssembly = assembliesByPath.get(node.parentPath);
+    invariant(parentAssembly != null, `Parent table "${node.parentPath}" was not initialized for "${node.tablePath}"`);
+
+    const childMetadata: TableMetadata = {
+      baseName: `${parentAssembly.metadata.baseName}${deriveTableSuffix(node)}`,
+      columns: [],
+      childTables: [],
+    };
+
+    if (derivesExtensionTable(node.property, parentAssembly.metadata)) {
+      childMetadata.isExtensionTable = true;
+    }
+
+    parentAssembly.metadata.childTables.push(childMetadata);
+
+    const childAssembly: TableAssembly = {
+      tablePath: node.tablePath,
+      metadata: childMetadata,
+      processedKeys: new Set(),
+      parentReferenceColumn: {
+        columnName: `${parentAssembly.metadata.baseName}_Id`,
+        columnType: 'bigint',
+        isParentReference: true,
+        isRequired: true,
+      },
+    };
+
+    assembliesByPath.set(node.tablePath, childAssembly);
+  });
+
   return {
-    columnName: `${parentTable.baseName}_Id`,
-    columnType: 'bigint',
-    isParentReference: true,
-    isRequired: true,
+    rootAssembly,
+    assembliesByPath,
+    nodesByPath,
   };
 }
 
@@ -374,44 +492,6 @@ function buildReferenceColumn(
 }
 
 /**
- * Adds a column to the per-table collection, initializing the entry when necessary.
- */
-function pushColumn(columnsByTable: Map<TablePath, ColumnMetadata[]>, tablePath: TablePath, column: ColumnMetadata): void {
-  const existing = columnsByTable.get(tablePath);
-  if (existing == null) {
-    columnsByTable.set(tablePath, [column]);
-  } else {
-    existing.push(column);
-  }
-}
-
-/**
- * Captures precomputed property chain information keyed by canonical property path.
- */
-type ChainLookup = {
-  chainsByPath: Map<MetaEdPropertyPath, FlatteningPropertyChain>;
-  collectedChainsByPath: Map<MetaEdPropertyPath, EntityProperty[]>;
-};
-
-/**
- * Tracks mutable state while accumulating columns to avoid duplicates and record reference paths.
- */
-type ColumnProcessingState = {
-  columnsByTable: Map<TablePath, ColumnMetadata[]>;
-  processedKeys: Set<string>;
-  referencePropertyPaths: Set<MetaEdPropertyPath>;
-};
-
-/**
- * Represents the outcome of mapping a canonical property path to its owning table and chain metadata.
- */
-type ChainResolution = {
-  chain: EntityProperty[];
-  tablePath: TablePath;
-  modifierOptionalDueToParent: boolean | undefined;
-};
-
-/**
  * Builds lookup maps to translate canonical property paths into the corresponding property chains.
  */
 function buildChainLookup(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaData): ChainLookup {
@@ -437,13 +517,12 @@ function resolveChainForProperty(
   canonicalPath: MetaEdPropertyPath,
   lookup: ChainLookup,
   nodesByPath: Map<MetaEdPropertyPath, FlatteningTableNode>,
-  tablesByPath: Map<TablePath, TableMetadata>,
+  assembliesByPath: Map<TablePath, TableAssembly>,
 ): ChainResolution | null {
-  // Get the chain assembled during primary flattening when available
   const chainEntry = lookup.chainsByPath.get(canonicalPath);
   if (chainEntry != null) {
     const tablePath = determineTablePathForChain(chainEntry.propertyChain, nodesByPath);
-    if (!tablesByPath.has(tablePath) || chainEntry.propertyChain.length === 0) return null;
+    if (!assembliesByPath.has(tablePath) || chainEntry.propertyChain.length === 0) return null;
     return {
       chain: chainEntry.propertyChain,
       tablePath,
@@ -451,12 +530,11 @@ function resolveChainForProperty(
     };
   }
 
-  // Otherwise get the chain collected from API properties or find directly
   const propertyChainFromLookup: EntityProperty[] =
     lookup.collectedChainsByPath.get(canonicalPath) ?? resolvePropertyChain(entity, canonicalPath as string);
   if (propertyChainFromLookup.length === 0) return null;
   const tablePath = determineTablePathForChain(propertyChainFromLookup, nodesByPath);
-  if (!tablesByPath.has(tablePath)) return null;
+  if (!assembliesByPath.has(tablePath)) return null;
   return { chain: propertyChainFromLookup, tablePath, modifierOptionalDueToParent: undefined };
 }
 
@@ -478,20 +556,20 @@ function computeEffectiveOptionalDueToParent(chainResolution: ChainResolution, c
  * Adds a reference column for the supplied property if an equivalent column has not already been processed.
  */
 function processReferenceProperty(
-  state: ColumnProcessingState,
+  context: ColumnProcessingContext,
+  tableAssembly: TableAssembly,
   referenceInfo: {
     propertyPath: string;
-    tablePath: TablePath;
     sourceProperty: EntityProperty;
     chain: EntityProperty[];
     optionalDueToParent: boolean;
   },
 ): void {
   const referencePath = baseReferencePath(referenceInfo.propertyPath, referenceInfo.sourceProperty);
-  // Avoid duplicate reference columns introduced through multiple mapping paths.
-  const keySignature = `${referenceInfo.tablePath}|ref|${referencePath}`;
-  if (state.processedKeys.has(keySignature)) return;
-  state.processedKeys.add(keySignature);
+  const keySignature = `ref|${referencePath}`;
+  // Multiple identity pairs surface the same reference; guard with processedKeys so we emit one FK per table.
+  if (tableAssembly.processedKeys.has(keySignature)) return;
+  tableAssembly.processedKeys.add(keySignature);
 
   const column = buildReferenceColumn(
     referenceInfo.propertyPath,
@@ -499,8 +577,8 @@ function processReferenceProperty(
     referenceInfo.chain,
     referenceInfo.optionalDueToParent,
   );
-  pushColumn(state.columnsByTable, referenceInfo.tablePath, column);
-  state.referencePropertyPaths.add(referencePath);
+  tableAssembly.metadata.columns.push(column);
+  context.referencePropertyPaths.add(referencePath);
 }
 
 /**
@@ -516,9 +594,8 @@ function isCoveredByReference(canonicalPath: MetaEdPropertyPath, referenceProper
  * Adds a scalar column for the supplied property when no prior column covers the same source path.
  */
 function processScalarProperty(
-  state: ColumnProcessingState,
+  tableAssembly: TableAssembly,
   scalarInfo: {
-    tablePath: TablePath;
     canonicalPath: MetaEdPropertyPath;
     jsonPath: JsonPath;
     collectionContainerJsonPath: JsonPath | null;
@@ -526,12 +603,13 @@ function processScalarProperty(
     chain: EntityProperty[];
     optionalDueToParent: boolean;
     entity: TopLevelEntity;
+    tablePath: TablePath;
   },
 ): void {
-  // Avoid duplicate scalar columns that originate from the same canonical path/JsonPath pair.
-  const keySignature = `${scalarInfo.tablePath}|scalar|${scalarInfo.canonicalPath}|${scalarInfo.jsonPath}`;
-  if (state.processedKeys.has(keySignature)) return;
-  state.processedKeys.add(keySignature);
+  const keySignature = `scalar|${scalarInfo.canonicalPath}|${scalarInfo.jsonPath}`;
+  // Descriptor aliases and merged JsonPaths can re-visit the same scalar path; dedupe with processedKeys.
+  if (tableAssembly.processedKeys.has(keySignature)) return;
+  tableAssembly.processedKeys.add(keySignature);
 
   const column = buildScalarColumn(
     scalarInfo.jsonPath,
@@ -552,27 +630,23 @@ function processScalarProperty(
     column.isSuperclassIdentity = true;
   }
 
-  pushColumn(state.columnsByTable, scalarInfo.tablePath, column);
+  tableAssembly.metadata.columns.push(column);
 }
 
 /**
- * Aggregates all scalar and reference columns for each table discovered in the flattening hierarchy.
+ * Populates scalar and reference columns for every table in the hierarchy.
  */
-function collectColumns(
-  entity: TopLevelEntity,
-  apiSchemaData: EntityApiSchemaData,
-  tablesByPath: Map<TablePath, TableMetadata>,
-  nodesByPath: Map<MetaEdPropertyPath, FlatteningTableNode>,
-): Map<TablePath, ColumnMetadata[]> {
-  // Shared state keeps track of emitted columns and avoids duplicates across merge paths.
-  const state: ColumnProcessingState = {
-    columnsByTable: new Map(),
-    processedKeys: new Set(),
+function populateColumns(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaData, preparation: TablePreparation): void {
+  // Precompute chain metadata so property paths can be mapped to their owning table without repeated traversal.
+  const chainLookup: ChainLookup = buildChainLookup(entity, apiSchemaData);
+  // Track assembled tables and the reference paths already emitted while iterating the JsonPath mapping.
+  const context: ColumnProcessingContext = {
+    assembliesByPath: preparation.assembliesByPath,
     referencePropertyPaths: new Set(),
   };
-  const chainLookup: ChainLookup = buildChainLookup(entity, apiSchemaData);
 
   Object.entries(apiSchemaData.allJsonPathsMapping).forEach(([propertyPath, info]) => {
+    // Each JsonPath pair represents a potential column; resolve it to a table.
     info.jsonPathPropertyPairs.forEach((pair) => {
       const { sourceProperty, jsonPath } = pair;
       if (isStructuralProperty(sourceProperty)) return;
@@ -582,18 +656,19 @@ function collectColumns(
         entity,
         canonicalPath,
         chainLookup,
-        nodesByPath,
-        tablesByPath,
+        preparation.nodesByPath,
+        preparation.assembliesByPath,
       );
       if (chainResolution == null) return;
 
       const optionalDueToParent = computeEffectiveOptionalDueToParent(chainResolution, chainResolution.chain);
+      const tableAssembly = preparation.assembliesByPath.get(chainResolution.tablePath);
+      if (tableAssembly == null) return;
 
       if (isReferenceProperty(sourceProperty)) {
-        // Each reference path yields at most one column; duplicates are skipped by processReferenceProperty.
-        processReferenceProperty(state, {
+        // Reference columns are emitted once per owning table and remembered so scalar descendants are not duplicated.
+        processReferenceProperty(context, tableAssembly, {
           propertyPath,
-          tablePath: chainResolution.tablePath,
           sourceProperty,
           chain: chainResolution.chain,
           optionalDueToParent,
@@ -601,11 +676,10 @@ function collectColumns(
         return;
       }
 
-      if (isCoveredByReference(canonicalPath, state.referencePropertyPaths)) return;
+      if (isCoveredByReference(canonicalPath, context.referencePropertyPaths)) return;
 
-      // Scalar processing mirrors the reference flow, adding dedupe and optionality handling.
-      processScalarProperty(state, {
-        tablePath: chainResolution.tablePath,
+      // At this point the property represents a scalar value; emit a column when no prior column covered the same source.
+      processScalarProperty(tableAssembly, {
         canonicalPath,
         jsonPath,
         collectionContainerJsonPath: info.collectionContainerJsonPath ?? null,
@@ -613,34 +687,17 @@ function collectColumns(
         chain: chainResolution.chain,
         optionalDueToParent,
         entity,
+        tablePath: chainResolution.tablePath,
       });
     });
   });
 
-  return state.columnsByTable;
-}
-
-/**
- * Adds columns into each TableMetadata recursively.
- */
-function addColumnsToHierarchy(
-  tablePath: TablePath,
-  table: TableMetadata,
-  pathByTable: Map<TableMetadata, TablePath>,
-  columnsByTable: Map<TablePath, ColumnMetadata[]>,
-): TableMetadata {
-  const newColumns = columnsByTable.get(tablePath) ?? [];
-  const updatedChildTables = table.childTables.map((childTable: TableMetadata) => {
-    const childPath = pathByTable.get(childTable);
-    invariant(childPath != null, `Missing table path mapping for child table "${childTable.baseName}"`);
-    return addColumnsToHierarchy(childPath, childTable, pathByTable, columnsByTable);
+  preparation.assembliesByPath.forEach((assembly) => {
+    if (assembly.parentReferenceColumn != null) {
+      // Parent references are appended after data columns so foreign keys appear in a consistent position.
+      assembly.metadata.columns.push(assembly.parentReferenceColumn);
+    }
   });
-
-  return {
-    ...table,
-    columns: newColumns,
-    childTables: updatedChildTables,
-  };
 }
 
 /**
@@ -649,48 +706,20 @@ function addColumnsToHierarchy(
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, ...entityTypesToEnhance).forEach((entity) => {
     const topLevelEntity = entity as TopLevelEntity;
-    const apiSchemaData = topLevelEntity.data.edfiApiSchema as EntityApiSchemaData;
-    const existingMetadata = apiSchemaData.flatteningMetadata;
-    if (existingMetadata == null) return;
+    const apiSchemaData = topLevelEntity.data.edfiApiSchema as EntityApiSchemaData | undefined;
+    if (apiSchemaData == null) return;
 
-    const { orderedNodes, nodesByPath, tablesByPath, pathByTable } = buildFlatteningTableLookup(
-      topLevelEntity,
-      existingMetadata.table,
-    );
+    const preparation = initializeTablePreparation(topLevelEntity);
 
-    const columnsByTablePath: Map<TablePath, ColumnMetadata[]> = collectColumns(
-      topLevelEntity,
-      apiSchemaData,
-      tablesByPath,
-      nodesByPath,
-    );
-
-    // Ensure every child table can be joined back to its parent by injecting a synthetic FK column.
-    orderedNodes.forEach((node) => {
-      const parentTable: TableMetadata | undefined = tablesByPath.get(node.parentPath);
-      const childTable: TableMetadata | undefined = tablesByPath.get(node.tablePath);
-      if (parentTable == null || childTable == null) return;
-
-      const columns: ColumnMetadata[] = columnsByTablePath.get(node.tablePath) ?? [];
-      columns.push(buildParentReferenceColumn(parentTable));
-      columnsByTablePath.set(node.tablePath, columns);
-    });
-
-    const table: TableMetadata = addColumnsToHierarchy(
-      ROOT_TABLE_PATH,
-      existingMetadata.table,
-      pathByTable,
-      columnsByTablePath,
-    );
+    populateColumns(topLevelEntity, apiSchemaData, preparation);
 
     apiSchemaData.flatteningMetadata = {
-      ...existingMetadata,
-      table,
+      table: preparation.rootAssembly.metadata,
     };
   });
 
   return {
-    enhancerName: 'FlatteningColumnMetadataEnhancer',
+    enhancerName: 'FlatteningTableMetadataEnhancer',
     success: true,
   };
 }

@@ -21,6 +21,11 @@ import {
   commonSubclassBaseClassEnhancer,
   descriptorReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
+  associationReferenceEnhancer,
+  choiceReferenceEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
+  enumerationReferenceEnhancer,
+  inlineCommonReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as namespaceSetupEnhancer } from '../../../src/model/Namespace';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
@@ -44,8 +49,7 @@ import { enhance as identityJsonPathsEnhancer } from '../../../src/enhancer/Iden
 import { enhance as decimalPropertyValidationInfoEnhancer } from '../../../src/enhancer/DecimalPropertyValidationInfoEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance as commonExtensionOverrideResolverEnhancer } from '../../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
-import { enhance as flatteningTableHierarchyEnhancer } from '../../../src/enhancer/flattening/FlatteningTableHierarchyEnhancer';
-import { enhance as flatteningColumnMetadataEnhancer } from '../../../src/enhancer/flattening/FlatteningColumnMetadataEnhancer';
+import { enhance as flatteningTableMetadataEnhancer } from '../../../src/enhancer/flattening/FlatteningTableMetadataEnhancer';
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment): void {
   namespaceSetupEnhancer(metaEd);
@@ -72,7 +76,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment): void {
   commonExtensionOverrideResolverEnhancer(metaEd);
 }
 
-describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
+describe('FlatteningTableMetadataEnhancer', () => {
   describe('when deriving scalar and collection columns', () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
@@ -102,8 +106,7 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
       domainEntityReferenceEnhancer(metaEd);
       descriptorReferenceEnhancer(metaEd);
       runApiSchemaEnhancers(metaEd);
-      flatteningTableHierarchyEnhancer(metaEd);
-      flatteningColumnMetadataEnhancer(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
     });
 
     it('populates scalar and collection columns with metadata and parent references', () => {
@@ -225,8 +228,7 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
       descriptorReferenceEnhancer(metaEd);
       commonReferenceEnhancer(metaEd);
       runApiSchemaEnhancers(metaEd);
-      flatteningTableHierarchyEnhancer(metaEd);
-      flatteningColumnMetadataEnhancer(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
     });
 
     it('derives reference metadata with fromReferencePath and descriptor scalars', () => {
@@ -344,13 +346,369 @@ describe('FlatteningColumnAndReferenceDeriverEnhancer', () => {
       commonSubclassBaseClassEnhancer(metaEd);
       domainEntityExtensionBaseClassEnhancer(metaEd);
       runApiSchemaEnhancers(metaEd);
-      flatteningTableHierarchyEnhancer(metaEd);
-      flatteningColumnMetadataEnhancer(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
     });
 
     it('emits columns for extension tables and maintains parent linkage', () => {
       const extensionNamespaceData = metaEd.namespace.get(extensionNamespace);
       const extensionEntity = extensionNamespaceData?.entity.domainEntityExtension.get(domainEntityName);
+      expect(extensionEntity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
+        Object {
+          "table": Object {
+            "baseName": "CollectionEntityExtension",
+            "childTables": Array [
+              Object {
+                "baseName": "CollectionEntityExtensionCollectionCommon",
+                "childTables": Array [],
+                "columns": Array [
+                  Object {
+                    "columnName": "CollectionId",
+                    "columnType": "integer",
+                    "isNaturalKey": true,
+                    "isRequired": true,
+                    "jsonPath": "$._ext.edfi.collectionCommons[*].collectionId",
+                  },
+                  Object {
+                    "columnName": "CollectionEntityExtension_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true,
+                  },
+                ],
+                "isExtensionTable": true,
+              },
+            ],
+            "columns": Array [],
+            "isExtensionTable": true,
+          },
+        }
+      `);
+    });
+  });
+
+  describe('when resource contains scalar collections', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+    const entityName = 'DomainEntityName';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartDomainEntity(entityName)
+        .withDocumentation('doc')
+        .withBooleanProperty('OptionalBooleanProperty', 'doc', false, true)
+        .withStringProperty('OptionalStringProperty', 'doc', false, false, '30')
+        .withEndDomainEntity()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      choiceReferenceEnhancer(metaEd);
+      inlineCommonReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      commonSubclassBaseClassEnhancer(metaEd);
+      descriptorReferenceEnhancer(metaEd);
+      enumerationReferenceEnhancer(metaEd);
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      domainEntityExtensionBaseClassEnhancer(metaEd);
+
+      runApiSchemaEnhancers(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
+    });
+
+    it('produces a root table with a scalar collection child', () => {
+      const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(entityName);
+      expect(entity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
+        Object {
+          "table": Object {
+            "baseName": "DomainEntityName",
+            "childTables": Array [
+              Object {
+                "baseName": "DomainEntityNameOptionalBooleanProperty",
+                "childTables": Array [],
+                "columns": Array [
+                  Object {
+                    "columnName": "OptionalBooleanProperty",
+                    "columnType": "boolean",
+                    "isRequired": false,
+                    "jsonPath": "$.optionalBooleanProperties[*].optionalBooleanProperty",
+                  },
+                  Object {
+                    "columnName": "DomainEntityName_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true,
+                  },
+                ],
+              },
+            ],
+            "columns": Array [
+              Object {
+                "columnName": "OptionalStringProperty",
+                "columnType": "string",
+                "isRequired": false,
+                "jsonPath": "$.optionalStringProperty",
+                "maxLength": "30",
+              },
+            ],
+          },
+        }
+      `);
+    });
+  });
+
+  describe('when resource contains a singular common property', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+    const entityName = 'Assessment';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartDomainEntity(entityName)
+        .withDocumentation('doc')
+        .withIntegerIdentity('AssessmentIdentifier', 'doc')
+        .withCommonProperty('ContentStandard', 'doc', false, false)
+        .withEndDomainEntity()
+        .withStartCommon('ContentStandard')
+        .withDocumentation('doc')
+        .withStringProperty('Title', 'doc', false, false, '30')
+        .withEndCommon()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      choiceReferenceEnhancer(metaEd);
+      inlineCommonReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      commonSubclassBaseClassEnhancer(metaEd);
+      descriptorReferenceEnhancer(metaEd);
+      enumerationReferenceEnhancer(metaEd);
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      domainEntityExtensionBaseClassEnhancer(metaEd);
+
+      runApiSchemaEnhancers(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
+    });
+
+    it('creates a child table for the common property', () => {
+      const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(entityName);
+      expect(entity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
+        Object {
+          "table": Object {
+            "baseName": "Assessment",
+            "childTables": Array [
+              Object {
+                "baseName": "AssessmentContentStandard",
+                "childTables": Array [],
+                "columns": Array [
+                  Object {
+                    "columnName": "Title",
+                    "columnType": "string",
+                    "isRequired": false,
+                    "jsonPath": "$.contentStandard.title",
+                    "maxLength": "30",
+                  },
+                  Object {
+                    "columnName": "Assessment_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true,
+                  },
+                ],
+              },
+            ],
+            "columns": Array [
+              Object {
+                "columnName": "AssessmentIdentifier",
+                "columnType": "integer",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.assessmentIdentifier",
+              },
+            ],
+          },
+        }
+      `);
+    });
+  });
+
+  describe('when resource contains nested collection commons', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+    const entityName = 'StudentEducationOrganizationAssociation';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartDomainEntity(entityName)
+        .withDocumentation('doc')
+        .withIntegerIdentity('StudentId', 'doc')
+        .withCommonProperty('Address', 'doc', false, true)
+        .withEndDomainEntity()
+        .withStartCommon('Address')
+        .withDocumentation('doc')
+        .withStringProperty('StreetNumberName', 'doc', true, false, '30')
+        .withCommonProperty('Period', 'doc', false, true)
+        .withEndCommon()
+        .withStartCommon('Period')
+        .withDocumentation('doc')
+        .withIntegerIdentity('BeginDate', 'doc')
+        .withIntegerProperty('EndDate', 'doc', false, false)
+        .withEndCommon()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      choiceReferenceEnhancer(metaEd);
+      inlineCommonReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      commonSubclassBaseClassEnhancer(metaEd);
+      descriptorReferenceEnhancer(metaEd);
+      enumerationReferenceEnhancer(metaEd);
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      domainEntityExtensionBaseClassEnhancer(metaEd);
+
+      runApiSchemaEnhancers(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
+    });
+
+    it('nests child tables to mirror the collection hierarchy', () => {
+      const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(entityName);
+      expect(entity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
+        Object {
+          "table": Object {
+            "baseName": "StudentEducationOrganizationAssociation",
+            "childTables": Array [
+              Object {
+                "baseName": "StudentEducationOrganizationAssociationAddress",
+                "childTables": Array [
+                  Object {
+                    "baseName": "StudentEducationOrganizationAssociationAddressPeriod",
+                    "childTables": Array [],
+                    "columns": Array [
+                      Object {
+                        "columnName": "BeginDate",
+                        "columnType": "integer",
+                        "isNaturalKey": true,
+                        "isRequired": true,
+                        "jsonPath": "$.addresses[*].periods[*].beginDate",
+                      },
+                      Object {
+                        "columnName": "EndDate",
+                        "columnType": "integer",
+                        "isRequired": false,
+                        "jsonPath": "$.addresses[*].periods[*].endDate",
+                      },
+                      Object {
+                        "columnName": "StudentEducationOrganizationAssociationAddress_Id",
+                        "columnType": "bigint",
+                        "isParentReference": true,
+                        "isRequired": true,
+                      },
+                    ],
+                  },
+                ],
+                "columns": Array [
+                  Object {
+                    "columnName": "StreetNumberName",
+                    "columnType": "string",
+                    "isRequired": true,
+                    "jsonPath": "$.addresses[*].streetNumberName",
+                    "maxLength": "30",
+                  },
+                  Object {
+                    "columnName": "StudentEducationOrganizationAssociation_Id",
+                    "columnType": "bigint",
+                    "isParentReference": true,
+                    "isRequired": true,
+                  },
+                ],
+              },
+            ],
+            "columns": Array [
+              Object {
+                "columnName": "StudentId",
+                "columnType": "integer",
+                "isNaturalKey": true,
+                "isRequired": true,
+                "jsonPath": "$.studentId",
+              },
+            ],
+          },
+        }
+      `);
+    });
+  });
+
+  describe('when processing extension overrides', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const coreNamespace = 'EdFi';
+    const extensionNamespace = 'Extension';
+    const domainEntityName = 'CollectionEntity';
+    const commonName = 'CollectionCommon';
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(coreNamespace)
+        .withStartCommon(commonName)
+        .withDocumentation('doc')
+        .withIntegerIdentity('CollectionId', 'doc')
+        .withEndCommon()
+        .withStartDomainEntity(domainEntityName)
+        .withDocumentation('doc')
+        .withIntegerIdentity('EntityId', 'doc')
+        .withCommonProperty(commonName, 'doc', true, true)
+        .withEndDomainEntity()
+        .withEndNamespace()
+        .withBeginNamespace(extensionNamespace)
+        .withStartDomainEntityExtension(`${coreNamespace}.${domainEntityName}`)
+        .withCommonExtensionOverrideProperty(`${coreNamespace}.${commonName}`, 'doc', true, true)
+        .withEndDomainEntityExtension()
+        .withStartCommonExtension(`${coreNamespace}.${commonName}`)
+        .withIntegerProperty('ExtensionCount', 'doc', true, true)
+        .withEndCommonExtension()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      const core = metaEd.namespace.get(coreNamespace);
+      const extension = metaEd.namespace.get(extensionNamespace);
+      if (core != null && extension != null) {
+        extension.dependencies.push(core);
+      }
+
+      domainEntityReferenceEnhancer(metaEd);
+      associationReferenceEnhancer(metaEd);
+      choiceReferenceEnhancer(metaEd);
+      inlineCommonReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      commonSubclassBaseClassEnhancer(metaEd);
+      descriptorReferenceEnhancer(metaEd);
+      enumerationReferenceEnhancer(metaEd);
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      domainEntityExtensionBaseClassEnhancer(metaEd);
+
+      runApiSchemaEnhancers(metaEd);
+      flatteningTableMetadataEnhancer(metaEd);
+    });
+
+    it('marks extension tables when sourced from extension overrides', () => {
+      const extensionEntity = metaEd.namespace.get(extensionNamespace)?.entity.domainEntityExtension.get(domainEntityName);
       expect(extensionEntity?.data.edfiApiSchema.flatteningMetadata).toMatchInlineSnapshot(`
         Object {
           "table": Object {

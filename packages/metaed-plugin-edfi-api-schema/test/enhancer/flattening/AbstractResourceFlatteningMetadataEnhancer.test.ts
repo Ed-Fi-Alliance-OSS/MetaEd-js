@@ -48,8 +48,7 @@ import { enhance as typeCoercionJsonPathsEnhancer } from '../../../src/enhancer/
 import { enhance as jsonSchemaForInsertEnhancer } from '../../../src/enhancer/JsonSchemaForInsertEnhancer';
 import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance as commonExtensionOverrideResolverEnhancer } from '../../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
-import { enhance as flatteningTableHierarchyEnhancer } from '../../../src/enhancer/flattening/FlatteningTableHierarchyEnhancer';
-import { enhance as flatteningColumnMetadataEnhancer } from '../../../src/enhancer/flattening/FlatteningColumnMetadataEnhancer';
+import { enhance as flatteningTableMetadataEnhancer } from '../../../src/enhancer/flattening/FlatteningTableMetadataEnhancer';
 import { enhance as flatteningAbstractResourceConsolidatorEnhancer } from '../../../src/enhancer/flattening/AbstractResourceFlatteningMetadataEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from '../../../src/enhancer/ApiSchemaBuildingEnhancer';
 import { enhance as namespaceDomainEnhancer } from '../../../src/enhancer/NamespaceDomainEnhancer';
@@ -84,8 +83,7 @@ function runApiSchemaPrerequisites(metaEd: MetaEdEnvironment): void {
 
 function runFlatteningSequence(metaEd: MetaEdEnvironment): void {
   runApiSchemaPrerequisites(metaEd);
-  flatteningTableHierarchyEnhancer(metaEd);
-  flatteningColumnMetadataEnhancer(metaEd);
+  flatteningTableMetadataEnhancer(metaEd);
   flatteningAbstractResourceConsolidatorEnhancer(metaEd);
 }
 
