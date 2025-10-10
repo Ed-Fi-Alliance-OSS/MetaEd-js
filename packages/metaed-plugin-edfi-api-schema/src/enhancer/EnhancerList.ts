@@ -48,6 +48,8 @@ import { enhance as staffSecurableElementEnhancer } from './security/StaffSecura
 import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessConstraintEnhancer';
 import { enhance as educationOrganizationConfigurationEnhancer } from './security/EducationOrganizationConfigurationEnhancer';
 import { enhance as educationOrganizationIdentityConfigurationEnhancer } from './security/EducationOrganizationIdentityConfigurationEnhancer';
+import { enhance as flatteningTableMetadataEnhancer } from './flattening/FlatteningTableMetadataEnhancer';
+import { enhance as abstractResourceFlatteningMetadataEnhancer } from './flattening/AbstractResourceFlatteningMetadataEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -82,6 +84,8 @@ export function enhancerList(): Enhancer[] {
     decimalPropertyValidationInfoEnhancer,
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
+    flatteningTableMetadataEnhancer,
+    abstractResourceFlatteningMetadataEnhancer,
     openApiBaseDocumentEnhancer,
     openApiResourceFragmentEnhancer,
     namespaceSecurableElementEnhancer,

@@ -19,6 +19,21 @@ module.exports = {
     project: ['./tsconfig.eslint.json'],
     tsconfigRootDir: __dirname,
   },
+  overrides: [
+    {
+      files: ['packages/metaed-plugin-edfi-api-schema/test/integration/**/*.js'],
+      parser: require.resolve('espree'),
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'script',
+      },
+      rules: {
+        '@typescript-eslint/no-misused-promises': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/promise-function-async': 'off',
+      },
+    },
+  ],
   rules: {
     // Let typescript compiler handle this
     'no-unused-vars': 'off',

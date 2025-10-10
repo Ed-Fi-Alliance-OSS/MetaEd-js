@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { PropertyModifier, propertyModifierConcat } from '../model/PropertyModifier';
+import { canonicalRoleNamePrefix } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 
 /**
@@ -19,8 +20,7 @@ export function parentPropertyModifier(
     if (nextToLastChainProperty == null) return propertyModifier; // Should never happen given length check
 
     // Handle the shortenTo override
-    const roleNamePrefix =
-      nextToLastChainProperty.shortenTo === '' ? nextToLastChainProperty.roleName : nextToLastChainProperty.shortenTo;
+    const roleNamePrefix = canonicalRoleNamePrefix(nextToLastChainProperty);
     return propertyModifierConcat(propertyModifier, {
       optionalDueToParent: false,
       parentPrefixes: [roleNamePrefix],
