@@ -418,7 +418,7 @@ function buildScalarColumn(
     containerJsonPath != null && !jsonPath.includes('[*]')
       ? (`${containerJsonPath}.${jsonPropertySegment}` as JsonPath)
       : jsonPath;
-  const optionalDueToParent = modifier.optionalDueToParent && containerJsonPath == null;
+  const { optionalDueToParent } = modifier;
 
   const column: ColumnMetadata = {
     columnName: prefixedName(sourceProperty.metaEdName, modifier),
@@ -549,7 +549,7 @@ function computeEffectiveOptionalDueToParent(chainResolution: ChainResolution, c
     return derivedOptionalDueToParent;
   }
 
-  return modifierOptionalDueToParent && derivedOptionalDueToParent;
+  return modifierOptionalDueToParent || derivedOptionalDueToParent;
 }
 
 /**
