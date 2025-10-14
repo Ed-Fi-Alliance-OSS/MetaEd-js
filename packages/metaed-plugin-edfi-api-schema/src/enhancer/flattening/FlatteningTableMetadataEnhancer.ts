@@ -419,10 +419,17 @@ function canonicalPropertyPath(propertyPath: string, sourceProperty: EntityPrope
  * Determines whether a property should be treated as optional due to optional ancestors in its chain.
  */
 function isOptionalDueToParent(chain: EntityProperty[]): boolean {
-  return chain
-    .slice(0, -1)
-    .filter((property) => property.type !== 'inlineCommon' && property.type !== 'choice' && property.type !== 'common')
-    .some((property) => property.isOptional || property.isOptionalCollection);
+  return chain.slice(0, -1).some((property) => {
+    if (property.type === 'choice') {
+      // Only one branch of a choice can be populated, so descendant columns must be nullable.
+      return true;
+    }
+    if (property.type === 'common') {
+      // Commons materialize into their own tables; if the row exists, the property values must follow original cardinality.
+      return false;
+    }
+    return property.isOptional || property.isOptionalCollection;
+  });
 }
 
 /**
@@ -456,6 +463,16 @@ function buildScalarColumn(
     jsonPath: effectiveJsonPath,
     isRequired: (sourceProperty.isRequired || sourceProperty.isPartOfIdentity) && !optionalDueToParent,
   };
+
+  if (column.columnType === 'descriptor') {
+    if (column.columnName.endsWith('DescriptorId')) {
+      // already correctly suffixed
+    } else if (column.columnName.endsWith('Descriptor')) {
+      column.columnName = `${column.columnName}Id`;
+    } else {
+      column.columnName = `${column.columnName}DescriptorId`;
+    }
+  }
 
   if (sourceProperty.isPartOfIdentity) column.isNaturalKey = true;
 

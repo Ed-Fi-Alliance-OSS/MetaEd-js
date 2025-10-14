@@ -179,7 +179,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "maxLength": "32",
               },
               Object {
-                "columnName": "EducationContent",
+                "columnName": "EducationContentDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.educationContentDescriptor",
@@ -272,7 +272,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "childTables": Array [],
                 "columns": Array [
                   Object {
-                    "columnName": "AssessedGradeLevel",
+                    "columnName": "AssessedGradeLevelDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.assessedGradeLevels[*].gradeLevelDescriptor",

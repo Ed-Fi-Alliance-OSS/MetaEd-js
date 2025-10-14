@@ -1040,7 +1040,7 @@ describe('when building domain entity with nested choice and inline commons', ()
               "maxLength": "30",
             },
             Object {
-              "columnName": "ContentClass",
+              "columnName": "ContentClassDescriptorId",
               "columnType": "descriptor",
               "isRequired": false,
               "jsonPath": "$.contentClassDescriptor",
@@ -1326,7 +1326,7 @@ describe('when building domain entity with a simple common collection', () => {
                   "maxLength": "30",
                 },
                 Object {
-                  "columnName": "AssessmentIdentificationSystem",
+                  "columnName": "AssessmentIdentificationSystemDescriptorId",
                   "columnType": "descriptor",
                   "isNaturalKey": true,
                   "isRequired": true,
@@ -1418,7 +1418,7 @@ describe('when building domain entity subclass with common collection and descri
                   "maxLength": "30",
                 },
                 Object {
-                  "columnName": "EducationOrganizationIdentificationSystem",
+                  "columnName": "EducationOrganizationIdentificationSystemDescriptorId",
                   "columnType": "descriptor",
                   "isNaturalKey": true,
                   "isRequired": true,
@@ -1602,7 +1602,7 @@ describe('when building domain entity with a descriptor with role name', () => {
               "jsonPath": "$.assessmentIdentifier",
             },
             Object {
-              "columnName": "AssessedGradeLevel",
+              "columnName": "AssessedGradeLevelDescriptorId",
               "columnType": "descriptor",
               "isRequired": false,
               "jsonPath": "$.assessedGradeLevelDescriptor",
@@ -1655,7 +1655,7 @@ describe('when building domain entity with a descriptor collection with role nam
               "childTables": Array [],
               "columns": Array [
                 Object {
-                  "columnName": "AssessedGradeLevel",
+                  "columnName": "AssessedGradeLevelDescriptorId",
                   "columnType": "descriptor",
                   "isRequired": false,
                   "jsonPath": "$.assessedGradeLevels[*].gradeLevelDescriptor",
@@ -2378,7 +2378,7 @@ describe('when building a domain entity with an inline common property with a de
               "jsonPath": "$.sectionIdentifier",
             },
             Object {
-              "columnName": "AvailableCreditType",
+              "columnName": "AvailableCreditTypeDescriptorId",
               "columnType": "descriptor",
               "isRequired": false,
               "jsonPath": "$.availableCreditTypeDescriptor",

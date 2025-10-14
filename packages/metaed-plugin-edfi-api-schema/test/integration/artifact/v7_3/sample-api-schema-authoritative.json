@@ -920,7 +920,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.startTimes[*]"
               },
               {
                 "baseName": "BusRouteBusYear",
@@ -939,7 +940,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.busYears[*]"
               },
               {
                 "baseName": "BusRouteServiceAreaPostalCode",
@@ -959,7 +961,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.serviceAreaPostalCodes[*]"
               },
               {
                 "baseName": "BusRouteTelephone",
@@ -975,7 +978,7 @@
                     "maxLength": "24"
                   },
                   {
-                    "columnName": "TelephoneNumberType",
+                    "columnName": "TelephoneNumberTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -1005,7 +1008,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.telephones[*]"
               },
               {
                 "baseName": "BusRouteProgram",
@@ -1024,7 +1028,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.programs[*]"
               }
             ],
             "columns": [
@@ -1102,7 +1107,7 @@
                 "jsonPath": "$.busRouteDuration"
               },
               {
-                "columnName": "Disability",
+                "columnName": "DisabilityDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.disabilityDescriptor"
@@ -1113,7 +1118,8 @@
                 "fromReferencePath": "StaffEducationOrganizationAssignmentAssociation",
                 "isRequired": false
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -2245,7 +2251,8 @@
                 "jsonPath": "$.busId",
                 "maxLength": "60"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -3135,7 +3142,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.ceilingHeights[*]"
               },
               {
                 "baseName": "ContactExtensionFavoriteBookTitle",
@@ -3156,7 +3164,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.favoriteBookTitles[*]"
               },
               {
                 "baseName": "ContactExtensionAuthor",
@@ -3177,7 +3186,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.authors[*]"
               },
               {
                 "baseName": "ContactExtensionCTEProgramService",
@@ -3185,7 +3195,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "CTEProgramService",
+                    "columnName": "CTEProgramServiceDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3223,7 +3233,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.cteProgramService"
               },
               {
                 "baseName": "ContactExtensionEducationContent",
@@ -3243,7 +3254,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.educationContents[*]"
               },
               {
                 "baseName": "ContactExtensionStudentProgramAssociation",
@@ -3263,7 +3275,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.studentProgramAssociations[*]"
               },
               {
                 "baseName": "ContactExtensionAddress",
@@ -3293,7 +3306,8 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$._ext.sample.addresses[*].periods[*]"
                   }
                 ],
                 "columns": [
@@ -3328,7 +3342,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "StateAbbreviation",
+                    "columnName": "StateAbbreviationDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3371,7 +3385,7 @@
                     "maxLength": "20"
                   },
                   {
-                    "columnName": "AddressType",
+                    "columnName": "AddressTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3391,7 +3405,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "Locale",
+                    "columnName": "LocaleDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$._ext.sample.addresses[*].localeDescriptor"
@@ -3404,7 +3418,7 @@
                     "maxLength": "255"
                   },
                   {
-                    "columnName": "Term",
+                    "columnName": "TermDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor"
@@ -3429,7 +3443,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.addresses[*]"
               },
               {
                 "baseName": "ContactExtensionTeacherConference",
@@ -3462,7 +3477,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.teacherConference"
               }
             ],
             "columns": [
@@ -3529,13 +3545,20 @@
                 "jsonPath": "$._ext.sample.duration"
               },
               {
-                "columnName": "CredentialField",
+                "columnName": "CredentialFieldDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$._ext.sample.credentialFieldDescriptor"
+              },
+              {
+                "columnName": "Contact_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -5698,7 +5721,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "CTEProgramService",
+                    "columnName": "CTEProgramServiceDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -5736,7 +5759,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.cteProgramService"
               },
               {
                 "baseName": "SchoolExtensionDirectlyOwnedBus",
@@ -5756,7 +5780,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.directlyOwnedBuses[*]"
               }
             ],
             "columns": [
@@ -5765,9 +5790,16 @@
                 "columnType": "boolean",
                 "isRequired": false,
                 "jsonPath": "$._ext.sample.isExemplary"
+              },
+              {
+                "columnName": "School_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -6056,7 +6088,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.pets[*]"
               },
               {
                 "baseName": "StaffExtensionPetPreference",
@@ -6082,7 +6115,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.petPreference"
               }
             ],
             "columns": [
@@ -6091,9 +6125,16 @@
                 "columnType": "date",
                 "isRequired": false,
                 "jsonPath": "$._ext.sample.firstPetOwnedDate"
+              },
+              {
+                "columnName": "Staff_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -6631,7 +6672,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "ArtMedium",
+                    "columnName": "ArtMediumDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.artMedia[*].artMediumDescriptor"
@@ -6643,7 +6684,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.artMedia[*]"
               },
               {
                 "baseName": "StudentArtProgramAssociationService",
@@ -6651,7 +6693,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "Service",
+                    "columnName": "ServiceDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -6681,7 +6723,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.services[*]"
               },
               {
                 "baseName": "StudentArtProgramAssociationFavoriteBook",
@@ -6692,7 +6735,7 @@
                     ],
                     "columns": [
                       {
-                        "columnName": "ArtMedium",
+                        "columnName": "ArtMediumDescriptorId",
                         "columnType": "descriptor",
                         "isNaturalKey": true,
                         "isRequired": true,
@@ -6711,12 +6754,13 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$.favoriteBook.artMedia[*]"
                   }
                 ],
                 "columns": [
                   {
-                    "columnName": "FavoriteBookCategory",
+                    "columnName": "FavoriteBookCategoryDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -6736,7 +6780,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.favoriteBook.artMedia[*]"
               },
               {
                 "baseName": "StudentArtProgramAssociationStyle",
@@ -6756,7 +6801,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.styles[*]"
               },
               {
                 "baseName": "StudentArtProgramAssociationPortfolioYears",
@@ -6775,7 +6821,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.portfolioYears[*]"
               },
               {
                 "baseName": "StudentArtProgramAssociationProgramParticipationStatus",
@@ -6783,7 +6830,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "ParticipationStatus",
+                    "columnName": "ParticipationStatusDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -6815,7 +6862,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.programParticipationStatuses[*]"
               }
             ],
             "columns": [
@@ -6919,7 +6967,7 @@
                 "jsonPath": "$.endDate"
               },
               {
-                "columnName": "ReasonExited",
+                "columnName": "ReasonExitedDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.reasonExitedDescriptor"
@@ -6938,7 +6986,8 @@
                 "jsonPath": "$.servedOutsideOfRegularSession"
               }
             ],
-            "discriminatorValue": "StudentArtProgramAssociation"
+            "discriminatorValue": "StudentArtProgramAssociation",
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -8298,9 +8347,16 @@
                 "columnType": "datetime",
                 "isRequired": false,
                 "jsonPath": "$._ext.sample.analysisDate"
+              },
+              {
+                "columnName": "StudentCTEProgramAssociation_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -8663,7 +8719,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.pagesReads[*]"
               },
               {
                 "baseName": "StudentContactAssociationExtensionFavoriteBookTitle",
@@ -8684,7 +8741,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.favoriteBookTitles[*]"
               },
               {
                 "baseName": "StudentContactAssociationExtensionHoursPerWeek",
@@ -8706,7 +8764,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.hoursPerWeeks[*]"
               },
               {
                 "baseName": "StudentContactAssociationExtensionTelephone",
@@ -8722,7 +8781,7 @@
                     "maxLength": "24"
                   },
                   {
-                    "columnName": "TelephoneNumberType",
+                    "columnName": "TelephoneNumberTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -8753,7 +8812,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.telephone"
               },
               {
                 "baseName": "StudentContactAssociationExtensionDiscipline",
@@ -8761,7 +8821,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "Discipline",
+                    "columnName": "DisciplineDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$._ext.sample.disciplines[*].disciplineDescriptor"
@@ -8773,7 +8833,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.disciplines[*]"
               },
               {
                 "baseName": "StudentContactAssociationExtensionStaffEducationOrganizationEmploymentAssociation",
@@ -8793,7 +8854,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.staffEducationOrganizationEmploymentAssociations[*]"
               }
             ],
             "columns": [
@@ -8869,9 +8931,16 @@
                 "columnType": "bigint",
                 "fromReferencePath": "InterventionStudy",
                 "isRequired": false
+              },
+              {
+                "columnName": "StudentContactAssociation_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -9731,7 +9800,8 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$._ext.sample.addresses[*].periods[*]"
                   }
                 ],
                 "columns": [
@@ -9766,7 +9836,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "StateAbbreviation",
+                    "columnName": "StateAbbreviationDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -9809,7 +9879,7 @@
                     "maxLength": "20"
                   },
                   {
-                    "columnName": "AddressType",
+                    "columnName": "AddressTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -9829,7 +9899,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "Locale",
+                    "columnName": "LocaleDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$._ext.sample.addresses[*].localeDescriptor"
@@ -9842,7 +9912,7 @@
                     "maxLength": "255"
                   },
                   {
-                    "columnName": "Term",
+                    "columnName": "TermDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor"
@@ -9867,7 +9937,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.addresses[*]"
               },
               {
                 "baseName": "StudentEducationOrganizationAssociationExtensionStudentCharacteristic",
@@ -9897,12 +9968,13 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$._ext.sample.studentCharacteristics[*].periods[*]"
                   }
                 ],
                 "columns": [
                   {
-                    "columnName": "StudentCharacteristic",
+                    "columnName": "StudentCharacteristicDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -9941,7 +10013,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.studentCharacteristics[*]"
               }
             ],
             "columns": [
@@ -9950,9 +10023,16 @@
                 "columnType": "bigint",
                 "fromReferencePath": "FavoriteProgram",
                 "isRequired": false
+              },
+              {
+                "columnName": "StudentEducationOrganizationAssociation_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -10897,7 +10977,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.industryCredentials[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationYearsAttended",
@@ -10916,7 +10997,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.yearsAttendeds[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationCareerPathwayCode",
@@ -10935,7 +11017,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.careerPathwayCodes[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationDescription",
@@ -10955,7 +11038,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.descriptions[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationDesignatedBy",
@@ -10975,7 +11059,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.designatedBies[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationCTEProgramService",
@@ -10983,7 +11068,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "CTEProgramService",
+                    "columnName": "CTEProgramServiceDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -11020,7 +11105,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.cteProgramService"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationAcademicSubject",
@@ -11028,7 +11114,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "AcademicSubject",
+                    "columnName": "AcademicSubjectDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.academicSubjects[*].academicSubjectDescriptor"
@@ -11039,7 +11125,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.academicSubjects[*]"
               },
               {
                 "baseName": "StudentGraduationPlanAssociationStudentContactAssociation",
@@ -11058,7 +11145,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.studentContactAssociations[*]"
               }
             ],
             "columns": [
@@ -11134,7 +11222,8 @@
                 "fromReferencePath": "Staff",
                 "isRequired": false
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -12314,13 +12403,20 @@
             ],
             "columns": [
               {
-                "columnName": "MembershipType",
+                "columnName": "MembershipTypeDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$._ext.sample.membershipTypeDescriptor"
+              },
+              {
+                "columnName": "StudentSchoolAssociation_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -12485,12 +12581,20 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.relatedGeneralStudentProgramAssociations[*]"
               }
             ],
             "columns": [
+              {
+                "columnName": "StudentSectionAssociation_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
+              }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
@@ -12795,7 +12899,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.pets[*]"
               },
               {
                 "baseName": "StudentExtensionPetPreference",
@@ -12821,7 +12926,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.petPreference"
               },
               {
                 "baseName": "StudentExtensionAquaticPet",
@@ -12856,7 +12962,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.aquaticPets[*]"
               },
               {
                 "baseName": "StudentExtensionFavoriteBook",
@@ -12867,7 +12974,7 @@
                     ],
                     "columns": [
                       {
-                        "columnName": "ArtMedium",
+                        "columnName": "ArtMediumDescriptorId",
                         "columnType": "descriptor",
                         "isNaturalKey": true,
                         "isRequired": true,
@@ -12886,12 +12993,13 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$._ext.sample.favoriteBooks[*].artMedia[*]"
                   }
                 ],
                 "columns": [
                   {
-                    "columnName": "FavoriteBookCategory",
+                    "columnName": "FavoriteBookCategoryDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -12911,12 +13019,20 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.sample.favoriteBooks[*]"
               }
             ],
             "columns": [
+              {
+                "columnName": "Student_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
+              }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.ed-fi"
           }
         },
         "identityJsonPaths": [
