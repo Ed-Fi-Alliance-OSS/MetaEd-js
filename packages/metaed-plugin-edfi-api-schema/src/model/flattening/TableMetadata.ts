@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { ColumnMetadata } from './ColumnMetadata';
+import type { JsonPath } from '../api-schema/JsonPath';
 
 /**
  * ResourceSchema metadata for representing flattened resource tables
@@ -16,6 +17,12 @@ export type TableMetadata = {
    * Examples: 'Student', 'SchoolAddress', 'StudentAssessmentScoreResult'
    */
   baseName: string;
+
+  /**
+   * Absolute JsonPath to the object or array represented by this table.
+   * Used downstream to align extension fragments and runtime metadata merges.
+   */
+  jsonPath: JsonPath;
 
   /**
    * Column definitions for this table.

@@ -133,6 +133,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.optionalBooleanProperties[*]",
               },
               Object {
                 "baseName": "DomainEntityNameRequiredIntegerProperty",
@@ -151,6 +152,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.requiredIntegerProperties[*]",
               },
             ],
             "columns": Array [
@@ -183,6 +185,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "jsonPath": "$.educationContentDescriptor",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -262,6 +265,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.contentStandard",
               },
               Object {
                 "baseName": "AssessmentAssessedGradeLevel",
@@ -280,6 +284,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.assessedGradeLevels[*]",
               },
             ],
             "columns": Array [
@@ -291,6 +296,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "jsonPath": "$.assessmentIdentifier",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -376,10 +382,19 @@ describe('FlatteningTableMetadataEnhancer', () => {
                   },
                 ],
                 "isExtensionTable": true,
+                "jsonPath": "$._ext.edfi.collectionCommons[*]",
               },
             ],
-            "columns": Array [],
+            "columns": Array [
+              Object {
+                "columnName": "CollectionEntity_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true,
+              },
+            ],
             "isExtensionTable": true,
+            "jsonPath": "$._ext.edfi",
           },
         }
       `);
@@ -443,6 +458,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.optionalBooleanProperties[*]",
               },
             ],
             "columns": Array [
@@ -454,6 +470,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "maxLength": "30",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -523,6 +540,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.contentStandard",
               },
             ],
             "columns": Array [
@@ -534,6 +552,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "jsonPath": "$.assessmentIdentifier",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -618,6 +637,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                         "isRequired": true,
                       },
                     ],
+                    "jsonPath": "$.addresses[*].periods[*]",
                   },
                 ],
                 "columns": Array [
@@ -635,6 +655,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "isRequired": true,
                   },
                 ],
+                "jsonPath": "$.addresses[*]",
               },
             ],
             "columns": Array [
@@ -646,6 +667,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                 "jsonPath": "$.studentId",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -733,10 +755,19 @@ describe('FlatteningTableMetadataEnhancer', () => {
                   },
                 ],
                 "isExtensionTable": true,
+                "jsonPath": "$._ext.edfi.collectionCommons[*]",
               },
             ],
-            "columns": Array [],
+            "columns": Array [
+              Object {
+                "columnName": "CollectionEntity_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true,
+              },
+            ],
             "isExtensionTable": true,
+            "jsonPath": "$._ext.edfi",
           },
         }
       `);

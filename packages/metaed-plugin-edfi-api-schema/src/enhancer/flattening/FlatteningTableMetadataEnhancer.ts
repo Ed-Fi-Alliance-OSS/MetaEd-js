@@ -118,6 +118,9 @@ type ColumnProcessingContext = {
   referencePropertyPaths: Set<MetaEdPropertyPath>;
 };
 
+const ROOT_JSON_PATH = '$' as JsonPath;
+const MISSING_TABLE_JSON_PATH = '###' as JsonPath;
+
 const entityTypesToEnhance = [
   'association',
   'associationSubclass',
@@ -138,8 +141,19 @@ function createRootTable(entity: TopLevelEntity): TableMetadata {
       ? `${entity.metaEdName}${entity.namespace.extensionEntitySuffix}`
       : entity.metaEdName;
 
+  let jsonPath: JsonPath = ROOT_JSON_PATH;
+  if (isExtensionEntity) {
+    invariant(
+      entity.baseEntity != null,
+      `Extension entity "${entity.namespace.projectName}.${entity.metaEdName}" is missing its base entity`,
+    );
+    const projectName = entity.baseEntity.namespace.projectName.toLowerCase();
+    jsonPath = `$._ext.${projectName}` as JsonPath;
+  }
+
   return {
     baseName,
+    jsonPath,
     columns: [],
     childTables: [],
     ...(isExtensionEntity ? { isExtensionTable: true } : {}),
@@ -179,14 +193,30 @@ function initializeTablePreparation(entity: TopLevelEntity): TablePreparation {
     metadata: rootMetadata,
     processedKeys: new Set(),
   };
+  if (entity.type === 'domainEntityExtension' || entity.type === 'associationExtension') {
+    invariant(
+      entity.baseEntity != null,
+      `Extension entity "${entity.namespace.projectName}.${entity.metaEdName}" is missing its base entity`,
+    );
+    const parentBaseName = createRootTable(entity.baseEntity).baseName;
+    rootAssembly.parentReferenceColumn = {
+      columnName: `${parentBaseName}_Id`,
+      columnType: 'bigint',
+      isParentReference: true,
+      isRequired: true,
+    };
+  }
   const assembliesByPath: Map<TablePath, TableAssembly> = new Map([[ROOT_TABLE_PATH, rootAssembly]]);
 
   orderedNodes.forEach((node) => {
     const parentAssembly = assembliesByPath.get(node.parentPath);
     invariant(parentAssembly != null, `Parent table "${node.parentPath}" was not initialized for "${node.tablePath}"`);
 
+    const childJsonPath = node.collectionJsonPath ?? MISSING_TABLE_JSON_PATH;
+
     const childMetadata: TableMetadata = {
       baseName: `${parentAssembly.metadata.baseName}${deriveTableSuffix(node)}`,
+      jsonPath: childJsonPath,
       columns: [],
       childTables: [],
     };
@@ -634,6 +664,57 @@ function processScalarProperty(
 }
 
 /**
+ * Locate a scalar column with a JsonPath and peel off the terminal segment to
+ * recover the object-level JsonPath for its owning table.
+ */
+function deriveJsonPathFromScalarColumns(columns: ColumnMetadata[]): JsonPath | null {
+  const candidate = columns.find((column) => column.jsonPath != null && column.fromReferencePath == null);
+  if (candidate?.jsonPath == null) return null;
+
+  const lastDot = candidate.jsonPath.lastIndexOf('.');
+  if (lastDot <= 0) return null;
+
+  return candidate.jsonPath.slice(0, lastDot) as JsonPath;
+}
+
+/**
+ * For tables that still carry the placeholder jsonPath, attempt to derive the
+ * correct anchor from existing metadata for singleton commons
+ */
+function finalizeMissingTableJsonPaths(preparation: TablePreparation): void {
+  preparation.assembliesByPath.forEach((assembly: TableAssembly, tablePath: TablePath) => {
+    if (assembly.metadata.jsonPath !== MISSING_TABLE_JSON_PATH) return;
+
+    if (tablePath === ROOT_TABLE_PATH) return;
+
+    const node: FlatteningTableNode | undefined = preparation.nodesByPath.get(tablePath as MetaEdPropertyPath);
+    if (node == null) return;
+
+    const { property } = node;
+    if (property.type !== 'common') return;
+
+    const isCollection = property.isCollection || property.isOptionalCollection || property.isRequiredCollection;
+    if (isCollection) return;
+
+    const derivedPath: JsonPath | null = deriveJsonPathFromScalarColumns(assembly.metadata.columns);
+    if (derivedPath != null) {
+      assembly.metadata.jsonPath = derivedPath;
+    }
+  });
+}
+
+function assertAllTableJsonPathsResolved(entity: TopLevelEntity, preparation: TablePreparation): void {
+  preparation.assembliesByPath.forEach((assembly, tablePath) => {
+    invariant(
+      assembly.metadata.jsonPath !== MISSING_TABLE_JSON_PATH,
+      `Flattening table "${assembly.metadata.baseName}" (MetaEd path "${
+        tablePath === ROOT_TABLE_PATH ? '<root>' : tablePath
+      }") on "${entity.namespace.projectName}.${entity.metaEdName}" is missing a jsonPath.`,
+    );
+  });
+}
+
+/**
  * Populates scalar and reference columns for every table in the hierarchy.
  */
 function populateColumns(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaData, preparation: TablePreparation): void {
@@ -698,6 +779,9 @@ function populateColumns(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaD
       assembly.metadata.columns.push(assembly.parentReferenceColumn);
     }
   });
+
+  finalizeMissingTableJsonPaths(preparation);
+  assertAllTableJsonPathsResolved(entity, preparation);
 }
 
 /**
