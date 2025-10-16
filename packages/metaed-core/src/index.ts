@@ -11,7 +11,6 @@ export {
   orderByPath,
   versionSatisfies,
   targetTechnologyVersionFor,
-  V3OrGreater,
   V5OrGreater,
   V7OrGreater,
 } from './Utility';
