@@ -23,10 +23,8 @@
     "ramda": "^0.29.0"
   },
   "devDependencies": {
-    "@edfi/ed-fi-model-3.2c": "3.0.2",
-    "@edfi/ed-fi-model-3.3b": "3.0.3",
-    "@edfi/ed-fi-model-4.0": "3.0.2",
-    "@edfi/ed-fi-model-5.2": "3.0.0"
+    "@edfi/ed-fi-model-4.0": "3.0.4",
+    "@edfi/ed-fi-model-5.2": "3.0.1"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
