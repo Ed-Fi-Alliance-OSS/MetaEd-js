@@ -2562,7 +2562,7 @@ describe('when domain entity extension references domain entity in different nam
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace('Extension')
+      .withBeginNamespace('Extension', 'Extension')
       .withStartDomainEntityExtension(`EdFi.${entityName}`)
       .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
       .withEndDomainEntityExtension()
@@ -2600,7 +2600,7 @@ describe('when domain entity extension references domain entity in different nam
             },
           ],
           "isExtensionTable": true,
-          "jsonPath": "$._ext.edfi",
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3294,7 +3294,7 @@ describe('when domain entity extension has common extension override property wi
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
       .withEndDomainEntityExtension()
@@ -3334,7 +3334,7 @@ describe('when domain entity extension has common extension override property wi
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.testCommon.commonId",
+                  "jsonPath": "$._ext.extension.testCommon.commonId",
                 },
                 Object {
                   "columnName": "TestEntityExtension_Id",
@@ -3344,7 +3344,7 @@ describe('when domain entity extension has common extension override property wi
                 },
               ],
               "isExtensionTable": true,
-              "jsonPath": "$._ext.edfi.testCommon",
+              "jsonPath": "$._ext.extension.testCommon",
             },
           ],
           "columns": Array [
@@ -3356,7 +3356,7 @@ describe('when domain entity extension has common extension override property wi
             },
           ],
           "isExtensionTable": true,
-          "jsonPath": "$._ext.edfi",
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3443,7 +3443,7 @@ describe('when association extension has common extension override property', ()
       .withEndAssociation()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartAssociationExtension(`${core}.${associationName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
       .withEndAssociationExtension()
@@ -3485,7 +3485,7 @@ describe('when association extension has common extension override property', ()
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.common.commonId",
+                  "jsonPath": "$._ext.extension.common.commonId",
                 },
                 Object {
                   "columnName": "TestAssociationExtension_Id",
@@ -3495,7 +3495,7 @@ describe('when association extension has common extension override property', ()
                 },
               ],
               "isExtensionTable": true,
-              "jsonPath": "$._ext.edfi.common",
+              "jsonPath": "$._ext.extension.common",
             },
           ],
           "columns": Array [
@@ -3507,7 +3507,7 @@ describe('when association extension has common extension override property', ()
             },
           ],
           "isExtensionTable": true,
-          "jsonPath": "$._ext.edfi",
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3632,7 +3632,7 @@ describe('when extension override property has collection modifier', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, true)
       .withEndDomainEntityExtension()
@@ -3673,7 +3673,7 @@ describe('when extension override property has collection modifier', () => {
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.collectionCommons[*].collectionId",
+                  "jsonPath": "$._ext.extension.collectionCommons[*].collectionId",
                 },
                 Object {
                   "columnName": "CollectionEntityExtension_Id",
@@ -3683,7 +3683,7 @@ describe('when extension override property has collection modifier', () => {
                 },
               ],
               "isExtensionTable": true,
-              "jsonPath": "$._ext.edfi.collectionCommons[*]",
+              "jsonPath": "$._ext.extension.collectionCommons[*]",
             },
           ],
           "columns": Array [
@@ -3695,7 +3695,7 @@ describe('when extension override property has collection modifier', () => {
             },
           ],
           "isExtensionTable": true,
-          "jsonPath": "$._ext.edfi",
+          "jsonPath": "$._ext.extension",
         },
       }
     `);

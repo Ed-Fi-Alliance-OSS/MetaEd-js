@@ -7485,7 +7485,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [
@@ -27610,7 +27610,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [
@@ -28404,7 +28404,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [

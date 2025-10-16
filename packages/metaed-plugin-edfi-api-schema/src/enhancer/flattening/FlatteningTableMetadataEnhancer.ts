@@ -147,8 +147,8 @@ function createRootTable(entity: TopLevelEntity): TableMetadata {
       entity.baseEntity != null,
       `Extension entity "${entity.namespace.projectName}.${entity.metaEdName}" is missing its base entity`,
     );
-    const projectName = entity.baseEntity.namespace.projectName.toLowerCase();
-    jsonPath = `$._ext.${projectName}` as JsonPath;
+
+    jsonPath = `$._ext.${entity.namespace.projectName.toLowerCase()}` as JsonPath;
   }
 
   return {

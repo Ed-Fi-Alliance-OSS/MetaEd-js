@@ -326,7 +326,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
         .withEndDomainEntity()
         .withEndNamespace()
 
-        .withBeginNamespace(extensionNamespace)
+        .withBeginNamespace(extensionNamespace, extensionNamespace)
         .withStartCommonExtension(`${coreNamespace}.${commonName}`)
         .withDocumentation('doc')
         .withIntegerProperty('ExtensionCount', 'doc', true, true)
@@ -372,7 +372,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "columnType": "integer",
                     "isNaturalKey": true,
                     "isRequired": true,
-                    "jsonPath": "$._ext.edfi.collectionCommons[*].collectionId",
+                    "jsonPath": "$._ext.extension.collectionCommons[*].collectionId",
                   },
                   Object {
                     "columnName": "CollectionEntityExtension_Id",
@@ -382,7 +382,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                   },
                 ],
                 "isExtensionTable": true,
-                "jsonPath": "$._ext.edfi.collectionCommons[*]",
+                "jsonPath": "$._ext.extension.collectionCommons[*]",
               },
             ],
             "columns": Array [
@@ -394,7 +394,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
               },
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.edfi",
+            "jsonPath": "$._ext.extension",
           },
         }
       `);
@@ -695,7 +695,8 @@ describe('FlatteningTableMetadataEnhancer', () => {
         .withCommonProperty(commonName, 'doc', true, true)
         .withEndDomainEntity()
         .withEndNamespace()
-        .withBeginNamespace(extensionNamespace)
+
+        .withBeginNamespace(extensionNamespace, extensionNamespace)
         .withStartDomainEntityExtension(`${coreNamespace}.${domainEntityName}`)
         .withCommonExtensionOverrideProperty(`${coreNamespace}.${commonName}`, 'doc', true, true)
         .withEndDomainEntityExtension()
@@ -745,7 +746,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                     "columnType": "integer",
                     "isNaturalKey": true,
                     "isRequired": true,
-                    "jsonPath": "$._ext.edfi.collectionCommons[*].collectionId",
+                    "jsonPath": "$._ext.extension.collectionCommons[*].collectionId",
                   },
                   Object {
                     "columnName": "CollectionEntityExtension_Id",
@@ -755,7 +756,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
                   },
                 ],
                 "isExtensionTable": true,
-                "jsonPath": "$._ext.edfi.collectionCommons[*]",
+                "jsonPath": "$._ext.extension.collectionCommons[*]",
               },
             ],
             "columns": Array [
@@ -767,7 +768,7 @@ describe('FlatteningTableMetadataEnhancer', () => {
               },
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.edfi",
+            "jsonPath": "$._ext.extension",
           },
         }
       `);

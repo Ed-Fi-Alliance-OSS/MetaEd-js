@@ -3558,7 +3558,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -5799,7 +5799,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -6134,7 +6134,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -8356,7 +8356,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -8940,7 +8940,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -10032,7 +10032,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -12416,7 +12416,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -12594,7 +12594,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
@@ -13032,7 +13032,7 @@
               }
             ],
             "isExtensionTable": true,
-            "jsonPath": "$._ext.ed-fi"
+            "jsonPath": "$._ext.sample"
           }
         },
         "identityJsonPaths": [
