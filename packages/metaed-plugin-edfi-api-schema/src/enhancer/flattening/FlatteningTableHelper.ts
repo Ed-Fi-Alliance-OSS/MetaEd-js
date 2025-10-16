@@ -8,6 +8,7 @@ import { adjustedFullPropertyName, canonicalRoleNamePrefix } from '../../Utility
 import { buildFlatteningPropertyChains } from './FlatteningPropertyChainBuilder';
 import { FlatteningPropertyChain } from '../../model/flattening/FlatteningPropertyChain';
 import { FlatteningTableNode, TablePath } from '../../model/flattening/FlatteningTableNode';
+import type { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 
 export const ROOT_TABLE_PATH: TablePath = '' as TablePath;
 
@@ -32,6 +33,8 @@ function propertyChainPath(chain: EntityProperty[]): MetaEdPropertyPath {
  */
 export function collectTableNodes(entity: TopLevelEntity): Map<MetaEdPropertyPath, FlatteningTableNode> {
   const nodes: Map<MetaEdPropertyPath, FlatteningTableNode> = new Map();
+  const apiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+  const { allJsonPathsMapping } = apiSchemaData;
   const propertyChains: FlatteningPropertyChain[] = buildFlatteningPropertyChains(entity);
 
   propertyChains.forEach((chain) => {
@@ -45,13 +48,49 @@ export function collectTableNodes(entity: TopLevelEntity): Map<MetaEdPropertyPat
       const propertyPath: MetaEdPropertyPath = propertyChainPath(pathProperties);
       const parentPath: TablePath = tableStack[tableStack.length - 1];
       // Record the table the first time we encounter the property path; subsequent visits share the same node.
-      if (!nodes.has(propertyPath)) {
-        nodes.set(propertyPath, {
+      let node = nodes.get(propertyPath);
+      if (node == null) {
+        node = {
           tablePath: propertyPath,
           property,
           parentPath,
           propertyChain: [...pathProperties],
-        });
+          collectionJsonPath: null,
+        };
+        nodes.set(propertyPath, node);
+      }
+
+      // Prefer the owning collection JSON path when the chain explicitly supplies one.
+      if (
+        chain.owningCollection != null &&
+        chain.owningCollection.collectionJsonPath != null &&
+        chain.owningCollection.propertyPath === propertyPath
+      ) {
+        node.collectionJsonPath = chain.owningCollection.collectionJsonPath;
+      }
+
+      // Use direct mapping metadata if no collection path was found.
+      if (node.collectionJsonPath == null) {
+        const mappingEntry = allJsonPathsMapping[propertyPath];
+        if (mappingEntry?.collectionContainerJsonPath != null) {
+          node.collectionJsonPath = mappingEntry.collectionContainerJsonPath;
+        }
+      }
+
+      // Inspect descendant mappings to infer the collection container path if no path found.
+      if (node.collectionJsonPath == null) {
+        const prefix = propertyPath === '' ? '' : `${propertyPath}.`;
+        if (prefix !== '') {
+          Object.entries(allJsonPathsMapping).forEach(([candidatePath, candidateInfo]) => {
+            if (node.collectionJsonPath != null) return;
+            if (!candidatePath.startsWith(prefix)) return;
+
+            const containerPath = candidateInfo.collectionContainerJsonPath;
+            if (containerPath == null) return;
+
+            node.collectionJsonPath = containerPath;
+          });
+        }
       }
 
       // Maintain the stack of ancestor tables so deeper collections correctly identify their parents.

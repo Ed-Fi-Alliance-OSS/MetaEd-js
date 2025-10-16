@@ -118,6 +118,9 @@ type ColumnProcessingContext = {
   referencePropertyPaths: Set<MetaEdPropertyPath>;
 };
 
+const ROOT_JSON_PATH = '$' as JsonPath;
+const MISSING_TABLE_JSON_PATH = '###' as JsonPath;
+
 const entityTypesToEnhance = [
   'association',
   'associationSubclass',
@@ -138,8 +141,19 @@ function createRootTable(entity: TopLevelEntity): TableMetadata {
       ? `${entity.metaEdName}${entity.namespace.extensionEntitySuffix}`
       : entity.metaEdName;
 
+  let jsonPath: JsonPath = ROOT_JSON_PATH;
+  if (isExtensionEntity) {
+    invariant(
+      entity.baseEntity != null,
+      `Extension entity "${entity.namespace.projectName}.${entity.metaEdName}" is missing its base entity`,
+    );
+
+    jsonPath = `$._ext.${entity.namespace.projectName.toLowerCase()}` as JsonPath;
+  }
+
   return {
     baseName,
+    jsonPath,
     columns: [],
     childTables: [],
     ...(isExtensionEntity ? { isExtensionTable: true } : {}),
@@ -179,14 +193,30 @@ function initializeTablePreparation(entity: TopLevelEntity): TablePreparation {
     metadata: rootMetadata,
     processedKeys: new Set(),
   };
+  if (entity.type === 'domainEntityExtension' || entity.type === 'associationExtension') {
+    invariant(
+      entity.baseEntity != null,
+      `Extension entity "${entity.namespace.projectName}.${entity.metaEdName}" is missing its base entity`,
+    );
+    const parentBaseName = createRootTable(entity.baseEntity).baseName;
+    rootAssembly.parentReferenceColumn = {
+      columnName: `${parentBaseName}_Id`,
+      columnType: 'bigint',
+      isParentReference: true,
+      isRequired: true,
+    };
+  }
   const assembliesByPath: Map<TablePath, TableAssembly> = new Map([[ROOT_TABLE_PATH, rootAssembly]]);
 
   orderedNodes.forEach((node) => {
     const parentAssembly = assembliesByPath.get(node.parentPath);
     invariant(parentAssembly != null, `Parent table "${node.parentPath}" was not initialized for "${node.tablePath}"`);
 
+    const childJsonPath = node.collectionJsonPath ?? MISSING_TABLE_JSON_PATH;
+
     const childMetadata: TableMetadata = {
       baseName: `${parentAssembly.metadata.baseName}${deriveTableSuffix(node)}`,
+      jsonPath: childJsonPath,
       columns: [],
       childTables: [],
     };
@@ -389,10 +419,17 @@ function canonicalPropertyPath(propertyPath: string, sourceProperty: EntityPrope
  * Determines whether a property should be treated as optional due to optional ancestors in its chain.
  */
 function isOptionalDueToParent(chain: EntityProperty[]): boolean {
-  return chain
-    .slice(0, -1)
-    .filter((property) => property.type !== 'inlineCommon' && property.type !== 'choice' && property.type !== 'common')
-    .some((property) => property.isOptional || property.isOptionalCollection);
+  return chain.slice(0, -1).some((property) => {
+    if (property.type === 'choice') {
+      // Only one branch of a choice can be populated, so descendant columns must be nullable.
+      return true;
+    }
+    if (property.type === 'common') {
+      // Commons materialize into their own tables; if the row exists, the property values must follow original cardinality.
+      return false;
+    }
+    return property.isOptional || property.isOptionalCollection;
+  });
 }
 
 /**
@@ -418,7 +455,7 @@ function buildScalarColumn(
     containerJsonPath != null && !jsonPath.includes('[*]')
       ? (`${containerJsonPath}.${jsonPropertySegment}` as JsonPath)
       : jsonPath;
-  const optionalDueToParent = modifier.optionalDueToParent && containerJsonPath == null;
+  const { optionalDueToParent } = modifier;
 
   const column: ColumnMetadata = {
     columnName: prefixedName(sourceProperty.metaEdName, modifier),
@@ -426,6 +463,16 @@ function buildScalarColumn(
     jsonPath: effectiveJsonPath,
     isRequired: (sourceProperty.isRequired || sourceProperty.isPartOfIdentity) && !optionalDueToParent,
   };
+
+  if (column.columnType === 'descriptor') {
+    if (column.columnName.endsWith('DescriptorId')) {
+      // already correctly suffixed
+    } else if (column.columnName.endsWith('Descriptor')) {
+      column.columnName = `${column.columnName}Id`;
+    } else {
+      column.columnName = `${column.columnName}DescriptorId`;
+    }
+  }
 
   if (sourceProperty.isPartOfIdentity) column.isNaturalKey = true;
 
@@ -549,7 +596,7 @@ function computeEffectiveOptionalDueToParent(chainResolution: ChainResolution, c
     return derivedOptionalDueToParent;
   }
 
-  return modifierOptionalDueToParent && derivedOptionalDueToParent;
+  return modifierOptionalDueToParent || derivedOptionalDueToParent;
 }
 
 /**
@@ -634,6 +681,57 @@ function processScalarProperty(
 }
 
 /**
+ * Locate a scalar column with a JsonPath and peel off the terminal segment to
+ * recover the object-level JsonPath for its owning table.
+ */
+function deriveJsonPathFromScalarColumns(columns: ColumnMetadata[]): JsonPath | null {
+  const candidate = columns.find((column) => column.jsonPath != null && column.fromReferencePath == null);
+  if (candidate?.jsonPath == null) return null;
+
+  const lastDot = candidate.jsonPath.lastIndexOf('.');
+  if (lastDot <= 0) return null;
+
+  return candidate.jsonPath.slice(0, lastDot) as JsonPath;
+}
+
+/**
+ * For tables that still carry the placeholder jsonPath, attempt to derive the
+ * correct anchor from existing metadata for singleton commons
+ */
+function finalizeMissingTableJsonPaths(preparation: TablePreparation): void {
+  preparation.assembliesByPath.forEach((assembly: TableAssembly, tablePath: TablePath) => {
+    if (assembly.metadata.jsonPath !== MISSING_TABLE_JSON_PATH) return;
+
+    if (tablePath === ROOT_TABLE_PATH) return;
+
+    const node: FlatteningTableNode | undefined = preparation.nodesByPath.get(tablePath as MetaEdPropertyPath);
+    if (node == null) return;
+
+    const { property } = node;
+    if (property.type !== 'common') return;
+
+    const isCollection = property.isCollection || property.isOptionalCollection || property.isRequiredCollection;
+    if (isCollection) return;
+
+    const derivedPath: JsonPath | null = deriveJsonPathFromScalarColumns(assembly.metadata.columns);
+    if (derivedPath != null) {
+      assembly.metadata.jsonPath = derivedPath;
+    }
+  });
+}
+
+function assertAllTableJsonPathsResolved(entity: TopLevelEntity, preparation: TablePreparation): void {
+  preparation.assembliesByPath.forEach((assembly, tablePath) => {
+    invariant(
+      assembly.metadata.jsonPath !== MISSING_TABLE_JSON_PATH,
+      `Flattening table "${assembly.metadata.baseName}" (MetaEd path "${
+        tablePath === ROOT_TABLE_PATH ? '<root>' : tablePath
+      }") on "${entity.namespace.projectName}.${entity.metaEdName}" is missing a jsonPath.`,
+    );
+  });
+}
+
+/**
  * Populates scalar and reference columns for every table in the hierarchy.
  */
 function populateColumns(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaData, preparation: TablePreparation): void {
@@ -698,6 +796,9 @@ function populateColumns(entity: TopLevelEntity, apiSchemaData: EntityApiSchemaD
       assembly.metadata.columns.push(assembly.parentReferenceColumn);
     }
   });
+
+  finalizeMissingTableJsonPaths(preparation);
+  assertAllTableJsonPathsResolved(entity, preparation);
 }
 
 /**

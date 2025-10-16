@@ -1468,7 +1468,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.degreeSpecializations[*]"
               },
               {
                 "baseName": "CandidateEducatorPreparationProgramAssociationCohortYear",
@@ -1483,14 +1484,14 @@
                     "jsonPath": "$.cohortYears[*].schoolYearTypeReference.schoolYear"
                   },
                   {
-                    "columnName": "CohortYearType",
+                    "columnName": "CohortYearTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
                     "jsonPath": "$.cohortYears[*].cohortYearTypeDescriptor"
                   },
                   {
-                    "columnName": "Term",
+                    "columnName": "TermDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.cohortYears[*].termDescriptor"
@@ -1501,7 +1502,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.cohortYears[*]"
               }
             ],
             "columns": [
@@ -1533,18 +1535,19 @@
                 "jsonPath": "$.endDate"
               },
               {
-                "columnName": "ReasonExited",
+                "columnName": "ReasonExitedDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.reasonExitedDescriptor"
               },
               {
-                "columnName": "EPPProgramPathway",
+                "columnName": "EPPProgramPathwayDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.eppProgramPathwayDescriptor"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -3050,7 +3053,7 @@
                     "maxLength": "60"
                   },
                   {
-                    "columnName": "PersonalInformationVerification",
+                    "columnName": "PersonalInformationVerificationDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3077,13 +3080,13 @@
                     "maxLength": "150"
                   },
                   {
-                    "columnName": "PersonalIssuerCountry",
+                    "columnName": "PersonalIssuerCountryDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.personalIdentificationDocuments[*].issuerCountryDescriptor"
                   },
                   {
-                    "columnName": "PersonalIdentificationDocumentUse",
+                    "columnName": "PersonalIdentificationDocumentUseDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3095,7 +3098,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.personalIdentificationDocuments[*]"
               },
               {
                 "baseName": "CandidateOtherName",
@@ -3138,7 +3142,7 @@
                     "maxLength": "10"
                   },
                   {
-                    "columnName": "OtherNameType",
+                    "columnName": "OtherNameTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3150,7 +3154,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.otherNames[*]"
               },
               {
                 "baseName": "CandidateAddress",
@@ -3179,7 +3184,8 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ]
+                    ],
+                    "jsonPath": "$.addresses[*].periods[*]"
                   }
                 ],
                 "columns": [
@@ -3214,7 +3220,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "StateAbbreviation",
+                    "columnName": "StateAbbreviationDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3257,7 +3263,7 @@
                     "maxLength": "20"
                   },
                   {
-                    "columnName": "AddressType",
+                    "columnName": "AddressTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3277,7 +3283,7 @@
                     "maxLength": "30"
                   },
                   {
-                    "columnName": "Locale",
+                    "columnName": "LocaleDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.addresses[*].localeDescriptor"
@@ -3288,7 +3294,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.addresses[*]"
               },
               {
                 "baseName": "CandidateTelephone",
@@ -3304,7 +3311,7 @@
                     "maxLength": "24"
                   },
                   {
-                    "columnName": "TelephoneNumberType",
+                    "columnName": "TelephoneNumberTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3334,7 +3341,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.telephones[*]"
               },
               {
                 "baseName": "CandidateElectronicMail",
@@ -3350,7 +3358,7 @@
                     "maxLength": "128"
                   },
                   {
-                    "columnName": "ElectronicMailType",
+                    "columnName": "ElectronicMailTypeDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3374,7 +3382,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.electronicMails[*]"
               },
               {
                 "baseName": "CandidateRace",
@@ -3382,7 +3391,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "Race",
+                    "columnName": "RaceDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.races[*].raceDescriptor"
@@ -3393,7 +3402,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.races[*]"
               },
               {
                 "baseName": "CandidateLanguage",
@@ -3404,7 +3414,7 @@
                     ],
                     "columns": [
                       {
-                        "columnName": "LanguageUse",
+                        "columnName": "LanguageUseDescriptorId",
                         "columnType": "descriptor",
                         "isRequired": false,
                         "jsonPath": "$.languages[*].uses[*].languageUseDescriptor"
@@ -3415,12 +3425,13 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ]
+                    ],
+                    "jsonPath": "$.languages[*].uses[*]"
                   }
                 ],
                 "columns": [
                   {
-                    "columnName": "Language",
+                    "columnName": "LanguageDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3432,7 +3443,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.languages[*]"
               },
               {
                 "baseName": "CandidateDisability",
@@ -3443,7 +3455,7 @@
                     ],
                     "columns": [
                       {
-                        "columnName": "DisabilityDesignation",
+                        "columnName": "DisabilityDesignationDescriptorId",
                         "columnType": "descriptor",
                         "isRequired": false,
                         "jsonPath": "$.disabilities[*].designations[*].disabilityDesignationDescriptor"
@@ -3454,12 +3466,13 @@
                         "isParentReference": true,
                         "isRequired": true
                       }
-                    ]
+                    ],
+                    "jsonPath": "$.disabilities[*].designations[*]"
                   }
                 ],
                 "columns": [
                   {
-                    "columnName": "Disability",
+                    "columnName": "DisabilityDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -3479,7 +3492,7 @@
                     "jsonPath": "$.disabilities[*].orderOfDisability"
                   },
                   {
-                    "columnName": "DisabilityDeterminationSourceType",
+                    "columnName": "DisabilityDeterminationSourceTypeDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.disabilities[*].disabilityDeterminationSourceTypeDescriptor"
@@ -3490,7 +3503,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.disabilities[*]"
               }
             ],
             "columns": [
@@ -3559,7 +3573,7 @@
                 "maxLength": "75"
               },
               {
-                "columnName": "Sex",
+                "columnName": "SexDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.sexDescriptor"
@@ -3578,7 +3592,7 @@
                 "maxLength": "30"
               },
               {
-                "columnName": "BirthStateAbbreviation",
+                "columnName": "BirthStateAbbreviationDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.birthStateAbbreviationDescriptor"
@@ -3591,7 +3605,7 @@
                 "maxLength": "150"
               },
               {
-                "columnName": "BirthCountry",
+                "columnName": "BirthCountryDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.birthCountryDescriptor"
@@ -3609,7 +3623,7 @@
                 "jsonPath": "$.multipleBirthStatus"
               },
               {
-                "columnName": "BirthSex",
+                "columnName": "BirthSexDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.birthSexDescriptor"
@@ -3627,7 +3641,7 @@
                 "jsonPath": "$.economicDisadvantaged"
               },
               {
-                "columnName": "LimitedEnglishProficiency",
+                "columnName": "LimitedEnglishProficiencyDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.limitedEnglishProficiencyDescriptor"
@@ -3640,13 +3654,13 @@
                 "maxLength": "30"
               },
               {
-                "columnName": "Gender",
+                "columnName": "GenderDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.genderDescriptor"
               },
               {
-                "columnName": "EnglishLanguageExam",
+                "columnName": "EnglishLanguageExamDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.englishLanguageExamDescriptor"
@@ -3663,7 +3677,8 @@
                 "fromReferencePath": "Person",
                 "isRequired": false
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -7414,7 +7429,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$._ext.tpdm.studentAcademicRecords[*]"
               }
             ],
             "columns": [
@@ -7432,7 +7448,7 @@
                 "maxLength": "64"
               },
               {
-                "columnName": "CertificationRoute",
+                "columnName": "CertificationRouteDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$._ext.tpdm.certificationRouteDescriptor"
@@ -7444,7 +7460,7 @@
                 "jsonPath": "$._ext.tpdm.boardCertificationIndicator"
               },
               {
-                "columnName": "CredentialStatus",
+                "columnName": "CredentialStatusDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$._ext.tpdm.credentialStatusDescriptor"
@@ -7456,13 +7472,20 @@
                 "jsonPath": "$._ext.tpdm.credentialStatusDate"
               },
               {
-                "columnName": "EducatorRole",
+                "columnName": "EducatorRoleDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$._ext.tpdm.educatorRoleDescriptor"
+              },
+              {
+                "columnName": "Credential_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [
@@ -7779,7 +7802,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "GradeLevel",
+                    "columnName": "GradeLevelDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.gradeLevels[*].gradeLevelDescriptor"
@@ -7790,7 +7813,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.gradeLevels[*]"
               }
             ],
             "columns": [
@@ -7817,19 +7841,20 @@
                 "maxLength": "255"
               },
               {
-                "columnName": "ProgramType",
+                "columnName": "ProgramTypeDescriptorId",
                 "columnType": "descriptor",
                 "isNaturalKey": true,
                 "isRequired": true,
                 "jsonPath": "$.programTypeDescriptor"
               },
               {
-                "columnName": "AccreditationStatus",
+                "columnName": "AccreditationStatusDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.accreditationStatusDescriptor"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -10985,7 +11010,7 @@
                     "scale": "3"
                   },
                   {
-                    "columnName": "ElementResultDatatypeType",
+                    "columnName": "ElementResultDatatypeTypeDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": true,
                     "jsonPath": "$.elementRatingResults[*].resultDatatypeTypeDescriptor"
@@ -10997,7 +11022,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.elementRatingResults[*]"
               }
             ],
             "columns": [
@@ -11016,7 +11042,7 @@
                 "isRequired": true
               },
               {
-                "columnName": "EvaluationElementRatingLevel",
+                "columnName": "EvaluationElementRatingLevelDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationElementRatingLevelDescriptor"
@@ -11049,7 +11075,8 @@
                 "jsonPath": "$.feedback",
                 "maxLength": "2048"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -12277,7 +12304,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "ElementEvaluationRatingLevel",
+                    "columnName": "ElementEvaluationRatingLevelDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -12306,7 +12333,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.ratingLevels[*]"
               }
             ],
             "columns": [
@@ -12348,12 +12376,13 @@
                 "scale": "3"
               },
               {
-                "columnName": "EvaluationType",
+                "columnName": "EvaluationTypeDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationTypeDescriptor"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -13478,7 +13507,7 @@
                     "scale": "3"
                   },
                   {
-                    "columnName": "ObjectiveResultDatatypeType",
+                    "columnName": "ObjectiveResultDatatypeTypeDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": true,
                     "jsonPath": "$.objectiveRatingResults[*].resultDatatypeTypeDescriptor"
@@ -13490,7 +13519,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.objectiveRatingResults[*]"
               }
             ],
             "columns": [
@@ -13509,7 +13539,7 @@
                 "isRequired": true
               },
               {
-                "columnName": "ObjectiveRatingLevel",
+                "columnName": "ObjectiveRatingLevelDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.objectiveRatingLevelDescriptor"
@@ -13521,7 +13551,8 @@
                 "jsonPath": "$.comments",
                 "maxLength": "1024"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -14621,7 +14652,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "ObjectiveEvaluationRatingLevel",
+                    "columnName": "ObjectiveEvaluationRatingLevelDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -14650,7 +14681,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.ratingLevels[*]"
               }
             ],
             "columns": [
@@ -14699,12 +14731,13 @@
                 "scale": "3"
               },
               {
-                "columnName": "EvaluationType",
+                "columnName": "EvaluationTypeDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationTypeDescriptor"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -17586,7 +17619,8 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$.reviewers[*]"
                   }
                 ],
                 "columns": [
@@ -17619,7 +17653,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.reviewers[*]"
               },
               {
                 "baseName": "EvaluationRatingEvaluationRatingResult",
@@ -17644,7 +17679,7 @@
                     "scale": "3"
                   },
                   {
-                    "columnName": "EvaluationResultDatatypeType",
+                    "columnName": "EvaluationResultDatatypeTypeDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": true,
                     "jsonPath": "$.results[*].resultDatatypeTypeDescriptor"
@@ -17656,7 +17691,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.results[*]"
               }
             ],
             "columns": [
@@ -17682,7 +17718,7 @@
                 "jsonPath": "$.evaluationDate"
               },
               {
-                "columnName": "EvaluationRatingLevel",
+                "columnName": "EvaluationRatingLevelDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationRatingLevelDescriptor"
@@ -17694,7 +17730,7 @@
                 "isRequired": false
               },
               {
-                "columnName": "EvaluationRatingStatus",
+                "columnName": "EvaluationRatingStatusDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationRatingStatusDescriptor"
@@ -17712,7 +17748,8 @@
                 "isRequired": false,
                 "jsonPath": "$.actualDuration"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -19609,7 +19646,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "EvaluationRatingLevel",
+                    "columnName": "EvaluationRatingLevelDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -19638,7 +19675,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.ratingLevels[*]"
               }
             ],
             "columns": [
@@ -19681,7 +19719,7 @@
                 "scale": "3"
               },
               {
-                "columnName": "EvaluationType",
+                "columnName": "EvaluationTypeDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.evaluationTypeDescriptor"
@@ -19692,7 +19730,8 @@
                 "isRequired": false,
                 "jsonPath": "$.interRaterReliabilityScore"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -20629,7 +20668,7 @@
                 "maxLength": "1024"
               },
               {
-                "columnName": "AidType",
+                "columnName": "AidTypeDescriptorId",
                 "columnType": "descriptor",
                 "isNaturalKey": true,
                 "isRequired": true,
@@ -20649,7 +20688,8 @@
                 "isRequired": false,
                 "jsonPath": "$.pellGrantRecipient"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -23198,7 +23238,7 @@
                     "scale": "3"
                   },
                   {
-                    "columnName": "PerformanceEvaluationResultDatatypeType",
+                    "columnName": "PerformanceEvaluationResultDatatypeTypeDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": true,
                     "jsonPath": "$.results[*].resultDatatypeTypeDescriptor"
@@ -23210,7 +23250,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.results[*]"
               },
               {
                 "baseName": "PerformanceEvaluationRatingReviewer",
@@ -23239,7 +23280,8 @@
                         "isRequired": true
                       }
                     ],
-                    "isExtensionTable": true
+                    "isExtensionTable": true,
+                    "jsonPath": "$.reviewers[*]"
                   }
                 ],
                 "columns": [
@@ -23272,7 +23314,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.reviewers[*]"
               }
             ],
             "columns": [
@@ -23310,7 +23353,7 @@
                 "maxLength": "1024"
               },
               {
-                "columnName": "CoteachingStyleObserved",
+                "columnName": "CoteachingStyleObservedDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.coteachingStyleObservedDescriptor"
@@ -23322,7 +23365,7 @@
                 "jsonPath": "$.actualDuration"
               },
               {
-                "columnName": "PerformanceEvaluationRatingLevel",
+                "columnName": "PerformanceEvaluationRatingLevelDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.performanceEvaluationRatingLevelDescriptor"
@@ -23339,7 +23382,8 @@
                 "isRequired": false,
                 "jsonPath": "$.actualTime"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -25114,7 +25158,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "PerformanceEvaluationEvaluationRatingLevel",
+                    "columnName": "PerformanceEvaluationEvaluationRatingLevelDescriptorId",
                     "columnType": "descriptor",
                     "isNaturalKey": true,
                     "isRequired": true,
@@ -25143,7 +25187,8 @@
                     "isRequired": true
                   }
                 ],
-                "isExtensionTable": true
+                "isExtensionTable": true,
+                "jsonPath": "$.ratingLevels[*]"
               },
               {
                 "baseName": "PerformanceEvaluationGradeLevel",
@@ -25151,7 +25196,7 @@
                 ],
                 "columns": [
                   {
-                    "columnName": "GradeLevel",
+                    "columnName": "GradeLevelDescriptorId",
                     "columnType": "descriptor",
                     "isRequired": false,
                     "jsonPath": "$.gradeLevels[*].gradeLevelDescriptor"
@@ -25162,7 +25207,8 @@
                     "isParentReference": true,
                     "isRequired": true
                   }
-                ]
+                ],
+                "jsonPath": "$.gradeLevels[*]"
               }
             ],
             "columns": [
@@ -25182,14 +25228,14 @@
                 "maxLength": "255"
               },
               {
-                "columnName": "Term",
+                "columnName": "TermDescriptorId",
                 "columnType": "descriptor",
                 "isNaturalKey": true,
                 "isRequired": true,
                 "jsonPath": "$.termDescriptor"
               },
               {
-                "columnName": "PerformanceEvaluationType",
+                "columnName": "PerformanceEvaluationTypeDescriptorId",
                 "columnType": "descriptor",
                 "isNaturalKey": true,
                 "isRequired": true,
@@ -25203,7 +25249,7 @@
                 "jsonPath": "$.schoolYearTypeReference.schoolYear"
               },
               {
-                "columnName": "EvaluationPeriod",
+                "columnName": "EvaluationPeriodDescriptorId",
                 "columnType": "descriptor",
                 "isNaturalKey": true,
                 "isRequired": true,
@@ -25217,12 +25263,13 @@
                 "isRequired": true
               },
               {
-                "columnName": "AcademicSubject",
+                "columnName": "AcademicSubjectDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.academicSubjectDescriptor"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -26126,7 +26173,7 @@
                 "jsonPath": "$.rubricRating"
               },
               {
-                "columnName": "RubricRatingLevel",
+                "columnName": "RubricRatingLevelDescriptorId",
                 "columnType": "descriptor",
                 "isRequired": false,
                 "jsonPath": "$.rubricRatingLevelDescriptor"
@@ -26144,7 +26191,8 @@
                 "isRequired": false,
                 "jsonPath": "$.dimensionOrder"
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -27553,9 +27601,16 @@
                 "columnType": "bigint",
                 "fromReferencePath": "PostSecondaryInstitution",
                 "isRequired": false
+              },
+              {
+                "columnName": "School_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [
@@ -27726,7 +27781,8 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [
@@ -28339,9 +28395,16 @@
                 "columnType": "bigint",
                 "fromReferencePath": "Person",
                 "isRequired": false
+              },
+              {
+                "columnName": "SurveyResponse_Id",
+                "columnType": "bigint",
+                "isParentReference": true,
+                "isRequired": true
               }
             ],
-            "isExtensionTable": true
+            "isExtensionTable": true,
+            "jsonPath": "$._ext.tpdm"
           }
         },
         "identityJsonPaths": [
@@ -28533,7 +28596,8 @@
                 "isNaturalKey": true,
                 "isRequired": true
               }
-            ]
+            ],
+            "jsonPath": "$"
           }
         },
         "identityJsonPaths": [

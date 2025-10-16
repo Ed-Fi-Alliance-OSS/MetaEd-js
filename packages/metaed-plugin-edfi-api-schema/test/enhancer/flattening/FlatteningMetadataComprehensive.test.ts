@@ -34,6 +34,7 @@ import {
   enumerationReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
   associationReferenceEnhancer,
+  associationExtensionBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../../src/model/EntityPropertyApiSchemaData';
 import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../../src/model/EntityApiSchemaData';
@@ -67,6 +68,7 @@ function runApiSchemaPrerequisites(metaEd: MetaEdEnvironment): void {
   enumerationReferenceEnhancer(metaEd);
   domainEntitySubclassBaseClassEnhancer(metaEd);
   domainEntityExtensionBaseClassEnhancer(metaEd);
+  associationExtensionBaseClassEnhancer(metaEd);
 
   // Data initialization
   entityPropertyApiSchemaDataSetupEnhancer(metaEd);
@@ -227,6 +229,7 @@ describe('when building simple domain entity with all the simple non-collections
               "jsonPath": "$.optionalYear",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -292,6 +295,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.optionalBooleanProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredCurrencyProperty",
@@ -310,6 +314,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredCurrencyProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameOptionalDecimalProperty",
@@ -330,6 +335,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.optionalDecimalProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredDurationProperty",
@@ -348,6 +354,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredDurationProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameOptionalPercentProperty",
@@ -366,6 +373,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.optionalPercentProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredDateProperty",
@@ -384,6 +392,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredDateProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredDatetimeProperty",
@@ -402,6 +411,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredDatetimeProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredIntegerProperty",
@@ -420,6 +430,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredIntegerProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameOptionalShortProperty",
@@ -438,6 +449,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.optionalShortProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredStringProperty",
@@ -457,6 +469,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredStringProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameRequiredTimeProperty",
@@ -475,6 +488,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredTimeProperties[*]",
             },
             Object {
               "baseName": "DomainEntityNameSchoolYear",
@@ -493,6 +507,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.schoolYearTypeReference[*]",
             },
             Object {
               "baseName": "DomainEntityNameOptionalYear",
@@ -511,6 +526,7 @@ describe('when building simple domain entity with all the simple collections', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.optionalYears[*]",
             },
           ],
           "columns": Array [
@@ -523,6 +539,7 @@ describe('when building simple domain entity with all the simple collections', (
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -594,6 +611,7 @@ describe('when building a domain entity referencing another referencing another 
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.classPeriods[*]",
             },
           ],
           "columns": Array [
@@ -613,6 +631,7 @@ describe('when building a domain entity referencing another referencing another 
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -642,6 +661,7 @@ describe('when building a domain entity referencing another referencing another 
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -671,6 +691,7 @@ describe('when building a domain entity referencing another referencing another 
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -693,6 +714,7 @@ describe('when building a domain entity referencing another referencing another 
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -765,6 +787,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -801,6 +824,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -837,6 +861,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -859,6 +884,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -931,7 +957,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "columnName": "DerivativeSource_EducationContent_Id",
                   "columnType": "bigint",
                   "fromReferencePath": "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent",
-                  "isRequired": true,
+                  "isRequired": false,
                 },
                 Object {
                   "columnName": "EducationContent_Id",
@@ -940,6 +966,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.derivativeSourceEducationContents[*]",
             },
             Object {
               "baseName": "EducationContentDerivativeSourceURI",
@@ -959,6 +986,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.derivativeSourceURIs[*]",
             },
             Object {
               "baseName": "EducationContentRequiredURI",
@@ -978,6 +1006,7 @@ describe('when building domain entity with nested choice and inline commons', ()
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.requiredURIs[*]",
             },
           ],
           "columns": Array [
@@ -992,7 +1021,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             Object {
               "columnName": "LearningResourceMetadataURI",
               "columnType": "string",
-              "isRequired": true,
+              "isRequired": false,
               "jsonPath": "$.learningResourceMetadataURI",
               "maxLength": "30",
             },
@@ -1006,17 +1035,18 @@ describe('when building domain entity with nested choice and inline commons', ()
             Object {
               "columnName": "ShortDescription",
               "columnType": "string",
-              "isRequired": true,
+              "isRequired": false,
               "jsonPath": "$.shortDescription",
               "maxLength": "30",
             },
             Object {
-              "columnName": "ContentClass",
+              "columnName": "ContentClassDescriptorId",
               "columnType": "descriptor",
-              "isRequired": true,
+              "isRequired": false,
               "jsonPath": "$.contentClassDescriptor",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1072,6 +1102,7 @@ describe('when building domain entity with scalar collection named with prefix o
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.suffixNames[*]",
             },
           ],
           "columns": Array [
@@ -1084,6 +1115,7 @@ describe('when building domain entity with scalar collection named with prefix o
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1143,6 +1175,7 @@ describe('when building domain entity with Association/DomainEntity collection n
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.educationContentSuffixNames[*]",
             },
           ],
           "columns": Array [
@@ -1155,6 +1188,7 @@ describe('when building domain entity with Association/DomainEntity collection n
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1177,6 +1211,7 @@ describe('when building domain entity with Association/DomainEntity collection n
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1231,6 +1266,7 @@ describe('when building domain entity with acronym property name', () => {
               "jsonPath": "$.iepBeginDate",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1290,7 +1326,7 @@ describe('when building domain entity with a simple common collection', () => {
                   "maxLength": "30",
                 },
                 Object {
-                  "columnName": "AssessmentIdentificationSystem",
+                  "columnName": "AssessmentIdentificationSystemDescriptorId",
                   "columnType": "descriptor",
                   "isNaturalKey": true,
                   "isRequired": true,
@@ -1303,6 +1339,7 @@ describe('when building domain entity with a simple common collection', () => {
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.identificationCodes[*]",
             },
           ],
           "columns": Array [
@@ -1314,6 +1351,7 @@ describe('when building domain entity with a simple common collection', () => {
               "jsonPath": "$.assessmentIdentifier",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1380,7 +1418,7 @@ describe('when building domain entity subclass with common collection and descri
                   "maxLength": "30",
                 },
                 Object {
-                  "columnName": "EducationOrganizationIdentificationSystem",
+                  "columnName": "EducationOrganizationIdentificationSystemDescriptorId",
                   "columnType": "descriptor",
                   "isNaturalKey": true,
                   "isRequired": true,
@@ -1393,6 +1431,7 @@ describe('when building domain entity subclass with common collection and descri
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.identificationCodes[*]",
             },
           ],
           "columns": Array [
@@ -1406,6 +1445,7 @@ describe('when building domain entity subclass with common collection and descri
             },
           ],
           "discriminatorValue": "CommunityOrganization",
+          "jsonPath": "$",
         },
       }
     `);
@@ -1481,6 +1521,7 @@ describe('when building association with a common collection in a common collect
                       "isRequired": true,
                     },
                   ],
+                  "jsonPath": "$.addresses[*].periods[*]",
                 },
               ],
               "columns": Array [
@@ -1498,6 +1539,7 @@ describe('when building association with a common collection in a common collect
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.addresses[*]",
             },
           ],
           "columns": Array [
@@ -1509,6 +1551,7 @@ describe('when building association with a common collection in a common collect
               "jsonPath": "$.studentId",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1559,12 +1602,13 @@ describe('when building domain entity with a descriptor with role name', () => {
               "jsonPath": "$.assessmentIdentifier",
             },
             Object {
-              "columnName": "AssessedGradeLevel",
+              "columnName": "AssessedGradeLevelDescriptorId",
               "columnType": "descriptor",
               "isRequired": false,
               "jsonPath": "$.assessedGradeLevelDescriptor",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1611,7 +1655,7 @@ describe('when building domain entity with a descriptor collection with role nam
               "childTables": Array [],
               "columns": Array [
                 Object {
-                  "columnName": "AssessedGradeLevel",
+                  "columnName": "AssessedGradeLevelDescriptorId",
                   "columnType": "descriptor",
                   "isRequired": false,
                   "jsonPath": "$.assessedGradeLevels[*].gradeLevelDescriptor",
@@ -1623,6 +1667,7 @@ describe('when building domain entity with a descriptor collection with role nam
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.assessedGradeLevels[*]",
             },
           ],
           "columns": Array [
@@ -1634,6 +1679,7 @@ describe('when building domain entity with a descriptor collection with role nam
               "jsonPath": "$.assessmentIdentifier",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1697,14 +1743,14 @@ describe('when building domain entity with a common with a choice', () => {
                 Object {
                   "columnName": "PublicationDate",
                   "columnType": "string",
-                  "isRequired": true,
+                  "isRequired": false,
                   "jsonPath": "$.contentStandard.publicationDate",
                   "maxLength": "30",
                 },
                 Object {
                   "columnName": "PublicationYear",
                   "columnType": "string",
-                  "isRequired": true,
+                  "isRequired": false,
                   "jsonPath": "$.contentStandard.publicationYear",
                   "maxLength": "30",
                 },
@@ -1715,6 +1761,7 @@ describe('when building domain entity with a common with a choice', () => {
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.contentStandard",
             },
           ],
           "columns": Array [
@@ -1726,6 +1773,7 @@ describe('when building domain entity with a common with a choice', () => {
               "jsonPath": "$.assessmentIdentifier",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1791,6 +1839,7 @@ describe('when building domain entity with a common and a common collection with
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.scores[*]",
             },
             Object {
               "baseName": "AssessmentAssessmentPeriod",
@@ -1810,6 +1859,7 @@ describe('when building domain entity with a common and a common collection with
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.period",
             },
           ],
           "columns": Array [
@@ -1821,6 +1871,7 @@ describe('when building domain entity with a common and a common collection with
               "jsonPath": "$.assessmentIdentifier",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1872,6 +1923,7 @@ describe('when building domain entity with an all-caps property', () => {
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1943,6 +1995,7 @@ describe('when building domain entity with a common with a domain entity referen
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.contentStandard",
             },
           ],
           "columns": Array [
@@ -1954,6 +2007,7 @@ describe('when building domain entity with a common with a domain entity referen
               "jsonPath": "$.assessmentIdentifier",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -1975,6 +2029,7 @@ describe('when building domain entity with a common with a domain entity referen
               "jsonPath": "$.educationOrganizationId",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2038,6 +2093,7 @@ describe('when building domain entity with two school year enumerations, one rol
               "jsonPath": "$.classOfSchoolYearTypeReference.schoolYear",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2094,6 +2150,7 @@ describe('when building domain entity with reference to domain entity with schoo
               "isRequired": false,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2122,6 +2179,7 @@ describe('when building domain entity with reference to domain entity with schoo
               "jsonPath": "$.schoolYearTypeReference.schoolYear",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2246,6 +2304,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.years[*]",
             },
           ],
           "columns": Array [
@@ -2258,6 +2317,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
               "maxLength": "100",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2318,12 +2378,13 @@ describe('when building a domain entity with an inline common property with a de
               "jsonPath": "$.sectionIdentifier",
             },
             Object {
-              "columnName": "AvailableCreditType",
+              "columnName": "AvailableCreditTypeDescriptorId",
               "columnType": "descriptor",
               "isRequired": false,
               "jsonPath": "$.availableCreditTypeDescriptor",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2389,6 +2450,7 @@ describe('when building a domain entity referencing another using a shortenTo di
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2411,6 +2473,7 @@ describe('when building a domain entity referencing another using a shortenTo di
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2471,6 +2534,7 @@ describe('when building a domain entity with different string properties', () =>
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2498,8 +2562,8 @@ describe('when domain entity extension references domain entity in different nam
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace('Extension')
-      .withStartDomainEntityExtension(entityName)
+      .withBeginNamespace('Extension', 'Extension')
+      .withStartDomainEntityExtension(`EdFi.${entityName}`)
       .withDomainEntityProperty(`EdFi.${referencedEntityName}`, 'doc', false, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -2528,8 +2592,15 @@ describe('when domain entity extension references domain entity in different nam
               "fromReferencePath": "ReferencedEntityName",
               "isRequired": false,
             },
+            Object {
+              "columnName": "EntityName_Id",
+              "columnType": "bigint",
+              "isParentReference": true,
+              "isRequired": true,
+            },
           ],
           "isExtensionTable": true,
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -2552,6 +2623,7 @@ describe('when domain entity extension references domain entity in different nam
               "jsonPath": "$.referencedIdentity",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2574,6 +2646,7 @@ describe('when domain entity extension references domain entity in different nam
               "jsonPath": "$.entityIdentity",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2639,6 +2712,7 @@ describe('when building a domain entity referencing another referencing another 
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2668,6 +2742,7 @@ describe('when building a domain entity referencing another referencing another 
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2690,6 +2765,7 @@ describe('when building a domain entity referencing another referencing another 
               "maxLength": "30",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -2774,6 +2850,7 @@ describe(
                 "isRequired": true,
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2802,6 +2879,7 @@ describe(
                 "isRequired": true,
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2823,6 +2901,7 @@ describe(
                 "isRequired": true,
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2851,6 +2930,7 @@ describe(
                 "isRequired": true,
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2872,6 +2952,7 @@ describe(
                 "jsonPath": "$.educationOrganizationId",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2894,6 +2975,7 @@ describe(
                 "maxLength": "30",
               },
             ],
+            "jsonPath": "$",
           },
         }
       `);
@@ -2970,6 +3052,7 @@ describe('when building domain entity with CommonSubclass property that inherits
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.pets[*]",
             },
             Object {
               "baseName": "StudentAquaticPet",
@@ -3001,6 +3084,7 @@ describe('when building domain entity with CommonSubclass property that inherits
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.aquaticPets[*]",
             },
           ],
           "columns": Array [
@@ -3013,6 +3097,7 @@ describe('when building domain entity with CommonSubclass property that inherits
               "maxLength": "32",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3105,6 +3190,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.vehicles[*]",
             },
             Object {
               "baseName": "SchoolElectricVehicle",
@@ -3163,6 +3249,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.electricVehicles[*]",
             },
           ],
           "columns": Array [
@@ -3175,6 +3262,7 @@ describe('when building domain entity with CommonSubclass with complex inheritan
               "maxLength": "32",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3206,7 +3294,7 @@ describe('when domain entity extension has common extension override property wi
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
       .withEndDomainEntityExtension()
@@ -3246,7 +3334,7 @@ describe('when domain entity extension has common extension override property wi
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.testCommon.commonId",
+                  "jsonPath": "$._ext.extension.testCommon.commonId",
                 },
                 Object {
                   "columnName": "TestEntityExtension_Id",
@@ -3256,10 +3344,19 @@ describe('when domain entity extension has common extension override property wi
                 },
               ],
               "isExtensionTable": true,
+              "jsonPath": "$._ext.extension.testCommon",
             },
           ],
-          "columns": Array [],
+          "columns": Array [
+            Object {
+              "columnName": "TestEntity_Id",
+              "columnType": "bigint",
+              "isParentReference": true,
+              "isRequired": true,
+            },
+          ],
           "isExtensionTable": true,
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3290,6 +3387,7 @@ describe('when domain entity extension has common extension override property wi
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.testCommon",
             },
           ],
           "columns": Array [
@@ -3301,6 +3399,7 @@ describe('when domain entity extension has common extension override property wi
               "jsonPath": "$.entityId",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3344,7 +3443,7 @@ describe('when association extension has common extension override property', ()
       .withEndAssociation()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartAssociationExtension(`${core}.${associationName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, false)
       .withEndAssociationExtension()
@@ -3386,7 +3485,7 @@ describe('when association extension has common extension override property', ()
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.common.commonId",
+                  "jsonPath": "$._ext.extension.common.commonId",
                 },
                 Object {
                   "columnName": "TestAssociationExtension_Id",
@@ -3396,10 +3495,19 @@ describe('when association extension has common extension override property', ()
                 },
               ],
               "isExtensionTable": true,
+              "jsonPath": "$._ext.extension.common",
             },
           ],
-          "columns": Array [],
+          "columns": Array [
+            Object {
+              "columnName": "TestAssociation_Id",
+              "columnType": "bigint",
+              "isParentReference": true,
+              "isRequired": true,
+            },
+          ],
           "isExtensionTable": true,
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3430,6 +3538,7 @@ describe('when association extension has common extension override property', ()
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.common",
             },
           ],
           "columns": Array [
@@ -3448,6 +3557,7 @@ describe('when association extension has common extension override property', ()
               "isRequired": true,
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3469,6 +3579,7 @@ describe('when association extension has common extension override property', ()
               "jsonPath": "$.entity1Id",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3490,6 +3601,7 @@ describe('when association extension has common extension override property', ()
               "jsonPath": "$.entity2Id",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);
@@ -3520,7 +3632,7 @@ describe('when extension override property has collection modifier', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace(extension)
+      .withBeginNamespace(extension, extension)
       .withStartDomainEntityExtension(`${core}.${domainEntityName}`)
       .withCommonExtensionOverrideProperty(`${core}.${commonName}`, 'doc', true, true)
       .withEndDomainEntityExtension()
@@ -3561,7 +3673,7 @@ describe('when extension override property has collection modifier', () => {
                   "columnType": "integer",
                   "isNaturalKey": true,
                   "isRequired": true,
-                  "jsonPath": "$._ext.edfi.collectionCommons[*].collectionId",
+                  "jsonPath": "$._ext.extension.collectionCommons[*].collectionId",
                 },
                 Object {
                   "columnName": "CollectionEntityExtension_Id",
@@ -3571,10 +3683,19 @@ describe('when extension override property has collection modifier', () => {
                 },
               ],
               "isExtensionTable": true,
+              "jsonPath": "$._ext.extension.collectionCommons[*]",
             },
           ],
-          "columns": Array [],
+          "columns": Array [
+            Object {
+              "columnName": "CollectionEntity_Id",
+              "columnType": "bigint",
+              "isParentReference": true,
+              "isRequired": true,
+            },
+          ],
           "isExtensionTable": true,
+          "jsonPath": "$._ext.extension",
         },
       }
     `);
@@ -3605,6 +3726,7 @@ describe('when extension override property has collection modifier', () => {
                   "isRequired": true,
                 },
               ],
+              "jsonPath": "$.collectionCommons[*]",
             },
           ],
           "columns": Array [
@@ -3616,6 +3738,7 @@ describe('when extension override property has collection modifier', () => {
               "jsonPath": "$.entityId",
             },
           ],
+          "jsonPath": "$",
         },
       }
     `);

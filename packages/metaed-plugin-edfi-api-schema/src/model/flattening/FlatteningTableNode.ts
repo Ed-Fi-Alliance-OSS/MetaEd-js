@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import type { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
+import type { JsonPath } from '../api-schema/JsonPath';
 
 /**
  * Identifier for a flattening table expressed as a MetaEd property path (empty string for the root table).
@@ -33,4 +34,10 @@ export type FlatteningTableNode = {
    * The property chain leading to this table, including inline commons and choices for naming info.
    */
   propertyChain: EntityProperty[];
+
+  /**
+   * JsonPath pointing to the collection/object that materializes this table, if available.
+   * Root tables will have this unset and will default to '$' during assembly.
+   */
+  collectionJsonPath: JsonPath | null;
 };
