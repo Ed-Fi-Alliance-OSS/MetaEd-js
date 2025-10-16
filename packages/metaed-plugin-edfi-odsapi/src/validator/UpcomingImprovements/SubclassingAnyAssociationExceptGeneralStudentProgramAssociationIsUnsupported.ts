@@ -4,15 +4,13 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 // 3.1.X.12 - METAED-701 - METAED-761
-import { MetaEdEnvironment, ValidationFailure, SemVer, AssociationSubclass } from '@edfi/metaed-core';
-import { versionSatisfies, V3OrGreater, getAllEntitiesOfType } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, AssociationSubclass } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 
 const validatorName = 'SubclassingAnyAssociationExceptGeneralStudentProgramAssociationIsUnsupported';
-const targetVersions: SemVer = V3OrGreater;
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return failures;
 
   (getAllEntitiesOfType(metaEd, 'associationSubclass') as AssociationSubclass[]).forEach(
     (associationSubclass: AssociationSubclass) => {
