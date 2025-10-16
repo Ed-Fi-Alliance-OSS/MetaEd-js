@@ -78,7 +78,7 @@ jobs:
         if: matrix.config == 'tpdm'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          repository: Ed-Fi-Closed/Ed-Fi-TPDM-Model
+          repository: Ed-Fi-Alliance-OSS/Ed-Fi-TPDM-Model
           path: Ed-Fi-TPDM-Model/
           ref: ${{ matrix.ds.tpdm-tag-name }}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
