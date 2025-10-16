@@ -7,7 +7,6 @@ import {
   getEntitiesOfTypeForNamespaces,
   versionSatisfies,
   NoNamespace,
-  V3OrGreater,
   targetTechnologyVersionFor,
   SemVer,
   MetaEdPropertyPath,
@@ -33,7 +32,6 @@ import { buildTableFor } from './TableBuilder';
 const enhancerName = 'DomainEntityExtensionTableEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (!versionSatisfies(metaEd.dataStandardVersion, V3OrGreater)) return { enhancerName, success: true };
   const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
 
   getEntitiesOfTypeForNamespaces(Array.from(metaEd.namespace.values()), 'domainEntityExtension')
