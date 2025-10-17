@@ -7,16 +7,16 @@
       {
         "namespaceName": "EdFi",
         "projectName": "Ed-Fi",
-        "projectVersion": "3.3.1-b",
+        "projectVersion": "5.2.0",
         "projectExtension": "",
-        "description": "The Ed-Fi Data Model 3.3b"
+        "description": "The Ed-Fi Data Model 5.2"
       }
     ],
     "projectPaths": [
-      "C:\\source\\ed-fi\\MetaEd-Js\\build\\node_modules\\@edfi\\ed-fi-model-3.3b"
+      "C:\\source\\ed-fi\\MetaEd-Js\\build\\node_modules\\@edfi\\ed-fi-model-5.2"
     ],
     "pluginConfigDirectories": [],
-    "defaultPluginTechVersion": "5.3.0",
+    "defaultPluginTechVersion": "7.3.0",
     "allianceMode": true,
     "suppressPrereleaseVersion": true
   }
