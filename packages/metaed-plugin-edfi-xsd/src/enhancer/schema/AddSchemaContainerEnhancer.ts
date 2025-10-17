@@ -4,12 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, PluginEnvironment } from '@edfi/metaed-core';
 import {
   formatVersionWithSuppressPrereleaseVersion,
   getAllEntitiesOfType,
   orderByProp,
-  V3OrGreater,
   V7OrGreater,
   versionSatisfies,
 } from '@edfi/metaed-core';
@@ -39,7 +38,6 @@ import {
 import { baseTypeDescriptorReference, typeGroupBase } from './AddComplexTypesBaseEnhancer';
 
 const enhancerName = 'AddSchemaContainerEnhancer';
-const targetVersions: SemVer = V3OrGreater;
 
 const complexTypesFrom = R.chain((x: TopLevelEntity) => (x.data.edfiXsd as TopLevelEntityEdfiXsd).xsdComplexTypes);
 const extendedReferenceTypesFrom = R.map(
@@ -183,7 +181,6 @@ function baseSchemaSection() {
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
   const versionSatisfiesV7OrGreater = versionSatisfies(
     (metaEd.plugin.get('edfiXsd') as PluginEnvironment)?.targetTechnologyVersion,
     V7OrGreater,

@@ -35,7 +35,7 @@ const metaEdConfiguration = {
       projectName: 'Ed-Fi',
       namespaceName: 'EdFi',
       projectExtension: '',
-      projectVersion: '3.2.0-c',
+      projectVersion: '5.2.0',
       description: '',
     },
     {
@@ -65,7 +65,7 @@ describe('when building a simple core and two simple extension projects', (): vo
       metaEdPlugins: metaEdPlugins(),
     };
 
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

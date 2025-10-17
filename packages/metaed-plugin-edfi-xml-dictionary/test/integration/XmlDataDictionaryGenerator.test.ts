@@ -20,7 +20,7 @@ import { complexTypesWorksheetName } from '../../src/model/ComplexTypes';
 import { simpleTypesWorksheetName } from '../../src/model/SimpleTypes';
 
 describe('when generating xsd for domain entity', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;

@@ -6,6 +6,9 @@ The Alliance [Ed-Fi-Model repository](https://github.com/Ed-Fi-Closed/Ed-Fi-Mode
 the .metaed files that define the Ed-Fi Data Standard for versions 2.0 and up.  Work on new versions of the Data Standard
 takes place here, and it is the source for the core Data Standard files consumed by MetaEd.
 
+[!WARNING]
+`Ed-Fi-Model` is a private repository, only accessible to Ed-Fi Alliance staff and contractors.
+
 ## Versioning
 
 Versions of the MetaEd technology must be able to change independently from the Data Standard as defined in .metaed files.

@@ -34,7 +34,7 @@ import { enhance } from '../../../src/enhancer/schema/AddSchemaContainerEnhancer
 import { baseTypeDescriptorReference } from '../../../src/enhancer/schema/AddComplexTypesBaseEnhancer';
 
 describe('when enhancing namespace info for core', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const namespaceName = 'EdFi';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
   let createdSchema: SchemaContainer;
@@ -72,7 +72,7 @@ describe('when enhancing namespace info for core', (): void => {
 });
 
 describe('when enhancing namespace info for extension', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const namespaceName = 'EdFi';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
   const extensionNamespaceName = 'extensionNamespace';
@@ -119,7 +119,7 @@ describe('when enhancing namespace info for extension', (): void => {
 });
 
 describe('when enhancing namespace info for core with children', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const namespaceName = 'EdFi';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
   const extensionNamespaceName = 'extensionNamespace';
