@@ -35,7 +35,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -96,7 +96,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
