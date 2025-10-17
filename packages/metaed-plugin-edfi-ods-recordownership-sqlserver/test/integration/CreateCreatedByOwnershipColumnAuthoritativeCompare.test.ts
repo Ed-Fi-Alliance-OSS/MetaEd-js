@@ -35,13 +35,13 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-c',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -52,7 +52,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -96,13 +96,13 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-c',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -114,7 +114,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
