@@ -44,7 +44,7 @@
         "entityName": "OrganizationDepartment"
       },
       "data": {
-        "versionRange": ">=3.3.0-a",
+        "versionRange": ">=4.0.0",
         "mode": "replace",
         "securableElements": [
           {
