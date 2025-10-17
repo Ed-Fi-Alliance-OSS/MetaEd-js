@@ -27,7 +27,7 @@ import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating xsd and comparing it to data standard 3.1 authoritative artifacts', (): void => {
+describe('when generating xsd and comparing it to data standard 5.2 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
@@ -68,13 +68,13 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-c',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -85,7 +85,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -154,7 +154,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
   });
 });
 
-describe('when generating xsd with extension and comparing it to data standard 3.1 authoritative artifacts', (): void => {
+describe('when generating xsd with extension and comparing it to data standard 5.2 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
@@ -195,7 +195,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -219,7 +219,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

@@ -3,20 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  MetaEdEnvironment,
-  Namespace,
-  ValidationFailure,
-  PluginEnvironment,
-  TopLevelEntity,
-  versionSatisfies,
-  V3OrGreater,
-} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, ValidationFailure, TopLevelEntity } from '@edfi/metaed-core';
 import { duplicateNameFinder } from './DuplicateNameFinder';
-
-function isTargetTechnologyVersion(metaEd: MetaEdEnvironment): boolean {
-  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, V3OrGreater);
-}
 
 function failureCollector(
   failures: ValidationFailure[],
@@ -34,7 +22,6 @@ function failureCollector(
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  if (!isTargetTechnologyVersion(metaEd)) return failures;
   duplicateNameFinder(metaEd, failures, failureCollector);
   return failures;
 }
