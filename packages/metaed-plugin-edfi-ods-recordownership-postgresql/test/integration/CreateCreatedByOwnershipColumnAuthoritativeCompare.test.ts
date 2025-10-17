@@ -41,7 +41,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -52,7 +52,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -102,7 +102,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -114,7 +114,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
