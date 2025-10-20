@@ -20,7 +20,7 @@ import { tablesWorksheetName } from '../../src/model/Tables';
 import { columnsWorksheetName } from '../../src/model/Columns';
 
 describe('when generating a simple sql data dictionary', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
