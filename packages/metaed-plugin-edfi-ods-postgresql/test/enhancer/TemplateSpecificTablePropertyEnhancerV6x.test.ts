@@ -66,7 +66,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with alterna
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -119,7 +119,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -220,7 +220,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with foreign
     tableEntities(metaEd, namespace).set(foreignTable1.tableId, foreignTable1);
     tableEntities(metaEd, namespace).set(foreignTable2.tableId, foreignTable2);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerTableNamingEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
@@ -288,7 +288,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with unique 
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -347,7 +347,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -392,7 +392,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table and columns 
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
