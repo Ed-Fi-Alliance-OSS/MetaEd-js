@@ -5,13 +5,7 @@
 
 import * as R from 'ramda';
 import xmlParser from 'xml-js';
-import {
-  defaultPluginTechVersion,
-  GeneratorResult,
-  newMetaEdEnvironment,
-  newNamespace,
-  newPluginEnvironment,
-} from '@edfi/metaed-core';
+import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace, GeneratedOutput } from '@edfi/metaed-core';
 import {
   addEdFiXsdEntityRepositoryTo,
@@ -30,7 +24,7 @@ describe('when generating core interchange', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
 
@@ -81,7 +75,7 @@ describe('when generating core interchange on DS 5.1', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
 
@@ -139,7 +133,7 @@ describe('when generating extension interchange', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
 
@@ -198,7 +192,7 @@ describe('when generating core and extension interchange', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
 
@@ -298,7 +292,7 @@ describe('when generating core and extension interchange with same interchange n
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
 

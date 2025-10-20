@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  defaultPluginTechVersion,
   newMetaEdEnvironment,
   newPluginEnvironment,
   MetaEdTextBuilder,
@@ -20,7 +19,7 @@ describe('when an association extension extends an association with no required 
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
   const entityName = 'EntityName';
@@ -57,7 +56,7 @@ describe('when an association extension extends an association with a required p
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
   const entityName = 'EntityName';

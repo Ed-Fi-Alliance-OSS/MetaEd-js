@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import {
-  defaultPluginTechVersion,
   newMetaEdEnvironment,
   newPluginEnvironment,
   MetaEdTextBuilder,
@@ -20,7 +19,7 @@ describe('when a domain entity extension extends a domain entity with no require
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
   const entityName = 'EntityName';
@@ -57,7 +56,7 @@ describe('when a domain entity extension extends a domain entity with a required
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: defaultPluginTechVersion,
+      targetTechnologyVersion: '5.2.0',
     }),
   );
   const entityName = 'EntityName';
