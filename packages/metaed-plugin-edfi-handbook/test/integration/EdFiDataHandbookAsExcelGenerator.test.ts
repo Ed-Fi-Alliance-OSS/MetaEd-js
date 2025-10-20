@@ -29,7 +29,7 @@ import { generate } from '../../src/generator/EdFiDataHandbookAsExcelGenerator';
 import { handbookWorksheetName } from '../../src/model/HandbookRow';
 
 describe('when generating excel version of handbook', (): void => {
-  const dataStandardVersion: SemVer = '3.2.0-c';
+  const dataStandardVersion: SemVer = '5.2.0';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
