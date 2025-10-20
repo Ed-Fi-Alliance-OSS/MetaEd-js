@@ -23,7 +23,7 @@ import { nextHead, nextSecond, nextThird, nextLength, xsdAttributeName, xsdAttri
 import { generate } from '../../src/generator/interchangeOrderMetadata/InterchangeOrderMetadataGenerator';
 
 describe('when generating core interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
@@ -74,7 +74,7 @@ describe('when generating core interchange', (): void => {
 });
 
 describe('when generating core interchange on DS 5.1', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
@@ -125,7 +125,7 @@ describe('when generating core interchange on DS 5.1', (): void => {
 });
 
 describe('when generating extension interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -184,7 +184,7 @@ describe('when generating extension interchange', (): void => {
 });
 
 describe('when generating core and extension interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -284,7 +284,7 @@ describe('when generating core and extension interchange', (): void => {
 });
 
 describe('when generating core and extension interchange with same interchange name', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
