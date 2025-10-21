@@ -9,7 +9,7 @@ import { SemVer } from './MetaEdEnvironment';
 /**
  * The default plugin technology version, which is typically the lowest supported technology version of the ODS/API.
  */
-export const defaultPluginTechVersion: SemVer = '5.3.0';
+export const defaultPluginTechVersion: SemVer = '6.0.0';
 
 /**
  *

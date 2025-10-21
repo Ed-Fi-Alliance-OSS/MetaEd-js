@@ -301,7 +301,7 @@ describe('when building an api property from a decimal column with min/max value
     ],
   };
 
-  const apiProperty: ApiProperty = buildApiProperty(column, '5.3.0');
+  const apiProperty: ApiProperty = buildApiProperty(column, '6.0.0');
 
   it('should have correct api property', (): void => {
     expect(apiProperty).toMatchInlineSnapshot(`
@@ -347,7 +347,7 @@ describe('when building an api property from a decimal column without min/max va
     ],
   };
 
-  const apiProperty: ApiProperty = buildApiProperty(column, '5.3.0');
+  const apiProperty: ApiProperty = buildApiProperty(column, '6.0.0');
 
   it('should have correct api property', (): void => {
     expect(apiProperty).toMatchInlineSnapshot(`
