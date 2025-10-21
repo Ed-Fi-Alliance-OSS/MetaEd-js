@@ -63,6 +63,10 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
       sourceMap: sourceMapFrom(context),
       fileMap: null,
     });
+
+    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
+      this.validationFailures.push(deprecationWarning(context, `The 'is weak' keyword`));
+    }
   }
 
   // deprecate 'renames identity property' in extensions

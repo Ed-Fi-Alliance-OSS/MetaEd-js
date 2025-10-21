@@ -55,7 +55,7 @@ interface InterchangeMetadata {
   elements: ElementMetadata[];
 }
 
-const targetTechnologyVersion: SemVer = '<5.3.0';
+const targetTechnologyVersion: SemVer = '<6.0.0';
 
 function getInterchangeMetadataFor(interchange: MergedInterchange): InterchangeMetadata {
   const elements: ElementMetadata[] = interchange.data.edfiOdsApi.apiOrderedElements.map(

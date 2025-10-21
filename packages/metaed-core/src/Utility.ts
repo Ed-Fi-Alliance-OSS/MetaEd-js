@@ -35,11 +35,6 @@ export const orderByPath = (path: string[]) => R.sortBy(R.compose(R.toLower, R.p
 /**
  *
  */
-export const V5OrGreater: SemVer = '>=5.3.0';
-
-/**
- *
- */
 export const V6OrGreater: SemVer = '>=6.1.0';
 
 /**
