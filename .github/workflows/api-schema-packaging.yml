@@ -33,16 +33,6 @@ jobs:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
         ds:
-        - version: 'DS-3.3.1-b'
-          short-version: '33'
-          project-version: '3.3.1-b'
-          project-description: 'Latest Ed-Fi Data Model v3.3b'
-          tpdm-tag-name: 'Data-Standard-v3.3.1-b'
-          sample-tag-name: 'v5.4-patch1'
-          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-3.3b'
-          tpdm-path: 'Ed-Fi-TPDM-Model'
-          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
-          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
         - version: 'DS-4.0.0'
           short-version: '40'
           project-version: '4.0.0'
@@ -139,8 +129,6 @@ jobs:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
         ds:
-        - version: 'DS-3.3.1-b'
-          short-version: '33'
         - version: 'DS-4.0.0'
           short-version: '40'
         - version: 'DS-5.2.0'
@@ -211,18 +199,12 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
-        ds-version: ['DS-3.3.1-b', 'DS-4.0.0', 'DS-5.2.0']
+        ds-version: ['DS-4.0.0', 'DS-5.2.0']
         exclude:
-        - config: "TPDM"
-          ds-version: 'DS-3.3.1-b'
         - config: "TPDM"
           ds-version: 'DS-4.0.0'
         - config: "Homograph"
-          ds-version: 'DS-3.3.1-b'
-        - config: "Homograph"
           ds-version: 'DS-4.0.0'  
-        - config: "Sample"
-          ds-version: 'DS-3.3.1-b'
         - config: "Sample"
           ds-version: 'DS-4.0.0'
     runs-on: ubuntu-latest
