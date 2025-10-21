@@ -143,7 +143,7 @@ directory paths. Example for ODS/API 3.0.0 and Data Standard 3.0:
 }
 ```
 
-Example for ODS/API 5.3.0 and Data Standard 3.3b, building a _local copy_ of the data
+Example for ODS/API 5.4.0 and Data Standard 4.0, building a _local copy_ of the data
 model (not in the `node_modules` directory).
 
 ```javascript
@@ -156,11 +156,11 @@ model (not in the `node_modules` directory).
             "projectName": "Ed-Fi",
             "namespaceName": "EdFi",
             "projectExtension": "",
-            "projectVersion": "3.3.1-b"
+            "projectVersion": "4.0.0"
         }],
-        "projectPaths": ["./ed-fi-model-3.3b/" ],
+        "projectPaths": ["./ed-fi-model-4.0/" ],
         "pluginConfigDirectories": [],
-        "defaultPluginTechVersion": "5.3.0",
+        "defaultPluginTechVersion": "5.4.0",
         "allianceMode": true,
         "suppressPrereleaseVersion": true,
     }

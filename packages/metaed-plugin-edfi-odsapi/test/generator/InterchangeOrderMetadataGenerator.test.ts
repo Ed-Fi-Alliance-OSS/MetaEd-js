@@ -416,7 +416,7 @@ describe('when generating core and extension interchange with same interchange n
 });
 
 describe('when generating in targetTechnologyVersion >= 6.1.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.3.1-b' };
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.2.0' };
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
