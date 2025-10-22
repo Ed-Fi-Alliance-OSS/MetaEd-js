@@ -11,26 +11,11 @@ import {
   newDeleteTrackingTrigger,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { buildTriggerFunctionNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
 import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsWithHardcodesFor } from './EnhancerHelper';
 
-export function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrackingTrigger {
-  return {
-    ...newDeleteTrackingTrigger(),
-    triggerSchema: `tracked_deletes_${table.schema}`,
-    triggerName: buildTriggerFunctionNameFrom(table, 'TR_DelTrkg'),
-    targetTableSchema: table.schema,
-    targetTableName: table.data.edfiOdsPostgresql.tableName,
-    deleteTrackingTableSchema: `tracked_deletes_${table.schema}`,
-    deleteTrackingTableName: table.data.edfiOdsPostgresql.tableName,
-    primaryKeyColumnNames: getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME).map(
-      (column: Column) => column.data.edfiOdsPostgresql.columnName,
-    ),
-  };
-}
-
-export function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrackingTrigger {
+export function createDeleteTrackingTriggerModel(_metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTrigger {
   const changeDataColumns: ChangeDataColumn[] = changeDataColumnsWithHardcodesFor(table);
   return {
     ...newDeleteTrackingTrigger(),
@@ -52,14 +37,4 @@ export function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrac
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };
-}
-
-export function createDeleteTrackingTriggerModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTrigger {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-
-  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
-    return createDeleteTrackingTriggerModelV3dot4(table);
-  }
-
-  return createDeleteTrackingTriggerModelV6dot0(table);
 }
