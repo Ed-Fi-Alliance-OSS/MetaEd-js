@@ -13,7 +13,7 @@ import {
 import { defaultPluginTechVersion, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../src/validator/BlockPropertiesNamedDiscriminator';
 
-describe('when domain entity has no properties named Discriminator on tech version 5.1', (): void => {
+describe('when domain entity has no properties named Discriminator on tech version 6.0', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set(
     'edfiOdsRelational',
@@ -44,7 +44,7 @@ describe('when domain entity has no properties named Discriminator on tech versi
   });
 });
 
-describe('when domain entity has property named Discriminator on tech version 5.1', (): void => {
+describe('when domain entity has property named Discriminator on tech version 6.0', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set(
     'edfiOdsRelational',
