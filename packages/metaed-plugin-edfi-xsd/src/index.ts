@@ -8,7 +8,7 @@ import { enhancerList } from './enhancer/EnhancerList';
 import { generate as generateXsd } from './generator/XsdGenerator';
 import { generate as generateSchemaAnnotation } from './generator/SchemaAnnotationGenerator';
 import { generate as generateInterchange } from './generator/InterchangeGenerator';
-import { validate as v3LimitedDuplicateNamesInDependencyNamespaces } from './validator/V3LimitedDuplicateNamesInDependencyNamespaces';
+import { validate as LimitedDuplicateNamesInDependencyNamespaces } from './validator/LimitedDuplicateNamesInDependencyNamespaces';
 
 // Entities
 export { Annotation } from './model/schema/Annotation';
@@ -88,7 +88,7 @@ export { edfiXsdRepositoryForNamespace } from './enhancer/EnhancerHelper';
 
 export function initialize(): MetaEdPlugin {
   return {
-    validator: [v3LimitedDuplicateNamesInDependencyNamespaces],
+    validator: [LimitedDuplicateNamesInDependencyNamespaces],
     enhancer: enhancerList(),
     generator: [generateXsd, generateSchemaAnnotation, generateInterchange],
     shortName: 'edfiXsd',
