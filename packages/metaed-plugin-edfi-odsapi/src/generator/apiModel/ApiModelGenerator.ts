@@ -22,9 +22,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       namespace: namespace.namespaceName,
       folderName: 'ApiMetadata',
       fileName: fileName(namespace.projectExtension),
-      resultString: JSON.stringify(structuredOutput, null, 2)
-        .replace(/\\r\\n/g, '')
-        .replace(/\\n/g, ''),
+      resultString: JSON.stringify(structuredOutput, null, 2).replace(/\\r\\n/g, ''),
       resultStream: null,
     });
   });
