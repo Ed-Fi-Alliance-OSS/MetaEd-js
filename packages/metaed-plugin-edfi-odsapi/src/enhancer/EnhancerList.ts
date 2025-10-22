@@ -26,7 +26,6 @@ import { enhance as topLevelEntitySetupEnhancer } from '../model/TopLevelEntity'
 import { enhance as topLevelEntityDomainEnhancer } from './apiModel/TopLevelEntityDomainEnhancer';
 
 import { enhance as createDomainModelDefinitionEnhancer } from './apiModel/CreateDomainModelDefinitionEnhancer';
-import { enhance as buildSchemaDefinitionEnhancerV3 } from './apiModel/BuildSchemaDefinitionEnhancerV3';
 import { enhance as buildSchemaDefinitionEnhancer } from './apiModel/BuildSchemaDefinitionEnhancer';
 import { enhance as associationDefinitionEnhancer } from './apiModel/AssociationDefinitionEnhancer';
 import { enhance as associationDefinitionIsIdentifyingEnhancer } from './apiModel/AssociationDefinitionIsIdentifyingEnhancer';
@@ -74,7 +73,6 @@ export function enhancerList(): Enhancer[] {
 
     // API Model
     createDomainModelDefinitionEnhancer,
-    buildSchemaDefinitionEnhancerV3,
     buildSchemaDefinitionEnhancer,
     associationDefinitionEnhancer,
     associationDefinitionIsIdentifyingEnhancer,
