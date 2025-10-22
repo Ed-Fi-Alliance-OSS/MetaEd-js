@@ -20,7 +20,7 @@ import {
 import { enhance } from '../../src/enhancer/AddOwnershipTokenColumnTableEnhancer';
 import { enhance as tableSetupEnhancer, TableEdfiOdsRecordOwnership } from '../../src/model/Table';
 
-describe('when AddOwnershipTokenColumnTableEnhancer enhances aggregate root table for ODS/API 5.1', (): void => {
+describe('when AddOwnershipTokenColumnTableEnhancer enhances aggregate root table for ODS/API 6.0', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -51,7 +51,7 @@ describe('when AddOwnershipTokenColumnTableEnhancer enhances aggregate root tabl
   });
 });
 
-describe('when AddOwnershipTokenColumnTableEnhancer enhances non-aggregate root table for ODS/API 5.1', (): void => {
+describe('when AddOwnershipTokenColumnTableEnhancer enhances non-aggregate root table for ODS/API 6.0', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
