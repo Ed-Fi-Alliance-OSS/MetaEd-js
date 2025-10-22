@@ -15,7 +15,7 @@ import {
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 
-import { validate } from '../../src/validator/V3LimitedDuplicateNamesInDependencyNamespaces';
+import { validate } from '../../src/validator/LimitedDuplicateNamesInDependencyNamespaces';
 
 describe('when DEs have different names across dependency-linked namespaces', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -107,7 +107,7 @@ describe('when DEs have same names across dependency-linked namespaces', (): voi
   it('should have validation failure for extension entity', (): void => {
     expect(failures).toHaveLength(1);
 
-    expect(failures[0].validatorName).toBe('V3LimitedDuplicateNamesInDependencyNamespaces');
+    expect(failures[0].validatorName).toBe('LimitedDuplicateNamesInDependencyNamespaces');
     expect(failures[0].category).toBe('warning');
     expect(failures[0].message).toMatchInlineSnapshot(
       `"Domain Entity named DomainEntity already exists in project EdFi. The XSD specification for this is currently undefined. MetaEd XSD generation and ODS/API bulk data loading will be disabled."`,

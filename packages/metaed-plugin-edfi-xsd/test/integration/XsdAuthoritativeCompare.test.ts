@@ -47,25 +47,25 @@ describe('when generating xsd and comparing it to data standard 5.2 authoritativ
       artifactDirectory: './MetaEdOutput/',
       pluginTechVersion: {
         edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
       },
       projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
@@ -174,25 +174,25 @@ describe('when generating xsd with extension and comparing it to data standard 5
       artifactDirectory: './MetaEdOutput/',
       pluginTechVersion: {
         edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
       },
       projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
@@ -201,7 +201,7 @@ describe('when generating xsd with extension and comparing it to data standard 5
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.1.0',
+          projectVersion: '7.3.0',
           description: '',
         },
         {
