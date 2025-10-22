@@ -10,41 +10,10 @@ import {
   getPrimaryKeys,
   hasRequiredNonIdentityNamespaceColumn,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsFor, hardcodedOldColumnFor } from './EnhancerHelper';
 
-export function createDeleteTrackingTableModelV3dot4(table: Table): DeleteTrackingTable {
-  const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
-
-  const changeVersionColumn: Column = {
-    ...newColumn(),
-    columnId: 'ChangeVersion',
-    data: { edfiOdsPostgresql: { columnName: 'ChangeVersion', dataType: 'BIGINT' } },
-    isNullable: false,
-  };
-
-  const deleteTrackingTable: DeleteTrackingTable = {
-    ...newDeleteTrackingTable(),
-    schema: `tracked_deletes_${table.schema}`,
-    tableName: trackingTableName,
-    primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName,
-    columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
-    primaryKeyColumns: [changeVersionColumn],
-  };
-
-  deleteTrackingTable.columns.push({
-    ...newColumn(),
-    columnId: 'Id',
-    data: { edfiOdsPostgresql: { columnName: 'Id', dataType: 'UUID' } },
-    isNullable: false,
-  });
-
-  deleteTrackingTable.columns.push(changeVersionColumn);
-
-  return deleteTrackingTable;
-}
-
-export function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTrackingTable {
+export function createDeleteTrackingTableModel(_metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTable {
   const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
 
   const changeVersionColumn: Column = {
@@ -80,14 +49,4 @@ export function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTracki
   deleteTrackingTable.columns.push(changeVersionColumn);
 
   return deleteTrackingTable;
-}
-
-export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTable {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-
-  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
-    return createDeleteTrackingTableModelV3dot4(table);
-  }
-
-  return createDeleteTrackingTableModelV6dot0(table);
 }
