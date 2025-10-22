@@ -134,7 +134,7 @@ directory paths. Example for ODS/API 6.0.0 and Data Standard 4.0:
             "projectExtension": "",
             "projectVersion": "4.0.0"
             }],
-        "projectPaths": ["./node_modules/@edfi/ed-fi-model-3.0/" ],
+        "projectPaths": ["./node_modules/@edfi/ed-fi-model-4.0/" ],
         "pluginConfigDirectories": [],
         "defaultPluginTechVersion": "6.0.0",
         "allianceMode": true,
