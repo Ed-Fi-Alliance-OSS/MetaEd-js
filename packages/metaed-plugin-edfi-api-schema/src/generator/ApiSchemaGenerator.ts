@@ -19,17 +19,12 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   metaEd.namespace.forEach((namespace: Namespace) => {
     const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
 
-    let result = stringify(apiSchema, { space: 2 });
-    // Replace \n with \r\n, but NOT when it's part of \n***\n pattern
-    // Use negative lookahead and lookbehind to exclude both \n in the pattern
-    result = result.replace(/(?<!\\n\*\*\*)\\n(?!\*\*\*\\n)/g, '\\r\\n');
-
     results.push({
       name: 'DMS API Schema',
       namespace: namespace.namespaceName,
       folderName: 'ApiSchema',
       fileName: fileName(namespace.projectExtension),
-      resultString: result,
+      resultString: stringify(apiSchema, { space: 2 }),
       resultStream: null,
     });
   });
