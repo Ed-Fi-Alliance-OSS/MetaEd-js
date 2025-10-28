@@ -9,6 +9,43 @@ import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment, MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { ValidationFailure } from '../../src/validator/ValidationFailure';
 
+describe('given data standard 4.0 when building EdFi domain entity with is weak property with Alliance mode', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.dataStandardVersion = '4.0.0';
+  metaEd.allianceMode = true;
+  const validationFailures: ValidationFailure[] = [];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('Namespace', 'EdFi')
+      .withStartDomainEntity('EntityName')
+      .withDocumentation('doc')
+      .withDomainEntityProperty('Property', 'doc', true, false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new SyntaxValidatingBuilder(metaEd, validationFailures));
+  });
+
+  it('should have validation failures', (): void => {
+    expect(validationFailures).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "category": "error",
+        "fileMap": null,
+        "message": "The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x",
+        "sourceMap": Object {
+          "column": 6,
+          "line": 9,
+          "tokenText": "is weak",
+        },
+        "validatorName": "SyntaxValidatingBuilder",
+      },
+    ]
+    `);
+  });
+});
+
 describe('given data standard 4.0 when building extension domain entity with is weak property', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.dataStandardVersion = '4.0.0';
