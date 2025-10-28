@@ -28,7 +28,7 @@ import { metaEdPlugins } from '../PluginHelper';
 jest.setTimeout(40000);
 
 describe('when generating xsd and comparing it to data standard 5.2 authoritative artifacts', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
+  const artifactPath: string = path.resolve(__dirname, './artifact/v5_2/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
   const simpleTypeNames: string[] = [];
@@ -155,7 +155,7 @@ describe('when generating xsd and comparing it to data standard 5.2 authoritativ
 });
 
 describe('when generating xsd with extension and comparing it to data standard 5.2 authoritative artifacts', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
+  const artifactPath: string = path.resolve(__dirname, './artifact/v5_2/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
   const simpleTypeNames: string[] = [];
