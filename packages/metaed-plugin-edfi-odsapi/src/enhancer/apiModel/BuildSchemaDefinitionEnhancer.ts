@@ -28,10 +28,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       ...newSchemaDefinition(),
       logicalName: deriveLogicalNameFromProjectName(namespace.projectName),
       physicalName: namespace.namespaceName.toLowerCase(),
-      description: versionSatisfies(targetTechnologyVersion, '>=5.3') ? namespace.projectDescription : undefined,
-      version: versionSatisfies(targetTechnologyVersion, '4.0.0')
-        ? truncatePrereleaseIfExists(namespace.projectVersion)
-        : namespace.projectVersion,
+      description: namespace.projectDescription,
+      version: namespace.projectVersion,
     };
   });
 
