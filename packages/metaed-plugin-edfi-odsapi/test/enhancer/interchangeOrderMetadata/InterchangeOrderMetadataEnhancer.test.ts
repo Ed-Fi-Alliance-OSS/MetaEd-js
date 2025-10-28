@@ -155,7 +155,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange', (): void 
   const domainEntityName = 'DomainEntityName';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     addEdFiXsdEntityRepositoryTo(metaEd);
@@ -193,7 +193,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with DS 3.0
   const domainEntityName = 'DomainEntityName';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     addEdFiXsdEntityRepositoryTo(metaEd);
@@ -231,7 +231,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with differ
   const interchangeItemName = 'InterchangeItemName';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     addEdFiXsdEntityRepositoryTo(metaEd);
@@ -271,7 +271,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with intern
   const domainEntityName2 = 'DomainEntityName2';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     addEdFiXsdEntityRepositoryTo(metaEd);
@@ -334,7 +334,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with extern
   const domainEntityName2 = 'DomainEntityName2';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     addEdFiXsdEntityRepositoryTo(metaEd);
@@ -412,7 +412,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with extern
   const domainEntityName2 = 'DomainEntityName2';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -511,7 +511,7 @@ describe('when InterchangeOrderMetadataEnhancer enhances interchange with extern
   const domainEntityName1 = 'DomainEntityName1';
 
   beforeAll(() => {
-    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
+    const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '5.2.0' });
     const namespace: Namespace = Object.assign(newNamespace(), { namespaceName });
     metaEd.namespace.set(namespace.namespaceName, namespace);
     const extensionNamespace: Namespace = Object.assign(newNamespace(), {

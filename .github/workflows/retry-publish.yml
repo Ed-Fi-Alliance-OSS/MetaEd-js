@@ -20,7 +20,7 @@ jobs:
   retry-publish:
     name: Retry Publish
 
-    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    uses: Ed-Fi-Alliance-OSS/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
       bump: "none"
       retry: true

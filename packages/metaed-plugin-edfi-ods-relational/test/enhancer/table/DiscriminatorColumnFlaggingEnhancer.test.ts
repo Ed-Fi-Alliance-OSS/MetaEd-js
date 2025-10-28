@@ -11,14 +11,14 @@ import { newTable } from '../../../src/model/database/Table';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { Table } from '../../../src/model/database/Table';
 
-describe('when DiscriminatorColumnFlaggingEnhancer enhances table with DE parent and aggregate root on 5.1', (): void => {
+describe('when DiscriminatorColumnFlaggingEnhancer enhances table with DE parent and aggregate root on default plugin tech version', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
   metaEd.plugin.set(
     'edfiOdsRelational',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '5.1.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 

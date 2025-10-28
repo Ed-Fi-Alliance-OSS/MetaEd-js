@@ -3,8 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from '@edfi/metaed-core';
-import { NoMapTypeEnumeration, versionSatisfies, V3OrGreater, getAllEntitiesOfType } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor } from '@edfi/metaed-core';
+import { NoMapTypeEnumeration, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { ComplexType } from '../../model/schema/ComplexType';
 import { newComplexType } from '../../model/schema/ComplexType';
 import { newAnnotation } from '../../model/schema/Annotation';
@@ -14,7 +14,6 @@ import { typeGroupDescriptor, baseTypeDescriptor } from './AddComplexTypesBaseEn
 import { ComplexTypeItem } from '../../model/schema/ComplexTypeItem';
 
 const enhancerName = 'AddDescriptorComplexTypesEnhancer';
-const targetVersions: SemVer = V3OrGreater;
 
 function createComplexType(descriptor: Descriptor): ComplexType[] {
   const complexType = {
@@ -38,8 +37,6 @@ function createComplexType(descriptor: Descriptor): ComplexType[] {
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
-
   (getAllEntitiesOfType(metaEd, 'descriptor') as Descriptor[]).forEach((descriptor: Descriptor) => {
     descriptor.data.edfiXsd.xsdComplexTypes = createComplexType(descriptor);
   });
