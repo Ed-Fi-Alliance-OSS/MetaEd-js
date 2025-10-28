@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://ed-fi.org/3.2.0-c" xmlns:ann="http://ed-fi.org/annotation" targetNamespace="http://ed-fi.org/3.2.0-c" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="Ed-Fi-Core.xsd" />
+  <xs:annotation>
+    <xs:documentation>===== Ed-Fi 3.2.0-c Extensions =====</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>===== Domain Entities =====</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="EdFiXFinance-BalanceSheetDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Balance Sheet Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Balance Sheet dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Balance Sheet dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Balance Sheet dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ChartOfAccount">
+    <xs:annotation>
+      <xs:documentation>A valid combination of account dimensions under which financials are reported. This financial entity represents a funding source combined with its purpose and type of transaction. It provides a formal record of the debits and credits relating to the specific account.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="AccountIdentifier" type="EdFiXFinance-AccountIdentifier">
+            <xs:annotation>
+              <xs:documentation>SEA populated Code value for the valid combination of account dimensions under which financials are reported.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>Fiscal year for the account</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EducationOrganizationReference" type="EdFiXFinance-EducationOrganizationReferenceType">
+            <xs:annotation>
+              <xs:documentation>A reference to the education organization managing the chart of accounts.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountType" type="EdFiXFinance-AccountTypeDescriptorReferenceType">
+            <xs:annotation>
+              <xs:documentation>Type of Account such as Revenue, Expenditure, or Balance Sheet.</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-AccountTypeDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountName" type="EdFiXFinance-AccountName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A descriptive name for the account</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BalanceSheetBalanceSheetDimensionReference" type="EdFiXFinance-BalanceSheetDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the BalanceSheetDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FunctionFunctionDimensionReference" type="EdFiXFinance-FunctionDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the FunctionDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FundFundDimensionReference" type="EdFiXFinance-FundDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the FundDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ObjectObjectDimensionReference" type="EdFiXFinance-ObjectDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the ObjectDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationalUnitOperationalUnitDimensionReference" type="EdFiXFinance-OperationalUnitDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the OperationalUnitDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProgramProgramDimensionReference" type="EdFiXFinance-ProgramDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the ProgramDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProjectProjectDimensionReference" type="EdFiXFinance-ProjectDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the ProjectDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SourceSourceDimensionReference" type="EdFiXFinance-SourceDimensionReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>References the SourceDimension with which the ChartOfAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTag" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FunctionDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Function Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Function dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Function dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Function dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FundDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Fund Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Fund dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Fund dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Fund dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalAccount">
+    <xs:annotation>
+      <xs:documentation>The set of account codes defined by an education organization for a fiscal year.It provides a formal record of the debits and credits relating to the specific account.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="AccountIdentifier" type="EdFiXFinance-AccountIdentifier">
+            <xs:annotation>
+              <xs:documentation>Code value for the valid combination of account dimensions by LEA under which financials are reported. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EducationOrganizationReference" type="EdFiXFinance-EducationOrganizationReferenceType">
+            <xs:annotation>
+              <xs:documentation>A reference to the education organization for which the account is applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>Fiscal year for the account</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountName" type="EdFiXFinance-AccountName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A descriptive name for the account</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChartOfAccountReference" type="EdFiXFinance-ChartOfAccountReferenceType">
+            <xs:annotation>
+              <xs:documentation>References the ChartOfAccount with which the LocalAccount is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTag" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalActual">
+    <xs:annotation>
+      <xs:documentation>Expense/Revenue amounts</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="LocalAccountReference" type="EdFiXFinance-LocalAccountReferenceType">
+            <xs:annotation>
+              <xs:documentation>References the LocalAccount with which the LocalActual is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AsOfDate" type="xs:date">
+            <xs:annotation>
+              <xs:documentation>The date of the reported amount for Account.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Amount" type="Currency">
+            <xs:annotation>
+              <xs:documentation>Current balance for the account.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinancialCollection" type="EdFiXFinance-FinancialCollectionDescriptorReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The accounting period or grouping for which the amount is collected.</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-FinancialCollectionDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalBudget">
+    <xs:annotation>
+      <xs:documentation>Budget amounts</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="LocalAccountReference" type="EdFiXFinance-LocalAccountReferenceType">
+            <xs:annotation>
+              <xs:documentation>References the LocalAccount with which the LocalBudget is associated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AsOfDate" type="xs:date">
+            <xs:annotation>
+              <xs:documentation>The date that the amount is applied to.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Amount" type="Currency">
+            <xs:annotation>
+              <xs:documentation>Currency value applied to the account.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinancialCollection" type="EdFiXFinance-FinancialCollectionDescriptorReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The accounting period or grouping for which the amount is collected.</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-FinancialCollectionDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ObjectDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Object Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Object dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Object dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Object dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-OperationalUnitDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Operational Unit Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Operational Unit dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Operational Unit dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Operational Unit dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProgramDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Program Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Program dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Program dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Program dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProjectDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Project Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Project dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Project dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Project dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-SourceDimension">
+    <xs:annotation>
+      <xs:documentation>NCES Source Dimension</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Domain Entity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComplexObjectType">
+        <xs:sequence>
+          <xs:element name="Code" type="EdFiXFinance-Code">
+            <xs:annotation>
+              <xs:documentation>The code representation of the account Source dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+            <xs:annotation>
+              <xs:documentation>The fiscal year for which the account Source dimension is valid.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CodeName" type="EdFiXFinance-CodeName" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the account Source dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Optional tag for accountability reporting (e.g. ESSA).</xs:documentation>
+              <xs:appinfo>
+                <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>===== Descriptors =====</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="EdFiXFinance-AccountTypeDescriptor">
+    <xs:annotation>
+      <xs:documentation>Type of Account such as Revenue, Expenditure, or Balance Sheet.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Descriptor</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DescriptorType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FinancialCollectionDescriptor">
+    <xs:annotation>
+      <xs:documentation>The accounting period or grouping for which financial information is collected.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Descriptor</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DescriptorType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ReportingTagDescriptor">
+    <xs:annotation>
+      <xs:documentation>A descriptor used at the dimension and/or chart of account levels to demote specific State needs for ESSA reporting. e.g., Federal, State and Local funding</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Descriptor</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DescriptorType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>===== Associations =====</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>===== Extended Reference Types =====</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="EdFiXFinance-BalanceSheetDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a BalanceSheetDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Balance Sheet dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Balance Sheet dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-BalanceSheetDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a BalanceSheetDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="BalanceSheetDimensionIdentity" type="EdFiXFinance-BalanceSheetDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a BalanceSheetDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ChartOfAccountIdentityType">
+    <xs:annotation>
+      <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a ChartOfAccount.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AccountIdentifier" type="EdFiXFinance-AccountIdentifier">
+        <xs:annotation>
+          <xs:documentation>SEA populated Code value for the valid combination of account dimensions under which financials are reported.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>Fiscal year for the account</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EducationOrganizationReference" type="EdFiXFinance-EducationOrganizationReferenceType">
+        <xs:annotation>
+          <xs:documentation>A reference to the education organization managing the chart of accounts.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ChartOfAccountReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a ChartOfAccount. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="ChartOfAccountIdentity" type="EdFiXFinance-ChartOfAccountIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a ChartOfAccount.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FunctionDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a FunctionDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Function dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Function dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FunctionDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a FunctionDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="FunctionDimensionIdentity" type="EdFiXFinance-FunctionDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a FunctionDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FundDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a FundDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Fund dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Fund dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-FundDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a FundDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="FundDimensionIdentity" type="EdFiXFinance-FundDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a FundDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalAccountIdentityType">
+    <xs:annotation>
+      <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalAccount.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AccountIdentifier" type="EdFiXFinance-AccountIdentifier">
+        <xs:annotation>
+          <xs:documentation>Code value for the valid combination of account dimensions by LEA under which financials are reported. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EducationOrganizationReference" type="EdFiXFinance-EducationOrganizationReferenceType">
+        <xs:annotation>
+          <xs:documentation>A reference to the education organization for which the account is applicable.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>Fiscal year for the account</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalAccountReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a LocalAccount. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="LocalAccountIdentity" type="EdFiXFinance-LocalAccountIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalAccount.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalActualIdentityType">
+    <xs:annotation>
+      <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalActual.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LocalAccountReference" type="EdFiXFinance-LocalAccountReferenceType">
+        <xs:annotation>
+          <xs:documentation>References the LocalAccount with which the LocalActual is associated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AsOfDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>The date of the reported amount for Account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalActualReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a LocalActual. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="LocalActualIdentity" type="EdFiXFinance-LocalActualIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalActual.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalBudgetIdentityType">
+    <xs:annotation>
+      <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalBudget.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LocalAccountReference" type="EdFiXFinance-LocalAccountReferenceType">
+        <xs:annotation>
+          <xs:documentation>References the LocalAccount with which the LocalBudget is associated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AsOfDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>The date that the amount is applied to.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-LocalBudgetReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a LocalBudget. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="LocalBudgetIdentity" type="EdFiXFinance-LocalBudgetIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Encapsulates primary attributes that can be used to look up the identity of a LocalBudget.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ObjectDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of an ObjectDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Object dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Object dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ObjectDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for an ObjectDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="ObjectDimensionIdentity" type="EdFiXFinance-ObjectDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of an ObjectDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-OperationalUnitDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of an OperationalUnitDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Operational Unit dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Operational Unit dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-OperationalUnitDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for an OperationalUnitDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="OperationalUnitDimensionIdentity" type="EdFiXFinance-OperationalUnitDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of an OperationalUnitDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProgramDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a ProgramDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Program dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Program dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProgramDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a ProgramDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="ProgramDimensionIdentity" type="EdFiXFinance-ProgramDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a ProgramDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProjectDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a ProjectDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Project dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Project dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-ProjectDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a ProjectDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="ProjectDimensionIdentity" type="EdFiXFinance-ProjectDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a ProjectDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-SourceDimensionIdentityType">
+    <xs:annotation>
+      <xs:documentation>Identity of a SourceDimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Identity</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="EdFiXFinance-Code">
+        <xs:annotation>
+          <xs:documentation>The code representation of the account Source dimension.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FiscalYear" type="EdFiXFinance-FiscalYear">
+        <xs:annotation>
+          <xs:documentation>The fiscal year for which the account Source dimension is valid.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EdFiXFinance-SourceDimensionReferenceType">
+    <xs:annotation>
+      <xs:documentation>Provides alternative references for a SourceDimension. Use XML IDREF to reference a record that is included in the interchange. Use the identity type to look up a record that was loaded previously.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReferenceType">
+        <xs:sequence>
+          <xs:element name="SourceDimensionIdentity" type="EdFiXFinance-SourceDimensionIdentityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Identity of a SourceDimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>===== Extended Descriptor Reference Types =====</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="EdFiXFinance-AccountTypeDescriptorReferenceType">
+    <xs:annotation>
+      <xs:documentation>Type of Account such as Revenue, Expenditure, or Balance Sheet.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Descriptor Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="DescriptorReferenceType" />
+  </xs:simpleType>
+  <xs:simpleType name="EdFiXFinance-FinancialCollectionDescriptorReferenceType">
+    <xs:annotation>
+      <xs:documentation>The accounting period or grouping for which financial information is collected.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Descriptor Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="DescriptorReferenceType" />
+  </xs:simpleType>
+  <xs:simpleType name="EdFiXFinance-ReportingTagDescriptorReferenceType">
+    <xs:annotation>
+      <xs:documentation>A descriptor used at the dimension and/or chart of account levels to demote specific State needs for ESSA reporting. e.g., Federal, State and Local funding</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Extended Descriptor Reference</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="DescriptorReferenceType" />
+  </xs:simpleType>
+  <xs:annotation>
+    <xs:documentation>===== Common Types =====</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="EdFiXFinance-ReportingTag">
+    <xs:annotation>
+      <xs:documentation>ReportingTag</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Common</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TagValue" type="EdFiXFinance-TagValue" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>TagValue</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportingTag" type="EdFiXFinance-ReportingTagDescriptorReferenceType">
+        <xs:annotation>
+          <xs:documentation>ReportinTag Descriptor</xs:documentation>
+          <xs:appinfo>
+            <ann:Descriptor>EdFiXFinance-ReportingTagDescriptor</ann:Descriptor>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>===== Enumerations and Enumerated Collections =====</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>===== String Simple Types =====</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="EdFiXFinance-Code">
+    <xs:annotation>
+      <xs:documentation>A code value.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Simple</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="16" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EdFiXFinance-CodeName">
+    <xs:annotation>
+      <xs:documentation>Descriptive name for chart of account dimension.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Simple</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EdFiXFinance-TagValue">
+    <xs:annotation>
+      <xs:documentation>Descriptive name for Tag Value.</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Simple</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:annotation>
+    <xs:documentation>===== Numeric Simple Types =====</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="EdFiXFinance-FiscalYear">
+    <xs:annotation>
+      <xs:documentation>Local Fiscal Year</xs:documentation>
+      <xs:appinfo>
+        <ann:TypeGroup>Simple</ann:TypeGroup>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:short">
+      <xs:minInclusive value="2020" />
+      <xs:maxInclusive value="2040" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
