@@ -22,6 +22,10 @@ export interface ElementRow {
   domainEntityName: string;
   elementName: string;
   elementDescription: string;
+  isPartOfIdentity: boolean;
+  isCollection: boolean;
+  isRequired: boolean;
+  isDeprecated: boolean;
   elementDataType: string;
 }
 
@@ -103,6 +107,26 @@ export const elementSchema = [
     type: String,
     width: 50,
     value: (row: ElementRow) => row.elementDescription,
+  },
+  {
+    column: 'Is Part of Identity',
+    type: String,
+    value: (row: ElementRow) => (row.isPartOfIdentity ? 'yes' : 'no'),
+  },
+  {
+    column: 'Is Collection',
+    type: String,
+    value: (row: ElementRow) => (row.isCollection ? 'yes' : 'no'),
+  },
+  {
+    column: 'Is Required',
+    type: String,
+    value: (row: ElementRow) => (row.isRequired ? 'yes' : 'no'),
+  },
+  {
+    column: 'Is Deprecated',
+    type: String,
+    value: (row: ElementRow) => (row.isDeprecated ? 'yes' : 'no'),
   },
   {
     column: 'Element data type',
