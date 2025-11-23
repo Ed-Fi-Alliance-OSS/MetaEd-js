@@ -3,21 +3,20 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, newNamespace, newDomain, newDomainEntity, newEntityProperty } from '@edfi/metaed-core';
-import { generate } from '../src/generator/EdFiDataStandardListingGenerator';
-import { DomainRow, EntityRow, ElementRow } from '../src/model/DataStandardListingRow';
+import {
+  MetaEdEnvironment,
+  newNamespace,
+  newDomain,
+  newDomainEntity,
+  newEntityProperty,
+  newMetaEdEnvironment,
+} from '@edfi/metaed-core';
+import { generate } from '../../src/generator/EdFiDataStandardListingGenerator';
 
 describe('EdFiDataStandardListingGenerator', () => {
   it('should create data standard listing with three worksheets', async () => {
     // Create a minimal test MetaEd environment
-    const metaEd: MetaEdEnvironment = {
-      namespace: new Map(),
-      projectPackages: [],
-      projectPackageDirectories: [],
-      crossReferences: new Map(),
-      configurations: new Map(),
-      data: {},
-    };
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
     // Create test namespace
     const testNamespace = newNamespace();

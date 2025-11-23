@@ -5,15 +5,7 @@
 
 import * as R from 'ramda';
 import { orderByProp } from '@edfi/metaed-core';
-import {
-  MetaEdEnvironment,
-  GeneratedOutput,
-  GeneratorResult,
-  Namespace,
-  Domain,
-  DomainEntity,
-  EntityProperty,
-} from '@edfi/metaed-core';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, Domain, EntityProperty } from '@edfi/metaed-core';
 import writeXlsxFile from 'write-excel-file';
 import { umlDatatypeMatrix } from '../enhancer/DatatypeLookup';
 import {
