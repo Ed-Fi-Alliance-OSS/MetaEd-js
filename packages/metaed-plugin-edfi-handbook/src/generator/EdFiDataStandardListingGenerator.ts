@@ -4,10 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { orderByProp } from '@edfi/metaed-core';
+import { DecimalProperty, IntegerProperty, orderByProp, PropertyType, StringProperty, Subdomain } from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, Domain, EntityProperty } from '@edfi/metaed-core';
 import writeXlsxFile from 'write-excel-file';
-import { umlDatatypeMatrix } from '../enhancer/DatatypeLookup';
 import {
   DomainRow,
   EntityRow,
@@ -64,38 +63,70 @@ function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   return entityRows;
 }
 
-function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
+function extractDataType(property: EntityProperty): string {
+  const typeConversion: { [type in PropertyType]: any } = {
+    unknown: () => '',
+    association: () => 'reference',
+    boolean: () => 'Boolean',
+    choice: () => 'reference',
+    common: () => 'reference',
+    currency: () => 'decimal(19,4)',
+    date: () => 'date',
+    datetime: () => 'timestamp',
+    decimal: () => `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
+    descriptor: () => 'descriptor',
+    domainEntity: () => 'reference',
+    duration: () => 'string(30)',
+    enumeration: () => 'reference',
+    inlineCommon: () => 'reference',
+    integer: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
+    percent: () => 'decimal(5, 4)',
+    schoolYearEnumeration: () => 'reference',
+    sharedDecimal: () =>
+      `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
+    sharedInteger: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
+    sharedShort: () => 'int16',
+    sharedString: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
+    short: () => 'int16',
+    string: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
+    time: () => 'time',
+    year: () => 'int16',
+  };
+
+  return typeConversion[property.type]();
+}
+
+function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): ElementRow[] {
   const elementRows: ElementRow[] = [];
 
-  namespace.entity.domain.forEach((domain: Domain) => {
-    // Process entities directly in domain
-    domain.entities.forEach((entity) => {
-      entity.properties.forEach((property: EntityProperty) => {
-        elementRows.push({
-          projectVersion: namespace.projectVersion,
-          domainName: domain.metaEdName,
-          domainEntityName: entity.metaEdName,
-          elementName: property.metaEdName,
-          elementDescription: property.documentation || '',
-          elementDataType: umlDatatypeMatrix[property.type] || '',
-        });
+  domain.entities.forEach((entity) => {
+    entity.properties.forEach((property: EntityProperty) => {
+      elementRows.push({
+        projectVersion: namespace.projectVersion,
+        domainName: domain.metaEdName,
+        domainEntityName: entity.metaEdName,
+        elementName: property.metaEdName,
+        elementDescription: property.documentation || '',
+        isPartOfIdentity: property.isPartOfIdentity,
+        isCollection: property.isCollection,
+        isRequired: property.isRequired || property.isRequiredCollection,
+        isDeprecated: property.isDeprecated,
+        elementDataType: extractDataType(property),
       });
     });
+  });
 
-    // Process entities in subdomains
-    domain.subdomains.forEach((subdomain) => {
-      subdomain.entities.forEach((entity) => {
-        entity.properties.forEach((property: EntityProperty) => {
-          elementRows.push({
-            projectVersion: namespace.projectVersion,
-            domainName: domain.metaEdName,
-            domainEntityName: entity.metaEdName,
-            elementName: property.metaEdName,
-            elementDescription: property.documentation || '',
-            elementDataType: umlDatatypeMatrix[property.type] || '',
-          });
-        });
-      });
+  return elementRows;
+}
+
+function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
+  let elementRows: ElementRow[] = [];
+
+  namespace.entity.domain.forEach((domain: Domain) => {
+    elementRows = elementRows.concat(mapDomainToElements(namespace, domain));
+
+    domain.subdomains.forEach((subDomain: Subdomain) => {
+      elementRows = elementRows.concat(mapDomainToElements(namespace, subDomain));
     });
   });
 
