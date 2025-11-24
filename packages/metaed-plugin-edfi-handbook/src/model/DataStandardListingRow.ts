@@ -5,6 +5,7 @@
 
 export interface DomainRow {
   projectVersion: string;
+  namespace: string;
   domainName: string;
   domainDescription: string;
 }
@@ -12,6 +13,7 @@ export interface DomainRow {
 export interface EntityRow {
   projectVersion: string;
   domainName: string;
+  namespace: string;
   domainEntityName: string;
   domainEntityDescription: string;
 }
@@ -19,6 +21,7 @@ export interface EntityRow {
 export interface ElementRow {
   projectVersion: string;
   domainName: string;
+  namespace: string;
   domainEntityName: string;
   elementName: string;
   elementDescription: string;
@@ -43,6 +46,12 @@ export const domainSchema = [
     value: (row: DomainRow) => row.domainName,
   },
   {
+    column: 'Namespace',
+    type: String,
+    width: 20,
+    value: (row: EntityRow) => row.namespace,
+  },
+  {
     column: 'Domain description',
     type: String,
     width: 50,
@@ -62,6 +71,12 @@ export const entitySchema = [
     type: String,
     width: 30,
     value: (row: EntityRow) => row.domainName,
+  },
+  {
+    column: 'Namespace',
+    type: String,
+    width: 20,
+    value: (row: EntityRow) => row.namespace,
   },
   {
     column: 'Domain entity name',
@@ -89,6 +104,12 @@ export const elementSchema = [
     type: String,
     width: 30,
     value: (row: ElementRow) => row.domainName,
+  },
+  {
+    column: 'Namespace',
+    type: String,
+    width: 20,
+    value: (row: EntityRow) => row.namespace,
   },
   {
     column: 'Domain entity name',
