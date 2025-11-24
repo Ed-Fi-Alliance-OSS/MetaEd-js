@@ -34,3 +34,7 @@ As a business analyst, I want a simple spreadsheet version of the handbook, so t
   - Do not modify `EdFiDataHandbookAsExcelGenerator.ts`.
   - Copy `EdFiDataHandbookAsExcelGenerator.ts` to create the new module file.
   - Do not modify `EdFiDataHandbookAsExcelGenerator.ts`.
+
+## Addendum
+
+"Namespace" is also needed, but was overlooked in the original prompt above that was provided to GitHub Copilot.
