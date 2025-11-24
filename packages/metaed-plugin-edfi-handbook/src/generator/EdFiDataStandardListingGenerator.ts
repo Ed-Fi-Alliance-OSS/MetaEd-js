@@ -4,7 +4,15 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { DecimalProperty, IntegerProperty, orderByProp, PropertyType, StringProperty, Subdomain } from '@edfi/metaed-core';
+import {
+  DecimalProperty,
+  IntegerProperty,
+  orderByProp,
+  PropertyType,
+  StringProperty,
+  Subdomain,
+  TopLevelEntity,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, Domain, EntityProperty } from '@edfi/metaed-core';
 import writeXlsxFile from 'write-excel-file';
 import {
@@ -25,6 +33,7 @@ function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
   namespace.entity.domain.forEach((domain: Domain) => {
     domainRows.push({
       projectVersion: namespace.projectVersion,
+      namespace: namespace.namespaceName,
       domainName: domain.metaEdName,
       domainDescription: domain.documentation || '',
     });
@@ -33,30 +42,25 @@ function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
   return domainRows;
 }
 
+function mapDomainToEntities(namespace: Namespace, domain: Domain | Subdomain): EntityRow[] {
+  return domain.entities.map((entity: TopLevelEntity) => ({
+    projectVersion: namespace.projectVersion,
+    domainName: domain.metaEdName,
+    namespace: namespace.namespaceName,
+    domainEntityName: entity.metaEdName,
+    domainEntityDescription: entity.documentation || '',
+  }));
+}
+
 function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   const entityRows: EntityRow[] = [];
 
   namespace.entity.domain.forEach((domain: Domain) => {
-    // Add entities directly in domain
-    domain.entities.forEach((entity) => {
-      entityRows.push({
-        projectVersion: namespace.projectVersion,
-        domainName: domain.metaEdName,
-        domainEntityName: entity.metaEdName,
-        domainEntityDescription: entity.documentation || '',
-      });
-    });
+    entityRows.push(...mapDomainToEntities(namespace, domain));
 
     // Add entities in subdomains
     domain.subdomains.forEach((subdomain) => {
-      subdomain.entities.forEach((entity) => {
-        entityRows.push({
-          projectVersion: namespace.projectVersion,
-          domainName: domain.metaEdName,
-          domainEntityName: entity.metaEdName,
-          domainEntityDescription: entity.documentation || '',
-        });
-      });
+      entityRows.push(...mapDomainToEntities(namespace, subdomain));
     });
   });
 
@@ -97,36 +101,31 @@ function extractDataType(property: EntityProperty): string {
 }
 
 function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): ElementRow[] {
-  const elementRows: ElementRow[] = [];
-
-  domain.entities.forEach((entity) => {
-    entity.properties.forEach((property: EntityProperty) => {
-      elementRows.push({
-        projectVersion: namespace.projectVersion,
-        domainName: domain.metaEdName,
-        domainEntityName: entity.metaEdName,
-        elementName: property.metaEdName,
-        elementDescription: property.documentation || '',
-        isPartOfIdentity: property.isPartOfIdentity,
-        isCollection: property.isCollection,
-        isRequired: property.isRequired || property.isRequiredCollection,
-        isDeprecated: property.isDeprecated,
-        elementDataType: extractDataType(property),
-      });
-    });
-  });
-
-  return elementRows;
+  return domain.entities.flatMap((entity) =>
+    entity.properties.map((property: EntityProperty) => ({
+      projectVersion: namespace.projectVersion,
+      domainName: domain.metaEdName,
+      namespace: namespace.namespaceName,
+      domainEntityName: entity.metaEdName,
+      elementName: property.metaEdName,
+      elementDescription: property.documentation || '',
+      isPartOfIdentity: property.isPartOfIdentity,
+      isCollection: property.isCollection,
+      isRequired: property.isRequired || property.isRequiredCollection,
+      isDeprecated: property.isDeprecated,
+      elementDataType: extractDataType(property),
+    })),
+  );
 }
 
 function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
-  let elementRows: ElementRow[] = [];
+  const elementRows: ElementRow[] = [];
 
   namespace.entity.domain.forEach((domain: Domain) => {
-    elementRows = elementRows.concat(mapDomainToElements(namespace, domain));
+    elementRows.push(...mapDomainToElements(namespace, domain));
 
     domain.subdomains.forEach((subDomain: Subdomain) => {
-      elementRows = elementRows.concat(mapDomainToElements(namespace, subDomain));
+      elementRows.push(...mapDomainToElements(namespace, subDomain));
     });
   });
 
