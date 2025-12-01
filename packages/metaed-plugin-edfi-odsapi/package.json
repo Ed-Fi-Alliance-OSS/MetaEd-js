@@ -23,14 +23,14 @@
     "@edfi/metaed-plugin-edfi-xsd": "4.6.1-dev.0",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
-    "ramda": "^0.29.0",
+    "ramda": "^0.32.0",
     "semver": "^7.5.4",
     "sugar": "^2.0.6"
   },
   "devDependencies": {
     "@edfi/ed-fi-model-3.2c": "3.0.2",
     "@edfi/ed-fi-model-3.3b": "3.0.3",
-    "@edfi/ed-fi-model-4.0": "3.0.2",
+    "@edfi/ed-fi-model-4.0": "3.0.4",
     "xml-js": "^1.6.11"
   },
   "scripts": {
