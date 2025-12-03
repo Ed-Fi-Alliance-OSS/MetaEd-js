@@ -115,9 +115,9 @@ function getExtensionsWithDomains(namespace: Namespace): Array<{ extension: Exte
  */
 function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   return getExtensionsWithDomains(namespace).map(({ extension, domainName }) => ({
-    projectVersion: extension.namespace.projectVersion,
+    projectVersion: extension.namespace.projectVersion || namespace.projectVersion,
     domainName,
-    namespace: extension.namespace.namespaceName,
+    namespace: extension.namespace.namespaceName || 'extension',
     domainEntityName: extension.metaEdName,
     domainEntityDescription: extension.documentation || '',
   }));
@@ -130,9 +130,9 @@ function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[
 function extractExtensionElementsFromNamespace(namespace: Namespace): ElementRow[] {
   return getExtensionsWithDomains(namespace).flatMap(({ extension, domainName }) =>
     extension.properties.map((property: EntityProperty) => ({
-      projectVersion: extension.namespace.projectVersion,
+      projectVersion: extension.namespace.projectVersion || namespace.projectVersion,
       domainName,
-      namespace: extension.namespace.namespaceName,
+      namespace: extension.namespace.namespaceName || 'extension',
       domainEntityName: extension.metaEdName,
       elementName: property.metaEdName,
       elementDescription: property.documentation || '',
