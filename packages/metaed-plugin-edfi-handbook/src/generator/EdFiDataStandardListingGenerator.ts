@@ -5,7 +5,9 @@
 
 import * as R from 'ramda';
 import {
+  AssociationExtension,
   DecimalProperty,
+  DomainEntityExtension,
   IntegerProperty,
   orderByProp,
   PropertyType,
@@ -15,6 +17,7 @@ import {
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, Domain, EntityProperty } from '@edfi/metaed-core';
 import writeXlsxFile from 'write-excel-file';
+
 import {
   DomainRow,
   EntityRow,
@@ -26,6 +29,121 @@ import {
   entitiesWorksheetName,
   elementsWorksheetName,
 } from '../model/DataStandardListingRow';
+
+type ExtensionEntity = DomainEntityExtension | AssociationExtension;
+
+function extractDataType(property: EntityProperty): string {
+  const typeConversion: { [type in PropertyType]: any } = {
+    unknown: () => '',
+    association: () => 'reference',
+    boolean: () => 'Boolean',
+    choice: () => 'reference',
+    common: () => 'reference',
+    currency: () => 'decimal(19,4)',
+    date: () => 'date',
+    datetime: () => 'timestamp',
+    decimal: () => `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
+    descriptor: () => 'descriptor',
+    domainEntity: () => 'reference',
+    duration: () => 'string(30)',
+    enumeration: () => 'reference',
+    inlineCommon: () => 'reference',
+    integer: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
+    percent: () => 'decimal(5, 4)',
+    schoolYearEnumeration: () => 'reference',
+    sharedDecimal: () =>
+      `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
+    sharedInteger: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
+    sharedShort: () => 'int16',
+    sharedString: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
+    short: () => 'int16',
+    string: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
+    time: () => 'time',
+    year: () => 'int16',
+  };
+
+  return typeConversion[property.type]();
+}
+
+/**
+ * Finds the domain that contains the given entity by searching through all domains
+ * and subdomains in the namespace and its dependencies.
+ */
+function findDomainForEntity(entity: TopLevelEntity): Domain | Subdomain | null {
+  const namespacesToSearch = [entity.namespace, ...entity.namespace.dependencies];
+
+  return namespacesToSearch.reduce((found: Domain | Subdomain | null, namespace) => {
+    if (found) return found;
+
+    const domains = Array.from(namespace.entity.domain.values());
+
+    return domains.reduce((domainFound: Domain | Subdomain | null, domain) => {
+      if (domainFound) return domainFound;
+
+      // Check if entity is in the domain's entities
+      if (domain.entities.includes(entity)) {
+        return domain;
+      }
+
+      // Check subdomains
+      const subdomain = domain.subdomains.find((sub) => sub.entities.includes(entity));
+      return subdomain || null;
+    }, null);
+  }, null);
+}
+
+/**
+ * Gets all extension entities from the namespace with their resolved domain names.
+ */
+function getExtensionsWithDomains(namespace: Namespace): Array<{ extension: ExtensionEntity; domainName: string }> {
+  const extensions: ExtensionEntity[] = [
+    ...namespace.entity.domainEntityExtension.values(),
+    ...namespace.entity.associationExtension.values(),
+  ];
+
+  return extensions
+    .filter((extension) => extension.baseEntity != null)
+    .map((extension) => {
+      const domain = findDomainForEntity(extension.baseEntity!);
+      return { extension, domainName: domain?.metaEdName || 'Unknown' };
+    });
+}
+
+/**
+ * Extracts extension entities (DomainEntityExtension and AssociationExtension) from the namespace.
+ * Uses the extension's base entity to determine the domain.
+ */
+function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
+  return getExtensionsWithDomains(namespace).map(({ extension, domainName }) => ({
+    projectVersion: extension.namespace.projectVersion || namespace.projectVersion,
+    domainName,
+    namespace: extension.namespace.namespaceName || 'extension',
+    domainEntityName: extension.metaEdName,
+    domainEntityDescription: extension.documentation || '',
+  }));
+}
+
+/**
+ * Extracts elements (properties) from extension entities.
+ * Uses the extension's base entity to determine the domain.
+ */
+function extractExtensionElementsFromNamespace(namespace: Namespace): ElementRow[] {
+  return getExtensionsWithDomains(namespace).flatMap(({ extension, domainName }) =>
+    extension.properties.map((property: EntityProperty) => ({
+      projectVersion: extension.namespace.projectVersion || namespace.projectVersion,
+      domainName,
+      namespace: extension.namespace.namespaceName || 'extension',
+      domainEntityName: extension.metaEdName,
+      elementName: property.metaEdName,
+      elementDescription: property.documentation || '',
+      isPartOfIdentity: property.isPartOfIdentity,
+      isCollection: property.isCollection,
+      isRequired: property.isRequired || property.isRequiredCollection,
+      isDeprecated: property.isDeprecated,
+      elementDataType: extractDataType(property),
+    })),
+  );
+}
 
 function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
   const domainRows: DomainRow[] = [];
@@ -67,39 +185,6 @@ function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   return entityRows;
 }
 
-function extractDataType(property: EntityProperty): string {
-  const typeConversion: { [type in PropertyType]: any } = {
-    unknown: () => '',
-    association: () => 'reference',
-    boolean: () => 'Boolean',
-    choice: () => 'reference',
-    common: () => 'reference',
-    currency: () => 'decimal(19,4)',
-    date: () => 'date',
-    datetime: () => 'timestamp',
-    decimal: () => `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
-    descriptor: () => 'descriptor',
-    domainEntity: () => 'reference',
-    duration: () => 'string(30)',
-    enumeration: () => 'reference',
-    inlineCommon: () => 'reference',
-    integer: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
-    percent: () => 'decimal(5, 4)',
-    schoolYearEnumeration: () => 'reference',
-    sharedDecimal: () =>
-      `decimal(${(property as DecimalProperty).totalDigits}, ${(property as DecimalProperty).decimalPlaces})`,
-    sharedInteger: () => ((property as IntegerProperty).hasBigHint ? 'int64' : 'int32'),
-    sharedShort: () => 'int16',
-    sharedString: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
-    short: () => 'int16',
-    string: () => `string(${(property as StringProperty).minLength || 0},${(property as StringProperty).maxLength})`,
-    time: () => 'time',
-    year: () => 'int16',
-  };
-
-  return typeConversion[property.type]();
-}
-
 function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): ElementRow[] {
   return domain.entities.flatMap((entity) =>
     entity.properties.map((property: EntityProperty) => ({
@@ -129,8 +214,7 @@ function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
     });
   });
 
-  // Sort elements by entity name followed by property name
-  return R.sortWith([orderByProp('domainEntityName'), orderByProp('elementName')])(elementRows);
+  return elementRows;
 }
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
@@ -142,6 +226,10 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     domainRows.push(...extractDomainsFromNamespace(namespace));
     entityRows.push(...extractEntitiesFromNamespace(namespace));
     elementRows.push(...extractElementsFromNamespace(namespace));
+
+    // Add extension entities and elements
+    entityRows.push(...extractExtensionEntitiesFromNamespace(namespace));
+    elementRows.push(...extractExtensionElementsFromNamespace(namespace));
   });
 
   // Sort rows by appropriate fields
@@ -153,8 +241,13 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     orderByProp('domainEntityName'),
   ])(entityRows);
 
+  // Sort elements by entity name followed by property name
+  const orderedElementRows: ElementRow[] = R.sortWith([orderByProp('domainEntityName'), orderByProp('elementName')])(
+    elementRows,
+  );
+
   // @ts-ignore - TypeScript typings here don't recognize Blob return type
-  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, elementRows], {
+  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, orderedElementRows], {
     buffer: true,
     schema: [domainSchema, entitySchema, elementSchema],
     sheets: [domainsWorksheetName, entitiesWorksheetName, elementsWorksheetName],
