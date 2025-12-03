@@ -90,33 +90,34 @@ function findDomainForEntity(entity: TopLevelEntity): Domain | Subdomain | null 
 }
 
 /**
- * Extracts extension entities (DomainEntityExtension and AssociationExtension) from the namespace.
- * Uses the extension's base entity to determine the domain.
+ * Gets all extension entities from the namespace with their resolved domain names.
  */
-function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
-  const entityRows: EntityRow[] = [];
-
+function getExtensionsWithDomains(namespace: Namespace): Array<{ extension: ExtensionEntity; domainName: string }> {
   const extensions: ExtensionEntity[] = [
     ...namespace.entity.domainEntityExtension.values(),
     ...namespace.entity.associationExtension.values(),
   ];
 
-  for (const extension of extensions) {
-    if (extension.baseEntity) {
-      const domain = findDomainForEntity(extension.baseEntity);
-      const domainName = domain?.metaEdName || 'Unknown';
+  return extensions
+    .filter((extension) => extension.baseEntity != null)
+    .map((extension) => {
+      const domain = findDomainForEntity(extension.baseEntity!);
+      return { extension, domainName: domain?.metaEdName || 'Unknown' };
+    });
+}
 
-      entityRows.push({
-        projectVersion: namespace.projectVersion,
-        domainName,
-        namespace: namespace.namespaceName,
-        domainEntityName: extension.metaEdName,
-        domainEntityDescription: extension.documentation || '',
-      });
-    }
-  }
-
-  return entityRows;
+/**
+ * Extracts extension entities (DomainEntityExtension and AssociationExtension) from the namespace.
+ * Uses the extension's base entity to determine the domain.
+ */
+function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
+  return getExtensionsWithDomains(namespace).map(({ extension, domainName }) => ({
+    projectVersion: namespace.projectVersion,
+    domainName,
+    namespace: namespace.namespaceName,
+    domainEntityName: extension.metaEdName,
+    domainEntityDescription: extension.documentation || '',
+  }));
 }
 
 /**
@@ -124,37 +125,21 @@ function extractExtensionEntitiesFromNamespace(namespace: Namespace): EntityRow[
  * Uses the extension's base entity to determine the domain.
  */
 function extractExtensionElementsFromNamespace(namespace: Namespace): ElementRow[] {
-  const elementRows: ElementRow[] = [];
-
-  const extensions: ExtensionEntity[] = [
-    ...namespace.entity.domainEntityExtension.values(),
-    ...namespace.entity.associationExtension.values(),
-  ];
-
-  for (const extension of extensions) {
-    if (extension.baseEntity) {
-      const domain = findDomainForEntity(extension.baseEntity);
-      const domainName = domain?.metaEdName || 'Unknown';
-
-      for (const property of extension.properties) {
-        elementRows.push({
-          projectVersion: namespace.projectVersion,
-          domainName,
-          namespace: namespace.namespaceName,
-          domainEntityName: extension.metaEdName,
-          elementName: property.metaEdName,
-          elementDescription: property.documentation || '',
-          isPartOfIdentity: property.isPartOfIdentity,
-          isCollection: property.isCollection,
-          isRequired: property.isRequired || property.isRequiredCollection,
-          isDeprecated: property.isDeprecated,
-          elementDataType: extractDataType(property),
-        });
-      }
-    }
-  }
-
-  return elementRows;
+  return getExtensionsWithDomains(namespace).flatMap(({ extension, domainName }) =>
+    extension.properties.map((property: EntityProperty) => ({
+      projectVersion: namespace.projectVersion,
+      domainName,
+      namespace: namespace.namespaceName,
+      domainEntityName: extension.metaEdName,
+      elementName: property.metaEdName,
+      elementDescription: property.documentation || '',
+      isPartOfIdentity: property.isPartOfIdentity,
+      isCollection: property.isCollection,
+      isRequired: property.isRequired || property.isRequiredCollection,
+      isDeprecated: property.isDeprecated,
+      elementDataType: extractDataType(property),
+    })),
+  );
 }
 
 function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
@@ -226,8 +211,7 @@ function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
     });
   });
 
-  // Sort elements by entity name followed by property name
-  return R.sortWith([orderByProp('domainEntityName'), orderByProp('elementName')])(elementRows);
+  return elementRows;
 }
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
@@ -254,8 +238,13 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     orderByProp('domainEntityName'),
   ])(entityRows);
 
+  // Sort elements by entity name followed by property name
+  const orderedElementRows: ElementRow[] = R.sortWith([orderByProp('domainEntityName'), orderByProp('elementName')])(
+    elementRows,
+  );
+
   // @ts-ignore - TypeScript typings here don't recognize Blob return type
-  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, elementRows], {
+  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, orderedElementRows], {
     buffer: true,
     schema: [domainSchema, entitySchema, elementSchema],
     sheets: [domainsWorksheetName, entitiesWorksheetName, elementsWorksheetName],
