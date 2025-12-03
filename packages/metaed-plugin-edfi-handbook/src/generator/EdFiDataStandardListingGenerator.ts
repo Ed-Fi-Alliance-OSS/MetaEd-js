@@ -18,8 +18,6 @@ import {
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, Domain, EntityProperty } from '@edfi/metaed-core';
 import writeXlsxFile from 'write-excel-file';
 
-type ExtensionEntity = DomainEntityExtension | AssociationExtension;
-
 import {
   DomainRow,
   EntityRow,
@@ -31,6 +29,8 @@ import {
   entitiesWorksheetName,
   elementsWorksheetName,
 } from '../model/DataStandardListingRow';
+
+type ExtensionEntity = DomainEntityExtension | AssociationExtension;
 
 function extractDataType(property: EntityProperty): string {
   const typeConversion: { [type in PropertyType]: any } = {
@@ -72,21 +72,24 @@ function extractDataType(property: EntityProperty): string {
 function findDomainForEntity(entity: TopLevelEntity): Domain | Subdomain | null {
   const namespacesToSearch = [entity.namespace, ...entity.namespace.dependencies];
 
-  for (const namespace of namespacesToSearch) {
-    for (const domain of namespace.entity.domain.values()) {
+  return namespacesToSearch.reduce((found: Domain | Subdomain | null, namespace) => {
+    if (found) return found;
+
+    const domains = Array.from(namespace.entity.domain.values());
+
+    return domains.reduce((domainFound: Domain | Subdomain | null, domain) => {
+      if (domainFound) return domainFound;
+
       // Check if entity is in the domain's entities
       if (domain.entities.includes(entity)) {
         return domain;
       }
+
       // Check subdomains
-      for (const subdomain of domain.subdomains) {
-        if (subdomain.entities.includes(entity)) {
-          return subdomain;
-        }
-      }
-    }
-  }
-  return null;
+      const subdomain = domain.subdomains.find((sub) => sub.entities.includes(entity));
+      return subdomain || null;
+    }, null);
+  }, null);
 }
 
 /**
