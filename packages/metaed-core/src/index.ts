@@ -11,8 +11,7 @@ export {
   orderByPath,
   versionSatisfies,
   targetTechnologyVersionFor,
-  V3OrGreater,
-  V5OrGreater,
+  V6OrGreater,
   V7OrGreater,
 } from './Utility';
 export { executePipeline } from './pipeline/Pipeline';

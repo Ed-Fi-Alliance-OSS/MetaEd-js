@@ -5,14 +5,11 @@
 
 import { Logger, MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
 import { execute as deployCoreTask } from './task/DeployCore';
-import { execute as deployCoreV6Task } from './task/DeployCoreV6';
 import { execute as deployExtensionTask } from './task/DeployExtension';
-import { execute as deployExtensionV6Task } from './task/DeployExtensionV6';
 import { execute as extensionProjectsExistsTask } from './task/ExtensionProjectsExists';
 import { execute as legacyDirectoryExistsTask } from './task/LegacyDirectoryExists';
 import { execute as refreshProjectTask } from './task/RefreshProject';
 import { execute as removeExtensionArtifactsTask } from './task/RemoveExtensionArtifacts';
-import { execute as removeExtensionArtifactsV2andV3Task } from './task/RemoveExtensionArtifactsV2andV3';
 import { DeployResult } from './task/DeployResult';
 import { DeployTask } from './task/DeployTask';
 
@@ -39,13 +36,10 @@ export async function runDeployTasks(
     const tasks: DeployTask[] = [
       extensionProjectsExistsTask,
 
-      removeExtensionArtifactsV2andV3Task,
       removeExtensionArtifactsTask,
 
-      deployCoreV6Task,
       deployCoreTask,
 
-      deployExtensionV6Task,
       deployExtensionTask,
 
       refreshProjectTask,

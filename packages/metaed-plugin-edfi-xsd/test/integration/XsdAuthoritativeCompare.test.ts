@@ -27,8 +27,8 @@ import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating xsd and comparing it to data standard 3.1 authoritative artifacts', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
+describe('when generating xsd and comparing it to data standard 5.2 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v5_2/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
   const simpleTypeNames: string[] = [];
@@ -47,34 +47,34 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
       artifactDirectory: './MetaEdOutput/',
       pluginTechVersion: {
         edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-c',
+          projectVersion: '5.2.0',
           description: '',
         },
       ],
@@ -85,7 +85,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -154,8 +154,8 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
   });
 });
 
-describe('when generating xsd with extension and comparing it to data standard 3.1 authoritative artifacts', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact/v3/');
+describe('when generating xsd with extension and comparing it to data standard 5.2 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v5_2/');
   const outputDirectory = `${artifactPath}`;
   const complexTypeNames: string[] = [];
   const simpleTypeNames: string[] = [];
@@ -174,34 +174,34 @@ describe('when generating xsd with extension and comparing it to data standard 3
       artifactDirectory: './MetaEdOutput/',
       pluginTechVersion: {
         edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
         edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
+          targetTechnologyVersion: '7.3.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.2/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.1.0',
+          projectVersion: '7.3.0',
           description: '',
         },
         {
@@ -219,7 +219,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-c';
+    state.metaEd.dataStandardVersion = '5.2.0';
 
     setupPlugins(state);
     loadFiles(state);

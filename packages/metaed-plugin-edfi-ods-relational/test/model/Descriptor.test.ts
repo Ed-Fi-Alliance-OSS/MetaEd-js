@@ -46,7 +46,7 @@ describe('when descriptor is required property of domain entity', (): void => {
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
-    metaEd.dataStandardVersion = '3.2.0-c';
+    metaEd.dataStandardVersion = '5.2.0';
     initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeOdsPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   });

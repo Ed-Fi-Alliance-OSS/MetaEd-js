@@ -12,14 +12,11 @@ import { ValidationFailure, ValidationFailureCategory } from '../validator/Valid
 import { namespaceNameFrom } from './NamespaceBuilder';
 import { Namespace, NoNamespace } from '../model/Namespace';
 import { sourceMapFrom } from '../model/SourceMap';
-import { versionSatisfies } from '../Utility';
 
 const validatorName = 'SyntaxValidatingBuilder';
 const category: ValidationFailureCategory = 'warning';
 
 const willBeDeprecated = 'will be deprecated in a future version of MetaEd.';
-
-const targetDataStandardVersion331b: string = '>=3.3.1-b';
 
 function newValidationFailure(context: ParserRuleContext, message: string): ValidationFailure {
   return {
@@ -59,20 +56,13 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
 
   // Deprecate 'is weak'
   enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
-    if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion331b)) {
-      this.validationFailures.push({
-        validatorName,
-        category: 'error',
-        message: "The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x",
-        sourceMap: sourceMapFrom(context),
-        fileMap: null,
-      });
-      return;
-    }
-
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(deprecationWarning(context, `The 'is weak' keyword`));
-    }
+    this.validationFailures.push({
+      validatorName,
+      category: 'error',
+      message: "The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x",
+      sourceMap: sourceMapFrom(context),
+      fileMap: null,
+    });
   }
 
   // deprecate 'renames identity property' in extensions

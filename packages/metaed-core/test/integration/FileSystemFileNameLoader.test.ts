@@ -46,7 +46,7 @@ describe.skip('When a single file', (): void => {
           {
             projectName: 'Ed-Fi',
             namespaceName: 'EdFi',
-            projectVersion: '3.2.0-c',
+            projectVersion: '5.2.0',
             description: '',
           },
         ],
@@ -99,7 +99,7 @@ describe.skip('When an empty project', (): void => {
           {
             projectName: 'Ed-Fi',
             namespaceName: 'EdFi',
-            projectVersion: '3.2.0-c',
+            projectVersion: '5.2.0',
             description: '',
           },
         ],
@@ -166,7 +166,7 @@ describe.skip('When multiple files', (): void => {
           {
             projectName: 'Ed-Fi',
             namespaceName: 'EdFi',
-            projectVersion: '3.2.0-c',
+            projectVersion: '5.2.0',
             description: '',
           },
         ],

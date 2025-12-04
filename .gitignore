@@ -16,7 +16,6 @@ tmp
 dist/
 
 ## Test artifacts
-/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*-Authoritative.xsd
 
 /packages/metaed-plugin-edfi-ods-postgresql/test/integration/artifact/**/*-generated.sql
@@ -59,3 +58,4 @@ junit.xml
 __pycache__/
 *.py[cod]
 *$py.class
+.github/copilot-instructions.md

@@ -87,7 +87,7 @@ export async function enhanceGenerateAndExecuteSql(
   databaseName: string = testDatabaseName,
   targetTechnologyVersion: SemVer = defaultPluginTechVersion,
 ): Promise<any> {
-  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.2.0-c' : metaEd.dataStandardVersion;
+  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '5.2.0' : metaEd.dataStandardVersion;
   metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
     targetTechnologyVersion,

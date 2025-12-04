@@ -34,14 +34,14 @@ describe('when loading a project with two invalid plugin configuration files', (
   const metaEdConfiguration = {
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
-    defaultPluginTechVersion: '3.0.0',
+    defaultPluginTechVersion: '7.3.0',
     projectPaths: [simpleExtensionPath],
     projects: [
       {
         projectName: 'Ed-Fi',
         namespaceName: 'EdFi',
         projectExtension: '',
-        projectVersion: '3.0.0',
+        projectVersion: '5.2.0',
         description: '',
       },
     ],
@@ -51,7 +51,7 @@ describe('when loading a project with two invalid plugin configuration files', (
     ...newState(),
     metaEdConfiguration,
   };
-  state.metaEd.dataStandardVersion = '3.0.0';
+  state.metaEd.dataStandardVersion = '5.2.0';
 
   beforeAll(async () => {
     validateConfiguration(state);
@@ -114,14 +114,14 @@ describe('when loading a project with one invalid and one valid plugin configura
   const metaEdConfiguration = {
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
-    defaultPluginTechVersion: '3.0.0',
+    defaultPluginTechVersion: '7.3.0',
     projectPaths: [simpleExtensionPath],
     projects: [
       {
         projectName: 'Ed-Fi',
         namespaceName: 'EdFi',
         projectExtension: '',
-        projectVersion: '3.0.0',
+        projectVersion: '5.2.0',
         description: '',
       },
     ],
@@ -131,7 +131,7 @@ describe('when loading a project with one invalid and one valid plugin configura
     ...newState(),
     metaEdConfiguration,
   };
-  state.metaEd.dataStandardVersion = '3.0.0';
+  state.metaEd.dataStandardVersion = '5.2.0';
 
   beforeAll(async () => {
     validateConfiguration(state);
