@@ -7,17 +7,18 @@ import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   DomainBuilder,
-  DomainEntityBuilder,
-  DomainEntitySubclassBuilder,
+  AssociationBuilder,
+  AssociationSubclassBuilder,
   NamespaceBuilder,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
-import { validate } from '../../../src/validator/Domain/DomainEntityDomainItemMustMatchTopLevelEntity';
+import { validate } from '../../../src/validator/Subdomain/AssociationSubdomainItemMustMatchTopLevelEntity';
 
-describe('when validating domain entity domain item matches top level entity', (): void => {
+describe('when validating association subdomain item matches top level entity', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
-  const domainEntityName = 'DomainEntityName';
+  const subdomainName = 'SubdomainName';
+  const associationName = 'AssociationName';
 
   let failures: ValidationFailure[];
   let coreNamespace: any = null;
@@ -27,26 +28,31 @@ describe('when validating domain entity domain item matches top level entity', (
       .withBeginNamespace('EdFi')
       .withStartDomain(domainName)
       .withDocumentation('doc')
-      .withDomainEntityDomainItem(domainEntityName)
+      .withAssociationDomainItem(associationName)
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
 
-      .withStartDomainEntity(domainEntityName)
+      .withStartSubdomain(subdomainName, domainName)
+      .withDocumentation('doc')
+      .withAssociationDomainItem(associationName)
+      .withEndSubdomain()
+
+      .withStartAssociation(associationName)
       .withDocumentation('doc')
       .withBooleanProperty('PropertyName', 'doc', true, false)
-      .withEndDomainEntity()
+      .withEndAssociation()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new AssociationBuilder(metaEd, []));
 
     coreNamespace = metaEd.namespace.get('EdFi');
     failures = validate(metaEd);
   });
 
-  it('should build one domain entity', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(coreNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have no validation failures()', (): void => {
@@ -54,10 +60,11 @@ describe('when validating domain entity domain item matches top level entity', (
   });
 });
 
-describe('when validating domain entity domain item matches top level entity across namespace', (): void => {
+describe('when validating association subdomain item matches top level entity across namespace', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
-  const domainEntityName = 'DomainEntityName';
+  const subdomainName = 'SubdomainName';
+  const associationName = 'AssociationName';
 
   let failures: ValidationFailure[];
   let extensionNamespace: any = null;
@@ -65,23 +72,29 @@ describe('when validating domain entity domain item matches top level entity acr
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomainEntity(domainEntityName)
+      .withStartAssociation(associationName)
       .withDocumentation('doc')
       .withBooleanProperty('PropertyName', 'doc', true, false)
-      .withEndDomainEntity()
+      .withEndAssociation()
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
+      .withStartSubdomain(subdomainName, domainName)
+      .withDocumentation('doc')
+
       .withStartDomain(domainName)
       .withDocumentation('doc')
-      .withDomainEntityDomainItem(`EdFi.${domainEntityName}`)
+      .withAssociationDomainItem(associationName)
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
+
+      .withAssociationDomainItem(`EdFi.${associationName}`)
+      .withEndSubdomain()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new AssociationBuilder(metaEd, []));
 
     const coreNamespace = metaEd.namespace.get('EdFi');
     extensionNamespace = metaEd.namespace.get('Extension');
@@ -89,8 +102,8 @@ describe('when validating domain entity domain item matches top level entity acr
     failures = validate(metaEd);
   });
 
-  it('should build one domain entity', (): void => {
-    expect(extensionNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(extensionNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have no validation failures()', (): void => {
@@ -98,11 +111,12 @@ describe('when validating domain entity domain item matches top level entity acr
   });
 });
 
-describe('when validating domain entity domain item matches top level entity subclass', (): void => {
+describe('when validating association subdomain item matches top level entity subclass', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
-  const domainEntityName = 'DomainEntityName';
-  const domainEntitySubclassName = 'DomainEntitySubclassName';
+  const subdomainName = 'SubdomainName';
+  const associationName = 'AssociationName';
+  const associationSubclassName = 'AssociationSubclassName';
 
   let failures: ValidationFailure[];
   let coreNamespace: any = null;
@@ -110,34 +124,33 @@ describe('when validating domain entity domain item matches top level entity sub
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName)
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
-      .withDomainEntityDomainItem(domainEntitySubclassName)
-      .withFooterDocumentation('FooterDocumentation')
-      .withEndDomain()
+      .withAssociationDomainItem(associationSubclassName)
+      .withEndSubdomain()
 
-      .withStartDomainEntity(domainEntityName)
+      .withStartAssociation(associationName)
       .withDocumentation('doc')
       .withBooleanProperty('PropertyName', 'doc', true, false)
-      .withEndDomainEntity()
+      .withEndAssociation()
 
-      .withStartDomainEntitySubclass(domainEntitySubclassName, domainEntityName)
+      .withStartAssociationSubclass(associationSubclassName, associationName)
       .withDocumentation('doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
-      .withEndDomainEntitySubclass()
+      .withEndAssociationSubclass()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
     coreNamespace = metaEd.namespace.get('EdFi');
     failures = validate(metaEd);
   });
 
-  it('should build one domain entity', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(coreNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have no validation failures()', (): void => {
@@ -145,59 +158,61 @@ describe('when validating domain entity domain item matches top level entity sub
   });
 });
 
-describe('when validating domain entity domain item does not match top level entity', (): void => {
+describe('when validating association subdomain item does not match top level entity', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
-  const domainEntityName = 'DomainEntityName';
-  const domainEntitySubclassName = 'DomainEntitySubclassName';
+  const subdomainName = 'SubdomainName';
+  const associationName = 'AssociationName';
+  const associationSubclassName = 'AssociationSubclassName';
 
   let failures: ValidationFailure[];
   let coreNamespace: any = null;
 
   beforeAll(() => {
+    metaEd.dataStandardVersion = '5.0.0';
+
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName)
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
-      .withDomainEntityDomainItem('DomainEntityDomainItemName')
-      .withFooterDocumentation('FooterDocumentation')
-      .withEndDomain()
+      .withAssociationDomainItem('AssociationDomainItemName')
+      .withEndSubdomain()
 
-      .withStartDomainEntity(domainEntityName)
+      .withStartAssociation(associationName)
       .withDocumentation('doc')
       .withBooleanProperty('PropertyName', 'doc', true, false)
-      .withEndDomainEntity()
+      .withEndAssociation()
 
-      .withStartDomainEntitySubclass(domainEntitySubclassName, domainEntityName)
+      .withStartAssociationSubclass(associationSubclassName, associationName)
       .withDocumentation('doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
-      .withEndDomainEntitySubclass()
+      .withEndAssociationSubclass()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new AssociationBuilder(metaEd, []));
 
     coreNamespace = metaEd.namespace.get('EdFi');
     failures = validate(metaEd);
   });
 
-  it('should build one domain entity', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(coreNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have one validation failure()', (): void => {
     expect(failures).toHaveLength(1);
-    expect(failures[0].validatorName).toBe('DomainEntityDomainItemMustMatchTopLevelEntity');
+    expect(failures[0].validatorName).toBe('AssociationSubdomainItemMustMatchTopLevelEntity');
     expect(failures[0].category).toBe('error');
     expect(failures[0].message).toMatchInlineSnapshot(
-      `"Domain Entity Domain Item property 'DomainEntityDomainItemName' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi."`,
+      `"Association Subdomain Item property 'AssociationDomainItemName' does not match any declared Association or Association Subclass in namespace EdFi."`,
     );
     expect(failures[0].sourceMap).toMatchInlineSnapshot(`
       Object {
-        "column": 18,
+        "column": 16,
         "line": 5,
-        "tokenText": "DomainEntityDomainItemName",
+        "tokenText": "AssociationDomainItemName",
       }
     `);
   });

@@ -126,6 +126,10 @@ import { validate as sharedIntegerPropertyMustMatchASharedInteger } from './vali
 import { validate as sharedShortPropertyMustMatchASharedShort } from './validator/SharedShortProperty/SharedShortPropertyMustMatchASharedShort';
 import { validate as sharedStringPropertyMustMatchASharedString } from './validator/SharedStringProperty/SharedStringPropertyMustMatchASharedString';
 
+import { validate as associationSubdomainItemMustMatchTopLevelEntity } from './validator/Subdomain/AssociationSubdomainItemMustMatchTopLevelEntity';
+import { validate as commonSubdomainItemMustMatchTopLevelEntity } from './validator/Subdomain/CommonSubdomainItemMustMatchTopLevelEntity';
+import { validate as descriptorSubdomainItemMustMatchTopLevelEntity } from './validator/Subdomain/DescriptorSubdomainItemMustMatchTopLevelEntity';
+import { validate as domainEntitySubdomainItemMustMatchTopLevelEntity } from './validator/Subdomain/DomainEntitySubdomainItemMustMatchTopLevelEntity';
 import { validate as subdomainMustNotDuplicateDomainItems } from './validator/Subdomain/SubdomainMustNotDuplicateDomainItems';
 import { validate as subdomainParentDomainNameMustMatchADomain } from './validator/Subdomain/SubdomainParentDomainNameMustMatchADomain';
 
@@ -327,6 +331,10 @@ function validatorList(): Validator[] {
     sharedShortPropertyMustMatchASharedShort,
     sharedStringPropertyMustMatchASharedString,
 
+    associationSubdomainItemMustMatchTopLevelEntity,
+    commonSubdomainItemMustMatchTopLevelEntity,
+    descriptorSubdomainItemMustMatchTopLevelEntity,
+    domainEntitySubdomainItemMustMatchTopLevelEntity,
     subdomainMustNotDuplicateDomainItems,
     subdomainParentDomainNameMustMatchADomain,
 

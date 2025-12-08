@@ -84,7 +84,15 @@ describe('when validating subdomain entity parent domain name does not match a d
     expect(failures).toHaveLength(1);
     expect(failures[0].validatorName).toBe('SubdomainParentDomainNameMustMatchADomain');
     expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Subdomain parent domain name 'DomainName' does not match any declared Domain in namespace EdFi."`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 29,
+        "line": 5,
+        "tokenText": "DomainName",
+      }
+    `);
   });
 });

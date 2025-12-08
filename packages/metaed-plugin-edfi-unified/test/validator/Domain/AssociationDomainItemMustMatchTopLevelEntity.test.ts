@@ -190,7 +190,15 @@ describe('when validating association domain item does not match top level entit
     expect(failures).toHaveLength(1);
     expect(failures[0].validatorName).toBe('AssociationDomainItemMustMatchTopLevelEntity');
     expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Association Domain Item property 'AssociationDomainItemName' does not match any declared Association or Association Subclass in namespace EdFi."`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 16,
+        "line": 5,
+        "tokenText": "AssociationDomainItemName",
+      }
+    `);
   });
 });

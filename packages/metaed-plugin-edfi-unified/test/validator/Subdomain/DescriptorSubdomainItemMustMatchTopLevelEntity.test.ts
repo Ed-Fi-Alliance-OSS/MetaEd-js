@@ -11,11 +11,12 @@ import {
   NamespaceBuilder,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
-import { validate } from '../../../src/validator/Domain/DescriptorDomainItemMustMatchTopLevelEntity';
+import { validate } from '../../../src/validator/Subdomain/DescriptorSubdomainItemMustMatchTopLevelEntity';
 
-describe('when validating descriptor domain item matches top level entity', (): void => {
+describe('when validating descriptor subdomain item matches top level entity', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
+  const subdomainName = 'SubdomainName';
   const descriptorName = 'DescriptorName';
 
   let failures: ValidationFailure[];
@@ -24,11 +25,10 @@ describe('when validating descriptor domain item matches top level entity', (): 
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName)
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem(descriptorName)
-      .withFooterDocumentation('FooterDocumentation')
-      .withEndDomain()
+      .withEndSubdomain()
 
       .withStartDescriptor(descriptorName)
       .withDocumentation('doc')
@@ -44,8 +44,8 @@ describe('when validating descriptor domain item matches top level entity', (): 
     failures = validate(metaEd);
   });
 
-  it('should build one domain', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(coreNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have no validation failures()', (): void => {
@@ -53,9 +53,10 @@ describe('when validating descriptor domain item matches top level entity', (): 
   });
 });
 
-describe('when validating descriptor domain item matches top level entity across namespace', (): void => {
+describe('when validating descriptor subdomain item matches top level entity across namespace', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
+  const subdomainName = 'SubdomainName';
   const descriptorName = 'DescriptorName';
 
   let failures: ValidationFailure[];
@@ -71,11 +72,10 @@ describe('when validating descriptor domain item matches top level entity across
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName)
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem(`EdFi.${descriptorName}`)
-      .withFooterDocumentation('FooterDocumentation')
-      .withEndDomain()
+      .withEndSubdomain()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -88,8 +88,8 @@ describe('when validating descriptor domain item matches top level entity across
     failures = validate(metaEd);
   });
 
-  it('should build one domain', (): void => {
-    expect(extensionNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(extensionNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have no validation failures()', (): void => {
@@ -97,22 +97,24 @@ describe('when validating descriptor domain item matches top level entity across
   });
 });
 
-describe('when validating descriptor domain item does not match top level entity', (): void => {
+describe('when validating descriptor subdomain item does not match top level entity', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
+  const subdomainName = 'SubdomainName';
   const descriptorName = 'DescriptorName';
 
   let failures: ValidationFailure[];
   let coreNamespace: any = null;
 
   beforeAll(() => {
+    metaEd.dataStandardVersion = '5.0.0';
+
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName)
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem('DescriptorDomainItemName')
-      .withFooterDocumentation('FooterDocumentation')
-      .withEndDomain()
+      .withEndSubdomain()
 
       .withStartDescriptor(descriptorName)
       .withDocumentation('doc')
@@ -128,16 +130,16 @@ describe('when validating descriptor domain item does not match top level entity
     failures = validate(metaEd);
   });
 
-  it('should build one domain', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one subdomain', (): void => {
+    expect(coreNamespace.entity.subdomain.size).toBe(1);
   });
 
   it('should have one validation failure()', (): void => {
     expect(failures).toHaveLength(1);
-    expect(failures[0].validatorName).toBe('DescriptorDomainItemMustMatchTopLevelEntity');
+    expect(failures[0].validatorName).toBe('DescriptorSubdomainItemMustMatchTopLevelEntity');
     expect(failures[0].category).toBe('error');
     expect(failures[0].message).toMatchInlineSnapshot(
-      `"Descriptor Domain Item property 'DescriptorDomainItemName' does not match any declared Descriptor in namespace EdFi."`,
+      `"Descriptor Subdomain Item property 'DescriptorDomainItemName' does not match any declared Descriptor in namespace EdFi."`,
     );
     expect(failures[0].sourceMap).toMatchInlineSnapshot(`
       Object {
