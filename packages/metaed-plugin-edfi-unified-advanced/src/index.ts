@@ -16,6 +16,7 @@ import { validate as deprecatedPropertyWarning } from './validator/Deprecated/De
 import { validate as deprecatedDomainItemReferenceWarning } from './validator/Deprecated/DeprecatedDomainItemReferenceWarning';
 import { validate as deprecatedInterchangeItemReferenceWarning } from './validator/Deprecated/DeprecatedInterchangeItemReferenceWarning';
 import { validate as commonPropertyCollectionTargetMustContainIdentity } from './validator/CommonProperty/CommonPropertyCollectionTargetMustContainIdentity';
+import { validate as CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity } from './validator/CommonProperty/CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity';
 import { validate as selfReferencingPropertiesMustHaveRoleNameIfAllowed } from './validator/CrossProperty/SelfReferencingPropertiesMustHaveRoleNameIfAllowed';
 
 export function initialize(): MetaEdPlugin {
@@ -32,6 +33,7 @@ export function initialize(): MetaEdPlugin {
       deprecatedDomainItemReferenceWarning,
       deprecatedInterchangeItemReferenceWarning,
       commonPropertyCollectionTargetMustContainIdentity,
+      CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity,
       selfReferencingPropertiesMustHaveRoleNameIfAllowed,
     ],
     enhancer: [],
