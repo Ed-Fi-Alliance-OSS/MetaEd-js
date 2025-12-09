@@ -177,8 +177,16 @@ describe('when validating common domain item does not match top level entity', (
     expect(failures).toHaveLength(1);
     expect(failures[0].validatorName).toBe('CommonDomainItemMustMatchTopLevelEntity');
     expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Common Domain Item property 'CommonDomainItemName' does not match any declared Common or Inline Common in namespace EdFi."`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 11,
+        "line": 5,
+        "tokenText": "CommonDomainItemName",
+      }
+    `);
   });
 });
 
