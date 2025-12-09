@@ -632,6 +632,15 @@ MetaEdGrammarListener.prototype.exitPropertyComponents = function(ctx) {
 };
 
 
+// Enter a parse tree produced by MetaEdGrammar#isPersonallyIdentifiable.
+MetaEdGrammarListener.prototype.enterIsPersonallyIdentifiable = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#isPersonallyIdentifiable.
+MetaEdGrammarListener.prototype.exitIsPersonallyIdentifiable = function(ctx) {
+};
+
+
 // Enter a parse tree produced by MetaEdGrammar#isQueryableField.
 MetaEdGrammarListener.prototype.enterIsQueryableField = function(ctx) {
 };

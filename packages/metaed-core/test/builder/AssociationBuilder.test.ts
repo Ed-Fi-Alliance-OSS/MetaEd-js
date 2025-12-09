@@ -1083,6 +1083,11 @@ describe('when building association source map', (): void => {
           "line": 6,
           "tokenText": "domain entity",
         },
+        "isPersonallyIdentifiable": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isQueryableOnly": Object {
           "column": 0,
           "line": 0,
@@ -1237,6 +1242,11 @@ describe('when building association source map', (): void => {
           "column": 4,
           "line": 9,
           "tokenText": "domain entity",
+        },
+        "isPersonallyIdentifiable": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
         },
         "isQueryableOnly": Object {
           "column": 0,

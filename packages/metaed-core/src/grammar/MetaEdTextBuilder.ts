@@ -1221,6 +1221,7 @@ export class MetaEdTextBuilder {
     minLength: string | null = null,
     context: string | null = null,
     deprecatedReason: string | null = null,
+    isPII: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'string',
@@ -1232,6 +1233,9 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
+    if (isPII) {
+      this.withPersonallyIdentifiableIndicator();
+    }
     this.withStringRestrictions(minLength, maxLength);
 
     return this;
@@ -1299,6 +1303,7 @@ export class MetaEdTextBuilder {
     deprecatedReason: string | null = null,
     bigHintMinValue: boolean = false,
     bigHintMaxValue: boolean = false,
+    isPII: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'integer',
@@ -1310,6 +1315,9 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
+    if (isPII) {
+      this.withPersonallyIdentifiableIndicator();
+    }
     this.withNumericRestrictions(minValue, maxValue, bigHintMinValue, bigHintMaxValue);
     return this;
   }
@@ -1778,6 +1786,11 @@ export class MetaEdTextBuilder {
       this.withDocumentation(documentation);
     }
     this.withEndProperty();
+    return this;
+  }
+
+  withPersonallyIdentifiableIndicator(): MetaEdTextBuilder {
+    this.addLine('is personally identifiable');
     return this;
   }
 }

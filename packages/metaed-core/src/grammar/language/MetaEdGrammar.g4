@@ -395,7 +395,10 @@ propertyComponents
       propertyAnnotation
       roleName?
       isQueryableField?
+      isPersonallyIdentifiable?
     ;
+
+isPersonallyIdentifiable : IS_PII ;
 
 isQueryableField : IS_QUERYABLE_FIELD;
 

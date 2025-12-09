@@ -829,6 +829,11 @@ describe('when building domain entity with shared integer reference', (): void =
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isPersonallyIdentifiable": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isQueryableOnly": Object {
           "column": 0,
           "line": 0,
@@ -1013,6 +1018,11 @@ describe('when building domain entity with shared integer reference without name
           "tokenText": "NoSourceMap",
         },
         "isPartOfIdentity": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isPersonallyIdentifiable": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

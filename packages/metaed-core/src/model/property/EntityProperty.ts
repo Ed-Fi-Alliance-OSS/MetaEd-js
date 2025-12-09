@@ -49,6 +49,7 @@ export interface EntityPropertySourceMap {
   referencedType: SourceMap;
   referencedNamespaceName: SourceMap;
   mergeTargetedBy: SourceMap;
+  isPersonallyIdentifiable: SourceMap;
 }
 
 /**
@@ -81,6 +82,7 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
     referencedType: NoSourceMap,
     referencedNamespaceName: NoSourceMap,
     mergeTargetedBy: NoSourceMap,
+    isPersonallyIdentifiable: NoSourceMap,
   };
 }
 
@@ -131,6 +133,8 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  *
  * **isQueryableOnly** is true if the "is queryable only" keyword applies.
  *
+ * **isPersonallyIdentifiable** is true if the "is personally identifiable" keyword applies.
+ *
  * **roleName** is true if the "renames identity property" keyword applies.
  *
  * **hasRestriction** is true if the property has a value restriction for its type, such as "min length" or "max value".
@@ -170,6 +174,7 @@ export interface EntityProperty {
   isOptionalCollection: boolean;
   isCollection: boolean;
   isQueryableOnly: boolean;
+  isPersonallyIdentifiable: boolean;
   roleName: string;
   hasRestriction: boolean;
   referencedType: string;
@@ -215,6 +220,7 @@ export function newEntityProperty(): EntityProperty {
     mergeTargetedBy: [],
     sourceMap: newEntityPropertySourceMap(),
     data: {},
+    isPersonallyIdentifiable: false,
   };
 }
 

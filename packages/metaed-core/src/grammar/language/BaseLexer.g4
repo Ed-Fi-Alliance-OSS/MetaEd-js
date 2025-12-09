@@ -60,6 +60,7 @@ CASCADE_UPDATE :         'allow primary key updates';
 DECIMAL_PLACES :         'decimal places';
 IDENTITY :               'is part of identity';
 IDENTITY_RENAME :        'renames identity property';
+IS_PII :                 'is personally identifiable';
 IS_QUERYABLE_FIELD :     'is queryable field';
 IS_QUERYABLE_ONLY :      'is queryable only';
 IS_WEAK_REFERENCE :      'is weak';

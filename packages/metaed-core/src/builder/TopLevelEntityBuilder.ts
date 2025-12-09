@@ -866,4 +866,10 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     (this.currentProperty.sourceMap as ReferentialPropertySourceMap).mergeDirectives.push(sourceMapFrom(context));
     this.currentMergeDirective = NoMergeDirective;
   }
+
+  enterIsPersonallyIdentifiable(context: MetaEdGrammar.IsPersonallyIdentifiableContext) {
+    if (this.currentProperty === NoEntityProperty) return;
+    this.currentProperty.isPersonallyIdentifiable = true;
+    this.currentProperty.sourceMap.isPersonallyIdentifiable = sourceMapFrom(context);
+  }
 }
