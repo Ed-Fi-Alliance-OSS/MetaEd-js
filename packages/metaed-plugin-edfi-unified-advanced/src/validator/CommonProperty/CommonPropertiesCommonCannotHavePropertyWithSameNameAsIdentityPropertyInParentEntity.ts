@@ -19,11 +19,22 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
       referencedEntity.properties.forEach((referencedProperty) => {
         // Match on metaEdName
         if (identityProperty.metaEdName === referencedProperty.metaEdName) {
+          const message =
+            `The Common entity '${commonProperty.metaEdName}' referenced in '${parentEntity.metaEdName}' ` +
+            `cannot declare a property '${referencedProperty.metaEdName}' with the same name as identity property ` +
+            `'${identityProperty.metaEdName}' in this entity.`;
           failures.push({
             validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
             category: 'error',
-            message: `Common property '${commonProperty.metaEdName}' in entity '${parentEntity.metaEdName}' cannot have the same name as identity property '${identityProperty.metaEdName}' in referenced entity '${referencedEntity.metaEdName}'.`,
+            message,
             sourceMap: commonProperty.sourceMap.metaEdName,
+            fileMap: null,
+          });
+          failures.push({
+            validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+            category: 'error',
+            message,
+            sourceMap: identityProperty.sourceMap.metaEdName,
             fileMap: null,
           });
         }

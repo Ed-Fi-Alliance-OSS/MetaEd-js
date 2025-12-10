@@ -67,8 +67,8 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
       expect(coreNamespace.entity.domainEntity.size).toBe(1);
     });
 
-    it('should create two validation failures (one for each conflicting property)', () => {
-      expect(failures).toHaveLength(2);
+    it('should create four validation failures (two entries for each conflicting property)', () => {
+      expect(failures).toHaveLength(4);
     });
 
     it('should validate the first failure content', () => {
@@ -77,7 +77,7 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
       );
       expect(failures[0].category).toBe('error');
       expect(failures[0].message).toMatchInlineSnapshot(
-        `"Common property 'CommonEntity' in entity 'DomainEntity' cannot have the same name as identity property 'ConflictProp' in referenced entity 'CommonEntity'."`,
+        `"The Common entity 'CommonEntity' referenced in 'DomainEntity' cannot declare a property 'ConflictProp' with the same name as identity property 'ConflictProp' in this entity."`,
       );
       expect(failures[0].sourceMap).toMatchInlineSnapshot(`
         Object {
@@ -88,11 +88,46 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
       `);
     });
 
-    it('should validate the second failure content', () => {
+    it('should validate the identity-side failure for the first property', () => {
       expect(failures[1].validatorName).toBe(
         'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
       );
-      expect(failures[1].message).toContain('OtherProp');
+      expect(failures[1].message).toMatchInlineSnapshot(
+        `"The Common entity 'CommonEntity' referenced in 'DomainEntity' cannot declare a property 'ConflictProp' with the same name as identity property 'ConflictProp' in this entity."`,
+      );
+      expect(failures[1].sourceMap).toMatchInlineSnapshot(`
+        Object {
+          "column": 11,
+          "line": 18,
+          "tokenText": "ConflictProp",
+        }
+      `);
+    });
+
+    it('should validate the failures for the second property', () => {
+      expect(failures[2].validatorName).toBe(
+        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+      );
+      expect(failures[2].message).toContain('OtherProp');
+      expect(failures[2].sourceMap).toMatchInlineSnapshot(`
+        Object {
+          "column": 11,
+          "line": 28,
+          "tokenText": "CommonEntity",
+        }
+      `);
+
+      expect(failures[3].validatorName).toBe(
+        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+      );
+      expect(failures[3].message).toContain('OtherProp');
+      expect(failures[3].sourceMap).toMatchInlineSnapshot(`
+        Object {
+          "column": 11,
+          "line": 23,
+          "tokenText": "OtherProp",
+        }
+      `);
     });
   });
 
