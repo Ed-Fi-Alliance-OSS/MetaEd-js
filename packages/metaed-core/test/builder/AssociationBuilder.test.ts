@@ -1083,11 +1083,6 @@ describe('when building association source map', (): void => {
           "line": 6,
           "tokenText": "domain entity",
         },
-        "isPersonallyIdentifiable": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
         "isQueryableOnly": Object {
           "column": 0,
           "line": 0,
@@ -1099,6 +1094,11 @@ describe('when building association source map', (): void => {
           "tokenText": "NoSourceMap",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -1243,11 +1243,6 @@ describe('when building association source map', (): void => {
           "line": 9,
           "tokenText": "domain entity",
         },
-        "isPersonallyIdentifiable": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
         "isQueryableOnly": Object {
           "column": 0,
           "line": 0,
@@ -1259,6 +1254,11 @@ describe('when building association source map', (): void => {
           "tokenText": "NoSourceMap",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

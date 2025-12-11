@@ -395,12 +395,12 @@ propertyComponents
       propertyAnnotation
       roleName?
       isQueryableField?
-      isPersonallyIdentifiable?
+      isSensitiveData?
     ;
 
-isPersonallyIdentifiable : IS_PII ;
-
 isQueryableField : IS_QUERYABLE_FIELD;
+
+isSensitiveData : IS_SENSITIVE_DATA ;
 
 roleName
     : ROLE_NAME roleNameName (SHORTEN_TO shortenToName)?

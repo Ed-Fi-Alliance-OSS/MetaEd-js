@@ -579,18 +579,18 @@ var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
     "\u034d\u0003\u0002\u0002\u0002\u034f\u0083\u0003\u0002\u0002\u0002\u0350",
     "\u0351\u0007J\u0002\u0002\u0351\u0085\u0003\u0002\u0002\u0002\u0352",
     "\u0353\u0007H\u0002\u0002\u0353\u0087\u0003\u0002\u0002\u0002\u0354",
-    "\u0355\u0007?\u0002\u0002\u0355\u0089\u0003\u0002\u0002\u0002\u0356",
+    "\u0355\u0007>\u0002\u0002\u0355\u0089\u0003\u0002\u0002\u0002\u0356",
     "\u0358\u0005\f\u0007\u0002\u0357\u0356\u0003\u0002\u0002\u0002\u0357",
     "\u0358\u0003\u0002\u0002\u0002\u0358\u0359\u0003\u0002\u0002\u0002\u0359",
     "\u035a\u0005\u0014\u000b\u0002\u035a\u035c\u0005x=\u0002\u035b\u035d",
     "\u0005\u0090I\u0002\u035c\u035b\u0003\u0002\u0002\u0002\u035c\u035d",
     "\u0003\u0002\u0002\u0002\u035d\u035f\u0003\u0002\u0002\u0002\u035e\u0360",
-    "\u0005\u008eH\u0002\u035f\u035e\u0003\u0002\u0002\u0002\u035f\u0360",
+    "\u0005\u008cG\u0002\u035f\u035e\u0003\u0002\u0002\u0002\u035f\u0360",
     "\u0003\u0002\u0002\u0002\u0360\u0362\u0003\u0002\u0002\u0002\u0361\u0363",
-    "\u0005\u008cG\u0002\u0362\u0361\u0003\u0002\u0002\u0002\u0362\u0363",
+    "\u0005\u008eH\u0002\u0362\u0361\u0003\u0002\u0002\u0002\u0362\u0363",
     "\u0003\u0002\u0002\u0002\u0363\u008b\u0003\u0002\u0002\u0002\u0364\u0365",
     "\u0007=\u0002\u0002\u0365\u008d\u0003\u0002\u0002\u0002\u0366\u0367",
-    "\u0007>\u0002\u0002\u0367\u008f\u0003\u0002\u0002\u0002\u0368\u0369",
+    "\u0007?\u0002\u0002\u0367\u008f\u0003\u0002\u0002\u0002\u0368\u0369",
     "\u0007K\u0002\u0002\u0369\u036c\u0005\u010e\u0088\u0002\u036a\u036b",
     "\u0007L\u0002\u0002\u036b\u036d\u0005\u0114\u008b\u0002\u036c\u036a",
     "\u0003\u0002\u0002\u0002\u036c\u036d\u0003\u0002\u0002\u0002\u036d\u0091",
@@ -872,16 +872,16 @@ var literalNames = [ null, "'Abstract Entity'", "'Association'", "'Begin Namespa
                      "'string'", "'time'", "'year'", "'additions'", "'big'", 
                      "'based on'", "'core'", "'allow primary key updates'", 
                      "'decimal places'", "'is part of identity'", "'renames identity property'", 
-                     "'is personally identifiable'", "'is queryable field'", 
-                     "'is queryable only'", "'is weak'", "'potentially logical'", 
-                     "'merge'", "'min length'", "'max length'", "'min value'", 
-                     "'max value'", "'is optional'", "'is optional collection'", 
-                     "'is required'", "'is required collection'", "'role name'", 
-                     "'shorten to'", "'of'", "'position'", "'total digits'", 
-                     "'with'", "'with optional map type'", "'with map type'", 
-                     "'deprecated'", "'documentation'", "'inherited'", "'extended documentation'", 
-                     "'use case documentation'", "'footer documentation'", 
-                     null, null, null, null, null, "'+'", "'-'", "'.'" ];
+                     "'is queryable field'", "'is queryable only'", "'is sensitive data'", 
+                     "'is weak'", "'potentially logical'", "'merge'", "'min length'", 
+                     "'max length'", "'min value'", "'max value'", "'is optional'", 
+                     "'is optional collection'", "'is required'", "'is required collection'", 
+                     "'role name'", "'shorten to'", "'of'", "'position'", 
+                     "'total digits'", "'with'", "'with optional map type'", 
+                     "'with map type'", "'deprecated'", "'documentation'", 
+                     "'inherited'", "'extended documentation'", "'use case documentation'", 
+                     "'footer documentation'", null, null, null, null, null, 
+                     "'+'", "'-'", "'.'" ];
 
 var symbolicNames = [ null, "ABSTRACT_ENTITY", "ASSOCIATION", "BEGIN_NAMESPACE", 
                       "END_NAMESPACE", "CHOICE", "COMMON", "DESCRIPTOR", 
@@ -899,8 +899,8 @@ var symbolicNames = [ null, "ABSTRACT_ENTITY", "ASSOCIATION", "BEGIN_NAMESPACE",
                       "SHARED_STRING_KEYWORD", "SHARED_NAMED", "SHORT", 
                       "STRING", "TIME", "YEAR", "ADDITIONS", "BIG", "BASED_ON", 
                       "CORE", "CASCADE_UPDATE", "DECIMAL_PLACES", "IDENTITY", 
-                      "IDENTITY_RENAME", "IS_PII", "IS_QUERYABLE_FIELD", 
-                      "IS_QUERYABLE_ONLY", "IS_WEAK_REFERENCE", "POTENTIALLY_LOGICAL", 
+                      "IDENTITY_RENAME", "IS_QUERYABLE_FIELD", "IS_QUERYABLE_ONLY", 
+                      "IS_SENSITIVE_DATA", "IS_WEAK_REFERENCE", "POTENTIALLY_LOGICAL", 
                       "MERGE_REFERENCE", "MIN_LENGTH", "MAX_LENGTH", "MIN_VALUE", 
                       "MAX_VALUE", "OPTIONAL", "OPTIONAL_COLLECTION", "REQUIRED", 
                       "REQUIRED_COLLECTION", "ROLE_NAME", "SHORTEN_TO", 
@@ -933,7 +933,7 @@ var ruleNames =  [ "metaEd", "namespace", "namespaceType", "topLevelEntity",
                    "commonExtensionOverride", "propertyAnnotation", "identity", 
                    "identityRename", "required", "optional", "collection", 
                    "requiredCollection", "optionalCollection", "isQueryableOnly", 
-                   "propertyComponents", "isPersonallyIdentifiable", "isQueryableField", 
+                   "propertyComponents", "isQueryableField", "isSensitiveData", 
                    "roleName", "minLength", "maxLength", "property", "booleanProperty", 
                    "currencyProperty", "dateProperty", "datetimeProperty", 
                    "decimalProperty", "descriptorProperty", "durationProperty", 
@@ -1034,9 +1034,9 @@ MetaEdGrammar.CASCADE_UPDATE = 55;
 MetaEdGrammar.DECIMAL_PLACES = 56;
 MetaEdGrammar.IDENTITY = 57;
 MetaEdGrammar.IDENTITY_RENAME = 58;
-MetaEdGrammar.IS_PII = 59;
-MetaEdGrammar.IS_QUERYABLE_FIELD = 60;
-MetaEdGrammar.IS_QUERYABLE_ONLY = 61;
+MetaEdGrammar.IS_QUERYABLE_FIELD = 59;
+MetaEdGrammar.IS_QUERYABLE_ONLY = 60;
+MetaEdGrammar.IS_SENSITIVE_DATA = 61;
 MetaEdGrammar.IS_WEAK_REFERENCE = 62;
 MetaEdGrammar.POTENTIALLY_LOGICAL = 63;
 MetaEdGrammar.MERGE_REFERENCE = 64;
@@ -1143,8 +1143,8 @@ MetaEdGrammar.RULE_requiredCollection = 65;
 MetaEdGrammar.RULE_optionalCollection = 66;
 MetaEdGrammar.RULE_isQueryableOnly = 67;
 MetaEdGrammar.RULE_propertyComponents = 68;
-MetaEdGrammar.RULE_isPersonallyIdentifiable = 69;
-MetaEdGrammar.RULE_isQueryableField = 70;
+MetaEdGrammar.RULE_isQueryableField = 69;
+MetaEdGrammar.RULE_isSensitiveData = 70;
 MetaEdGrammar.RULE_roleName = 71;
 MetaEdGrammar.RULE_minLength = 72;
 MetaEdGrammar.RULE_maxLength = 73;
@@ -7609,8 +7609,8 @@ PropertyComponentsContext.prototype.isQueryableField = function() {
     return this.getTypedRuleContext(IsQueryableFieldContext,0);
 };
 
-PropertyComponentsContext.prototype.isPersonallyIdentifiable = function() {
-    return this.getTypedRuleContext(IsPersonallyIdentifiableContext,0);
+PropertyComponentsContext.prototype.isSensitiveData = function() {
+    return this.getTypedRuleContext(IsSensitiveDataContext,0);
 };
 
 PropertyComponentsContext.prototype.enterRule = function(listener) {
@@ -7668,70 +7668,11 @@ MetaEdGrammar.prototype.propertyComponents = function() {
         this.state = 864;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if(_la===MetaEdGrammar.IS_PII) {
+        if(_la===MetaEdGrammar.IS_SENSITIVE_DATA) {
             this.state = 863;
-            this.isPersonallyIdentifiable();
+            this.isSensitiveData();
         }
 
-    } catch (re) {
-    	if(re instanceof antlr4.error.RecognitionException) {
-	        localctx.exception = re;
-	        this._errHandler.reportError(this, re);
-	        this._errHandler.recover(this, re);
-	    } else {
-	    	throw re;
-	    }
-    } finally {
-        this.exitRule();
-    }
-    return localctx;
-};
-
-function IsPersonallyIdentifiableContext(parser, parent, invokingState) {
-	if(parent===undefined) {
-	    parent = null;
-	}
-	if(invokingState===undefined || invokingState===null) {
-		invokingState = -1;
-	}
-	antlr4.ParserRuleContext.call(this, parent, invokingState);
-    this.parser = parser;
-    this.ruleIndex = MetaEdGrammar.RULE_isPersonallyIdentifiable;
-    return this;
-}
-
-IsPersonallyIdentifiableContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
-IsPersonallyIdentifiableContext.prototype.constructor = IsPersonallyIdentifiableContext;
-
-IsPersonallyIdentifiableContext.prototype.IS_PII = function() {
-    return this.getToken(MetaEdGrammar.IS_PII, 0);
-};
-
-IsPersonallyIdentifiableContext.prototype.enterRule = function(listener) {
-    if(listener instanceof MetaEdGrammarListener ) {
-        listener.enterIsPersonallyIdentifiable(this);
-	}
-};
-
-IsPersonallyIdentifiableContext.prototype.exitRule = function(listener) {
-    if(listener instanceof MetaEdGrammarListener ) {
-        listener.exitIsPersonallyIdentifiable(this);
-	}
-};
-
-
-
-
-MetaEdGrammar.IsPersonallyIdentifiableContext = IsPersonallyIdentifiableContext;
-
-MetaEdGrammar.prototype.isPersonallyIdentifiable = function() {
-
-    var localctx = new IsPersonallyIdentifiableContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 138, MetaEdGrammar.RULE_isPersonallyIdentifiable);
-    try {
-        this.enterOuterAlt(localctx, 1);
-        this.state = 866;
-        this.match(MetaEdGrammar.IS_PII);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -7786,11 +7727,70 @@ MetaEdGrammar.IsQueryableFieldContext = IsQueryableFieldContext;
 MetaEdGrammar.prototype.isQueryableField = function() {
 
     var localctx = new IsQueryableFieldContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 140, MetaEdGrammar.RULE_isQueryableField);
+    this.enterRule(localctx, 138, MetaEdGrammar.RULE_isQueryableField);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 866;
+        this.match(MetaEdGrammar.IS_QUERYABLE_FIELD);
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function IsSensitiveDataContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = MetaEdGrammar.RULE_isSensitiveData;
+    return this;
+}
+
+IsSensitiveDataContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+IsSensitiveDataContext.prototype.constructor = IsSensitiveDataContext;
+
+IsSensitiveDataContext.prototype.IS_SENSITIVE_DATA = function() {
+    return this.getToken(MetaEdGrammar.IS_SENSITIVE_DATA, 0);
+};
+
+IsSensitiveDataContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
+        listener.enterIsSensitiveData(this);
+	}
+};
+
+IsSensitiveDataContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
+        listener.exitIsSensitiveData(this);
+	}
+};
+
+
+
+
+MetaEdGrammar.IsSensitiveDataContext = IsSensitiveDataContext;
+
+MetaEdGrammar.prototype.isSensitiveData = function() {
+
+    var localctx = new IsSensitiveDataContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 140, MetaEdGrammar.RULE_isSensitiveData);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 868;
-        this.match(MetaEdGrammar.IS_QUERYABLE_FIELD);
+        this.match(MetaEdGrammar.IS_SENSITIVE_DATA);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

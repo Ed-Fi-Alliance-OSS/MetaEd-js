@@ -867,9 +867,9 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     this.currentMergeDirective = NoMergeDirective;
   }
 
-  enterIsPersonallyIdentifiable(context: MetaEdGrammar.IsPersonallyIdentifiableContext) {
+  enterIsSensitiveData(context: MetaEdGrammar.IsSensitiveDataContext) {
     if (this.currentProperty === NoEntityProperty) return;
-    this.currentProperty.isPersonallyIdentifiable = true;
-    this.currentProperty.sourceMap.isPersonallyIdentifiable = sourceMapFrom(context);
+    this.currentProperty.isSensitiveData = true;
+    this.currentProperty.sourceMap.isSensitiveData = sourceMapFrom(context);
   }
 }

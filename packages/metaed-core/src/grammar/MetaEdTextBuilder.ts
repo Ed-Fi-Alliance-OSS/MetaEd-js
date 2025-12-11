@@ -1790,7 +1790,7 @@ export class MetaEdTextBuilder {
   }
 
   withPersonallyIdentifiableIndicator(): MetaEdTextBuilder {
-    this.addLine('is personally identifiable');
+    this.addLine('is sensitive data');
     return this;
   }
 }
