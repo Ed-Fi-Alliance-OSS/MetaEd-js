@@ -173,7 +173,9 @@ export type ResourceExtensionSchema = BaseResourceSchema & {
  * regular and subclass resources.
  */
 export type ResourceSchema =
-  | ResourceExtensionSchema
+  | (ResourceExtensionSchema & {
+      isSubclass: false;
+    })
   | (NonExtensionResourceSchema & {
       isSubclass: false;
     })
