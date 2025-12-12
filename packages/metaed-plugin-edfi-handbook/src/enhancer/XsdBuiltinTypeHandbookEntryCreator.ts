@@ -6,6 +6,7 @@
 import { EntityProperty } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
+import { HandbookUsedByProperty } from '../model/HandbookUsedByProperty';
 
 function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
   if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
@@ -20,6 +21,15 @@ function getCardinalityStringFor(property: EntityProperty, isHandbookEntityRefer
 
 function propertyNamer(property: EntityProperty): string {
   return property.roleName === property.metaEdName ? property.metaEdName : property.roleName + property.metaEdName;
+}
+
+function parentNameAndPropertyCardinalityProperties(property: EntityProperty): HandbookUsedByProperty[] {
+  const item: HandbookUsedByProperty = {
+    referenceUniqueIdentifier: property.parentEntityName + property.parentEntity.entityUuid,
+    name: property.metaEdName,
+    cardinality: getCardinalityStringFor(property),
+  };
+  return [item];
 }
 
 function parentNameAndPropertyCardinality(property: EntityProperty): string {
@@ -51,6 +61,7 @@ export function createDefaultHandbookEntry(
     metaEdType,
     umlType,
     modelReferencesUsedBy: [parentNameAndPropertyCardinality(property)],
+    modelReferencesUsedByProperties: parentNameAndPropertyCardinalityProperties(property),
     name: getPropertyName(property),
     projectName: property.namespace.projectName,
     odsFragment: generatedTableSqlFor(property, columnDatatype),
