@@ -54,14 +54,14 @@ describe('when generating HTML version of handbook', (): void => {
       .withDocumentation('Entity1 doc')
       .withIntegerIdentity('Entity1Integer', 'Entity1Integer doc')
       .withStringProperty('Entity1String', 'Entity1String doc', true, false, '0', '100')
-      .withDateProperty('Entity1DateCollection', 'Entity1DateCollection doc', false, true)
+      .withDateProperty('ActualDate', 'The month, day, and year.', false, true)
       .withEndDomainEntity()
 
       .withStartDomainEntity('Entity2')
       .withDocumentation('Entity2 doc')
       .withIntegerIdentity('Entity2Integer', 'Entity2Integer doc')
       .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100', 'Entity2String', null, true)
-      .withDateProperty('Entity2DateCollection', 'Entity2DateCollection doc', false, true)
+      .withDateProperty('AsOfDate', 'The date of the reported amount for the account.', false, true)
       .withEndDomainEntity()
 
       .withEndNamespace()

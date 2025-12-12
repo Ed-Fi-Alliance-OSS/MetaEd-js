@@ -26,6 +26,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const handbookEntries: HandbookEntry[] = handbookEntriesForAllNamespaces(metaEd);
 
   handbookEntries.forEach((handbookEntry: HandbookEntry) => {
+    // Skip below types because modelReferencesUsedByProperties are already populated for them
+    if (
+      handbookEntry.umlType === 'Date' ||
+      handbookEntry.umlType === 'Time' ||
+      handbookEntry.umlType === 'DateTime' ||
+      handbookEntry.umlType === 'Boolean'
+    )
+      return;
     handbookEntry.modelReferencesUsedByProperties = handbookEntries
       .filter(
         (entry) =>

@@ -4,9 +4,19 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { HandbookEntry, newHandbookEntry } from '../model/HandbookEntry';
+import { HandbookUsedByProperty } from '../model/HandbookUsedByProperty';
 
 function generatedTableSqlFor(name: string, columnDefinition: string): string[] {
   return [`${name} ${columnDefinition}`];
+}
+
+function parentNameAndPropertyCardinalityProperties(uniqueIdentifier: string, metaEdName: string): HandbookUsedByProperty[] {
+  const item: HandbookUsedByProperty = {
+    referenceUniqueIdentifier: metaEdName + uniqueIdentifier,
+    name: metaEdName,
+    cardinality: 'optional',
+  };
+  return [item];
 }
 
 export function createDefaultHandbookEntry({
@@ -27,6 +37,7 @@ export function createDefaultHandbookEntry({
     uniqueIdentifier: name + entityUuid,
     metaEdType: `${name} Base Type`,
     modelReferencesUsedBy: [],
+    modelReferencesUsedByProperties: parentNameAndPropertyCardinalityProperties(entityUuid, name),
     umlType: name,
     name,
     projectName: 'EdFi',
