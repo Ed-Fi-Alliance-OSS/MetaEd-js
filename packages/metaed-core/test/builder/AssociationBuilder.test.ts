@@ -1098,6 +1098,11 @@ describe('when building association source map', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isSensitiveData": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isWeak": Object {
           "column": 0,
           "line": 0,
@@ -1249,6 +1254,11 @@ describe('when building association source map', (): void => {
           "tokenText": "NoSourceMap",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

@@ -168,6 +168,11 @@ export type EntityApiSchemaData = {
   numericJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that contain sensitive data.
+   */
+  sensitiveDataJsonPaths: JsonPath[];
+
+  /**
    * A list of the decimal property validation information for validating precision and scale
    */
   decimalPropertyValidationInfos: DecimalPropertyValidationInfo[];

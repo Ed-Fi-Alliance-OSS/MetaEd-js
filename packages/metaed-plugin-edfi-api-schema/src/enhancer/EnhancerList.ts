@@ -34,6 +34,7 @@ import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingE
 import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhancer';
 import { enhance as decimalPropertyValidationInfoEnhancer } from './DecimalPropertyValidationInfoEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from './TypeCoercionJsonPathsEnhancer';
+import { enhance as sensitiveDataEnhancer } from './SensitiveDataEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from './QueryFieldMappingEnhancer';
 import { enhance as openApiBaseDocumentEnhancer } from './OpenApiBaseDocumentEnhancer';
@@ -84,6 +85,7 @@ export function enhancerList(): Enhancer[] {
     decimalPropertyValidationInfoEnhancer,
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
+    sensitiveDataEnhancer,
     flatteningTableMetadataEnhancer,
     abstractResourceFlatteningMetadataEnhancer,
     openApiBaseDocumentEnhancer,
