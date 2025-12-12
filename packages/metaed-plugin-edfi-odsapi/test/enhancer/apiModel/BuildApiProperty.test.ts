@@ -9,7 +9,9 @@ import {
   newDecimalProperty,
   newIntegerProperty,
   newShortProperty,
+  newStringProperty,
   ShortProperty,
+  StringProperty,
 } from '@edfi/metaed-core';
 import { newColumn, StringColumn, DecimalColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { Column } from '@edfi/metaed-plugin-edfi-ods-relational';
@@ -146,6 +148,7 @@ describe('when building an api property from an integer column with min/max valu
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -184,6 +187,7 @@ describe('when building an api property from an integer column without min/max v
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -226,6 +230,7 @@ describe('when building an api property from a short column with min/max values 
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -264,6 +269,7 @@ describe('when building an api property from a short column without min/max valu
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -310,6 +316,7 @@ describe('when building an api property from a decimal column with min/max value
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -356,6 +363,7 @@ describe('when building an api property from a decimal column without min/max va
         "description": "Description",
         "isDeprecated": undefined,
         "isIdentifying": false,
+        "isSensitiveData": undefined,
         "isServerAssigned": false,
         "propertyName": "Name",
         "propertyType": Object {
@@ -364,6 +372,50 @@ describe('when building an api property from a decimal column without min/max va
           "maxLength": 0,
           "precision": 5,
           "scale": 10,
+        },
+      }
+    `);
+  });
+});
+
+describe('when building an api property from an is sensitive data string column', (): void => {
+  const columnId = 'Name';
+  const description = 'Description';
+  const column: StringColumn = {
+    ...newColumn(),
+    type: 'string',
+    minLength: '75',
+    maxLength: '200',
+    columnId,
+    data: { edfiOdsSqlServer: { columnName: columnId } },
+    description,
+    isNullable: false,
+    sourceEntityProperties: [
+      {
+        ...newStringProperty(),
+        isSensitiveData: true,
+      } as StringProperty,
+    ],
+  };
+
+  const apiProperty: ApiProperty = buildApiProperty(column, '3.2.0');
+
+  it('should have correct api property', (): void => {
+    expect(apiProperty).toMatchInlineSnapshot(`
+      Object {
+        "deprecationReasons": undefined,
+        "description": "Description",
+        "isDeprecated": undefined,
+        "isIdentifying": false,
+        "isSensitiveData": true,
+        "isServerAssigned": false,
+        "propertyName": "Name",
+        "propertyType": Object {
+          "dbType": "String",
+          "isNullable": false,
+          "maxLength": 200,
+          "precision": 0,
+          "scale": 0,
         },
       }
     `);
