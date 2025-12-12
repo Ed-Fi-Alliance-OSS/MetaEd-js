@@ -25,6 +25,7 @@ This document provides specific instructions for AI agents working on the MetaEd
 
 ### Linting and Type Checking
 
+- **REQUIRED**: Execute `npm run build` before submitting any changes and correct any build errors
 - **REQUIRED**: Execute `npm run test:lint` before submitting any changes
 - **REQUIRED**: Correct any and all linting errors that are reported
 - The lint command includes both TypeScript type checking and ESLint validation
@@ -32,7 +33,7 @@ This document provides specific instructions for AI agents working on the MetaEd
 
 ### Unit Testing
 
-- **REQUIRED**: Execute `npm run test:unit` to run the test suite
+- **REQUIRED**: Execute `test:unit:non-database` to run the test suite
 - Ensure all unit tests pass before submitting changes
 - The unit test command automatically excludes database tests
 
@@ -48,6 +49,8 @@ This document provides specific instructions for AI agents working on the MetaEd
 
 - **NEVER** run database tests directly
 - **NEVER** execute the following commands:
+  - `npm run test`
+  - `npm run test:unit`
   - `npm run test:unit:db:postgresql`
   - `npm run test:unit:db:sqlserver`
   - Any database setup or initialization scripts
