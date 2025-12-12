@@ -632,7 +632,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "busRoutes": {
         "allowIdentityUpdates": false,
@@ -2208,7 +2210,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "buses": {
         "allowIdentityUpdates": false,
@@ -2665,7 +2669,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "contacts": {
         "allowIdentityUpdates": false,
@@ -4499,7 +4505,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "favoriteBookCategoryDescriptors": {
         "allowIdentityUpdates": false,
@@ -5062,7 +5070,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "membershipTypeDescriptors": {
         "allowIdentityUpdates": false,
@@ -5625,7 +5635,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "schools": {
         "allowIdentityUpdates": false,
@@ -5994,7 +6006,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "staffs": {
         "allowIdentityUpdates": false,
@@ -6306,7 +6320,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentArtProgramAssociations": {
         "allowIdentityUpdates": false,
@@ -8290,6 +8306,8 @@
             "$.studentReference.studentUniqueId"
           ]
         },
+        "sensitiveDataJsonPaths": [
+        ],
         "subclassType": "association",
         "superclassProjectName": "Ed-Fi",
         "superclassResourceName": "GeneralStudentProgramAssociation"
@@ -8442,7 +8460,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentContactAssociations": {
         "allowIdentityUpdates": false,
@@ -9456,7 +9476,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentEducationOrganizationAssociations": {
         "allowIdentityUpdates": false,
@@ -10670,7 +10692,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentGraduationPlanAssociations": {
         "allowIdentityUpdates": false,
@@ -12364,7 +12388,9 @@
           "Student": [
             "$.studentReference.studentUniqueId"
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentSchoolAssociations": {
         "allowIdentityUpdates": false,
@@ -12492,7 +12518,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "studentSectionAssociations": {
         "allowIdentityUpdates": false,
@@ -12738,7 +12766,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "students": {
         "allowIdentityUpdates": false,
@@ -13363,7 +13393,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       }
     }
   }

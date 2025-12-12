@@ -685,7 +685,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "aidTypeDescriptors": {
         "allowIdentityUpdates": false,
@@ -1248,7 +1250,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "candidateEducatorPreparationProgramAssociations": {
         "allowIdentityUpdates": false,
@@ -2345,7 +2349,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "candidates": {
         "allowIdentityUpdates": false,
@@ -5593,7 +5599,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "certificationRouteDescriptors": {
         "allowIdentityUpdates": false,
@@ -6156,7 +6164,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "coteachingStyleObservedDescriptors": {
         "allowIdentityUpdates": false,
@@ -6719,7 +6729,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "credentialStatusDescriptors": {
         "allowIdentityUpdates": false,
@@ -7282,7 +7294,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "credentials": {
         "allowIdentityUpdates": false,
@@ -7705,7 +7719,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "educatorPreparationPrograms": {
         "allowIdentityUpdates": false,
@@ -8447,7 +8463,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "educatorRoleDescriptors": {
         "allowIdentityUpdates": false,
@@ -9010,7 +9028,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "englishLanguageExamDescriptors": {
         "allowIdentityUpdates": false,
@@ -9573,7 +9593,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "eppProgramPathwayDescriptors": {
         "allowIdentityUpdates": false,
@@ -10136,7 +10158,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationElementRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
@@ -10699,7 +10723,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationElementRatings": {
         "allowIdentityUpdates": false,
@@ -12134,7 +12160,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationElements": {
         "allowIdentityUpdates": false,
@@ -13236,7 +13264,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationObjectiveRatings": {
         "allowIdentityUpdates": false,
@@ -14480,7 +14510,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationObjectives": {
         "allowIdentityUpdates": false,
@@ -15583,7 +15615,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationPeriodDescriptors": {
         "allowIdentityUpdates": false,
@@ -16146,7 +16180,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
@@ -16709,7 +16745,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationRatingStatusDescriptors": {
         "allowIdentityUpdates": false,
@@ -17272,7 +17310,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationRatings": {
         "allowIdentityUpdates": false,
@@ -18916,7 +18956,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
@@ -19479,7 +19521,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "evaluations": {
         "allowIdentityUpdates": false,
@@ -20543,7 +20587,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "financialAids": {
         "allowIdentityUpdates": false,
@@ -21284,7 +21330,9 @@
           "Student": [
             "$.studentReference.studentUniqueId"
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "genderDescriptors": {
         "allowIdentityUpdates": false,
@@ -21847,7 +21895,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "objectiveRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
@@ -22410,7 +22460,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "performanceEvaluationRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
@@ -22973,7 +23025,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "performanceEvaluationRatings": {
         "allowIdentityUpdates": false,
@@ -24424,7 +24478,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "performanceEvaluationTypeDescriptors": {
         "allowIdentityUpdates": false,
@@ -24987,7 +25043,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "performanceEvaluations": {
         "allowIdentityUpdates": false,
@@ -26043,7 +26101,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "rubricDimensions": {
         "allowIdentityUpdates": false,
@@ -26990,7 +27050,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "rubricRatingLevelDescriptors": {
         "allowIdentityUpdates": false,
@@ -27553,7 +27615,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "schools": {
         "allowIdentityUpdates": false,
@@ -27694,7 +27758,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "surveyResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
@@ -28342,7 +28408,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "surveyResponses": {
         "allowIdentityUpdates": false,
@@ -28494,7 +28562,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       },
       "surveySectionResponsePersonTargetAssociations": {
         "allowIdentityUpdates": false,
@@ -29188,7 +29258,9 @@
           ],
           "Student": [
           ]
-        }
+        },
+        "sensitiveDataJsonPaths": [
+        ]
       }
     }
   }

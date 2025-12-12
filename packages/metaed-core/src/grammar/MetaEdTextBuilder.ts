@@ -1221,7 +1221,7 @@ export class MetaEdTextBuilder {
     minLength: string | null = null,
     context: string | null = null,
     deprecatedReason: string | null = null,
-    isPII: boolean = false,
+    isSensitiveData: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'string',
@@ -1233,8 +1233,8 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
-    if (isPII) {
-      this.withPersonallyIdentifiableIndicator();
+    if (isSensitiveData) {
+      this.withSensitiveDataIndicator();
     }
     this.withStringRestrictions(minLength, maxLength);
 
@@ -1303,7 +1303,7 @@ export class MetaEdTextBuilder {
     deprecatedReason: string | null = null,
     bigHintMinValue: boolean = false,
     bigHintMaxValue: boolean = false,
-    isPII: boolean = false,
+    isSensitiveData: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'integer',
@@ -1315,8 +1315,8 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
-    if (isPII) {
-      this.withPersonallyIdentifiableIndicator();
+    if (isSensitiveData) {
+      this.withSensitiveDataIndicator();
     }
     this.withNumericRestrictions(minValue, maxValue, bigHintMinValue, bigHintMaxValue);
     return this;
@@ -1789,7 +1789,7 @@ export class MetaEdTextBuilder {
     return this;
   }
 
-  withPersonallyIdentifiableIndicator(): MetaEdTextBuilder {
+  withSensitiveDataIndicator(): MetaEdTextBuilder {
     this.addLine('is sensitive data');
     return this;
   }
