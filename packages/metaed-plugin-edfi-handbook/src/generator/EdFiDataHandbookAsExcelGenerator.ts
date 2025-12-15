@@ -58,6 +58,10 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const handbookRows: HandbookRow[] = [];
 
   orderedHandbookEntries.forEach((handbookEntry: HandbookEntry) => {
+    const sensitiveProps = handbookEntry.modelReferencesContainsProperties
+      .filter((prop) => prop.isSensitiveData)
+      .map((prop) => prop.name)
+      .join(EOL);
     handbookRows.push({
       name: handbookEntry.name + (handbookEntry.deprecationText ? ` - ${handbookEntry.deprecationText}` : ''),
       definition: handbookEntry.definition,
@@ -66,6 +70,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       optionList: asNewLineSeparatedList(handbookEntry.optionList),
       references: getModelReferencesListFor(handbookEntry),
       ods: asNewLineSeparatedList(handbookEntry.odsFragment),
+      sensitiveProps: sensitiveProps || null,
     });
   });
 
