@@ -40,6 +40,7 @@
                     <th>JSON Element Name</th>
                     <th>Other</th>
                     <th ng-if="ctrl.selected.showIdentityColumn">Identity</th>
+                    <th>Is Sensitive Data</th>
                     <th>Cardinality</th>
                     <th>Definition</th>
                     <th ng-if="ctrl.showMerge">Merge</th>
@@ -61,6 +62,7 @@
                         <p ng-if="!ctrl.selected.showIdentityColumn">Ed-Fi ODS/API Identity: {{r.isOdsApiIdentity | trueFalseToYesNo}}</p>
                     </td>
                     <td ng-if="ctrl.selected.showIdentityColumn">{{r.isIdentity | trueFalseToYesNo}}</td>
+                    <td>{{r.isSensitiveData | trueFalseToYesNo]}}</td>
                     <td>{{r.cardinality}}</td>
                     <td>{{r.definition}}</td>
                     <td ng-if="ctrl.showMerge">

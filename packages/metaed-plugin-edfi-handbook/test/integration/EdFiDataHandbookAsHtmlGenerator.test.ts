@@ -42,6 +42,7 @@ describe('when generating HTML version of handbook', (): void => {
       .withStartAbstractEntity('EducationOrganization')
       .withDocumentation('doc')
       .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withStringProperty('EdOrgString', 'EdOrgString doc', true, false, '0', '100', null, null, true)
       .withEndAbstractEntity()
 
       .withStartSharedString('URI')
@@ -59,7 +60,7 @@ describe('when generating HTML version of handbook', (): void => {
       .withStartDomainEntity('Entity2')
       .withDocumentation('Entity2 doc')
       .withIntegerIdentity('Entity2Integer', 'Entity2Integer doc')
-      .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100', 'Entity2String')
+      .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100', 'Entity2String', null, true)
       .withDateProperty('Entity2DateCollection', 'Entity2DateCollection doc', false, true)
       .withEndDomainEntity()
 
@@ -95,5 +96,9 @@ describe('when generating HTML version of handbook', (): void => {
   it('should not duplicate entity names when role name is the same as metaEdName', (): void => {
     expect(generatorResults.generatedOutput[0].resultString).toContain('Entity2String');
     expect(generatorResults.generatedOutput[0].resultString).not.toContain('Entity2StringEntity2String');
+  });
+
+  it('should include isSensitiveData information for properties', (): void => {
+    expect(generatorResults.generatedOutput[0].resultString).toContain('"isIdentity":true');
   });
 });

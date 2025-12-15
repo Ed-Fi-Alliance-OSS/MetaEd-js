@@ -25,4 +25,5 @@ export type HandbookEntityReferenceProperty = {
   cardinality: string;
   definition: string;
   mergeDirectives?: HandbookMergeProperty[];
+  isSensitiveData?: boolean;
 };
