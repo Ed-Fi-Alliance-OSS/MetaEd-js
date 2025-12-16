@@ -101,8 +101,8 @@ describe('SensitiveDataEnhancer', () => {
   it('should not include non-sensitive fields in sensitiveDataJsonPaths', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityName);
     const sensitiveDataJsonPaths = entity?.data.edfiApiSchema.sensitiveDataJsonPaths;
-    expect(sensitiveDataJsonPaths).not.toContain('$.NonSensitiveDataField');
-    expect(sensitiveDataJsonPaths).not.toContain('$.NonSensitiveDataInteger');
+    expect(sensitiveDataJsonPaths).not.toContain('$.nonSensitiveDataField');
+    expect(sensitiveDataJsonPaths).not.toContain('$.nonSensitiveDataInteger');
     expect(sensitiveDataJsonPaths).not.toContain('$.studentUniqueId');
   });
 });

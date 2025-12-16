@@ -219,8 +219,8 @@ export function newEntityProperty(): EntityProperty {
     mergeSourcedBy: [],
     mergeTargetedBy: [],
     sourceMap: newEntityPropertySourceMap(),
-    data: {},
     isSensitiveData: false,
+    data: {},
   };
 }
 
