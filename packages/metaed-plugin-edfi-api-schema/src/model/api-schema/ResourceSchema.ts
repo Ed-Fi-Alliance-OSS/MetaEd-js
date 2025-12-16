@@ -65,6 +65,11 @@ export type BaseResourceSchema = {
   dateTimeJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that contain sensitive data.
+   */
+  sensitiveDataJsonPaths: JsonPath[];
+
+  /**
    * A list of the decimal property validation information for validating precision and scale
    */
   decimalPropertyValidationInfos: DecimalPropertyValidationInfo[];
@@ -173,7 +178,9 @@ export type ResourceExtensionSchema = BaseResourceSchema & {
  * regular and subclass resources.
  */
 export type ResourceSchema =
-  | ResourceExtensionSchema
+  | (ResourceExtensionSchema & {
+      isSubclass: false;
+    })
   | (NonExtensionResourceSchema & {
       isSubclass: false;
     })

@@ -844,6 +844,11 @@ describe('when building domain entity with shared integer reference', (): void =
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isSensitiveData": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "maxValue": Object {
           "column": 0,
           "line": 0,
@@ -1028,6 +1033,11 @@ describe('when building domain entity with shared integer reference without name
           "tokenText": "is required",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

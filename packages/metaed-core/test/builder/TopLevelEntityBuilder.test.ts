@@ -988,6 +988,11 @@ describe('when building decimal property', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isSensitiveData": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "maxValue": Object {
           "column": 6,
           "line": 12,
@@ -1613,6 +1618,11 @@ describe('when building required entity properties', (): void => {
           "tokenText": "is required",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -2596,6 +2606,11 @@ describe('when building integer property', (): void => {
           "tokenText": "is required",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -3905,6 +3920,11 @@ describe('when building short property', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isSensitiveData": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "maxValue": Object {
           "column": 6,
           "line": 10,
@@ -4136,6 +4156,11 @@ describe('when building string property', (): void => {
           "tokenText": "is required",
         },
         "isRequiredCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isSensitiveData": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -4432,5 +4457,122 @@ describe('when building deprecated year property', (): void => {
   it('should be deprecated', (): void => {
     expect(getDomainEntity(namespace.entity, entityName).properties[0].isDeprecated).toBe(true);
     expect(getDomainEntity(namespace.entity, entityName).properties[0].deprecationReason).toBe(deprecationReason);
+  });
+});
+
+// Is Sensitive Data Keyword
+describe('when building string property with is sensitive data keyword', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withStringProperty(propertyName, propertyDocumentation, true, false, '100', null, null, null, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should have string property in entity properties', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties).toHaveLength(1);
+  });
+
+  it('should have isSensitiveData set to true', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].isSensitiveData).toBe(true);
+  });
+
+  it('should have source map for isSensitiveData', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.isSensitiveData).toBeDefined();
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.isSensitiveData).not.toBe(NoSourceMap);
+  });
+});
+
+describe('when building string property without is sensitive data keyword', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withStringProperty(propertyName, propertyDocumentation, true, false, '100', null)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should have string property in entity properties', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties).toHaveLength(1);
+  });
+
+  it('should have isSensitiveData set to false', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].isSensitiveData).toBe(false);
+  });
+
+  it('should have NoSourceMap for isSensitiveData', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.isSensitiveData).toBe(NoSourceMap);
+  });
+});
+
+describe('when building integer property with is sensitive data keyword', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, null, false, false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should have integer property in entity properties', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties).toHaveLength(1);
+  });
+
+  it('should have isSensitiveData set to true', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].isSensitiveData).toBe(true);
+  });
+
+  it('should have source map for isSensitiveData', (): void => {
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.isSensitiveData).toBeDefined();
+    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.isSensitiveData).not.toBe(NoSourceMap);
   });
 });

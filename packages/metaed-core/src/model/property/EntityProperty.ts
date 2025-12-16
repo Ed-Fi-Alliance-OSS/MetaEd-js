@@ -49,6 +49,7 @@ export interface EntityPropertySourceMap {
   referencedType: SourceMap;
   referencedNamespaceName: SourceMap;
   mergeTargetedBy: SourceMap;
+  isSensitiveData: SourceMap;
 }
 
 /**
@@ -81,6 +82,7 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
     referencedType: NoSourceMap,
     referencedNamespaceName: NoSourceMap,
     mergeTargetedBy: NoSourceMap,
+    isSensitiveData: NoSourceMap,
   };
 }
 
@@ -131,6 +133,8 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  *
  * **isQueryableOnly** is true if the "is queryable only" keyword applies.
  *
+ * **isSensitiveData** is true if the "is sensitive data" keyword applies.
+ *
  * **roleName** is true if the "renames identity property" keyword applies.
  *
  * **hasRestriction** is true if the property has a value restriction for its type, such as "min length" or "max value".
@@ -170,6 +174,7 @@ export interface EntityProperty {
   isOptionalCollection: boolean;
   isCollection: boolean;
   isQueryableOnly: boolean;
+  isSensitiveData: boolean;
   roleName: string;
   hasRestriction: boolean;
   referencedType: string;
@@ -214,6 +219,7 @@ export function newEntityProperty(): EntityProperty {
     mergeSourcedBy: [],
     mergeTargetedBy: [],
     sourceMap: newEntityPropertySourceMap(),
+    isSensitiveData: false,
     data: {},
   };
 }

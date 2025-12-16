@@ -63,7 +63,7 @@ describe('when generating excel version of handbook', (): void => {
       .withStartDomainEntity('Entity2')
       .withDocumentation('Entity2 doc')
       .withIntegerIdentity('Entity2Integer', 'Entity2Integer doc')
-      .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100')
+      .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100', null, null, true)
       .withDateProperty('Entity2DateCollection', 'Entity2DateCollection doc', false, true)
       .withEndDomainEntity()
 
@@ -102,6 +102,7 @@ describe('when generating excel version of handbook', (): void => {
           "Option List",
           "References",
           "ODS",
+          "Sensitive Properties",
         ],
         Array [
           "Currency",
@@ -111,6 +112,7 @@ describe('when generating excel version of handbook', (): void => {
           null,
           null,
           "Currency [MONEY]",
+          null,
         ],
         Array [
           "Entity1DateCollection",
@@ -121,6 +123,7 @@ describe('when generating excel version of handbook', (): void => {
           "Used By:
       Entity1.Entity1DateCollection (as optional collection)",
           "Entity1DateCollection [DATE]",
+          null,
         ],
         Array [
           "Entity2DateCollection",
@@ -131,6 +134,7 @@ describe('when generating excel version of handbook', (): void => {
           "Used By:
       Entity2.Entity2DateCollection (as optional collection)",
           "Entity2DateCollection [DATE]",
+          null,
         ],
         Array [
           "EducationOrganization (EdFi)",
@@ -149,6 +153,7 @@ describe('when generating excel version of handbook', (): void => {
 
       Primary Keys:
       EducationOrganizationId",
+          null,
         ],
         Array [
           "Entity1 (EdFi)",
@@ -182,6 +187,7 @@ describe('when generating excel version of handbook', (): void => {
       Primary Keys:
       Entity1DateCollection
       Entity1Integer",
+          null,
         ],
         Array [
           "Entity2 (EdFi)",
@@ -215,6 +221,7 @@ describe('when generating excel version of handbook', (): void => {
       Primary Keys:
       Entity2DateCollection
       Entity2Integer",
+          "Entity2String",
         ],
         Array [
           "Percent",
@@ -224,6 +231,7 @@ describe('when generating excel version of handbook', (): void => {
           null,
           null,
           "Percent [DECIMAL](5, 4)",
+          null,
         ],
         Array [
           "TimeInterval",
@@ -233,6 +241,7 @@ describe('when generating excel version of handbook', (): void => {
           null,
           null,
           "TimeInterval [NVARCHAR](30)",
+          null,
         ],
       ]
     `);
