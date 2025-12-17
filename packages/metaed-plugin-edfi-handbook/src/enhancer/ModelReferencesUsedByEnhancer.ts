@@ -28,7 +28,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   handbookEntries.forEach((handbookEntry: HandbookEntry) => {
     // Skip below types because modelReferencesUsedByProperties are already populated for them
     if (
+      handbookEntry.umlType === 'Percent' ||
+      handbookEntry.umlType === 'TimeInterval' ||
       handbookEntry.umlType === 'Date' ||
+      handbookEntry.umlType === 'Currency' ||
       handbookEntry.umlType === 'Time' ||
       handbookEntry.umlType === 'DateTime' ||
       handbookEntry.umlType === 'Boolean'

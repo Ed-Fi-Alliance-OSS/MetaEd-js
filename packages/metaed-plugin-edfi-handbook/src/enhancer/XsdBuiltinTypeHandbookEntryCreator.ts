@@ -26,7 +26,7 @@ function propertyNamer(property: EntityProperty): string {
 function parentNameAndPropertyCardinalityProperties(property: EntityProperty): HandbookUsedByProperty[] {
   const item: HandbookUsedByProperty = {
     referenceUniqueIdentifier: property.parentEntityName + property.parentEntity.entityUuid,
-    name: property.metaEdName,
+    name: property.parentEntityName,
     cardinality: getCardinalityStringFor(property),
   };
   return [item];

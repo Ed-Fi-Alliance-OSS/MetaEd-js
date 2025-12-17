@@ -26,6 +26,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       name: timeIntervalName,
       definition: timeIntervalDocumentation,
       columnDefinition: ColumnDataTypes.duration,
+      propertyType: 'duration',
+      metaEd,
     }),
   );
 
