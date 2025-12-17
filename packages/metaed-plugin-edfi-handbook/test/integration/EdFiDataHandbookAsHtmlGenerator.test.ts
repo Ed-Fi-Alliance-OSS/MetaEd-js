@@ -50,18 +50,32 @@ describe('when generating HTML version of handbook', (): void => {
       .withStringRestrictions('30')
       .withEndSharedString()
 
-      .withStartDomainEntity('Entity1')
-      .withDocumentation('Entity1 doc')
-      .withIntegerIdentity('Entity1Integer', 'Entity1Integer doc')
-      .withStringProperty('Entity1String', 'Entity1String doc', true, false, '0', '100')
+      .withStartDomainEntity('LocalBudget')
+      .withDocumentation('LocalBudget')
+      .withIntegerIdentity('LocalAccount', 'LocalAccount doc')
+      .withStringProperty('LocalAccountName', 'LocalAccountName doc', true, false, '0', '100')
       .withDateProperty('ActualDate', 'The month, day, and year.', false, true)
+      .withCurrencyProperty('Amount', 'The amount of money.', true, false)
+      .withPercentProperty('Percent', 'percent of local.', true, false)
+      .withDurationProperty('TimePeriod', 'TimePeriod doc', true, false)
       .withEndDomainEntity()
 
-      .withStartDomainEntity('Entity2')
-      .withDocumentation('Entity2 doc')
-      .withIntegerIdentity('Entity2Integer', 'Entity2Integer doc')
-      .withStringProperty('Entity2String', 'Entity2String doc', true, false, '0', '100', 'Entity2String', null, true)
+      .withStartDomainEntity('LocalEducationAgency')
+      .withDocumentation('LocalEducationAgency')
+      .withIntegerIdentity('LocalEducationAgencyId', 'LocalEducationAgencyId doc')
+      .withStringProperty(
+        'EducationServiceCenter',
+        'EducationServiceCenter doc',
+        true,
+        false,
+        '0',
+        '100',
+        'LocalEducationAgencyName',
+        null,
+        true,
+      )
       .withDateProperty('AsOfDate', 'The date of the reported amount for the account.', false, true)
+      .withCurrencyProperty('FederalProgramsFundingAllocation', 'FederalProgramsFundingAllocation.', true, false)
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -94,8 +108,8 @@ describe('when generating HTML version of handbook', (): void => {
   });
 
   it('should not duplicate entity names when role name is the same as metaEdName', (): void => {
-    expect(generatorResults.generatedOutput[0].resultString).toContain('Entity2String');
-    expect(generatorResults.generatedOutput[0].resultString).not.toContain('Entity2StringEntity2String');
+    expect(generatorResults.generatedOutput[0].resultString).toContain('EducationServiceCenter');
+    expect(generatorResults.generatedOutput[0].resultString).not.toContain('EducationServiceCenterEducationServiceCenter');
   });
 
   it('should include isSensitiveData information for properties', (): void => {
