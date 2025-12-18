@@ -29,6 +29,7 @@ import { enhance as modelReferencesUsedByEnhancer } from './enhancer/ModelRefere
 import { enhance as domainEnhancer } from './enhancer/DomainEnhancer';
 import { generate as htmlGenerator } from './generator/EdFiDataHandbookAsHtmlIndexGenerator';
 import { generate as excelGenerator } from './generator/EdFiDataHandbookAsExcelGenerator';
+import { generate as dataStandardListingGenerator } from './generator/EdFiDataStandardListingGenerator';
 
 export function initialize(): MetaEdPlugin {
   return {
@@ -58,7 +59,7 @@ export function initialize(): MetaEdPlugin {
       modelReferencesUsedByEnhancer,
       domainEnhancer,
     ],
-    generator: [htmlGenerator, excelGenerator],
+    generator: [htmlGenerator, excelGenerator, dataStandardListingGenerator],
     shortName: 'edfiHandbook',
     configurationSchemas: new Map(),
   };
