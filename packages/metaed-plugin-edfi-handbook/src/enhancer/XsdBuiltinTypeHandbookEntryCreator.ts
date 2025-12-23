@@ -7,26 +7,18 @@ import { EntityProperty } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { HandbookUsedByProperty } from '../model/HandbookUsedByProperty';
-
-function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
-  if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
-    return 'required';
-  if (property.isPartOfIdentity) return 'identity';
-  if (property.isRequired) return 'required';
-  if (property.isRequiredCollection) return 'required collection';
-  if (property.isOptional) return 'optional';
-  if (property.isOptionalCollection) return 'optional collection';
-  return 'UNKNOWN CARDINALITY';
-}
+import { getCardinalityStringFor } from './HandbookCardinality';
 
 function propertyNamer(property: EntityProperty): string {
   return property.roleName === property.metaEdName ? property.metaEdName : property.roleName + property.metaEdName;
 }
 
+// In function parentNameAndPropertyCardinalityProperties
 function parentNameAndPropertyCardinalityProperties(property: EntityProperty): HandbookUsedByProperty[] {
   const item: HandbookUsedByProperty = {
     referenceUniqueIdentifier: property.parentEntityName + property.parentEntity.entityUuid,
-    name: property.parentEntityName,
+    entityName: property.parentEntityName,
+    propertyName: propertyNamer(property),
     cardinality: getCardinalityStringFor(property),
   };
   return [item];

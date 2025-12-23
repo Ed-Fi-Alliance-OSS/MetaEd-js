@@ -3,25 +3,16 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { getPropertiesOfType, EntityProperty, PropertyType, MetaEdEnvironment } from '@edfi/metaed-core';
+import { getPropertiesOfType, PropertyType, MetaEdEnvironment } from '@edfi/metaed-core';
 import { HandbookEntry, newHandbookEntry } from '../model/HandbookEntry';
 import { HandbookUsedByProperty } from '../model/HandbookUsedByProperty';
+import { getCardinalityStringFor } from './HandbookCardinality';
 
 function generatedTableSqlFor(name: string, columnDefinition: string): string[] {
   return [`${name} ${columnDefinition}`];
 }
 
-function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
-  if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
-    return 'required';
-  if (property.isPartOfIdentity) return 'identity';
-  if (property.isRequired) return 'required';
-  if (property.isRequiredCollection) return 'required collection';
-  if (property.isOptional) return 'optional';
-  if (property.isOptionalCollection) return 'optional collection';
-  return 'UNKNOWN CARDINALITY';
-}
-
+// In function parentNameAndPropertyCardinalityProperties
 function parentNameAndPropertyCardinalityProperties(
   metaEd: MetaEdEnvironment,
   propertyType: PropertyType,
@@ -32,7 +23,9 @@ function parentNameAndPropertyCardinalityProperties(
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     const item: HandbookUsedByProperty = {
       referenceUniqueIdentifier: property.parentEntity.metaEdName + property.parentEntity.entityUuid,
-      name: property.parentEntity.metaEdName,
+      entityName: property.parentEntity.metaEdName,
+      propertyName:
+        property.roleName === property.metaEdName ? property.metaEdName : property.roleName + property.metaEdName,
       cardinality: getCardinalityStringFor(property),
     };
     properties.push(item);
