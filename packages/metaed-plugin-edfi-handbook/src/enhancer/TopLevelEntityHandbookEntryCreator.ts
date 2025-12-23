@@ -26,20 +26,10 @@ import { getAllReferentialProperties } from './EnhancerHelper';
 import { HandbookEntityReferenceProperty } from '../model/HandbookEntryReferenceProperty';
 import { HandbookMergeProperty } from '../model/HandbookMergeProperty';
 import { umlDatatypeMatrix, jsonDatatypeMatrix, getSqlDatatype, getMetaEdDatatype } from './DatatypeLookup';
+import { getCardinalityStringFor } from './HandbookCardinality';
 
 function generateUniqueId(entity: TopLevelEntity): string {
   return entity.metaEdName + entity.entityUuid;
-}
-
-function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
-  if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
-    return 'required';
-  if (property.isPartOfIdentity) return 'identity';
-  if (property.isRequired) return 'required';
-  if (property.isRequiredCollection) return 'required collection';
-  if (property.isOptional) return 'optional';
-  if (property.isOptionalCollection) return 'optional collection';
-  return 'UNKNOWN CARDINALITY';
 }
 
 function getPropertyNames(entity: TopLevelEntity): string[] {

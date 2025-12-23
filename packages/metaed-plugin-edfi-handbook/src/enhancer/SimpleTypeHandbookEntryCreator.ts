@@ -4,10 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { ColumnDataTypes } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
-import type { MetaEdEnvironment, EntityProperty, IntegerType, DecimalType, StringType } from '@edfi/metaed-core';
+import type { MetaEdEnvironment, IntegerType, DecimalType, StringType } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';
+import { getCardinalityStringFor } from './HandbookCardinality';
 
 type XsdType = StringType | IntegerType | DecimalType;
 
@@ -26,17 +27,6 @@ function getColumnString(xsdType: XsdType): string {
 
 function generatedTableSqlFor(xsdType: XsdType): Array<string> {
   return [`${xsdType.metaEdName} ${getColumnString(xsdType)}`];
-}
-
-function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
-  if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
-    return 'required';
-  if (property.isPartOfIdentity) return 'identity';
-  if (property.isRequired) return 'required';
-  if (property.isRequiredCollection) return 'required collection';
-  if (property.isOptional) return 'optional';
-  if (property.isOptionalCollection) return 'optional collection';
-  return 'UNKNOWN CARDINALITY';
 }
 
 function referringProperties(metaEd: MetaEdEnvironment, xsdType: XsdType): string[] {

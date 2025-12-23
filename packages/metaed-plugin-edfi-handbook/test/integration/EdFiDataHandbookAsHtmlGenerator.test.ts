@@ -115,4 +115,100 @@ describe('when generating HTML version of handbook', (): void => {
   it('should include isSensitiveData information for properties', (): void => {
     expect(generatorResults.generatedOutput[0].resultString).toContain('"isIdentity":true');
   });
+  it('should include "Used By" entries showing which entities use Currency type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"Amount"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"Amount"[^}]*"cardinality":"required"/);
+
+    expect(htmlOutput).toContain('"entityName":"LocalEducationAgency"');
+    expect(htmlOutput).toContain('"propertyName":"FederalProgramsFundingAllocation"');
+
+    expect(htmlOutput).toMatch(
+      /"entityName":"LocalEducationAgency"[^}]*"propertyName":"FederalProgramsFundingAllocation"[^}]*"cardinality":"required"/,
+    );
+  });
+
+  it('should include "Used By" entries showing which entities use Date type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"ActualDate"');
+    expect(htmlOutput).toContain('"cardinality":"optional collection"');
+
+    expect(htmlOutput).toMatch(
+      /"entityName":"LocalBudget"[^}]*"propertyName":"ActualDate"[^}]*"cardinality":"optional collection"/,
+    );
+  });
+
+  it('should include "Used By" entries showing which entities use Percent type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"Percent"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"Percent"[^}]*"cardinality":"required"/);
+  });
+
+  it('should include "Used By" entries showing which entities use TimeInterval type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"TimePeriod"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"TimePeriod"[^}]*"cardinality":"required"/);
+  });
+  it('should include "Used By" entries showing which entities use Currency type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"Amount"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"Amount"[^}]*"cardinality":"required"/);
+
+    expect(htmlOutput).toContain('"entityName":"LocalEducationAgency"');
+    expect(htmlOutput).toContain('"propertyName":"FederalProgramsFundingAllocation"');
+
+    expect(htmlOutput).toMatch(
+      /"entityName":"LocalEducationAgency"[^}]*"propertyName":"FederalProgramsFundingAllocation"[^}]*"cardinality":"required"/,
+    );
+  });
+
+  it('should include "Used By" entries showing which entities use Date type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"ActualDate"');
+    expect(htmlOutput).toContain('"cardinality":"optional collection"');
+
+    expect(htmlOutput).toMatch(
+      /"entityName":"LocalBudget"[^}]*"propertyName":"ActualDate"[^}]*"cardinality":"optional collection"/,
+    );
+  });
+
+  it('should include "Used By" entries showing which entities use Percent type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"Percent"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"Percent"[^}]*"cardinality":"required"/);
+  });
+
+  it('should include "Used By" entries showing which entities use TimeInterval type', (): void => {
+    const htmlOutput = generatorResults.generatedOutput[0].resultString;
+
+    expect(htmlOutput).toContain('"entityName":"LocalBudget"');
+    expect(htmlOutput).toContain('"propertyName":"TimePeriod"');
+    expect(htmlOutput).toContain('"cardinality":"required"');
+
+    expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"TimePeriod"[^}]*"cardinality":"required"/);
+  });
 });
