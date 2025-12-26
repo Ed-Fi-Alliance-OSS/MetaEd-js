@@ -5,6 +5,7 @@
 
 export interface HandbookUsedByProperty {
   referenceUniqueIdentifier: string;
-  name: string;
+  entityName: string;
+  propertyName: string;
   cardinality: string;
 }
