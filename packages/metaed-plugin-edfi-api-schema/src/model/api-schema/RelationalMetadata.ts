@@ -11,7 +11,7 @@ import type { RelationalBaseName } from './RelationalBaseName';
  */
 export type RelationalMetadata = {
   /**
-   * Optional physical root table name override.
+   * Optional relational root table name override.
    */
   rootTableNameOverride?: RelationalBaseName;
 

@@ -68,7 +68,7 @@ function collectionContainerPathFor(
   // Some property chains do not receive their own JsonPaths entry, so jsonPathsInfo can be undefined.
   // Examples:
   // - Merge directives can "merge away" a reference identity path, so the JSONPath is emitted under a
-  //   covering path instead of the original reference path (an alias-backed reference).
+  //   covering path instead of the original reference path.
   // - Descriptor normalization can move a path under the "...Descriptor" variant rather than the raw
   //   property path, so the base path lookup misses and we must check the normalized form.
   // - Inline common and choice wrappers can also hide direct mapping entries because they are not
@@ -132,7 +132,7 @@ function buildRelationalPropertyChain(
     relativePropertyChain.length === 0 ? ('' as MetaEdPropertyPath) : propertyChainPath(relativePropertyChain);
 
   // Attach the JsonPath to the owning collection when available. The owning collection exists here,
-  // but its JsonPath can still be null for alias-backed references, descriptor normalization,
+  // but its JsonPath can still be null for merge-involved references, descriptor normalization,
   // or inline/choice wrapper cases.
   const owningCollection: RelationalCollectionTableSource = {
     ...owningCollectionSource,

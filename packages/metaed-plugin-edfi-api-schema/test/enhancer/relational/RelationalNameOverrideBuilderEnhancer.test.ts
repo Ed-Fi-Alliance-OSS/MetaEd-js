@@ -57,7 +57,7 @@ import { enhance as typeCoercionJsonPathsEnhancer } from '../../../src/enhancer/
 import { enhance as commonExtensionOverrideResolverEnhancer } from '../../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 import { enhance as relationalTableNodeEnhancer } from '../../../src/enhancer/relational/RelationalTableNodeEnhancer';
 import { enhance as relationalJsonPathNamingPlanEnhancer } from '../../../src/enhancer/relational/RelationalJsonPathNamingPlanEnhancer';
-import { enhance as relationalPhysicalNamingPlanEnhancer } from '../../../src/enhancer/relational/RelationalPhysicalNamingPlanEnhancer';
+import { enhance as relationalNamingPlanEnhancer } from '../../../src/enhancer/relational/RelationalNamingPlanEnhancer';
 import { enhance as relationalNameOverrideBuilderEnhancer } from '../../../src/enhancer/relational/RelationalNameOverrideBuilderEnhancer';
 
 /**
@@ -109,7 +109,7 @@ function runApiSchemaPrerequisites(metaEd: MetaEdEnvironment): void {
   // Relational naming inputs
   relationalTableNodeEnhancer(metaEd);
   relationalJsonPathNamingPlanEnhancer(metaEd);
-  relationalPhysicalNamingPlanEnhancer(metaEd);
+  relationalNamingPlanEnhancer(metaEd);
   relationalNameOverrideBuilderEnhancer(metaEd);
 }
 

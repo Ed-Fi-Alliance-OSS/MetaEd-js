@@ -78,7 +78,7 @@ export function collectRelationalTableNodes(entity: TopLevelEntity): Map<MetaEdP
         }
       }
 
-      // Some table paths (inline/choice containers, common collections, alias/extension overrides)
+      // Some table paths (inline/choice containers, common collections, merged/extension overrides)
       // do not get a direct allJsonPathsMapping entry, so infer the container from descendants.
       if (node.collectionJsonPath == null) {
         const prefix = propertyPath === '' ? '' : `${propertyPath}.`;

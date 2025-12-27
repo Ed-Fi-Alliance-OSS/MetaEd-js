@@ -22,6 +22,8 @@ export type RelationalCollectionTableSource = {
 
   /**
    * JsonPath pointing to the collection container (e.g. `$.addresses[*]`).
+   * Can be null for merge-involved references, descriptor normalization,
+   * or inline/choice wrapper cases
    */
   collectionJsonPath: JsonPath | null;
 };

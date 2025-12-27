@@ -58,4 +58,3 @@ junit.xml
 __pycache__/
 *.py[cod]
 *$py.class
-.github/copilot-instructions.md

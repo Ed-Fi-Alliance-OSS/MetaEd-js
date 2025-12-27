@@ -26,9 +26,9 @@ export type RelationalNamingPlan = {
 
   /**
    * Relational‑side base names keyed by the same JsonPaths, derived from
-   * relational naming conventions for tables/columns. They’re populated
-   * later by the physical naming plan enhancer so we can compare JSON vs
-   * relational and produce overrides.
+   * relational naming conventions for tables/columns. Populated
+   * by the relational naming plan enhancer so we can compare JSON vs
+   * relational names and produce overrides.
    */
-  relationalBaseNames?: { [key: JsonPath]: RelationalBaseName };
+  relationalBaseNames: { [key: JsonPath]: RelationalBaseName };
 };

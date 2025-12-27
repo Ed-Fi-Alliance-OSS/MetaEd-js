@@ -223,7 +223,10 @@ const entityTypesToEnhance = [
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, ...entityTypesToEnhance).forEach((entity) => {
     const apiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-    apiSchemaData.relationalNamingPlan = { jsonBaseNames: buildJsonBaseNames(entity as TopLevelEntity, apiSchemaData) };
+    apiSchemaData.relationalNamingPlan = {
+      jsonBaseNames: buildJsonBaseNames(entity as TopLevelEntity, apiSchemaData),
+      relationalBaseNames: {},
+    };
   });
 
   return {

@@ -56,10 +56,10 @@ import { enhance as decimalPropertyValidationInfoEnhancer } from '../../../src/e
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance as commonExtensionOverrideResolverEnhancer } from '../../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 import { enhance as relationalTableNodeEnhancer } from '../../../src/enhancer/relational/RelationalTableNodeEnhancer';
-import { enhance as relationalPhysicalNamingPlanEnhancer } from '../../../src/enhancer/relational/RelationalPhysicalNamingPlanEnhancer';
+import { enhance as relationalNamingPlanEnhancer } from '../../../src/enhancer/relational/RelationalNamingPlanEnhancer';
 
 /**
- * Runs the shared enhancer prerequisites for relational physical naming tests.
+ * Runs the shared enhancer prerequisites for relational naming tests.
  */
 function runApiSchemaPrerequisites(metaEd: MetaEdEnvironment): void {
   // Core reference wiring
@@ -105,7 +105,7 @@ function runApiSchemaPrerequisites(metaEd: MetaEdEnvironment): void {
   commonExtensionOverrideResolverEnhancer(metaEd);
 
   relationalTableNodeEnhancer(metaEd);
-  relationalPhysicalNamingPlanEnhancer(metaEd);
+  relationalNamingPlanEnhancer(metaEd);
 }
 
 /**
