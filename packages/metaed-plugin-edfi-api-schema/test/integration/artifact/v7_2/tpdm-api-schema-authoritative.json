@@ -5587,6 +5587,14 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.personalIdentificationDocuments[*].documentExpirationDate": "PersonalDocumentExpirationDate",
+            "$.personalIdentificationDocuments[*].documentTitle": "PersonalDocumentTitle",
+            "$.personalIdentificationDocuments[*].issuerDocumentIdentificationCode": "PersonalIssuerDocumentIdentificationCode",
+            "$.personalIdentificationDocuments[*].issuerName": "PersonalIssuerName"
+          }
+        },
         "resourceName": "Candidate",
         "securableElements": {
           "Contact": [
@@ -7706,6 +7714,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "CredentialExtension"
         },
         "resourceName": "Credential",
         "securableElements": {
@@ -12140,6 +12151,12 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.elementRatingResults[*].rating": "ElementRating",
+            "$.elementRatingResults[*].ratingResultTitle": "ElementRatingResultTitle"
+          }
+        },
         "resourceName": "EvaluationElementRating",
         "securableElements": {
           "Contact": [
@@ -13247,6 +13264,13 @@
               "type": "string"
             }
           ]
+        },
+        "relational": {
+          "nameOverrides": {
+            "$.ratingLevels[*]": "ElementRatingLevel",
+            "$.ratingLevels[*].maxRating": "ElementMaxRating",
+            "$.ratingLevels[*].minRating": "ElementMinRating"
+          }
         },
         "resourceName": "EvaluationElement",
         "securableElements": {
@@ -14490,6 +14514,12 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.objectiveRatingResults[*].rating": "ObjectiveRating",
+            "$.objectiveRatingResults[*].ratingResultTitle": "ObjectiveRatingResultTitle"
+          }
+        },
         "resourceName": "EvaluationObjectiveRating",
         "securableElements": {
           "Contact": [
@@ -15598,6 +15628,13 @@
               "type": "string"
             }
           ]
+        },
+        "relational": {
+          "nameOverrides": {
+            "$.ratingLevels[*]": "ObjectiveRatingLevel",
+            "$.ratingLevels[*].maxRating": "ObjectiveMaxRating",
+            "$.ratingLevels[*].minRating": "ObjectiveMinRating"
+          }
         },
         "resourceName": "EvaluationObjective",
         "securableElements": {
@@ -18936,6 +18973,14 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.results[*]": "EvaluationRatingResult",
+            "$.results[*].rating": "EvaluationRating",
+            "$.results[*].ratingResultTitle": "EvaluationRatingResultTitle",
+            "$.reviewers[*].reviewerPersonReference": "Reviewer_Person"
+          }
+        },
         "resourceName": "EvaluationRating",
         "securableElements": {
           "Contact": [
@@ -20570,6 +20615,13 @@
               "type": "string"
             }
           ]
+        },
+        "relational": {
+          "nameOverrides": {
+            "$.ratingLevels[*]": "EvaluationRatingLevel",
+            "$.ratingLevels[*].maxRating": "EvaluationMaxRating",
+            "$.ratingLevels[*].minRating": "EvaluationMinRating"
+          }
         },
         "resourceName": "Evaluation",
         "securableElements": {
@@ -24462,6 +24514,14 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.results[*]": "PerformanceEvaluationRatingResult",
+            "$.results[*].rating": "PerformanceEvaluationRating",
+            "$.results[*].ratingResultTitle": "PerformanceEvaluationRatingResultTitle",
+            "$.reviewers[*].reviewerPersonReference": "Reviewer_Person"
+          }
+        },
         "resourceName": "PerformanceEvaluationRating",
         "securableElements": {
           "Contact": [
@@ -26084,6 +26144,13 @@
               "type": "string"
             }
           ]
+        },
+        "relational": {
+          "nameOverrides": {
+            "$.ratingLevels[*]": "PerformanceEvaluationRatingLevel",
+            "$.ratingLevels[*].maxRating": "PerformanceEvaluationMaxRating",
+            "$.ratingLevels[*].minRating": "PerformanceEvaluationMinRating"
+          }
         },
         "resourceName": "PerformanceEvaluation",
         "securableElements": {
@@ -27746,6 +27813,9 @@
             }
           }
         },
+        "relational": {
+          "rootTableNameOverride": "SchoolExtension"
+        },
         "resourceName": "School",
         "securableElements": {
           "Contact": [
@@ -28549,6 +28619,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "SurveyResponseExtension"
         },
         "resourceName": "SurveyResponse",
         "securableElements": {

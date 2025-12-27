@@ -107,6 +107,7 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     isResourceExtension: false,
     openApiFragments: entityApiSchemaData.openApiFragments,
     flatteningMetadata: entityApiSchemaData.flatteningMetadata,
+    relational: entityApiSchemaData.relational,
   };
 }
 
@@ -145,6 +146,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     isDescriptor: entity.type === 'descriptor',
     isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
     flatteningMetadata: entityApiSchemaData.flatteningMetadata,
+    relational: entityApiSchemaData.relational,
   };
 }
 
