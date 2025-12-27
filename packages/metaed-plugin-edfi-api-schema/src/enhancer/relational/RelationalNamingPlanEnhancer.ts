@@ -20,7 +20,7 @@ import { isTopLevelReference } from '../../Utility';
 import { collectReferencePrefixes, collectScalarPrefixes, deriveRelationalTableSuffix } from './RelationalNamingConventions';
 import { buildRelationalPropertyChains } from './RelationalPropertyChainBuilder';
 
-const enhancerName = 'RelationalPhysicalNamingPlanEnhancer';
+const enhancerName = 'RelationalNamingPlanEnhancer';
 
 /**
  * Map of JsonPath keys to relational base names.

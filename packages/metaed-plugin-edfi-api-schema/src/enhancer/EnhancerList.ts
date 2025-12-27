@@ -51,7 +51,7 @@ import { enhance as educationOrganizationConfigurationEnhancer } from './securit
 import { enhance as educationOrganizationIdentityConfigurationEnhancer } from './security/EducationOrganizationIdentityConfigurationEnhancer';
 import { enhance as relationalTableNodeEnhancer } from './relational/RelationalTableNodeEnhancer';
 import { enhance as relationalJsonPathNamingPlanEnhancer } from './relational/RelationalJsonPathNamingPlanEnhancer';
-import { enhance as relationalPhysicalNamingPlanEnhancer } from './relational/RelationalPhysicalNamingPlanEnhancer';
+import { enhance as relationalNamingPlanEnhancer } from './relational/RelationalNamingPlanEnhancer';
 import { enhance as relationalNameOverrideBuilderEnhancer } from './relational/RelationalNameOverrideBuilderEnhancer';
 import { enhance as relationalExtensionRootTableNamingEnhancer } from './relational/RelationalExtensionRootTableNamingEnhancer';
 import { enhance as relationalMetadataAssemblerEnhancer } from './relational/RelationalMetadataAssemblerEnhancer';
@@ -94,7 +94,7 @@ export function enhancerList(): Enhancer[] {
     sensitiveDataEnhancer,
     relationalTableNodeEnhancer,
     relationalJsonPathNamingPlanEnhancer,
-    relationalPhysicalNamingPlanEnhancer,
+    relationalNamingPlanEnhancer,
     relationalNameOverrideBuilderEnhancer,
     relationalExtensionRootTableNamingEnhancer,
     relationalMetadataAssemblerEnhancer,

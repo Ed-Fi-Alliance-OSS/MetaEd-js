@@ -27,7 +27,6 @@ const entityTypesToEnhance = [
  */
 function buildNameOverrides(plan: RelationalNamingPlan): RelationalNameOverrides {
   const { jsonBaseNames, relationalBaseNames } = plan;
-  if (relationalBaseNames == null) return {};
 
   const overrides: RelationalNameOverrides = {};
   Object.entries(jsonBaseNames).forEach(([jsonPathKey, jsonBaseName]) => {
