@@ -5,6 +5,7 @@
 
 import { MetaEdEnvironment, ValidationFailure, Interchange, InterchangeItem, ModelType } from '@edfi/metaed-core';
 import { getAllEntitiesOfType, getEntityFromNamespaceChain } from '@edfi/metaed-core';
+import { getValidSourceMap } from '../ValidatorShared/GetValidSourceMap';
 
 const validTypes: ModelType[] = ['association', 'associationSubclass', 'descriptor', 'domainEntity', 'domainEntitySubclass'];
 
@@ -33,7 +34,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
         validatorName: 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass',
         category: 'error',
         message: `Interchange identity template ${item.metaEdName} does not match any declared ${validTypeNames}`,
-        sourceMap: item.sourceMap.metaEdName,
+        sourceMap: getValidSourceMap(item),
         fileMap: null,
       });
     });
