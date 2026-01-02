@@ -7,6 +7,7 @@ import {
   MetaEdEnvironment,
   newNamespace,
   newDomain,
+  newSubdomain,
   newDomainEntity,
   newEntityProperty,
   newMetaEdEnvironment,
@@ -71,9 +72,28 @@ describe('EdFiDataStandardListingGenerator', () => {
     testProperty.documentation = 'Test property description';
     testProperty.type = 'string';
 
+    // Create subdomain with undefined documentation
+    const testSubdomain = newSubdomain();
+    testSubdomain.metaEdName = 'TestSubdomain';
+    testSubdomain.documentation = '';
+
+    // Create entity for subdomain with undefined documentation
+    const subdomainEntity = newDomainEntity();
+    subdomainEntity.metaEdName = 'SubdomainEntity';
+    subdomainEntity.documentation = '';
+
+    // Create property for subdomain entity
+    const subdomainProperty = newEntityProperty();
+    subdomainProperty.metaEdName = 'SubdomainProperty';
+    subdomainProperty.documentation = '';
+    subdomainProperty.type = 'integer';
+
     // Wire up the relationships
     testEntity.properties = [testProperty];
+    subdomainEntity.properties = [subdomainProperty];
+    testSubdomain.entities = [subdomainEntity];
     testDomain.entities = [testEntity];
+    testDomain.subdomains = [testSubdomain];
     testNamespace.entity.domain.set('TestDomain', testDomain);
     metaEd.namespace.set('TestNamespace', testNamespace);
 
@@ -104,7 +124,7 @@ describe('EdFiDataStandardListingGenerator', () => {
 
     // Inspect the Entities worksheet (second sheet)
     const entitiesData = capturedData[1];
-    expect(entitiesData).toHaveLength(1);
+    expect(entitiesData).toHaveLength(2);
     expect(entitiesData[0]).toEqual({
       projectVersion: '1.0.0',
       domainName: 'TestDomain',
@@ -112,10 +132,19 @@ describe('EdFiDataStandardListingGenerator', () => {
       domainEntityName: 'TestEntity',
       domainEntityDescription: 'Test entity description',
     });
+    expect(entitiesData[1]).toEqual({
+      projectVersion: '1.0.0',
+      domainName: 'TestSubdomain',
+      namespace: 'TestNamespace',
+      domainEntityName: 'SubdomainEntity',
+      domainEntityDescription: '',
+    });
 
     // Inspect the Elements worksheet (third sheet)
+    // Elements are sorted by entity name, then element name
     const elementsData = capturedData[2];
-    expect(elementsData).toHaveLength(1);
+    expect(elementsData).toHaveLength(2);
+    // SubdomainEntity comes after TestEntity alphabetically
     expect(elementsData[0]).toEqual({
       projectVersion: '1.0.0',
       domainName: 'TestDomain',
@@ -128,6 +157,19 @@ describe('EdFiDataStandardListingGenerator', () => {
       isRequired: false,
       isDeprecated: false,
       elementDataType: 'string(0,undefined)',
+    });
+    expect(elementsData[1]).toEqual({
+      projectVersion: '1.0.0',
+      domainName: 'TestSubdomain',
+      namespace: 'TestNamespace',
+      domainEntityName: 'SubdomainEntity',
+      elementName: 'SubdomainProperty',
+      elementDescription: '',
+      isPartOfIdentity: false,
+      isCollection: false,
+      isRequired: false,
+      isDeprecated: false,
+      elementDataType: 'int32',
     });
 
     // Verify sheet names
