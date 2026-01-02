@@ -82,6 +82,7 @@ function addJsonPathTo(
   flattenedIdentityProperty: FlattenedIdentityProperty,
   isArrayIdentity: boolean,
   collectionContainerJsonPath: JsonPath | null = null,
+  referenceObjectJsonPath: JsonPath | null = null,
 ) {
   invariant(hasAtMostTwoArrayLevels(jsonPath), 'ApiSchema does not support documents wih arrays nested more than two deep');
 
@@ -105,6 +106,18 @@ function addJsonPathTo(
         invariant(
           existingContainer === collectionContainerJsonPath,
           `Conflicting container JsonPaths detected for "${propertyPath}": "${existingContainer}" vs "${collectionContainerJsonPath}"`,
+        );
+      }
+    }
+
+    if (referenceObjectJsonPath != null) {
+      const existingReferencePath: JsonPath | undefined = jsonPathsInfo.referenceObjectJsonPath;
+      if (existingReferencePath == null) {
+        jsonPathsInfo.referenceObjectJsonPath = referenceObjectJsonPath;
+      } else {
+        invariant(
+          existingReferencePath === referenceObjectJsonPath,
+          `Conflicting reference object JsonPaths detected for "${propertyPath}": "${existingReferencePath}" vs "${referenceObjectJsonPath}"`,
         );
       }
     }
@@ -204,6 +217,7 @@ function jsonPathsForReferentialProperty(
               flattenedIdentityProperty,
               isArrayIdentity,
               collectionContainerJsonPath,
+              currentJsonPath,
             );
           });
       });

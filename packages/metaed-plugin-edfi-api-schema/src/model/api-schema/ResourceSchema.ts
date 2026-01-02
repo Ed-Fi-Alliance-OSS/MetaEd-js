@@ -18,6 +18,7 @@ import { DomainName } from './DomainName';
 import { OpenApiDocumentTypeValue } from './OpenApiDocumentType';
 import { OpenApiFragment } from './OpenApiFragment';
 import { FlatteningMetadata } from '../flattening/FlatteningMetadata';
+import { RelationalMetadata } from './RelationalMetadata';
 
 /**
  * API resource schema information common between all resources
@@ -129,6 +130,11 @@ export type BaseResourceSchema = {
    * Contains the complete table hierarchy including nested collections.
    */
   flatteningMetadata?: FlatteningMetadata;
+
+  /**
+   * Optional naming overrides used for relational mapping.
+   */
+  relational?: RelationalMetadata;
 };
 
 /**

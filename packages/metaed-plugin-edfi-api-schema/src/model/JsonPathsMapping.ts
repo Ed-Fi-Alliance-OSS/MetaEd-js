@@ -49,6 +49,11 @@ type BaseJsonPathsInfo = {
    * When the property represents a collection, this captures the canonical JSON path to the array container (e.g. `$.addresses[*]`).
    */
   collectionContainerJsonPath?: JsonPath;
+
+  /**
+   * When the property represents a reference, this captures the JSON path to the reference object itself.
+   */
+  referenceObjectJsonPath?: JsonPath;
 };
 
 /**
