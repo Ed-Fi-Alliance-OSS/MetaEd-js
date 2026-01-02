@@ -33,7 +33,7 @@ This document provides specific instructions for AI agents working on the MetaEd
 
 ### Unit Testing
 
-- **REQUIRED**: Execute `test:unit:non-database` to run the test suite
+- **REQUIRED**: Execute `test:unit:non-database` to run the entire test suite, or use `npx jest` to run tests in a specific file
 - Ensure all unit tests pass before submitting changes
 - The unit test command automatically excludes database tests
 

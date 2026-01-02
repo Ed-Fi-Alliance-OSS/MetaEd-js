@@ -67,7 +67,7 @@ function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   return entityRows;
 }
 
-function extractDataType(property: EntityProperty): string {
+export function extractDataType(property: EntityProperty): string {
   const typeConversion: { [type in PropertyType]: any } = {
     unknown: () => '',
     association: () => 'reference',
