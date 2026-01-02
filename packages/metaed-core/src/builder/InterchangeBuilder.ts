@@ -96,32 +96,29 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
   exitingInterchange() {
     if (this.currentInterchange === NoInterchange) return;
     if (this.currentInterchange.metaEdName) {
-      const extensionMessageString = this.currentInterchange.type === 'interchangeExtension' ? 'Extension ' : '';
+      const currentInterchangeRepository: Map<string, Interchange> =
+        this.currentNamespace.entity[this.currentInterchange.type];
 
-      if (this.currentNamespace.entity[this.currentInterchange.type].has(this.currentInterchange.metaEdName)) {
+      if (currentInterchangeRepository.has(this.currentInterchange.metaEdName)) {
         this.validationFailures.push({
           validatorName: 'InterchangeBuilder',
           category: 'error',
-          message: `Interchange ${extensionMessageString}named ${this.currentInterchange.metaEdName} is a duplicate declaration of that name.`,
+          message: `${this.currentInterchange.typeHumanizedName} named ${this.currentInterchange.metaEdName} is a duplicate declaration of that name.`,
           sourceMap: this.currentInterchange.sourceMap.metaEdName,
           fileMap: null,
         });
-
-        const duplicateEntity: Interchange = this.currentNamespace.entity[this.currentInterchange.type].get(
-          this.currentInterchange.metaEdName,
-        );
+      }
+      const duplicateEntity: Interchange | undefined = currentInterchangeRepository.get(this.currentInterchange.metaEdName);
+      if (duplicateEntity != null) {
         this.validationFailures.push({
           validatorName: 'InterchangeBuilder',
           category: 'error',
-          message: `Interchange ${extensionMessageString}named ${duplicateEntity.metaEdName} is a duplicate declaration of that name.`,
+          message: `${duplicateEntity.typeHumanizedName} named ${duplicateEntity.metaEdName} is a duplicate declaration of that name.`,
           sourceMap: duplicateEntity.sourceMap.metaEdName,
           fileMap: null,
         });
       } else {
-        this.currentNamespace.entity[this.currentInterchange.type].set(
-          this.currentInterchange.metaEdName,
-          this.currentInterchange,
-        );
+        currentInterchangeRepository.set(this.currentInterchange.metaEdName, this.currentInterchange);
       }
     }
     this.currentInterchange = NoInterchange;

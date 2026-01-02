@@ -91,6 +91,26 @@ describe('when building single interchange', (): void => {
     ]);
   });
 
+  it('should have source map for elements', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+
+    expect(sourceMap.elements).toHaveLength(1);
+    expect(sourceMap.elements[0]).toBeDefined();
+    expect(sourceMap.elements[0].line).toBeGreaterThan(0);
+  });
+
+  it('should have valid source map values for elements', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+    const elementSourceMap = sourceMap.elements[0];
+
+    expect(elementSourceMap.line).toBeGreaterThan(0);
+    expect(elementSourceMap.column).toBeGreaterThanOrEqual(0);
+    expect(elementSourceMap.tokenText).toBeTruthy();
+    expect(elementSourceMap.tokenText).not.toBe('NoSourceMap');
+  });
+
   it('should have one identity template', (): void => {
     expect(getInterchange(namespace.entity, interchangeName).identityTemplates).toHaveLength(1);
     expect(getInterchange(namespace.entity, interchangeName).identityTemplates[0].metaEdName).toBe(
@@ -100,6 +120,26 @@ describe('when building single interchange', (): void => {
       'association',
       'associationSubclass',
     ]);
+  });
+
+  it('should have source map for identity templates', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+
+    expect(sourceMap.identityTemplates).toHaveLength(1);
+    expect(sourceMap.identityTemplates[0]).toBeDefined();
+    expect(sourceMap.identityTemplates[0].line).toBeGreaterThan(0);
+  });
+
+  it('should have valid source map values for identity templates', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+    const identitySourceMap = sourceMap.identityTemplates[0];
+
+    expect(identitySourceMap.line).toBeGreaterThan(0);
+    expect(identitySourceMap.column).toBeGreaterThanOrEqual(0);
+    expect(identitySourceMap.tokenText).toBeTruthy();
+    expect(identitySourceMap.tokenText).not.toBe('NoSourceMap');
   });
 });
 
@@ -752,6 +792,14 @@ describe('when building interchange with no interchange component property', ():
     expect(getInterchange(namespace.entity, interchangeName).elements).toHaveLength(0);
   });
 
+  it('should have empty source maps for elements and identity templates', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+
+    expect(sourceMap.elements).toHaveLength(0);
+    expect(sourceMap.identityTemplates).toHaveLength(0);
+  });
+
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
                   Array [
@@ -1289,5 +1337,66 @@ describe('when building single interchange source map', (): void => {
         },
       }
     `);
+  });
+
+  it('should have NoSourceMap for typeHumanizedName', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const elementSourceMap = interchange.elements[0].sourceMap;
+
+    expect(elementSourceMap.typeHumanizedName).toBeDefined();
+    expect(elementSourceMap.typeHumanizedName.line).toBe(0);
+    expect(elementSourceMap.typeHumanizedName.column).toBe(0);
+    expect(elementSourceMap.typeHumanizedName.tokenText).toBe('NoSourceMap');
+  });
+});
+
+describe('when building interchange with parsing errors should have invalid sourceMaps', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const interchangeName = 'InterchangeName';
+  const interchangeDocumentation = 'InterchangeDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new InterchangeBuilder(metaEd, validationFailures);
+
+    // Build an interchange that will have parsing issues
+    textBuilder
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartInterchange(interchangeName)
+      .withDocumentation(interchangeDocumentation)
+      .withEndInterchange()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should build interchange even with parsing errors', (): void => {
+    expect(namespace.entity.interchange.size).toBe(1);
+  });
+
+  it('should have empty elements and identity templates arrays', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    expect(interchange.elements).toHaveLength(0);
+    expect(interchange.identityTemplates).toHaveLength(0);
+  });
+
+  it('should have empty sourceMaps arrays indicating no valid parsing', (): void => {
+    const interchange = getInterchange(namespace.entity, interchangeName);
+    const sourceMap = interchange.sourceMap as InterchangeSourceMap;
+
+    // When parsing fails or elements are not added, arrays should be empty
+    expect(sourceMap.elements).toHaveLength(0);
+    expect(sourceMap.identityTemplates).toHaveLength(0);
+  });
+
+  it('should have parsing errors', (): void => {
+    expect(textBuilder.errorMessages.length).toBeGreaterThan(0);
   });
 });
