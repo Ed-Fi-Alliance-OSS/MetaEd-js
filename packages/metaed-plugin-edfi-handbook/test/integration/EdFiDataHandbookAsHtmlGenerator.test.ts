@@ -163,4 +163,118 @@ describe('when generating HTML version of handbook', (): void => {
 
     expect(htmlOutput).toMatch(/"entityName":"LocalBudget"[^}]*"propertyName":"TimePeriod"[^}]*"cardinality":"required"/);
   });
+
+  describe('References table for Domain Entities', (): void => {
+    let htmlOutput: string;
+
+    beforeAll(() => {
+      htmlOutput = generatorResults.generatedOutput[0].resultString;
+    });
+
+    it('should include modelReferencesContainsProperties for EducationOrganization', (): void => {
+      expect(htmlOutput).toContain('"modelReferencesContainsProperties"');
+      expect(htmlOutput).toContain('"name":"EducationOrganizationId"');
+      expect(htmlOutput).toContain('"name":"EdOrgString"');
+    });
+
+    it('should include correct property metadata for EducationOrganizationId', (): void => {
+      expect(htmlOutput).toMatch(/"name":"EducationOrganizationId"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"IntegerProperty"/);
+      expect(htmlOutput).toMatch(/"umlDatatype":"Number"/);
+      expect(htmlOutput).toMatch(/"jsonDatatype":"number"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"INT"/);
+      expect(htmlOutput).toMatch(/"isIdentity":true/);
+      expect(htmlOutput).toMatch(/"isSensitiveData":false/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should include correct property metadata for EdOrgString with sensitive data', (): void => {
+      expect(htmlOutput).toMatch(/"name":"EdOrgString"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"StringProperty"/);
+      expect(htmlOutput).toMatch(/"umlDatatype":"String"/);
+      expect(htmlOutput).toMatch(/"jsonDatatype":"string"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"VARCHAR\(0\)"/);
+      expect(htmlOutput).toMatch(/"isIdentity":false/);
+      expect(htmlOutput).toMatch(/"isSensitiveData":true/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should include all properties for LocalBudget entity', (): void => {
+      expect(htmlOutput).toContain('"name":"LocalAccount"');
+      expect(htmlOutput).toContain('"name":"LocalAccountName"');
+      expect(htmlOutput).toContain('"name":"ActualDate"');
+      expect(htmlOutput).toContain('"name":"Amount"');
+      expect(htmlOutput).toContain('"name":"Percent"');
+      expect(htmlOutput).toContain('"name":"TimePeriod"');
+    });
+
+    it('should include correct metadata for LocalBudget DateProperty (ActualDate)', (): void => {
+      expect(htmlOutput).toMatch(/"name":"ActualDate"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"DateProperty"/);
+      expect(htmlOutput).toMatch(/"umlDatatype":"Date"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"DATE"/);
+      expect(htmlOutput).toMatch(/"cardinality":"optional collection"/);
+    });
+
+    it('should include correct metadata for LocalBudget CurrencyProperty (Amount)', (): void => {
+      expect(htmlOutput).toMatch(/"name":"Amount"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"CurrencyProperty"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"MONEY"/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should include correct metadata for LocalBudget PercentProperty (Percent)', (): void => {
+      expect(htmlOutput).toMatch(/"name":"Percent"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"PercentProperty"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"DECIMAL\(5, 4\)"/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should include correct metadata for LocalBudget DurationProperty (TimePeriod)', (): void => {
+      expect(htmlOutput).toMatch(/"name":"TimePeriod"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"DurationProperty"/);
+      expect(htmlOutput).toMatch(/"sqlDatatype":"VARCHAR\(30\)"/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should include all properties for LocalEducationAgency entity', (): void => {
+      expect(htmlOutput).toContain('"name":"LocalEducationAgencyId"');
+      expect(htmlOutput).toContain('"name":"LocalEducationAgencyNameEducationServiceCenter"');
+      expect(htmlOutput).toContain('"name":"AsOfDate"');
+      expect(htmlOutput).toContain('"name":"FederalProgramsFundingAllocation"');
+    });
+
+    it('should include correct metadata for LocalEducationAgency with role name', (): void => {
+      expect(htmlOutput).toMatch(/"name":"LocalEducationAgencyNameEducationServiceCenter"/);
+      expect(htmlOutput).toMatch(/"metaEdDatatype":"StringProperty"/);
+      expect(htmlOutput).toMatch(/"isSensitiveData":true/);
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+    });
+
+    it('should populate modelReferencesContains array for all domain entities', (): void => {
+      expect(htmlOutput).toMatch(/"modelReferencesContains":\[/);
+      expect(htmlOutput).toMatch(/"EducationOrganizationId \(identity\)"/);
+      expect(htmlOutput).toMatch(/"EdOrgString \(required\)"/);
+      expect(htmlOutput).toMatch(/"LocalAccount \(identity\)"/);
+      expect(htmlOutput).toMatch(/"ActualDate \(optional collection\)"/);
+      expect(htmlOutput).toMatch(/"Amount \(required\)"/);
+    });
+
+    it('should include referenceUniqueIdentifier for all properties', (): void => {
+      expect(htmlOutput).toMatch(/"referenceUniqueIdentifier":"[^"]+"/);
+      expect(htmlOutput).not.toContain('"referenceUniqueIdentifier": ""');
+    });
+
+    it('should include jsonElementName for all properties', (): void => {
+      expect(htmlOutput).toMatch(/"jsonElementName":"EducationOrganizationId"/);
+      expect(htmlOutput).toMatch(/"jsonElementName":"EdOrgString"/);
+      expect(htmlOutput).toMatch(/"jsonElementName":"LocalAccount"/);
+      expect(htmlOutput).toMatch(/"jsonElementName":"Amount"/);
+    });
+
+    it('should include correct cardinality values for all property types', (): void => {
+      expect(htmlOutput).toMatch(/"cardinality":"required"/);
+      expect(htmlOutput).toMatch(/"cardinality":"optional collection"/);
+    });
+  });
 });
