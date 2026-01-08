@@ -29,7 +29,7 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
-    "@edfi/metaed-default-plugins": "4.5.2-dev.90",
+    "@edfi/metaed-default-plugins": "4.6.1-dev.6",
     "@types/klaw-sync": "^6.0.1",
     "normalize-path": "^3.0.0"
   },

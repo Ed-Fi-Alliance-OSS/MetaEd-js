@@ -6,20 +6,24 @@
 import { EntityProperty } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
-
-function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
-  if (isHandbookEntityReferenceProperty && (property.isRequired || property.isPartOfIdentity || property.isIdentityRename))
-    return 'required';
-  if (property.isPartOfIdentity) return 'identity';
-  if (property.isRequired) return 'required';
-  if (property.isRequiredCollection) return 'required collection';
-  if (property.isOptional) return 'optional';
-  if (property.isOptionalCollection) return 'optional collection';
-  return 'UNKNOWN CARDINALITY';
-}
+import { HandbookUsedByProperty } from '../model/HandbookUsedByProperty';
+import { getCardinalityStringFor } from './HandbookCardinality';
 
 function propertyNamer(property: EntityProperty): string {
   return property.roleName === property.metaEdName ? property.metaEdName : property.roleName + property.metaEdName;
+}
+
+// In function parentNameAndPropertyCardinalityProperties
+function parentNameAndPropertyCardinalityProperties(property: EntityProperty): HandbookUsedByProperty[] {
+  const targetEntity = property.parentEntity.baseEntity ?? property.parentEntity;
+
+  const item: HandbookUsedByProperty = {
+    referenceUniqueIdentifier: targetEntity.metaEdName + targetEntity.entityUuid,
+    entityName: property.parentEntityName,
+    propertyName: propertyNamer(property),
+    cardinality: getCardinalityStringFor(property),
+  };
+  return [item];
 }
 
 function parentNameAndPropertyCardinality(property: EntityProperty): string {
@@ -51,6 +55,7 @@ export function createDefaultHandbookEntry(
     metaEdType,
     umlType,
     modelReferencesUsedBy: [parentNameAndPropertyCardinality(property)],
+    modelReferencesUsedByProperties: parentNameAndPropertyCardinalityProperties(property),
     name: getPropertyName(property),
     projectName: property.namespace.projectName,
     odsFragment: generatedTableSqlFor(property, columnDatatype),

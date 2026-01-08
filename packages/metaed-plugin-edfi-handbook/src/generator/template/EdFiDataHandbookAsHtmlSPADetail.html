@@ -80,7 +80,7 @@
         <h3>Used By</h3>
         <ul>
             <li ng-repeat="rub in ctrl.selected.modelReferencesUsedByProperties">
-                <a href="#/{{rub.referenceUniqueIdentifier}}" title="{{rub.metaEdId}} - {{rub.name}}">{{rub.name}}</a>.{{ctrl.selected.name}} (as {{rub.cardinality}})
+                <a href="#/{{rub.referenceUniqueIdentifier}}" title="{{rub.entityName}} - {{rub.propertyName}}">{{rub.entityName}}</a>.{{rub.propertyName}} (as {{rub.cardinality}})
             </li>
         </ul>
     </div>

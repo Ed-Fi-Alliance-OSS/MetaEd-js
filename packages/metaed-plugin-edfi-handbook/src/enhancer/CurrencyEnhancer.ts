@@ -26,6 +26,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       name: currencyName,
       definition: currencyDocumentation,
       columnDefinition: ColumnDataTypes.currency,
+      propertyType: 'currency',
+      metaEd,
     }),
   );
 

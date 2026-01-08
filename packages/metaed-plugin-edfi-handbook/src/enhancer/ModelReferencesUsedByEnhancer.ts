@@ -26,21 +26,19 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const handbookEntries: HandbookEntry[] = handbookEntriesForAllNamespaces(metaEd);
 
   handbookEntries.forEach((handbookEntry: HandbookEntry) => {
-    handbookEntry.modelReferencesUsedByProperties = handbookEntries
-      .filter(
-        (entry) =>
-          entry.modelReferencesContainsProperties != null &&
-          entry.modelReferencesContainsProperties.filter(
-            (containsProperty) => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
-          ).length,
-      )
-      .map((entry) => ({
+    // Skip below types because modelReferencesUsedByProperties are already populated for them
+    if (handbookEntry.modelReferencesUsedByProperties.length > 0) return;
+    handbookEntry.modelReferencesUsedByProperties = handbookEntries.flatMap((entry) => {
+      const matchingProperties = entry.modelReferencesContainsProperties.filter(
+        (containsProperty) => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
+      );
+      return matchingProperties.map((containsProperty) => ({
         referenceUniqueIdentifier: entry.uniqueIdentifier,
-        name: entry.name,
-        cardinality: entry.modelReferencesContainsProperties.filter(
-          (containsProperty) => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
-        )[0].cardinality,
+        entityName: entry.name,
+        propertyName: containsProperty.name,
+        cardinality: containsProperty.cardinality,
       }));
+    });
   });
   return {
     enhancerName,

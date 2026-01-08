@@ -26,6 +26,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       name: percentName,
       definition: percentDocumentation,
       columnDefinition: ColumnDataTypes.percent,
+      metaEd,
+      propertyType: 'percent',
     }),
   );
 
