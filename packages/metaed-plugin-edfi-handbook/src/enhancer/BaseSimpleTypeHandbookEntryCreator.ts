@@ -21,8 +21,10 @@ function parentNameAndPropertyCardinalityProperties(
   const validPropertyTypes: PropertyType[] = [propertyType];
 
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
+    const targetEntity = property.parentEntity.baseEntity ?? property.parentEntity;
+
     const item: HandbookUsedByProperty = {
-      referenceUniqueIdentifier: property.parentEntity.metaEdName + property.parentEntity.entityUuid,
+      referenceUniqueIdentifier: targetEntity.metaEdName + targetEntity.entityUuid,
       entityName: property.parentEntity.metaEdName,
       propertyName:
         property.roleName === property.metaEdName ? property.metaEdName : property.roleName + property.metaEdName,

@@ -15,8 +15,10 @@ function propertyNamer(property: EntityProperty): string {
 
 // In function parentNameAndPropertyCardinalityProperties
 function parentNameAndPropertyCardinalityProperties(property: EntityProperty): HandbookUsedByProperty[] {
+  const targetEntity = property.parentEntity.baseEntity ?? property.parentEntity;
+
   const item: HandbookUsedByProperty = {
-    referenceUniqueIdentifier: property.parentEntityName + property.parentEntity.entityUuid,
+    referenceUniqueIdentifier: targetEntity.metaEdName + targetEntity.entityUuid,
     entityName: property.parentEntityName,
     propertyName: propertyNamer(property),
     cardinality: getCardinalityStringFor(property),
