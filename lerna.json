@@ -3,7 +3,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "4.6.1-dev.7",
+  "version": "4.6.1-dev.8",
   "npmClient": "npm",
   "command": {
     "version": {
