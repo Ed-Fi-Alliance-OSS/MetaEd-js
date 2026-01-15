@@ -18,7 +18,9 @@ function getFailure(domainItem: DomainItem, name: string, failureMessage: string
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  // DMS-917 Ticket Created to support Ed-Fi 5.2.0 and higher
+  // METAED-1644 Ticket Created to support Ed-Fi 5.2.0 and higher
+  // Domain Entity Subdomain Item property 'StudentAssessmentItem' does not match any declared Domain Entity
+  // or Domain Entity Subclass in namespace Error in StudentAssessment.metaed
   if (!versionSatisfies(metaEd.dataStandardVersion, '>5.2.0')) {
     return failures;
   }
