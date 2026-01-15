@@ -18,8 +18,8 @@ function getFailure(domainItem: DomainItem, name: string, failureMessage: string
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-
-  if (!versionSatisfies(metaEd.dataStandardVersion, '>4.0.0')) {
+  // DMS-917 Ticket Created to support Ed-Fi 5.2.0 and higher
+  if (!versionSatisfies(metaEd.dataStandardVersion, '>5.2.0')) {
     return failures;
   }
 

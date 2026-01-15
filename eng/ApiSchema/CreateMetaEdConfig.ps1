@@ -83,6 +83,9 @@ if ($ExtensionProjectName -and $ExtensionProjectName -ne "Core") {
     $extractedVersion = Get-ProjectVersionFromPackageJson -PackageJsonPath $packageJsonPathForExtension
     
     $versionToUse = $extensionProjectVersionDefault
+    if($ExtensionProjectName -eq "TPDM") {
+        $versionToUse = "1.1.0"
+    }
     if (-not [string]::IsNullOrEmpty($extractedVersion)) {
         $versionToUse = $extractedVersion
         Write-Host "Using projectVersion '$versionToUse' from $packageJsonPathForExtension for $ExtensionProjectName extension."
