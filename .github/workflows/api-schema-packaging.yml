@@ -6,9 +6,6 @@
 name: API Schema Packaging and Publishing
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -29,6 +26,7 @@ env:
 
 jobs:
   run-metaed-project:
+    if: github.ref_protected # Don't allow this to run on PRs
     name: Run MetaEd Project
     runs-on: ubuntu-latest
     strategy:
