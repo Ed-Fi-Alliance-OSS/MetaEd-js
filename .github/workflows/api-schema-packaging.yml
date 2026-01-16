@@ -51,8 +51,8 @@ jobs:
           sample-tag-name: 'main'
           core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-5.2'
           tpdm-path: 'Ed-Fi-TPDM-Model'
-          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
-          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/5.2.0/Sample/SampleMetaEd'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/5.2.0/Homograph/HomographMetaEd'
     defaults:
       run:
         shell: pwsh
@@ -68,7 +68,7 @@ jobs:
         if: matrix.config == 'tpdm'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          repository: Ed-Fi-Alliance-OSS/Ed-Fi-TPDM-Model
+          repository: Ed-Fi-Closed/Ed-Fi-TPDM-Model
           path: Ed-Fi-TPDM-Model/
           ref: ${{ matrix.ds.tpdm-tag-name }}
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
