@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating short property with minimum value greater than maximum value should have validation failures 1`] = `"Short Property ShortIdentity has min value greater than max value."`;
 

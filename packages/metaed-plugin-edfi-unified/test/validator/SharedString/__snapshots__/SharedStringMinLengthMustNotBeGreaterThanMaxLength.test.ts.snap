@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating shared string with min length greater than max length should have validation failures 1`] = `"Shared String EntityName has min length greater than max length."`;
 

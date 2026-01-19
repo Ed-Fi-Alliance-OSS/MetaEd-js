@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when association extension is in core namespace should have validation failure 1`] = `"Association additions 'EntityName' cannot be in the same namespace as its base entity."`;
 

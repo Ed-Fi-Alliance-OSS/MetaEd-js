@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when shared decimal property has invalid identifier of shared decimal in dependency namespace should have validation failure for property 1`] = `"Shared decimal property 'SharedName' does not match any declared Shared Decimal in namespace EdFi."`;
 

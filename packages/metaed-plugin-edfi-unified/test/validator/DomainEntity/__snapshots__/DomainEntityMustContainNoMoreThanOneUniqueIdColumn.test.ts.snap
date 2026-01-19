@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating domain entity with two UniqueId fields should have validation failure 1`] = `"Domain Entity EntityName has multiple properties with a property name of 'UniqueId'.  Only one column in a core domain entity can be named 'UniqueId'."`;
 
