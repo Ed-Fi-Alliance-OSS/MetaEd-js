@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when two integer properties in different DEs have the same name should have validation failures for each entity 1`] = `"Integer Property named PropertyName is a duplicate declaration of that name."`;
 

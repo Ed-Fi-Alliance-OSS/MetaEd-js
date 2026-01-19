@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating enumeration exists in extension should have validation failure 1`] = `"Enumeration EntityName will no longer be valid in extension namespace ProjectExtension in future releases.  Please convert to a Descriptor."`;
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating association with invalid identity rename property should have validation failure 1`] = `"'renames identity property' is invalid for property PropertyName3 on Association EntityName. 'renames identity property' is only valid for properties on Domain Entity Subclass and Association Subclass."`;
 
