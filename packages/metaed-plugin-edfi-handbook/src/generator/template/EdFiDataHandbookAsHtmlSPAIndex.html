@@ -3,198 +3,67 @@
 
 <head>
     <title>Ed-Fi Data Handbook</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css" />
-    <!-- oprions: github, default, mono-blue, rainbow, atom-one-light -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Highlight.js 11 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-highlightjs/0.6.2/angular-highlightjs.min.js"></script>
+    <!-- React 18 and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel Standalone for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
-        hljs.initHighlightingOnLoad();
-
-        // Examples here:
-        // http://highlightjs.readthedocs.io/en/latest/language-guide.html
-        // https://github.com/isagalaev/highlight.js/tree/master/src/languages
-        // Based off the SQL one located: https://github.com/isagalaev/highlight.js/blob/master/src/languages/sql.js
-        hljs.registerLanguage("edfisqlsnippet", function (e) {
-            // var COMMENT_MODE = hljs.COMMENT('--', '$');
-            var t = e.C("--", "$");
+        // Register custom SQL language for Ed-Fi
+        hljs.registerLanguage("edfisqlsnippet", function (hljs) {
+            const COMMENT_MODE = hljs.COMMENT('--', '$');
             return {
-                // case_insensitive: true,
-                cI: !0,
-                // illegal:
-                i: /[<> {}*#]/,
-                // contains:
-                c: [{
-                    // beginKeywords:
-                    k: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
-                    // end: /;/
-                    e: /;/,
-                    // endsWithParent: true,
-                    eW: !0,
-                    // lexemes: /[\w\.]+/,
-                    l: /[\w\.]+/,
-                    // keywords:
-                    k: {
+                name: 'Ed-Fi SQL Snippet',
+                case_insensitive: true,
+                illegal: /[<>{}*#]/,
+                contains: [{
+                    beginKeywords: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
+                    end: /;/,
+                    endsWithParent: true,
+                    keywords: {
                         keyword: "primary abort abs absolute acc acce accep accept access accessed accessible account acos action activate add addtime admin administer advanced advise aes_decrypt aes_encrypt after agent aggregate ali alia alias allocate allow alter always analyze ancillary and any anydata anydataset anyschema anytype apply archive archived archivelog are as asc ascii asin assembly assertion associate asynchronous at atan atn2 attr attri attrib attribu attribut attribute attributes audit authenticated authentication authid authors auto autoallocate autodblink autoextend automatic availability avg backup badfile basicfile before begin beginning benchmark between bfile bfile_base big bigfile bin binary_double binary_float binlog bit_and bit_count bit_length bit_or bit_xor bitmap blob_base block blocksize body both bound buffer_cache buffer_pool build bulk by byte byteordermark bytes cache caching call calling cancel capacity cascade cascaded case cast catalog category ceil ceiling chain change changed char_base char_length character_length characters characterset charindex charset charsetform charsetid check checksum checksum_agg child choose chr chunk class cleanup clear client clob clob_base clone close cluster_id cluster_probability cluster_set clustering coalesce coercibility col collate collation collect colu colum column column_value columns columns_updated comment commit compact compatibility compiled complete composite_limit compound compress compute concat concat_ws concurrent confirm conn connec connect connect_by_iscycle connect_by_isleaf connect_by_root connect_time connection consider consistent constant constraint constraints constructor container content contents context contributors controlfile conv convert convert_tz corr corr_k corr_s corresponding corruption cos cost count count_big counted covar_pop covar_samp cpu_per_call cpu_per_session crc32 create creation critical cross cube cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime customdatum cycle data database databases datafile datafiles datalength date_add date_cache date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts day day_to_second dayname dayofmonth dayofweek dayofyear days db_role_change dbtimezone ddl deallocate declare decode decompose decrement decrypt deduplicate def defa defau defaul default defaults deferred defi defin define degrees delayed delegate delete delete_all delimited demand dense_rank depth dequeue des_decrypt des_encrypt des_key_file desc descr descri describ describe descriptor deterministic diagnostics difference dimension direct_load directory disable disable_all disallow disassociate discardfile disconnect diskgroup distinct distinctrow distribute distributed div do document domain dotnet double downgrade drop dumpfile duplicate duration each edition editionable editions element ellipsis else elsif elt empty enable enable_all enclosed encode encoding encrypt end end-exec endian enforced engine engines enqueue enterprise entityescaping eomonth error errors escaped evalname evaluate event eventdata events except exception exceptions exchange exclude excluding execu execut execute exempt exists exit exp expire explain export export_set extended extent external external_1 external_2 externally extract failed failed_login_attempts failover failure far fast feature_set feature_value fetch field fields file file_name_convert filesystem_like_logging final finish first first_value fixed flash_cache flashback floor flush following follows for forall force form forma format found found_rows freelist freelists freepools fresh from from_base64 from_days ftp full function general generated get get_format get_lock getdate getutcdate global global_name globally go goto grant grants greatest group group_concat group_id grouping grouping_id groups gtid_subtract guarantee guard handler hash hashkeys having hea head headi headin heading heap help hex hierarchy high high_priority hosts hour http ident_current ident_incr ident_seed identified identity idle_time if ifnull ignore iif ilike ilm immediate import in include including increment index indexes indexing indextype indicator indices inet6_aton inet6_ntoa inet_aton inet_ntoa infile initial initialized initially initrans inmemory inner innodb input insert install instance instantiable instr interface interleaved intersect into invalidate invisible is is_free_lock is_ipv4 is_ipv4_compat is_not is_not_null is_used_lock isdate isnull isolation iterate java join json json_exists keep keep_duplicates key keys kill language large last last_day last_insert_id last_value lax lcase lead leading least leaves left len lenght length less level levels library like like2 like4 likec limit lines link list listagg little ln load load_file lob lobs local localtime localtimestamp locate locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime managed management manual map mapping mask master master_pos_wait match matched materialized max maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans md5 measures median medium member memcompress memory merge microsecond mid migration min minextents minimum mining minus minute minvalue missing mod mode model modification modify module monitoring month months mount move movement multiset mutex name name_const names nan national native natural nav nchar nclob nested never new newline next nextval no no_write_to_binlog noarchivelog noaudit nobadfile nocheck nocompress nocopy nocycle nodelay nodiscardfile noentityescaping noguarantee nokeep nologfile nomapping nomaxvalue nominimize nominvalue nomonitoring none noneditionable nonschema noorder nopr nopro noprom nopromp noprompt norely noresetlogs noreverse normal norowdependencies noschemacheck noswitch not nothing notice notrim novalidate now nowait nth_value nullif nulls num numb numbe nvarchar nvarchar2 object ocicoll ocidate ocidatetime ociduration ociinterval ociloblocator ocinumber ociref ocirefcursor ocirowid ocistring ocitype oct octet_length of off offline offset oid oidindex old on online only opaque open operations operator optimal optimize option optionally or oracle oracle_date oradata ord ordaudio orddicom orddoc order ordimage ordinality ordvideo organization orlany orlvary out outer outfile outline output over overflow overriding package pad parallel parallel_enable parameters parent parse partial partition partitions pascal passing password password_grace_time password_lock_time password_reuse_max password_reuse_time password_verify_function patch path patindex pctincrease pctthreshold pctused pctversion percent percent_rank percentile_cont percentile_disc performance period period_add period_diff permanent physical pi pipe pipelined pivot pluggable plugin policy position post_transaction pow power pragma prebuilt precedes preceding precision prediction prediction_cost prediction_details prediction_probability prediction_set prepare present preserve prior priority private private_sga privileges procedural procedure procedure_analyze processlist profiles project prompt protection public publishingservername purge quarter query quick quiesce quota quotename radians raise rand range rank raw read reads readsize rebuild record records recover recovery recursive recycle redo reduced ref reference referenced references referencing refresh regexp_like register regr_avgx regr_avgy regr_count regr_intercept regr_r2 regr_slope regr_sxx regr_sxy reject rekey relational relative relaylog release release_lock relies_on relocate rely rem remainder rename repair repeat replace replicate replication required reset resetlogs resize resource respect restore restricted result result_cache resumable resume retention return returning returns reuse reverse revoke right rlike role roles rollback rolling rollup round row row_count rowdependencies rowid rownum rows rtrim rules safe salt sample save savepoint sb1 sb2 sb4 scan schema schemacheck scn scope scroll sdo_georaster sdo_topo_geometry search sec_to_time second section securefile security seed segment select self sequence sequential serializable server servererror session session_user sessions_per_user set sets settings sha sha1 sha2 share shared shared_pool short show shrink shutdown si_averagecolor si_colorhistogram si_featurelist si_positionalcolor si_stillimage si_texture siblings sid sign sin size size_t sizes skip slave sleep smalldatetimefromparts smallfile snapshot some soname sort soundex source space sparse spfile split sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_small_result sql_variant_property sqlcode sqldata sqlerror sqlname sqlstate sqrt square standalone standby start starting startup statement static statistics stats_binomial_test stats_crosstab stats_ks_test stats_mode stats_mw_test stats_one_way_anova stats_t_test_ stats_t_test_indep stats_t_test_one stats_t_test_paired stats_wsr_test status std stddev stddev_pop stddev_samp stdev stop storage store stored str str_to_date straight_join strcmp strict string struct stuff style subdate subpartition subpartitions substitutable substr substring subtime subtring_index subtype success sum suspend switch switchoffset switchover sync synchronous synonym sys sys_xmlagg sysasm sysaux sysdate sysdatetimeoffset sysdba sysoper system system_user sysutcdatetime table tables tablespace tan tdo template temporary terminated tertiary_weights test than then thread through tier ties time time_format time_zone timediff timefromparts timeout timestamp timestampadd timestampdiff timezone_abbr timezone_minute timezone_region to to_base64 to_date to_days to_seconds todatetimeoffset trace tracking transaction transactional translate translation treat trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse type ub1 ub2 ub4 ucase unarchived unbounded uncompress under undo unhex unicode uniform uninstall union unique unix_timestamp unknown unlimited unlock unpivot unrecoverable unsafe unsigned until untrusted unusable unused update updated upgrade upped upper upsert url urowid usable usage use use_stored_outlines user user_data user_resources users using utc_date utc_timestamp uuid uuid_short validate validate_password_strength validation valist value values var var_samp varcharc vari varia variab variabl variable variables variance varp varraw varrawc varray verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear wellformed when whene whenev wheneve whenever where while whitespace with within without work wrapped xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year year_to_month years yearweek",
                         literal: "true false null",
                         built_in: "uniqueidentifier datetime nvarchar array bigint binary bit blob boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text varchar varying void"
                     },
-                    // contains: [
-                    c: [
-                        // className:, begin:, end:, contains:
-                        {cN: "string", b: "'", e: "'", c: [e.BE, {b: "''"}]},
-                        {cN: "string", b: '"', e: '"', c: [e.BE, {b: '""'}]},
-                        {cN: "string", b: "`", e: "`", c: [e.BE]},
-                        {cN: "type", b: "edfi.", e: "\n", c: [e.BE]},
-
-                        //hljs.C_NUMBER_MODE, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE
-                        e.CNM, e.CBCM, t]
-                }
-                    , e.CBCM, t]
-            }
-        }
-        );
-    //console.log(hljs.listLanguages());
+                    contains: [
+                        hljs.QUOTE_STRING_MODE,
+                        hljs.APOS_STRING_MODE,
+                        {
+                            className: "string",
+                            begin: "`",
+                            end: "`",
+                            contains: [hljs.BACKSLASH_ESCAPE]
+                        },
+                        {
+                            className: "type",
+                            begin: "edfi\\.",
+                            end: "\n",
+                            contains: [hljs.BACKSLASH_ESCAPE]
+                        },
+                        hljs.C_NUMBER_MODE,
+                        hljs.C_BLOCK_COMMENT_MODE,
+                        COMMENT_MODE
+                    ]
+                }, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE]
+            };
+        });
     </script>
 
     <style type="text/css">
         html,
-        body,
-        .container {
+        body {
             height: 100%;
-        }
-
-        .navbar-brand {
+            margin: 0;
             padding: 0;
-        }
-
-        .navbar-brand-text {
-            padding-top: 15px;
-        }
-
-        .navbar-default {
-            background-color: #fff;
-            border-bottom: 1px solid #cacaca;
-            background-image: none;
-        }
-
-        .container {
-            display: table;
-            width: 100%;
-            margin-top: -20px;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .header {
-            height: 48px;
-            border-bottom: 1px solid #cacaca;
-            overflow: hidden;
-        }
-
-        .row {
-            height: 100%;
-            display: table-row;
-        }
-
-        .row .no-float {
-            display: table-cell;
-            float: none;
-        }
-
-        .sidebar-container {
-            padding-top: 15px;
-            padding-bottom: 118px;
-            vertical-align: top;
-            padding-right: 0;
-            background-color: #f5f5f5;
-            border-right: 1px solid #cacaca;
-            height: 100%;
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-        }
-
-        .sidebar a {
-            position: relative;
-            width: 250px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: inline-block;
-        }
-
-        .search {
-            padding-right: 15px;
-        }
-
-        a {
-            text-decoration: underline;
-        }
-
-        .nav>li>a {
-            padding: 5px 15px;
-        }
-
-        .nav>li>a>span.entity {
-            text-decoration: underline;
-        }
-
-        .nav>li>a>span.definition {
-            color: black;
-            font-style: italic;
-        }
-
-        .nav>li>a.active,
-        .nav>li>a.menu:active,
-        .nav>li>a.menu:focus {
-            color: #fff;
-            background-color: #428bca;
-        }
-
-        .nav>li>a.menu:hover {
-            background-color: #77BFFD;
-        }
-
-        .nav>li>a.menu:hover>span,
-        .nav>li>a.menu:focus>span,
-        .nav>li>a.active>span {
-            color: white;
-        }
-
-        #sidebar-nav .form-group {
-            margin-bottom: 5px;
-        } 
-
-        .inline-header {
-            display: inline-block;
-            vertical-align: baseline;
-        }
-
-        .filterCount {
-            color: #cacaca;
-        }
-
-        .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
-            height: 27px;
         }
 
         .highlight {
@@ -206,320 +75,539 @@
             font-weight: bold;
         }
 
-        .text-ellipsis {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: block;
+        /* Custom scrollbar styling */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #cacaca;
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #999;
         }
     </style>
 
-    <script type="text/javascript">
+    <script type="text/babel">
+        const { useState, useEffect, useMemo, useCallback } = React;
 
-        var app = angular.module('app', ['ngRoute', 'ui.select', 'hljs']);
+        // Data from the generator (will be replaced with injected data)
+        const DATA = {JSONData};
 
-        app.config(function ($routeProvider) {
-            $routeProvider
-                .when('/',
-                    {
-                        controller: 'detailController',
-                        controllerAs: 'ctrl',
-                        template: "{detailTemplate}" //This gets replaced with injected data from the generator.
-                    })
-                .when('/:entityUniqueId',
-                    {
-                        controller: 'detailController',
-                        controllerAs: 'ctrl',
-                        template: "{detailTemplate}" //This gets replaced with injected data from the generator.
-                    });
-        });
+        // Utility functions
+        const boldText = (text, search) => {
+            if (!search || !text) return text;
+            const regex = new RegExp(`(${search})`, 'gi');
+            return text.replace(regex, '<b>$1</b>');
+        };
 
-        app.filter('customSearch',
-            function () {
-                return function (entries, filter, includeDefinition) {
-                    // If no filter applied then return all.
-                    if (!filter)
-                        return entries;
+        const highlightText = (text, search) => {
+            if (!search || !text) return text;
+            const regex = new RegExp(`(${search})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        };
 
-                    var out = [];
-
-                    angular.forEach(entries,
-                        function (value, key) {
-                            if (value.metaEdId) {
-                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
-                                    value.metaEdId.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
-                                    (includeDefinition && value.definition.toLowerCase().indexOf(filter.toLowerCase()) !== -1))
-                                    out.push(value);
-                            } else {
-                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 || (includeDefinition && value.definition.toLowerCase().indexOf(filter.toLowerCase()) !== -1))
-                                    out.push(value);
-                            }
-                        });
-                    return out;
-                };
-            });
-
-        app.filter('trueFalseToYesNo', function () {
-            return function (text, length, end) {
-                if (text) {
-                    return 'Yes';
-                }
-                return 'No';
+        const displaySideDefinition = (definition, search) => {
+            if (!search || !definition) return definition;
+            const indexOf = definition.toLowerCase().indexOf(search.toLowerCase());
+            const paddingLength = (30 - search.length) > 7 ? 7 : ((30 - search.length) < 0 ? 0 : (30 - search.length));
+            if (indexOf < 10 || definition.length < 30) return definition;
+            else {
+                if (definition.length - indexOf < 30)
+                    return '...' + definition.substring(definition.length - 30);
+                else
+                    return '...' + definition.substring(indexOf - paddingLength);
             }
-        });
+        };
 
-        app.filter('highlight', function ($sce) {
-            return function (text, phrase) {
-                if (phrase)
-                    text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<span class="highlight">$1</span>');
+        // Multi-select component
+        const MultiSelect = ({ options, value, onChange, placeholder }) => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [searchText, setSearchText] = useState('');
 
-                return $sce.trustAsHtml(text);
-            }
-        });
+            const filteredOptions = useMemo(() => {
+                if (!searchText) return options;
+                return options.filter(opt => 
+                    opt.toLowerCase().includes(searchText.toLowerCase())
+                );
+            }, [options, searchText]);
 
-        app.filter('bold', function ($sce) {
-            return function (text, phrase) {
-                if (phrase)
-                    text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<b>$1</b>');
-
-                return $sce.trustAsHtml(text);
-            }
-        });
-
-        app.filter('byEntityType', function () {
-            return function (items, filter) {
-
-                // If no filters then return everything.
-                if (filter.length === 0)
-                    return items;
-
-                var out = [];
-
-                angular.forEach(items, function (value, key) {
-                    if (filter.indexOf(value.umlType) > -1) {
-                        out.push(value);
-                    }
-                });
-
-                return out;
-            };
-        });
-
-        app.filter('byDomain', function () {
-            return function (items, filter) {
-
-                // If no filters then return everything.
-                if (filter.length === 0)
-                    return items;
-
-                var out = [];
-
-                angular.forEach(items, function (value, key) {
-                    for (const domain of value.domains) {
-                        if (filter.indexOf(domain) > -1) {
-                            out.push(value);
-                            break;
-                        }
-                    }
-                });
-
-                return out;
-            };
-        });
-
-        app.service('dataService', function () {
-            return {
-                get: function () {
-                    return {JSONData}; //This gets replaced with injected data from the generator.  
-                }
-            };
-        });
-
-        app.factory('sharedContext', function () {
-            return {
-                // Callback to be set by consuming controller
-                selectEntityCallback: function (entity) {},
-                selectEntity: function (entity) {
-                    this.selectEntityCallback(entity);
-                },
-                resetSearchCallback: function () {},
-                resetSearch: function () {
-                    this.resetSearchCallback();
-                }
-            };
-        });
-
-        app.controller('indexController', function (sharedContext, dataService, $routeParams, $timeout, $scope, $location) {
-            var ctrl = this;
-            ctrl.selectedEntityTypes = [];
-            ctrl.entityFilterTypes = [];
-            ctrl.selectedDomains = [];
-            ctrl.domains = [];
-
-            ctrl.entries = dataService.get();
-
-            // By default select the first one in the list.
-            ctrl.selected = ctrl.entries[0];
-
-            angular.forEach(ctrl.entries, function (entry) {
-                if (ctrl.entityFilterTypes.indexOf(entry.umlType) == -1) {
-                    ctrl.entityFilterTypes.push(entry.umlType);
-                }
-            });
-            ctrl.entityFilterTypes.sort();
-
-            angular.forEach(ctrl.entries, function (entry) {
-                angular.forEach(entry.domains, function (domain) {
-                    if (ctrl.domains.indexOf(domain) == -1) {
-                        ctrl.domains.push(domain);
-                    }
-                });                
-            });
-            ctrl.domains.sort();
-
-            ctrl.selecteEntity = function (entity) {
-                ctrl.selected = entity;
-            }
-
-            ctrl.resetSearch = function () {
-                ctrl.selectedEntityTypes = [];
-                ctrl.selectedDomains = [];
-                ctrl.search = "";
+            const toggleOption = (option) => {
+                const newValue = value.includes(option)
+                    ? value.filter(v => v !== option)
+                    : [...value, option];
+                onChange(newValue);
             };
 
-            sharedContext.selectEntityCallback = ctrl.selecteEntity;
-            sharedContext.resetSearchCallback = ctrl.resetSearch;
+            const removeOption = (option, e) => {
+                e.stopPropagation();
+                onChange(value.filter(v => v !== option));
+            };
 
-            ctrl.adjustSideBar = function () {
-                $timeout(function () {
-                    var sideNav = angular.element(document.querySelector('#sidebar-nav'));
-                    sideNav.height()
-
-                    var sideContainer = angular.element(document.querySelector('#sidebar-container'));
-                    sideContainer.css('padding-bottom', sideNav.height() + 'px');
-                }, 100);
-            }
-
-            ctrl.displaySideDefinition = function (definition) {
-
-                var indexOf = definition.toLowerCase().indexOf(ctrl.search.toLowerCase());
-                var paddingLength = (30 - ctrl.search.length) > 7 ? 7 : ((30 - ctrl.search.length) < 0 ? 0 : (30 - ctrl.search.length));
-                if (indexOf < 10 || definition.length < 30) return definition;
-                else {
-                    if (definition.length - indexOf < 30)
-                        return '...' + definition.substring(definition.length - 30)
-                    else
-                        return '...' + definition.substring(indexOf - paddingLength);
-                }
-
-            }
-        });
-
-        app.controller('detailController', function (sharedContext, $routeParams, dataService) {
-            var ctrl = this;
-
-            ctrl.entries = dataService.get();
-
-            // By default select the first entity
-            ctrl.selected = ctrl.entries[0];
-
-            var entityUniqueId = $routeParams.entityUniqueId;
-
-            ctrl.entityExists = function (entityUniqueIdentifier) {
-                if (ctrl.findEntity(entityUniqueIdentifier))
-                    return true;
-                return false;
-            }
-
-            ctrl.findEntity = function (entityUniqueIdentifier) {
-                for (var i = 0; i < ctrl.entries.length; i++)
-                    if (ctrl.entries[i].uniqueIdentifier === entityUniqueIdentifier)
-                        return ctrl.entries[i];
-                return undefined;
-            }
-
-            ctrl.getMergeStyle = function (merge, last) {
-                return last ? null : {'padding-bottom': '10px'};
-            }
-
-            if (entityUniqueId) {
-                ctrl.selected = ctrl.findEntity(entityUniqueId);
-                sharedContext.selectEntity(ctrl.selected);
-
-                angular.forEach(ctrl.selected.modelReferencesContainsProperties, function (property) {
-                    if (property.mergeDirectives && property.mergeDirectives.length) ctrl.showMerge = true;
-                })
-            }
-
-        });
-
-    </script>
-</head>
-
-<body ng-app="app" ng-controller="indexController as ctrl" style="overflow-y: hidden">
-    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px">
-        <div class="navbar-header">
-            <span class="navbar-text" style="font-weight: bold; font-size: 22px">Ed-Fi Data Handbook</span>
-        </div>
-    </nav>
-
-    <div style="height: calc(100% - 51px); position: relative; ">
-        <div style="height: 100%; width: 275px; background-color: #f5f5f5; padding-top: 10px; display: inline-block">
-            <div id="sidebar-nav" style="padding-left: 15px">
-                <div class="form-group search">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-search"></i>
+            return (
+                <div className="relative">
+                    <div 
+                        className="border border-gray-300 rounded px-2 py-1.5 cursor-pointer bg-white min-h-[34px] flex flex-wrap gap-1"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        {value.length === 0 ? (
+                            <span className="text-gray-400">{placeholder}</span>
+                        ) : (
+                            value.map(v => (
+                                <span key={v} className="bg-blue-500 text-white px-2 py-0.5 rounded text-sm inline-flex items-center">
+                                    {v}
+                                    <button 
+                                        className="ml-1 hover:text-gray-200"
+                                        onClick={(e) => removeOption(v, e)}
+                                    >
+                                        ×
+                                    </button>
+                                </span>
+                            ))
+                        )}
+                    </div>
+                    {isOpen && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-auto">
+                            <input
+                                type="text"
+                                className="w-full px-2 py-1.5 border-b border-gray-300"
+                                placeholder="Search..."
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                            {filteredOptions.map(option => (
+                                <div
+                                    key={option}
+                                    className="px-2 py-1.5 hover:bg-gray-100 cursor-pointer truncate"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleOption(option);
+                                    }}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        checked={value.includes(option)}
+                                        onChange={() => {}}
+                                        className="mr-2"
+                                    />
+                                    {option}
+                                </div>
+                            ))}
                         </div>
-                        <input type="text" class="form-control" placeholder="Search by name" ng-model="ctrl.search">
+                    )}
+                </div>
+            );
+        };
+
+        // Sidebar component
+        const Sidebar = ({ entries, selected, onSelect, search, setSearch, includeDefinition, setIncludeDefinition, selectedTypes, setSelectedTypes, selectedDomains, setSelectedDomains }) => {
+            const entityTypes = useMemo(() => {
+                const types = [...new Set(entries.map(e => e.umlType))];
+                return types.sort();
+            }, [entries]);
+
+            const domains = useMemo(() => {
+                const allDomains = new Set();
+                entries.forEach(e => {
+                    e.domains.forEach(d => allDomains.add(d));
+                });
+                return [...allDomains].sort();
+            }, [entries]);
+
+            const filteredEntries = useMemo(() => {
+                let filtered = entries;
+
+                // Filter by search
+                if (search) {
+                    filtered = filtered.filter(e => {
+                        const nameMatch = e.name.toLowerCase().includes(search.toLowerCase());
+                        const idMatch = e.metaEdId && e.metaEdId.toLowerCase().includes(search.toLowerCase());
+                        const defMatch = includeDefinition && e.definition.toLowerCase().includes(search.toLowerCase());
+                        return nameMatch || idMatch || defMatch;
+                    });
+                }
+
+                // Filter by type
+                if (selectedTypes.length > 0) {
+                    filtered = filtered.filter(e => selectedTypes.includes(e.umlType));
+                }
+
+                // Filter by domain
+                if (selectedDomains.length > 0) {
+                    filtered = filtered.filter(e => 
+                        e.domains.some(d => selectedDomains.includes(d))
+                    );
+                }
+
+                return filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }, [entries, search, includeDefinition, selectedTypes, selectedDomains]);
+
+            const resetSearch = () => {
+                setSearch('');
+                setSelectedTypes([]);
+                setSelectedDomains([]);
+            };
+
+            return (
+                <div className="h-full w-[275px] bg-gray-100 pt-2.5 inline-block border-r border-gray-300">
+                    <div className="px-4 pb-2">
+                        <div className="mb-1">
+                            <div className="flex border border-gray-300 rounded bg-white">
+                                <span className="px-3 py-2 bg-gray-100 border-r border-gray-300">
+                                    <i className="fa fa-search"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    className="flex-1 px-3 py-2 outline-none"
+                                    placeholder="Search by name"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-1">
+                            <label className="flex items-center text-sm">
+                                <input 
+                                    type="checkbox" 
+                                    className="mr-1" 
+                                    checked={includeDefinition}
+                                    onChange={(e) => setIncludeDefinition(e.target.checked)}
+                                />
+                                Include Definition in Search
+                            </label>
+                        </div>
+                        <div className="mb-1">
+                            <MultiSelect
+                                options={entityTypes}
+                                value={selectedTypes}
+                                onChange={setSelectedTypes}
+                                placeholder="Filter by UML Type"
+                            />
+                        </div>
+                        <div className="mb-1">
+                            <MultiSelect
+                                options={domains}
+                                value={selectedDomains}
+                                onChange={setSelectedDomains}
+                                placeholder="Filter by Domain"
+                            />
+                        </div>
+                        <span className="text-gray-400 text-sm">[Displaying {filteredEntries.length} of {entries.length}]</span>
+                    </div>
+                    <div className="sidebar overflow-y-auto overflow-x-hidden" style={{ height: 'calc(100% - 180px)' }}>
+                        <ul className="list-none p-0 m-0">
+                            {filteredEntries.map(entry => {
+                                const isActive = selected && selected.uniqueIdentifier === entry.uniqueIdentifier;
+                                return (
+                                    <li key={entry.uniqueIdentifier}>
+                                        <a
+                                            href={`#/${entry.uniqueIdentifier}`}
+                                            className={`block px-4 py-1 no-underline ${isActive ? 'bg-blue-500 text-white' : 'hover:bg-blue-300'}`}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                onSelect(entry);
+                                                window.location.hash = `#/${entry.uniqueIdentifier}`;
+                                            }}
+                                            title={`${entry.metaEdId || ''} - ${entry.name}`}
+                                        >
+                                            <span 
+                                                className="underline"
+                                                dangerouslySetInnerHTML={{ __html: boldText(entry.name, search) }}
+                                            />
+                                            <br />
+                                            {includeDefinition && search && (
+                                                <span 
+                                                    className="text-black italic text-sm"
+                                                    title={entry.definition}
+                                                    dangerouslySetInnerHTML={{ __html: boldText(displaySideDefinition(entry.definition, search), search) }}
+                                                />
+                                            )}
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                 </div>
-                <div>
-                    <label style="display: flex; align-items: center">
-                        <input style="margin: 0 5px 0 0" type="checkbox" ng-model="ctrl.includeDefinition" /> Include Definition in Search
-                    </label>
+            );
+        };
+
+        // Detail component
+        const Detail = ({ entry, search, resetSearch }) => {
+            useEffect(() => {
+                // Highlight code blocks after render
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            }, [entry]);
+
+            if (!entry) return null;
+
+            const showMerge = entry.modelReferencesContainsProperties?.some(p => 
+                p.mergeDirectives && p.mergeDirectives.length > 0
+            );
+
+            const entityExists = (uniqueId) => DATA.find(e => e.uniqueIdentifier === uniqueId);
+
+            return (
+                <div className="p-6 overflow-y-auto" style={{ height: '100%', width: '100%' }}>
+                    <h1 className="text-3xl font-bold mb-4">
+                        {entry.name}
+                        {entry.deprecationText && <span className="text-red-600">{entry.deprecationText}</span>}
+                    </h1>
+                    
+                    <h3 className="text-xl font-semibold mb-2">
+                        UML Type: {entry.umlType}
+                        {entry.baseMetaEdType && (
+                            <span> extending{' '}
+                                <a 
+                                    href={`#/${entry.baseEntityUniqueIdentifier}`} 
+                                    onClick={resetSearch} 
+                                    title={entry.baseMetaEdType} 
+                                    className="text-blue-600 hover:text-blue-800 underline"
+                                >
+                                    {entry.baseMetaEdType}
+                                </a>
+                            </span>
+                        )}
+                    </h3>
+                    
+                    <h3 className="text-xl font-semibold mt-4 mb-2">MetaEd Metadata</h3>
+                    <p>MetaEd Entity Type: {entry.metaEdType}</p>
+                    {entry.metaEdId && <p>MetaEd ID: {entry.metaEdId}</p>}
+                    
+                    <h3 className="text-xl font-semibold mt-4 mb-2">Definition</h3>
+                    <p dangerouslySetInnerHTML={{ __html: highlightText(entry.definition, search) }}></p>
+                    
+                    {entry.deprecationReason && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">Deprecation Reason</h3>
+                            <p>{entry.deprecationReason}</p>
+                        </>
+                    )}
+                    
+                    {entry.typeCharacteristics && entry.typeCharacteristics.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">Type Characteristics:</h3>
+                            <ul className="list-disc pl-6">
+                                {entry.typeCharacteristics.map((t, i) => <li key={i}>{t}</li>)}
+                            </ul>
+                        </>
+                    )}
+                    
+                    {entry.optionList && entry.optionList.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">Option List</h3>
+                            <ul className="list-disc pl-6">
+                                {entry.optionList.map((o, i) => <li key={i}>{o}</li>)}
+                            </ul>
+                        </>
+                    )}
+                    
+                    {entry.modelReferencesContains && entry.modelReferencesContains.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">References</h3>
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full border-collapse">
+                                    <thead>
+                                        <tr className="bg-gray-50">
+                                            <th className="border border-gray-300 px-4 py-2 text-left">Property</th>
+                                            {entry.hasDeprecatedProperty && <th className="border border-gray-300 px-4 py-2 text-left">Deprecation Reason</th>}
+                                            <th className="border border-gray-300 px-4 py-2 text-left">UML Datatype</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">JSON Datatype</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">JSON Element Name</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">Other</th>
+                                            {entry.showIdentityColumn && <th className="border border-gray-300 px-4 py-2 text-left">Identity</th>}
+                                            <th className="border border-gray-300 px-4 py-2 text-left">Is Sensitive Data</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">Cardinality</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">Definition</th>
+                                            {showMerge && <th className="border border-gray-300 px-4 py-2 text-left">Merge</th>}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {entry.modelReferencesContainsProperties && entry.modelReferencesContainsProperties.map((r, i) => {
+                                            const refEntity = entityExists(r.referenceUniqueIdentifier);
+                                            return (
+                                                <tr key={i} className="hover:bg-gray-50">
+                                                    <td className="border border-gray-300 px-4 py-2">
+                                                        {refEntity ? (
+                                                            <a 
+                                                                href={`#/${r.referenceUniqueIdentifier}`} 
+                                                                onClick={resetSearch} 
+                                                                title={`${r.metaEdId || ''} - ${r.name}`} 
+                                                                className="text-blue-600 hover:text-blue-800 underline"
+                                                            >
+                                                                {r.name}
+                                                            </a>
+                                                        ) : (
+                                                            <span title={`${r.metaEdId || ''} - ${r.name}`}>{r.name}</span>
+                                                        )}
+                                                        {r.extensionParentNamespaceName && <span> (from {r.extensionParentNamespaceName})</span>}
+                                                        {r.deprecationText && <span className="text-red-600"> - {r.deprecationText}</span>}
+                                                    </td>
+                                                    {entry.hasDeprecatedProperty && <td className="border border-gray-300 px-4 py-2">{r.deprecationReason}</td>}
+                                                    <td className="border border-gray-300 px-4 py-2">{r.umlDatatype}</td>
+                                                    <td className="border border-gray-300 px-4 py-2">{r.jsonDatatype}</td>
+                                                    <td className="border border-gray-300 px-4 py-2">{r.jsonElementName}</td>
+                                                    <td className="border border-gray-300 px-4 py-2">
+                                                        <p>MetaEd DSL Datatype: {r.metaEdDatatype}</p>
+                                                        {r.sqlDatatype && <p>SQL Recommended Datatype: {r.sqlDatatype}</p>}
+                                                        {!entry.showIdentityColumn && <p>Ed-Fi ODS/API Identity: {r.isOdsApiIdentity ? 'Yes' : 'No'}</p>}
+                                                    </td>
+                                                    {entry.showIdentityColumn && <td className="border border-gray-300 px-4 py-2">{r.isIdentity ? 'Yes' : 'No'}</td>}
+                                                    <td className="border border-gray-300 px-4 py-2">{r.isSensitiveData ? 'Yes' : 'No'}</td>
+                                                    <td className="border border-gray-300 px-4 py-2">{r.cardinality}</td>
+                                                    <td className="border border-gray-300 px-4 py-2">{r.definition}</td>
+                                                    {showMerge && (
+                                                        <td className="border border-gray-300 px-4 py-2">
+                                                            {r.mergeDirectives && r.mergeDirectives.map((merge, mi) => (
+                                                                <div key={mi} className={mi < r.mergeDirectives.length - 1 ? 'pb-2.5' : ''}>
+                                                                    {merge.propertyPath && merge.propertyPath.map((path, pi) => (
+                                                                        <span key={pi}>{path}{pi < merge.propertyPath.length - 1 && '.'}</span>
+                                                                    ))}
+                                                                    {' with '}
+                                                                    {merge.targetPath && merge.targetPath.map((path, pi) => (
+                                                                        <span key={pi}>{path}{pi < merge.targetPath.length - 1 && '.'}</span>
+                                                                    ))}
+                                                                </div>
+                                                            ))}
+                                                        </td>
+                                                    )}
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </>
+                    )}
+                    
+                    {entry.modelReferencesUsedByProperties && entry.modelReferencesUsedByProperties.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">Used By</h3>
+                            <ul className="list-disc pl-6">
+                                {entry.modelReferencesUsedByProperties.map((rub, i) => (
+                                    <li key={i}>
+                                        <a 
+                                            href={`#/${rub.referenceUniqueIdentifier}`} 
+                                            title={`${rub.entityName} - ${rub.propertyName}`} 
+                                            className="text-blue-600 hover:text-blue-800 underline"
+                                        >
+                                            {rub.entityName}
+                                        </a>.{rub.propertyName} (as {rub.cardinality})
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
+                    
+                    {entry.domains && entry.domains.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">Domains</h3>
+                            <ul className="list-disc pl-6">
+                                {entry.domains.map((domain, i) => <li key={i}>{domain}</li>)}
+                            </ul>
+                        </>
+                    )}
+                    
+                    {entry.xsdFragment && entry.xsdFragment.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">XSD</h3>
+                            <pre><code className="language-xml">{entry.xsdFragment}</code></pre>
+                        </>
+                    )}
+                    
+                    {entry.odsFragment && entry.odsFragment.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold mt-4 mb-2">SQL Server Snippet</h3>
+                            {entry.odsFragment.map((fragment, i) => (
+                                <pre key={i}><code className="language-edfisqlsnippet">{fragment}</code></pre>
+                            ))}
+                        </>
+                    )}
                 </div>
-                <div class="form-group search">
-                    <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedEntityTypes" theme="bootstrap" close-on-select="true"
-                        title="Choose an entity type">
-                        <ui-select-match placeholder="Filter by UML Type">{{$item}}</ui-select-match>
-                        <ui-select-choices repeat="et in ctrl.entityFilterTypes | filter:$select.search">
-                            <span class="text-ellipsis">{{et}}</span>
-                        </ui-select-choices>
-                    </ui-select>
+            );
+        };
+
+        // Main App component
+        const App = () => {
+            const [selected, setSelected] = useState(DATA[0]);
+            const [search, setSearch] = useState('');
+            const [includeDefinition, setIncludeDefinition] = useState(false);
+            const [selectedTypes, setSelectedTypes] = useState([]);
+            const [selectedDomains, setSelectedDomains] = useState([]);
+
+            useEffect(() => {
+                // Handle hash change for routing
+                const handleHashChange = () => {
+                    const hash = window.location.hash.substring(2); // Remove #/
+                    if (hash) {
+                        const entity = DATA.find(e => e.uniqueIdentifier === hash);
+                        if (entity) {
+                            setSelected(entity);
+                        }
+                    } else if (DATA.length > 0) {
+                        setSelected(DATA[0]);
+                    }
+                };
+
+                window.addEventListener('hashchange', handleHashChange);
+                handleHashChange(); // Initial load
+
+                return () => window.removeEventListener('hashchange', handleHashChange);
+            }, []);
+
+            const resetSearch = useCallback(() => {
+                setSearch('');
+                setSelectedTypes([]);
+                setSelectedDomains([]);
+            }, []);
+
+            return (
+                <div className="h-screen flex flex-col">
+                    <nav className="bg-white border-b border-gray-300 px-4 py-3">
+                        <span className="font-bold text-xl">Ed-Fi Data Handbook</span>
+                    </nav>
+                    <div className="flex-1 flex overflow-hidden">
+                        <Sidebar 
+                            entries={DATA}
+                            selected={selected}
+                            onSelect={setSelected}
+                            search={search}
+                            setSearch={setSearch}
+                            includeDefinition={includeDefinition}
+                            setIncludeDefinition={setIncludeDefinition}
+                            selectedTypes={selectedTypes}
+                            setSelectedTypes={setSelectedTypes}
+                            selectedDomains={selectedDomains}
+                            setSelectedDomains={setSelectedDomains}
+                        />
+                        <Detail 
+                            entry={selected}
+                            search={search}
+                            resetSearch={resetSearch}
+                        />
+                    </div>
                 </div>
-                <div class="form-group search">
-                    <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedDomains" theme="bootstrap" close-on-select="true"
-                        title="Choose a Domain">
-                        <ui-select-match placeholder="Filter by Domain">{{$item}}</ui-select-match>
-                        <ui-select-choices repeat="domain in ctrl.domains | filter:$select.search">
-                            <span class="text-ellipsis">{{domain}}</span>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-                <span class="filterCount">[Displaying {{filteredResults.length}} of {{ctrl.entries.length}}]</span>
-            </div>
-            <div id="sidebar-container" style="position: relative; height: 100%; padding-bottom: 131px">
-                <div id="sidebarContent" class="sidebar" style="height: 100%;">
-                    <ul class="nav nav-sidebar">
-                        <li ng-repeat="entry in ctrl.entries | orderBy: 'name' | customSearch:ctrl.search:ctrl.includeDefinition | byEntityType:ctrl.selectedEntityTypes | byDomain:ctrl.selectedDomains as filteredResults">
-                            <a id="entity{{entry.uniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.uniqueIdentifier}}" class="menu"
-                                ng-class="{active: (ctrl.selected.uniqueIdentifier) == (entry.uniqueIdentifier)}" title="{{entry.metaEdId}} - {{entry.name}}"
-                                style="text-decoration: none">
-                                <span ng-bind-html="entry.name | bold:ctrl.search" class="entity"></span>
-                                <br/>
-                                <span title="{{entry.definition}}" ng-if="ctrl.includeDefinition && ctrl.search" ng-bind-html="ctrl.displaySideDefinition(entry.definition) | bold:ctrl.search"
-                                    class="definition"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div style="height: 100%; width: calc(100% - 276px); display: block; float: right; overflow-y: auto">
-            <ng-view />
-        </div>
-    </div>
+            );
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</head>
+
+<body>
+    <div id="root"></div>
 </body>
 
 </html>
