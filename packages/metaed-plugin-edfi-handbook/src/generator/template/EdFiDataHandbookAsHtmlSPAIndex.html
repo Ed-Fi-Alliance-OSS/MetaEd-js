@@ -346,7 +346,8 @@
                 handleHashChange() {
                     const hash = window.location.hash.slice(1);
                     if (hash && hash !== '/') {
-                        const entityId = hash.replace('/', '');
+                        // Remove leading slash if present
+                        const entityId = hash.startsWith('/') ? hash.slice(1) : hash;
                         const entity = this.entries.find(e => e.uniqueIdentifier === entityId);
                         if (entity) {
                             this.selectEntity(entity);
@@ -412,6 +413,16 @@
                             hljs.highlightElement(block);
                         });
                     });
+                },
+                
+                navigateToEntity(uniqueIdentifier, shouldResetSearch = false) {
+                    const entity = this.entries.find(e => e.uniqueIdentifier === uniqueIdentifier);
+                    if (entity) {
+                        if (shouldResetSearch) {
+                            this.resetSearch();
+                        }
+                        this.selectEntity(entity);
+                    }
                 },
                 
                 resetSearch() {
@@ -545,7 +556,7 @@
                             <span>
                                 extending
                                 <a href="#" 
-                                   @click.prevent="() => { const entity = entries.find(e => e.uniqueIdentifier === selectedEntity.baseEntityUniqueIdentifier); if(entity) { resetSearch(); selectEntity(entity); } }"
+                                   @click.prevent="navigateToEntity(selectedEntity.baseEntityUniqueIdentifier, true)"
                                    :title="selectedEntity.baseMetaEdType"
                                    x-text="selectedEntity.baseMetaEdType"></a>
                             </span>
@@ -616,7 +627,7 @@
                                                 <td>
                                                     <template x-if="entityExists(prop.referenceUniqueIdentifier)">
                                                         <a href="#" 
-                                                           @click.prevent="() => { const entity = entries.find(e => e.uniqueIdentifier === prop.referenceUniqueIdentifier); if(entity) { resetSearch(); selectEntity(entity); } }"
+                                                           @click.prevent="navigateToEntity(prop.referenceUniqueIdentifier, true)"
                                                            :title="`${prop.metaEdId || ''} - ${prop.name}`"
                                                            x-text="prop.name"></a>
                                                     </template>
@@ -692,7 +703,7 @@
                                 <template x-for="usedBy in selectedEntity.modelReferencesUsedByProperties" :key="usedBy.entityName + usedBy.propertyName">
                                     <li>
                                         <a href="#" 
-                                           @click.prevent="() => { const entity = entries.find(e => e.uniqueIdentifier === usedBy.referenceUniqueIdentifier); if(entity) selectEntity(entity); }"
+                                           @click.prevent="navigateToEntity(usedBy.referenceUniqueIdentifier)"
                                            :title="`${usedBy.entityName} - ${usedBy.propertyName}`"
                                            x-text="usedBy.entityName"></a>
                                         .<span x-text="usedBy.propertyName"></span> (as <span x-text="usedBy.cardinality"></span>)
