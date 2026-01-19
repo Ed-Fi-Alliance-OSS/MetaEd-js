@@ -3,7 +3,7 @@
   "main": "dist/index.js",
   "version": "4.6.1-dev.9",
   "description": "Ed-Fi Advanced Unified plugin for MetaEd",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "Apache-2.0",
   "publishConfig": {
     "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
   },
