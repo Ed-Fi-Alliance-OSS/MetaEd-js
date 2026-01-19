@@ -2,38 +2,39 @@
 <html>
 
 <head>
-    <title>Ed-Fi Data Handbook</title>
+    <title>Ed-Fi Data Standard Handbook</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default/default.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css" integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css"
+        integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/cdn.min.js" integrity="sha512-4M615JhFufNLsrK5+qpW7oZJ8ooDJlzcUqd/+LVic8e9+0JuoO0KLnIf0NGg3e3tvFxRRdngx1VLtiOwPtYM4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/cdn.min.js"
+        integrity="sha512-4M615JhFufNLsrK5+qpW7oZJ8ooDJlzcUqd/+LVic8e9+0JuoO0KLnIf0NGg3e3tvFxRRdngx1VLtiOwPtYM4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"
+        integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         // Register custom EdFi SQL language for Highlight.js
-        hljs.registerLanguage("edfisqlsnippet", function (e) {
-            var t = e.COMMENT("--", "$");
+        hljs.registerLanguage("edfisql", function (e) {
             return {
                 case_insensitive: true,
                 illegal: /[<> {}*#]/,
                 contains: [{
-                    beginKeywords: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
+                    beginKeywords: "create",
                     end: /;/,
                     endsWithParent: true,
                     lexemes: /[\w\.]+/,
                     keywords: {
-                        keyword: "primary abort abs absolute acc acce accep accept access accessed accessible account acos action activate add addtime admin administer advanced advise aes_decrypt aes_encrypt after agent aggregate ali alia alias allocate allow alter always analyze ancillary and any anydata anydataset anyschema anytype apply archive archived archivelog are as asc ascii asin assembly assertion associate asynchronous at atan atn2 attr attri attrib attribu attribut attribute attributes audit authenticated authentication authid authors auto autoallocate autodblink autoextend automatic availability avg backup badfile basicfile before begin beginning benchmark between bfile bfile_base big bigfile bin binary_double binary_float binlog bit_and bit_count bit_length bit_or bit_xor bitmap blob_base block blocksize body both bound buffer_cache buffer_pool build bulk by byte byteordermark bytes cache caching call calling cancel capacity cascade cascaded case cast catalog category ceil ceiling chain change changed char_base char_length character_length characters characterset charindex charset charsetform charsetid check checksum checksum_agg child choose chr chunk class cleanup clear client clob clob_base clone close cluster_id cluster_probability cluster_set clustering coalesce coercibility col collate collation collect colu colum column column_value columns columns_updated comment commit compact compatibility compiled complete composite_limit compound compress compute concat concat_ws concurrent confirm conn connec connect connect_by_iscycle connect_by_isleaf connect_by_root connect_time connection consider consistent constant constraint constraints constructor container content contents context contributors controlfile conv convert convert_tz corr corr_k corr_s corresponding corruption cos cost count count_big counted covar_pop covar_samp cpu_per_call cpu_per_session crc32 create creation critical cross cube cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime customdatum cycle data database databases datafile datafiles datalength date_add date_cache date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts day day_to_second dayname dayofmonth dayofweek dayofyear days db_role_change dbtimezone ddl deallocate declare decode decompose decrement decrypt deduplicate def defa defau defaul default defaults deferred defi defin define degrees delayed delegate delete delete_all delimited demand dense_rank depth dequeue des_decrypt des_encrypt des_key_file desc descr descri describ describe descriptor deterministic diagnostics difference dimension direct_load directory disable disable_all disallow disassociate discardfile disconnect diskgroup distinct distinctrow distribute distributed div do document domain dotnet double downgrade drop dumpfile duplicate duration each edition editionable editions element ellipsis else elsif elt empty enable enable_all enclosed encode encoding encrypt end end-exec endian enforced engine engines enqueue enterprise entityescaping eomonth error errors escaped evalname evaluate event eventdata events except exception exceptions exchange exclude excluding execu execut execute exempt exists exit exp expire explain export export_set extended extent external external_1 external_2 externally extract failed failed_login_attempts failover failure far fast feature_set feature_value fetch field fields file file_name_convert filesystem_like_logging final finish first first_value fixed flash_cache flashback floor flush following follows for forall force form forma format found found_rows freelist freelists freepools fresh from from_base64 from_days ftp full function general generated get get_format get_lock getdate getutcdate global global_name globally go goto grant grants greatest group group_concat group_id grouping grouping_id groups gtid_subtract guarantee guard handler hash hashkeys having hea head headi headin heading heap help hex hierarchy high high_priority hosts hour http ident_current ident_incr ident_seed identified identity idle_time if ifnull ignore iif ilike ilm immediate import in include including increment index indexes indexing indextype indicator indices inet6_aton inet6_ntoa inet_aton inet_ntoa infile initial initialized initially initrans inmemory inner innodb input insert install instance instantiable instr interface interleaved intersect into invalidate invisible is is_free_lock is_ipv4 is_ipv4_compat is_not is_not_null is_used_lock isdate isnull isolation iterate java join json json_exists keep keep_duplicates key keys kill language large last last_day last_insert_id last_value lax lcase lead leading least leaves left len lenght length less level levels library like like2 like4 likec limit lines link list listagg little ln load load_file lob lobs local localtime localtimestamp locate locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime managed management manual map mapping mask master master_pos_wait match matched materialized max maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans md5 measures median medium member memcompress memory merge microsecond mid migration min minextents minimum mining minus minute minvalue missing mod mode model modification modify module monitoring month months mount move movement multiset mutex name name_const names nan national native natural nav nchar nclob nested never new newline next nextval no no_write_to_binlog noarchivelog noaudit nobadfile nocheck nocompress nocopy nocycle nodelay nodiscardfile noentityescaping noguarantee nokeep nologfile nomapping nomaxvalue nominimize nominvalue nomonitoring none noneditionable nonschema noorder nopr nopro noprom nopromp noprompt norely noresetlogs noreverse normal norowdependencies noschemacheck noswitch not nothing notice notrim novalidate now nowait nth_value nullif nulls num numb numbe nvarchar nvarchar2 object ocicoll ocidate ocidatetime ociduration ociinterval ociloblocator ocinumber ociref ocirefcursor ocirowid ocistring ocitype oct octet_length of off offline offset oid oidindex old on online only opaque open operations operator optimal optimize option optionally or oracle oracle_date oradata ord ordaudio orddicom orddoc order ordimage ordinality ordvideo organization orlany orlvary out outer outfile outline output over overflow overriding package pad parallel parallel_enable parameters parent parse partial partition partitions pascal passing password password_grace_time password_lock_time password_reuse_max password_reuse_time password_verify_function patch path patindex pctincrease pctthreshold pctused pctversion percent percent_rank percentile_cont percentile_disc performance period period_add period_diff permanent physical pi pipe pipelined pivot pluggable plugin policy position post_transaction pow power pragma prebuilt precedes preceding precision prediction prediction_cost prediction_details prediction_probability prediction_set prepare present preserve prior priority private private_sga privileges procedural procedure procedure_analyze processlist profiles project prompt protection public publishingservername purge quarter query quick quiesce quota quotename radians raise rand range rank raw read reads readsize rebuild record records recover recovery recursive recycle redo reduced ref reference referenced references referencing refresh regexp_like register regr_avgx regr_avgy regr_count regr_intercept regr_r2 regr_slope regr_sxx regr_sxy reject rekey relational relative relaylog release release_lock relies_on relocate rely rem remainder rename repair repeat replace replicate replication required reset resetlogs resize resource respect restore restricted result result_cache resumable resume retention return returning returns reuse reverse revoke right rlike role roles rollback rolling rollup round row row_count rowdependencies rowid rownum rows rtrim rules safe salt sample save savepoint sb1 sb2 sb4 scan schema schemacheck scn scope scroll sdo_georaster sdo_topo_geometry search sec_to_time second section securefile security seed segment select self sequence sequential serializable server servererror session session_user sessions_per_user set sets settings sha sha1 sha2 share shared shared_pool short show shrink shutdown si_averagecolor si_colorhistogram si_featurelist si_positionalcolor si_stillimage si_texture siblings sid sign sin size size_t sizes skip slave sleep smalldatetimefromparts smallfile snapshot some soname sort soundex source space sparse spfile split sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_small_result sql_variant_property sqlcode sqldata sqlerror sqlname sqlstate sqrt square standalone standby start starting startup statement static statistics stats_binomial_test stats_crosstab stats_ks_test stats_mode stats_mw_test stats_one_way_anova stats_t_test_ stats_t_test_indep stats_t_test_one stats_t_test_paired stats_wsr_test status std stddev stddev_pop stddev_samp stdev stop storage store stored str str_to_date straight_join strcmp strict string struct stuff style subdate subpartition subpartitions substitutable substr substring subtime subtring_index subtype success sum suspend switch switchoffset switchover sync synchronous synonym sys sys_xmlagg sysasm sysaux sysdate sysdatetimeoffset sysdba sysoper system system_user sysutcdatetime table tables tablespace tan tdo template temporary terminated tertiary_weights test than then thread through tier ties time time_format time_zone timediff timefromparts timeout timestamp timestampadd timestampdiff timezone_abbr timezone_minute timezone_region to to_base64 to_date to_days to_seconds todatetimeoffset trace tracking transaction transactional translate translation treat trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse type ub1 ub2 ub4 ucase unarchived unbounded uncompress under undo unhex unicode uniform uninstall union unique unix_timestamp unknown unlimited unlock unpivot unrecoverable unsafe unsigned until untrusted unusable unused update updated upgrade upped upper upsert url urowid usable usage use use_stored_outlines user user_data user_resources users using utc_date utc_timestamp uuid uuid_short validate validate_password_strength validation valist value values var var_samp varcharc vari varia variab variabl variable variables variance varp varraw varrawc varray verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear wellformed when whene whenev wheneve whenever where while whitespace with within without work wrapped xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year year_to_month years yearweek",
-                        literal: "true false null",
-                        built_in: "uniqueidentifier datetime nvarchar array bigint binary bit blob boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text varchar varying void"
+                        keyword: "create table primary key constraint",
+                        literal: "true false not null",
+                        built_in: "int bigint short bit float numeric date datetime nvarchar varchar char uniqueidentifier"
                     },
-                    contains: [
-                        {className: "string", begin: "'", end: "'", contains: [e.BACKSLASH_ESCAPE, {begin: "''"}]},
-                        {className: "string", begin: '"', end: '"', contains: [e.BACKSLASH_ESCAPE, {begin: '""'}]},
-                        {className: "string", begin: "`", end: "`", contains: [e.BACKSLASH_ESCAPE]},
-                        {className: "type", begin: "edfi.", end: "\n", contains: [e.BACKSLASH_ESCAPE]},
-                        e.C_NUMBER_MODE, e.C_BLOCK_COMMENT_MODE, t]
-                }, e.C_BLOCK_COMMENT_MODE, t]
+                }, e.C_BLOCK_COMMENT_MODE, e.COMMENT("--")]
             }
         });
     </script>
@@ -59,7 +60,7 @@
             padding: 0 15px;
             display: flex;
             align-items: center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
 
         .navbar-text {
@@ -94,7 +95,6 @@
         .input-group {
             position: relative;
             display: flex;
-            align-items: center;
         }
 
         .input-group-addon {
@@ -308,7 +308,7 @@
 
     <script type="text/javascript">
         // Data will be injected here by the generator
-        const handbookData = {JSONData};
+        const handbookData = { JSONData };
 
         // Alpine.js application logic
         document.addEventListener('alpine:init', () => {
@@ -320,23 +320,23 @@
                 selectedDomains: [],
                 selectedEntity: null,
                 showMerge: false,
-                
+
                 init() {
                     // Select first entry by default
                     if (this.entries && this.entries.length > 0) {
                         this.selectEntity(this.entries[0]);
                     }
-                    
+
                     // Handle URL hash for direct navigation
                     this.handleHashChange();
                     window.addEventListener('hashchange', () => this.handleHashChange());
-                    
+
                     // Highlight code blocks after render
                     this.$nextTick(() => {
                         this.highlightCodeBlocks();
                     });
                 },
-                
+
                 handleHashChange() {
                     const hash = window.location.hash.slice(1);
                     if (hash && hash !== '/') {
@@ -348,65 +348,65 @@
                         }
                     }
                 },
-                
+
                 get entityFilterTypes() {
                     const types = [...new Set(this.entries.map(e => e.umlType))];
                     return types.sort();
                 },
-                
+
                 get domains() {
                     const allDomains = this.entries.flatMap(e => e.domains || []);
                     return [...new Set(allDomains)].sort();
                 },
-                
+
                 get filteredEntries() {
                     let filtered = this.entries;
-                    
+
                     // Filter by search
                     if (this.search) {
                         const searchLower = this.search.toLowerCase();
                         filtered = filtered.filter(entry => {
                             const nameMatch = entry.name.toLowerCase().includes(searchLower);
                             const idMatch = entry.metaEdId && entry.metaEdId.toLowerCase().includes(searchLower);
-                            const defMatch = this.includeDefinition && entry.definition && 
-                                           entry.definition.toLowerCase().includes(searchLower);
+                            const defMatch = this.includeDefinition && entry.definition &&
+                                entry.definition.toLowerCase().includes(searchLower);
                             return nameMatch || idMatch || defMatch;
                         });
                     }
-                    
+
                     // Filter by entity types
                     if (this.selectedEntityTypes.length > 0) {
-                        filtered = filtered.filter(entry => 
+                        filtered = filtered.filter(entry =>
                             this.selectedEntityTypes.includes(entry.umlType)
                         );
                     }
-                    
+
                     // Filter by domains
                     if (this.selectedDomains.length > 0) {
-                        filtered = filtered.filter(entry => 
+                        filtered = filtered.filter(entry =>
                             entry.domains && entry.domains.some(d => this.selectedDomains.includes(d))
                         );
                     }
-                    
+
                     return filtered.sort((a, b) => a.name.localeCompare(b.name));
                 },
-                
+
                 selectEntity(entity) {
                     this.selectedEntity = entity;
                     window.location.hash = `/${entity.uniqueIdentifier}`;
-                    
+
                     // Check if merge should be shown
-                    this.showMerge = entity.modelReferencesContainsProperties && 
-                        entity.modelReferencesContainsProperties.some(prop => 
+                    this.showMerge = entity.modelReferencesContainsProperties &&
+                        entity.modelReferencesContainsProperties.some(prop =>
                             prop.mergeDirectives && prop.mergeDirectives.length > 0
                         );
-                    
+
                     // Highlight code after render
                     this.$nextTick(() => {
                         this.highlightCodeBlocks();
                     });
                 },
-                
+
                 navigateToEntity(uniqueIdentifier, shouldResetSearch) {
                     const entity = this.entries.find(e => e.uniqueIdentifier === uniqueIdentifier);
                     if (entity) {
@@ -416,35 +416,35 @@
                         this.selectEntity(entity);
                     }
                 },
-                
+
                 resetSearch() {
                     this.search = '';
                     this.selectedEntityTypes = [];
                     this.selectedDomains = [];
                 },
-                
+
                 entityExists(uniqueIdentifier) {
                     return this.entries.some(e => e.uniqueIdentifier === uniqueIdentifier);
                 },
-                
+
                 highlightText(text, phrase) {
                     if (!phrase || !text) return text;
                     const regex = new RegExp(`(${phrase})`, 'gi');
                     return text.replace(regex, '<span class="highlight-text">$1</span>');
                 },
-                
+
                 boldText(text, phrase) {
                     if (!phrase || !text) return text;
                     const regex = new RegExp(`(${phrase})`, 'gi');
                     return text.replace(regex, '<b>$1</b>');
                 },
-                
+
                 displaySideDefinition(definition) {
                     if (!definition) return '';
                     const searchLower = this.search.toLowerCase();
                     const indexOf = definition.toLowerCase().indexOf(searchLower);
                     const paddingLength = Math.max(0, Math.min(7, 30 - this.search.length));
-                    
+
                     if (indexOf < 10 || definition.length < 30) {
                         return definition;
                     } else {
@@ -455,20 +455,20 @@
                         }
                     }
                 },
-                
+
                 trueFalseToYesNo(value) {
                     return value ? 'Yes' : 'No';
                 },
-                
+
                 getMergeStyle(merge, isLast) {
                     return isLast ? {} : { 'padding-bottom': '10px' };
                 },
-                
+
                 isActiveEntity(entity) {
-                    return this.selectedEntity && 
-                           this.selectedEntity.uniqueIdentifier === entity.uniqueIdentifier;
+                    return this.selectedEntity &&
+                        this.selectedEntity.uniqueIdentifier === entity.uniqueIdentifier;
                 },
-                
+
                 highlightCodeBlocks() {
                     document.querySelectorAll('pre code').forEach((block) => {
                         // Remove previous highlighting if it exists
@@ -486,7 +486,7 @@
 
 <body x-data="handbookApp" style="overflow-y: hidden">
     <nav class="navbar">
-        <span class="navbar-text">Ed-Fi Data Handbook</span>
+        <span class="navbar-text">Ed-Fi Data Standard Handbook</span>
     </nav>
 
     <div class="main-container">
@@ -506,36 +506,39 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" x-model="selectedEntityTypes" multiple aria-label="Filter by UML Type" aria-describedby="uml-type-help">
+                    <select class="form-control" x-model="selectedEntityTypes" multiple aria-label="Filter by UML Type"
+                        aria-describedby="uml-type-help">
                         <template x-for="(type, index) in entityFilterTypes" :key="`type-${index}-${type}`">
                             <option :value="type" x-text="type"></option>
                         </template>
                     </select>
-                    <small id="uml-type-help" style="display: block; margin-top: 3px; color: #666;">Filter by UML Type (hold Ctrl/Cmd to select multiple)</small>
+                    <small id="uml-type-help" style="display: block; margin-top: 3px; color: #666;">Filter by UML Type
+                        (hold Ctrl/Cmd to select multiple)</small>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain" aria-describedby="domain-help">
+                    <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain"
+                        aria-describedby="domain-help">
                         <template x-for="(domain, index) in domains" :key="`domain-${index}-${domain}`">
                             <option :value="domain" x-text="domain"></option>
                         </template>
                     </select>
-                    <small id="domain-help" style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold Ctrl/Cmd to select multiple)</small>
+                    <small id="domain-help" style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold
+                        Ctrl/Cmd to select multiple)</small>
                 </div>
                 <span class="filterCount" x-text="`[Displaying ${filteredEntries.length} of ${entries.length}]`"></span>
             </div>
             <div class="sidebar-content">
                 <ul class="nav-list">
-                    <template x-for="(entry, index) in filteredEntries" :key="`entry-${index}-${entry.uniqueIdentifier}`">
+                    <template x-for="(entry, index) in filteredEntries"
+                        :key="`entry-${index}-${entry.uniqueIdentifier}`">
                         <li>
-                            <a href="#" 
-                               @click.prevent="selectEntity(entry)" 
-                               :class="{ 'active': isActiveEntity(entry) }"
-                               :title="`${entry.metaEdId || ''} - ${entry.name}`">
+                            <a href="#" @click.prevent="selectEntity(entry)"
+                                :class="{ 'active': isActiveEntity(entry) }"
+                                :title="`${entry.metaEdId || ''} - ${entry.name}`">
                                 <span class="entity-name" x-html="boldText(entry.name, search)"></span>
                                 <template x-if="includeDefinition && search && entry.definition">
-                                    <span class="entity-definition" 
-                                          :title="entry.definition"
-                                          x-html="boldText(displaySideDefinition(entry.definition), search)"></span>
+                                    <span class="entity-definition" :title="entry.definition"
+                                        x-html="boldText(displaySideDefinition(entry.definition), search)"></span>
                                 </template>
                             </a>
                         </li>
@@ -557,10 +560,9 @@
                         <template x-if="selectedEntity.baseMetaEdType">
                             <span>
                                 extending
-                                <a href="#" 
-                                   @click.prevent="navigateToEntity(selectedEntity.baseEntityUniqueIdentifier, true)"
-                                   :title="selectedEntity.baseMetaEdType"
-                                   x-text="selectedEntity.baseMetaEdType"></a>
+                                <a href="#"
+                                    @click.prevent="navigateToEntity(selectedEntity.baseEntityUniqueIdentifier, true)"
+                                    :title="selectedEntity.baseMetaEdType" x-text="selectedEntity.baseMetaEdType"></a>
                             </span>
                         </template>
                     </h3>
@@ -581,7 +583,8 @@
                         <div>
                             <h3>Type Characteristics:</h3>
                             <ul>
-                                <template x-for="(characteristic, index) in selectedEntity.typeCharacteristics" :key="`char-${index}-${characteristic}`">
+                                <template x-for="(characteristic, index) in selectedEntity.typeCharacteristics"
+                                    :key="`char-${index}-${characteristic}`">
                                     <li x-text="characteristic"></li>
                                 </template>
                             </ul>
@@ -591,13 +594,15 @@
                         <div>
                             <h3>Option List</h3>
                             <ul>
-                                <template x-for="(option, index) in selectedEntity.optionList" :key="`option-${index}-${option}`">
+                                <template x-for="(option, index) in selectedEntity.optionList"
+                                    :key="`option-${index}-${option}`">
                                     <li x-text="option"></li>
                                 </template>
                             </ul>
                         </div>
                     </template>
-                    <template x-if="selectedEntity.modelReferencesContains && selectedEntity.modelReferencesContains.length > 0">
+                    <template
+                        x-if="selectedEntity.modelReferencesContains && selectedEntity.modelReferencesContains.length > 0">
                         <div>
                             <h3>References</h3>
                             <div class="table-responsive">
@@ -624,23 +629,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <template x-for="prop in selectedEntity.modelReferencesContainsProperties" :key="`prop-${prop.name}-${prop.metaEdId || ''}`">
+                                        <template x-for="prop in selectedEntity.modelReferencesContainsProperties"
+                                            :key="`prop-${prop.name}-${prop.metaEdId || ''}`">
                                             <tr>
                                                 <td>
                                                     <template x-if="entityExists(prop.referenceUniqueIdentifier)">
-                                                        <a href="#" 
-                                                           @click.prevent="navigateToEntity(prop.referenceUniqueIdentifier, true)"
-                                                           :title="`${prop.metaEdId || ''} - ${prop.name}`"
-                                                           x-text="prop.name"></a>
+                                                        <a href="#"
+                                                            @click.prevent="navigateToEntity(prop.referenceUniqueIdentifier, true)"
+                                                            :title="`${prop.metaEdId || ''} - ${prop.name}`"
+                                                            x-text="prop.name"></a>
                                                     </template>
                                                     <template x-if="!entityExists(prop.referenceUniqueIdentifier)">
-                                                        <span :title="`${prop.metaEdId || ''} - ${prop.name}`" x-text="prop.name"></span>
+                                                        <span :title="`${prop.metaEdId || ''} - ${prop.name}`"
+                                                            x-text="prop.name"></span>
                                                     </template>
                                                     <template x-if="prop.extensionParentNamespaceName">
-                                                        <span x-text="` (from ${prop.extensionParentNamespaceName})`"></span>
+                                                        <span
+                                                            x-text="` (from ${prop.extensionParentNamespaceName})`"></span>
                                                     </template>
                                                     <template x-if="prop.deprecationText">
-                                                        <span class="deprecation-text" x-text="` - ${prop.deprecationText}`"></span>
+                                                        <span class="deprecation-text"
+                                                            x-text="` - ${prop.deprecationText}`"></span>
                                                     </template>
                                                 </td>
                                                 <template x-if="selectedEntity.hasDeprecatedProperty">
@@ -650,12 +659,16 @@
                                                 <td x-text="prop.jsonDatatype"></td>
                                                 <td x-text="prop.jsonElementName"></td>
                                                 <td>
-                                                    <p>MetaEd DSL Datatype: <span x-text="prop.metaEdDatatype"></span></p>
+                                                    <p>MetaEd DSL Datatype: <span x-text="prop.metaEdDatatype"></span>
+                                                    </p>
                                                     <template x-if="prop.sqlDatatype">
-                                                        <p>SQL Recommended Datatype: <span x-text="prop.sqlDatatype"></span></p>
+                                                        <p>SQL Recommended Datatype: <span
+                                                                x-text="prop.sqlDatatype"></span></p>
                                                     </template>
                                                     <template x-if="!selectedEntity.showIdentityColumn">
-                                                        <p>Ed-Fi ODS/API Identity: <span x-text="trueFalseToYesNo(prop.isOdsApiIdentity)"></span></p>
+                                                        <p>Ed-Fi ODS/API Identity: <span
+                                                                x-text="trueFalseToYesNo(prop.isOdsApiIdentity)"></span>
+                                                        </p>
                                                     </template>
                                                 </td>
                                                 <template x-if="selectedEntity.showIdentityColumn">
@@ -666,22 +679,31 @@
                                                 <td x-text="prop.definition"></td>
                                                 <template x-if="showMerge">
                                                     <td>
-                                                        <template x-if="prop.mergeDirectives && prop.mergeDirectives.length">
-                                                            <template x-for="(merge, index) in prop.mergeDirectives" :key="`merge-${index}`">
-                                                                <div :style="getMergeStyle(merge, index === prop.mergeDirectives.length - 1)">
-                                                                    <template x-for="(path, pathIndex) in merge.propertyPath" :key="`proppath-${index}-${pathIndex}`">
+                                                        <template
+                                                            x-if="prop.mergeDirectives && prop.mergeDirectives.length">
+                                                            <template x-for="(merge, index) in prop.mergeDirectives"
+                                                                :key="`merge-${index}`">
+                                                                <div
+                                                                    :style="getMergeStyle(merge, index === prop.mergeDirectives.length - 1)">
+                                                                    <template
+                                                                        x-for="(path, pathIndex) in merge.propertyPath"
+                                                                        :key="`proppath-${index}-${pathIndex}`">
                                                                         <span>
                                                                             <span x-text="path"></span>
-                                                                            <template x-if="pathIndex < merge.propertyPath.length - 1">
+                                                                            <template
+                                                                                x-if="pathIndex < merge.propertyPath.length - 1">
                                                                                 <span>.</span>
                                                                             </template>
                                                                         </span>
                                                                     </template>
                                                                     with
-                                                                    <template x-for="(path, pathIndex) in merge.targetPath" :key="`targetpath-${index}-${pathIndex}`">
+                                                                    <template
+                                                                        x-for="(path, pathIndex) in merge.targetPath"
+                                                                        :key="`targetpath-${index}-${pathIndex}`">
                                                                         <span>
                                                                             <span x-text="path"></span>
-                                                                            <template x-if="pathIndex < merge.targetPath.length - 1">
+                                                                            <template
+                                                                                x-if="pathIndex < merge.targetPath.length - 1">
                                                                                 <span>.</span>
                                                                             </template>
                                                                         </span>
@@ -698,17 +720,19 @@
                             </div>
                         </div>
                     </template>
-                    <template x-if="selectedEntity.modelReferencesUsedByProperties && selectedEntity.modelReferencesUsedByProperties.length">
+                    <template
+                        x-if="selectedEntity.modelReferencesUsedByProperties && selectedEntity.modelReferencesUsedByProperties.length">
                         <div>
                             <h3>Used By</h3>
                             <ul>
-                                <template x-for="(usedBy, index) in selectedEntity.modelReferencesUsedByProperties" :key="`usedby-${index}-${usedBy.entityName}-${usedBy.propertyName}`">
+                                <template x-for="(usedBy, index) in selectedEntity.modelReferencesUsedByProperties"
+                                    :key="`usedby-${index}-${usedBy.entityName}-${usedBy.propertyName}`">
                                     <li>
-                                        <a href="#" 
-                                           @click.prevent="navigateToEntity(usedBy.referenceUniqueIdentifier)"
-                                           :title="`${usedBy.entityName} - ${usedBy.propertyName}`"
-                                           x-text="usedBy.entityName"></a>
-                                        .<span x-text="usedBy.propertyName"></span> (as <span x-text="usedBy.cardinality"></span>)
+                                        <a href="#" @click.prevent="navigateToEntity(usedBy.referenceUniqueIdentifier)"
+                                            :title="`${usedBy.entityName} - ${usedBy.propertyName}`"
+                                            x-text="usedBy.entityName"></a>
+                                        .<span x-text="usedBy.propertyName"></span> (as <span
+                                            x-text="usedBy.cardinality"></span>)
                                     </li>
                                 </template>
                             </ul>
@@ -718,7 +742,8 @@
                         <div>
                             <h3>Domains</h3>
                             <ul>
-                                <template x-for="(domain, index) in selectedEntity.domains" :key="`dom-${index}-${domain}`">
+                                <template x-for="(domain, index) in selectedEntity.domains"
+                                    :key="`dom-${index}-${domain}`">
                                     <li x-text="domain"></li>
                                 </template>
                             </ul>
@@ -734,7 +759,7 @@
                         <div>
                             <h3>SQL Server Snippet</h3>
                             <template x-for="(fragment, index) in selectedEntity.odsFragment" :key="`ods-${index}`">
-                                <pre><code class="language-edfisqlsnippet" x-text="fragment"></code></pre>
+                                <pre><code class="language-edfisql" x-text="fragment"></code></pre>
                             </template>
                         </div>
                     </template>
