@@ -333,9 +333,7 @@
                     
                     // Highlight code blocks after render
                     this.$nextTick(() => {
-                        document.querySelectorAll('pre code').forEach((block) => {
-                            hljs.highlightElement(block);
-                        });
+                        this.highlightCodeBlocks();
                     });
                 },
                 
@@ -405,9 +403,7 @@
                     
                     // Highlight code after render
                     this.$nextTick(() => {
-                        document.querySelectorAll('pre code').forEach((block) => {
-                            hljs.highlightElement(block);
-                        });
+                        this.highlightCodeBlocks();
                     });
                 },
                 
@@ -471,6 +467,16 @@
                 isActiveEntity(entity) {
                     return this.selectedEntity && 
                            this.selectedEntity.uniqueIdentifier === entity.uniqueIdentifier;
+                },
+                
+                highlightCodeBlocks() {
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        // Remove previous highlighting if it exists
+                        if (block.dataset.highlighted) {
+                            delete block.dataset.highlighted;
+                        }
+                        hljs.highlightElement(block);
+                    });
                 }
             }));
         });
