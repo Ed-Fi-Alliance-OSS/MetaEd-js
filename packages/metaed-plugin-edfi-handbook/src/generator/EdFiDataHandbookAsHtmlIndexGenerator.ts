@@ -28,15 +28,9 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     return b.name === 'Student' ? 1 : 0;
   });
 
-  let detail: string = fs.readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPADetail.html'), 'utf8');
-  detail = detail.replace(/\n/g, ' ');
-  detail = detail.replace(/>\s+</g, '><');
-  detail = detail.replace(/\s{2,}/g, ' ');
-  detail = detail.replace(/"/g, "'");
   const index: string = fs
     .readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPAIndex.html'), 'utf8')
-    .replace(/\{JSONData\}/g, JSON.stringify(allHandbookEntries))
-    .replace(/\{detailTemplate\}/g, detail);
+    .replace(/\{JSONData\}/g, JSON.stringify(allHandbookEntries));
 
   const results: GeneratedOutput[] = [];
   results.push({
