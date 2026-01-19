@@ -1,0 +1,37 @@
+{
+  "name": "@edfi/metaed-plugin-edfi-handbook",
+  "main": "dist/index.js",
+  "version": "4.6.1-dev.6",
+  "description": "Ed-Fi Handbook plugin for MetaEd",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE.md",
+    "/package.json"
+  ],
+  "dependencies": {
+    "@edfi/metaed-core": "4.6.1-dev.6",
+    "@edfi/metaed-plugin-edfi-api-schema": "4.6.1-dev.6",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.6.1-dev.6",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.6.1-dev.6",
+    "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.6",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.6",
+    "handlebars": "^4.7.7",
+    "js-beautify": "^1.14.7",
+    "ramda": "^0.29.0",
+    "sort-array": "^4.1.5",
+    "write-excel-file": "^2.0.9"
+  },
+  "scripts": {
+    "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
+    "build:clean": "rimraf dist",
+    "build:dist": "tsc",
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+  },
+  "devDependencies": {
+    "read-excel-file": "^5.8.5"
+  }
+}
