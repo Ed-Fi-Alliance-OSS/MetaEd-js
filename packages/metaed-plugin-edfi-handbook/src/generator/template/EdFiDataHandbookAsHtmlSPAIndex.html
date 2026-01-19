@@ -22,7 +22,7 @@
                 case_insensitive: true,
                 illegal: /[<> {}*#]/,
                 contains: [{
-                    keywords: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
+                    beginKeywords: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
                     end: /;/,
                     endsWithParent: true,
                     lexemes: /[\w\.]+/,
@@ -415,10 +415,10 @@
                     });
                 },
                 
-                navigateToEntity(uniqueIdentifier, shouldResetSearch = false) {
+                navigateToEntity(uniqueIdentifier, shouldResetSearch) {
                     const entity = this.entries.find(e => e.uniqueIdentifier === uniqueIdentifier);
                     if (entity) {
-                        if (shouldResetSearch) {
+                        if (shouldResetSearch === true) {
                             this.resetSearch();
                         }
                         this.selectEntity(entity);
@@ -504,20 +504,20 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" x-model="selectedEntityTypes" multiple>
+                    <select class="form-control" x-model="selectedEntityTypes" multiple aria-label="Filter by UML Type" aria-describedby="uml-type-help">
                         <template x-for="type in entityFilterTypes" :key="type">
                             <option :value="type" x-text="type"></option>
                         </template>
                     </select>
-                    <small style="display: block; margin-top: 3px; color: #666;">Filter by UML Type (hold Ctrl/Cmd to select multiple)</small>
+                    <small id="uml-type-help" style="display: block; margin-top: 3px; color: #666;">Filter by UML Type (hold Ctrl/Cmd to select multiple)</small>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" x-model="selectedDomains" multiple>
+                    <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain" aria-describedby="domain-help">
                         <template x-for="domain in domains" :key="domain">
                             <option :value="domain" x-text="domain"></option>
                         </template>
                     </select>
-                    <small style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold Ctrl/Cmd to select multiple)</small>
+                    <small id="domain-help" style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold Ctrl/Cmd to select multiple)</small>
                 </div>
                 <span class="filterCount" x-text="`[Displaying ${filteredEntries.length} of ${entries.length}]`"></span>
             </div>
