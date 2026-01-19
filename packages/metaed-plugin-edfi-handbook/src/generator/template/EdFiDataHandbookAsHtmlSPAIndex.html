@@ -3,17 +3,13 @@
 
 <head>
     <title>Ed-Fi Data Handbook</title>
-    <!-- Infima CSS Framework -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default/default.css">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css" integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
-    <!-- Highlight.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" integrity="sha512-RduThDs1JEOwES2BjQ0ZwaXQuazJl5lcy3meB2PKJrhk3mF627ujN9LjFE/VlNShKd/CmZBCBcBOKrgCQFGhAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/cdn.min.js" integrity="sha512-4M615JhFufNLsrK5+qpW7oZJ8ooDJlzcUqd/+LVic8e9+0JuoO0KLnIf0NGg3e3tvFxRRdngx1VLtiOwPtYM4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         // Register custom EdFi SQL language for Highlight.js
         hljs.registerLanguage("edfisqlsnippet", function (e) {
@@ -505,7 +501,7 @@
                 </div>
                 <div class="form-group">
                     <select class="form-control" x-model="selectedEntityTypes" multiple aria-label="Filter by UML Type" aria-describedby="uml-type-help">
-                        <template x-for="type in entityFilterTypes" :key="type">
+                        <template x-for="(type, index) in entityFilterTypes" :key="`type-${index}-${type}`">
                             <option :value="type" x-text="type"></option>
                         </template>
                     </select>
@@ -513,7 +509,7 @@
                 </div>
                 <div class="form-group">
                     <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain" aria-describedby="domain-help">
-                        <template x-for="domain in domains" :key="domain">
+                        <template x-for="(domain, index) in domains" :key="`domain-${index}-${domain}`">
                             <option :value="domain" x-text="domain"></option>
                         </template>
                     </select>
@@ -523,7 +519,7 @@
             </div>
             <div class="sidebar-content">
                 <ul class="nav-list">
-                    <template x-for="entry in filteredEntries" :key="entry.uniqueIdentifier">
+                    <template x-for="(entry, index) in filteredEntries" :key="`entry-${index}-${entry.uniqueIdentifier}`">
                         <li>
                             <a href="#" 
                                @click.prevent="selectEntity(entry)" 
@@ -579,7 +575,7 @@
                         <div>
                             <h3>Type Characteristics:</h3>
                             <ul>
-                                <template x-for="characteristic in selectedEntity.typeCharacteristics" :key="characteristic">
+                                <template x-for="(characteristic, index) in selectedEntity.typeCharacteristics" :key="`char-${index}-${characteristic}`">
                                     <li x-text="characteristic"></li>
                                 </template>
                             </ul>
@@ -589,7 +585,7 @@
                         <div>
                             <h3>Option List</h3>
                             <ul>
-                                <template x-for="option in selectedEntity.optionList" :key="option">
+                                <template x-for="(option, index) in selectedEntity.optionList" :key="`option-${index}-${option}`">
                                     <li x-text="option"></li>
                                 </template>
                             </ul>
@@ -622,7 +618,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <template x-for="prop in selectedEntity.modelReferencesContainsProperties" :key="prop.name">
+                                        <template x-for="prop in selectedEntity.modelReferencesContainsProperties" :key="`prop-${prop.name}-${prop.metaEdId || ''}`">
                                             <tr>
                                                 <td>
                                                     <template x-if="entityExists(prop.referenceUniqueIdentifier)">
@@ -665,9 +661,9 @@
                                                 <template x-if="showMerge">
                                                     <td>
                                                         <template x-if="prop.mergeDirectives && prop.mergeDirectives.length">
-                                                            <template x-for="(merge, index) in prop.mergeDirectives" :key="index">
+                                                            <template x-for="(merge, index) in prop.mergeDirectives" :key="`merge-${index}`">
                                                                 <div :style="getMergeStyle(merge, index === prop.mergeDirectives.length - 1)">
-                                                                    <template x-for="(path, pathIndex) in merge.propertyPath" :key="pathIndex">
+                                                                    <template x-for="(path, pathIndex) in merge.propertyPath" :key="`proppath-${index}-${pathIndex}`">
                                                                         <span>
                                                                             <span x-text="path"></span>
                                                                             <template x-if="pathIndex < merge.propertyPath.length - 1">
@@ -676,7 +672,7 @@
                                                                         </span>
                                                                     </template>
                                                                     with
-                                                                    <template x-for="(path, pathIndex) in merge.targetPath" :key="pathIndex">
+                                                                    <template x-for="(path, pathIndex) in merge.targetPath" :key="`targetpath-${index}-${pathIndex}`">
                                                                         <span>
                                                                             <span x-text="path"></span>
                                                                             <template x-if="pathIndex < merge.targetPath.length - 1">
@@ -700,7 +696,7 @@
                         <div>
                             <h3>Used By</h3>
                             <ul>
-                                <template x-for="usedBy in selectedEntity.modelReferencesUsedByProperties" :key="usedBy.entityName + usedBy.propertyName">
+                                <template x-for="(usedBy, index) in selectedEntity.modelReferencesUsedByProperties" :key="`usedby-${index}-${usedBy.entityName}-${usedBy.propertyName}`">
                                     <li>
                                         <a href="#" 
                                            @click.prevent="navigateToEntity(usedBy.referenceUniqueIdentifier)"
@@ -716,7 +712,7 @@
                         <div>
                             <h3>Domains</h3>
                             <ul>
-                                <template x-for="domain in selectedEntity.domains" :key="domain">
+                                <template x-for="(domain, index) in selectedEntity.domains" :key="`dom-${index}-${domain}`">
                                     <li x-text="domain"></li>
                                 </template>
                             </ul>
@@ -731,7 +727,7 @@
                     <template x-if="selectedEntity.odsFragment && selectedEntity.odsFragment.length">
                         <div>
                             <h3>SQL Server Snippet</h3>
-                            <template x-for="(fragment, index) in selectedEntity.odsFragment" :key="index">
+                            <template x-for="(fragment, index) in selectedEntity.odsFragment" :key="`ods-${index}`">
                                 <pre><code class="language-edfisqlsnippet" x-text="fragment"></code></pre>
                             </template>
                         </div>
