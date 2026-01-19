@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when association extension has duplicate common property should have validation failures() 1`] = `"Association Extension EntityName redeclares property DuplicatePropertyName of base Association."`;
 
