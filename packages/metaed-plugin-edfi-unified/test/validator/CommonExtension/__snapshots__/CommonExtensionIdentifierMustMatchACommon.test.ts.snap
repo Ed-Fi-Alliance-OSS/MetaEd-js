@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when common extension extends an invalid identifier should have validation failures() 1`] = `"Common additions 'CommonName' does not match any declared Common in namespace EdFi."`;
 

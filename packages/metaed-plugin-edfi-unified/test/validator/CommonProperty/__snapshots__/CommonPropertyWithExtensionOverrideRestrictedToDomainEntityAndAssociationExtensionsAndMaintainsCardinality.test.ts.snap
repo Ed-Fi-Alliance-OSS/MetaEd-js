@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failure 1`] = `"'common extension' is invalid for property EntityName1 on Association Extension EntityName2. 'common extension' must maintain the same cardinality as in the base entity."`;
 

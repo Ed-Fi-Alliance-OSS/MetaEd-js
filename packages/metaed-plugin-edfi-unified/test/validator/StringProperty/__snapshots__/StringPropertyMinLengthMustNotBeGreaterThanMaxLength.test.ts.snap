@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating string property with minimum length greater than maximum length should have validation failures 1`] = `"String Property StringIdentity has min length greater than max length."`;
 

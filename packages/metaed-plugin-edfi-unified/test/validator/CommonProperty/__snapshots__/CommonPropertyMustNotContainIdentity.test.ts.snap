@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating common property is part of identity should have validation failure for property 1`] = `"Common property EntityName is invalid to be used for the identity of Domain Entity EntityName2."`;
 

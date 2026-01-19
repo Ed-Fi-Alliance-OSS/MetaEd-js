@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when generating schemas for core namespace should generate correct schema 1`] = `
 "IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'auth')
