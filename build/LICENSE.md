@@ -1,6 +1,10 @@
 # Copyright and License Information
 
-MetaEd is © 2023 Ed-Fi Alliance, LLC.
+Copyright (c) 2026 Ed-Fi Alliance, LLC and contributors.
 
-Use of this software implies acceptance of the Ed-Fi license agreement:
-https://techdocs.ed-fi.org/x/vRSAAw
+Licensed under the Apache License, Version 2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
