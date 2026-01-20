@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when validating reference property starts merge path with mismatched property name should have validation failure: when validating reference property starts merge path with mismatched property name should have validation failure -> message 1`] = `"Merge directive must start first property path with the current property name: DomainEntityPropertyName."`;
 
