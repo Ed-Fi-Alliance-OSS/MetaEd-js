@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when association subclass extends non existent entity should have validation failures: when association subclass extends non existent entity should have validation failure -> message 1`] = `"Association Subclass SubclassName based on EntityName tries to rename PropertyName1 which is not part of the identity."`;
 

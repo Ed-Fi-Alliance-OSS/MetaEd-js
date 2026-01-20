@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when association subclass has invalid extendee should have validation failures: when association subclass has invalid extendee should have validation failure -> message 1`] = `"Association EntityName based on BaseEntityName does not match any declared Association in namespace EdFi."`;
 
