@@ -1,6 +1,7 @@
 CREATE TABLE {{#table}}{{{schema}}}.{{{data.edfiOdsSqlServer.tableName}}} (
     {{#each columns}}{{{data.edfiOdsSqlServer.columnName}}} {{{data.edfiOdsSqlServer.dataType}}} {{#if isIdentityDatabaseType}}IDENTITY(1,1) {{/if}}{{#unless isNullable}}NOT {{/unless}}NULL,
-    {{/each}}{{#if includeCreateDateColumn}}CreateDate [DATETIME] NOT NULL,{{/if}}{{#if includeLastModifiedDateAndIdColumn}}LastModifiedDate [DATETIME] NOT NULL,
+    {{/each}}{{#if includeCreateDateColumn}}CreateDate [DATETIME] NOT NULL,{{/if}}{{#if includeLastModifiedDateAndIdColumn}}
+    LastModifiedDate [DATETIME] NOT NULL,
     Id [UNIQUEIDENTIFIER] NOT NULL,{{/if}}
     CONSTRAINT PK_{{{data.edfiOdsSqlServer.tableName}}} PRIMARY KEY ({{#each primaryKeys}}{{{data.edfiOdsSqlServer.columnName}}}{{#unless @last}}, {{/unless}}{{/each}})
     {{/table}}
