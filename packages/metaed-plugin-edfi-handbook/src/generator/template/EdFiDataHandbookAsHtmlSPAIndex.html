@@ -2,208 +2,294 @@
 <html>
 
 <head>
-    <title>Ed-Fi Data Handbook</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css" />
-    <!-- oprions: github, default, mono-blue, rainbow, atom-one-light -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <title>Ed-Fi Unified Data Model Handbook</title>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/infima@0.2.0-alpha.45/dist/css/default/default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css"
+        integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-highlightjs/0.6.2/angular-highlightjs.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/cdn.min.js"
+        integrity="sha512-4M615JhFufNLsrK5+qpW7oZJ8ooDJlzcUqd/+LVic8e9+0JuoO0KLnIf0NGg3e3tvFxRRdngx1VLtiOwPtYM4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"
+        integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
-        hljs.initHighlightingOnLoad();
-
-        // Examples here:
-        // http://highlightjs.readthedocs.io/en/latest/language-guide.html
-        // https://github.com/isagalaev/highlight.js/tree/master/src/languages
-        // Based off the SQL one located: https://github.com/isagalaev/highlight.js/blob/master/src/languages/sql.js
-        hljs.registerLanguage("edfisqlsnippet", function (e) {
-            // var COMMENT_MODE = hljs.COMMENT('--', '$');
-            var t = e.C("--", "$");
+        // Register custom EdFi SQL language for Highlight.js
+        hljs.registerLanguage("edfisql", function (e) {
             return {
-                // case_insensitive: true,
-                cI: !0,
-                // illegal:
-                i: /[<> {}*#]/,
-                // contains:
-                c: [{
-                    // beginKeywords:
-                    k: "edfi extension begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
-                    // end: /;/
-                    e: /;/,
-                    // endsWithParent: true,
-                    eW: !0,
-                    // lexemes: /[\w\.]+/,
-                    l: /[\w\.]+/,
-                    // keywords:
-                    k: {
-                        keyword: "primary abort abs absolute acc acce accep accept access accessed accessible account acos action activate add addtime admin administer advanced advise aes_decrypt aes_encrypt after agent aggregate ali alia alias allocate allow alter always analyze ancillary and any anydata anydataset anyschema anytype apply archive archived archivelog are as asc ascii asin assembly assertion associate asynchronous at atan atn2 attr attri attrib attribu attribut attribute attributes audit authenticated authentication authid authors auto autoallocate autodblink autoextend automatic availability avg backup badfile basicfile before begin beginning benchmark between bfile bfile_base big bigfile bin binary_double binary_float binlog bit_and bit_count bit_length bit_or bit_xor bitmap blob_base block blocksize body both bound buffer_cache buffer_pool build bulk by byte byteordermark bytes cache caching call calling cancel capacity cascade cascaded case cast catalog category ceil ceiling chain change changed char_base char_length character_length characters characterset charindex charset charsetform charsetid check checksum checksum_agg child choose chr chunk class cleanup clear client clob clob_base clone close cluster_id cluster_probability cluster_set clustering coalesce coercibility col collate collation collect colu colum column column_value columns columns_updated comment commit compact compatibility compiled complete composite_limit compound compress compute concat concat_ws concurrent confirm conn connec connect connect_by_iscycle connect_by_isleaf connect_by_root connect_time connection consider consistent constant constraint constraints constructor container content contents context contributors controlfile conv convert convert_tz corr corr_k corr_s corresponding corruption cos cost count count_big counted covar_pop covar_samp cpu_per_call cpu_per_session crc32 create creation critical cross cube cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime customdatum cycle data database databases datafile datafiles datalength date_add date_cache date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts day day_to_second dayname dayofmonth dayofweek dayofyear days db_role_change dbtimezone ddl deallocate declare decode decompose decrement decrypt deduplicate def defa defau defaul default defaults deferred defi defin define degrees delayed delegate delete delete_all delimited demand dense_rank depth dequeue des_decrypt des_encrypt des_key_file desc descr descri describ describe descriptor deterministic diagnostics difference dimension direct_load directory disable disable_all disallow disassociate discardfile disconnect diskgroup distinct distinctrow distribute distributed div do document domain dotnet double downgrade drop dumpfile duplicate duration each edition editionable editions element ellipsis else elsif elt empty enable enable_all enclosed encode encoding encrypt end end-exec endian enforced engine engines enqueue enterprise entityescaping eomonth error errors escaped evalname evaluate event eventdata events except exception exceptions exchange exclude excluding execu execut execute exempt exists exit exp expire explain export export_set extended extent external external_1 external_2 externally extract failed failed_login_attempts failover failure far fast feature_set feature_value fetch field fields file file_name_convert filesystem_like_logging final finish first first_value fixed flash_cache flashback floor flush following follows for forall force form forma format found found_rows freelist freelists freepools fresh from from_base64 from_days ftp full function general generated get get_format get_lock getdate getutcdate global global_name globally go goto grant grants greatest group group_concat group_id grouping grouping_id groups gtid_subtract guarantee guard handler hash hashkeys having hea head headi headin heading heap help hex hierarchy high high_priority hosts hour http ident_current ident_incr ident_seed identified identity idle_time if ifnull ignore iif ilike ilm immediate import in include including increment index indexes indexing indextype indicator indices inet6_aton inet6_ntoa inet_aton inet_ntoa infile initial initialized initially initrans inmemory inner innodb input insert install instance instantiable instr interface interleaved intersect into invalidate invisible is is_free_lock is_ipv4 is_ipv4_compat is_not is_not_null is_used_lock isdate isnull isolation iterate java join json json_exists keep keep_duplicates key keys kill language large last last_day last_insert_id last_value lax lcase lead leading least leaves left len lenght length less level levels library like like2 like4 likec limit lines link list listagg little ln load load_file lob lobs local localtime localtimestamp locate locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime managed management manual map mapping mask master master_pos_wait match matched materialized max maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans md5 measures median medium member memcompress memory merge microsecond mid migration min minextents minimum mining minus minute minvalue missing mod mode model modification modify module monitoring month months mount move movement multiset mutex name name_const names nan national native natural nav nchar nclob nested never new newline next nextval no no_write_to_binlog noarchivelog noaudit nobadfile nocheck nocompress nocopy nocycle nodelay nodiscardfile noentityescaping noguarantee nokeep nologfile nomapping nomaxvalue nominimize nominvalue nomonitoring none noneditionable nonschema noorder nopr nopro noprom nopromp noprompt norely noresetlogs noreverse normal norowdependencies noschemacheck noswitch not nothing notice notrim novalidate now nowait nth_value nullif nulls num numb numbe nvarchar nvarchar2 object ocicoll ocidate ocidatetime ociduration ociinterval ociloblocator ocinumber ociref ocirefcursor ocirowid ocistring ocitype oct octet_length of off offline offset oid oidindex old on online only opaque open operations operator optimal optimize option optionally or oracle oracle_date oradata ord ordaudio orddicom orddoc order ordimage ordinality ordvideo organization orlany orlvary out outer outfile outline output over overflow overriding package pad parallel parallel_enable parameters parent parse partial partition partitions pascal passing password password_grace_time password_lock_time password_reuse_max password_reuse_time password_verify_function patch path patindex pctincrease pctthreshold pctused pctversion percent percent_rank percentile_cont percentile_disc performance period period_add period_diff permanent physical pi pipe pipelined pivot pluggable plugin policy position post_transaction pow power pragma prebuilt precedes preceding precision prediction prediction_cost prediction_details prediction_probability prediction_set prepare present preserve prior priority private private_sga privileges procedural procedure procedure_analyze processlist profiles project prompt protection public publishingservername purge quarter query quick quiesce quota quotename radians raise rand range rank raw read reads readsize rebuild record records recover recovery recursive recycle redo reduced ref reference referenced references referencing refresh regexp_like register regr_avgx regr_avgy regr_count regr_intercept regr_r2 regr_slope regr_sxx regr_sxy reject rekey relational relative relaylog release release_lock relies_on relocate rely rem remainder rename repair repeat replace replicate replication required reset resetlogs resize resource respect restore restricted result result_cache resumable resume retention return returning returns reuse reverse revoke right rlike role roles rollback rolling rollup round row row_count rowdependencies rowid rownum rows rtrim rules safe salt sample save savepoint sb1 sb2 sb4 scan schema schemacheck scn scope scroll sdo_georaster sdo_topo_geometry search sec_to_time second section securefile security seed segment select self sequence sequential serializable server servererror session session_user sessions_per_user set sets settings sha sha1 sha2 share shared shared_pool short show shrink shutdown si_averagecolor si_colorhistogram si_featurelist si_positionalcolor si_stillimage si_texture siblings sid sign sin size size_t sizes skip slave sleep smalldatetimefromparts smallfile snapshot some soname sort soundex source space sparse spfile split sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_small_result sql_variant_property sqlcode sqldata sqlerror sqlname sqlstate sqrt square standalone standby start starting startup statement static statistics stats_binomial_test stats_crosstab stats_ks_test stats_mode stats_mw_test stats_one_way_anova stats_t_test_ stats_t_test_indep stats_t_test_one stats_t_test_paired stats_wsr_test status std stddev stddev_pop stddev_samp stdev stop storage store stored str str_to_date straight_join strcmp strict string struct stuff style subdate subpartition subpartitions substitutable substr substring subtime subtring_index subtype success sum suspend switch switchoffset switchover sync synchronous synonym sys sys_xmlagg sysasm sysaux sysdate sysdatetimeoffset sysdba sysoper system system_user sysutcdatetime table tables tablespace tan tdo template temporary terminated tertiary_weights test than then thread through tier ties time time_format time_zone timediff timefromparts timeout timestamp timestampadd timestampdiff timezone_abbr timezone_minute timezone_region to to_base64 to_date to_days to_seconds todatetimeoffset trace tracking transaction transactional translate translation treat trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse type ub1 ub2 ub4 ucase unarchived unbounded uncompress under undo unhex unicode uniform uninstall union unique unix_timestamp unknown unlimited unlock unpivot unrecoverable unsafe unsigned until untrusted unusable unused update updated upgrade upped upper upsert url urowid usable usage use use_stored_outlines user user_data user_resources users using utc_date utc_timestamp uuid uuid_short validate validate_password_strength validation valist value values var var_samp varcharc vari varia variab variabl variable variables variance varp varraw varrawc varray verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear wellformed when whene whenev wheneve whenever where while whitespace with within without work wrapped xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year year_to_month years yearweek",
-                        literal: "true false null",
-                        built_in: "uniqueidentifier datetime nvarchar array bigint binary bit blob boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text varchar varying void"
+                case_insensitive: true,
+                illegal: /[<> {}*#]/,
+                contains: [{
+                    beginKeywords: "create",
+                    end: /;/,
+                    endsWithParent: true,
+                    lexemes: /[\w\.]+/,
+                    keywords: {
+                        keyword: "create table primary key constraint",
+                        literal: "true false not null",
+                        built_in: "int bigint short bit float numeric date datetime nvarchar varchar char uniqueidentifier"
                     },
-                    // contains: [
-                    c: [
-                        // className:, begin:, end:, contains:
-                        {cN: "string", b: "'", e: "'", c: [e.BE, {b: "''"}]},
-                        {cN: "string", b: '"', e: '"', c: [e.BE, {b: '""'}]},
-                        {cN: "string", b: "`", e: "`", c: [e.BE]},
-                        {cN: "type", b: "edfi.", e: "\n", c: [e.BE]},
-
-                        //hljs.C_NUMBER_MODE, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE
-                        e.CNM, e.CBCM, t]
-                }
-                    , e.CBCM, t]
+                }, e.C_BLOCK_COMMENT_MODE, e.COMMENT("--")]
             }
-        }
-        );
-    //console.log(hljs.listLanguages());
+        });
     </script>
 
     <style type="text/css">
+        :root {
+            --sidebar-width: 275px;
+            --header-height: 51px;
+        }
+
         html,
-        body,
-        .container {
+        body {
             height: 100%;
-        }
-
-        .navbar-brand {
+            margin: 0;
             padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
-        .navbar-brand-text {
-            padding-top: 15px;
-        }
-
-        .navbar-default {
+        .navbar {
             background-color: #fff;
             border-bottom: 1px solid #cacaca;
-            background-image: none;
+            height: var(--header-height);
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
 
-        .container {
-            display: table;
-            width: 100%;
-            margin-top: -20px;
-            padding: 0;
-            box-sizing: border-box;
+        .navbar-text {
+            font-weight: bold;
+            font-size: 22px;
+            margin: 0;
         }
 
-        .header {
-            height: 48px;
-            border-bottom: 1px solid #cacaca;
-            overflow: hidden;
+        .main-container {
+            height: calc(100% - var(--header-height));
+            display: flex;
         }
 
-        .row {
-            height: 100%;
-            display: table-row;
-        }
-
-        .row .no-float {
-            display: table-cell;
-            float: none;
-        }
-
-        .sidebar-container {
-            padding-top: 15px;
-            padding-bottom: 118px;
-            vertical-align: top;
-            padding-right: 0;
+        .sidebar-wrapper {
+            width: var(--sidebar-width);
             background-color: #f5f5f5;
             border-right: 1px solid #cacaca;
-            height: 100%;
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-        }
-
-        .sidebar a {
-            position: relative;
-            width: 250px;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: inline-block;
         }
 
-        .search {
-            padding-right: 15px;
+        .sidebar-nav {
+            padding: 15px;
+            flex-shrink: 0;
         }
 
-        a {
-            text-decoration: underline;
+        .form-group {
+            margin-bottom: 10px;
         }
 
-        .nav>li>a {
-            padding: 5px 15px;
+        .input-group {
+            position: relative;
+            display: flex;
         }
 
-        .nav>li>a>span.entity {
-            text-decoration: underline;
+        .input-group-addon {
+            padding: 8px 12px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
         }
 
-        .nav>li>a>span.definition {
-            color: black;
-            font-style: italic;
+        .input-group input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 0 4px 4px 0;
+            font-size: 14px;
         }
 
-        .nav>li>a.active,
-        .nav>li>a.menu:active,
-        .nav>li>a.menu:focus {
-            color: #fff;
-            background-color: #428bca;
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
         }
 
-        .nav>li>a.menu:hover {
-            background-color: #77BFFD;
+        select.form-control {
+            padding: 6px 12px;
+            height: 36px;
         }
 
-        .nav>li>a.menu:hover>span,
-        .nav>li>a.menu:focus>span,
-        .nav>li>a.active>span {
-            color: white;
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
         }
 
-        #sidebar-nav .form-group {
-            margin-bottom: 5px;
-        } 
-
-        .inline-header {
-            display: inline-block;
-            vertical-align: baseline;
+        .checkbox-label input[type="checkbox"] {
+            margin: 0 5px 0 0;
         }
 
         .filterCount {
             color: #cacaca;
+            font-size: 13px;
         }
 
-        .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
-            height: 27px;
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
-        .highlight {
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin: 0;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-list a:hover {
+            background-color: #77BFFD;
+            color: #fff;
+        }
+
+        .nav-list a.active {
+            background-color: #428bca;
+            color: #fff;
+            border-left-color: #2a6496;
+        }
+
+        .nav-list a:hover span,
+        .nav-list a.active span {
+            color: white;
+        }
+
+        .entity-name {
+            text-decoration: underline;
+            word-wrap: break-word;
+        }
+
+        .entity-definition {
+            color: #666;
+            font-style: italic;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .nav-list a.active .entity-definition {
+            color: #fff;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 40px;
+        }
+
+        .page-header {
+            font-size: 32px;
+            margin: 0 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .deprecation-text {
+            color: red;
+            margin-left: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 20px 0 10px 0;
+        }
+
+        .inline-header {
+            display: inline-block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f5f5f5;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            color: #428bca;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #2a6496;
+        }
+
+        .highlight-text {
             background-color: yellow;
+            font-weight: bold;
         }
 
         .merge-property {
             color: #569cd6;
             font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .text-ellipsis {
@@ -212,312 +298,473 @@
             white-space: nowrap;
             display: block;
         }
+
+        /* Multi-select styling */
+        select[multiple] {
+            height: auto;
+            min-height: 80px;
+        }
     </style>
 
     <script type="text/javascript">
+        // Data will be injected here by the generator
+        const handbookData = {JSONData};
 
-        var app = angular.module('app', ['ngRoute', 'ui.select', 'hljs']);
+        // Alpine.js application logic
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('handbookApp', () => ({
+                entries: handbookData,
+                search: '',
+                includeDefinition: false,
+                selectedEntityTypes: [],
+                selectedDomains: [],
+                selectedEntity: null,
+                showMerge: false,
 
-        app.config(function ($routeProvider) {
-            $routeProvider
-                .when('/',
-                    {
-                        controller: 'detailController',
-                        controllerAs: 'ctrl',
-                        template: "{detailTemplate}" //This gets replaced with injected data from the generator.
-                    })
-                .when('/:entityUniqueId',
-                    {
-                        controller: 'detailController',
-                        controllerAs: 'ctrl',
-                        template: "{detailTemplate}" //This gets replaced with injected data from the generator.
-                    });
-        });
-
-        app.filter('customSearch',
-            function () {
-                return function (entries, filter, includeDefinition) {
-                    // If no filter applied then return all.
-                    if (!filter)
-                        return entries;
-
-                    var out = [];
-
-                    angular.forEach(entries,
-                        function (value, key) {
-                            if (value.metaEdId) {
-                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
-                                    value.metaEdId.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
-                                    (includeDefinition && value.definition.toLowerCase().indexOf(filter.toLowerCase()) !== -1))
-                                    out.push(value);
-                            } else {
-                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 || (includeDefinition && value.definition.toLowerCase().indexOf(filter.toLowerCase()) !== -1))
-                                    out.push(value);
-                            }
-                        });
-                    return out;
-                };
-            });
-
-        app.filter('trueFalseToYesNo', function () {
-            return function (text, length, end) {
-                if (text) {
-                    return 'Yes';
-                }
-                return 'No';
-            }
-        });
-
-        app.filter('highlight', function ($sce) {
-            return function (text, phrase) {
-                if (phrase)
-                    text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<span class="highlight">$1</span>');
-
-                return $sce.trustAsHtml(text);
-            }
-        });
-
-        app.filter('bold', function ($sce) {
-            return function (text, phrase) {
-                if (phrase)
-                    text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<b>$1</b>');
-
-                return $sce.trustAsHtml(text);
-            }
-        });
-
-        app.filter('byEntityType', function () {
-            return function (items, filter) {
-
-                // If no filters then return everything.
-                if (filter.length === 0)
-                    return items;
-
-                var out = [];
-
-                angular.forEach(items, function (value, key) {
-                    if (filter.indexOf(value.umlType) > -1) {
-                        out.push(value);
+                init() {
+                    // Select first entry by default
+                    if (this.entries && this.entries.length > 0) {
+                        this.selectEntity(this.entries[0]);
                     }
-                });
 
-                return out;
-            };
-        });
+                    // Handle URL hash for direct navigation
+                    this.handleHashChange();
+                    window.addEventListener('hashchange', () => this.handleHashChange());
 
-        app.filter('byDomain', function () {
-            return function (items, filter) {
+                    // Highlight code blocks after render
+                    this.$nextTick(() => {
+                        this.highlightCodeBlocks();
+                    });
+                },
 
-                // If no filters then return everything.
-                if (filter.length === 0)
-                    return items;
-
-                var out = [];
-
-                angular.forEach(items, function (value, key) {
-                    for (const domain of value.domains) {
-                        if (filter.indexOf(domain) > -1) {
-                            out.push(value);
-                            break;
+                handleHashChange() {
+                    const hash = window.location.hash.slice(1);
+                    if (hash && hash !== '/') {
+                        // Remove leading slash if present
+                        const entityId = hash.startsWith('/') ? hash.slice(1) : hash;
+                        const entity = this.entries.find(e => e.uniqueIdentifier === entityId);
+                        if (entity) {
+                            this.selectEntity(entity);
                         }
                     }
-                });
-
-                return out;
-            };
-        });
-
-        app.service('dataService', function () {
-            return {
-                get: function () {
-                    return {JSONData}; //This gets replaced with injected data from the generator.  
-                }
-            };
-        });
-
-        app.factory('sharedContext', function () {
-            return {
-                // Callback to be set by consuming controller
-                selectEntityCallback: function (entity) {},
-                selectEntity: function (entity) {
-                    this.selectEntityCallback(entity);
                 },
-                resetSearchCallback: function () {},
-                resetSearch: function () {
-                    this.resetSearchCallback();
-                }
-            };
-        });
 
-        app.controller('indexController', function (sharedContext, dataService, $routeParams, $timeout, $scope, $location) {
-            var ctrl = this;
-            ctrl.selectedEntityTypes = [];
-            ctrl.entityFilterTypes = [];
-            ctrl.selectedDomains = [];
-            ctrl.domains = [];
+                get entityFilterTypes() {
+                    const types = [...new Set(this.entries.map(e => e.umlType))];
+                    return types.sort();
+                },
 
-            ctrl.entries = dataService.get();
+                get domains() {
+                    const allDomains = this.entries.flatMap(e => e.domains || []);
+                    return [...new Set(allDomains)].sort();
+                },
 
-            // By default select the first one in the list.
-            ctrl.selected = ctrl.entries[0];
+                get filteredEntries() {
+                    let filtered = this.entries;
 
-            angular.forEach(ctrl.entries, function (entry) {
-                if (ctrl.entityFilterTypes.indexOf(entry.umlType) == -1) {
-                    ctrl.entityFilterTypes.push(entry.umlType);
-                }
-            });
-            ctrl.entityFilterTypes.sort();
-
-            angular.forEach(ctrl.entries, function (entry) {
-                angular.forEach(entry.domains, function (domain) {
-                    if (ctrl.domains.indexOf(domain) == -1) {
-                        ctrl.domains.push(domain);
+                    // Filter by search
+                    if (this.search) {
+                        const searchLower = this.search.toLowerCase();
+                        filtered = filtered.filter(entry => {
+                            const nameMatch = entry.name.toLowerCase().includes(searchLower);
+                            const idMatch = entry.metaEdId && entry.metaEdId.toLowerCase().includes(searchLower);
+                            const defMatch = this.includeDefinition && entry.definition &&
+                                entry.definition.toLowerCase().includes(searchLower);
+                            return nameMatch || idMatch || defMatch;
+                        });
                     }
-                });                
-            });
-            ctrl.domains.sort();
 
-            ctrl.selecteEntity = function (entity) {
-                ctrl.selected = entity;
-            }
+                    // Filter by entity types
+                    if (this.selectedEntityTypes.length > 0) {
+                        filtered = filtered.filter(entry =>
+                            this.selectedEntityTypes.includes(entry.umlType)
+                        );
+                    }
 
-            ctrl.resetSearch = function () {
-                ctrl.selectedEntityTypes = [];
-                ctrl.selectedDomains = [];
-                ctrl.search = "";
-            };
+                    // Filter by domains
+                    if (this.selectedDomains.length > 0) {
+                        filtered = filtered.filter(entry =>
+                            entry.domains && entry.domains.some(d => this.selectedDomains.includes(d))
+                        );
+                    }
 
-            sharedContext.selectEntityCallback = ctrl.selecteEntity;
-            sharedContext.resetSearchCallback = ctrl.resetSearch;
+                    return filtered.sort((a, b) => a.name.localeCompare(b.name));
+                },
 
-            ctrl.adjustSideBar = function () {
-                $timeout(function () {
-                    var sideNav = angular.element(document.querySelector('#sidebar-nav'));
-                    sideNav.height()
+                selectEntity(entity) {
+                    this.selectedEntity = entity;
+                    window.location.hash = `/${entity.uniqueIdentifier}`;
 
-                    var sideContainer = angular.element(document.querySelector('#sidebar-container'));
-                    sideContainer.css('padding-bottom', sideNav.height() + 'px');
-                }, 100);
-            }
+                    // Check if merge should be shown
+                    this.showMerge = entity.modelReferencesContainsProperties &&
+                        entity.modelReferencesContainsProperties.some(prop =>
+                            prop.mergeDirectives && prop.mergeDirectives.length > 0
+                        );
 
-            ctrl.displaySideDefinition = function (definition) {
+                    // Highlight code after render
+                    this.$nextTick(() => {
+                        this.highlightCodeBlocks();
+                    });
+                },
 
-                var indexOf = definition.toLowerCase().indexOf(ctrl.search.toLowerCase());
-                var paddingLength = (30 - ctrl.search.length) > 7 ? 7 : ((30 - ctrl.search.length) < 0 ? 0 : (30 - ctrl.search.length));
-                if (indexOf < 10 || definition.length < 30) return definition;
-                else {
-                    if (definition.length - indexOf < 30)
-                        return '...' + definition.substring(definition.length - 30)
-                    else
-                        return '...' + definition.substring(indexOf - paddingLength);
+                navigateToEntity(uniqueIdentifier, shouldResetSearch) {
+                    const entity = this.entries.find(e => e.uniqueIdentifier === uniqueIdentifier);
+                    if (entity) {
+                        if (shouldResetSearch === true) {
+                            this.resetSearch();
+                        }
+                        this.selectEntity(entity);
+                    }
+                },
+
+                resetSearch() {
+                    this.search = '';
+                    this.selectedEntityTypes = [];
+                    this.selectedDomains = [];
+                },
+
+                entityExists(uniqueIdentifier) {
+                    return this.entries.some(e => e.uniqueIdentifier === uniqueIdentifier);
+                },
+
+                highlightText(text, phrase) {
+                    if (!phrase || !text) return text;
+                    const regex = new RegExp(`(${phrase})`, 'gi');
+                    return text.replace(regex, '<span class="highlight-text">$1</span>');
+                },
+
+                boldText(text, phrase) {
+                    if (!phrase || !text) return text;
+                    const regex = new RegExp(`(${phrase})`, 'gi');
+                    return text.replace(regex, '<b>$1</b>');
+                },
+
+                displaySideDefinition(definition) {
+                    if (!definition) return '';
+                    const searchLower = this.search.toLowerCase();
+                    const indexOf = definition.toLowerCase().indexOf(searchLower);
+                    const paddingLength = Math.max(0, Math.min(7, 30 - this.search.length));
+
+                    if (indexOf < 10 || definition.length < 30) {
+                        return definition;
+                    } else {
+                        if (definition.length - indexOf < 30) {
+                            return '...' + definition.substring(definition.length - 30);
+                        } else {
+                            return '...' + definition.substring(indexOf - paddingLength);
+                        }
+                    }
+                },
+
+                trueFalseToYesNo(value) {
+                    return value ? 'Yes' : 'No';
+                },
+
+                getMergeStyle(merge, isLast) {
+                    return isLast ? {} : { 'padding-bottom': '10px' };
+                },
+
+                isActiveEntity(entity) {
+                    return this.selectedEntity &&
+                        this.selectedEntity.uniqueIdentifier === entity.uniqueIdentifier;
+                },
+
+                highlightCodeBlocks() {
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        // Remove previous highlighting if it exists
+                        if (block.dataset.highlighted) {
+                            delete block.dataset.highlighted;
+                        }
+                        hljs.highlightElement(block);
+                    });
                 }
-
-            }
+            }));
         });
-
-        app.controller('detailController', function (sharedContext, $routeParams, dataService) {
-            var ctrl = this;
-
-            ctrl.entries = dataService.get();
-
-            // By default select the first entity
-            ctrl.selected = ctrl.entries[0];
-
-            var entityUniqueId = $routeParams.entityUniqueId;
-
-            ctrl.entityExists = function (entityUniqueIdentifier) {
-                if (ctrl.findEntity(entityUniqueIdentifier))
-                    return true;
-                return false;
-            }
-
-            ctrl.findEntity = function (entityUniqueIdentifier) {
-                for (var i = 0; i < ctrl.entries.length; i++)
-                    if (ctrl.entries[i].uniqueIdentifier === entityUniqueIdentifier)
-                        return ctrl.entries[i];
-                return undefined;
-            }
-
-            ctrl.getMergeStyle = function (merge, last) {
-                return last ? null : {'padding-bottom': '10px'};
-            }
-
-            if (entityUniqueId) {
-                ctrl.selected = ctrl.findEntity(entityUniqueId);
-                sharedContext.selectEntity(ctrl.selected);
-
-                angular.forEach(ctrl.selected.modelReferencesContainsProperties, function (property) {
-                    if (property.mergeDirectives && property.mergeDirectives.length) ctrl.showMerge = true;
-                })
-            }
-
-        });
-
     </script>
+
 </head>
 
-<body ng-app="app" ng-controller="indexController as ctrl" style="overflow-y: hidden">
-    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px">
-        <div class="navbar-header">
-            <span class="navbar-text" style="font-weight: bold; font-size: 22px">Ed-Fi Data Handbook</span>
-        </div>
+<body x-data="handbookApp" style="overflow-y: hidden">
+    <nav class="navbar">
+        <span class="navbar-text">Ed-Fi Unified Data Model Handbook</span>
     </nav>
 
-    <div style="height: calc(100% - 51px); position: relative; ">
-        <div style="height: 100%; width: 275px; background-color: #f5f5f5; padding-top: 10px; display: inline-block">
-            <div id="sidebar-nav" style="padding-left: 15px">
-                <div class="form-group search">
+    <div class="main-container">
+        <div class="sidebar-wrapper">
+            <div class="sidebar-nav">
+                <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-search"></i>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search by name" ng-model="ctrl.search">
+                        <input type="text" class="form-control" placeholder="Search by name" x-model="search">
                     </div>
                 </div>
                 <div>
-                    <label style="display: flex; align-items: center">
-                        <input style="margin: 0 5px 0 0" type="checkbox" ng-model="ctrl.includeDefinition" /> Include Definition in Search
+                    <label class="checkbox-label">
+                        <input type="checkbox" x-model="includeDefinition" /> Include Definition in Search
                     </label>
                 </div>
-                <div class="form-group search">
-                    <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedEntityTypes" theme="bootstrap" close-on-select="true"
-                        title="Choose an entity type">
-                        <ui-select-match placeholder="Filter by UML Type">{{$item}}</ui-select-match>
-                        <ui-select-choices repeat="et in ctrl.entityFilterTypes | filter:$select.search">
-                            <span class="text-ellipsis">{{et}}</span>
-                        </ui-select-choices>
-                    </ui-select>
+                <div class="form-group">
+                    <select class="form-control" x-model="selectedEntityTypes" multiple aria-label="Filter by UML Type"
+                        aria-describedby="uml-type-help">
+                        <template x-for="(type, index) in entityFilterTypes" :key="`type-${index}-${type}`">
+                            <option :value="type" x-text="type"></option>
+                        </template>
+                    </select>
+                    <small id="uml-type-help" style="display: block; margin-top: 3px; color: #666;">Filter by UML Type
+                        (hold Ctrl/Cmd to select multiple)</small>
                 </div>
-                <div class="form-group search">
-                    <ui-select multiple ng-change="ctrl.adjustSideBar()" ng-model="ctrl.selectedDomains" theme="bootstrap" close-on-select="true"
-                        title="Choose a Domain">
-                        <ui-select-match placeholder="Filter by Domain">{{$item}}</ui-select-match>
-                        <ui-select-choices repeat="domain in ctrl.domains | filter:$select.search">
-                            <span class="text-ellipsis">{{domain}}</span>
-                        </ui-select-choices>
-                    </ui-select>
+                <div class="form-group">
+                    <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain"
+                        aria-describedby="domain-help">
+                        <template x-for="(domain, index) in domains" :key="`domain-${index}-${domain}`">
+                            <option :value="domain" x-text="domain"></option>
+                        </template>
+                    </select>
+                    <small id="domain-help" style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold
+                        Ctrl/Cmd to select multiple)</small>
                 </div>
-                <span class="filterCount">[Displaying {{filteredResults.length}} of {{ctrl.entries.length}}]</span>
+                <span class="filterCount" x-text="`[Displaying ${filteredEntries.length} of ${entries.length}]`"></span>
             </div>
-            <div id="sidebar-container" style="position: relative; height: 100%; padding-bottom: 131px">
-                <div id="sidebarContent" class="sidebar" style="height: 100%;">
-                    <ul class="nav nav-sidebar">
-                        <li ng-repeat="entry in ctrl.entries | orderBy: 'name' | customSearch:ctrl.search:ctrl.includeDefinition | byEntityType:ctrl.selectedEntityTypes | byDomain:ctrl.selectedDomains as filteredResults">
-                            <a id="entity{{entry.uniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.uniqueIdentifier}}" class="menu"
-                                ng-class="{active: (ctrl.selected.uniqueIdentifier) == (entry.uniqueIdentifier)}" title="{{entry.metaEdId}} - {{entry.name}}"
-                                style="text-decoration: none">
-                                <span ng-bind-html="entry.name | bold:ctrl.search" class="entity"></span>
-                                <br/>
-                                <span title="{{entry.definition}}" ng-if="ctrl.includeDefinition && ctrl.search" ng-bind-html="ctrl.displaySideDefinition(entry.definition) | bold:ctrl.search"
-                                    class="definition"></span>
+            <div class="sidebar-content">
+                <ul class="nav-list">
+                    <template x-for="(entry, index) in filteredEntries"
+                        :key="`entry-${index}-${entry.uniqueIdentifier}`">
+                        <li>
+                            <a href="#" @click.prevent="selectEntity(entry)"
+                                :class="{ 'active': isActiveEntity(entry) }"
+                                :title="`${entry.metaEdId || ''} - ${entry.name}`">
+                                <span class="entity-name" x-html="boldText(entry.name, search)"></span>
+                                <template x-if="includeDefinition && search && entry.definition">
+                                    <span class="entity-definition" :title="entry.definition"
+                                        x-html="boldText(displaySideDefinition(entry.definition), search)"></span>
+                                </template>
                             </a>
                         </li>
-                    </ul>
-                </div>
+                    </template>
+                </ul>
             </div>
         </div>
-        <div style="height: 100%; width: calc(100% - 276px); display: block; float: right; overflow-y: auto">
-            <ng-view />
+        <div class="content-wrapper" x-show="selectedEntity">
+            <template x-if="selectedEntity">
+                <div>
+                    <h1 class="page-header">
+                        <span x-text="selectedEntity.name"></span>
+                        <template x-if="selectedEntity.deprecationText">
+                            <span class="deprecation-text" x-text="selectedEntity.deprecationText"></span>
+                        </template>
+                    </h1>
+                    <h3 class="inline-header">
+                        UML Type: <span x-text="selectedEntity.umlType"></span>
+                        <template x-if="selectedEntity.baseMetaEdType">
+                            <span>
+                                extending
+                                <a href="#"
+                                    @click.prevent="navigateToEntity(selectedEntity.baseEntityUniqueIdentifier, true)"
+                                    :title="selectedEntity.baseMetaEdType" x-text="selectedEntity.baseMetaEdType"></a>
+                            </span>
+                        </template>
+                    </h3>
+                    <h3>MetaEd Metadata</h3>
+                    <p>MetaEd Entity Type: <span x-text="selectedEntity.metaEdType"></span></p>
+                    <template x-if="selectedEntity.metaEdId">
+                        <p>MetaEd ID: <span x-text="selectedEntity.metaEdId"></span></p>
+                    </template>
+                    <h3>Definition</h3>
+                    <p x-html="highlightText(selectedEntity.definition || '', search)"></p>
+                    <template x-if="selectedEntity.deprecationReason">
+                        <div>
+                            <h3>Deprecation Reason</h3>
+                            <p x-text="selectedEntity.deprecationReason"></p>
+                        </div>
+                    </template>
+                    <template x-if="selectedEntity.typeCharacteristics && selectedEntity.typeCharacteristics.length">
+                        <div>
+                            <h3>Type Characteristics:</h3>
+                            <ul>
+                                <template x-for="(characteristic, index) in selectedEntity.typeCharacteristics"
+                                    :key="`char-${index}-${characteristic}`">
+                                    <li x-text="characteristic"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    <template x-if="selectedEntity.optionList && selectedEntity.optionList.length">
+                        <div>
+                            <h3>Option List</h3>
+                            <ul>
+                                <template x-for="(option, index) in selectedEntity.optionList"
+                                    :key="`option-${index}-${option}`">
+                                    <li x-text="option"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    <template
+                        x-if="selectedEntity.modelReferencesContains && selectedEntity.modelReferencesContains.length > 0">
+                        <div>
+                            <h3>References</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Property</th>
+                                            <template x-if="selectedEntity.hasDeprecatedProperty">
+                                                <th>Deprecation Reason</th>
+                                            </template>
+                                            <th>UML Datatype</th>
+                                            <th>JSON Datatype</th>
+                                            <th>JSON Element Name</th>
+                                            <th>Other</th>
+                                            <template x-if="selectedEntity.showIdentityColumn">
+                                                <th>Identity</th>
+                                            </template>
+                                            <th>Is Sensitive Data</th>
+                                            <th>Cardinality</th>
+                                            <th>Definition</th>
+                                            <template x-if="showMerge">
+                                                <th>Merge</th>
+                                            </template>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template x-for="prop in selectedEntity.modelReferencesContainsProperties"
+                                            :key="`prop-${prop.name}-${prop.metaEdId || ''}`">
+                                            <tr>
+                                                <td>
+                                                    <template x-if="entityExists(prop.referenceUniqueIdentifier)">
+                                                        <a href="#"
+                                                            @click.prevent="navigateToEntity(prop.referenceUniqueIdentifier, true)"
+                                                            :title="`${prop.metaEdId || ''} - ${prop.name}`"
+                                                            x-text="prop.name"></a>
+                                                    </template>
+                                                    <template x-if="!entityExists(prop.referenceUniqueIdentifier)">
+                                                        <span :title="`${prop.metaEdId || ''} - ${prop.name}`"
+                                                            x-text="prop.name"></span>
+                                                    </template>
+                                                    <template x-if="prop.extensionParentNamespaceName">
+                                                        <span
+                                                            x-text="` (from ${prop.extensionParentNamespaceName})`"></span>
+                                                    </template>
+                                                    <template x-if="prop.deprecationText">
+                                                        <span class="deprecation-text"
+                                                            x-text="` - ${prop.deprecationText}`"></span>
+                                                    </template>
+                                                </td>
+                                                <template x-if="selectedEntity.hasDeprecatedProperty">
+                                                    <td x-text="prop.deprecationReason || ''"></td>
+                                                </template>
+                                                <td x-text="prop.umlDatatype"></td>
+                                                <td x-text="prop.jsonDatatype"></td>
+                                                <td x-text="prop.jsonElementName"></td>
+                                                <td>
+                                                    <p>MetaEd DSL Datatype: <span x-text="prop.metaEdDatatype"></span>
+                                                    </p>
+                                                    <template x-if="prop.sqlDatatype">
+                                                        <p>SQL Recommended Datatype: <span
+                                                                x-text="prop.sqlDatatype"></span></p>
+                                                    </template>
+                                                    <template x-if="!selectedEntity.showIdentityColumn">
+                                                        <p>Ed-Fi ODS/API Identity: <span
+                                                                x-text="trueFalseToYesNo(prop.isOdsApiIdentity)"></span>
+                                                        </p>
+                                                    </template>
+                                                </td>
+                                                <template x-if="selectedEntity.showIdentityColumn">
+                                                    <td x-text="trueFalseToYesNo(prop.isIdentity)"></td>
+                                                </template>
+                                                <td x-text="trueFalseToYesNo(prop.isSensitiveData)"></td>
+                                                <td x-text="prop.cardinality"></td>
+                                                <td x-text="prop.definition"></td>
+                                                <template x-if="showMerge">
+                                                    <td>
+                                                        <template
+                                                            x-if="prop.mergeDirectives && prop.mergeDirectives.length">
+                                                            <template x-for="(merge, index) in prop.mergeDirectives"
+                                                                :key="`merge-${index}`">
+                                                                <div
+                                                                    :style="getMergeStyle(merge, index === prop.mergeDirectives.length - 1)">
+                                                                    <template
+                                                                        x-for="(path, pathIndex) in merge.propertyPath"
+                                                                        :key="`proppath-${index}-${pathIndex}`">
+                                                                        <span>
+                                                                            <span x-text="path"></span>
+                                                                            <template
+                                                                                x-if="pathIndex < merge.propertyPath.length - 1">
+                                                                                <span>.</span>
+                                                                            </template>
+                                                                        </span>
+                                                                    </template>
+                                                                    with
+                                                                    <template
+                                                                        x-for="(path, pathIndex) in merge.targetPath"
+                                                                        :key="`targetpath-${index}-${pathIndex}`">
+                                                                        <span>
+                                                                            <span x-text="path"></span>
+                                                                            <template
+                                                                                x-if="pathIndex < merge.targetPath.length - 1">
+                                                                                <span>.</span>
+                                                                            </template>
+                                                                        </span>
+                                                                    </template>
+                                                                </div>
+                                                            </template>
+                                                        </template>
+                                                    </td>
+                                                </template>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </template>
+                    <template
+                        x-if="selectedEntity.modelReferencesUsedByProperties && selectedEntity.modelReferencesUsedByProperties.length">
+                        <div>
+                            <h3>Used By</h3>
+                            <ul>
+                                <template x-for="(usedBy, index) in selectedEntity.modelReferencesUsedByProperties"
+                                    :key="`usedby-${index}-${usedBy.entityName}-${usedBy.propertyName}`">
+                                    <li>
+                                        <a href="#" @click.prevent="navigateToEntity(usedBy.referenceUniqueIdentifier)"
+                                            :title="`${usedBy.entityName} - ${usedBy.propertyName}`"
+                                            x-text="usedBy.entityName"></a>
+                                        .<span x-text="usedBy.propertyName"></span> (as <span
+                                            x-text="usedBy.cardinality"></span>)
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    <template x-if="selectedEntity.domains && selectedEntity.domains.length">
+                        <div>
+                            <h3>Domains</h3>
+                            <ul>
+                                <template x-for="(domain, index) in selectedEntity.domains"
+                                    :key="`dom-${index}-${domain}`">
+                                    <li x-text="domain"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    <template x-if="selectedEntity.xsdFragment && selectedEntity.xsdFragment.length">
+                        <div>
+                            <h3>XSD</h3>
+                            <pre><code class="language-xml" x-text="selectedEntity.xsdFragment"></code></pre>
+                        </div>
+                    </template>
+                    <template x-if="selectedEntity.odsFragment && selectedEntity.odsFragment.length">
+                        <div>
+                            <h3>SQL Server Snippet</h3>
+                            <template x-for="(fragment, index) in selectedEntity.odsFragment" :key="`ods-${index}`">
+                                <pre><code class="language-edfisql" x-text="fragment"></code></pre>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
         </div>
     </div>
 </body>
