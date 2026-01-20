@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when an association subclass subclasses StudentProgramAssociation association should have validation failures: when an association subclass subclasses StudentProgramAssociation association should have validation failure -> message 1`] = `"Association Subclass SubclassName is not a GeneralStudentProgramAssociation subclass.  GeneralStudentProgramAssociation subclasses are the only Association subclasses currently supported by the ODS/API."`;
 

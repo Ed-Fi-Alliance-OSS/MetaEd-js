@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when validating abstract entity with no identity fields should have validation failure: when validating abstract entity with no identity fields -> message 1`] = `"Abstract Entity EntityName does not have an identity specified."`;
 
