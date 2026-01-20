@@ -38,6 +38,7 @@
     "metaed:build": "node ./packages/metaed-console/dist/index.js",
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy-console/dist/index.js",
     "build": "lerna run build --stream",
+    "build:since": "lerna run build --stream --parallel --since",
     "build:clean": "lerna run build:clean --stream",
     "test": "npm run build:clean && npm run test:lint && npm run test:unit",
     "test:coverage": "rimraf coverage/ && jest --coverage",
