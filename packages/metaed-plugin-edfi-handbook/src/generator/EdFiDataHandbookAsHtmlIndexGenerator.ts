@@ -34,7 +34,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   const results: GeneratedOutput[] = [];
   results.push({
-    name: 'Ed-Fi Data Handbook',
+    name: 'Ed-Fi Unified Data Model Handbook',
     namespace: 'Documentation',
     folderName: 'Ed-Fi-Handbook',
     fileName: 'Ed-Fi-Data-Handbook-Index.html',
