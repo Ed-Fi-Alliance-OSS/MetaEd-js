@@ -113,8 +113,10 @@ describe('when generating HTML version of handbook', (): void => {
   });
 
   it('should include isSensitiveData information for properties', (): void => {
-    expect(generatorResults.generatedOutput[0].resultString).toContain('"isIdentity":true');
+    expect(generatorResults.generatedOutput[0].resultString).toContain('<td>{{r.isSensitiveData | trueFalseToYesNo}}</td>');
+    expect(generatorResults.generatedOutput[0].resultString).toContain('"isSensitiveData":true');
   });
+
   it('should include "Used By" entries showing which entities use Currency type', (): void => {
     const htmlOutput = generatorResults.generatedOutput[0].resultString;
 
