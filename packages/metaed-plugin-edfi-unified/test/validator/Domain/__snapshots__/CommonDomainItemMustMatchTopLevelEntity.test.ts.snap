@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating inline common domain item does not match top level entity should have one validation failure() 1`] = `"Common Domain Item property 'InlineCommonDomainItemName' does not match any declared Common or Inline Common in namespace EdFi."`;
 

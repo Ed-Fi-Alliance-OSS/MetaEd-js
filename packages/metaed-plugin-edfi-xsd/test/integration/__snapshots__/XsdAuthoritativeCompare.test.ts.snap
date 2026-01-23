@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when generating xsd and comparing it to data standard 5.2 authoritative artifacts should have complex types in the correct order 1`] = `
 Array [

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating merge property type mismatch should have validation failure: when validating merge property type mismatch should have validation failure -> message  1`] = `"The merge paths 'DomainEntityName1.DomainEntityName2' and 'ContextName1DomainEntityName1' do not correspond to the same entity."`;
 

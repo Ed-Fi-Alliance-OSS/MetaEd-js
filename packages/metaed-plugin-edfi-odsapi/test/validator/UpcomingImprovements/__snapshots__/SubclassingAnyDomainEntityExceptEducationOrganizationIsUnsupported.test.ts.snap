@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when a domain entity subclass subclasses a non-EducationOrganization domain entity should have validation failures: when a domain entity subclass subclasses a non-EducationOrganization domain entity should have validation failure -> message 1`] = `"Domain Entity Subclass SubclassName is not an EducationOrganization subclass.  EducationOrganization subclasses are the only Domain Entity subclasses currently supported by the ODS/API."`;
 

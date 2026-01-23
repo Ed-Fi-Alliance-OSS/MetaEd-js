@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when common extension is in core namespace should have validation failure: when common extension is in core namespace should have validation failure -> message 1`] = `"Common additions 'CommonName' is not valid in core namespace 'EdFi"`;
 
