@@ -427,15 +427,21 @@
                     return this.entries.some(e => e.uniqueIdentifier === uniqueIdentifier);
                 },
 
+                escapeRegex(str) {
+                    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                },
+
                 highlightText(text, phrase) {
                     if (!phrase || !text) return text;
-                    const regex = new RegExp(`(${phrase})`, 'gi');
+                    const escapedPhrase = this.escapeRegex(phrase);
+                    const regex = new RegExp(`(${escapedPhrase})`, 'gi');
                     return text.replace(regex, '<span class="highlight-text">$1</span>');
                 },
 
                 boldText(text, phrase) {
                     if (!phrase || !text) return text;
-                    const regex = new RegExp(`(${phrase})`, 'gi');
+                    const escapedPhrase = this.escapeRegex(phrase);
+                    const regex = new RegExp(`(${escapedPhrase})`, 'gi');
                     return text.replace(regex, '<b>$1</b>');
                 },
 
