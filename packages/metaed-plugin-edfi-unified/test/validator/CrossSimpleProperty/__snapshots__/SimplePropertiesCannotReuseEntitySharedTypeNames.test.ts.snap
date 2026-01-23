@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when building shared integer with duplicate integer property in core namespace should have validation failures for each entity 1`] = `"Shared Integer named EntityName is a duplicate declaration of that name."`;
 

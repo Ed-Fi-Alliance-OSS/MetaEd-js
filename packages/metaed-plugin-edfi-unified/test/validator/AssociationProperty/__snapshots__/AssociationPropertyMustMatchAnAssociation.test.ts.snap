@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when association property has invalid identifier of association in dependency namespace should have validation failure for property 1`] = `"Association property 'NotValid' does not match any declared Association or Association Subclass in namespace Extension."`;
 

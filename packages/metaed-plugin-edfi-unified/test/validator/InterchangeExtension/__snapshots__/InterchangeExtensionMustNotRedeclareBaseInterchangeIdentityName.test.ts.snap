@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when interchange extension identity templates duplicates multiple names in base interchange should have validation failures 1`] = `"Interchange additions InterchangeName redeclares property DomainEntityIdentityTemplateName1 of base Interchange."`;
 
