@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating common property has extension override of non common type extension should have validation failure for property 1`] = `"No common extension named CommonType is declared in namespace Extension."`;
 

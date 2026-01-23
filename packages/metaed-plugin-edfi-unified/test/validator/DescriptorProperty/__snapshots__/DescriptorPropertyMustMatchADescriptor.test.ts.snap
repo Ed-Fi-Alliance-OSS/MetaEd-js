@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when descriptor property has invalid identifier should have validation failures 1`] = `"Descriptor property PropertyName2 does not match any declared descriptor in namespace EdFi."`;
 

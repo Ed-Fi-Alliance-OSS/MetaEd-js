@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when referring to invalid namespace should have validation failure 1`] = `"Xyz is a not a valid project namespace."`;
 
