@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when shared integer property has identifier of shared short should have validation failure for property 1`] = `"Shared integer property 'SharedName' does not match any declared Shared Integer in namespace EdFi."`;
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when domain entity extension extends an invalid identifier should have validation failures() 1`] = `"Domain Entity additions 'EntityName' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi."`;
 

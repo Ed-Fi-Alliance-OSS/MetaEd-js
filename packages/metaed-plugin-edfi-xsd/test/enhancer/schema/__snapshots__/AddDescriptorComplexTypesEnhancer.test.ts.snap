@@ -1,3 +1,3 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when enhancing descriptor with property and map type should create map type item element 1`] = `"The mapping to a known ComplexTypeName enumeration type."`;

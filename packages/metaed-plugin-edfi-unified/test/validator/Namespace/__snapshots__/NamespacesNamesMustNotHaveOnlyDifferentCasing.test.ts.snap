@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating namespaces are different only in casing should have validation failure 1`] = `"EdFi is a project name that differs only in case from another name.  Make the casing the same to indicate the same namespace or choose a different name."`;
 
