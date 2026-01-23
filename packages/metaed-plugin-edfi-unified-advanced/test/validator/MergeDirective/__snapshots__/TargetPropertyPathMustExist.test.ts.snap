@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating domain entity has merge property across namespaces and entity is wrong should have one validation failure 1`] = `"Merge directive EntityNotValid.Property2 must be a valid path. Either the path is not to a mergeable type, or no property 'Property2' was found"`;
 
