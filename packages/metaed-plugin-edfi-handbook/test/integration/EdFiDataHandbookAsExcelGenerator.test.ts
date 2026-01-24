@@ -144,15 +144,13 @@ describe('when generating excel version of handbook', (): void => {
           null,
           "Contains:
       EducationOrganizationId (identity)",
-          "edfi.EducationOrganization
-
-      EducationOrganizationId [INT] NOT NULL
-      CreateDate [DATETIME] NOT NULL
-      LastModifiedDate [DATETIME] NOT NULL
-      Id [UNIQUEIDENTIFIER] NOT NULL
-
-      Primary Keys:
-      EducationOrganizationId",
+          "CREATE TABLE edfi.EducationOrganization (
+          EducationOrganizationId [INT] NOT NULL,
+          CreateDate [DATETIME] NOT NULL,
+          LastModifiedDate [DATETIME] NOT NULL,
+          Id [UNIQUEIDENTIFIER] NOT NULL,
+          CONSTRAINT PK_EducationOrganization PRIMARY KEY (EducationOrganizationId)
+      )",
           null,
         ],
         Array [
@@ -165,28 +163,21 @@ describe('when generating excel version of handbook', (): void => {
       Entity1DateCollection (optional collection)
       Entity1Integer (identity)
       Entity1String (required)",
-          "edfi.Entity1
+          "CREATE TABLE edfi.Entity1 (
+          Entity1Integer [INT] NOT NULL,
+          Entity1String [NVARCHAR](0) NOT NULL,
+          CreateDate [DATETIME] NOT NULL,
+          LastModifiedDate [DATETIME] NOT NULL,
+          Id [UNIQUEIDENTIFIER] NOT NULL,
+          CONSTRAINT PK_Entity1 PRIMARY KEY (Entity1Integer)
+      )
 
-      Entity1Integer [INT] NOT NULL
-      Entity1String [NVARCHAR](0) NOT NULL
-      CreateDate [DATETIME] NOT NULL
-      LastModifiedDate [DATETIME] NOT NULL
-      Id [UNIQUEIDENTIFIER] NOT NULL
-
-      Primary Keys:
-      Entity1Integer
-
-
-
-      edfi.Entity1DateCollection
-
-      Entity1DateCollection [DATE] NOT NULL
-      Entity1Integer [INT] NOT NULL
-      CreateDate [DATETIME] NOT NULL
-
-      Primary Keys:
-      Entity1DateCollection
-      Entity1Integer",
+      CREATE TABLE edfi.Entity1DateCollection (
+          Entity1DateCollection [DATE] NOT NULL,
+          Entity1Integer [INT] NOT NULL,
+          CreateDate [DATETIME] NOT NULL,
+          CONSTRAINT PK_Entity1DateCollection PRIMARY KEY (Entity1DateCollection, Entity1Integer)
+      )",
           null,
         ],
         Array [
@@ -199,28 +190,21 @@ describe('when generating excel version of handbook', (): void => {
       Entity2DateCollection (optional collection)
       Entity2Integer (identity)
       Entity2String (required)",
-          "edfi.Entity2
+          "CREATE TABLE edfi.Entity2 (
+          Entity2Integer [INT] NOT NULL,
+          Entity2String [NVARCHAR](0) NOT NULL,
+          CreateDate [DATETIME] NOT NULL,
+          LastModifiedDate [DATETIME] NOT NULL,
+          Id [UNIQUEIDENTIFIER] NOT NULL,
+          CONSTRAINT PK_Entity2 PRIMARY KEY (Entity2Integer)
+      )
 
-      Entity2Integer [INT] NOT NULL
-      Entity2String [NVARCHAR](0) NOT NULL
-      CreateDate [DATETIME] NOT NULL
-      LastModifiedDate [DATETIME] NOT NULL
-      Id [UNIQUEIDENTIFIER] NOT NULL
-
-      Primary Keys:
-      Entity2Integer
-
-
-
-      edfi.Entity2DateCollection
-
-      Entity2DateCollection [DATE] NOT NULL
-      Entity2Integer [INT] NOT NULL
-      CreateDate [DATETIME] NOT NULL
-
-      Primary Keys:
-      Entity2DateCollection
-      Entity2Integer",
+      CREATE TABLE edfi.Entity2DateCollection (
+          Entity2DateCollection [DATE] NOT NULL,
+          Entity2Integer [INT] NOT NULL,
+          CreateDate [DATETIME] NOT NULL,
+          CONSTRAINT PK_Entity2DateCollection PRIMARY KEY (Entity2DateCollection, Entity2Integer)
+      )",
           "Entity2String",
         ],
         Array [
