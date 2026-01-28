@@ -4493,6 +4493,9 @@
             }
           }
         },
+        "relational": {
+          "rootTableNameOverride": "ContactExtension"
+        },
         "resourceName": "Contact",
         "securableElements": {
           "Contact": [
@@ -5994,6 +5997,12 @@
             }
           }
         },
+        "relational": {
+          "nameOverrides": {
+            "$._ext.sample.directlyOwnedBuses[*].directlyOwnedBusReference": "DirectlyOwned_Bus"
+          },
+          "rootTableNameOverride": "SchoolExtension"
+        },
         "resourceName": "School",
         "securableElements": {
           "Contact": [
@@ -6307,6 +6316,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "StaffExtension"
         },
         "resourceName": "Staff",
         "securableElements": {
@@ -8288,6 +8300,13 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.favoriteBook.artMedia[*]": "FavoriteBookArtMedium",
+            "$.portfolioYears[*]": "PortfolioYears",
+            "$.programReference": "Program_Program"
+          }
+        },
         "resourceName": "StudentArtProgramAssociation",
         "securableElements": {
           "Contact": [
@@ -8447,6 +8466,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "StudentCTEProgramAssociationExtension"
         },
         "resourceName": "StudentCTEProgramAssociation",
         "securableElements": {
@@ -9463,6 +9485,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "StudentContactAssociationExtension"
         },
         "resourceName": "StudentContactAssociation",
         "securableElements": {
@@ -10679,6 +10704,12 @@
               }
             }
           }
+        },
+        "relational": {
+          "nameOverrides": {
+            "$._ext.sample.favoriteProgramReference": "Favorite_Program"
+          },
+          "rootTableNameOverride": "StudentEducationOrganizationAssociationExtension"
         },
         "resourceName": "StudentEducationOrganizationAssociation",
         "securableElements": {
@@ -12506,6 +12537,9 @@
             }
           }
         },
+        "relational": {
+          "rootTableNameOverride": "StudentSchoolAssociationExtension"
+        },
         "resourceName": "StudentSchoolAssociation",
         "securableElements": {
           "Contact": [
@@ -12753,6 +12787,12 @@
               }
             }
           }
+        },
+        "relational": {
+          "nameOverrides": {
+            "$._ext.sample.relatedGeneralStudentProgramAssociations[*].relatedGeneralStudentProgramAssociationReference": "Related_GeneralStudentProgramAssociation"
+          },
+          "rootTableNameOverride": "StudentSectionAssociationExtension"
         },
         "resourceName": "StudentSectionAssociation",
         "securableElements": {
@@ -13380,6 +13420,9 @@
               }
             }
           }
+        },
+        "relational": {
+          "rootTableNameOverride": "StudentExtension"
         },
         "resourceName": "Student",
         "securableElements": {

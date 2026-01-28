@@ -49,6 +49,12 @@ import { enhance as staffSecurableElementEnhancer } from './security/StaffSecura
 import { enhance as arrayUniquenessConstraintEnhancer } from './ArrayUniquenessConstraintEnhancer';
 import { enhance as educationOrganizationConfigurationEnhancer } from './security/EducationOrganizationConfigurationEnhancer';
 import { enhance as educationOrganizationIdentityConfigurationEnhancer } from './security/EducationOrganizationIdentityConfigurationEnhancer';
+import { enhance as relationalTableNodeEnhancer } from './relational/RelationalTableNodeEnhancer';
+import { enhance as relationalJsonPathNamingPlanEnhancer } from './relational/RelationalJsonPathNamingPlanEnhancer';
+import { enhance as relationalNamingPlanEnhancer } from './relational/RelationalNamingPlanEnhancer';
+import { enhance as relationalNameOverrideBuilderEnhancer } from './relational/RelationalNameOverrideBuilderEnhancer';
+import { enhance as relationalExtensionRootTableNamingEnhancer } from './relational/RelationalExtensionRootTableNamingEnhancer';
+import { enhance as relationalMetadataAssemblerEnhancer } from './relational/RelationalMetadataAssemblerEnhancer';
 import { enhance as flatteningTableMetadataEnhancer } from './flattening/FlatteningTableMetadataEnhancer';
 import { enhance as abstractResourceFlatteningMetadataEnhancer } from './flattening/AbstractResourceFlatteningMetadataEnhancer';
 
@@ -86,6 +92,12 @@ export function enhancerList(): Enhancer[] {
     identityJsonPathsEnhancer,
     typeCoercionJsonPathsEnhancer,
     sensitiveDataEnhancer,
+    relationalTableNodeEnhancer,
+    relationalJsonPathNamingPlanEnhancer,
+    relationalNamingPlanEnhancer,
+    relationalNameOverrideBuilderEnhancer,
+    relationalExtensionRootTableNamingEnhancer,
+    relationalMetadataAssemblerEnhancer,
     flatteningTableMetadataEnhancer,
     abstractResourceFlatteningMetadataEnhancer,
     openApiBaseDocumentEnhancer,

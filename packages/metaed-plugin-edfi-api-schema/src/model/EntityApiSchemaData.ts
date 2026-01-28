@@ -31,6 +31,11 @@ import { OpenApiFragment } from './api-schema/OpenApiFragment';
 import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
 import { FlatteningMetadata } from './flattening/FlatteningMetadata';
 import { AbstractResourceFlatteningMetadata } from './flattening/AbstractResourceFlatteningMetadata';
+import { RelationalMetadata } from './api-schema/RelationalMetadata';
+import { RelationalBaseName } from './api-schema/RelationalBaseName';
+import { RelationalTableNode } from './relational/RelationalTableNode';
+import { RelationalNamingPlan } from './relational/RelationalNamingPlan';
+import { RelationalNameOverrides } from './relational/RelationalNameOverrides';
 
 export type EntityApiSchemaData = {
   /**
@@ -243,6 +248,31 @@ export type EntityApiSchemaData = {
   flatteningMetadata?: FlatteningMetadata;
 
   /**
+   * Relational table nodes derived from collection properties for this entity.
+   */
+  relationalTableNodes: RelationalTableNode[];
+
+  /**
+   * JSON and relational naming plans derived from model metadata.
+   */
+  relationalNamingPlan: RelationalNamingPlan;
+
+  /**
+   * Relational name overrides derived from comparing JSON and relational naming plans.
+   */
+  relationalNameOverrides: RelationalNameOverrides;
+
+  /**
+   * Optional override for the relational root table base name.
+   */
+  relationalRootTableNameOverride?: RelationalBaseName;
+
+  /**
+   * Optional naming overrides used for relational mapping.
+   */
+  relational?: RelationalMetadata;
+
+  /**
    * Flattening information specific to abstract resources for union view generation.
    * Present only when the entity is abstract or treated as abstract in downstream pipelines.
    */
@@ -285,6 +315,10 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     arrayUniquenessConstraints: [],
     dateJsonPaths: [],
     openApiFragments: {},
+    relationalTableNodes: [],
+    relationalNamingPlan: { jsonBaseNames: {} },
+    relationalNameOverrides: {},
+    relationalRootTableNameOverride: undefined,
   });
 }
 

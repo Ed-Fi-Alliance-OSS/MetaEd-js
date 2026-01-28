@@ -762,6 +762,11 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.contactNameReference": "Contact_Name"
+          }
+        },
         "resourceName": "Contact",
         "securableElements": {
           "Contact": [
@@ -3023,6 +3028,11 @@
             }
           ]
         },
+        "relational": {
+          "nameOverrides": {
+            "$.staffNameReference": "Staff_Name"
+          }
+        },
         "resourceName": "Staff",
         "securableElements": {
           "Contact": [
@@ -4242,6 +4252,11 @@
               "type": "string"
             }
           ]
+        },
+        "relational": {
+          "nameOverrides": {
+            "$.studentNameReference": "Student_Name"
+          }
         },
         "resourceName": "Student",
         "securableElements": {
