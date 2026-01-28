@@ -130,7 +130,7 @@ function buildCommonExtensionSchema(
   commonExtension: CommonExtension,
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
-): SchemaObject {
+): { properties: SchemaProperties; required: string[] } {
   const extensionSchemaProperties: SchemaProperties = {};
   const extensionRequired: string[] = [];
 
@@ -159,26 +159,10 @@ function buildCommonExtensionSchema(
     }
   });
 
-  const projectName = commonExtension.namespace.projectName.toLowerCase();
-
-  const result: SchemaProperties = {
-    _ext: {
-      description: 'Extension properties',
-      type: 'object',
-      properties: {
-        [projectName]: {
-          description: `${projectName} extension properties`,
-          type: 'object',
-          properties: extensionSchemaProperties,
-          additionalProperties: false,
-          ...(extensionRequired.length > 0 && { required: extensionRequired }),
-        },
-      },
-      additionalProperties: false,
-    },
+  return {
+    properties: extensionSchemaProperties,
+    required: extensionRequired,
   };
-
-  return schemaObjectFrom(result, []);
 }
 
 /**
@@ -256,34 +240,8 @@ function schemaObjectForScalarCommonProperty(
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaObject {
-  const schemaProperties: SchemaProperties = {};
+  let schemaProperties: SchemaProperties = {};
   const required: string[] = [];
-
-  const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
-
-  collectedApiProperties.forEach((collectedApiProperty) => {
-    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
-      propertyModifier,
-      collectedApiProperty.propertyModifier,
-    );
-
-    const referencePropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
-      .apiMapping;
-    const schemaPropertyName: string = uncapitalize(
-      prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier),
-    );
-
-    const schemaProperty: SchemaProperty = schemaPropertyFor(
-      collectedApiProperty.property,
-      concatenatedPropertyModifier,
-      schoolYearSchemas,
-    );
-
-    schemaProperties[schemaPropertyName] = schemaProperty;
-    if (isSchemaPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
-      required.push(schemaPropertyName);
-    }
-  });
 
   // Check if this property is using the extension override mechanism
   if (property.isExtensionOverride) {
@@ -291,8 +249,35 @@ function schemaObjectForScalarCommonProperty(
 
     if (referencedCommonExtension !== NoCommonExtension) {
       const extensionSchema = buildCommonExtensionSchema(referencedCommonExtension, propertyModifier, schoolYearSchemas);
-      Object.assign(schemaProperties, extensionSchema.properties);
+      schemaProperties = extensionSchema.properties;
+      required.push(...extensionSchema.required);
     }
+  } else {
+    const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
+
+    collectedApiProperties.forEach((collectedApiProperty) => {
+      const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+        propertyModifier,
+        collectedApiProperty.propertyModifier,
+      );
+
+      const referencePropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
+        .apiMapping;
+      const schemaPropertyName: string = uncapitalize(
+        prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier),
+      );
+
+      const schemaProperty: SchemaProperty = schemaPropertyFor(
+        collectedApiProperty.property,
+        concatenatedPropertyModifier,
+        schoolYearSchemas,
+      );
+
+      schemaProperties[schemaPropertyName] = schemaProperty;
+      if (isSchemaPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
+        required.push(schemaPropertyName);
+      }
+    });
   }
 
   return schemaObjectFrom(schemaProperties, required);
