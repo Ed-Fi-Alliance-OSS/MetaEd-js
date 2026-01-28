@@ -301,7 +301,7 @@ function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarP
 /**
  * Creates a mapping of PropertyPaths to JsonPaths, filtering out PropertyPaths beyond a depth of one
  */
-function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
+function documentPathsMappingFor(entity: TopLevelEntity, isExtension: boolean = false): DocumentPathsMapping {
   const result: DocumentPathsMapping = {};
 
   const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
@@ -314,15 +314,28 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
     const { jsonPathPropertyPairs } = jsonPathsInfo;
     const property: EntityProperty = jsonPathsInfo.terminalProperty;
 
-    if (property.type === 'association' || property.type === 'domainEntity') {
-      const referenceProperty: ReferentialProperty = property as ReferentialProperty;
-      result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
-    } else if (property.type === 'descriptor') {
-      result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property);
-    } else if (property.type === 'schoolYearEnumeration') {
-      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs);
-    } else {
-      result[propertyPath] = buildScalarPath(jsonPathPropertyPairs);
+    if (isExtension && property.namespace.isExtension) {
+      if (property.type === 'association' || property.type === 'domainEntity') {
+        const referenceProperty: ReferentialProperty = property as ReferentialProperty;
+        result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
+      } else if (property.type === 'descriptor') {
+        result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property);
+      } else if (property.type === 'schoolYearEnumeration') {
+        result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs);
+      } else {
+        result[propertyPath] = buildScalarPath(jsonPathPropertyPairs);
+      }
+    } else if (!isExtension) {
+      if (property.type === 'association' || property.type === 'domainEntity') {
+        const referenceProperty: ReferentialProperty = property as ReferentialProperty;
+        result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
+      } else if (property.type === 'descriptor') {
+        result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property);
+      } else if (property.type === 'schoolYearEnumeration') {
+        result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs);
+      } else {
+        result[propertyPath] = buildScalarPath(jsonPathPropertyPairs);
+      }
     }
   });
 
@@ -345,6 +358,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     edfiApiSchemaData.documentPathsMapping = documentPathsMappingFor(entity as TopLevelEntity);
+  });
+
+  getAllEntitiesOfType(metaEd, 'domainEntityExtension', 'associationExtension').forEach((entity) => {
+    const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    edfiApiSchemaData.documentPathsMapping = documentPathsMappingFor(entity as TopLevelEntity, true);
   });
 
   // Descriptors have no document paths
