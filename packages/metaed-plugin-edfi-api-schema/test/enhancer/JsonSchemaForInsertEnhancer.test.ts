@@ -137,6 +137,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredDurationProperty": Object {
             "description": "doc4",
+            "maxLength": 30,
             "type": "string",
           },
           "requiredIntegerProperty": Object {
@@ -396,6 +397,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredDurationProperty": Object {
                   "description": "doc4",
+                  "maxLength": 30,
                   "type": "string",
                 },
               },
@@ -837,6 +839,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "properties": Object {
           "contentClassDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "contentIdentifier": Object {
@@ -1248,6 +1251,7 @@ describe('when building domain entity with a simple common collection', () => {
               "properties": Object {
                 "assessmentIdentificationSystemDescriptor": Object {
                   "description": "doc",
+                  "maxLength": 306,
                   "type": "string",
                 },
                 "identificationCode": Object {
@@ -1355,6 +1359,7 @@ describe('when building domain entity subclass with common collection and descri
               "properties": Object {
                 "educationOrganizationIdentificationSystemDescriptor": Object {
                   "description": "doc",
+                  "maxLength": 306,
                   "type": "string",
                 },
                 "identificationCode": Object {
@@ -1549,6 +1554,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "properties": Object {
           "assessedGradeLevelDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "assessmentIdentifier": Object {
@@ -1621,6 +1627,7 @@ describe('when building domain entity with a descriptor collection with role nam
               "properties": Object {
                 "gradeLevelDescriptor": Object {
                   "description": "An Ed-Fi Descriptor",
+                  "maxLength": 306,
                   "type": "string",
                 },
               },
@@ -2489,27 +2496,28 @@ describe('when building a domain entity with an inline common property with a de
   it('should be a correct schema for section', () => {
     const entity = namespace.entity.domainEntity.get('Section');
     expect(entity.data.edfiApiSchema.jsonSchemaForInsert).toMatchInlineSnapshot(`
-          Object {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "additionalProperties": false,
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "Documentation",
+        "properties": Object {
+          "availableCreditTypeDescriptor": Object {
             "description": "Documentation",
-            "properties": Object {
-              "availableCreditTypeDescriptor": Object {
-                "description": "Documentation",
-                "type": "string",
-              },
-              "sectionIdentifier": Object {
-                "description": "Documentation",
-                "type": "integer",
-              },
-            },
-            "required": Array [
-              "sectionIdentifier",
-            ],
-            "title": "EdFi.Section",
-            "type": "object",
-          }
-        `);
+            "maxLength": 306,
+            "type": "string",
+          },
+          "sectionIdentifier": Object {
+            "description": "Documentation",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+        ],
+        "title": "EdFi.Section",
+        "type": "object",
+      }
+    `);
   });
 
   it('should be well-formed according to ajv', () => {

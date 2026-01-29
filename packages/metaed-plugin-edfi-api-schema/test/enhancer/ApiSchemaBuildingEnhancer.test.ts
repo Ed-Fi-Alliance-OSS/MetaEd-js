@@ -178,6 +178,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredDurationProperty": Object {
             "description": "doc4",
+            "maxLength": 30,
             "type": "string",
           },
           "requiredIntegerProperty": Object {
@@ -451,6 +452,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredDurationProperty": Object {
                   "description": "doc4",
+                  "maxLength": 30,
                   "type": "string",
                 },
               },
@@ -1175,6 +1177,7 @@ describe('when building domain entity with nested choice and inline commons', ()
         "properties": Object {
           "contentClassDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "contentIdentifier": Object {
@@ -1642,6 +1645,7 @@ describe('when building domain entity with a simple common collection', () => {
               "properties": Object {
                 "assessmentIdentificationSystemDescriptor": Object {
                   "description": "doc",
+                  "maxLength": 306,
                   "type": "string",
                 },
                 "identificationCode": Object {
@@ -1759,6 +1763,7 @@ describe('when building domain entity subclass with common collection and descri
               "properties": Object {
                 "educationOrganizationIdentificationSystemDescriptor": Object {
                   "description": "doc",
+                  "maxLength": 306,
                   "type": "string",
                 },
                 "identificationCode": Object {
@@ -1979,6 +1984,7 @@ describe('when building domain entity with a descriptor with role name', () => {
         "properties": Object {
           "assessedGradeLevelDescriptor": Object {
             "description": "doc",
+            "maxLength": 306,
             "type": "string",
           },
           "assessmentIdentifier": Object {
@@ -2064,6 +2070,7 @@ describe('when building domain entity with a descriptor collection with role nam
               "properties": Object {
                 "gradeLevelDescriptor": Object {
                   "description": "An Ed-Fi Descriptor",
+                  "maxLength": 306,
                   "type": "string",
                 },
               },
@@ -2899,6 +2906,7 @@ describe('when building a domain entity with an inline common property with a de
         "properties": Object {
           "availableCreditTypeDescriptor": Object {
             "description": "Documentation",
+            "maxLength": 306,
             "type": "string",
           },
           "sectionIdentifier": Object {
