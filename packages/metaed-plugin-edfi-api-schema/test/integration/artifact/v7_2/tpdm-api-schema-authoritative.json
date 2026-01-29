@@ -11188,22 +11188,22 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 3,
-            "path": "$.minRating",
-            "totalDigits": 6
-          },
-          {
-            "decimalPlaces": 3,
             "path": "$.maxRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
-            "path": "$.ratingLevels[*].minRating",
+            "path": "$.minRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
             "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
             "totalDigits": 6
           }
         ],
@@ -13385,22 +13385,22 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 3,
-            "path": "$.minRating",
-            "totalDigits": 6
-          },
-          {
-            "decimalPlaces": 3,
             "path": "$.maxRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
-            "path": "$.ratingLevels[*].minRating",
+            "path": "$.minRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
             "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
             "totalDigits": 6
           }
         ],
@@ -18149,22 +18149,22 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 3,
-            "path": "$.minRating",
-            "totalDigits": 6
-          },
-          {
-            "decimalPlaces": 3,
             "path": "$.maxRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
-            "path": "$.ratingLevels[*].minRating",
+            "path": "$.minRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
             "path": "$.ratingLevels[*].maxRating",
+            "totalDigits": 6
+          },
+          {
+            "decimalPlaces": 3,
+            "path": "$.ratingLevels[*].minRating",
             "totalDigits": 6
           }
         ],
@@ -23360,12 +23360,12 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 3,
-            "path": "$.ratingLevels[*].minRating",
+            "path": "$.ratingLevels[*].maxRating",
             "totalDigits": 6
           },
           {
             "decimalPlaces": 3,
-            "path": "$.ratingLevels[*].maxRating",
+            "path": "$.ratingLevels[*].minRating",
             "totalDigits": 6
           }
         ],
