@@ -6,6 +6,24 @@
 import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, DecimalProperty } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { DecimalPropertyValidationInfo } from '../model/api-schema/DecimalPropertyValidationInfo';
+import { JsonPath } from '../model/api-schema/JsonPath';
+
+const CurrencyTotalDigits: number = 19;
+const CurrencyDecimalPlaces: number = 4;
+const PercentTotalDigits: number = 5;
+const PercentDecimalPlaces: number = 4;
+
+/**
+ * Adds a DecimalPropertyValidationInfo entry if the path is not already present.
+ */
+function addDecimalPropertyValidationInfo(
+  decimalInfosByPath: Map<JsonPath, DecimalPropertyValidationInfo>,
+  info: DecimalPropertyValidationInfo,
+): void {
+  if (!decimalInfosByPath.has(info.path)) {
+    decimalInfosByPath.set(info.path, info);
+  }
+}
 
 /**
  * Accumulates the DecimalPropertyValidationInfos for use in validating decimal scale and precision
@@ -20,8 +38,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'domainEntityExtension',
     'associationExtension',
   ).forEach((entity) => {
-    // Using Set to remove duplicates
-    const decimalResult: Set<DecimalPropertyValidationInfo> = new Set();
+    const decimalInfosByPath: Map<JsonPath, DecimalPropertyValidationInfo> = new Map();
 
     const { allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
@@ -40,7 +57,25 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             if (decimalProperty.decimalPlaces != null) {
               result.decimalPlaces = Number(decimalProperty.decimalPlaces);
             }
-            decimalResult.add(result);
+            addDecimalPropertyValidationInfo(decimalInfosByPath, result);
+            break;
+          }
+          case 'currency': {
+            const result: DecimalPropertyValidationInfo = {
+              path: jppp.jsonPath,
+              totalDigits: CurrencyTotalDigits,
+              decimalPlaces: CurrencyDecimalPlaces,
+            };
+            addDecimalPropertyValidationInfo(decimalInfosByPath, result);
+            break;
+          }
+          case 'percent': {
+            const result: DecimalPropertyValidationInfo = {
+              path: jppp.jsonPath,
+              totalDigits: PercentTotalDigits,
+              decimalPlaces: PercentDecimalPlaces,
+            };
+            addDecimalPropertyValidationInfo(decimalInfosByPath, result);
             break;
           }
           default:
@@ -50,7 +85,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       });
     });
 
-    (entity.data.edfiApiSchema as EntityApiSchemaData).decimalPropertyValidationInfos = [...decimalResult].sort();
+    (entity.data.edfiApiSchema as EntityApiSchemaData).decimalPropertyValidationInfos = [
+      ...decimalInfosByPath.values(),
+    ].sort((left, right) => left.path.localeCompare(right.path));
   });
 
   // Descriptors have no decimal properties

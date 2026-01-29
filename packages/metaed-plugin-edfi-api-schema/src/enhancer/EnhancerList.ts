@@ -55,8 +55,6 @@ import { enhance as relationalNamingPlanEnhancer } from './relational/Relational
 import { enhance as relationalNameOverrideBuilderEnhancer } from './relational/RelationalNameOverrideBuilderEnhancer';
 import { enhance as relationalExtensionRootTableNamingEnhancer } from './relational/RelationalExtensionRootTableNamingEnhancer';
 import { enhance as relationalMetadataAssemblerEnhancer } from './relational/RelationalMetadataAssemblerEnhancer';
-import { enhance as flatteningTableMetadataEnhancer } from './flattening/FlatteningTableMetadataEnhancer';
-import { enhance as abstractResourceFlatteningMetadataEnhancer } from './flattening/AbstractResourceFlatteningMetadataEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -98,8 +96,6 @@ export function enhancerList(): Enhancer[] {
     relationalNameOverrideBuilderEnhancer,
     relationalExtensionRootTableNamingEnhancer,
     relationalMetadataAssemblerEnhancer,
-    flatteningTableMetadataEnhancer,
-    abstractResourceFlatteningMetadataEnhancer,
     openApiBaseDocumentEnhancer,
     openApiResourceFragmentEnhancer,
     namespaceSecurableElementEnhancer,

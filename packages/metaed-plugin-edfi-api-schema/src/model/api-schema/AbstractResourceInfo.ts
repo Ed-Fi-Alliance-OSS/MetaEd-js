@@ -5,7 +5,6 @@
 
 import { JsonPath } from './JsonPath';
 import { OpenApiFragment } from './OpenApiFragment';
-import { AbstractResourceFlatteningMetadata } from '../flattening/AbstractResourceFlatteningMetadata';
 
 export type AbstractResourceInfo = {
   /**
@@ -18,10 +17,4 @@ export type AbstractResourceInfo = {
    * Optional during transition phase.
    */
   openApiFragment?: OpenApiFragment;
-
-  /**
-   * Flattening metadata produced for this abstract resource.
-   * Provides subclass listings and union view naming for downstream consumers.
-   */
-  flatteningMetadata?: AbstractResourceFlatteningMetadata;
 };

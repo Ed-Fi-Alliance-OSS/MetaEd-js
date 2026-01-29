@@ -1495,17 +1495,17 @@ describe('when building a domain entity referencing another referencing another 
     runApiSchemaPrerequisites(metaEd);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministrationParticipation', () => {
+  it('should be correct relational table nodes for AssessmentAdministrationParticipation', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+  it('should be correct relational table nodes for AssessmentAdministration', () => {
     const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
     expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct flatteningMetadata for EducationOrganization', () => {
+  it('should be correct relational table nodes for EducationOrganization', () => {
     const entity = namespace.entity.domainEntity.get('EducationOrganization');
     expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
   });
@@ -1567,31 +1567,31 @@ describe(
       const entity = metaEd.namespace
         .get(namespaceName)
         ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
-      const flatteningMetadata = summarizeRelationalTableNodes(entity);
-      expect(flatteningMetadata).toMatchInlineSnapshot(`Array []`);
+      const relationalTableNodes = summarizeRelationalTableNodes(entity);
+      expect(relationalTableNodes).toMatchInlineSnapshot(`Array []`);
     });
 
-    it('should be correct flatteningMetadata for StudentAssessmentRegistration', () => {
+    it('should be correct relational table nodes for StudentAssessmentRegistration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessmentRegistration');
       expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
     });
 
-    it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+    it('should be correct relational table nodes for AssessmentAdministration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('AssessmentAdministration');
       expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
     });
 
-    it('should be correct flatteningMetadata for StudentEducationOrganizationAssociation', () => {
+    it('should be correct relational table nodes for StudentEducationOrganizationAssociation', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentEducationOrganizationAssociation');
       expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
     });
 
-    it('should be correct flatteningMetadata for EducationOrganization', () => {
+    it('should be correct relational table nodes for EducationOrganization', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('EducationOrganization');
       expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
     });
 
-    it('should be correct flatteningMetadata for UnusedEntity', () => {
+    it('should be correct relational table nodes for UnusedEntity', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('UnusedEntity');
       expect(summarizeRelationalTableNodes(entity)).toMatchInlineSnapshot(`Array []`);
     });

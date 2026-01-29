@@ -106,7 +106,6 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: false,
     openApiFragments: entityApiSchemaData.openApiFragments,
-    flatteningMetadata: entityApiSchemaData.flatteningMetadata,
     relational: entityApiSchemaData.relational,
   };
 }
@@ -145,7 +144,6 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     identityJsonPaths: entityApiSchemaData.identityJsonPaths ?? [],
     isDescriptor: entity.type === 'descriptor',
     isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
-    flatteningMetadata: entityApiSchemaData.flatteningMetadata,
     relational: entityApiSchemaData.relational,
   };
 }
@@ -227,14 +225,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Abstract entities are not resources (e.g. EducationOrganization)
       if ((domainEntity as DomainEntity).isAbstract) {
         const entityApiSchemaData = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
-        const { identityJsonPaths, openApiFragments, abstractResourceFlatteningMetadata } = entityApiSchemaData;
+        const { identityJsonPaths, openApiFragments } = entityApiSchemaData;
         const abstractResourceInfo: AbstractResourceInfo = {
           identityJsonPaths,
           openApiFragment: openApiFragments?.[OpenApiDocumentType.RESOURCES],
         };
-        if (abstractResourceFlatteningMetadata != null) {
-          abstractResourceInfo.flatteningMetadata = abstractResourceFlatteningMetadata;
-        }
         abstractResources[domainEntity.metaEdName] = abstractResourceInfo;
         return;
       }
@@ -249,14 +244,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // be abstract although there is no MetaEd language annotation to make an Association abstract.
       if (association.metaEdName === 'GeneralStudentProgramAssociation') {
         const entityApiSchemaData = association.data.edfiApiSchema as EntityApiSchemaData;
-        const { identityJsonPaths, openApiFragments, abstractResourceFlatteningMetadata } = entityApiSchemaData;
+        const { identityJsonPaths, openApiFragments } = entityApiSchemaData;
         const abstractResourceInfo: AbstractResourceInfo = {
           identityJsonPaths,
           openApiFragment: openApiFragments?.[OpenApiDocumentType.RESOURCES],
         };
-        if (abstractResourceFlatteningMetadata != null) {
-          abstractResourceInfo.flatteningMetadata = abstractResourceFlatteningMetadata;
-        }
         abstractResources[association.metaEdName] = abstractResourceInfo;
         return;
       }

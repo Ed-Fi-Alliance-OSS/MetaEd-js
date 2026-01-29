@@ -29,8 +29,6 @@ import { ArrayUniquenessConstraint } from './api-schema/ArrayUniquenessConstrain
 import { DomainName } from './api-schema/DomainName';
 import { OpenApiFragment } from './api-schema/OpenApiFragment';
 import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
-import { FlatteningMetadata } from './flattening/FlatteningMetadata';
-import { AbstractResourceFlatteningMetadata } from './flattening/AbstractResourceFlatteningMetadata';
 import { RelationalMetadata } from './api-schema/RelationalMetadata';
 import { RelationalBaseName } from './api-schema/RelationalBaseName';
 import { RelationalTableNode } from './relational/RelationalTableNode';
@@ -104,15 +102,9 @@ export type EntityApiSchemaData = {
 
   /**
    * Canonical JSON paths to collection containers keyed by MetaEd property paths. Used by downstream
-   * flattening logic when the document paths map does not expose array-level entries.
+   * mapping logic when the document paths map does not expose array-level entries.
    */
   collectionContainerPaths: { [key: string]: JsonPath };
-
-  /**
-   * Flattening-only catalog of collection container JsonPaths normalized to top-level property chains.
-   * Populated by the flattening collection container catalog enhancer after AllJsonPathsMapping runs.
-   */
-  flatteningCollectionContainerPaths: { [key: string]: JsonPath };
 
   /**
    * Alias document path entries keyed by MetaEd property paths that are absent from the primary
@@ -242,12 +234,6 @@ export type EntityApiSchemaData = {
   };
 
   /**
-   * Metadata for flattening this entity to relational database tables.
-   * Contains the complete table hierarchy including nested collections.
-   */
-  flatteningMetadata?: FlatteningMetadata;
-
-  /**
    * Relational table nodes derived from collection properties for this entity.
    */
   relationalTableNodes: RelationalTableNode[];
@@ -271,12 +257,6 @@ export type EntityApiSchemaData = {
    * Optional naming overrides used for relational mapping.
    */
   relational?: RelationalMetadata;
-
-  /**
-   * Flattening information specific to abstract resources for union view generation.
-   * Present only when the entity is abstract or treated as abstract in downstream pipelines.
-   */
-  abstractResourceFlatteningMetadata?: AbstractResourceFlatteningMetadata;
 };
 
 /**
@@ -297,7 +277,6 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     collectedApiProperties: [],
     allJsonPathsMapping: {},
     collectionContainerPaths: {},
-    flatteningCollectionContainerPaths: {},
     documentPathsMappingAliases: {},
     mergeJsonPathsMapping: {},
     equalityConstraints: [],
