@@ -68,6 +68,8 @@ describe('when building a domain entity with decimal properties', () => {
       .withStringIdentity('StringIdentity', 'String identity', '30', '20')
       .withDecimalProperty('RegularDecimalProperty', 'Regular decimal property', false, false, '5', '2')
       .withDecimalProperty('RequiredDecimalProperty', 'Required decimal property', true, false, '8', '4')
+      .withCurrencyProperty('CurrencyProperty', 'Currency property', false, false)
+      .withPercentProperty('PercentProperty', 'Percent property', false, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -82,18 +84,29 @@ describe('when building a domain entity with decimal properties', () => {
     const decimalPropertyValidationInfos = entity?.data.edfiApiSchema.decimalPropertyValidationInfos;
 
     expect(decimalPropertyValidationInfos).toBeDefined();
-    expect(decimalPropertyValidationInfos.length).toBe(2);
-
-    // Check regular decimal property
-    const regularDecimal = decimalPropertyValidationInfos.find((info) => info.path === '$.regularDecimalProperty');
-    expect(regularDecimal).toBeDefined();
-    expect(regularDecimal?.totalDigits).toBe(5);
-    expect(regularDecimal?.decimalPlaces).toBe(2);
-
-    // Check required decimal property
-    const requiredDecimal = decimalPropertyValidationInfos.find((info) => info.path === '$.requiredDecimalProperty');
-    expect(requiredDecimal).toBeDefined();
-    expect(requiredDecimal?.totalDigits).toBe(8);
-    expect(requiredDecimal?.decimalPlaces).toBe(4);
+    expect(decimalPropertyValidationInfos).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "decimalPlaces": 4,
+          "path": "$.currencyProperty",
+          "totalDigits": 19,
+        },
+        Object {
+          "decimalPlaces": 4,
+          "path": "$.percentProperty",
+          "totalDigits": 5,
+        },
+        Object {
+          "decimalPlaces": 2,
+          "path": "$.regularDecimalProperty",
+          "totalDigits": 5,
+        },
+        Object {
+          "decimalPlaces": 4,
+          "path": "$.requiredDecimalProperty",
+          "totalDigits": 8,
+        },
+      ]
+    `);
   });
 });

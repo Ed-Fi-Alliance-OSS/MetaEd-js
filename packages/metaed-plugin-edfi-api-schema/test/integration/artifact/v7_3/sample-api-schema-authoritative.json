@@ -677,12 +677,22 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 2,
-            "path": "$.weeklyMileage",
+            "path": "$.hoursPerWeek",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$.operatingCost",
+            "totalDigits": 19
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$.optimalCapacity",
             "totalDigits": 5
           },
           {
             "decimalPlaces": 2,
-            "path": "$.hoursPerWeek",
+            "path": "$.weeklyMileage",
             "totalDigits": 5
           }
         ],
@@ -2506,8 +2516,18 @@
           },
           {
             "decimalPlaces": 4,
+            "path": "$._ext.sample.coffeeSpend",
+            "totalDigits": 19
+          },
+          {
+            "decimalPlaces": 4,
             "path": "$._ext.sample.gpa",
             "totalDigits": 18
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$._ext.sample.rainCertainty",
+            "totalDigits": 5
           }
         ],
         "documentPathsMapping": {
@@ -5537,14 +5557,24 @@
         ],
         "decimalPropertyValidationInfos": [
           {
+            "decimalPlaces": 2,
+            "path": "$.hoursPerDay",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$.masteredMediums",
+            "totalDigits": 5
+          },
+          {
             "decimalPlaces": 4,
             "path": "$.numberOfDaysInAttendance",
             "totalDigits": 18
           },
           {
-            "decimalPlaces": 2,
-            "path": "$.hoursPerDay",
-            "totalDigits": 5
+            "decimalPlaces": 4,
+            "path": "$.programFees",
+            "totalDigits": 19
           }
         ],
         "documentPathsMapping": {
@@ -7314,14 +7344,24 @@
         ],
         "decimalPropertyValidationInfos": [
           {
-            "decimalPlaces": 2,
-            "path": "$._ext.sample.pagesReads[*].pagesRead",
-            "totalDigits": 18
+            "decimalPlaces": 4,
+            "path": "$._ext.sample.bedtimeReadingRate",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$._ext.sample.bookBudget",
+            "totalDigits": 19
           },
           {
             "decimalPlaces": 2,
             "path": "$._ext.sample.hoursPerWeeks[*].hoursPerWeek",
             "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 2,
+            "path": "$._ext.sample.pagesReads[*].pagesRead",
+            "totalDigits": 18
           }
         ],
         "documentPathsMapping": {
@@ -9051,13 +9091,23 @@
         "decimalPropertyValidationInfos": [
           {
             "decimalPlaces": 4,
-            "path": "$.targetGPA",
-            "totalDigits": 18
+            "path": "$.graduationFee",
+            "totalDigits": 19
           },
           {
             "decimalPlaces": 2,
             "path": "$.hoursPerWeek",
             "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$.requiredAttendance",
+            "totalDigits": 5
+          },
+          {
+            "decimalPlaces": 4,
+            "path": "$.targetGPA",
+            "totalDigits": 18
           }
         ],
         "documentPathsMapping": {
