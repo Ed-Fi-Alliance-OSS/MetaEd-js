@@ -23,7 +23,6 @@ import {
   GeneratorResult,
 } from '@edfi/metaed-core';
 import { metaEdPlugins } from './PluginHelper';
-import { createFlatteningReportPath, runFlatteningValidator } from './FlatteningMetadataValidation';
 
 jest.setTimeout(40000);
 
@@ -97,16 +96,6 @@ describe('when generating ApiSchema for data standard 5.1 and TPDM 1.1 for ODS/A
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
-  });
-
-  it('should have complete flattening metadata coverage', async () => {
-    const generatedCorePath: string = path.resolve(artifactPath, generatedCoreFilename);
-    const coreReportPath: string = createFlatteningReportPath(artifactPath, generatedCoreFilename);
-    await runFlatteningValidator(generatedCorePath, coreReportPath);
-
-    const generatedExtensionPath: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const extensionReportPath: string = createFlatteningReportPath(artifactPath, generatedExtensionFilename);
-    await runFlatteningValidator(generatedExtensionPath, extensionReportPath);
   });
 
   it('should have no TPDM file differences', async () => {

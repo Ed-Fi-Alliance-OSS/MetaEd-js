@@ -1592,7 +1592,7 @@ describe('when building a domain entity referencing another referencing another 
     runApiSchemaPrerequisites(metaEd);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministrationParticipation', () => {
+  it('should be correct relational base names for AssessmentAdministrationParticipation', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
       Object {
@@ -1602,7 +1602,7 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+  it('should be correct relational base names for AssessmentAdministration', () => {
     const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
     expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
       Object {
@@ -1612,7 +1612,7 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 
-  it('should be correct flatteningMetadata for EducationOrganization', () => {
+  it('should be correct relational base names for EducationOrganization', () => {
     const entity = namespace.entity.domainEntity.get('EducationOrganization');
     expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
       Object {
@@ -1678,8 +1678,8 @@ describe(
       const entity = metaEd.namespace
         .get(namespaceName)
         ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
-      const flatteningMetadata = summarizeRelationalBaseNamesForEntity(entity);
-      expect(flatteningMetadata).toMatchInlineSnapshot(`
+      const relationalBaseNames = summarizeRelationalBaseNamesForEntity(entity);
+      expect(relationalBaseNames).toMatchInlineSnapshot(`
         Object {
           "$.studentAssessmentRegistrationReference": "StudentAssessmentRegistration",
           "$.unusedEntityReference": "UnusedEntity",
@@ -1687,7 +1687,7 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for StudentAssessmentRegistration', () => {
+    it('should be correct relational base names for StudentAssessmentRegistration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessmentRegistration');
       expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
         Object {
@@ -1697,7 +1697,7 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+    it('should be correct relational base names for AssessmentAdministration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('AssessmentAdministration');
       expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
         Object {
@@ -1706,7 +1706,7 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for StudentEducationOrganizationAssociation', () => {
+    it('should be correct relational base names for StudentEducationOrganizationAssociation', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentEducationOrganizationAssociation');
       expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
         Object {
@@ -1716,7 +1716,7 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for EducationOrganization', () => {
+    it('should be correct relational base names for EducationOrganization', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('EducationOrganization');
       expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
         Object {
@@ -1725,7 +1725,7 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for UnusedEntity', () => {
+    it('should be correct relational base names for UnusedEntity', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('UnusedEntity');
       expect(summarizeRelationalBaseNamesForEntity(entity)).toMatchInlineSnapshot(`
         Object {

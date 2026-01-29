@@ -1443,12 +1443,12 @@ describe('when building a domain entity referencing another referencing another 
     runApiSchemaPrerequisites(metaEd);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministrationParticipation', () => {
+  it('should be correct relational name overrides for AssessmentAdministrationParticipation', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
   });
 
-  it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+  it('should be correct relational name overrides for AssessmentAdministration', () => {
     const entity = namespace.entity.domainEntity.get('AssessmentAdministration');
     expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`
       Object {
@@ -1457,7 +1457,7 @@ describe('when building a domain entity referencing another referencing another 
     `);
   });
 
-  it('should be correct flatteningMetadata for EducationOrganization', () => {
+  it('should be correct relational name overrides for EducationOrganization', () => {
     const entity = namespace.entity.domainEntity.get('EducationOrganization');
     expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
   });
@@ -1519,16 +1519,16 @@ describe(
       const entity = metaEd.namespace
         .get(namespaceName)
         ?.entity.association.get('StudentAssessmentRegistrationBatteryPartAssociation');
-      const flatteningMetadata = summarizeRelationalNameOverridesForEntity(entity);
-      expect(flatteningMetadata).toMatchInlineSnapshot(`Object {}`);
+      const relationalNameOverrides = summarizeRelationalNameOverridesForEntity(entity);
+      expect(relationalNameOverrides).toMatchInlineSnapshot(`Object {}`);
     });
 
-    it('should be correct flatteningMetadata for StudentAssessmentRegistration', () => {
+    it('should be correct relational name overrides for StudentAssessmentRegistration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessmentRegistration');
       expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
     });
 
-    it('should be correct flatteningMetadata for AssessmentAdministration', () => {
+    it('should be correct relational name overrides for AssessmentAdministration', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('AssessmentAdministration');
       expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`
         Object {
@@ -1537,17 +1537,17 @@ describe(
       `);
     });
 
-    it('should be correct flatteningMetadata for StudentEducationOrganizationAssociation', () => {
+    it('should be correct relational name overrides for StudentEducationOrganizationAssociation', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentEducationOrganizationAssociation');
       expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
     });
 
-    it('should be correct flatteningMetadata for EducationOrganization', () => {
+    it('should be correct relational name overrides for EducationOrganization', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('EducationOrganization');
       expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
     });
 
-    it('should be correct flatteningMetadata for UnusedEntity', () => {
+    it('should be correct relational name overrides for UnusedEntity', () => {
       const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('UnusedEntity');
       expect(summarizeRelationalNameOverridesForEntity(entity)).toMatchInlineSnapshot(`Object {}`);
     });
