@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-handbook",
   "main": "dist/index.js",
-  "version": "4.6.1-dev.13",
+  "version": "4.6.1-dev.14",
   "description": "Ed-Fi Handbook plugin for MetaEd",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,12 +13,12 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.6.1-dev.13",
-    "@edfi/metaed-plugin-edfi-api-schema": "4.6.1-dev.13",
-    "@edfi/metaed-plugin-edfi-ods-relational": "4.6.1-dev.13",
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.6.1-dev.13",
-    "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.13",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.13",
+    "@edfi/metaed-core": "4.6.1-dev.14",
+    "@edfi/metaed-plugin-edfi-api-schema": "4.6.1-dev.14",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.6.1-dev.14",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.6.1-dev.14",
+    "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.14",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.14",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
     "ramda": "^0.29.0",

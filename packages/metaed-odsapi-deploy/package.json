@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-odsapi-deploy",
   "main": "dist/index.js",
-  "version": "4.6.1-dev.13",
+  "version": "4.6.1-dev.14",
   "description": "MetaEd console deployment for the ODS/API",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,7 +13,7 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.6.1-dev.13",
+    "@edfi/metaed-core": "4.6.1-dev.14",
     "chalk": "^4.1.2",
     "fs-extra": "^11.1.1",
     "ramda": "^0.29.0",
