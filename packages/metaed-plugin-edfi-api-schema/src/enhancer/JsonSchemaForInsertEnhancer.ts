@@ -326,10 +326,12 @@ function schemaPropertyForNonReference(
     case 'datetime':
       return { type: 'string', format: 'date-time', description };
 
-    case 'descriptor':
     case 'duration':
+      return { type: 'string', description, maxLength: 30 };
+
+    case 'descriptor':
     case 'enumeration':
-      return { type: 'string', description };
+      return { type: 'string', description, maxLength: 306 };
 
     case 'integer':
     case 'sharedInteger': {
@@ -419,7 +421,7 @@ function schemaArrayForDescriptorCollection(property: EntityProperty, propertyMo
   const descriptorName = uncapitalize(prefixedName(apiMapping.descriptorCollectionName, propertyModifier));
 
   const descriptorSchemaProperty: { [key: string]: SchemaProperty } = {
-    [descriptorName]: { type: 'string', description: 'An Ed-Fi Descriptor' },
+    [descriptorName]: { type: 'string', description: 'An Ed-Fi Descriptor', maxLength: 306 },
   };
 
   return {
