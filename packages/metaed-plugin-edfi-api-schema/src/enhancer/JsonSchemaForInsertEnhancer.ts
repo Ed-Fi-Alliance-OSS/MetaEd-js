@@ -38,6 +38,7 @@ import {
   topLevelApiNameOnEntity,
   prependPrefixWithCollapse,
   uncapitalize,
+  isCommonExtensionOverride,
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { parentPropertyModifier } from './JsonElementNamingHelper';
@@ -567,7 +568,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
     // because they augment core common properties (e.g. addresses[*]._ext.sample)
     const isExtensionEntity =
       entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension';
-    if (isExtensionEntity && property.type === 'common' && (property as CommonProperty).isExtensionOverride) {
+    if (isExtensionEntity && isCommonExtensionOverride(property)) {
       schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
     } else {
       schemaProperties[schemaObjectBaseName] = schemaProperty;
