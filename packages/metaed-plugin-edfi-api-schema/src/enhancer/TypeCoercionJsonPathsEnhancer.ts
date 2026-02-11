@@ -63,66 +63,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     (entity.data.edfiApiSchema as EntityApiSchemaData).numericJsonPaths = [...numericResult].sort();
   });
 
-  getAllEntitiesOfType(metaEd, 'domainEntityExtension').forEach((entity) => {
-    const booleanResult: Set<JsonPath> = new Set();
-    const dateResult: Set<JsonPath> = new Set();
-    const dateTimeResult: Set<JsonPath> = new Set();
-    const numericResult: Set<JsonPath> = new Set();
-    const numericTypes = [
-      'currency',
-      'decimal',
-      'integer',
-      'percent',
-      'schoolYearEnumeration',
-      'sharedDecimal',
-      'sharedInteger',
-      'sharedShort',
-      'short',
-      'year',
-    ];
-    const { allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
-    Object.entries(allJsonPathsMapping).forEach(([, jsonPathsInfo]) => {
-      jsonPathsInfo.jsonPathPropertyPairs.forEach((jppp) => {
-        // Ignore merged away entries
-        if (jppp.flattenedIdentityProperty.mergedAwayBy != null) return;
-
-        // Check if _ext.{namespace} appears twice - only for domainEntityExtension
-        if (
-          entity.type === 'domainEntityExtension' &&
-          entity.namespace.extensionEntitySuffix === 'Extension' &&
-          jppp.sourceProperty.namespace.isExtension
-        ) {
-          let processedJsonPath = jppp.jsonPath;
-          const namespaceLowercase = entity.namespace.namespaceName.toLowerCase();
-          const extPattern = `_ext.${namespaceLowercase}`;
-          const occurrences = (processedJsonPath.match(new RegExp(extPattern.replace('.', '\\.'), 'g')) || []).length;
-
-          if (occurrences >= 2) {
-            // Remove the first occurrence
-            processedJsonPath = processedJsonPath.replace(extPattern, '') as JsonPath;
-            // Clean up any double dots that might result from removal
-            processedJsonPath = processedJsonPath.replace('..', '.') as JsonPath;
-          }
-
-          if (jppp.sourceProperty.type === 'boolean') {
-            booleanResult.add(processedJsonPath);
-          } else if (jppp.sourceProperty.type === 'date') {
-            dateResult.add(processedJsonPath);
-          } else if (jppp.sourceProperty.type === 'datetime') {
-            dateTimeResult.add(processedJsonPath);
-          } else if (numericTypes.includes(jppp.sourceProperty.type)) {
-            numericResult.add(processedJsonPath);
-          }
-        }
-      });
-    });
-
-    (entity.data.edfiApiSchema as EntityApiSchemaData).booleanJsonPaths = [...booleanResult].sort();
-    (entity.data.edfiApiSchema as EntityApiSchemaData).dateJsonPaths = [...dateResult].sort();
-    (entity.data.edfiApiSchema as EntityApiSchemaData).dateTimeJsonPaths = [...dateTimeResult].sort();
-    (entity.data.edfiApiSchema as EntityApiSchemaData).numericJsonPaths = [...numericResult].sort();
-  });
-
   // Descriptors have no boolean, numeric, date, or datetime properties
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
     const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;

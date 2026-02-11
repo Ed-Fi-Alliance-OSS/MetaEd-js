@@ -249,8 +249,26 @@ function schemaObjectForScalarCommonProperty(
 
     if (referencedCommonExtension !== NoCommonExtension) {
       const extensionSchema = buildCommonExtensionSchema(referencedCommonExtension, propertyModifier, schoolYearSchemas);
-      schemaProperties = extensionSchema.properties;
-      required.push(...extensionSchema.required);
+      const projectName = referencedCommonExtension.namespace.projectName.toLowerCase();
+
+      // Wrap extension properties under _ext.{project} to match ODS behavior:
+      // each common item gets an _ext.{project} block with only the extension-added fields.
+      schemaProperties = {
+        _ext: {
+          description: 'Extension properties',
+          type: 'object',
+          properties: {
+            [projectName]: {
+              description: `${projectName} extension properties`,
+              type: 'object',
+              properties: extensionSchema.properties,
+              additionalProperties: false,
+              ...(extensionSchema.required.length > 0 && { required: extensionSchema.required }),
+            },
+          },
+          additionalProperties: false,
+        },
+      };
     }
   } else {
     const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
@@ -545,8 +563,16 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
         ? schemaPropertyForSchoolYearEnumeration(property, schoolYearSchemas.schoolYearEnumerationSchema)
         : schemaPropertyFor(property, propertyModifier, schoolYearSchemas);
 
-    schemaProperties[schemaObjectBaseName] = schemaProperty;
-    addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
+    // Common extension overrides go at the root level of the schema (not under _ext.{project})
+    // because they augment core common properties (e.g. addresses[*]._ext.sample)
+    const isExtensionEntity =
+      entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension';
+    if (isExtensionEntity && property.type === 'common' && (property as CommonProperty).isExtensionOverride) {
+      schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
+    } else {
+      schemaProperties[schemaObjectBaseName] = schemaProperty;
+      addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
+    }
   });
 
   return schemaRoot;
