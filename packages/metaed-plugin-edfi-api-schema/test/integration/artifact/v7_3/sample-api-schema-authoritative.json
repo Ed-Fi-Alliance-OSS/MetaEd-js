@@ -2453,30 +2453,30 @@
           {
             "nestedConstraints": [
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$._ext.sample.schoolDistricts[*].schoolDistrict"
                 ]
               },
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$._ext.sample.terms[*].termDescriptor"
                 ]
               },
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
             ],
             "paths": [
-              "$._ext.sample.addresses[*].addressTypeDescriptor",
-              "$._ext.sample.addresses[*].city",
-              "$._ext.sample.addresses[*].postalCode",
-              "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
-              "$._ext.sample.addresses[*].streetNumberName"
+              "$.addresses[*].addressTypeDescriptor",
+              "$.addresses[*].city",
+              "$.addresses[*].postalCode",
+              "$.addresses[*].stateAbbreviationDescriptor",
+              "$.addresses[*].streetNumberName"
             ]
           },
           {
@@ -2498,18 +2498,18 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
-          "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
-          "$._ext.sample.addresses[*].doNotPublishIndicator",
           "$._ext.sample.cteProgramService.primaryIndicator",
-          "$._ext.sample.isSportsFan"
+          "$._ext.sample.isSportsFan",
+          "$.addresses[*]._ext.sample.onBusRoute",
+          "$.addresses[*].doNotPublishIndicator"
         ],
         "dateJsonPaths": [
-          "$._ext.sample.addresses[*].periods[*].beginDate",
-          "$._ext.sample.addresses[*].periods[*].endDate",
           "$._ext.sample.cteProgramService.serviceBeginDate",
           "$._ext.sample.cteProgramService.serviceEndDate",
           "$._ext.sample.graduationDate",
-          "$._ext.sample.studentProgramAssociations[*].studentProgramAssociationReference.beginDate"
+          "$._ext.sample.studentProgramAssociations[*].studentProgramAssociationReference.beginDate",
+          "$.addresses[*].periods[*].beginDate",
+          "$.addresses[*].periods[*].endDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -2541,7 +2541,7 @@
             "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].addressTypeDescriptor",
+            "path": "$.addresses[*].addressTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "AddressTypeDescriptor",
             "type": "string"
@@ -2550,56 +2550,56 @@
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].apartmentRoomSuiteNumber",
+            "path": "$.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].buildingSiteNumber",
+            "path": "$.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].city",
+            "path": "$.addresses[*].city",
             "type": "string"
           },
           "Address.Complex": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.complex",
+            "path": "$.addresses[*]._ext.sample.complex",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].congressionalDistrict",
+            "path": "$.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].countyFIPSCode",
+            "path": "$.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].doNotPublishIndicator",
+            "path": "$.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].latitude",
+            "path": "$.addresses[*].latitude",
             "type": "string"
           },
           "Address.LocaleDescriptor": {
@@ -2607,7 +2607,7 @@
             "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].localeDescriptor",
+            "path": "$.addresses[*].localeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LocaleDescriptor",
             "type": "string"
@@ -2616,49 +2616,49 @@
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].longitude",
+            "path": "$.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].nameOfCounty",
+            "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.OnBusRoute": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
+            "path": "$.addresses[*]._ext.sample.onBusRoute",
             "type": "boolean"
           },
           "Address.Period.BeginDate": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].periods[*].beginDate",
+            "path": "$.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].periods[*].endDate",
+            "path": "$.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].postalCode",
+            "path": "$.addresses[*].postalCode",
             "type": "string"
           },
           "Address.SchoolDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
+            "path": "$.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
             "type": "string"
           },
           "Address.StateAbbreviationDescriptor": {
@@ -2666,7 +2666,7 @@
             "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+            "path": "$.addresses[*].stateAbbreviationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "StateAbbreviationDescriptor",
             "type": "string"
@@ -2675,7 +2675,7 @@
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].streetNumberName",
+            "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "Address.TermDescriptor": {
@@ -2683,7 +2683,7 @@
             "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor",
+            "path": "$.addresses[*]._ext.sample.terms[*].termDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "TermDescriptor",
             "type": "string"
@@ -2927,188 +2927,6 @@
                   "additionalProperties": true,
                   "description": "sample extension properties collection",
                   "properties": {
-                    "addresses": {
-                      "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "_ext": {
-                            "additionalProperties": false,
-                            "description": "Extension properties",
-                            "properties": {
-                              "sample": {
-                                "additionalProperties": false,
-                                "description": "sample extension properties",
-                                "properties": {
-                                  "complex": {
-                                    "description": "The apartment or housing complex name.",
-                                    "maxLength": 255,
-                                    "minLength": 1,
-                                    "type": "string"
-                                  },
-                                  "onBusRoute": {
-                                    "description": "An indicator if the address is on a bus route.",
-                                    "type": "boolean"
-                                  },
-                                  "schoolDistricts": {
-                                    "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "schoolDistrict": {
-                                          "description": "The school district in which the address is located.",
-                                          "maxLength": 250,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "schoolDistrict"
-                                      ],
-                                      "type": "object"
-                                    },
-                                    "minItems": 1,
-                                    "type": "array",
-                                    "uniqueItems": false
-                                  },
-                                  "terms": {
-                                    "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "termDescriptor": {
-                                          "description": "An Ed-Fi Descriptor",
-                                          "maxLength": 306,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "termDescriptor"
-                                      ],
-                                      "type": "object"
-                                    },
-                                    "minItems": 0,
-                                    "type": "array",
-                                    "uniqueItems": false
-                                  }
-                                },
-                                "required": [
-                                  "onBusRoute",
-                                  "schoolDistricts"
-                                ],
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "addressTypeDescriptor": {
-                            "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "apartmentRoomSuiteNumber": {
-                            "description": "The apartment, room, or suite number of an address.",
-                            "maxLength": 50,
-                            "type": "string"
-                          },
-                          "buildingSiteNumber": {
-                            "description": "The number of the building on the site, if more than one building shares the same address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "city": {
-                            "description": "The name of the city in which an address is located.",
-                            "maxLength": 30,
-                            "minLength": 2,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          },
-                          "congressionalDistrict": {
-                            "description": "The congressional district in which an address is located.",
-                            "maxLength": 30,
-                            "type": "string"
-                          },
-                          "countyFIPSCode": {
-                            "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
-                            "maxLength": 5,
-                            "minLength": 3,
-                            "type": "string"
-                          },
-                          "doNotPublishIndicator": {
-                            "description": "An indication that the address should not be published.",
-                            "type": "boolean"
-                          },
-                          "latitude": {
-                            "description": "The geographic latitude of the physical address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "localeDescriptor": {
-                            "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "longitude": {
-                            "description": "The geographic longitude of the physical address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "nameOfCounty": {
-                            "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
-                            "maxLength": 30,
-                            "type": "string"
-                          },
-                          "periods": {
-                            "items": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "beginDate": {
-                                  "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                                  "format": "date",
-                                  "type": "string"
-                                },
-                                "endDate": {
-                                  "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                                  "format": "date",
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "beginDate"
-                              ],
-                              "type": "object"
-                            },
-                            "minItems": 0,
-                            "type": "array",
-                            "uniqueItems": false
-                          },
-                          "postalCode": {
-                            "description": "The five or nine digit zip code or overseas postal code portion of an address.",
-                            "maxLength": 17,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          },
-                          "stateAbbreviationDescriptor": {
-                            "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "streetNumberName": {
-                            "description": "The street number and street name or post office box number of an address.",
-                            "maxLength": 150,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "streetNumberName",
-                          "city",
-                          "stateAbbreviationDescriptor",
-                          "postalCode",
-                          "addressTypeDescriptor"
-                        ],
-                        "type": "object"
-                      },
-                      "minItems": 0,
-                      "type": "array",
-                      "uniqueItems": false
-                    },
                     "authors": {
                       "items": {
                         "additionalProperties": false,
@@ -3366,6 +3184,83 @@
                 }
               },
               "type": "object"
+            },
+            "addresses": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "_ext": {
+                    "additionalProperties": false,
+                    "description": "Extension properties",
+                    "properties": {
+                      "sample": {
+                        "additionalProperties": false,
+                        "description": "sample extension properties",
+                        "properties": {
+                          "complex": {
+                            "description": "The apartment or housing complex name.",
+                            "maxLength": 255,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "onBusRoute": {
+                            "description": "An indicator if the address is on a bus route.",
+                            "type": "boolean"
+                          },
+                          "schoolDistricts": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "schoolDistrict": {
+                                  "description": "The school district in which the address is located.",
+                                  "maxLength": 250,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "schoolDistrict"
+                              ],
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": false
+                          },
+                          "terms": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "termDescriptor": {
+                                  "description": "An Ed-Fi Descriptor",
+                                  "maxLength": 306,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "termDescriptor"
+                              ],
+                              "type": "object"
+                            },
+                            "minItems": 0,
+                            "type": "array",
+                            "uniqueItems": false
+                          }
+                        },
+                        "required": [
+                          "onBusRoute",
+                          "schoolDistricts"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
             }
           },
           "required": [
@@ -8118,66 +8013,66 @@
           {
             "nestedConstraints": [
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$._ext.sample.schoolDistricts[*].schoolDistrict"
                 ]
               },
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$._ext.sample.terms[*].termDescriptor"
                 ]
               },
               {
-                "basePath": "$._ext.sample.addresses[*]",
+                "basePath": "$.addresses[*]",
                 "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
             ],
             "paths": [
-              "$._ext.sample.addresses[*].addressTypeDescriptor",
-              "$._ext.sample.addresses[*].city",
-              "$._ext.sample.addresses[*].postalCode",
-              "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
-              "$._ext.sample.addresses[*].streetNumberName"
+              "$.addresses[*].addressTypeDescriptor",
+              "$.addresses[*].city",
+              "$.addresses[*].postalCode",
+              "$.addresses[*].stateAbbreviationDescriptor",
+              "$.addresses[*].streetNumberName"
             ]
           },
           {
             "nestedConstraints": [
               {
-                "basePath": "$._ext.sample.studentCharacteristics[*]",
+                "basePath": "$.studentCharacteristics[*]",
                 "paths": [
                   "$._ext.sample.studentNeeds[*].beginDate"
                 ]
               },
               {
-                "basePath": "$._ext.sample.studentCharacteristics[*]",
+                "basePath": "$.studentCharacteristics[*]",
                 "paths": [
                   "$.periods[*].beginDate"
                 ]
               }
             ],
             "paths": [
-              "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor"
+              "$.studentCharacteristics[*].studentCharacteristicDescriptor"
             ]
           }
         ],
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
-          "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
-          "$._ext.sample.addresses[*].doNotPublishIndicator",
-          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator"
+          "$.addresses[*]._ext.sample.onBusRoute",
+          "$.addresses[*].doNotPublishIndicator",
+          "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator"
         ],
         "dateJsonPaths": [
-          "$._ext.sample.addresses[*].periods[*].beginDate",
-          "$._ext.sample.addresses[*].periods[*].endDate",
-          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
-          "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
-          "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
-          "$._ext.sample.studentCharacteristics[*].periods[*].endDate"
+          "$.addresses[*].periods[*].beginDate",
+          "$.addresses[*].periods[*].endDate",
+          "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
+          "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
+          "$.studentCharacteristics[*].periods[*].beginDate",
+          "$.studentCharacteristics[*].periods[*].endDate"
         ],
         "dateTimeJsonPaths": [
         ],
@@ -8189,7 +8084,7 @@
             "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].addressTypeDescriptor",
+            "path": "$.addresses[*].addressTypeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "AddressTypeDescriptor",
             "type": "string"
@@ -8198,56 +8093,56 @@
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].apartmentRoomSuiteNumber",
+            "path": "$.addresses[*].apartmentRoomSuiteNumber",
             "type": "string"
           },
           "Address.BuildingSiteNumber": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].buildingSiteNumber",
+            "path": "$.addresses[*].buildingSiteNumber",
             "type": "string"
           },
           "Address.City": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].city",
+            "path": "$.addresses[*].city",
             "type": "string"
           },
           "Address.Complex": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.complex",
+            "path": "$.addresses[*]._ext.sample.complex",
             "type": "string"
           },
           "Address.CongressionalDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].congressionalDistrict",
+            "path": "$.addresses[*].congressionalDistrict",
             "type": "string"
           },
           "Address.CountyFIPSCode": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].countyFIPSCode",
+            "path": "$.addresses[*].countyFIPSCode",
             "type": "string"
           },
           "Address.DoNotPublishIndicator": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].doNotPublishIndicator",
+            "path": "$.addresses[*].doNotPublishIndicator",
             "type": "boolean"
           },
           "Address.Latitude": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].latitude",
+            "path": "$.addresses[*].latitude",
             "type": "string"
           },
           "Address.LocaleDescriptor": {
@@ -8255,7 +8150,7 @@
             "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].localeDescriptor",
+            "path": "$.addresses[*].localeDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "LocaleDescriptor",
             "type": "string"
@@ -8264,49 +8159,49 @@
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].longitude",
+            "path": "$.addresses[*].longitude",
             "type": "string"
           },
           "Address.NameOfCounty": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].nameOfCounty",
+            "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.OnBusRoute": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*]._ext.sample.onBusRoute",
+            "path": "$.addresses[*]._ext.sample.onBusRoute",
             "type": "boolean"
           },
           "Address.Period.BeginDate": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].periods[*].beginDate",
+            "path": "$.addresses[*].periods[*].beginDate",
             "type": "date"
           },
           "Address.Period.EndDate": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*].periods[*].endDate",
+            "path": "$.addresses[*].periods[*].endDate",
             "type": "date"
           },
           "Address.PostalCode": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].postalCode",
+            "path": "$.addresses[*].postalCode",
             "type": "string"
           },
           "Address.SchoolDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
+            "path": "$.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
             "type": "string"
           },
           "Address.StateAbbreviationDescriptor": {
@@ -8314,7 +8209,7 @@
             "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].stateAbbreviationDescriptor",
+            "path": "$.addresses[*].stateAbbreviationDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "StateAbbreviationDescriptor",
             "type": "string"
@@ -8323,7 +8218,7 @@
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.addresses[*].streetNumberName",
+            "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "Address.TermDescriptor": {
@@ -8331,7 +8226,7 @@
             "isPartOfIdentity": false,
             "isReference": true,
             "isRequired": false,
-            "path": "$._ext.sample.addresses[*]._ext.sample.terms[*].termDescriptor",
+            "path": "$.addresses[*]._ext.sample.terms[*].termDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "TermDescriptor",
             "type": "string"
@@ -8365,21 +8260,21 @@
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.studentCharacteristics[*].designatedBy",
+            "path": "$.studentCharacteristics[*].designatedBy",
             "type": "string"
           },
           "StudentCharacteristic.Period.BeginDate": {
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.studentCharacteristics[*].periods[*].beginDate",
+            "path": "$.studentCharacteristics[*].periods[*].beginDate",
             "type": "date"
           },
           "StudentCharacteristic.Period.EndDate": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.studentCharacteristics[*].periods[*].endDate",
+            "path": "$.studentCharacteristics[*].periods[*].endDate",
             "type": "date"
           },
           "StudentCharacteristic.StudentCharacteristicDescriptor": {
@@ -8387,7 +8282,7 @@
             "isPartOfIdentity": true,
             "isReference": true,
             "isRequired": true,
-            "path": "$._ext.sample.studentCharacteristics[*].studentCharacteristicDescriptor",
+            "path": "$.studentCharacteristics[*].studentCharacteristicDescriptor",
             "projectName": "Ed-Fi",
             "resourceName": "StudentCharacteristicDescriptor",
             "type": "string"
@@ -8396,21 +8291,21 @@
             "isPartOfIdentity": true,
             "isReference": false,
             "isRequired": true,
-            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
+            "path": "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].beginDate",
             "type": "date"
           },
           "StudentCharacteristic.StudentNeed.EndDate": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
+            "path": "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].endDate",
             "type": "date"
           },
           "StudentCharacteristic.StudentNeed.PrimaryStudentNeedIndicator": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
-            "path": "$._ext.sample.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator",
+            "path": "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator",
             "type": "boolean"
           }
         },
@@ -8441,188 +8336,6 @@
                   "additionalProperties": true,
                   "description": "sample extension properties collection",
                   "properties": {
-                    "addresses": {
-                      "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "_ext": {
-                            "additionalProperties": false,
-                            "description": "Extension properties",
-                            "properties": {
-                              "sample": {
-                                "additionalProperties": false,
-                                "description": "sample extension properties",
-                                "properties": {
-                                  "complex": {
-                                    "description": "The apartment or housing complex name.",
-                                    "maxLength": 255,
-                                    "minLength": 1,
-                                    "type": "string"
-                                  },
-                                  "onBusRoute": {
-                                    "description": "An indicator if the address is on a bus route.",
-                                    "type": "boolean"
-                                  },
-                                  "schoolDistricts": {
-                                    "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "schoolDistrict": {
-                                          "description": "The school district in which the address is located.",
-                                          "maxLength": 250,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "schoolDistrict"
-                                      ],
-                                      "type": "object"
-                                    },
-                                    "minItems": 1,
-                                    "type": "array",
-                                    "uniqueItems": false
-                                  },
-                                  "terms": {
-                                    "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "termDescriptor": {
-                                          "description": "An Ed-Fi Descriptor",
-                                          "maxLength": 306,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "termDescriptor"
-                                      ],
-                                      "type": "object"
-                                    },
-                                    "minItems": 0,
-                                    "type": "array",
-                                    "uniqueItems": false
-                                  }
-                                },
-                                "required": [
-                                  "onBusRoute",
-                                  "schoolDistricts"
-                                ],
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "addressTypeDescriptor": {
-                            "description": "The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "apartmentRoomSuiteNumber": {
-                            "description": "The apartment, room, or suite number of an address.",
-                            "maxLength": 50,
-                            "type": "string"
-                          },
-                          "buildingSiteNumber": {
-                            "description": "The number of the building on the site, if more than one building shares the same address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "city": {
-                            "description": "The name of the city in which an address is located.",
-                            "maxLength": 30,
-                            "minLength": 2,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          },
-                          "congressionalDistrict": {
-                            "description": "The congressional district in which an address is located.",
-                            "maxLength": 30,
-                            "type": "string"
-                          },
-                          "countyFIPSCode": {
-                            "description": "The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the \"first-order subdivisions\" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.",
-                            "maxLength": 5,
-                            "minLength": 3,
-                            "type": "string"
-                          },
-                          "doNotPublishIndicator": {
-                            "description": "An indication that the address should not be published.",
-                            "type": "boolean"
-                          },
-                          "latitude": {
-                            "description": "The geographic latitude of the physical address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "localeDescriptor": {
-                            "description": "A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "longitude": {
-                            "description": "The geographic longitude of the physical address.",
-                            "maxLength": 20,
-                            "type": "string"
-                          },
-                          "nameOfCounty": {
-                            "description": "The name of the county, parish, borough, or comparable unit (within a state) in which an address is located.",
-                            "maxLength": 30,
-                            "type": "string"
-                          },
-                          "periods": {
-                            "items": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "beginDate": {
-                                  "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                                  "format": "date",
-                                  "type": "string"
-                                },
-                                "endDate": {
-                                  "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
-                                  "format": "date",
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "beginDate"
-                              ],
-                              "type": "object"
-                            },
-                            "minItems": 0,
-                            "type": "array",
-                            "uniqueItems": false
-                          },
-                          "postalCode": {
-                            "description": "The five or nine digit zip code or overseas postal code portion of an address.",
-                            "maxLength": 17,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          },
-                          "stateAbbreviationDescriptor": {
-                            "description": "The abbreviation for the state (within the United States) or outlying area in which an address is located.",
-                            "maxLength": 306,
-                            "type": "string"
-                          },
-                          "streetNumberName": {
-                            "description": "The street number and street name or post office box number of an address.",
-                            "maxLength": 150,
-                            "pattern": "^(?!\\s)(.*\\S)$",
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "streetNumberName",
-                          "city",
-                          "stateAbbreviationDescriptor",
-                          "postalCode",
-                          "addressTypeDescriptor"
-                        ],
-                        "type": "object"
-                      },
-                      "minItems": 0,
-                      "type": "array",
-                      "uniqueItems": false
-                    },
                     "favoriteProgramReference": {
                       "additionalProperties": false,
                       "properties": {
@@ -8648,71 +8361,119 @@
                         "programTypeDescriptor"
                       ],
                       "type": "object"
-                    },
-                    "studentCharacteristics": {
-                      "items": {
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "addresses": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "_ext": {
+                    "additionalProperties": false,
+                    "description": "Extension properties",
+                    "properties": {
+                      "sample": {
                         "additionalProperties": false,
+                        "description": "sample extension properties",
                         "properties": {
-                          "_ext": {
-                            "additionalProperties": false,
-                            "description": "Extension properties",
-                            "properties": {
-                              "sample": {
-                                "additionalProperties": false,
-                                "description": "sample extension properties",
-                                "properties": {
-                                  "studentNeeds": {
-                                    "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "beginDate": {
-                                          "description": "The month, day, and year for the start of the period.",
-                                          "format": "date",
-                                          "type": "string"
-                                        },
-                                        "endDate": {
-                                          "description": "The month, day, and year for the end of the period.",
-                                          "format": "date",
-                                          "type": "string"
-                                        },
-                                        "primaryStudentNeedIndicator": {
-                                          "description": "Indicates the parent characteristic is a primary student need.",
-                                          "type": "boolean"
-                                        }
-                                      },
-                                      "required": [
-                                        "beginDate"
-                                      ],
-                                      "type": "object"
-                                    },
-                                    "minItems": 0,
-                                    "type": "array",
-                                    "uniqueItems": false
-                                  }
-                                },
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "designatedBy": {
-                            "description": "The person, organization, or department that designated the characteristic.",
-                            "maxLength": 60,
+                          "complex": {
+                            "description": "The apartment or housing complex name.",
+                            "maxLength": 255,
+                            "minLength": 1,
                             "type": "string"
                           },
-                          "periods": {
+                          "onBusRoute": {
+                            "description": "An indicator if the address is on a bus route.",
+                            "type": "boolean"
+                          },
+                          "schoolDistricts": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "schoolDistrict": {
+                                  "description": "The school district in which the address is located.",
+                                  "maxLength": 250,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "schoolDistrict"
+                              ],
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": false
+                          },
+                          "terms": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "termDescriptor": {
+                                  "description": "An Ed-Fi Descriptor",
+                                  "maxLength": 306,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "termDescriptor"
+                              ],
+                              "type": "object"
+                            },
+                            "minItems": 0,
+                            "type": "array",
+                            "uniqueItems": false
+                          }
+                        },
+                        "required": [
+                          "onBusRoute",
+                          "schoolDistricts"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
+            },
+            "studentCharacteristics": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "_ext": {
+                    "additionalProperties": false,
+                    "description": "Extension properties",
+                    "properties": {
+                      "sample": {
+                        "additionalProperties": false,
+                        "description": "sample extension properties",
+                        "properties": {
+                          "studentNeeds": {
                             "items": {
                               "additionalProperties": false,
                               "properties": {
                                 "beginDate": {
-                                  "description": "The month, day, and year for the start of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                                  "description": "The month, day, and year for the start of the period.",
                                   "format": "date",
                                   "type": "string"
                                 },
                                 "endDate": {
-                                  "description": "The month, day, and year for the end of the period.  Note: Date interpretation may vary. Ed-Fi recommends inclusive dates, but states may define dates as inclusive or exclusive. For calculations, align with local guidelines.",
+                                  "description": "The month, day, and year for the end of the period.",
                                   "format": "date",
                                   "type": "string"
+                                },
+                                "primaryStudentNeedIndicator": {
+                                  "description": "Indicates the parent characteristic is a primary student need.",
+                                  "type": "boolean"
                                 }
                               },
                               "required": [
@@ -8723,27 +8484,19 @@
                             "minItems": 0,
                             "type": "array",
                             "uniqueItems": false
-                          },
-                          "studentCharacteristicDescriptor": {
-                            "description": "The characteristic designated for the student.",
-                            "maxLength": 306,
-                            "type": "string"
                           }
                         },
-                        "required": [
-                          "studentCharacteristicDescriptor"
-                        ],
                         "type": "object"
-                      },
-                      "minItems": 0,
-                      "type": "array",
-                      "uniqueItems": false
-                    }
-                  },
-                  "type": "object"
-                }
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
               },
-              "type": "object"
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": false
             }
           },
           "title": "Sample.StudentEducationOrganizationAssociation",
