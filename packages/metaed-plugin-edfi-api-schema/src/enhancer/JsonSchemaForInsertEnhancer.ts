@@ -570,6 +570,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
       entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension';
     if (isExtensionEntity && isCommonExtensionOverride(property)) {
       schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
+      // Extension overrides are not marked required at root level — the base entity schema handles that
     } else {
       schemaProperties[schemaObjectBaseName] = schemaProperty;
       addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
