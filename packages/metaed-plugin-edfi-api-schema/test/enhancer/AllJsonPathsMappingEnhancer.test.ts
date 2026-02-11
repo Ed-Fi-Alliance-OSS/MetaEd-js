@@ -3977,14 +3977,14 @@ describe('when building domain entity extension with common extension override',
         "Address.CommonId": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.address.commonId",
+            "jsonPath": "$.address.commonId",
             "propertyName": "CommonId",
           },
         ],
         "Address.ExtensionProperty": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.address._ext.edfi.extensionProperty",
+            "jsonPath": "$.address._ext.edfi.extensionProperty",
             "propertyName": "ExtensionProperty",
           },
         ],
@@ -4093,42 +4093,42 @@ describe('when building comprehensive Address/AddressExtension scenario with Com
         "Address.City": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*].city",
+            "jsonPath": "$.addresses[*].city",
             "propertyName": "City",
           },
         ],
         "Address.Complex": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.complex",
+            "jsonPath": "$.addresses[*]._ext.edfi.complex",
             "propertyName": "Complex",
           },
         ],
         "Address.OnBusRoute": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.onBusRoute",
+            "jsonPath": "$.addresses[*]._ext.edfi.onBusRoute",
             "propertyName": "OnBusRoute",
           },
         ],
         "Address.PostalCode": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*].postalCode",
+            "jsonPath": "$.addresses[*].postalCode",
             "propertyName": "PostalCode",
           },
         ],
         "Address.SchoolDistrict": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*]._ext.edfi.schoolDistricts[*].schoolDistrict",
+            "jsonPath": "$.addresses[*]._ext.edfi.schoolDistricts[*].schoolDistrict",
             "propertyName": "SchoolDistrict",
           },
         ],
         "Address.StreetNumberName": Array [
           Object {
             "entityName": "Address",
-            "jsonPath": "$._ext.edfi.addresses[*].streetNumberName",
+            "jsonPath": "$.addresses[*].streetNumberName",
             "propertyName": "StreetNumberName",
           },
         ],
@@ -4169,12 +4169,12 @@ describe('when building comprehensive Address/AddressExtension scenario with Com
     `);
     expect(mappings.collectionContainerJsonPath).toMatchInlineSnapshot(`
       Object {
-        "Address.City": "$._ext.edfi.addresses[*]",
-        "Address.Complex": "$._ext.edfi.addresses[*]",
-        "Address.OnBusRoute": "$._ext.edfi.addresses[*]",
-        "Address.PostalCode": "$._ext.edfi.addresses[*]",
-        "Address.SchoolDistrict": "$._ext.edfi.addresses[*]._ext.edfi.schoolDistricts[*]",
-        "Address.StreetNumberName": "$._ext.edfi.addresses[*]",
+        "Address.City": "$.addresses[*]",
+        "Address.Complex": "$.addresses[*]",
+        "Address.OnBusRoute": "$.addresses[*]",
+        "Address.PostalCode": "$.addresses[*]",
+        "Address.SchoolDistrict": "$.addresses[*]._ext.edfi.schoolDistricts[*]",
+        "Address.StreetNumberName": "$.addresses[*]",
       }
     `);
   });

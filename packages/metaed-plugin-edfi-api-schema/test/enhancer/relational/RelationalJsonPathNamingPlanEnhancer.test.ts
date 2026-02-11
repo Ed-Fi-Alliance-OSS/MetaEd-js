@@ -1447,7 +1447,7 @@ describe('when building a domain entity referencing another referencing another 
 
 describe(
   'when building association with domain entity with two entities, one with role named educationOrganization and' +
-    ' one with non role named educationOrganization ',
+  ' one with non role named educationOrganization ',
   () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
@@ -1823,9 +1823,9 @@ describe('when extension override property has collection modifier', () => {
   });
   it('should include common extension schema in domain entity with extension override', () => {
     const entity = extensionNamespace?.entity.domainEntityExtension.get(domainEntityName);
-    expect(summarizeJsonBaseNamesForPaths(entity, '$._ext.extension.collectionCommons[*]')).toMatchInlineSnapshot(`
+    expect(summarizeJsonBaseNamesForPaths(entity, '$.collectionCommons[*]')).toMatchInlineSnapshot(`
       Object {
-        "$._ext.extension.collectionCommons[*]": "CollectionCommon",
+        "$.collectionCommons[*]": "CollectionCommon",
       }
     `);
   });
