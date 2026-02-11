@@ -1447,7 +1447,7 @@ describe('when building a domain entity referencing another referencing another 
 
 describe(
   'when building association with domain entity with two entities, one with role named educationOrganization and' +
-  ' one with non role named educationOrganization ',
+    ' one with non role named educationOrganization ',
   () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
