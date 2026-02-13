@@ -17,6 +17,9 @@ import {
   Namespace,
   Domain,
   EntityProperty,
+  Logger,
+  getAllEntities,
+  getAllTopLevelEntities,
 } from '@edfi/metaed-core';
 import { DomainRow, EntityRow, ElementRow } from '../model/DataStandardListingRow';
 import { NamespaceDataCatalogData } from '../model/NamespaceDataCatalogData';
@@ -94,12 +97,32 @@ function mapDomainToEntities(namespace: Namespace, domain: Domain | Subdomain): 
 function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
   const entityRows: EntityRow[] = [];
 
+  const collectedEntities: string[] = [];
+
   namespace.entity.domain.forEach((domain: Domain) => {
+    Logger.verbose(`Extracting entities from domain ${domain.metaEdName} in namespace ${namespace.namespaceName}...`);
     entityRows.push(...mapDomainToEntities(namespace, domain));
+    collectedEntities.push(...domain.entities.map((e) => e.metaEdName));
 
     domain.subdomains.forEach((subdomain) => {
       entityRows.push(...mapDomainToEntities(namespace, subdomain));
+      collectedEntities.push(...subdomain.entities.map((e) => e.metaEdName));
     });
+  });
+
+  // An extension might not place entities into a domain, so we also want to extract any top level entities that are not in a domain
+  getAllEntities(namespace.entity).forEach((entity) => {
+    Logger.verbose(`Extracting entities that are not in a domain from namespace ${namespace.namespaceName}...`);
+
+    if (!collectedEntities.includes(entity.metaEdName)) {
+      entityRows.push({
+        projectVersion: namespace.projectVersion,
+        domainName: '',
+        namespace: namespace.namespaceName,
+        domainEntityName: entity.metaEdName,
+        domainEntityDescription: entity.documentation || '',
+      });
+    }
   });
 
   return entityRows;
@@ -132,12 +155,39 @@ function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): 
 function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
   const elementRows: ElementRow[] = [];
 
+  const collectedEntities: string[] = [];
+
   namespace.entity.domain.forEach((domain: Domain) => {
     elementRows.push(...mapDomainToElements(namespace, domain));
+    collectedEntities.push(...domain.entities.map((e) => e.metaEdName));
 
     domain.subdomains.forEach((subDomain: Subdomain) => {
       elementRows.push(...mapDomainToElements(namespace, subDomain));
+      collectedEntities.push(...subDomain.entities.map((e) => e.metaEdName));
     });
+  });
+
+  // Include elements for any top-level entities that aren't placed into a domain
+  getAllTopLevelEntities(namespace.entity).forEach((entity) => {
+    Logger.verbose(`Extracting elements that are not in a domain from namespace ${namespace.namespaceName}...`);
+
+    if (!collectedEntities.includes(entity.metaEdName)) {
+      elementRows.push(
+        ...entity.properties.map((property: EntityProperty) => ({
+          projectVersion: namespace.projectVersion,
+          domainName: '',
+          namespace: namespace.namespaceName,
+          domainEntityName: entity.metaEdName,
+          elementName: property.metaEdName,
+          elementDescription: property.documentation || '',
+          isPartOfIdentity: property.isPartOfIdentity,
+          isCollection: property.isCollection,
+          isRequired: property.isRequired || property.isRequiredCollection,
+          isDeprecated: property.isDeprecated,
+          elementDataType: extractDataType(property),
+        })),
+      );
+    }
   });
 
   return R.sortWith([orderByProp('domainEntityName'), orderByProp('elementName')])(elementRows);
@@ -149,16 +199,14 @@ function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const domainRows = extractDomainsFromNamespace(namespace);
-    const entityRows = extractEntitiesFromNamespace(namespace);
-    const elementRows = extractElementsFromNamespace(namespace);
+    Logger.verbose(`Enhancing namespace ${namespace.namespaceName} with data catalog information...`);
 
     if (namespace.data.edfiDataCatalog == null) namespace.data.edfiDataCatalog = {};
 
     const dataCatalog = namespace.data.edfiDataCatalog as NamespaceDataCatalogData;
-    dataCatalog.domainRows = domainRows;
-    dataCatalog.entityRows = entityRows;
-    dataCatalog.elementRows = elementRows;
+    dataCatalog.domainRows = extractDomainsFromNamespace(namespace);
+    dataCatalog.entityRows = extractEntitiesFromNamespace(namespace);
+    dataCatalog.elementRows = extractElementsFromNamespace(namespace);
   });
 
   return {
