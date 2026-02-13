@@ -106,7 +106,7 @@ describe('EdFiDataStandardListingGenerator', () => {
     // Verify the generator result
     expect(result.generatorName).toBe('edfiHandbook.DataStandardListingGenerator');
     expect(result.generatedOutput).toHaveLength(1);
-    expect(result.generatedOutput[0].fileName).toBe('Data-Standard-Listing.xlsx');
+    expect(result.generatedOutput[0].fileName).toBe('Data-Catalog.xlsx');
     expect(result.generatedOutput[0].name).toBe('Data Standard Listing Excel');
 
     // Verify writeXlsxFile was called
