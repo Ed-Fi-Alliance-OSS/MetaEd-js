@@ -5,6 +5,7 @@
 
 import { MetaEdPropertyFullName, MetaEdProjectName } from '@edfi/metaed-core';
 import { EqualityConstraint } from './EqualityConstraint';
+import { CommonExtensionOverride } from './CommonExtensionOverride';
 import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchemaForInsert';
 import { MetaEdResourceName } from './MetaEdResourceName';
@@ -170,6 +171,12 @@ export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSche
  */
 export type ResourceExtensionSchema = BaseResourceSchema & {
   isResourceExtension: true;
+  /**
+   * Describes where common extension overrides attach into the core entity's jsonSchemaForInsert.
+   * Each entry identifies the JSONPath insertion locations, extension project key, and schema fragment.
+   * Present in all extension resources for consistency, empty array if no overrides.
+   */
+  commonExtensionOverrides: CommonExtensionOverride[];
 };
 
 /**

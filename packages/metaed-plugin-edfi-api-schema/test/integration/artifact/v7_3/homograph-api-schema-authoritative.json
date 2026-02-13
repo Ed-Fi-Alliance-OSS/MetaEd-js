@@ -84,6 +84,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -730,6 +732,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -1224,6 +1228,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -1664,6 +1670,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
         ],
@@ -2201,6 +2209,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
         ],
@@ -2844,6 +2854,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -3402,6 +3414,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
         ],

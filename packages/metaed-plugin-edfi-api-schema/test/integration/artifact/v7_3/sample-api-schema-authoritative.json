@@ -79,6 +79,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -667,6 +669,8 @@
           "$.daily",
           "$.telephones[*].doNotPublishIndicator",
           "$.telephones[*].textMessageCapabilityIndicator"
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
           "$.staffEducationOrganizationAssignmentAssociationReference.beginDate",
@@ -2014,6 +2018,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -2503,6 +2509,80 @@
           "$.addresses[*]._ext.sample.onBusRoute",
           "$.addresses[*].doNotPublishIndicator"
         ],
+        "commonExtensionOverrides": [
+          {
+            "insertionLocations": [
+              "$.properties.addresses.items"
+            ],
+            "projectEndpointName": "sample",
+            "schemaFragment": {
+              "additionalProperties": false,
+              "description": "Extension properties",
+              "properties": {
+                "sample": {
+                  "additionalProperties": false,
+                  "description": "sample extension properties",
+                  "properties": {
+                    "complex": {
+                      "description": "The apartment or housing complex name.",
+                      "maxLength": 255,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "onBusRoute": {
+                      "description": "An indicator if the address is on a bus route.",
+                      "type": "boolean"
+                    },
+                    "schoolDistricts": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "schoolDistrict": {
+                            "description": "The school district in which the address is located.",
+                            "maxLength": 250,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "schoolDistrict"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array",
+                      "uniqueItems": false
+                    },
+                    "terms": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "termDescriptor": {
+                            "description": "An Ed-Fi Descriptor",
+                            "maxLength": 306,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "termDescriptor"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 0,
+                      "type": "array",
+                      "uniqueItems": false
+                    }
+                  },
+                  "required": [
+                    "onBusRoute",
+                    "schoolDistricts"
+                  ],
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
         "dateJsonPaths": [
           "$._ext.sample.cteProgramService.serviceBeginDate",
           "$._ext.sample.cteProgramService.serviceEndDate",
@@ -2536,94 +2616,11 @@
           }
         ],
         "documentPathsMapping": {
-          "Address.AddressTypeDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": true,
-            "isReference": true,
-            "isRequired": true,
-            "path": "$.addresses[*].addressTypeDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "AddressTypeDescriptor",
-            "type": "string"
-          },
-          "Address.ApartmentRoomSuiteNumber": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].apartmentRoomSuiteNumber",
-            "type": "string"
-          },
-          "Address.BuildingSiteNumber": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].buildingSiteNumber",
-            "type": "string"
-          },
-          "Address.City": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].city",
-            "type": "string"
-          },
           "Address.Complex": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*]._ext.sample.complex",
-            "type": "string"
-          },
-          "Address.CongressionalDistrict": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].congressionalDistrict",
-            "type": "string"
-          },
-          "Address.CountyFIPSCode": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].countyFIPSCode",
-            "type": "string"
-          },
-          "Address.DoNotPublishIndicator": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].doNotPublishIndicator",
-            "type": "boolean"
-          },
-          "Address.Latitude": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].latitude",
-            "type": "string"
-          },
-          "Address.LocaleDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": false,
-            "isReference": true,
-            "isRequired": false,
-            "path": "$.addresses[*].localeDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "LocaleDescriptor",
-            "type": "string"
-          },
-          "Address.Longitude": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].longitude",
-            "type": "string"
-          },
-          "Address.NameOfCounty": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.OnBusRoute": {
@@ -2633,49 +2630,11 @@
             "path": "$.addresses[*]._ext.sample.onBusRoute",
             "type": "boolean"
           },
-          "Address.Period.BeginDate": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].periods[*].beginDate",
-            "type": "date"
-          },
-          "Address.Period.EndDate": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].periods[*].endDate",
-            "type": "date"
-          },
-          "Address.PostalCode": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].postalCode",
-            "type": "string"
-          },
           "Address.SchoolDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
-            "type": "string"
-          },
-          "Address.StateAbbreviationDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": true,
-            "isReference": true,
-            "isRequired": true,
-            "path": "$.addresses[*].stateAbbreviationDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "StateAbbreviationDescriptor",
-            "type": "string"
-          },
-          "Address.StreetNumberName": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "Address.TermDescriptor": {
@@ -3764,6 +3723,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -4328,6 +4289,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
         ],
@@ -4896,6 +4859,8 @@
           "$._ext.sample.cteProgramService.primaryIndicator",
           "$._ext.sample.isExemplary"
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
           "$._ext.sample.cteProgramService.serviceBeginDate",
           "$._ext.sample.cteProgramService.serviceEndDate"
@@ -5186,6 +5151,8 @@
         ],
         "booleanJsonPaths": [
           "$._ext.sample.pets[*].isFixed"
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
           "$._ext.sample.firstPetOwnedDate"
@@ -7105,6 +7072,8 @@
         "booleanJsonPaths": [
           "$._ext.sample.analysisCompleted"
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -7252,6 +7221,8 @@
           "$._ext.sample.bedtimeReader",
           "$._ext.sample.telephone.doNotPublishIndicator",
           "$._ext.sample.telephone.textMessageCapabilityIndicator"
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
           "$._ext.sample.readGreenEggsAndHamDate",
@@ -8066,6 +8037,128 @@
           "$.addresses[*].doNotPublishIndicator",
           "$.studentCharacteristics[*]._ext.sample.studentNeeds[*].primaryStudentNeedIndicator"
         ],
+        "commonExtensionOverrides": [
+          {
+            "insertionLocations": [
+              "$.properties.addresses.items"
+            ],
+            "projectEndpointName": "sample",
+            "schemaFragment": {
+              "additionalProperties": false,
+              "description": "Extension properties",
+              "properties": {
+                "sample": {
+                  "additionalProperties": false,
+                  "description": "sample extension properties",
+                  "properties": {
+                    "complex": {
+                      "description": "The apartment or housing complex name.",
+                      "maxLength": 255,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "onBusRoute": {
+                      "description": "An indicator if the address is on a bus route.",
+                      "type": "boolean"
+                    },
+                    "schoolDistricts": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "schoolDistrict": {
+                            "description": "The school district in which the address is located.",
+                            "maxLength": 250,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "schoolDistrict"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array",
+                      "uniqueItems": false
+                    },
+                    "terms": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "termDescriptor": {
+                            "description": "An Ed-Fi Descriptor",
+                            "maxLength": 306,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "termDescriptor"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 0,
+                      "type": "array",
+                      "uniqueItems": false
+                    }
+                  },
+                  "required": [
+                    "onBusRoute",
+                    "schoolDistricts"
+                  ],
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          {
+            "insertionLocations": [
+              "$.properties.studentCharacteristics.items"
+            ],
+            "projectEndpointName": "sample",
+            "schemaFragment": {
+              "additionalProperties": false,
+              "description": "Extension properties",
+              "properties": {
+                "sample": {
+                  "additionalProperties": false,
+                  "description": "sample extension properties",
+                  "properties": {
+                    "studentNeeds": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "beginDate": {
+                            "description": "The month, day, and year for the start of the period.",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "endDate": {
+                            "description": "The month, day, and year for the end of the period.",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "primaryStudentNeedIndicator": {
+                            "description": "Indicates the parent characteristic is a primary student need.",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "beginDate"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 0,
+                      "type": "array",
+                      "uniqueItems": false
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
         "dateJsonPaths": [
           "$.addresses[*].periods[*].beginDate",
           "$.addresses[*].periods[*].endDate",
@@ -8079,94 +8172,11 @@
         "decimalPropertyValidationInfos": [
         ],
         "documentPathsMapping": {
-          "Address.AddressTypeDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": true,
-            "isReference": true,
-            "isRequired": true,
-            "path": "$.addresses[*].addressTypeDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "AddressTypeDescriptor",
-            "type": "string"
-          },
-          "Address.ApartmentRoomSuiteNumber": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].apartmentRoomSuiteNumber",
-            "type": "string"
-          },
-          "Address.BuildingSiteNumber": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].buildingSiteNumber",
-            "type": "string"
-          },
-          "Address.City": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].city",
-            "type": "string"
-          },
           "Address.Complex": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*]._ext.sample.complex",
-            "type": "string"
-          },
-          "Address.CongressionalDistrict": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].congressionalDistrict",
-            "type": "string"
-          },
-          "Address.CountyFIPSCode": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].countyFIPSCode",
-            "type": "string"
-          },
-          "Address.DoNotPublishIndicator": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].doNotPublishIndicator",
-            "type": "boolean"
-          },
-          "Address.Latitude": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].latitude",
-            "type": "string"
-          },
-          "Address.LocaleDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": false,
-            "isReference": true,
-            "isRequired": false,
-            "path": "$.addresses[*].localeDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "LocaleDescriptor",
-            "type": "string"
-          },
-          "Address.Longitude": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].longitude",
-            "type": "string"
-          },
-          "Address.NameOfCounty": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].nameOfCounty",
             "type": "string"
           },
           "Address.OnBusRoute": {
@@ -8176,49 +8186,11 @@
             "path": "$.addresses[*]._ext.sample.onBusRoute",
             "type": "boolean"
           },
-          "Address.Period.BeginDate": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].periods[*].beginDate",
-            "type": "date"
-          },
-          "Address.Period.EndDate": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.addresses[*].periods[*].endDate",
-            "type": "date"
-          },
-          "Address.PostalCode": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].postalCode",
-            "type": "string"
-          },
           "Address.SchoolDistrict": {
             "isPartOfIdentity": false,
             "isReference": false,
             "isRequired": false,
             "path": "$.addresses[*]._ext.sample.schoolDistricts[*].schoolDistrict",
-            "type": "string"
-          },
-          "Address.StateAbbreviationDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": true,
-            "isReference": true,
-            "isRequired": true,
-            "path": "$.addresses[*].stateAbbreviationDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "StateAbbreviationDescriptor",
-            "type": "string"
-          },
-          "Address.StreetNumberName": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.addresses[*].streetNumberName",
             "type": "string"
           },
           "Address.TermDescriptor": {
@@ -8255,37 +8227,6 @@
               }
             ],
             "resourceName": "Program"
-          },
-          "StudentCharacteristic.DesignatedBy": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.studentCharacteristics[*].designatedBy",
-            "type": "string"
-          },
-          "StudentCharacteristic.Period.BeginDate": {
-            "isPartOfIdentity": true,
-            "isReference": false,
-            "isRequired": true,
-            "path": "$.studentCharacteristics[*].periods[*].beginDate",
-            "type": "date"
-          },
-          "StudentCharacteristic.Period.EndDate": {
-            "isPartOfIdentity": false,
-            "isReference": false,
-            "isRequired": false,
-            "path": "$.studentCharacteristics[*].periods[*].endDate",
-            "type": "date"
-          },
-          "StudentCharacteristic.StudentCharacteristicDescriptor": {
-            "isDescriptor": true,
-            "isPartOfIdentity": true,
-            "isReference": true,
-            "isRequired": true,
-            "path": "$.studentCharacteristics[*].studentCharacteristicDescriptor",
-            "projectName": "Ed-Fi",
-            "resourceName": "StudentCharacteristicDescriptor",
-            "type": "string"
           },
           "StudentCharacteristic.StudentNeed.BeginDate": {
             "isPartOfIdentity": true,
@@ -8865,6 +8806,8 @@
         "booleanJsonPaths": [
           "$.cteProgramService.primaryIndicator",
           "$.isActivePlan"
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
           "$.cteProgramService.serviceBeginDate",
@@ -10273,6 +10216,8 @@
         ],
         "booleanJsonPaths": [
         ],
+        "commonExtensionOverrides": [
+        ],
         "dateJsonPaths": [
         ],
         "dateTimeJsonPaths": [
@@ -10383,6 +10328,8 @@
         "authorizationPathways": [
         ],
         "booleanJsonPaths": [
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
           "$._ext.sample.relatedGeneralStudentProgramAssociations[*].relatedGeneralStudentProgramAssociationReference.beginDate"
@@ -10626,6 +10573,8 @@
         "booleanJsonPaths": [
           "$._ext.sample.aquaticPets[*].isFixed",
           "$._ext.sample.pets[*].isFixed"
+        ],
+        "commonExtensionOverrides": [
         ],
         "dateJsonPaths": [
         ],

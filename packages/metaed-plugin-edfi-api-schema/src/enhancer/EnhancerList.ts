@@ -19,6 +19,7 @@ import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhan
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from './MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance as jsonSchemaForInsertEnhancer } from './JsonSchemaForInsertEnhancer';
+import { enhance as commonExtensionOverrideCollectorEnhancer } from './CommonExtensionOverrideCollectorEnhancer';
 import { enhance as openApiReferenceComponentEnhancer } from './OpenApiReferenceComponentEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from './OpenApiRequestBodyComponentEnhancer';
 import { enhance as openApiRequestBodyCollectionComponentEnhancer } from './OpenApiRequestBodyCollectionComponentEnhancer';
@@ -73,6 +74,7 @@ export function enhancerList(): Enhancer[] {
     mergeCoveringFlattenedIdentityPropertyEnhancer,
     resourceNameEnhancer,
     jsonSchemaForInsertEnhancer,
+    commonExtensionOverrideCollectorEnhancer,
     openApiReferenceComponentEnhancer,
     openApiRequestBodyComponentEnhancer,
     openApiRequestBodyCollectionComponentEnhancer,

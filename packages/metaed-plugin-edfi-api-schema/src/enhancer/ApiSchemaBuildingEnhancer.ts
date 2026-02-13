@@ -138,6 +138,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     authorizationPathways: [],
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: true,
+    commonExtensionOverrides: entityApiSchemaData.commonExtensionOverrides,
     openApiFragments: entityApiSchemaData.openApiFragments,
     // Additional properties specific to resource extensions
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
@@ -236,7 +237,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName, resourceName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(domainEntity as TopLevelEntity), isSubclass: false };
+      const schema = buildResourceSchema(domainEntity as TopLevelEntity);
+      // Include commonExtensionOverrides in all resources from extension projects for consistency
+      const resourceSchema = { ...schema, isSubclass: false } as any;
+      if (projectSchema.isExtensionProject) {
+        resourceSchema.commonExtensionOverrides = (domainEntity.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+      }
+      resourceSchemas[endpointName] = resourceSchema;
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'association').forEach((association) => {
@@ -255,14 +262,24 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName, resourceName } = association.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(association as TopLevelEntity), isSubclass: false };
+      const schema = buildResourceSchema(association as TopLevelEntity);
+      const resourceSchema = { ...schema, isSubclass: false } as any;
+      if (projectSchema.isExtensionProject) {
+        resourceSchema.commonExtensionOverrides = (association.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+      }
+      resourceSchemas[endpointName] = resourceSchema;
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity) => {
       const { endpointName, resourceName } = entity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(entity as TopLevelEntity), isSubclass: false };
+      const schema = buildResourceSchema(entity as TopLevelEntity);
+      const resourceSchema = { ...schema, isSubclass: false } as any;
+      if (projectSchema.isExtensionProject) {
+        resourceSchema.commonExtensionOverrides = (entity.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+      }
+      resourceSchemas[endpointName] = resourceSchema;
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {

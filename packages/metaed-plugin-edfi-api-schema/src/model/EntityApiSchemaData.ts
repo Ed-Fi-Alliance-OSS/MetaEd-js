@@ -34,6 +34,7 @@ import { RelationalBaseName } from './api-schema/RelationalBaseName';
 import { RelationalTableNode } from './relational/RelationalTableNode';
 import { RelationalNamingPlan } from './relational/RelationalNamingPlan';
 import { RelationalNameOverrides } from './relational/RelationalNameOverrides';
+import { CommonExtensionOverride } from './api-schema/CommonExtensionOverride';
 
 export type EntityApiSchemaData = {
   /**
@@ -257,6 +258,11 @@ export type EntityApiSchemaData = {
    * Optional naming overrides used for relational mapping.
    */
   relational?: RelationalMetadata;
+
+  /**
+   * Describes where common extension overrides attach into the core entity's jsonSchemaForInsert.
+   */
+  commonExtensionOverrides: CommonExtensionOverride[];
 };
 
 /**
@@ -298,6 +304,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     relationalNamingPlan: { jsonBaseNames: {} },
     relationalNameOverrides: {},
     relationalRootTableNameOverride: undefined,
+    commonExtensionOverrides: [],
   });
 }
 
