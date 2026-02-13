@@ -25,7 +25,7 @@ As a business analyst, I want a simple spreadsheet version of the handbook, so t
      5. Element description
      6. Element data type
 
-- The spreadsheet should be generated during the Build process, without output written to file "Data-Standard-Listing.xlsx"
+- The spreadsheet should be generated during the Build process, without output written to file "Data-Catalog.xlsx"
 
 ## Approach
 

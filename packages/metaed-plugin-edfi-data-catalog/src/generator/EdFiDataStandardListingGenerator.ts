@@ -56,8 +56,8 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     {
       name: 'Data Standard Listing Excel',
       namespace: 'Documentation',
-      folderName: 'Data-Standard-Listing',
-      fileName: 'Data-Standard-Listing.xlsx',
+      folderName: 'Data-Catalog',
+      fileName: 'Data-Catalog.xlsx',
       resultString: '',
       resultStream: Buffer.from(fileAsArrayBuffer),
     },
