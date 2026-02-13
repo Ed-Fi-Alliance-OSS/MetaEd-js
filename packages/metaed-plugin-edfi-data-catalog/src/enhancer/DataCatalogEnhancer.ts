@@ -18,11 +18,7 @@ import {
   Domain,
   EntityProperty,
 } from '@edfi/metaed-core';
-import {
-  DomainRow,
-  EntityRow,
-  ElementRow,
-} from '../model/DataStandardListingRow';
+import { DomainRow, EntityRow, ElementRow } from '../model/DataStandardListingRow';
 import { NamespaceDataCatalogData } from '../model/NamespaceDataCatalogData';
 
 /**
