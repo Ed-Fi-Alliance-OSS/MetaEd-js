@@ -155,9 +155,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     if (namespace.data.edfiDataCatalog == null) namespace.data.edfiDataCatalog = {};
 
-    (namespace.data.edfiDataCatalog as NamespaceDataCatalogData).domainRows = domainRows;
-    (namespace.data.edfiDataCatalog as NamespaceDataCatalogData).entityRows = entityRows;
-    (namespace.data.edfiDataCatalog as NamespaceDataCatalogData).elementRows = elementRows;
+    const dataCatalog = namespace.data.edfiDataCatalog as NamespaceDataCatalogData;
+    dataCatalog.domainRows = domainRows;
+    dataCatalog.entityRows = entityRows;
+    dataCatalog.elementRows = elementRows;
   });
 
   return {
