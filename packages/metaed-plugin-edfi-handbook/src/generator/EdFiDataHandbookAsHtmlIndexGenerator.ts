@@ -16,6 +16,16 @@ function handbookEntriesForNamespace(metaEd: MetaEdEnvironment, namespace: Names
   return handbookRepository.handbookEntries;
 }
 
+/**
+ * Minimizes HTML content by removing unnecessary whitespace
+ */
+function minimizeHtml(html: string): string {
+  return html
+    .replace(/\n/g, '') // Replace newline with empty string
+    .replace(/>\s+</g, '><') // Remove spaces between > and <
+    .replace(/\s{2,}/g, ' '); // Replace 2 or more consecutive spaces with a single space
+}
+
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const allHandbookEntries: HandbookEntry[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
@@ -28,9 +38,11 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     return b.name === 'Student' ? 1 : 0;
   });
 
-  const index: string = fs
-    .readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPAIndex.html'), 'utf8')
-    .replace(/\{JSONData\}/g, JSON.stringify(allHandbookEntries));
+  const index: string = minimizeHtml(
+    fs
+      .readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPAIndex.html'), 'utf8')
+      .replace(/\{JSONData\}/g, JSON.stringify(allHandbookEntries)),
+  );
 
   const results: GeneratedOutput[] = [];
   results.push({
