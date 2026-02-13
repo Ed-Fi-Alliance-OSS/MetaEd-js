@@ -84,7 +84,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   const generatedOutput: GeneratedOutput[] = [
     {
-      name: 'Ed-Fi Handbook Excel',
+      name: 'Ed-Fi Unified Data Model Handbook (Excel)',
       namespace: 'Documentation',
       folderName: 'Ed-Fi-Handbook',
       fileName: 'Ed-Fi-Handbook.xlsx',

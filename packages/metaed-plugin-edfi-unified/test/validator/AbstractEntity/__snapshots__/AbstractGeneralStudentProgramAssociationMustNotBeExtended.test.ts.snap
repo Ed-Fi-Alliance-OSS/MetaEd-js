@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating abstract GeneralStudentProgramAssociation additions should have one validation failure 1`] = `
 Array [

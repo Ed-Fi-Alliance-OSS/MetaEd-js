@@ -113,7 +113,9 @@ describe('when generating HTML version of handbook', (): void => {
   });
 
   it('should include isSensitiveData information for properties', (): void => {
-    expect(generatorResults.generatedOutput[0].resultString).toContain('<td>{{r.isSensitiveData | trueFalseToYesNo}}</td>');
+    expect(generatorResults.generatedOutput[0].resultString).toContain(
+      '<td x-text="trueFalseToYesNo(prop.isSensitiveData)"></td>',
+    );
     expect(generatorResults.generatedOutput[0].resultString).toContain('"isSensitiveData":true');
   });
 

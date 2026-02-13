@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating domain entity with no identity fields should have validation failure 1`] = `"Domain Entity EntityName does not have an identity specified."`;
 
