@@ -28,7 +28,7 @@ import { NamespaceDataCatalogData } from '../model/NamespaceDataCatalogData';
 /**
  * Extract data type string from an entity property
  */
-function extractDataType(property: EntityProperty): string {
+export function extractDataType(property: EntityProperty): string {
   const typeConversion: { [type in PropertyType]: any } = {
     unknown: () => '',
     association: () => 'reference',
