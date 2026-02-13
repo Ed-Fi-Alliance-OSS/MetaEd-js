@@ -241,7 +241,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Include commonExtensionOverrides in all resources from extension projects for consistency
       const resourceSchema = { ...schema, isSubclass: false } as any;
       if (projectSchema.isExtensionProject) {
-        resourceSchema.commonExtensionOverrides = (domainEntity.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+        const entityApiSchemaData = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
+        resourceSchema.commonExtensionOverrides = entityApiSchemaData.commonExtensionOverrides;
       }
       resourceSchemas[endpointName] = resourceSchema;
     });
@@ -265,7 +266,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const schema = buildResourceSchema(association as TopLevelEntity);
       const resourceSchema = { ...schema, isSubclass: false } as any;
       if (projectSchema.isExtensionProject) {
-        resourceSchema.commonExtensionOverrides = (association.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+        const entityApiSchemaData = association.data.edfiApiSchema as EntityApiSchemaData;
+        resourceSchema.commonExtensionOverrides = entityApiSchemaData.commonExtensionOverrides;
       }
       resourceSchemas[endpointName] = resourceSchema;
     });
@@ -277,7 +279,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const schema = buildResourceSchema(entity as TopLevelEntity);
       const resourceSchema = { ...schema, isSubclass: false } as any;
       if (projectSchema.isExtensionProject) {
-        resourceSchema.commonExtensionOverrides = (entity.data.edfiApiSchema as EntityApiSchemaData).commonExtensionOverrides;
+        const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+        resourceSchema.commonExtensionOverrides = entityApiSchemaData.commonExtensionOverrides;
       }
       resourceSchemas[endpointName] = resourceSchema;
     });
