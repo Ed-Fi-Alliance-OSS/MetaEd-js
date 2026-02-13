@@ -29,6 +29,7 @@ import {
   findIdenticalRoleNamePatternPrefix,
   topLevelApiNameOnEntity,
   uncapitalize,
+  isCommonExtensionOverride,
 } from '../Utility';
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
@@ -754,8 +755,12 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
     const referenceProperty: ReferentialProperty = property as ReferentialProperty;
 
     if (entity.type === 'associationExtension' || entity.type === 'domainEntityExtension') {
-      const endpointName = referenceProperty.namespace.projectName.toLocaleLowerCase() as string;
-      jsonPathRootString += `._ext.${endpointName}`;
+      // For common extension overrides, the JSON path root should be '$' (not '$._ext.{project}')
+      // because common override properties go under the core common property, not under root _ext.
+      if (!isCommonExtensionOverride(property)) {
+        const endpointName = referenceProperty.namespace.projectName.toLocaleLowerCase() as string;
+        jsonPathRootString += `._ext.${endpointName}`;
+      }
     }
 
     const schemaObjectBaseName = appendNextJsonPathName(

@@ -38,6 +38,7 @@ import {
   topLevelApiNameOnEntity,
   prependPrefixWithCollapse,
   uncapitalize,
+  isCommonExtensionOverride,
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { parentPropertyModifier } from './JsonElementNamingHelper';
@@ -130,7 +131,7 @@ function buildCommonExtensionSchema(
   commonExtension: CommonExtension,
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
-): SchemaObject {
+): { properties: SchemaProperties; required: string[] } {
   const extensionSchemaProperties: SchemaProperties = {};
   const extensionRequired: string[] = [];
 
@@ -159,26 +160,10 @@ function buildCommonExtensionSchema(
     }
   });
 
-  const projectName = commonExtension.namespace.projectName.toLowerCase();
-
-  const result: SchemaProperties = {
-    _ext: {
-      description: 'Extension properties',
-      type: 'object',
-      properties: {
-        [projectName]: {
-          description: `${projectName} extension properties`,
-          type: 'object',
-          properties: extensionSchemaProperties,
-          additionalProperties: false,
-          ...(extensionRequired.length > 0 && { required: extensionRequired }),
-        },
-      },
-      additionalProperties: false,
-    },
+  return {
+    properties: extensionSchemaProperties,
+    required: extensionRequired,
   };
-
-  return schemaObjectFrom(result, []);
 }
 
 /**
@@ -256,34 +241,8 @@ function schemaObjectForScalarCommonProperty(
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaObject {
-  const schemaProperties: SchemaProperties = {};
+  let schemaProperties: SchemaProperties = {};
   const required: string[] = [];
-
-  const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
-
-  collectedApiProperties.forEach((collectedApiProperty) => {
-    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
-      propertyModifier,
-      collectedApiProperty.propertyModifier,
-    );
-
-    const referencePropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
-      .apiMapping;
-    const schemaPropertyName: string = uncapitalize(
-      prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier),
-    );
-
-    const schemaProperty: SchemaProperty = schemaPropertyFor(
-      collectedApiProperty.property,
-      concatenatedPropertyModifier,
-      schoolYearSchemas,
-    );
-
-    schemaProperties[schemaPropertyName] = schemaProperty;
-    if (isSchemaPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
-      required.push(schemaPropertyName);
-    }
-  });
 
   // Check if this property is using the extension override mechanism
   if (property.isExtensionOverride) {
@@ -291,8 +250,53 @@ function schemaObjectForScalarCommonProperty(
 
     if (referencedCommonExtension !== NoCommonExtension) {
       const extensionSchema = buildCommonExtensionSchema(referencedCommonExtension, propertyModifier, schoolYearSchemas);
-      Object.assign(schemaProperties, extensionSchema.properties);
+      const projectName = referencedCommonExtension.namespace.projectName.toLowerCase();
+
+      // Wrap extension properties under _ext.{project} to match ODS behavior:
+      // each common item gets an _ext.{project} block with only the extension-added fields.
+      schemaProperties = {
+        _ext: {
+          description: 'Extension properties',
+          type: 'object',
+          properties: {
+            [projectName]: {
+              description: `${projectName} extension properties`,
+              type: 'object',
+              properties: extensionSchema.properties,
+              additionalProperties: false,
+              ...(extensionSchema.required.length > 0 && { required: extensionSchema.required }),
+            },
+          },
+          additionalProperties: false,
+        },
+      };
     }
+  } else {
+    const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
+
+    collectedApiProperties.forEach((collectedApiProperty) => {
+      const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+        propertyModifier,
+        collectedApiProperty.propertyModifier,
+      );
+
+      const referencePropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
+        .apiMapping;
+      const schemaPropertyName: string = uncapitalize(
+        prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier),
+      );
+
+      const schemaProperty: SchemaProperty = schemaPropertyFor(
+        collectedApiProperty.property,
+        concatenatedPropertyModifier,
+        schoolYearSchemas,
+      );
+
+      schemaProperties[schemaPropertyName] = schemaProperty;
+      if (isSchemaPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
+        required.push(schemaPropertyName);
+      }
+    });
   }
 
   return schemaObjectFrom(schemaProperties, required);
@@ -560,8 +564,17 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
         ? schemaPropertyForSchoolYearEnumeration(property, schoolYearSchemas.schoolYearEnumerationSchema)
         : schemaPropertyFor(property, propertyModifier, schoolYearSchemas);
 
-    schemaProperties[schemaObjectBaseName] = schemaProperty;
-    addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
+    // Common extension overrides go at the root level of the schema (not under _ext.{project})
+    // because they augment core common properties (e.g. addresses[*]._ext.sample)
+    const isExtensionEntity =
+      entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension';
+    if (isExtensionEntity && isCommonExtensionOverride(property)) {
+      schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
+      // Extension overrides are not marked required at root level — the base entity schema handles that
+    } else {
+      schemaProperties[schemaObjectBaseName] = schemaProperty;
+      addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
+    }
   });
 
   return schemaRoot;

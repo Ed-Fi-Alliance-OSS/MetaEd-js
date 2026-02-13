@@ -1909,7 +1909,7 @@ describe('when domain entity extension has common extension override property wi
     const schema = summarizeRelationalBaseNamesForEntity(entity);
     expect(schema).toMatchInlineSnapshot(`
       Object {
-        "$._ext.extension.testCommon.commonId": "CommonId",
+        "$.testCommon.commonId": "CommonId",
       }
     `);
   });
@@ -1992,7 +1992,7 @@ describe('when association extension has common extension override property', ()
     const schema = summarizeRelationalBaseNamesForEntity(entity);
     expect(schema).toMatchInlineSnapshot(`
       Object {
-        "$._ext.extension.common.commonId": "CommonId",
+        "$.common.commonId": "CommonId",
       }
     `);
   });
@@ -2080,8 +2080,8 @@ describe('when extension override property has collection modifier', () => {
     const schema = summarizeRelationalBaseNamesForEntity(entity);
     expect(schema).toMatchInlineSnapshot(`
       Object {
-        "$._ext.extension.collectionCommons[*]": "CollectionCommon",
-        "$._ext.extension.collectionCommons[*].collectionId": "CollectionId",
+        "$.collectionCommons[*]": "CollectionCommon",
+        "$.collectionCommons[*].collectionId": "CollectionId",
       }
     `);
   });

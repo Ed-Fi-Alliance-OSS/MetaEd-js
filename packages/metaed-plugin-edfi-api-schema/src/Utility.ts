@@ -3,7 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EntityProperty, MetaEdPropertyPath, NoEntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, NoEntityProperty, TopLevelEntity, CommonProperty } from '@edfi/metaed-core';
 import * as inflection from 'inflection';
 import { invariant } from 'ts-invariant';
 import { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
@@ -24,6 +24,13 @@ export function isTopLevelReference(property: EntityProperty): boolean {
  */
 export function isDescriptor(property: EntityProperty): boolean {
   return property.type === 'descriptor';
+}
+
+/**
+ * Checks if a property is a common extension override.
+ */
+export function isCommonExtensionOverride(property: EntityProperty): property is CommonProperty {
+  return property.type === 'common' && (property as CommonProperty).isExtensionOverride;
 }
 
 /**

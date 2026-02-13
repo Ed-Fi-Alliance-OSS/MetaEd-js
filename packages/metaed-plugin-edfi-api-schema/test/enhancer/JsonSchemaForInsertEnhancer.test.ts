@@ -3392,37 +3392,29 @@ describe('when domain entity extension has common extension override property wi
               "edfi": Object {
                 "additionalProperties": true,
                 "description": "edfi extension properties collection",
+                "properties": Object {},
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+          "testCommon": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "_ext": Object {
+                "additionalProperties": false,
+                "description": "Extension properties",
                 "properties": Object {
-                  "testCommon": Object {
+                  "edfi": Object {
                     "additionalProperties": false,
+                    "description": "edfi extension properties",
                     "properties": Object {
-                      "_ext": Object {
-                        "additionalProperties": false,
-                        "description": "Extension properties",
-                        "properties": Object {
-                          "edfi": Object {
-                            "additionalProperties": false,
-                            "description": "edfi extension properties",
-                            "properties": Object {
-                              "extensionProperty": Object {
-                                "description": "doc",
-                                "maxLength": 50,
-                                "type": "string",
-                              },
-                            },
-                            "type": "object",
-                          },
-                        },
-                        "type": "object",
-                      },
-                      "commonId": Object {
+                      "extensionProperty": Object {
                         "description": "doc",
-                        "type": "integer",
+                        "maxLength": 50,
+                        "type": "string",
                       },
                     },
-                    "required": Array [
-                      "commonId",
-                    ],
                     "type": "object",
                   },
                 },
@@ -3432,9 +3424,6 @@ describe('when domain entity extension has common extension override property wi
             "type": "object",
           },
         },
-        "required": Array [
-          "testCommon",
-        ],
         "title": "EdFi.TestEntity",
         "type": "object",
       }
@@ -3530,36 +3519,28 @@ describe('when association extension has common extension override property', ()
               "edfi": Object {
                 "additionalProperties": true,
                 "description": "edfi extension properties collection",
+                "properties": Object {},
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+          "common": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "_ext": Object {
+                "additionalProperties": false,
+                "description": "Extension properties",
                 "properties": Object {
-                  "common": Object {
+                  "edfi": Object {
                     "additionalProperties": false,
+                    "description": "edfi extension properties",
                     "properties": Object {
-                      "_ext": Object {
-                        "additionalProperties": false,
-                        "description": "Extension properties",
-                        "properties": Object {
-                          "edfi": Object {
-                            "additionalProperties": false,
-                            "description": "edfi extension properties",
-                            "properties": Object {
-                              "extensionFlag": Object {
-                                "description": "doc",
-                                "type": "boolean",
-                              },
-                            },
-                            "type": "object",
-                          },
-                        },
-                        "type": "object",
-                      },
-                      "commonId": Object {
+                      "extensionFlag": Object {
                         "description": "doc",
-                        "type": "integer",
+                        "type": "boolean",
                       },
                     },
-                    "required": Array [
-                      "commonId",
-                    ],
                     "type": "object",
                   },
                 },
@@ -3569,9 +3550,6 @@ describe('when association extension has common extension override property', ()
             "type": "object",
           },
         },
-        "required": Array [
-          "common",
-        ],
         "title": "EdFi.TestAssociation",
         "type": "object",
       }
@@ -3653,74 +3631,63 @@ describe('when extension override property has collection modifier', () => {
               "edfi": Object {
                 "additionalProperties": true,
                 "description": "edfi extension properties collection",
-                "properties": Object {
-                  "collectionCommons": Object {
-                    "items": Object {
-                      "additionalProperties": false,
-                      "properties": Object {
-                        "_ext": Object {
-                          "additionalProperties": false,
-                          "description": "Extension properties",
-                          "properties": Object {
-                            "edfi": Object {
-                              "additionalProperties": false,
-                              "description": "edfi extension properties",
-                              "properties": Object {
-                                "extensionAmount": Object {
-                                  "description": "doc",
-                                  "type": "number",
-                                },
-                                "extensionCounts": Object {
-                                  "items": Object {
-                                    "additionalProperties": false,
-                                    "properties": Object {
-                                      "extensionCount": Object {
-                                        "description": "doc",
-                                        "type": "integer",
-                                      },
-                                    },
-                                    "required": Array [
-                                      "extensionCount",
-                                    ],
-                                    "type": "object",
-                                  },
-                                  "minItems": 1,
-                                  "type": "array",
-                                  "uniqueItems": false,
-                                },
-                              },
-                              "required": Array [
-                                "extensionCounts",
-                              ],
-                              "type": "object",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "collectionId": Object {
-                          "description": "doc",
-                          "type": "integer",
-                        },
-                      },
-                      "required": Array [
-                        "collectionId",
-                      ],
-                      "type": "object",
-                    },
-                    "minItems": 0,
-                    "type": "array",
-                    "uniqueItems": false,
-                  },
-                },
+                "properties": Object {},
                 "type": "object",
               },
             },
             "type": "object",
           },
+          "collectionCommons": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "_ext": Object {
+                  "additionalProperties": false,
+                  "description": "Extension properties",
+                  "properties": Object {
+                    "edfi": Object {
+                      "additionalProperties": false,
+                      "description": "edfi extension properties",
+                      "properties": Object {
+                        "extensionAmount": Object {
+                          "description": "doc",
+                          "type": "number",
+                        },
+                        "extensionCounts": Object {
+                          "items": Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "extensionCount": Object {
+                                "description": "doc",
+                                "type": "integer",
+                              },
+                            },
+                            "required": Array [
+                              "extensionCount",
+                            ],
+                            "type": "object",
+                          },
+                          "minItems": 1,
+                          "type": "array",
+                          "uniqueItems": false,
+                        },
+                      },
+                      "required": Array [
+                        "extensionCounts",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
         },
-        "required": Array [
-          "collectionCommons",
-        ],
         "title": "EdFi.CollectionEntity",
         "type": "object",
       }

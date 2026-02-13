@@ -1823,9 +1823,9 @@ describe('when extension override property has collection modifier', () => {
   });
   it('should include common extension schema in domain entity with extension override', () => {
     const entity = extensionNamespace?.entity.domainEntityExtension.get(domainEntityName);
-    expect(summarizeJsonBaseNamesForPaths(entity, '$._ext.extension.collectionCommons[*]')).toMatchInlineSnapshot(`
+    expect(summarizeJsonBaseNamesForPaths(entity, '$.collectionCommons[*]')).toMatchInlineSnapshot(`
       Object {
-        "$._ext.extension.collectionCommons[*]": "CollectionCommon",
+        "$.collectionCommons[*]": "CollectionCommon",
       }
     `);
   });

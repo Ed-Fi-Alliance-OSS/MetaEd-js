@@ -1930,7 +1930,7 @@ describe('when extension override property has collection modifier', () => {
     expect(schema).toMatchInlineSnapshot(`
       Array [
         Object {
-          "collectionJsonPath": "$._ext.extension.collectionCommons[*]",
+          "collectionJsonPath": "$.collectionCommons[*]",
           "parentPath": "",
           "property": "CollectionCommon",
           "propertyChain": Array [
