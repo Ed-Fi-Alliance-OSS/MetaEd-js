@@ -49,7 +49,7 @@ export const domainSchema = [
     column: 'Namespace',
     type: String,
     width: 20,
-    value: (row: EntityRow) => row.namespace,
+    value: (row: DomainRow) => row.namespace,
   },
   {
     column: 'Domain description',
@@ -109,7 +109,7 @@ export const elementSchema = [
     column: 'Namespace',
     type: String,
     width: 20,
-    value: (row: EntityRow) => row.namespace,
+    value: (row: ElementRow) => row.namespace,
   },
   {
     column: 'Domain entity name',
