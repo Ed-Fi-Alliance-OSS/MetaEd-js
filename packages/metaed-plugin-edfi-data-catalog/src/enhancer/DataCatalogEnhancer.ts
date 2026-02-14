@@ -79,6 +79,29 @@ function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
 }
 
 /**
+ * Process all domains and subdomains in a namespace using a strategy function
+ */
+function processDomainsAndSubdomains<T>(
+  namespace: Namespace,
+  processDomain: (namespace: Namespace, domain: Domain | Subdomain, collectedEntities: Set<string>) => T[],
+): { results: T[]; collectedEntities: Set<string> } {
+  const results: T[] = [];
+  const collectedEntities = new Set<string>();
+
+  namespace.entity.domain.forEach((domain: Domain) => {
+    domain.entities.forEach((entity) => collectedEntities.add(entity.metaEdName));
+    results.push(...processDomain(namespace, domain, collectedEntities));
+
+    domain.subdomains.forEach((subdomain) => {
+      subdomain.entities.forEach((entity) => collectedEntities.add(entity.metaEdName));
+      results.push(...processDomain(namespace, subdomain, collectedEntities));
+    });
+  });
+
+  return { results, collectedEntities };
+}
+
+/**
  * Map a domain or subdomain to entity rows
  */
 function mapDomainToEntities(namespace: Namespace, domain: Domain | Subdomain): EntityRow[] {
@@ -95,26 +118,20 @@ function mapDomainToEntities(namespace: Namespace, domain: Domain | Subdomain): 
  * Extract entity rows from a namespace
  */
 function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
-  const entityRows: EntityRow[] = [];
-
-  const collectedEntities: string[] = [];
-
-  namespace.entity.domain.forEach((domain: Domain) => {
-    Logger.verbose(`Extracting entities from domain ${domain.metaEdName} in namespace ${namespace.namespaceName}...`);
-    entityRows.push(...mapDomainToEntities(namespace, domain));
-    collectedEntities.push(...domain.entities.map((e) => e.metaEdName));
-
-    domain.subdomains.forEach((subdomain) => {
-      entityRows.push(...mapDomainToEntities(namespace, subdomain));
-      collectedEntities.push(...subdomain.entities.map((e) => e.metaEdName));
-    });
-  });
+  const { results: entityRows, collectedEntities } = processDomainsAndSubdomains(
+    namespace,
+    (ns, domain) => {
+      Logger.verbose(`Extracting entities from domain ${domain.metaEdName} in namespace ${ns.namespaceName}...`);
+      return mapDomainToEntities(ns, domain);
+    },
+  );
 
   // An extension might not place entities into a domain, so we also want to extract any top level entities that are not in a domain
   getAllEntities(namespace.entity).forEach((entity) => {
-    Logger.verbose(`Extracting entities that are not in a domain from namespace ${namespace.namespaceName}...`);
+    if (!collectedEntities.has(entity.metaEdName)) {
+      Logger.verbose(`Extracting entities that are not in a domain from namespace ${namespace.namespaceName}...`);
+      collectedEntities.add(entity.metaEdName);
 
-    if (!collectedEntities.includes(entity.metaEdName)) {
       entityRows.push({
         projectVersion: namespace.projectVersion,
         domainName: '',
@@ -153,25 +170,17 @@ function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): 
  * Extract element rows from a namespace
  */
 function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
-  const elementRows: ElementRow[] = [];
-
-  const collectedEntities: string[] = [];
-
-  namespace.entity.domain.forEach((domain: Domain) => {
-    elementRows.push(...mapDomainToElements(namespace, domain));
-    collectedEntities.push(...domain.entities.map((e) => e.metaEdName));
-
-    domain.subdomains.forEach((subDomain: Subdomain) => {
-      elementRows.push(...mapDomainToElements(namespace, subDomain));
-      collectedEntities.push(...subDomain.entities.map((e) => e.metaEdName));
-    });
-  });
+  const { results: elementRows, collectedEntities } = processDomainsAndSubdomains(
+    namespace,
+    (ns, domain) => mapDomainToElements(ns, domain),
+  );
 
   // Include elements for any top-level entities that aren't placed into a domain
   getAllTopLevelEntities(namespace.entity).forEach((entity) => {
-    Logger.verbose(`Extracting elements that are not in a domain from namespace ${namespace.namespaceName}...`);
+    if (!collectedEntities.has(entity.metaEdName)) {
+      Logger.verbose(`Extracting elements that are not in a domain from namespace ${namespace.namespaceName}...`);
+      collectedEntities.add(entity.metaEdName);
 
-    if (!collectedEntities.includes(entity.metaEdName)) {
       elementRows.push(
         ...entity.properties.map((property: EntityProperty) => ({
           projectVersion: namespace.projectVersion,
