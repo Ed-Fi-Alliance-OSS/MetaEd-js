@@ -30,7 +30,14 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const elementRows: ElementRow[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    const dataCatalogData = namespace.data.edfiDataCatalog as NamespaceDataCatalogData;
+    const dataCatalogData = namespace.data?.edfiDataCatalog as NamespaceDataCatalogData | undefined;
+    if (!dataCatalogData) {
+      throw new Error(
+        `Missing edfiDataCatalog data for namespace "${namespace.namespaceName}". ` +
+          'Ensure that the DataCatalogEnhancer has run before the EdFiDataStandardListingGenerator.',
+      );
+    }
+
     domainRows.push(...dataCatalogData.domainRows);
     entityRows.push(...dataCatalogData.entityRows);
     elementRows.push(...dataCatalogData.elementRows);
@@ -44,8 +51,15 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     orderByProp('domainEntityName'),
   ])(entityRows);
 
+  const orderedElementRows: ElementRow[] = R.sortWith([
+    orderByProp('projectVersion'),
+    orderByProp('domainName'),
+    orderByProp('domainEntityName'),
+    orderByProp('elementName'),
+  ])(elementRows);
+
   // @ts-ignore - TypeScript typings here don't recognize Blob return type
-  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, elementRows], {
+  const fileAsBlob: Blob = await writeXlsxFile([orderedDomainRows, orderedEntityRows, orderedElementRows], {
     buffer: true,
     schema: [domainSchema, entitySchema, elementSchema],
     sheets: [domainsWorksheetName, entitiesWorksheetName, elementsWorksheetName],
@@ -64,7 +78,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   ];
 
   return {
-    generatorName: 'edfiHandbook.DataStandardListingGenerator',
+    generatorName: 'edfiDataCatalog.DataStandardListingGenerator',
     generatedOutput,
   };
 }

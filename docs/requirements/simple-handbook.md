@@ -29,7 +29,7 @@ As a business analyst, I want a simple spreadsheet version of the handbook, so t
 
 ## Approach
 
-- Add new code to the `metaed-plugin-edfi-handbook` package
+- Add new code to the new `metaed-plugin-edfi-data-catalog` package
 - The file `EdFiDataHandbookAsExcelGenerator.ts` is similar.
   - Do not modify `EdFiDataHandbookAsExcelGenerator.ts`.
   - Copy `EdFiDataHandbookAsExcelGenerator.ts` to create the new module file.
@@ -37,4 +37,5 @@ As a business analyst, I want a simple spreadsheet version of the handbook, so t
 
 ## Addendum
 
-"Namespace" is also needed, but was overlooked in the original prompt above that was provided to GitHub Copilot.
+- "Namespace" is also needed, but was overlooked in the original prompt above that was provided to GitHub Copilot.
+- Some domain entities may not be in a domain, but they _are_ in the namespace.
