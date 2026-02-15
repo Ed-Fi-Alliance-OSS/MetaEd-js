@@ -46,7 +46,7 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
 
     // Find the OpenAPI fragment - prefer 'resources' type, fall back to 'descriptors'
     const openApiFragment = resourceSchema.openApiFragments.resources || resourceSchema.openApiFragments.descriptors;
-    
+
     if (openApiFragment == null || openApiFragment.components == null || openApiFragment.components.schemas == null) {
       return;
     }
@@ -144,7 +144,7 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
 
     // Find the OpenAPI fragment - prefer 'resources' type, fall back to 'descriptors'
     const openApiFragment = resourceSchema.openApiFragments.resources || resourceSchema.openApiFragments.descriptors;
-    
+
     if (openApiFragment == null || openApiFragment.components == null || openApiFragment.components.schemas == null) {
       return;
     }
