@@ -16,14 +16,27 @@ The plugin must be loaded after the `metaed-plugin-edfi-api-schema` plugin to ac
 
 ## Output
 
-The plugin generates a single Excel file (`Ed-Fi-API-Catalog.xlsx`) with the following columns:
+The plugin generates a single Excel file (`Ed-Fi-API-Catalog.xlsx`) with two worksheets:
+
+### Resources Worksheet
+
+Contains one row per resource with the following columns:
 
 - **Project**: The API project endpoint name (e.g., "ed-fi", "tpdm")
 - **Version**: The project version (e.g., "5.2.0")
 - **Resource Name**: The API resource endpoint name
-- **Is Descriptor**: Boolean indicating if the resource is a descriptor
+- **Resource Description**: The description of the resource from the API schema
+- **Domains**: Comma-separated list of domains the resource belongs to
+
+### Properties Worksheet
+
+Contains one row per property within each resource with the following columns:
+
+- **Project**: The API project endpoint name (e.g., "ed-fi", "tpdm")
+- **Version**: The project version (e.g., "5.2.0")
+- **Resource Name**: The API resource endpoint name
 - **Property Name**: The name of the property within the resource
-- **Description**: The property description from the API schema
+- **Property Description**: The property description from the API schema
 - **Data Type**: The property data type (uses `format` if available, otherwise `type`)
 - **Min Length**: Minimum string length constraint (if applicable)
 - **Max Length**: Maximum string length constraint (if applicable)
@@ -45,6 +58,7 @@ Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx
 
 - The plugin has no enhancers or validators
 - It contains a single generator that reads from `namespace.data.edfiApiSchema`
+- Both regular resources and descriptors are included in the catalog
 - Reference properties are included with `dataType = 'reference'`
-- The `id` property is automatically excluded from the catalog
+- The `id` property is automatically excluded from the Properties worksheet
 - Properties are extracted from OpenAPI fragments (preferring 'resources', falling back to 'descriptors')
