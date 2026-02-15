@@ -8,7 +8,14 @@ import writeXlsxFile from 'write-excel-file';
 import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
 import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
-import { ApiCatalogRow, apiCatalogSchema, apiCatalogWorksheetName } from '../model/ApiCatalogRow';
+import {
+  PropertyRow,
+  ResourceRow,
+  propertiesSchema,
+  resourcesSchema,
+  propertiesWorksheetName,
+  resourcesWorksheetName,
+} from '../model/ApiCatalogRow';
 
 /**
  * Extended SchemaObject type that includes Ed-Fi custom properties
@@ -19,10 +26,10 @@ type EdFiSchemaObject = SchemaObject & {
 };
 
 /**
- * Extracts API catalog rows from a namespace's API schema data
+ * Extracts property rows from a namespace's API schema data
  */
-function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
-  const rows: ApiCatalogRow[] = [];
+function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
+  const rows: PropertyRow[] = [];
 
   const namespaceData = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
   if (namespaceData == null || namespaceData.apiSchema == null) {
@@ -36,7 +43,6 @@ function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
   // Iterate over all resource schemas
   Object.entries(projectSchema.resourceSchemas).forEach(([resourceEndpoint, resourceSchema]: [string, ResourceSchema]) => {
     const resourceName = resourceEndpoint;
-    const isDescriptor = resourceSchema.isDescriptor;
 
     // Find the OpenAPI fragment - prefer 'resources' type, fall back to 'descriptors'
     const openApiFragment = resourceSchema.openApiFragments.resources || resourceSchema.openApiFragments.descriptors;
@@ -100,7 +106,6 @@ function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
           project: projectEndpointName,
           version: projectVersion,
           resourceName,
-          isDescriptor,
           propertyName,
           description,
           dataType,
@@ -119,20 +124,68 @@ function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
 }
 
 /**
+ * Extracts resource rows from a namespace's API schema data
+ */
+function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
+  const rows: ResourceRow[] = [];
+
+  const namespaceData = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+  if (namespaceData == null || namespaceData.apiSchema == null) {
+    return rows;
+  }
+
+  const { projectSchema } = namespaceData.apiSchema;
+  const projectEndpointName = projectSchema.projectEndpointName;
+  const projectVersion = projectSchema.projectVersion;
+
+  // Iterate over all resource schemas
+  Object.entries(projectSchema.resourceSchemas).forEach(([resourceEndpoint, resourceSchema]: [string, ResourceSchema]) => {
+    const resourceName = resourceEndpoint;
+
+    // Find the OpenAPI fragment - prefer 'resources' type, fall back to 'descriptors'
+    const openApiFragment = resourceSchema.openApiFragments.resources || resourceSchema.openApiFragments.descriptors;
+    
+    if (openApiFragment == null || openApiFragment.components == null || openApiFragment.components.schemas == null) {
+      return;
+    }
+
+    // Get the first schema to extract description
+    const schemas = Object.values(openApiFragment.components.schemas);
+    const firstSchema = schemas[0] as SchemaObject | undefined;
+    const resourceDescription = firstSchema?.description || '';
+
+    // Format domains as comma-separated list
+    const domains = resourceSchema.domains.join(', ');
+
+    rows.push({
+      project: projectEndpointName,
+      version: projectVersion,
+      resourceName,
+      resourceDescription,
+      domains,
+    });
+  });
+
+  return rows;
+}
+
+/**
  * Generates an Excel spreadsheet containing API catalog information
  */
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  const catalogRows: ApiCatalogRow[] = [];
+  const propertyRows: PropertyRow[] = [];
+  const resourceRows: ResourceRow[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    catalogRows.push(...extractCatalogRowsForNamespace(namespace));
+    propertyRows.push(...extractPropertyRowsForNamespace(namespace));
+    resourceRows.push(...extractResourceRowsForNamespace(namespace));
   });
 
   // @ts-ignore - TypeScript typings here don't recognize Blob return type
-  const fileAsBlob: Blob = await writeXlsxFile([catalogRows], {
+  const fileAsBlob: Blob = await writeXlsxFile([resourceRows, propertyRows], {
     buffer: true,
-    schema: [apiCatalogSchema],
-    sheets: [apiCatalogWorksheetName],
+    schema: [resourcesSchema, propertiesSchema],
+    sheets: [resourcesWorksheetName, propertiesWorksheetName],
   });
   const fileAsArrayBuffer = await fileAsBlob.arrayBuffer();
 

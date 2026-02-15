@@ -4,13 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 /**
- * Represents a single row in the API catalog spreadsheet
+ * Represents a single property row in the Properties worksheet
  */
-export type ApiCatalogRow = {
+export type PropertyRow = {
   project: string;
   version: string;
   resourceName: string;
-  isDescriptor: boolean;
   propertyName: string;
   description: string;
   dataType: string;
@@ -23,87 +22,129 @@ export type ApiCatalogRow = {
 };
 
 /**
- * Schema definition for Excel export using write-excel-file library
+ * Represents a single resource row in the Resources worksheet
  */
-export const apiCatalogSchema = [
+export type ResourceRow = {
+  project: string;
+  version: string;
+  resourceName: string;
+  resourceDescription: string;
+  domains: string;
+};
+
+/**
+ * Schema definition for Properties worksheet
+ */
+export const propertiesSchema = [
   {
     column: 'Project',
     type: String,
     width: 20,
-    value: (row: ApiCatalogRow) => row.project,
+    value: (row: PropertyRow) => row.project,
   },
   {
     column: 'Version',
     type: String,
     width: 15,
-    value: (row: ApiCatalogRow) => row.version,
+    value: (row: PropertyRow) => row.version,
   },
   {
     column: 'Resource Name',
     type: String,
     width: 30,
-    value: (row: ApiCatalogRow) => row.resourceName,
-  },
-  {
-    column: 'Is Descriptor',
-    type: Boolean,
-    width: 15,
-    value: (row: ApiCatalogRow) => row.isDescriptor,
+    value: (row: PropertyRow) => row.resourceName,
   },
   {
     column: 'Property Name',
     type: String,
     width: 30,
-    value: (row: ApiCatalogRow) => row.propertyName,
+    value: (row: PropertyRow) => row.propertyName,
   },
   {
-    column: 'Description',
+    column: 'Property Description',
     type: String,
     width: 50,
-    value: (row: ApiCatalogRow) => row.description,
+    value: (row: PropertyRow) => row.description,
   },
   {
     column: 'Data Type',
     type: String,
     width: 20,
-    value: (row: ApiCatalogRow) => row.dataType,
+    value: (row: PropertyRow) => row.dataType,
   },
   {
     column: 'Min Length',
     type: Number,
     width: 15,
-    value: (row: ApiCatalogRow) => row.minLength,
+    value: (row: PropertyRow) => row.minLength,
   },
   {
     column: 'Max Length',
     type: Number,
     width: 15,
-    value: (row: ApiCatalogRow) => row.maxLength,
+    value: (row: PropertyRow) => row.maxLength,
   },
   {
     column: 'Validation RegEx',
     type: String,
     width: 40,
-    value: (row: ApiCatalogRow) => row.validationRegEx,
+    value: (row: PropertyRow) => row.validationRegEx,
   },
   {
     column: 'Is Identity Key',
     type: Boolean,
     width: 15,
-    value: (row: ApiCatalogRow) => row.isIdentityKey,
+    value: (row: PropertyRow) => row.isIdentityKey,
   },
   {
     column: 'Is Nullable',
     type: Boolean,
     width: 15,
-    value: (row: ApiCatalogRow) => row.isNullable,
+    value: (row: PropertyRow) => row.isNullable,
   },
   {
     column: 'Is Required',
     type: Boolean,
     width: 15,
-    value: (row: ApiCatalogRow) => row.isRequired,
+    value: (row: PropertyRow) => row.isRequired,
   },
 ];
 
-export const apiCatalogWorksheetName = 'API Catalog';
+/**
+ * Schema definition for Resources worksheet
+ */
+export const resourcesSchema = [
+  {
+    column: 'Project',
+    type: String,
+    width: 20,
+    value: (row: ResourceRow) => row.project,
+  },
+  {
+    column: 'Version',
+    type: String,
+    width: 15,
+    value: (row: ResourceRow) => row.version,
+  },
+  {
+    column: 'Resource Name',
+    type: String,
+    width: 30,
+    value: (row: ResourceRow) => row.resourceName,
+  },
+  {
+    column: 'Resource Description',
+    type: String,
+    width: 60,
+    value: (row: ResourceRow) => row.resourceDescription,
+  },
+  {
+    column: 'Domains',
+    type: String,
+    width: 40,
+    value: (row: ResourceRow) => row.domains,
+  },
+];
+
+export const propertiesWorksheetName = 'Properties';
+export const resourcesWorksheetName = 'Resources';
