@@ -18,7 +18,6 @@ import {
   Domain,
   EntityProperty,
   Logger,
-  getAllEntities,
   getAllTopLevelEntities,
 } from '@edfi/metaed-core';
 import { DomainRow, EntityRow, ElementRow } from '../model/DataStandardListingRow';
@@ -118,16 +117,13 @@ function mapDomainToEntities(namespace: Namespace, domain: Domain | Subdomain): 
  * Extract entity rows from a namespace
  */
 function extractEntitiesFromNamespace(namespace: Namespace): EntityRow[] {
-  const { results: entityRows, collectedEntities } = processDomainsAndSubdomains(
-    namespace,
-    (ns, domain) => {
-      Logger.verbose(`Extracting entities from domain ${domain.metaEdName} in namespace ${ns.namespaceName}...`);
-      return mapDomainToEntities(ns, domain);
-    },
-  );
+  const { results: entityRows, collectedEntities } = processDomainsAndSubdomains(namespace, (ns, domain) => {
+    Logger.verbose(`Extracting entities from domain ${domain.metaEdName} in namespace ${ns.namespaceName}...`);
+    return mapDomainToEntities(ns, domain);
+  });
 
   // An extension might not place entities into a domain, so we also want to extract any top level entities that are not in a domain
-  getAllEntities(namespace.entity).forEach((entity) => {
+  getAllTopLevelEntities(namespace.entity).forEach((entity) => {
     if (!collectedEntities.has(entity.metaEdName)) {
       Logger.verbose(`Extracting entities that are not in a domain from namespace ${namespace.namespaceName}...`);
       collectedEntities.add(entity.metaEdName);
@@ -170,9 +166,8 @@ function mapDomainToElements(namespace: Namespace, domain: Domain | Subdomain): 
  * Extract element rows from a namespace
  */
 function extractElementsFromNamespace(namespace: Namespace): ElementRow[] {
-  const { results: elementRows, collectedEntities } = processDomainsAndSubdomains(
-    namespace,
-    (ns, domain) => mapDomainToElements(ns, domain),
+  const { results: elementRows, collectedEntities } = processDomainsAndSubdomains(namespace, (ns, domain) =>
+    mapDomainToElements(ns, domain),
   );
 
   // Include elements for any top-level entities that aren't placed into a domain
