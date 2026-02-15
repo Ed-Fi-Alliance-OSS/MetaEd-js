@@ -11,6 +11,14 @@ import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model
 import { ApiCatalogRow, apiCatalogSchema, apiCatalogWorksheetName } from '../model/ApiCatalogRow';
 
 /**
+ * Extended SchemaObject type that includes Ed-Fi custom properties
+ */
+type EdFiSchemaObject = SchemaObject & {
+  'x-Ed-Fi-isIdentity'?: boolean;
+  'x-nullable'?: boolean;
+};
+
+/**
  * Extracts API catalog rows from a namespace's API schema data
  */
 function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
@@ -52,29 +60,38 @@ function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
           return;
         }
 
+        let dataType: string;
+        let description: string;
+        let minLength: number | null = null;
+        let maxLength: number | null = null;
+        let validationRegEx: string | null = null;
+        let isIdentityKey = false;
+        let isNullable = false;
+
         // Handle reference objects
         if ('$ref' in propertySchema) {
-          return; // Skip references for now
+          const reference = propertySchema as EdFiSchemaObject & { $ref: string };
+          dataType = 'reference';
+          description = reference.$ref;
+          isIdentityKey = reference['x-Ed-Fi-isIdentity'] === true;
+          isNullable = reference['x-nullable'] === true;
+        } else {
+          const property = propertySchema as EdFiSchemaObject;
+
+          // Extract data type - use format if present, otherwise use type
+          dataType = property.type || 'unknown';
+          if (property.format != null) {
+            dataType = property.format;
+          }
+
+          // Extract other properties
+          description = property.description || '';
+          minLength = property.minLength != null ? property.minLength : null;
+          maxLength = property.maxLength != null ? property.maxLength : null;
+          validationRegEx = property.pattern != null ? property.pattern : null;
+          isIdentityKey = property['x-Ed-Fi-isIdentity'] === true;
+          isNullable = property['x-nullable'] === true;
         }
-
-        const property = propertySchema as SchemaObject;
-
-        // Extract data type - use format if present, otherwise use type
-        let dataType = property.type || 'unknown';
-        if (property.format != null) {
-          dataType = property.format;
-        }
-
-        // Extract validation properties
-        const minLength = property.minLength != null ? property.minLength : null;
-        const maxLength = property.maxLength != null ? property.maxLength : null;
-        const validationRegEx = property.pattern != null ? property.pattern : null;
-
-        // Extract x-Ed-Fi-isIdentity
-        const isIdentityKey = (property as SchemaObject & { 'x-Ed-Fi-isIdentity'?: boolean })['x-Ed-Fi-isIdentity'] === true;
-
-        // Extract x-nullable
-        const isNullable = (property as SchemaObject & { 'x-nullable'?: boolean })['x-nullable'] === true;
 
         // Check if property is in the required array
         const isRequired = requiredProperties.includes(propertyName);
@@ -85,7 +102,7 @@ function extractCatalogRowsForNamespace(namespace: Namespace): ApiCatalogRow[] {
           resourceName,
           isDescriptor,
           propertyName,
-          description: property.description || '',
+          description,
           dataType,
           minLength,
           maxLength,
