@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating interchange extension has invalid extendee should have validation failures 1`] = `"Interchange additions InterchangeExtensionName does not match any declared Interchange in namespace EdFi."`;
 

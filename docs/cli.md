@@ -58,6 +58,10 @@ File](#configuration-file)) setting must point to the parent directory of the `E
 
 ### Deploy Command Line Interface
 
+> [!NOTE]
+> Not shown below: you can override the default log level (info) with environment variable `LOG_LEVEL`.
+> Valid levels: debug, verbose, info, warn, error, fatal.
+
 ```powershell
 > node .\packages\metaed-odsapi-deploy\dist\index.js
 Usage: index.js [options]

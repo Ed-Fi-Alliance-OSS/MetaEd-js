@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when domain entity subclass extends non existent entity should have validation failures 1`] = `"Domain Entity Subclass SubclassName based on EntityName is invalid for identity rename because parent entity EntityName has more than one identity property."`;
 
