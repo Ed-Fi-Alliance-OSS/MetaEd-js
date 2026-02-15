@@ -76,65 +76,65 @@ describe('DataCatalogEnhancer', () => {
 
     expect(dataCatalogData.domainRows).toHaveLength(1);
     expect(dataCatalogData.domainRows[0]).toMatchInlineSnapshot(`
-{
-  "domainDescription": "Test domain description",
-  "domainName": "TestDomain",
-  "namespace": "TestNamespace",
-  "projectVersion": "1.0.0",
-}
-`);
+      Object {
+        "domainDescription": "Test domain description",
+        "domainName": "TestDomain",
+        "namespace": "TestNamespace",
+        "projectVersion": "1.0.0",
+      }
+    `);
 
     expect(dataCatalogData.entityRows).toHaveLength(2);
     expect(dataCatalogData.entityRows[0]).toMatchInlineSnapshot(`
-{
-  "domainEntityDescription": "Test entity description",
-  "domainEntityName": "TestEntity",
-  "domainName": "TestDomain",
-  "namespace": "TestNamespace",
-  "projectVersion": "1.0.0",
-}
-`);
+      Object {
+        "domainEntityDescription": "Test entity description",
+        "domainEntityName": "TestEntity",
+        "domainName": "TestDomain",
+        "namespace": "TestNamespace",
+        "projectVersion": "1.0.0",
+      }
+    `);
     expect(dataCatalogData.entityRows[1]).toMatchInlineSnapshot(`
-{
-  "domainEntityDescription": "Subdomain entity description",
-  "domainEntityName": "SubdomainEntity",
-  "domainName": "TestSubdomain",
-  "namespace": "TestNamespace",
-  "projectVersion": "1.0.0",
-}
-`);
+      Object {
+        "domainEntityDescription": "Subdomain entity description",
+        "domainEntityName": "SubdomainEntity",
+        "domainName": "TestSubdomain",
+        "namespace": "TestNamespace",
+        "projectVersion": "1.0.0",
+      }
+    `);
 
     expect(dataCatalogData.elementRows).toHaveLength(2);
     expect(dataCatalogData.elementRows[0]).toMatchInlineSnapshot(`
-{
-  "domainEntityName": "SubdomainEntity",
-  "domainName": "TestSubdomain",
-  "elementDataType": "int32",
-  "elementDescription": "Subdomain property description",
-  "elementName": "SubdomainProperty",
-  "isCollection": true,
-  "isDeprecated": true,
-  "isPartOfIdentity": false,
-  "isRequired": false,
-  "namespace": "TestNamespace",
-  "projectVersion": "1.0.0",
-}
-`);
+      Object {
+        "domainEntityName": "TestEntity",
+        "domainName": "TestDomain",
+        "elementDataType": "string(0,undefined)",
+        "elementDescription": "Test property description",
+        "elementName": "TestProperty",
+        "isCollection": false,
+        "isDeprecated": false,
+        "isPartOfIdentity": true,
+        "isRequired": true,
+        "namespace": "TestNamespace",
+        "projectVersion": "1.0.0",
+      }
+    `);
     expect(dataCatalogData.elementRows[1]).toMatchInlineSnapshot(`
-{
-  "domainEntityName": "TestEntity",
-  "domainName": "TestDomain",
-  "elementDataType": "string(0,undefined)",
-  "elementDescription": "Test property description",
-  "elementName": "TestProperty",
-  "isCollection": false,
-  "isDeprecated": false,
-  "isPartOfIdentity": true,
-  "isRequired": true,
-  "namespace": "TestNamespace",
-  "projectVersion": "1.0.0",
-}
-`);
+      Object {
+        "domainEntityName": "SubdomainEntity",
+        "domainName": "TestSubdomain",
+        "elementDataType": "int32",
+        "elementDescription": "Subdomain property description",
+        "elementName": "SubdomainProperty",
+        "isCollection": true,
+        "isDeprecated": true,
+        "isPartOfIdentity": false,
+        "isRequired": false,
+        "namespace": "TestNamespace",
+        "projectVersion": "1.0.0",
+      }
+    `);
   });
 
   it('should handle multiple namespaces', () => {

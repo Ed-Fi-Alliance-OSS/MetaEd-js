@@ -104,7 +104,7 @@ describe('EdFiDataStandardListingGenerator', () => {
     const result = await generate(metaEd);
 
     // Verify the generator result
-    expect(result.generatorName).toBe('edfiHandbook.DataStandardListingGenerator');
+    expect(result.generatorName).toBe('edfiDataCatalog.DataStandardListingGenerator');
     expect(result.generatedOutput).toHaveLength(1);
     expect(result.generatedOutput[0].fileName).toBe('Data-Catalog.xlsx');
     expect(result.generatedOutput[0].name).toBe('Data Standard Listing Excel');
