@@ -7,8 +7,6 @@ import type { Namespace } from '@edfi/metaed-core';
 import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
 import type { ProjectSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ProjectSchema';
-import type { OpenApiFragment } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/OpenApiFragment';
-import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import { extractPropertyRowsForNamespace, extractResourceRowsForNamespace } from '../../src/generator/ApiCatalogGenerator';
 
 describe('ApiCatalogGenerator', () => {
@@ -78,9 +76,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -90,37 +88,37 @@ describe('ApiCatalogGenerator', () => {
 
       expect(result).toHaveLength(2);
       expect(result).toMatchInlineSnapshot(`
-[
-  {
-    "dataType": "string",
-    "description": "A unique alphanumeric code",
-    "isIdentityKey": true,
-    "isNullable": false,
-    "isRequired": true,
-    "maxLength": 32,
-    "minLength": 1,
-    "project": "ed-fi",
-    "propertyName": "studentUniqueId",
-    "resourceName": "students",
-    "validationRegEx": "^(?!\\\\s).*(?<!\\\\s)$",
-    "version": "5.2.0",
-  },
-  {
-    "dataType": "string",
-    "description": "A name given to an individual",
-    "isIdentityKey": false,
-    "isNullable": true,
-    "isRequired": false,
-    "maxLength": 75,
-    "minLength": null,
-    "project": "ed-fi",
-    "propertyName": "firstName",
-    "resourceName": "students",
-    "validationRegEx": null,
-    "version": "5.2.0",
-  },
-]
-`);
+        Array [
+          Object {
+            "dataType": "string",
+            "description": "A unique alphanumeric code",
+            "isIdentityKey": true,
+            "isNullable": false,
+            "isRequired": true,
+            "maxLength": 32,
+            "minLength": 1,
+            "project": "ed-fi",
+            "propertyName": "studentUniqueId",
+            "resourceName": "students",
+            "validationRegEx": "^(?!\\\\s).*(?<!\\\\s)$",
+            "version": "5.2.0",
+          },
+          Object {
+            "dataType": "string",
+            "description": "A name given to an individual",
+            "isIdentityKey": false,
+            "isNullable": true,
+            "isRequired": false,
+            "maxLength": 75,
+            "minLength": null,
+            "project": "ed-fi",
+            "propertyName": "firstName",
+            "resourceName": "students",
+            "validationRegEx": null,
+            "version": "5.2.0",
+          },
+        ]
+      `);
     });
 
     it('should skip id property', () => {
@@ -154,9 +152,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -195,9 +193,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -207,21 +205,21 @@ describe('ApiCatalogGenerator', () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchInlineSnapshot(`
-{
-  "dataType": "reference",
-  "description": "#/components/schemas/EdFi_Student_Reference",
-  "isIdentityKey": true,
-  "isNullable": false,
-  "isRequired": true,
-  "maxLength": null,
-  "minLength": null,
-  "project": "ed-fi",
-  "propertyName": "studentReference",
-  "resourceName": "studentSchoolAssociations",
-  "validationRegEx": null,
-  "version": "5.2.0",
-}
-`);
+        Object {
+          "dataType": "reference",
+          "description": "#/components/schemas/EdFi_Student_Reference",
+          "isIdentityKey": true,
+          "isNullable": false,
+          "isRequired": true,
+          "maxLength": null,
+          "minLength": null,
+          "project": "ed-fi",
+          "propertyName": "studentReference",
+          "resourceName": "studentSchoolAssociations",
+          "validationRegEx": null,
+          "version": "5.2.0",
+        }
+      `);
     });
 
     it('should handle array properties with $ref items', () => {
@@ -254,9 +252,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -266,21 +264,21 @@ describe('ApiCatalogGenerator', () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchInlineSnapshot(`
-{
-  "dataType": "array",
-  "description": "#/components/schemas/EdFi_Student_Address",
-  "isIdentityKey": false,
-  "isNullable": false,
-  "isRequired": false,
-  "maxLength": null,
-  "minLength": null,
-  "project": "ed-fi",
-  "propertyName": "addresses",
-  "resourceName": "students",
-  "validationRegEx": null,
-  "version": "5.2.0",
-}
-`);
+        Object {
+          "dataType": "array",
+          "description": "#/components/schemas/EdFi_Student_Address",
+          "isIdentityKey": false,
+          "isNullable": false,
+          "isRequired": false,
+          "maxLength": null,
+          "minLength": null,
+          "project": "ed-fi",
+          "propertyName": "addresses",
+          "resourceName": "students",
+          "validationRegEx": null,
+          "version": "5.2.0",
+        }
+      `);
     });
 
     it('should use format as dataType when present', () => {
@@ -311,9 +309,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -354,9 +352,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -425,9 +423,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -437,14 +435,14 @@ describe('ApiCatalogGenerator', () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchInlineSnapshot(`
-{
-  "domains": "Student, Enrollment",
-  "project": "ed-fi",
-  "resourceDescription": "This entity represents an individual for whom instruction",
-  "resourceName": "students",
-  "version": "5.2.0",
-}
-`);
+        Object {
+          "domains": "Student, Enrollment",
+          "project": "ed-fi",
+          "resourceDescription": "This entity represents an individual for whom instruction",
+          "resourceName": "students",
+          "version": "5.2.0",
+        }
+      `);
     });
 
     it('should skip schemas with _Reference suffix when finding main schema', () => {
@@ -477,9 +475,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -524,9 +522,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -560,9 +558,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -597,9 +595,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -634,9 +632,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
@@ -670,9 +668,9 @@ describe('ApiCatalogGenerator', () => {
                         },
                       },
                     },
-                  } as ResourceSchema,
+                  } as unknown as ResourceSchema,
                 },
-              } as ProjectSchema,
+              } as unknown as ProjectSchema,
             },
           } as NamespaceEdfiApiSchema,
         },
