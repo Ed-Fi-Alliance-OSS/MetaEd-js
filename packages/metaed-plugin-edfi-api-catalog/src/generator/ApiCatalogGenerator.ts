@@ -7,7 +7,7 @@ import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '
 import writeXlsxFile from 'write-excel-file';
 import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
-import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
+import type { SchemaObject, ArraySchemaObject, ReferenceObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import {
   PropertyRow,
   ResourceRow,
@@ -92,6 +92,16 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
 
           // Extract other properties
           description = property.description || '';
+          
+          // For array types, use the items $ref as the description
+          if (property.type === 'array') {
+            const arrayProperty = property as ArraySchemaObject;
+            if ('$ref' in arrayProperty.items) {
+              const itemsRef = arrayProperty.items as ReferenceObject;
+              description = itemsRef.$ref;
+            }
+          }
+          
           minLength = property.minLength != null ? property.minLength : null;
           maxLength = property.maxLength != null ? property.maxLength : null;
           validationRegEx = property.pattern != null ? property.pattern : null;
@@ -149,10 +159,33 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
       return;
     }
 
-    // Get the first schema to extract description
-    const schemas = Object.values(openApiFragment.components.schemas);
-    const firstSchema = schemas[0] as SchemaObject | undefined;
-    const resourceDescription = firstSchema?.description || '';
+    // Get the main schema to extract description
+    // For resources, there may be multiple schemas (main one plus _Reference, etc.)
+    // Find the schema that best matches the resource name (without _Reference, _Readable, etc. suffixes)
+    const schemas = openApiFragment.components.schemas;
+    let mainSchema: SchemaObject | undefined;
+
+    // First try to find a schema that matches without looking for suffixes
+    const schemaEntries = Object.entries(schemas);
+    for (const [schemaName, schema] of schemaEntries) {
+      // The main schema typically doesn't have common suffixes like _Reference, _Readable, etc.
+      // and usually contains properties (not just a $ref)
+      const hasCommonSuffix = schemaName.endsWith('_Reference') || 
+                              schemaName.endsWith('_Readable') || 
+                              schemaName.endsWith('_Writable');
+      
+      if (!hasCommonSuffix && (schema as SchemaObject).properties != null) {
+        mainSchema = schema as SchemaObject;
+        break;
+      }
+    }
+
+    // If we didn't find a main schema with properties, just use the first one
+    if (mainSchema == null) {
+      mainSchema = schemaEntries[0]?.[1] as SchemaObject | undefined;
+    }
+
+    const resourceDescription = mainSchema?.description || '';
 
     // Format domains as comma-separated list
     const domains = resourceSchema.domains.join(', ');
