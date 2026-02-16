@@ -172,16 +172,17 @@ export function extractResourceRowsForNamespace(namespace: Namespace): ResourceR
 
     // Find a schema without common suffixes like _Reference, _Readable, or _Writable
     const schemaEntries = Object.entries(schemas);
-    for (const [schemaName, schema] of schemaEntries) {
+    const mainSchemaEntry = schemaEntries.find(([schemaName, schema]) => {
       // The main schema typically doesn't have common suffixes like _Reference, _Readable, etc.
       // and usually contains properties (not just a $ref)
       const hasCommonSuffix =
         schemaName.endsWith('_Reference') || schemaName.endsWith('_Readable') || schemaName.endsWith('_Writable');
 
-      if (!hasCommonSuffix && (schema as SchemaObject).properties != null) {
-        mainSchema = schema as SchemaObject;
-        break;
-      }
+      return !hasCommonSuffix && (schema as SchemaObject).properties != null;
+    });
+
+    if (mainSchemaEntry != null) {
+      mainSchema = mainSchemaEntry[1] as SchemaObject;
     }
 
     // If we didn't find a main schema with properties, just use the first one
