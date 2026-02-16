@@ -92,8 +92,9 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
 
           // Extract other properties
           description = property.description || '';
-          
-          // For array types, use the items $ref as the description
+
+          // For array types, use the items $ref as the description to indicate the array item type
+          // This provides information about what schema type the array contains
           if (property.type === 'array') {
             const arrayProperty = property as ArraySchemaObject;
             if ('$ref' in arrayProperty.items) {
@@ -101,7 +102,7 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
               description = itemsRef.$ref;
             }
           }
-          
+
           minLength = property.minLength != null ? property.minLength : null;
           maxLength = property.maxLength != null ? property.maxLength : null;
           validationRegEx = property.pattern != null ? property.pattern : null;
@@ -165,15 +166,15 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
     const schemas = openApiFragment.components.schemas;
     let mainSchema: SchemaObject | undefined;
 
-    // First try to find a schema that matches without looking for suffixes
+    // Find a schema without common suffixes like _Reference, _Readable, or _Writable
     const schemaEntries = Object.entries(schemas);
     for (const [schemaName, schema] of schemaEntries) {
       // The main schema typically doesn't have common suffixes like _Reference, _Readable, etc.
       // and usually contains properties (not just a $ref)
-      const hasCommonSuffix = schemaName.endsWith('_Reference') || 
-                              schemaName.endsWith('_Readable') || 
+      const hasCommonSuffix = schemaName.endsWith('_Reference') ||
+                              schemaName.endsWith('_Readable') ||
                               schemaName.endsWith('_Writable');
-      
+
       if (!hasCommonSuffix && (schema as SchemaObject).properties != null) {
         mainSchema = schema as SchemaObject;
         break;
