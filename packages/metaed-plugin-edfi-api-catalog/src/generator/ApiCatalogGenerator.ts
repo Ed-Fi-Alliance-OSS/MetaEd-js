@@ -7,7 +7,11 @@ import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '
 import writeXlsxFile from 'write-excel-file';
 import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
-import type { SchemaObject, ArraySchemaObject, ReferenceObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
+import type {
+  SchemaObject,
+  ArraySchemaObject,
+  ReferenceObject,
+} from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import {
   PropertyRow,
   ResourceRow,
@@ -37,8 +41,8 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
   }
 
   const { projectSchema } = namespaceData.apiSchema;
-  const projectEndpointName = projectSchema.projectEndpointName;
-  const projectVersion = projectSchema.projectVersion;
+  const { projectEndpointName } = projectSchema;
+  const { projectVersion } = projectSchema;
 
   // Iterate over all resource schemas
   Object.entries(projectSchema.resourceSchemas).forEach(([resourceEndpoint, resourceSchema]: [string, ResourceSchema]) => {
@@ -146,8 +150,8 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
   }
 
   const { projectSchema } = namespaceData.apiSchema;
-  const projectEndpointName = projectSchema.projectEndpointName;
-  const projectVersion = projectSchema.projectVersion;
+  const { projectEndpointName } = projectSchema;
+  const { projectVersion } = projectSchema;
 
   // Iterate over all resource schemas
   Object.entries(projectSchema.resourceSchemas).forEach(([resourceEndpoint, resourceSchema]: [string, ResourceSchema]) => {
@@ -163,7 +167,7 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
     // Get the main schema to extract description
     // For resources, there may be multiple schemas (main one plus _Reference, etc.)
     // Find the schema that best matches the resource name (without _Reference, _Readable, etc. suffixes)
-    const schemas = openApiFragment.components.schemas;
+    const { schemas } = openApiFragment.components;
     let mainSchema: SchemaObject | undefined;
 
     // Find a schema without common suffixes like _Reference, _Readable, or _Writable
@@ -171,9 +175,8 @@ function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
     for (const [schemaName, schema] of schemaEntries) {
       // The main schema typically doesn't have common suffixes like _Reference, _Readable, etc.
       // and usually contains properties (not just a $ref)
-      const hasCommonSuffix = schemaName.endsWith('_Reference') ||
-                              schemaName.endsWith('_Readable') ||
-                              schemaName.endsWith('_Writable');
+      const hasCommonSuffix =
+        schemaName.endsWith('_Reference') || schemaName.endsWith('_Readable') || schemaName.endsWith('_Writable');
 
       if (!hasCommonSuffix && (schema as SchemaObject).properties != null) {
         mainSchema = schema as SchemaObject;
