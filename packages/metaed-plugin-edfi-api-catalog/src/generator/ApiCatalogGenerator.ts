@@ -32,7 +32,7 @@ type EdFiSchemaObject = SchemaObject & {
 /**
  * Extracts property rows from a namespace's API schema data
  */
-function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
+export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
   const rows: PropertyRow[] = [];
 
   const namespaceData = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
@@ -141,7 +141,7 @@ function extractPropertyRowsForNamespace(namespace: Namespace): PropertyRow[] {
 /**
  * Extracts resource rows from a namespace's API schema data
  */
-function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
+export function extractResourceRowsForNamespace(namespace: Namespace): ResourceRow[] {
   const rows: ResourceRow[] = [];
 
   const namespaceData = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
