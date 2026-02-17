@@ -27,6 +27,7 @@ import {
   findIdenticalRoleNamePatternPrefix,
   topLevelApiNameOnEntity,
   uncapitalize,
+  isExtensionEntity,
 } from '../Utility';
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
@@ -519,7 +520,7 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
     const topLevelName = topLevelApiNameOnEntity(entity, property);
     let jsonPathRootString = '$';
     const referenceProperty: ReferentialProperty = property as ReferentialProperty;
-    if (entity.type === 'associationExtension' || entity.type === 'domainEntityExtension') {
+    if (isExtensionEntity(entity)) {
       const endpointName = referenceProperty.namespace.projectName.toLocaleLowerCase() as string;
       jsonPathRootString += `._ext.${endpointName}`;
     }

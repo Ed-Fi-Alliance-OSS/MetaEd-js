@@ -39,6 +39,7 @@ import {
   prependPrefixWithCollapse,
   uncapitalize,
   isCommonExtensionOverride,
+  isExtensionEntity,
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { parentPropertyModifier } from './JsonElementNamingHelper';
@@ -531,7 +532,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
   };
 
   // DE/Association extension entity properties go under _ext
-  if (entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension') {
+  if (isExtensionEntity(entityForSchema)) {
     // New schemaProperties to go under _ext
     schemaProperties = {};
     const extensionSchemaName = entityForSchema.namespace.projectName.toLocaleLowerCase() as string;
@@ -566,9 +567,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
 
     // Common extension overrides go at the root level of the schema (not under _ext.{project})
     // because they augment core common properties (e.g. addresses[*]._ext.sample)
-    const isExtensionEntity =
-      entityForSchema.type === 'domainEntityExtension' || entityForSchema.type === 'associationExtension';
-    if (isExtensionEntity && isCommonExtensionOverride(property)) {
+    if (isExtensionEntity(entityForSchema) && isCommonExtensionOverride(property)) {
       schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
       // Extension overrides are not marked required at root level — the base entity schema handles that
     } else {

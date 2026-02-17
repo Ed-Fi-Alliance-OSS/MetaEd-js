@@ -111,6 +111,20 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
 }
 
 /**
+ * Builds a ResourceSchema for a non-extension entity, including commonExtensionOverrides
+ * when the entity belongs to an extension project.
+ */
+function buildNonExtensionResourceSchema(entity: TopLevelEntity, isExtensionProject: boolean): ResourceSchema {
+  const schema = buildResourceSchema(entity);
+  const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+  return {
+    ...schema,
+    isSubclass: false,
+    ...(isExtensionProject ? { commonExtensionOverrides: entityApiSchemaData.commonExtensionOverrides } : {}),
+  };
+}
+
+/**
  * Builds a complete ResourceExtensionSchema from the pieces iteratively added to entityApiSchemaData
  * by previous enhancers.
  */
@@ -138,6 +152,7 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     authorizationPathways: [],
     arrayUniquenessConstraints: entityApiSchemaData.arrayUniquenessConstraints,
     isResourceExtension: true,
+    commonExtensionOverrides: entityApiSchemaData.commonExtensionOverrides,
     openApiFragments: entityApiSchemaData.openApiFragments,
     // Additional properties specific to resource extensions
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
@@ -236,7 +251,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName, resourceName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(domainEntity as TopLevelEntity), isSubclass: false };
+      resourceSchemas[endpointName] = buildNonExtensionResourceSchema(
+        domainEntity as TopLevelEntity,
+        projectSchema.isExtensionProject,
+      );
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'association').forEach((association) => {
@@ -255,14 +273,20 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { endpointName, resourceName } = association.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(association as TopLevelEntity), isSubclass: false };
+      resourceSchemas[endpointName] = buildNonExtensionResourceSchema(
+        association as TopLevelEntity,
+        projectSchema.isExtensionProject,
+      );
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity) => {
       const { endpointName, resourceName } = entity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[resourceName] = endpointName;
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
-      resourceSchemas[endpointName] = { ...buildResourceSchema(entity as TopLevelEntity), isSubclass: false };
+      resourceSchemas[endpointName] = buildNonExtensionResourceSchema(
+        entity as TopLevelEntity,
+        projectSchema.isExtensionProject,
+      );
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {

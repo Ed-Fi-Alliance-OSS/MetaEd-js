@@ -2870,13 +2870,6 @@ describe('when building domain entity extension with common extension override',
     );
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "Address.City": Object {
-          "isPartOfIdentity": false,
-          "isReference": false,
-          "isRequired": false,
-          "path": "$.address.city",
-          "type": "string",
-        },
         "Address.ExtensionProperty": Object {
           "isPartOfIdentity": false,
           "isReference": false,
@@ -2890,13 +2883,6 @@ describe('when building domain entity extension with common extension override',
           "isRequired": true,
           "path": "$.address._ext.edfi.isVerified",
           "type": "boolean",
-        },
-        "Address.StreetNumberName": Object {
-          "isPartOfIdentity": false,
-          "isReference": false,
-          "isRequired": true,
-          "path": "$.address.streetNumberName",
-          "type": "string",
         },
       }
     `);

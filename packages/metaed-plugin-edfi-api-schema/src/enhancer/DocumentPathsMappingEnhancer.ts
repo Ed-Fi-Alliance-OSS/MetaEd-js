@@ -15,7 +15,7 @@ import {
   PropertyType,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { normalizeDescriptorPropertyPath } from '../Utility';
+import { normalizeDescriptorPropertyPath, isExtensionEntity, hasExtensionProperties } from '../Utility';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DescriptorReferencePath, DocumentReferencePaths, ScalarPath } from '../model/api-schema/DocumentPaths';
@@ -310,6 +310,9 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
   Object.entries(allJsonPathsMapping).forEach(([propertyPath, jsonPathsInfo]) => {
     // Only want paths at the top level
     if (!jsonPathsInfo.isTopLevel) return;
+
+    // For extensions, only include extension-specific properties
+    if (isExtensionEntity(entity) && !hasExtensionProperties(jsonPathsInfo)) return;
 
     const { jsonPathPropertyPairs } = jsonPathsInfo;
     const property: EntityProperty = jsonPathsInfo.terminalProperty;

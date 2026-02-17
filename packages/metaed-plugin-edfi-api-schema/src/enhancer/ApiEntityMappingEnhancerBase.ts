@@ -21,6 +21,7 @@ import type { CollectedProperty } from '../model/CollectedProperty';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
+import { isExtensionEntity } from '../Utility';
 
 /**
  * A list of property paths along with the chain of properties that make up the path.
@@ -248,7 +249,7 @@ export function descriptorCollectedApiPropertiesFrom(entity: TopLevelEntity): Co
  */
 export function superclassFor(entity: TopLevelEntity): TopLevelEntity | null {
   // Specifically exclude Domain Entity/Association Extensions - just to be safe
-  if (entity.type === 'domainEntityExtension' || entity.type === 'associationExtension') return null;
+  if (isExtensionEntity(entity)) return null;
   // If it's a subclass, return its superclass
   if (entity.baseEntity != null) return entity.baseEntity;
   return null;

@@ -34,6 +34,25 @@ export function isCommonExtensionOverride(property: EntityProperty): property is
 }
 
 /**
+ * Checks if an entity is an extension (domainEntityExtension or associationExtension).
+ */
+export function isExtensionEntity(entity: TopLevelEntity): boolean {
+  return entity.type === 'domainEntityExtension' || entity.type === 'associationExtension';
+}
+
+/**
+ * Checks if JsonPathsInfo contains any extension-specific properties (with _ext in jsonPath).
+ *
+ * The `._ext` segment is a reserved Ed-Fi JSON Schema convention that is never part of a
+ * natural property name — it is always a synthetic namespace container injected by the
+ * schema generation pipeline. Therefore string matching on `._ext` is safe and equivalent
+ * to a structural check.
+ */
+export function hasExtensionProperties(jsonPathsInfo: JsonPathsInfo): boolean {
+  return jsonPathsInfo.jsonPathPropertyPairs.some(({ jsonPath }) => jsonPath.includes('._ext'));
+}
+
+/**
  * Uncapitalizes the first character, and also leading acronyms
  *
  * Generally follows the behavior of ToCamelCase() in

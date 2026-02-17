@@ -30,6 +30,7 @@ import {
   topLevelApiNameOnEntity,
   uncapitalize,
   isCommonExtensionOverride,
+  isExtensionEntity,
 } from '../Utility';
 import { FlattenedIdentityProperty, NoFlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
@@ -754,7 +755,7 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
     let jsonPathRootString = '$';
     const referenceProperty: ReferentialProperty = property as ReferentialProperty;
 
-    if (entity.type === 'associationExtension' || entity.type === 'domainEntityExtension') {
+    if (isExtensionEntity(entity)) {
       // For common extension overrides, the JSON path root should be '$' (not '$._ext.{project}')
       // because common override properties go under the core common property, not under root _ext.
       if (!isCommonExtensionOverride(property)) {
