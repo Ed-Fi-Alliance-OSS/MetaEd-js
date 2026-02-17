@@ -42,6 +42,11 @@ export function isExtensionEntity(entity: TopLevelEntity): boolean {
 
 /**
  * Checks if JsonPathsInfo contains any extension-specific properties (with _ext in jsonPath).
+ *
+ * The `._ext` segment is a reserved Ed-Fi JSON Schema convention that is never part of a
+ * natural property name — it is always a synthetic namespace container injected by the
+ * schema generation pipeline. Therefore string matching on `._ext` is safe and equivalent
+ * to a structural check.
  */
 export function hasExtensionProperties(jsonPathsInfo: JsonPathsInfo): boolean {
   return jsonPathsInfo.jsonPathPropertyPairs.some(({ jsonPath }) => jsonPath.includes('._ext'));

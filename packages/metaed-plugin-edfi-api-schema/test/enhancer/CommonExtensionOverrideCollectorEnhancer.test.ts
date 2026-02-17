@@ -99,9 +99,13 @@ describe('when domain entity extension has a collection common extension overrid
         "$.properties.addresses.items",
       ]
     `);
-    expect(override.projectEndpointName).toBe('edfi');
+    expect(override.projectEndpointName).toBe('ed-fi');
     expect(override.schemaFragment.type).toBe('object');
     expect(override.schemaFragment.properties).toBeDefined();
+    const projectKey = Object.keys(override.schemaFragment.properties)[0];
+    const projectFragment = override.schemaFragment.properties[projectKey] as { properties: Record<string, unknown> };
+    expect(Object.keys(projectFragment.properties)).toContain('complex');
+    expect(Object.keys(projectFragment.properties)).toContain('onBusRoute');
   });
 });
 
@@ -241,13 +245,13 @@ describe('when domain entity extension has multiple common extension overrides',
       (o) => o.insertionLocations[0] === '$.properties.addresses.items',
     );
     expect(addressOverride).toBeDefined();
-    expect(addressOverride?.projectEndpointName).toBe('edfi');
+    expect(addressOverride?.projectEndpointName).toBe('ed-fi');
 
     const characteristicOverride = entityApiSchemaData.commonExtensionOverrides.find(
       (o) => o.insertionLocations[0] === '$.properties.studentCharacteristics.items',
     );
     expect(characteristicOverride).toBeDefined();
-    expect(characteristicOverride?.projectEndpointName).toBe('edfi');
+    expect(characteristicOverride?.projectEndpointName).toBe('ed-fi');
   });
 });
 
@@ -320,6 +324,11 @@ describe('when domain entity extension has a scalar common extension override', 
         "$.properties.name",
       ]
     `);
-    expect(override.projectEndpointName).toBe('edfi');
+    expect(override.projectEndpointName).toBe('ed-fi');
+    expect(override.schemaFragment).toBeDefined();
+    expect(override.schemaFragment.type).toBe('object');
+    const projectKey = Object.keys(override.schemaFragment.properties)[0];
+    const projectFragment = override.schemaFragment.properties[projectKey] as { properties: Record<string, unknown> };
+    expect(Object.keys(projectFragment.properties)).toContain('suffix');
   });
 });

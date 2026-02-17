@@ -15,8 +15,8 @@ import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaDat
 import { CommonExtensionOverride } from '../model/api-schema/CommonExtensionOverride';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
-import { SchemaObject } from '../model/JsonSchema';
-import { isCommonExtensionOverride, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import { SchemaArray, SchemaObject, SchemaProperty } from '../model/JsonSchema';
+import { createUriSegment, isCommonExtensionOverride, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import { prefixedName } from '../model/PropertyModifier';
 
 const enhancerName = 'CommonExtensionOverrideCollectorEnhancer';
@@ -37,12 +37,12 @@ function deriveInsertionLocation(schemaPropertyName: string, isCollection: boole
 }
 
 /**
- * Extracts the _ext block from a schema object, returning empty object if not found.
+ * Extracts the _ext block from a schema property, returning undefined if not found.
  */
-function extractExtBlock(schema: unknown): SchemaObject | undefined {
-  const castedSchema = schema as { properties?: Record<string, SchemaObject> };
+function extractExtBlock(schema: SchemaProperty): SchemaObject | undefined {
+  if (schema.type !== 'object') return undefined;
   // eslint-disable-next-line no-underscore-dangle
-  return castedSchema.properties?._ext;
+  return schema.properties?._ext as SchemaObject | undefined;
 }
 
 /**
@@ -65,7 +65,7 @@ function extractSchemaFragment(
   }
 
   // For collections, the schema is an array wrapping an object; the _ext is inside items
-  const schemaToSearch = isCollection ? (rootProperty as any).items : rootProperty;
+  const schemaToSearch = isCollection ? (rootProperty as SchemaArray).items : rootProperty;
   const extBlock = extractExtBlock(schemaToSearch);
 
   return extBlock ?? { type: 'object', properties: {}, additionalProperties: false };
@@ -96,7 +96,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const topLevelName = topLevelApiNameOnEntity(entity as TopLevelEntity, property);
       const schemaPropertyName = uncapitalize(prefixedName(topLevelName, propertyModifier));
 
-      const projectName = referencedCommonExtension.namespace.projectName.toLowerCase();
+      const projectName = createUriSegment(referencedCommonExtension.namespace.projectName);
       const insertionLocation = deriveInsertionLocation(schemaPropertyName, isCollection);
       const schemaFragment = extractSchemaFragment(entityApiSchemaData, schemaPropertyName, isCollection);
 

@@ -141,6 +141,12 @@ export type NonExtensionResourceSchema = BaseResourceSchema & {
    * A mapping of API query term strings to the JsonPaths in the document that should be part of the query
    */
   queryFieldMapping: QueryFieldMapping;
+  /**
+   * Common extension overrides from extension projects. Present only on resources
+   * from extension projects; describes where common extension overrides attach
+   * into the core entity's jsonSchemaForInsert.
+   */
+  commonExtensionOverrides?: CommonExtensionOverride[];
 };
 
 /**
