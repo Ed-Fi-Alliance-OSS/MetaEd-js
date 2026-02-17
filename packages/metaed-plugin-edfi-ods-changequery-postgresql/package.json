@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-changequery-postgresql",
   "main": "dist/index.js",
-  "version": "4.6.1-dev.15",
+  "version": "4.6.1-dev.16",
   "description": "Ed-Fi ODS/API Change Queries plugin for MetaEd supporting PostgreSQL",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,12 +13,12 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.6.1-dev.15",
-    "@edfi/metaed-plugin-edfi-ods-changequery": "4.6.1-dev.15",
-    "@edfi/metaed-plugin-edfi-ods-postgresql": "4.6.1-dev.15",
-    "@edfi/metaed-plugin-edfi-ods-relational": "4.6.1-dev.15",
-    "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.15",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.15",
+    "@edfi/metaed-core": "4.6.1-dev.16",
+    "@edfi/metaed-plugin-edfi-ods-changequery": "4.6.1-dev.16",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "4.6.1-dev.16",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.6.1-dev.16",
+    "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.16",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.16",
     "handlebars": "^4.7.7",
     "ramda": "^0.29.0"
   },

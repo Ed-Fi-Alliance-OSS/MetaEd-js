@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-core",
   "main": "dist/index.js",
-  "version": "4.6.1-dev.15",
+  "version": "4.6.1-dev.16",
   "description": "MetaEd core functionality plugin",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -29,7 +29,7 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
-    "@edfi/metaed-default-plugins": "4.6.1-dev.15",
+    "@edfi/metaed-default-plugins": "4.6.1-dev.16",
     "@types/klaw-sync": "^6.0.1",
     "normalize-path": "^3.0.0"
   },
