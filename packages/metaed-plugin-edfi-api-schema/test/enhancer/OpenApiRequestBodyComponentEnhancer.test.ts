@@ -2449,10 +2449,6 @@ describe('when building domain entity extension with common extension scalar pro
             "description": "A unique system-generated resource identifier.",
             "type": "string",
           },
-          "studentCharacteristic": Object {
-            "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-            "x-nullable": true,
-          },
         },
         "type": "object",
       }
@@ -2534,14 +2530,6 @@ describe('when building domain entity extension with common extension collection
           "id": Object {
             "description": "A unique system-generated resource identifier.",
             "type": "string",
-          },
-          "studentCharacteristics": Object {
-            "items": Object {
-              "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": false,
           },
         },
         "type": "object",
