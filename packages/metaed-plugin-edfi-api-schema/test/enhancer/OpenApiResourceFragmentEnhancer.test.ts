@@ -312,11 +312,9 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       const fragment = entityApiData.openApiFragments.resources;
       expect(fragment).toBeDefined();
       expect(fragment?.components?.schemas).toBeDefined();
-      expect(fragment?.exts).toBeDefined();
 
-      // Check the exts mapping
-      const expectedExtName = `${studentExtension.baseEntityNamespaceName}_${studentExtension.metaEdName}`;
-      expect(fragment?.exts).toHaveProperty(expectedExtName);
+      // Extension with no real collected properties should not produce exts
+      expect(fragment?.exts).toBeUndefined();
     });
   });
 

@@ -17,7 +17,7 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiObject, OpenApiProperty } from '../model/OpenApi';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, uncapitalize } from '../Utility';
+import { isCommonExtensionOverride, isExtensionEntity, singularize, uncapitalize } from '../Utility';
 import {
   openApiObjectFrom,
   openApiCollectionReferenceNameFor,
@@ -172,7 +172,13 @@ function buildOpenApiCollectionSchemaList(
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
+  // Skip common extension override properties for extension entities — these are now handled
+  // by the commonExtensionOverrides ApiSchema element rather than OpenAPI exts fragments
+  const skipCommonOverrides = isExtensionEntity(entityForOpenApi);
+
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
+    if (skipCommonOverrides && isCommonExtensionOverride(property)) return;
+
     const referenceSchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
       property,
       propertyModifier,
