@@ -82,7 +82,7 @@ function extractDomainsFromNamespace(namespace: Namespace): DomainRow[] {
  */
 function processDomainsAndSubdomains<T>(
   namespace: Namespace,
-  processDomain: (namespace: Namespace, domain: Domain | Subdomain, collectedEntities: Set<string>) => T[],
+  processDomain: (innerNamespace: Namespace, domain: Domain | Subdomain, collectedEntities: Set<string>) => T[],
 ): { results: T[]; collectedEntities: Set<string> } {
   const results: T[] = [];
   const collectedEntities = new Set<string>();
