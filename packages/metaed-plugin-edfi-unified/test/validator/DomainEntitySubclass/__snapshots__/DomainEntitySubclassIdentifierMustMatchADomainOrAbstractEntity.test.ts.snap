@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when domain entity subclass has invalid extendee should have validation failures 1`] = `"Domain Entity Subclass EntityName based on BaseEntityName does not match any declared Domain or Abstract Entity."`;
 

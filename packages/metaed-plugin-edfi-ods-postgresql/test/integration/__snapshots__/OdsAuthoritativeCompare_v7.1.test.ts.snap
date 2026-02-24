@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when generating ods and comparing it to data standard 5.0 authoritative artifacts for ODS/API 7.1.0 should have correct foreign key order 1`] = `
 Array [
