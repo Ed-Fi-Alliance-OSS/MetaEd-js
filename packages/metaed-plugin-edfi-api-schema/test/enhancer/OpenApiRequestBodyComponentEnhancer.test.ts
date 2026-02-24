@@ -2456,6 +2456,80 @@ describe('when building domain entity extension with common extension scalar pro
   });
 });
 
+describe('when building domain entity extension with unresolved common extension override (no matching CommonExtension entity)', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+
+  let namespace: any = null;
+  let extNamespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('StudentEducationOrganizationAssociation')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withCommonProperty('StudentCharacteristic', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartCommon('StudentCharacteristic')
+      .withDocumentation('doc')
+      .withStringProperty('FirstName', 'doc', true, false, '75')
+      .withStringProperty('LastName', 'doc', true, false, '75')
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace('Sample')
+      .withStartDomainEntityExtension('EdFi.StudentEducationOrganizationAssociation')
+      .withCommonExtensionOverrideProperty('EdFi.StudentCharacteristic', 'doc', false, false)
+      .withEndDomainEntityExtension()
+      // NOTE: No CommonExtension for StudentCharacteristic — override is unresolvable
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get('EdFi');
+    extNamespace = metaEd.namespace.get('Sample');
+    extNamespace.dependencies.push(namespace);
+
+    domainEntityReferenceEnhancer(metaEd);
+    domainEntityExtensionBaseClassEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    commonExtensionBaseClassEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    commonExtensionOverrideResolverEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should still include the unresolved override property as a $ref — it is not handled by commonExtensionOverrides', () => {
+    const entity = extNamespace.entity.domainEntityExtension.get('StudentEducationOrganizationAssociation');
+    expect(entity.data.edfiApiSchema.openApiRequestBodyComponent).toMatchInlineSnapshot(`
+      Object {
+        "description": "",
+        "properties": Object {
+          "id": Object {
+            "description": "A unique system-generated resource identifier.",
+            "type": "string",
+          },
+          "studentCharacteristic": Object {
+            "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
+            "x-nullable": true,
+          },
+        },
+        "type": "object",
+      }
+    `);
+  });
+});
+
 describe('when building domain entity extension with common extension collection property', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());

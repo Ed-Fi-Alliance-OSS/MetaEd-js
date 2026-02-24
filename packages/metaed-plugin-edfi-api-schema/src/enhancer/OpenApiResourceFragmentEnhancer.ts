@@ -66,7 +66,7 @@ function createExtensionFragment(entity: TopLevelEntity): OpenApiFragment {
   // Common extension override properties are now handled by commonExtensionOverrides in ApiSchema,
   // so exts only needs to carry regular extension properties. Skip exts if only the system 'id' key remains.
   const componentProperties = entityApiSchemaData.openApiRequestBodyComponent.properties ?? {};
-  const hasRealProperties = Object.keys(componentProperties).length > 1;
+  const hasRealProperties = Object.keys(componentProperties).some((k) => k !== 'id');
 
   if (hasRealProperties) {
     fragment.exts = {

@@ -19,7 +19,13 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { deAcronym, isCommonExtensionOverride, isExtensionEntity, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import {
+  deAcronym,
+  isExtensionEntity,
+  isResolvedCommonExtensionOverride,
+  topLevelApiNameOnEntity,
+  uncapitalize,
+} from '../Utility';
 import {
   openApiObjectFrom,
   isOpenApiPropertyRequired,
@@ -332,12 +338,12 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
-  // Skip common extension override properties for extension entities — these are now handled
-  // by the commonExtensionOverrides ApiSchema element rather than OpenAPI exts fragments
-  const skipCommonOverrides = isExtensionEntity(entityForOpenApi);
+  // Skip resolved common extension override properties for extension entities — these are now handled
+  // by the commonExtensionOverrides ApiSchema element rather than OpenAPI exts fragments.
+  const skipResolvedOverrides = isExtensionEntity(entityForOpenApi);
 
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
-    if (skipCommonOverrides && isCommonExtensionOverride(property)) return;
+    if (skipResolvedOverrides && isResolvedCommonExtensionOverride(property)) return;
 
     const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
     const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));

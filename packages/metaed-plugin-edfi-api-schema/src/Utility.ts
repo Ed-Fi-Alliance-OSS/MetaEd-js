@@ -3,7 +3,14 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { EntityProperty, MetaEdPropertyPath, NoEntityProperty, TopLevelEntity, CommonProperty } from '@edfi/metaed-core';
+import {
+  EntityProperty,
+  MetaEdPropertyPath,
+  NoEntityProperty,
+  NoCommonExtension,
+  TopLevelEntity,
+  CommonProperty,
+} from '@edfi/metaed-core';
 import * as inflection from 'inflection';
 import { invariant } from 'ts-invariant';
 import { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
@@ -38,6 +45,19 @@ export function isCommonExtensionOverride(property: EntityProperty): property is
  */
 export function isExtensionEntity(entity: TopLevelEntity): boolean {
   return entity.type === 'domainEntityExtension' || entity.type === 'associationExtension';
+}
+
+/**
+ * Checks if a property is a resolved common extension override — i.e. the property is an extension override
+ * and has a matching CommonExtension entity. This predicate is shared by the OpenAPI request body enhancers
+ * and is aligned with the guard in CommonExtensionOverrideCollectorEnhancer: only resolved overrides are
+ * redirected to the commonExtensionOverrides ApiSchema path; unresolved overrides fall through to the
+ * existing OpenAPI code path.
+ */
+export function isResolvedCommonExtensionOverride(property: EntityProperty): boolean {
+  if (!isCommonExtensionOverride(property)) return false;
+  const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+  return referencedCommonExtension !== NoCommonExtension;
 }
 
 /**
