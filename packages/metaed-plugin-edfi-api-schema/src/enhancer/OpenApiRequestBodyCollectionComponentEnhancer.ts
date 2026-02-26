@@ -10,7 +10,6 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
-  NoCommonExtension,
 } from '@edfi/metaed-core';
 
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -80,7 +79,7 @@ export function openApiCollectionReferenceSchemaFor(
   schoolYearOpenApis: SchoolYearOpenApis,
   propertiesChain: EntityProperty[],
 ): OpenApiRequestBodyCollectionSchema[] {
-  const { apiMapping, referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   let referenceSchemas: OpenApiRequestBodyCollectionSchema[] = [];
   const propertyName: string = openApiCollectionReferenceNameFor(property, propertyModifier, propertiesChain);
 
@@ -123,29 +122,6 @@ export function openApiCollectionReferenceSchemaFor(
       );
       referenceSchemas = referenceSchemas.concat(openApiRequestBodyCollectionSchemas);
     });
-
-    // Handle common extension overrides - process properties from the referenced common extension
-    if (
-      property.type === 'common' &&
-      (property as CommonProperty).isExtensionOverride &&
-      referencedCommonExtension !== NoCommonExtension
-    ) {
-      referencedCommonExtension.properties.forEach((extensionProperty) => {
-        // Create a copy of property with a parentEntityName corrected for this common extension case
-        const propertyWithCorrectedParentEntityName = {
-          ...extensionProperty,
-          parentEntityName: `${property.parentEntityName}_${property.fullPropertyName}`,
-        } as CommonProperty;
-
-        const extensionPropertySchemas: OpenApiRequestBodyCollectionSchema[] = openApiCollectionReferenceSchemaFor(
-          propertyWithCorrectedParentEntityName,
-          propertyModifier,
-          schoolYearOpenApis,
-          [], // Pass empty chain to reset naming logic
-        );
-        referenceSchemas = referenceSchemas.concat(extensionPropertySchemas);
-      });
-    }
 
     return referenceSchemas;
   }
