@@ -63,11 +63,17 @@ function createExtensionFragment(entity: TopLevelEntity): OpenApiFragment {
     },
   };
 
-  // For extensions, add the extension schema to the exts mapping
-  fragment.exts = {
-    [`${deAcronym(entity.baseEntityNamespaceName)}_${deAcronym(entity.metaEdName)}`]:
-      entityApiSchemaData.openApiRequestBodyComponent,
-  };
+  // Common extension override properties are now handled by commonExtensionOverrides in ApiSchema,
+  // so exts only needs to carry regular extension properties. Skip exts if only the system 'id' key remains.
+  const componentProperties = entityApiSchemaData.openApiRequestBodyComponent.properties ?? {};
+  const hasRealProperties = Object.keys(componentProperties).some((k) => k !== 'id');
+
+  if (hasRealProperties) {
+    fragment.exts = {
+      [`${deAcronym(entity.baseEntityNamespaceName)}_${deAcronym(entity.metaEdName)}`]:
+        entityApiSchemaData.openApiRequestBodyComponent,
+    };
+  }
 
   return fragment;
 }

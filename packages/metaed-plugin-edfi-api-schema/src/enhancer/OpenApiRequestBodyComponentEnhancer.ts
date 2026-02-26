@@ -11,15 +11,19 @@ import {
   EntityProperty,
   TopLevelEntity,
   CommonProperty,
-  CommonExtension,
-  NoCommonExtension,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { OpenApiArray, OpenApiObject, OpenApiProperties, OpenApiProperty, OpenApiReference } from '../model/OpenApi';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { deAcronym, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import {
+  deAcronym,
+  isExtensionEntity,
+  isResolvedCommonExtensionOverride,
+  topLevelApiNameOnEntity,
+  uncapitalize,
+} from '../Utility';
 import {
   openApiObjectFrom,
   isOpenApiPropertyRequired,
@@ -112,65 +116,6 @@ function addRequired(isRequired: boolean, openApiObject: OpenApiObject, openApiP
 }
 
 /**
- * Builds an OpenApi object for a common extension, creating the nested _ext.{projectName} structure.
- */
-function buildCommonExtensionOpenApi(
-  commonExtension: CommonExtension,
-  propertyModifier: PropertyModifier,
-  schoolYearOpenApis: SchoolYearOpenApis,
-  propertiesChain: EntityProperty[] = [],
-): OpenApiObject {
-  const extensionOpenApiProperties: OpenApiProperties = {};
-  const extensionRequired: string[] = [];
-
-  const commonExtensionApiSchemaData: EntityApiSchemaData = commonExtension.data.edfiApiSchema as EntityApiSchemaData;
-
-  commonExtensionApiSchemaData.collectedApiProperties.forEach((collectedApiProperty) => {
-    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
-      propertyModifier,
-      collectedApiProperty.propertyModifier,
-    );
-
-    const propertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
-    const openApiPropertyName: string = uncapitalize(
-      prefixedName(propertyApiMapping.topLevelName, concatenatedPropertyModifier),
-    );
-
-    // eslint-disable-next-line no-use-before-define
-    const openApiProperty: OpenApiProperty = openApiPropertyFor(
-      collectedApiProperty.property,
-      concatenatedPropertyModifier,
-      schoolYearOpenApis,
-      propertiesChain.concat(collectedApiProperty.propertyChain),
-    );
-
-    extensionOpenApiProperties[openApiPropertyName] = openApiProperty;
-    if (isOpenApiPropertyRequired(collectedApiProperty.property, concatenatedPropertyModifier)) {
-      extensionRequired.push(openApiPropertyName);
-    }
-  });
-
-  const projectName = commonExtension.namespace.projectName.toLowerCase();
-
-  const result: OpenApiProperties = {
-    _ext: {
-      description: 'Extension properties',
-      type: 'object',
-      properties: {
-        [projectName]: {
-          description: `${projectName} extension properties`,
-          type: 'object',
-          properties: extensionOpenApiProperties,
-          ...(extensionRequired.length > 0 && { required: extensionRequired }),
-        } as any,
-      },
-    } as any,
-  };
-
-  return openApiObjectFrom(result, []);
-}
-
-/**
  * Returns an OpenApi fragment that specifies the API body element shape
  * corresponding to the given scalar common property.
  */
@@ -209,21 +154,6 @@ export function openApiObjectForScalarCommonProperty(
       required.push(openApiPropertyName);
     }
   });
-
-  // Check if this property is using the extension override mechanism
-  if (property.isExtensionOverride) {
-    const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-
-    if (referencedCommonExtension !== NoCommonExtension) {
-      const extensionOpenApi = buildCommonExtensionOpenApi(
-        referencedCommonExtension,
-        propertyModifier,
-        schoolYearOpenApis,
-        propertiesChain,
-      );
-      Object.assign(openApiProperties, extensionOpenApi.properties);
-    }
-  }
 
   return openApiObjectFrom(openApiProperties, required);
 }
@@ -332,7 +262,13 @@ function buildOpenApiRequestBody(entityForOpenApi: TopLevelEntity, schoolYearOpe
 
   const { collectedApiProperties } = entityForOpenApi.data.edfiApiSchema as EntityApiSchemaData;
 
+  // Skip resolved common extension override properties for extension entities — these are now handled
+  // by the commonExtensionOverrides ApiSchema element rather than OpenAPI exts fragments.
+  const skipResolvedOverrides = isExtensionEntity(entityForOpenApi);
+
   collectedApiProperties.forEach(({ property, propertyModifier, propertyChain }) => {
+    if (skipResolvedOverrides && isResolvedCommonExtensionOverride(property)) return;
+
     const topLevelName = topLevelApiNameOnEntity(entityForOpenApi, property);
     const openApiObjectBaseName = uncapitalize(prefixedName(topLevelName, propertyModifier));
 

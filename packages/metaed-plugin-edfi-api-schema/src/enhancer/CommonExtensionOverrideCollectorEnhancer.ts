@@ -3,20 +3,14 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  MetaEdEnvironment,
-  EnhancerResult,
-  getAllEntitiesOfType,
-  TopLevelEntity,
-  NoCommonExtension,
-} from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, TopLevelEntity } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { CommonExtensionOverride } from '../model/api-schema/CommonExtensionOverride';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { SchemaArray, SchemaObject, SchemaProperty } from '../model/JsonSchema';
-import { createUriSegment, isCommonExtensionOverride, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
+import { createUriSegment, isResolvedCommonExtensionOverride, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import { prefixedName } from '../model/PropertyModifier';
 
 const enhancerName = 'CommonExtensionOverrideCollectorEnhancer';
@@ -85,12 +79,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const overrides: CommonExtensionOverride[] = [];
 
     entityApiSchemaData.collectedApiProperties.forEach(({ property, propertyModifier }) => {
-      if (!isCommonExtensionOverride(property)) return;
+      if (!isResolvedCommonExtensionOverride(property)) return;
 
-      const { referencedCommonExtension } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-      if (referencedCommonExtension === NoCommonExtension) return;
-
-      const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+      const { referencedCommonExtension, apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
       const isCollection = apiMapping.isCommonCollection;
 
       const topLevelName = topLevelApiNameOnEntity(entity as TopLevelEntity, property);

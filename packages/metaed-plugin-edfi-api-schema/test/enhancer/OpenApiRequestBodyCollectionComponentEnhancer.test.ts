@@ -2170,71 +2170,11 @@ describe('when building domain entity extension with common extension scalar pro
             "description": "A unique system-generated resource identifier.",
             "type": "string",
           },
-          "studentCharacteristic": Object {
-            "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-            "x-nullable": true,
-          },
         },
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "propertyName": "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-          "schema": Object {
-            "properties": Object {
-              "_ext": Object {
-                "description": "Extension properties",
-                "properties": Object {
-                  "edfi": Object {
-                    "description": "edfi extension properties",
-                    "properties": Object {
-                      "studentNeed": Object {
-                        "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed",
-                      },
-                    },
-                    "type": "object",
-                  },
-                },
-                "type": "object",
-              },
-              "firstName": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-              "lastName": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-            },
-            "required": Array [
-              "firstName",
-              "lastName",
-            ],
-            "type": "object",
-          },
-        },
-        Object {
-          "propertyName": "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed",
-          "schema": Object {
-            "properties": Object {
-              "need": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-            },
-            "required": Array [
-              "need",
-            ],
-            "type": "object",
-          },
-        },
-      ]
-    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
   });
 });
 
@@ -2311,74 +2251,10 @@ describe('when building domain entity extension with common extension collection
             "description": "A unique system-generated resource identifier.",
             "type": "string",
           },
-          "studentCharacteristics": Object {
-            "items": Object {
-              "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": false,
-          },
         },
         "type": "object",
       }
     `);
-    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "propertyName": "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic",
-          "schema": Object {
-            "properties": Object {
-              "_ext": Object {
-                "description": "Extension properties",
-                "properties": Object {
-                  "edfi": Object {
-                    "description": "edfi extension properties",
-                    "properties": Object {
-                      "studentNeed": Object {
-                        "$ref": "#/components/schemas/Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed",
-                      },
-                    },
-                    "type": "object",
-                  },
-                },
-                "type": "object",
-              },
-              "firstName": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-              "lastName": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-            },
-            "required": Array [
-              "firstName",
-              "lastName",
-            ],
-            "type": "object",
-          },
-        },
-        Object {
-          "propertyName": "Sample_StudentEducationOrganizationAssociation_StudentCharacteristic_StudentNeed",
-          "schema": Object {
-            "properties": Object {
-              "need": Object {
-                "description": "doc",
-                "maxLength": 75,
-                "type": "string",
-              },
-            },
-            "required": Array [
-              "need",
-            ],
-            "type": "object",
-          },
-        },
-      ]
-    `);
+    expect(entity.data.edfiApiSchema.openApiRequestBodyCollectionComponents).toMatchInlineSnapshot(`Array []`);
   });
 });
