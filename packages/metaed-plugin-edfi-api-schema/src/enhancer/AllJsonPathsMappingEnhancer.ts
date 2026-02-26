@@ -29,6 +29,7 @@ import {
   findIdenticalRoleNamePatternPrefix,
   topLevelApiNameOnEntity,
   uncapitalize,
+  singularize,
   isCommonExtensionOverride,
   isExtensionEntity,
 } from '../Utility';
@@ -566,7 +567,12 @@ function jsonPathsForNonReferenceCollection(
     jsonPathsMapping,
     initialPropertyPath,
     [currentPropertyPath],
-    appendNextJsonPathName(collectionContainerJsonPath, apiMapping.fullNamePreservingPrefix, property, propertyModifier),
+    appendNextJsonPathName(
+      collectionContainerJsonPath,
+      singularize(apiMapping.fullNamePreservingPrefix),
+      property,
+      propertyModifier,
+    ),
     isTopLevel,
     NoFlattenedIdentityProperty,
     true,
