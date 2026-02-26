@@ -520,6 +520,60 @@ describe('when building simple domain entity with all the simple collections', (
   });
 });
 
+describe('when building domain entity with a scalar collection whose MetaEd name is already plural', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc1', '30', '20')
+      .withShortProperty('PortfolioYears', 'doc2', false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should singularize the inner element name in the collection json path', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "PortfolioYears": Array [
+          Object {
+            "entityName": "DomainEntityName",
+            "jsonPath": "$.portfolioYears[*].portfolioYear",
+            "propertyName": "PortfolioYears",
+          },
+        ],
+        "StringIdentity": Array [
+          Object {
+            "entityName": "DomainEntityName",
+            "jsonPath": "$.stringIdentity",
+            "propertyName": "StringIdentity",
+          },
+        ],
+      }
+    `);
+  });
+});
+
 describe('when building a domain entity referencing another referencing another with identity', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
