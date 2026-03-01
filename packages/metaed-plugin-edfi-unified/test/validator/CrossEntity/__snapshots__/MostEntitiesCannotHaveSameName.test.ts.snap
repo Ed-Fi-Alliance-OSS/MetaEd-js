@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when DE and Association have identical names should have validation failures for each entity 1`] = `"Association named EntityName is a duplicate declaration of that name."`;
 

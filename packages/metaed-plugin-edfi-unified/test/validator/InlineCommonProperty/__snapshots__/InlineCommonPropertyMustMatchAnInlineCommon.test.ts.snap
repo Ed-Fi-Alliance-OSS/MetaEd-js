@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when inline common property has identifier of common should have validation failure for property 1`] = `"Inline Common property 'EntityName' does not match any declared Inline Common in namespace EdFi."`;
 
