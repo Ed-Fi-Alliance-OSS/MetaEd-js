@@ -1,0 +1,29 @@
+{
+  "name": "@edfi/metaed-plugin-edfi-data-catalog",
+  "main": "dist/index.js",
+  "version": "4.6.1-dev.16",
+  "description": "Ed-Fi Data Catalog plugin for MetaEd",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE.md",
+    "/package.json"
+  ],
+  "dependencies": {
+    "@edfi/metaed-core": "4.6.1-dev.16",
+    "ramda": "^0.29.0",
+    "write-excel-file": "^2.0.9"
+  },
+  "scripts": {
+    "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
+    "build:clean": "rimraf dist",
+    "build:dist": "tsc",
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+  },
+  "devDependencies": {
+    "read-excel-file": "^5.8.5"
+  }
+}

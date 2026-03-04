@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when descriptor has name ending in Descriptor should have validation failure 1`] = `"Descriptor NameInvalidDescriptor name is invalid.  Descriptor names cannot be suffixed with 'Descriptor'."`;
 

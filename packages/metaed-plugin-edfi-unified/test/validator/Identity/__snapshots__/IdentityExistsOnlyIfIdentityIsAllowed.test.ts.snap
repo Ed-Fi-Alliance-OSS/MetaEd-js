@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating association extension with invalid identity property should have validation failure 1`] = `"'is part of identity' is invalid for property PropertyName4 on Association Extension EntityName. 'is part of identity' is only valid for properties on Abstract Entity, Association, Common, Common Subclass, Domain Entity, Inline Common."`;
 
