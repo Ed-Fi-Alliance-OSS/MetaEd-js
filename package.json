@@ -30,6 +30,9 @@
     "ts-node": "10.9.1",
     "typescript": "^5.8.0"
   },
+  "overrides": {
+    "minimatch": "10.2.4"
+  },
   "workspaces": [
     "packages/*"
   ],
