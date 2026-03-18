@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating interchange identity template has invalid name should have validation failures 1`] = `"Interchange identity template DomainEntityIdentityTemplateName does not match any declared Abstract Entity, Association, Association Subclass, Descriptor, Domain Entity, Domain Entity Subclass"`;
 

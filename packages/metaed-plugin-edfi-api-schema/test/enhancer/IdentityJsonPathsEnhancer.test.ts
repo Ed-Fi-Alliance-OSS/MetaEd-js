@@ -51,7 +51,7 @@ import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/Docu
 import { enhance } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
-addFormatsTo(ajv);
+addFormatsTo(ajv as unknown as Parameters<typeof addFormatsTo>[0]);
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   namespaceSetupEnhancer(metaEd);

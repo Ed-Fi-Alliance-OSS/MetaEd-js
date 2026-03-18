@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`when validating string identity matches shared integer should have no validation failures 1`] = `"String Property IntegerProperty has the same name as a Shared Integer."`;
 
