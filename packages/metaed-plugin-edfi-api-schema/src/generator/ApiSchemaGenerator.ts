@@ -24,7 +24,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       namespace: namespace.namespaceName,
       folderName: 'ApiSchema',
       fileName: fileName(namespace.projectExtension),
-      resultString: stringify(apiSchema, { space: 2 }),
+      resultString: stringify(apiSchema, { space: 2 }) ?? '',
       resultStream: null,
     });
   });
