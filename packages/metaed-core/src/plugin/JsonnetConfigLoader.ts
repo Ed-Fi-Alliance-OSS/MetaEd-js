@@ -22,7 +22,11 @@ async function initializeJsonnet(): Promise<Jsonnet> {
 
   try {
     // Load the WebAssembly module
-    const jsonnetWasm: Buffer = await fs.promises.readFile(require.resolve('tplfa-jsonnet/libjsonnet.wasm'));
+    const jsonnetWasmBuffer = await fs.promises.readFile(require.resolve('tplfa-jsonnet/libjsonnet.wasm'));
+    // TypeScript 5.9+ types Buffer as Buffer<ArrayBufferLike>, which is not directly assignable to
+    // the BufferSource type expected by getJsonnet. Uint8Array satisfies BufferSource, and the
+    // explicit cast to Parameters<typeof getJsonnet>[0] aligns the types without losing correctness.
+    const jsonnetWasm = new Uint8Array(jsonnetWasmBuffer) as unknown as Parameters<typeof getJsonnet>[0];
 
     // Initialize the Jsonnet interpreter
     jsonnetInstance = await getJsonnet(jsonnetWasm);

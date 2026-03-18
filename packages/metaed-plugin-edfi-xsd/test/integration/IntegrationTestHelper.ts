@@ -19,10 +19,22 @@ function parseXml(xmlString: string): any {
   return parser.parseFromString(xmlString);
 }
 
-export const xpathSelect = xpath.useNamespaces({
+const xpathSelectImpl = xpath.useNamespaces({
   xs: 'http://www.w3.org/2001/XMLSchema',
   ann: 'http://ed-fi.org/annotation',
 });
+
+/**
+ * Namespace-aware XPath selector that always returns a Node array.
+ * Wraps xpath.useNamespaces to provide a consistent Node[] return type.
+ * The xpath selector may return string | number | boolean | Node | Node[] | null depending on the
+ * XPath expression type, but all callers of this helper use element-selecting expressions that
+ * return Node arrays, making the cast to Node[] safe in this context.
+ */
+export function xpathSelect(expression: string, node: Parameters<typeof xpathSelectImpl>[1]): Node[] {
+  const result = xpathSelectImpl(expression, node);
+  return (result ?? []) as Node[];
+}
 
 interface EnhanceAndGenerateResult {
   coreResult: string;

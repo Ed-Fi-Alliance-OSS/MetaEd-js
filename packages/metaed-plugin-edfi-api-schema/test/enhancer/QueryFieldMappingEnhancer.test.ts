@@ -52,7 +52,7 @@ import { removeSourcePropertyFromQueryFieldMapping } from '../../src/enhancer/Ap
 import { metaEdPluginEnhancers } from '../integration/PluginHelper';
 
 const ajv = new Ajv({ allErrors: true });
-addFormatsTo(ajv);
+addFormatsTo(ajv as unknown as Parameters<typeof addFormatsTo>[0]);
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));

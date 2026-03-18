@@ -56,7 +56,7 @@ import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/Typ
 import { enhance, removeSourcePropertyFromDocumentPathsMapping } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
-addFormatsTo(ajv);
+addFormatsTo(ajv as unknown as Parameters<typeof addFormatsTo>[0]);
 
 function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   namespaceSetupEnhancer(metaEd);

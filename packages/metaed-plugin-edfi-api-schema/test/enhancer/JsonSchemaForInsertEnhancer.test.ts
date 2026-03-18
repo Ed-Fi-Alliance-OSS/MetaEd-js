@@ -50,7 +50,7 @@ import { enhance } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 import { enhance as commonExtensionOverrideResolverEnhancer } from '../../src/enhancer/CommonExtensionOverrideResolverEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
-addFormatsTo(ajv);
+addFormatsTo(ajv as unknown as Parameters<typeof addFormatsTo>[0]);
 
 describe('when building simple domain entity with all the simple non-collections', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
