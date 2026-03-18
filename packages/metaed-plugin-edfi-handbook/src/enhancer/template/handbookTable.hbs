@@ -3,6 +3,5 @@ CREATE TABLE {{#table}}{{{schema}}}.{{{data.edfiOdsSqlServer.tableName}}} (
     {{/each}}{{#if includeCreateDateColumn}}CreateDate [DATETIME] NOT NULL,{{/if}}{{#if includeLastModifiedDateAndIdColumn}}
     LastModifiedDate [DATETIME] NOT NULL,
     Id [UNIQUEIDENTIFIER] NOT NULL,{{/if}}
-    CONSTRAINT PK_{{{data.edfiOdsSqlServer.tableName}}} PRIMARY KEY ({{#each primaryKeys}}{{{data.edfiOdsSqlServer.columnName}}}{{#unless @last}}, {{/unless}}{{/each}})
-    {{/table}}
+    CONSTRAINT PK_{{{data.edfiOdsSqlServer.tableName}}} PRIMARY KEY ({{#each primaryKeys}}{{{data.edfiOdsSqlServer.columnName}}}{{#unless @last}}, {{/unless}}{{/each}}){{/table}}
 )
