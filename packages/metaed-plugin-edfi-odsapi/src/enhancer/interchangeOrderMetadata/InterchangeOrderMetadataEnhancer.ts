@@ -97,7 +97,7 @@ export function sortGraph(graph: Graph, removeRequiredCycles: boolean = false): 
     cycle.reverse().forEach((vertex) => {
       if (graphlib.alg.isAcyclic(graph)) return;
 
-      graph.outEdges(vertex).forEach((edge) => {
+      (graph.outEdges(vertex) ?? []).forEach((edge) => {
         if (graphlib.alg.isAcyclic(graph)) return;
 
         if (!graph.edge(edge).isRequired || removeRequiredCycles) graph.removeEdge(edge);
