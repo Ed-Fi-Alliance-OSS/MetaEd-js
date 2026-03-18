@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "npm run metaed:build",
+        "cwd": ".",
+        "timeoutSec": 120
+      }
+    ]
+  }
+}
