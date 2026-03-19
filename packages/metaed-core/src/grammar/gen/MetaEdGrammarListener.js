@@ -641,15 +641,6 @@ MetaEdGrammarListener.prototype.exitIsQueryableField = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#isSensitiveData.
-MetaEdGrammarListener.prototype.enterIsSensitiveData = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#isSensitiveData.
-MetaEdGrammarListener.prototype.exitIsSensitiveData = function(ctx) {
-};
-
-
 // Enter a parse tree produced by MetaEdGrammar#roleName.
 MetaEdGrammarListener.prototype.enterRoleName = function(ctx) {
 };

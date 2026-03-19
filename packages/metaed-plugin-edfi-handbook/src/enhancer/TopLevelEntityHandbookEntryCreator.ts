@@ -146,7 +146,6 @@ function entityPropertyToHandbookEntityReferenceProperty(
     cardinality: getCardinalityStringFor(property, true),
     definition: property.documentation,
     mergeDirectives: getMergedProperties(referentialProperty),
-    isSensitiveData: property.isSensitiveData || false,
   };
 }
 

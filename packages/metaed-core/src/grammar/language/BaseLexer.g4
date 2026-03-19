@@ -62,7 +62,6 @@ IDENTITY :               'is part of identity';
 IDENTITY_RENAME :        'renames identity property';
 IS_QUERYABLE_FIELD :     'is queryable field';
 IS_QUERYABLE_ONLY :      'is queryable only';
-IS_SENSITIVE_DATA :      'is sensitive data';
 IS_WEAK_REFERENCE :      'is weak';
 POTENTIALLY_LOGICAL :    'potentially logical';
 MERGE_REFERENCE :        'merge';

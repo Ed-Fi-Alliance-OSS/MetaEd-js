@@ -395,12 +395,9 @@ propertyComponents
       propertyAnnotation
       roleName?
       isQueryableField?
-      isSensitiveData?
     ;
 
 isQueryableField : IS_QUERYABLE_FIELD;
-
-isSensitiveData : IS_SENSITIVE_DATA ;
 
 roleName
     : ROLE_NAME roleNameName (SHORTEN_TO shortenToName)?
