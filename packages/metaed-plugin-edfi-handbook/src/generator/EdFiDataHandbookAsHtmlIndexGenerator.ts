@@ -24,7 +24,7 @@ function handbookEntriesForNamespace(metaEd: MetaEdEnvironment, namespace: Names
 function minimizeHtml(html: string): string {
   // Split on <script>...</script> blocks so we only aggressively minimize HTML markup.
   // Odd-indexed parts are script blocks; even-indexed parts are plain HTML.
-  const parts = html.split(/(<script\b[^>]*>[\s\S]*?<\/script>)/gi);
+  const parts = html.split(/(<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>)/gi);
   return parts
     .map((part, i) => {
       if (i % 2 === 1) {
