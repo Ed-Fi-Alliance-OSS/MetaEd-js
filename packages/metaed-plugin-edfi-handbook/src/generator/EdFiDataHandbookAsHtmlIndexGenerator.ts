@@ -17,13 +17,27 @@ function handbookEntriesForNamespace(metaEd: MetaEdEnvironment, namespace: Names
 }
 
 /**
- * Minimizes HTML content by removing unnecessary whitespace
+ * Minimizes HTML content by removing unnecessary whitespace.
+ * Script blocks are left structurally intact (newlines preserved) because
+ * removing newlines from JavaScript breaks single-line // comments.
  */
 function minimizeHtml(html: string): string {
-  return html
-    .replace(/\n/g, '') // Replace newline with empty string
-    .replace(/>\s+</g, '><') // Remove spaces between > and <
-    .replace(/\s{2,}/g, ' '); // Replace 2 or more consecutive spaces with a single space
+  // Split on <script>...</script> blocks so we only aggressively minimize HTML markup.
+  // Odd-indexed parts are script blocks; even-indexed parts are plain HTML.
+  const parts = html.split(/(<script\b[^>]*>[\s\S]*?<\/script>)/gi);
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) {
+        // Script block: collapse runs of blank lines but keep newlines so // comments stay safe
+        return part.replace(/\n{2,}/g, '\n');
+      }
+      // HTML markup: strip newlines and collapse whitespace between tags
+      return part
+        .replace(/\n/g, '')
+        .replace(/>\s+</g, '><')
+        .replace(/\s{2,}/g, ' ');
+    })
+    .join('');
 }
 
 /** Remove fields unused by the HTML template */

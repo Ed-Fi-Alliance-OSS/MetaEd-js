@@ -21,7 +21,6 @@
         integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
-        // Register custom EdFi SQL language for Highlight.js
         hljs.registerLanguage("edfisql", function (e) {
             return {
                 case_insensitive: true,
@@ -301,7 +300,6 @@
             display: block;
         }
 
-        /* Multi-select styling */
         select[multiple] {
             height: auto;
             min-height: 80px;
@@ -309,10 +307,8 @@
     </style>
 
     <script type="text/javascript">
-        // Data will be injected here by the generator
         const handbookData = {JSONData};
 
-        // Alpine.js application logic
         document.addEventListener('alpine:init', () => {
             Alpine.data('handbookApp', () => ({
                 entries: handbookData,
@@ -324,16 +320,13 @@
                 showMerge: false,
 
                 init() {
-                    // Select first entry by default
                     if (this.entries && this.entries.length > 0) {
                         this.selectEntity(this.entries[0]);
                     }
 
-                    // Handle URL hash for direct navigation
                     this.handleHashChange();
                     window.addEventListener('hashchange', () => this.handleHashChange());
 
-                    // Highlight code blocks after render
                     this.$nextTick(() => {
                         this.highlightCodeBlocks();
                     });
@@ -342,7 +335,6 @@
                 handleHashChange() {
                     const hash = window.location.hash.slice(1);
                     if (hash && hash !== '/') {
-                        // Remove leading slash if present
                         const entityId = hash.startsWith('/') ? hash.slice(1) : hash;
                         const entity = this.entries.find(e => e.uniqueIdentifier === entityId);
                         if (entity) {
@@ -364,7 +356,6 @@
                 get filteredEntries() {
                     let filtered = this.entries;
 
-                    // Filter by search
                     if (this.search) {
                         const searchLower = this.search.toLowerCase();
                         filtered = filtered.filter(entry => {
@@ -376,14 +367,12 @@
                         });
                     }
 
-                    // Filter by entity types
                     if (this.selectedEntityTypes.length > 0) {
                         filtered = filtered.filter(entry =>
                             this.selectedEntityTypes.includes(entry.umlType)
                         );
                     }
 
-                    // Filter by domains
                     if (this.selectedDomains.length > 0) {
                         filtered = filtered.filter(entry =>
                             entry.domains && entry.domains.some(d => this.selectedDomains.includes(d))
@@ -397,13 +386,12 @@
                     this.selectedEntity = entity;
                     window.location.hash = `/${entity.uniqueIdentifier}`;
 
-                    // Check if merge should be shown
+                    /* Check if merge should be shown */
                     this.showMerge = entity.modelReferencesContainsProperties &&
                         entity.modelReferencesContainsProperties.some(prop =>
                             prop.mergeDirectives && prop.mergeDirectives.length > 0
                         );
 
-                    // Highlight code after render
                     this.$nextTick(() => {
                         this.highlightCodeBlocks();
                     });
@@ -473,7 +461,6 @@
 
                 highlightCodeBlocks() {
                     document.querySelectorAll('pre code').forEach((block) => {
-                        // Remove previous highlighting if it exists
                         if (block.dataset.highlighted) {
                             delete block.dataset.highlighted;
                         }
