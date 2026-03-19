@@ -26,6 +26,35 @@ function minimizeHtml(html: string): string {
     .replace(/\s{2,}/g, ' '); // Replace 2 or more consecutive spaces with a single space
 }
 
+/** Remove fields unused by the HTML template */
+function stripUnusedFields(entry: HandbookEntry): object {
+  const { entityUuid, repositoryId, projectName, modelReferencesContains, modelReferencesUsedBy, ...rest } = entry;
+  return {
+    ...rest,
+    modelReferencesContainsProperties: rest.modelReferencesContainsProperties.map(
+      ({ propertyUuid, targetPropertyId, extensionParentName, ...prop }) => prop,
+    ),
+  };
+}
+
+/** Recursively remove empty strings and empty arrays */
+function stripEmpty(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    const mapped = value.map(stripEmpty).filter((v) => v !== undefined);
+    return mapped.length > 0 ? mapped : undefined;
+  }
+  if (value !== null && typeof value === 'object') {
+    const result: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as object)) {
+      const stripped = stripEmpty(v);
+      if (stripped !== undefined) result[k] = stripped;
+    }
+    return result;
+  }
+  if (value === '') return undefined;
+  return value;
+}
+
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const allHandbookEntries: HandbookEntry[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
@@ -38,10 +67,12 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     return b.name === 'Student' ? 1 : 0;
   });
 
+  const jsonData = allHandbookEntries.map((e) => stripEmpty(stripUnusedFields(e)));
+
   const index: string = minimizeHtml(
     fs
       .readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPAIndex.html'), 'utf8')
-      .replace(/\{JSONData\}/g, JSON.stringify(allHandbookEntries)),
+      .replace(/\{JSONData\}/g, JSON.stringify(jsonData)),
   );
 
   const results: GeneratedOutput[] = [];

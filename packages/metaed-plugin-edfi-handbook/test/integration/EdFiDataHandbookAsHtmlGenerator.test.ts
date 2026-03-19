@@ -244,13 +244,8 @@ describe('when generating HTML version of handbook', (): void => {
       expect(htmlOutput).toMatch(/"cardinality":"required"/);
     });
 
-    it('should populate modelReferencesContains array for all domain entities', (): void => {
-      expect(htmlOutput).toMatch(/"modelReferencesContains":\[/);
-      expect(htmlOutput).toMatch(/"EducationOrganizationId \(identity\)"/);
-      expect(htmlOutput).toMatch(/"EdOrgString \(required\)"/);
-      expect(htmlOutput).toMatch(/"LocalAccount \(identity\)"/);
-      expect(htmlOutput).toMatch(/"ActualDate \(optional collection\)"/);
-      expect(htmlOutput).toMatch(/"Amount \(required\)"/);
+    it('should not include unused modelReferencesContains field in output', (): void => {
+      expect(htmlOutput).not.toMatch(/"modelReferencesContains":/);
     });
 
     it('should include referenceUniqueIdentifier for all properties', (): void => {
