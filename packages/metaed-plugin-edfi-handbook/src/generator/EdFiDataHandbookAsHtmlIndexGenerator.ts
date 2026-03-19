@@ -58,12 +58,11 @@ function stripEmpty(value: unknown): unknown {
     return mapped.length > 0 ? mapped : undefined;
   }
   if (value !== null && typeof value === 'object') {
-    const result: Record<string, unknown> = {};
-    for (const [k, v] of Object.entries(value as object)) {
+    return Object.entries(value as object).reduce<Record<string, unknown>>((acc, [k, v]) => {
       const stripped = stripEmpty(v);
-      if (stripped !== undefined) result[k] = stripped;
-    }
-    return result;
+      if (stripped !== undefined) acc[k] = stripped;
+      return acc;
+    }, {});
   }
   if (value === '') return undefined;
   return value;
