@@ -35,7 +35,7 @@
   ],
   "scripts": {
     "antlr-gen": "java -jar ./antlr/antlr-4.6-complete.jar -Dlanguage=JavaScript -o ./packages/metaed-core/src/grammar/gen ./packages/metaed-core/src/grammar/language/BaseLexer.g4 ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4",
-    "metaed:build": "node ./packages/metaed-console/dist/index.js",
+    "metaed:build": "node ./packages/metaed-console/dist/index.js -a -c metaed.conf.json",
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy-console/dist/index.js",
     "build": "lerna run build --stream",
     "build:since": "lerna run build --stream --parallel --since",
