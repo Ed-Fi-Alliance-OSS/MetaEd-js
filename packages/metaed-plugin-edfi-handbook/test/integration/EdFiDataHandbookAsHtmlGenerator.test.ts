@@ -42,7 +42,7 @@ describe('when generating HTML version of handbook', (): void => {
       .withStartAbstractEntity('EducationOrganization')
       .withDocumentation('doc')
       .withIntegerIdentity('EducationOrganizationId', 'doc')
-      .withStringProperty('EdOrgString', 'EdOrgString doc', true, false, '0', '100', null, null, true)
+      .withStringProperty('EdOrgString', 'EdOrgString doc', true, false, '0', '100', null, null)
       .withEndAbstractEntity()
 
       .withStartSharedString('URI')
@@ -72,7 +72,6 @@ describe('when generating HTML version of handbook', (): void => {
         '100',
         'LocalEducationAgencyName',
         null,
-        true,
       )
       .withDateProperty('AsOfDate', 'The date of the reported amount for the account.', false, true)
       .withCurrencyProperty('FederalProgramsFundingAllocation', 'FederalProgramsFundingAllocation.', true, false)
@@ -110,11 +109,6 @@ describe('when generating HTML version of handbook', (): void => {
   it('should not duplicate entity names when role name is the same as metaEdName', (): void => {
     expect(generatorResults.generatedOutput[0].resultString).toContain('EducationServiceCenter');
     expect(generatorResults.generatedOutput[0].resultString).not.toContain('EducationServiceCenterEducationServiceCenter');
-  });
-
-  it('should include isSensitiveData information for properties', (): void => {
-    expect(generatorResults.generatedOutput[0].resultString).toContain('<td>{{r.isSensitiveData | trueFalseToYesNo}}</td>');
-    expect(generatorResults.generatedOutput[0].resultString).toContain('"isSensitiveData":true');
   });
 
   it('should include "Used By" entries showing which entities use Currency type', (): void => {
@@ -186,18 +180,16 @@ describe('when generating HTML version of handbook', (): void => {
       expect(htmlOutput).toMatch(/"jsonDatatype":"number"/);
       expect(htmlOutput).toMatch(/"sqlDatatype":"INT"/);
       expect(htmlOutput).toMatch(/"isIdentity":true/);
-      expect(htmlOutput).toMatch(/"isSensitiveData":false/);
       expect(htmlOutput).toMatch(/"cardinality":"required"/);
     });
 
-    it('should include correct property metadata for EdOrgString with sensitive data', (): void => {
+    it('should include correct property metadata for EdOrgString', (): void => {
       expect(htmlOutput).toMatch(/"name":"EdOrgString"/);
       expect(htmlOutput).toMatch(/"metaEdDatatype":"StringProperty"/);
       expect(htmlOutput).toMatch(/"umlDatatype":"String"/);
       expect(htmlOutput).toMatch(/"jsonDatatype":"string"/);
       expect(htmlOutput).toMatch(/"sqlDatatype":"VARCHAR\(0\)"/);
       expect(htmlOutput).toMatch(/"isIdentity":false/);
-      expect(htmlOutput).toMatch(/"isSensitiveData":true/);
       expect(htmlOutput).toMatch(/"cardinality":"required"/);
     });
 
@@ -249,7 +241,6 @@ describe('when generating HTML version of handbook', (): void => {
     it('should include correct metadata for LocalEducationAgency with role name', (): void => {
       expect(htmlOutput).toMatch(/"name":"LocalEducationAgencyNameEducationServiceCenter"/);
       expect(htmlOutput).toMatch(/"metaEdDatatype":"StringProperty"/);
-      expect(htmlOutput).toMatch(/"isSensitiveData":true/);
       expect(htmlOutput).toMatch(/"cardinality":"required"/);
     });
 

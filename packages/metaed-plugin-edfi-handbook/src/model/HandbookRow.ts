@@ -11,7 +11,6 @@ export interface HandbookRow {
   optionList: string | null;
   references: string | null;
   ods: string | null;
-  sensitiveProps: string | null;
 }
 
 export const handbookSchema = [
@@ -56,12 +55,6 @@ export const handbookSchema = [
     type: String,
     width: 20,
     value: (row: HandbookRow) => row.ods,
-  },
-  {
-    column: 'Sensitive Properties',
-    type: String,
-    width: 100,
-    value: (row: HandbookRow) => row.sensitiveProps,
   },
 ];
 

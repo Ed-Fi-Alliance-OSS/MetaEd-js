@@ -720,9 +720,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "names": {
         "allowIdentityUpdates": false,
@@ -1216,9 +1214,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "schoolYearTypes": {
         "allowIdentityUpdates": false,
@@ -1659,9 +1655,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "schools": {
         "allowIdentityUpdates": false,
@@ -2193,9 +2187,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "staffs": {
         "allowIdentityUpdates": false,
@@ -2842,9 +2834,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "studentSchoolAssociations": {
         "allowIdentityUpdates": true,
@@ -3403,9 +3393,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       },
       "students": {
         "allowIdentityUpdates": false,
@@ -4001,9 +3989,7 @@
           ],
           "Student": [
           ]
-        },
-        "sensitiveDataJsonPaths": [
-        ]
+        }
       }
     }
   }

@@ -866,10 +866,4 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     (this.currentProperty.sourceMap as ReferentialPropertySourceMap).mergeDirectives.push(sourceMapFrom(context));
     this.currentMergeDirective = NoMergeDirective;
   }
-
-  enterIsSensitiveData(context: MetaEdGrammar.IsSensitiveDataContext) {
-    if (this.currentProperty === NoEntityProperty) return;
-    this.currentProperty.isSensitiveData = true;
-    this.currentProperty.sourceMap.isSensitiveData = sourceMapFrom(context);
-  }
 }

@@ -15,5 +15,4 @@ export interface ApiProperty {
   isServerAssigned: boolean;
   isDeprecated?: boolean;
   deprecationReasons?: string[];
-  isSensitiveData?: boolean;
 }

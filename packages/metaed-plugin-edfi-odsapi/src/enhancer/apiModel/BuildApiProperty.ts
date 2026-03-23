@@ -138,6 +138,5 @@ export function buildApiProperty(column: Column, targetTechnologyVersion: string
     isServerAssigned: column.isIdentityDatabaseType,
     isDeprecated: column.isDeprecated ? true : undefined,
     deprecationReasons: column.deprecationReasons.length > 0 ? column.deprecationReasons : undefined,
-    isSensitiveData: column.sourceEntityProperties.some((prop) => prop.isSensitiveData) ? true : undefined,
   };
 }

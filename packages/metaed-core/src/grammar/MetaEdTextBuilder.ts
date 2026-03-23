@@ -1221,7 +1221,6 @@ export class MetaEdTextBuilder {
     minLength: string | null = null,
     context: string | null = null,
     deprecatedReason: string | null = null,
-    isSensitiveData: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'string',
@@ -1233,9 +1232,6 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
-    if (isSensitiveData) {
-      this.withSensitiveDataIndicator();
-    }
     this.withStringRestrictions(minLength, maxLength);
 
     return this;
@@ -1303,7 +1299,6 @@ export class MetaEdTextBuilder {
     deprecatedReason: string | null = null,
     bigHintMinValue: boolean = false,
     bigHintMaxValue: boolean = false,
-    isSensitiveData: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'integer',
@@ -1315,9 +1310,6 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
-    if (isSensitiveData) {
-      this.withSensitiveDataIndicator();
-    }
     this.withNumericRestrictions(minValue, maxValue, bigHintMinValue, bigHintMaxValue);
     return this;
   }
@@ -1786,11 +1778,6 @@ export class MetaEdTextBuilder {
       this.withDocumentation(documentation);
     }
     this.withEndProperty();
-    return this;
-  }
-
-  withSensitiveDataIndicator(): MetaEdTextBuilder {
-    this.addLine('is sensitive data');
     return this;
   }
 }

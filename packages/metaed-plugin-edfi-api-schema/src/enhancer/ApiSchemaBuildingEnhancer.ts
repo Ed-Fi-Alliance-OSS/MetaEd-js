@@ -93,7 +93,6 @@ function buildResourceSchema(entity: TopLevelEntity): NonExtensionResourceSchema
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateJsonPaths: entityApiSchemaData.dateJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
-    sensitiveDataJsonPaths: entityApiSchemaData.sensitiveDataJsonPaths,
     decimalPropertyValidationInfos: entityApiSchemaData.decimalPropertyValidationInfos,
     securableElements: {
       Namespace: entityApiSchemaData.namespaceSecurableElements,
@@ -140,7 +139,6 @@ function buildResourceExtensionSchema(entity: TopLevelEntity): ResourceExtension
     numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     dateJsonPaths: entityApiSchemaData.dateJsonPaths,
     dateTimeJsonPaths: entityApiSchemaData.dateTimeJsonPaths,
-    sensitiveDataJsonPaths: entityApiSchemaData.sensitiveDataJsonPaths,
     decimalPropertyValidationInfos: entityApiSchemaData.decimalPropertyValidationInfos,
     securableElements: {
       Namespace: [],
