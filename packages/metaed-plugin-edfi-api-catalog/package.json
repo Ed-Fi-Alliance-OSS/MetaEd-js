@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-api-catalog",
   "main": "dist/index.js",
-  "version": "4.6.1-dev.20",
+  "version": "4.6.1-dev.23",
   "description": "Ed-Fi API Catalog plugin for MetaEd",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,8 +13,8 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.6.1-dev.20",
-    "@edfi/metaed-plugin-edfi-api-schema": "4.6.1-dev.20",
+    "@edfi/metaed-core": "4.6.1-dev.23",
+    "@edfi/metaed-plugin-edfi-api-schema": "4.6.1-dev.23",
     "write-excel-file": "^2.0.9"
   },
   "scripts": {
