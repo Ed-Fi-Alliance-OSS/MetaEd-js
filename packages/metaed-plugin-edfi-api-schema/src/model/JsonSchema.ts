@@ -46,7 +46,7 @@ export type SchemaProperty =
       maxLength?: number;
       pattern?: string;
     }
-  | { type: 'integer'; description: string; minimum?: number; maximum?: number }
+  | { type: 'integer'; description: string; format?: 'int32' | 'int64'; minimum?: number; maximum?: number }
   | { type: 'number'; description: string; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
 

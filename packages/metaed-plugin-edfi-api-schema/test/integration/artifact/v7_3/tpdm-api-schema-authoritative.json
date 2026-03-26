@@ -1550,6 +1550,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "programName": {
@@ -3134,6 +3135,7 @@
                   },
                   "orderOfDisability": {
                     "description": "The order by severity of individual's disabilities: 1- Primary, 2 -  Secondary, 3 - Tertiary, etc.",
+                    "format": "int32",
                     "type": "integer"
                   }
                 },
@@ -3451,6 +3453,7 @@
                   },
                   "orderOfPriority": {
                     "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+                    "format": "int32",
                     "minimum": 1,
                     "type": "integer"
                   },
@@ -6767,6 +6770,7 @@
                             "properties": {
                               "educationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "schoolYear": {
@@ -7026,6 +7030,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 }
               },
@@ -10232,6 +10237,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationElementTitle": {
@@ -10302,6 +10308,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationDate": {
@@ -11405,6 +11412,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationObjectiveTitle": {
@@ -11504,6 +11512,7 @@
             },
             "sortOrder": {
               "description": "The sort order of this Evaluation Element.",
+              "format": "int32",
               "type": "integer"
             }
           },
@@ -12522,6 +12531,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationObjectiveTitle": {
@@ -12584,6 +12594,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationDate": {
@@ -13622,6 +13633,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationPeriodDescriptor": {
@@ -13713,6 +13725,7 @@
             },
             "sortOrder": {
               "description": "The sort order of this Evaluation Objective.",
+              "format": "int32",
               "type": "integer"
             }
           },
@@ -16483,6 +16496,7 @@
           "properties": {
             "actualDuration": {
               "description": "The actual or estimated number of clock minutes during which the evaluation was conducted.",
+              "format": "int32",
               "minimum": 1,
               "type": "integer"
             },
@@ -16512,6 +16526,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationPeriodDescriptor": {
@@ -16566,6 +16581,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationPeriodDescriptor": {
@@ -16673,6 +16689,7 @@
                     "properties": {
                       "interRaterReliabilityScore": {
                         "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+                        "format": "int32",
                         "type": "integer"
                       },
                       "receivedTrainingDate": {
@@ -16726,6 +16743,7 @@
                 },
                 "schoolId": {
                   "description": "The identifier assigned to a school. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "schoolYear": {
@@ -18398,6 +18416,7 @@
             },
             "interRaterReliabilityScore": {
               "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+              "format": "int32",
               "type": "integer"
             },
             "maxRating": {
@@ -18413,6 +18432,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationPeriodDescriptor": {
@@ -21829,6 +21849,7 @@
             },
             "actualDuration": {
               "description": "The actual or estimated number of clock minutes during which the performance evaluation was conducted.",
+              "format": "int32",
               "minimum": 1,
               "type": "integer"
             },
@@ -21862,6 +21883,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationPeriodDescriptor": {
@@ -21977,6 +21999,7 @@
                     "properties": {
                       "interRaterReliabilityScore": {
                         "description": "A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)",
+                        "format": "int32",
                         "type": "integer"
                       },
                       "receivedTrainingDate": {
@@ -23612,6 +23635,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 }
               },
@@ -24509,6 +24533,7 @@
             },
             "dimensionOrder": {
               "description": "The order for the rubric dimension.",
+              "format": "int32",
               "type": "integer"
             },
             "evaluationElementReference": {
@@ -24516,6 +24541,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "evaluationElementTitle": {
@@ -24583,6 +24609,7 @@
             },
             "rubricRating": {
               "description": "The rating achieved for the rubric dimension.",
+              "format": "int32",
               "type": "integer"
             },
             "rubricRatingLevelDescriptor": {
@@ -25907,6 +25934,7 @@
                       "properties": {
                         "postSecondaryInstitutionId": {
                           "description": "The ID of the post secondary institution. It must be distinct from any other identifier assigned to educational organizations, such as a LocalEducationAgencyId, to prevent duplication.",
+                          "format": "int64",
                           "type": "integer"
                         }
                       },

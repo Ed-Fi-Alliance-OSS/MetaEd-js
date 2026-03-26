@@ -949,11 +949,13 @@
             },
             "busRouteDuration": {
               "description": "The number of minutes per week in which the bus route is operational.",
+              "format": "int32",
               "minimum": 1,
               "type": "integer"
             },
             "busRouteNumber": {
               "description": "A unique identifier for the bus route.",
+              "format": "int32",
               "type": "integer"
             },
             "busYears": {
@@ -1009,6 +1011,7 @@
                     "properties": {
                       "educationOrganizationId": {
                         "description": "The identifier assigned to an education organization.",
+                        "format": "int64",
                         "type": "integer"
                       },
                       "programName": {
@@ -1069,6 +1072,7 @@
                 },
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "staffClassificationDescriptor": {
@@ -1125,6 +1129,7 @@
                   },
                   "orderOfPriority": {
                     "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+                    "format": "int32",
                     "minimum": 1,
                     "type": "integer"
                   },
@@ -2970,6 +2975,7 @@
                     },
                     "duration": {
                       "description": "The amount of time the contact spends reading to his/her children at bedtime.",
+                      "format": "int32",
                       "minimum": 1,
                       "type": "integer"
                     },
@@ -3036,6 +3042,7 @@
                     },
                     "luckyNumber": {
                       "description": "The contact's lucky number.",
+                      "format": "int32",
                       "type": "integer"
                     },
                     "preferredWakeUpTime": {
@@ -3061,10 +3068,12 @@
                               },
                               "educationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "programEducationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "programName": {
@@ -5021,10 +5030,12 @@
                       "properties": {
                         "maximumWeight": {
                           "description": "The preferred maximum weight of a household pet.",
+                          "format": "int32",
                           "type": "integer"
                         },
                         "minimumWeight": {
                           "description": "The preferred minimum weight of a household pet.",
+                          "format": "int32",
                           "type": "integer"
                         }
                       },
@@ -5568,6 +5579,7 @@
             },
             "artPieces": {
               "description": "The total number of art pieces completed by the student during the program.",
+              "format": "int32",
               "maximum": 100,
               "minimum": 0,
               "type": "integer"
@@ -5582,6 +5594,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 }
               },
@@ -5614,6 +5627,7 @@
                       },
                       "artPieces": {
                         "description": "This is documentation.",
+                        "format": "int32",
                         "maximum": 100,
                         "minimum": 0,
                         "type": "integer"
@@ -5674,6 +5688,7 @@
             },
             "portfolioPieces": {
               "description": "The total number of pieces in the student's portfolio.",
+              "format": "int32",
               "maximum": 100,
               "minimum": 0,
               "type": "integer"
@@ -5744,6 +5759,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "programName": {
@@ -7271,6 +7287,7 @@
                     },
                     "booksBorrowed": {
                       "description": "The total number of books the contact has borrowed on behalf of the student to date.",
+                      "format": "int32",
                       "type": "integer"
                     },
                     "disciplines": {
@@ -7334,6 +7351,7 @@
                       "properties": {
                         "educationOrganizationId": {
                           "description": "The identifier assigned to an education organization.",
+                          "format": "int64",
                           "type": "integer"
                         },
                         "interventionStudyIdentificationCode": {
@@ -7351,6 +7369,7 @@
                     },
                     "libraryDuration": {
                       "description": "The actual or estimated number of clock minutes for a given library visit.",
+                      "format": "int32",
                       "minimum": 1,
                       "type": "integer"
                     },
@@ -7405,6 +7424,7 @@
                             "properties": {
                               "educationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "employmentStatusDescriptor": {
@@ -7455,6 +7475,7 @@
                         },
                         "orderOfPriority": {
                           "description": "The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.",
+                          "format": "int32",
                           "minimum": 1,
                           "type": "integer"
                         },
@@ -8064,6 +8085,7 @@
                       "properties": {
                         "educationOrganizationId": {
                           "description": "The identifier assigned to an education organization.",
+                          "format": "int64",
                           "type": "integer"
                         },
                         "programName": {
@@ -8607,6 +8629,7 @@
                 "properties": {
                   "careerPathwayCode": {
                     "description": "The code representing the student's intended career pathway after graduation.",
+                    "format": "int32",
                     "type": "integer"
                   }
                 },
@@ -8709,6 +8732,7 @@
               "properties": {
                 "educationOrganizationId": {
                   "description": "The identifier assigned to an education organization.",
+                  "format": "int64",
                   "type": "integer"
                 },
                 "graduationPlanTypeDescriptor": {
@@ -9922,10 +9946,12 @@
                               },
                               "educationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "programEducationOrganizationId": {
                                 "description": "The identifier assigned to an education organization.",
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "programName": {
@@ -10199,6 +10225,7 @@
                           },
                           "mimimumTankVolume": {
                             "description": "The minimum tank volume this aquatic pet requires.",
+                            "format": "int32",
                             "type": "integer"
                           },
                           "petName": {
@@ -10234,6 +10261,7 @@
                                 },
                                 "artPieces": {
                                   "description": "This is documentation.",
+                                  "format": "int32",
                                   "maximum": 100,
                                   "minimum": 0,
                                   "type": "integer"
@@ -10274,10 +10302,12 @@
                       "properties": {
                         "maximumWeight": {
                           "description": "The preferred maximum weight of a household pet.",
+                          "format": "int32",
                           "type": "integer"
                         },
                         "minimumWeight": {
                           "description": "The preferred minimum weight of a household pet.",
+                          "format": "int32",
                           "type": "integer"
                         }
                       },

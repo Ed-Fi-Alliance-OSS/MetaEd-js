@@ -12,7 +12,7 @@ export type SchemaProperty =
   | SchemaObject
   | SchemaArray
   | { type: 'string'; description: string; format?: 'date' | 'date-time' | 'time'; minLength?: number; maxLength?: number }
-  | { type: 'integer'; description: string; minimum?: number; maximum?: number }
+  | { type: 'integer'; description: string; format?: 'int32' | 'int64'; minimum?: number; maximum?: number }
   | { type: 'number'; description: string; minimum?: number; maximum?: number }
   | { type: 'boolean'; description: string };
 

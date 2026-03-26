@@ -183,6 +183,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredIntegerProperty": Object {
             "description": "doc8",
+            "format": "int32",
             "maximum": 10,
             "minimum": 5,
             "type": "integer",
@@ -471,6 +472,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredIntegerProperty": Object {
                   "description": "doc8",
+                  "format": "int32",
                   "maximum": 10,
                   "minimum": 5,
                   "type": "integer",
@@ -1637,6 +1639,7 @@ describe('when building domain entity with a simple common collection', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "identificationCodes": Object {
@@ -1755,6 +1758,7 @@ describe('when building domain entity subclass with common collection and descri
         "properties": Object {
           "communityOrganizationId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "identificationCodes": Object {
@@ -1873,10 +1877,12 @@ describe('when building association with a common collection in a common collect
                     "properties": Object {
                       "beginDate": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                       "endDate": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                     },
@@ -1907,6 +1913,7 @@ describe('when building association with a common collection in a common collect
           },
           "studentId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -1989,6 +1996,7 @@ describe('when building domain entity with a descriptor with role name', () => {
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2085,6 +2093,7 @@ describe('when building domain entity with a descriptor collection with role nam
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2171,6 +2180,7 @@ describe('when building domain entity with a common with a choice', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "contentStandard": Object {
@@ -2277,6 +2287,7 @@ describe('when building domain entity with a common and a common collection with
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "period": Object {
@@ -2379,6 +2390,7 @@ describe('when building domain entity with an all-caps property', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "uri": Object {
@@ -2468,6 +2480,7 @@ describe('when building domain entity with a common with a domain entity referen
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "contentStandard": Object {
@@ -2478,6 +2491,7 @@ describe('when building domain entity with a common with a domain entity referen
                 "properties": Object {
                   "educationOrganizationId": Object {
                     "description": "doc",
+                    "format": "int32",
                     "type": "integer",
                   },
                 },
@@ -2585,6 +2599,7 @@ describe('when building domain entity with two school year enumerations, one rol
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "schoolYearTypeReference": Object {
@@ -2681,6 +2696,7 @@ describe('when building domain entity with reference to domain entity with schoo
             "properties": Object {
               "schoolId": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
               "schoolYear": Object {
@@ -2698,6 +2714,7 @@ describe('when building domain entity with reference to domain entity with schoo
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2911,6 +2928,7 @@ describe('when building a domain entity with an inline common property with a de
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2988,14 +3006,17 @@ describe('when building a Domain Entity subclass', () => {
         "properties": Object {
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "subclassProperty": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "superclassProperty": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -3169,6 +3190,7 @@ describe('when building an Association subclass', () => {
             "properties": Object {
               "programId": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
               "programName": Object {
@@ -3189,6 +3211,7 @@ describe('when building an Association subclass', () => {
             "properties": Object {
               "schoolId": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
               "schoolName": Object {
@@ -3206,10 +3229,12 @@ describe('when building an Association subclass', () => {
           },
           "subclassProperty": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "superclassProperty": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -3405,6 +3430,7 @@ describe('when domain entity extension references domain entity in different nam
                     "properties": Object {
                       "referencedIdentity": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                     },

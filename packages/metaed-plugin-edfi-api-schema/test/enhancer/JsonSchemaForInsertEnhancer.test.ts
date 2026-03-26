@@ -142,6 +142,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
           "requiredIntegerProperty": Object {
             "description": "doc8",
+            "format": "int32",
             "maximum": 10,
             "minimum": 5,
             "type": "integer",
@@ -187,6 +188,60 @@ describe('when building simple domain entity with all the simple non-collections
         "type": "object",
       }
     `);
+  });
+
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForInsert);
+  });
+});
+
+describe('when building domain entity with integer properties having bigHint', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'EntityWithBigIntegers';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('StringIdentity', 'doc1', '30')
+      .withIntegerProperty('RegularInteger', 'A regular int32 integer', true, false, '100', '0')
+      .withIntegerProperty('BigInteger', 'A big int64 integer', true, false, null, null, null, null, true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should include format int32 on regular integer and format int64 on big integer', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const { properties } = entity.data.edfiApiSchema.jsonSchemaForInsert;
+
+    expect(properties.regularInteger).toMatchObject({
+      type: 'integer',
+      format: 'int32',
+      minimum: 0,
+      maximum: 100,
+    });
+
+    expect(properties.bigInteger).toMatchObject({
+      type: 'integer',
+      format: 'int64',
+    });
   });
 
   it('should be well-formed according to ajv', () => {
@@ -416,6 +471,7 @@ describe('when building simple domain entity with all the simple collections', (
               "properties": Object {
                 "requiredIntegerProperty": Object {
                   "description": "doc8",
+                  "format": "int32",
                   "maximum": 10,
                   "minimum": 5,
                   "type": "integer",
@@ -1243,6 +1299,7 @@ describe('when building domain entity with a simple common collection', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "identificationCodes": Object {
@@ -1351,6 +1408,7 @@ describe('when building domain entity subclass with common collection and descri
         "properties": Object {
           "communityOrganizationId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "identificationCodes": Object {
@@ -1456,10 +1514,12 @@ describe('when building association with a common collection in a common collect
                     "properties": Object {
                       "beginDate": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                       "endDate": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                     },
@@ -1490,6 +1550,7 @@ describe('when building association with a common collection in a common collect
           },
           "studentId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -1559,6 +1620,7 @@ describe('when building domain entity with a descriptor with role name', () => {
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -1642,6 +1704,7 @@ describe('when building domain entity with a descriptor collection with role nam
           },
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -1715,6 +1778,7 @@ describe('when building domain entity with a common with a choice', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "contentStandard": Object {
@@ -1808,6 +1872,7 @@ describe('when building domain entity with a common and a common collection with
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "period": Object {
@@ -1896,6 +1961,7 @@ describe('when building domain entity with an all-caps property', () => {
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "uri": Object {
@@ -1972,6 +2038,7 @@ describe('when building domain entity with a common with a domain entity referen
         "properties": Object {
           "assessmentIdentifier": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "contentStandard": Object {
@@ -1982,6 +2049,7 @@ describe('when building domain entity with a common with a domain entity referen
                 "properties": Object {
                   "educationOrganizationId": Object {
                     "description": "doc",
+                    "format": "int32",
                     "type": "integer",
                   },
                 },
@@ -2076,6 +2144,7 @@ describe('when building domain entity with two school year enumerations, one rol
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
           "schoolYearTypeReference": Object {
@@ -2159,6 +2228,7 @@ describe('when building domain entity with reference to domain entity with schoo
             "properties": Object {
               "schoolId": Object {
                 "description": "doc",
+                "format": "int32",
                 "type": "integer",
               },
               "schoolYear": Object {
@@ -2176,6 +2246,7 @@ describe('when building domain entity with reference to domain entity with schoo
           },
           "schoolId": Object {
             "description": "doc",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2508,6 +2579,7 @@ describe('when building a domain entity with an inline common property with a de
           },
           "sectionIdentifier": Object {
             "description": "Documentation",
+            "format": "int32",
             "type": "integer",
           },
         },
@@ -2754,6 +2826,7 @@ describe('when domain entity extension references domain entity in different nam
                     "properties": Object {
                       "referencedIdentity": Object {
                         "description": "doc",
+                        "format": "int32",
                         "type": "integer",
                       },
                     },
@@ -2983,10 +3056,12 @@ describe(
               "properties": Object {
                 "assigningEducationOrganizationId": Object {
                   "description": "doc",
+                  "format": "int32",
                   "type": "integer",
                 },
                 "educationOrganizationId": Object {
                   "description": "doc",
+                  "format": "int32",
                   "type": "integer",
                 },
                 "unusedProperty": Object {
@@ -3081,80 +3156,81 @@ describe('when building domain entity with CommonSubclass property that inherits
     const entity = namespace.entity.domainEntity.get('Student');
     const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
     expect(schema).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "doc",
-          "properties": Object {
-            "aquaticPets": Object {
-              "items": Object {
-                "additionalProperties": false,
-                "properties": Object {
-                  "isFixed": Object {
-                    "description": "doc",
-                    "type": "boolean",
-                  },
-                  "mimimumTankVolume": Object {
-                    "description": "doc",
-                    "type": "integer",
-                  },
-                  "petName": Object {
-                    "description": "doc",
-                    "maxLength": 20,
-                    "minLength": 3,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "aquaticPets": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "isFixed": Object {
+                  "description": "doc",
+                  "type": "boolean",
                 },
-                "required": Array [
-                  "mimimumTankVolume",
-                  "petName",
-                ],
-                "type": "object",
-              },
-              "minItems": 0,
-              "type": "array",
-              "uniqueItems": false,
-            },
-            "pets": Object {
-              "items": Object {
-                "additionalProperties": false,
-                "properties": Object {
-                  "isFixed": Object {
-                    "description": "doc",
-                    "type": "boolean",
-                  },
-                  "petName": Object {
-                    "description": "doc",
-                    "maxLength": 20,
-                    "minLength": 3,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
+                "mimimumTankVolume": Object {
+                  "description": "doc",
+                  "format": "int32",
+                  "type": "integer",
                 },
-                "required": Array [
-                  "petName",
-                ],
-                "type": "object",
+                "petName": Object {
+                  "description": "doc",
+                  "maxLength": 20,
+                  "minLength": 3,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
               },
-              "minItems": 0,
-              "type": "array",
-              "uniqueItems": false,
+              "required": Array [
+                "mimimumTankVolume",
+                "petName",
+              ],
+              "type": "object",
             },
-            "studentUniqueId": Object {
-              "description": "doc",
-              "maxLength": 32,
-              "pattern": "^(?!\\\\s)(.*\\\\S)$",
-              "type": "string",
-            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
           },
-          "required": Array [
-            "studentUniqueId",
-          ],
-          "title": "EdFi.Student",
-          "type": "object",
-        }
-      `);
+          "pets": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "isFixed": Object {
+                  "description": "doc",
+                  "type": "boolean",
+                },
+                "petName": Object {
+                  "description": "doc",
+                  "maxLength": 20,
+                  "minLength": 3,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "petName",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "studentUniqueId": Object {
+            "description": "doc",
+            "maxLength": 32,
+            "pattern": "^(?!\\\\s)(.*\\\\S)$",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "studentUniqueId",
+        ],
+        "title": "EdFi.Student",
+        "type": "object",
+      }
+    `);
   });
 });
 
@@ -3212,109 +3288,112 @@ describe('when building domain entity with CommonSubclass with complex inheritan
     const entity = namespace.entity.domainEntity.get('School');
     const schema = entity.data.edfiApiSchema.jsonSchemaForInsert;
     expect(schema).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "additionalProperties": false,
-          "description": "doc",
-          "properties": Object {
-            "electricVehicles": Object {
-              "items": Object {
-                "additionalProperties": false,
-                "properties": Object {
-                  "batteryCapacity": Object {
-                    "description": "doc",
-                    "type": "number",
-                  },
-                  "fastChargeCapable": Object {
-                    "description": "doc",
-                    "type": "boolean",
-                  },
-                  "isOperational": Object {
-                    "description": "doc",
-                    "type": "boolean",
-                  },
-                  "make": Object {
-                    "description": "doc",
-                    "maxLength": 50,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
-                  "model": Object {
-                    "description": "doc",
-                    "maxLength": 50,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
-                  "range": Object {
-                    "description": "doc",
-                    "type": "integer",
-                  },
-                  "year": Object {
-                    "description": "doc",
-                    "type": "integer",
-                  },
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "electricVehicles": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "batteryCapacity": Object {
+                  "description": "doc",
+                  "type": "number",
                 },
-                "required": Array [
-                  "batteryCapacity",
-                  "fastChargeCapable",
-                  "make",
-                  "model",
-                ],
-                "type": "object",
-              },
-              "minItems": 0,
-              "type": "array",
-              "uniqueItems": false,
-            },
-            "schoolId": Object {
-              "description": "doc",
-              "maxLength": 32,
-              "pattern": "^(?!\\\\s)(.*\\\\S)$",
-              "type": "string",
-            },
-            "vehicles": Object {
-              "items": Object {
-                "additionalProperties": false,
-                "properties": Object {
-                  "isOperational": Object {
-                    "description": "doc",
-                    "type": "boolean",
-                  },
-                  "make": Object {
-                    "description": "doc",
-                    "maxLength": 50,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
-                  "model": Object {
-                    "description": "doc",
-                    "maxLength": 50,
-                    "pattern": "^(?!\\\\s*$).+",
-                    "type": "string",
-                  },
-                  "year": Object {
-                    "description": "doc",
-                    "type": "integer",
-                  },
+                "fastChargeCapable": Object {
+                  "description": "doc",
+                  "type": "boolean",
                 },
-                "required": Array [
-                  "make",
-                  "model",
-                ],
-                "type": "object",
+                "isOperational": Object {
+                  "description": "doc",
+                  "type": "boolean",
+                },
+                "make": Object {
+                  "description": "doc",
+                  "maxLength": 50,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
+                "model": Object {
+                  "description": "doc",
+                  "maxLength": 50,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
+                "range": Object {
+                  "description": "doc",
+                  "format": "int32",
+                  "type": "integer",
+                },
+                "year": Object {
+                  "description": "doc",
+                  "format": "int32",
+                  "type": "integer",
+                },
               },
-              "minItems": 0,
-              "type": "array",
-              "uniqueItems": false,
+              "required": Array [
+                "batteryCapacity",
+                "fastChargeCapable",
+                "make",
+                "model",
+              ],
+              "type": "object",
             },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
           },
-          "required": Array [
-            "schoolId",
-          ],
-          "title": "EdFi.School",
-          "type": "object",
-        }
-      `);
+          "schoolId": Object {
+            "description": "doc",
+            "maxLength": 32,
+            "pattern": "^(?!\\\\s)(.*\\\\S)$",
+            "type": "string",
+          },
+          "vehicles": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "isOperational": Object {
+                  "description": "doc",
+                  "type": "boolean",
+                },
+                "make": Object {
+                  "description": "doc",
+                  "maxLength": 50,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
+                "model": Object {
+                  "description": "doc",
+                  "maxLength": 50,
+                  "pattern": "^(?!\\\\s*$).+",
+                  "type": "string",
+                },
+                "year": Object {
+                  "description": "doc",
+                  "format": "int32",
+                  "type": "integer",
+                },
+              },
+              "required": Array [
+                "make",
+                "model",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+        },
+        "required": Array [
+          "schoolId",
+        ],
+        "title": "EdFi.School",
+        "type": "object",
+      }
+    `);
   });
 });
 
@@ -3659,6 +3738,7 @@ describe('when extension override property has collection modifier', () => {
                             "properties": Object {
                               "extensionCount": Object {
                                 "description": "doc",
+                                "format": "int32",
                                 "type": "integer",
                               },
                             },

@@ -340,8 +340,12 @@ function schemaPropertyForNonReference(
 
     case 'integer':
     case 'sharedInteger': {
-      const result: SchemaProperty = { type: 'integer', description };
       const integerProperty: IntegerProperty = property as IntegerProperty;
+      const result: SchemaProperty = {
+        type: 'integer',
+        description,
+        format: integerProperty.hasBigHint ? 'int64' : 'int32',
+      };
       if (integerProperty.minValue) result.minimum = Number(integerProperty.minValue);
       if (integerProperty.maxValue) result.maximum = Number(integerProperty.maxValue);
       return result;
