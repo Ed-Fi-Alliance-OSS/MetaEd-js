@@ -28,7 +28,7 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
 
     beforeAll(() => {
       metaEd = newMetaEdEnvironment();
-      metaEd.dataStandardVersion = '6.2.0';
+      metaEd.dataStandardVersion = '7.2.0';
       MetaEdTextBuilder.build()
         .withBeginNamespace('EdFi')
 
@@ -137,7 +137,7 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
 
     beforeAll(() => {
       metaEd = newMetaEdEnvironment();
-      metaEd.dataStandardVersion = '6.2.0';
+      metaEd.dataStandardVersion = '7.2.0';
       MetaEdTextBuilder.build()
         .withBeginNamespace('EdFi')
 
