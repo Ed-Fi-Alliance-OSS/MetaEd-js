@@ -18,7 +18,7 @@
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.6.1-dev.23",
     "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.23",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.23",
-    "handlebars": "^4.7.7",
+    "handlebars": "^4.7.9",
     "write-excel-file": "^2.0.9"
   },
   "scripts": {
