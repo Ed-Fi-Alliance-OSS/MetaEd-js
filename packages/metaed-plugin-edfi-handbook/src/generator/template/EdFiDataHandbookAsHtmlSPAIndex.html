@@ -304,6 +304,20 @@
             height: auto;
             min-height: 80px;
         }
+
+        .btn-clear-filter {
+            background: none;
+            border: none;
+            color: #0072bc;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        .btn-clear-filter:hover {
+            color: #004e85;
+        }
     </style>
 
     <script type="text/javascript">
@@ -503,6 +517,8 @@
                     </select>
                     <small id="uml-type-help" style="display: block; margin-top: 3px; color: #666;">Filter by UML Type
                         (hold Ctrl/Cmd to select multiple)</small>
+                    <button type="button" class="btn-clear-filter" x-show="selectedEntityTypes.length > 0"
+                        @click="selectedEntityTypes = []">Clear selection</button>
                 </div>
                 <div class="form-group">
                     <select class="form-control" x-model="selectedDomains" multiple aria-label="Filter by Domain"
@@ -513,6 +529,8 @@
                     </select>
                     <small id="domain-help" style="display: block; margin-top: 3px; color: #666;">Filter by Domain (hold
                         Ctrl/Cmd to select multiple)</small>
+                    <button type="button" class="btn-clear-filter" x-show="selectedDomains.length > 0"
+                        @click="selectedDomains = []">Clear selection</button>
                 </div>
                 <span class="filterCount" x-text="`[Displaying ${filteredEntries.length} of ${entries.length}]`"></span>
             </div>
