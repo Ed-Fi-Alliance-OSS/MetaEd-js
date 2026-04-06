@@ -16,7 +16,7 @@
     "@edfi/metaed-core": "4.6.1-dev.23",
     "@edfi/metaed-plugin-edfi-unified": "4.6.1-dev.23",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.6.1-dev.23",
-    "@xmldom/xmldom": "^0.8.10",
+    "@xmldom/xmldom": "^0.9.9",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
