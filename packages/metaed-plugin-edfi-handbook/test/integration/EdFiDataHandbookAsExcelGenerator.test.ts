@@ -147,7 +147,6 @@ describe('when generating excel version of handbook', (): void => {
           Id [UNIQUEIDENTIFIER] NOT NULL,
           CONSTRAINT PK_EducationOrganization PRIMARY KEY (EducationOrganizationId)
       )",
-          null,
         ],
         Array [
           "Entity1 (EdFi)",
@@ -174,7 +173,6 @@ describe('when generating excel version of handbook', (): void => {
           CreateDate [DATETIME] NOT NULL,
           CONSTRAINT PK_Entity1DateCollection PRIMARY KEY (Entity1DateCollection, Entity1Integer)
       )",
-          null,
         ],
         Array [
           "Entity2 (EdFi)",
@@ -201,7 +199,6 @@ describe('when generating excel version of handbook', (): void => {
           CreateDate [DATETIME] NOT NULL,
           CONSTRAINT PK_Entity2DateCollection PRIMARY KEY (Entity2DateCollection, Entity2Integer)
       )",
-          "Entity2String",
         ],
         Array [
           "Percent",
