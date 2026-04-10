@@ -8,6 +8,7 @@ import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
 import type { ProjectSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ProjectSchema';
 import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
+import * as OpenApiTypes from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import { extractPropertyRowsForNamespace, extractResourceRowsForNamespace } from '../../src/generator/ApiCatalogGenerator';
 
 /**
@@ -433,6 +434,53 @@ describe('ApiCatalogGenerator', () => {
         const streetRow = rows.find(r => r.propertyName === 'homeAddress.streetNumberName');
         expect(streetRow).toBeDefined();
         expect(streetRow?.dataType).toBe('string');
+      });
+    });
+
+    describe('extractPropertyRowsForNamespace - array branch handling', () => {
+      it('should handle single common collection with no role name', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  contactUniqueId: { type: 'string' },
+                  addresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Address' },
+                  },
+                },
+                required: ['contactUniqueId', 'addresses'],
+              } as SchemaObject,
+              EdFi_Contact_Address: {
+                properties: {
+                  city: { type: 'string' },
+                  state: { type: 'string' },
+                },
+                required: ['city'],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        // Should have rows for:
+        // 1. contactUniqueId (scalar property)
+        // 2. addresses (array property itself)
+        // 3. address.city
+        // 4. address.state
+        expect(rows).toHaveLength(4);
+
+        const addressesArrayRow = rows.find(r => r.propertyName === 'addresses' && r.dataType === 'array');
+        expect(addressesArrayRow).toBeDefined();
+        expect(addressesArrayRow?.isRequired).toBe(true);
+
+        const cityRow = rows.find(r => r.propertyName === 'address.city');
+        expect(cityRow).toBeDefined();
+        expect(cityRow?.dataType).toBe('string');
       });
     });
   });

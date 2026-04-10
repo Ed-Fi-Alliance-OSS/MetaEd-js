@@ -20,8 +20,6 @@ import {
   propertiesWorksheetName,
   resourcesWorksheetName,
 } from '../model/ApiCatalogRow';
-// Note: singularize will be used in subsequent tasks (array branch)
-// @ts-expect-error - imported but unused until array branch is implemented
 import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
 
 /**
@@ -113,6 +111,49 @@ function processSchemaProperties(
       // If it's an internal sub-schema, recurse to expose its properties
       if (isInternalSubSchema(refSchemaName, allSchemas, mainSchemaName)) {
         const subPrefix = prefix ? `${prefix}.${propertyName}` : propertyName;
+        const subSchema = allSchemas[refSchemaName] as SchemaObject;
+        processSchemaProperties(
+          subSchema,
+          subPrefix,
+          allSchemas,
+          mainSchemaName,
+          rows,
+          projectEndpointName,
+          projectVersion,
+          resourceName,
+        );
+      }
+    }
+    // ── array branch (array with $ref items) ──
+    else if (
+      propertyDef.type === 'array' &&
+      propertyDef.items &&
+      '$ref' in propertyDef.items
+    ) {
+      const arrayProperty = propertyDef as ArraySchemaObject;
+      const itemsRef = arrayProperty.items as ReferenceObject;
+      const refSchemaName = itemsRef.$ref.split('/').at(-1) ?? '';
+
+      // Emit row for the array property itself
+      rows.push({
+        project: projectEndpointName,
+        version: projectVersion,
+        resourceName,
+        propertyName: qualifiedName,
+        description: itemsRef.$ref,
+        dataType: 'array',
+        minLength: null,
+        maxLength: null,
+        validationRegEx: null,
+        isIdentityKey: false, // arrays are never identity keys
+        isNullable: false, // arrays follow schema convention of not nullable
+        isRequired: requiredProperties.includes(propertyName),
+      });
+
+      // If it's an internal sub-schema, recurse using singularized property name
+      if (isInternalSubSchema(refSchemaName, allSchemas, mainSchemaName)) {
+        const singularContext = singularize(propertyName);
+        const subPrefix = prefix ? `${prefix}.${singularContext}` : singularContext;
         const subSchema = allSchemas[refSchemaName] as SchemaObject;
         processSchemaProperties(
           subSchema,
