@@ -672,6 +672,75 @@ describe('ApiCatalogGenerator', () => {
         expect(intlPeriodBegin).toBeDefined();
       });
     });
+
+    describe('extractPropertyRowsForNamespace - inherited schemas', () => {
+      it('should recurse inherited sub-schema (cross-entity reference)', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_CommunityProvider: {
+                properties: {
+                  id: { type: 'string' },
+                  addresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_EducationOrganization_Address' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_EducationOrganization_Address: {
+                properties: {
+                  city: { type: 'string' },
+                  state: { type: 'string' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(3);
+
+        const cityRow = rows.find(r => r.propertyName === 'address.city');
+        expect(cityRow).toBeDefined();
+      });
+
+      it('should NOT recurse _Reference schema even if present in allSchemas', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  studentReference: { $ref: '#/components/schemas/EdFi_Student_Reference' },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Student_Reference: {
+                properties: {
+                  studentId: { type: 'string' },
+                  firstName: { type: 'string' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(1);
+
+        const studentRefRow = rows[0];
+        expect(studentRefRow.propertyName).toBe('studentReference');
+        expect(studentRefRow.dataType).toBe('reference');
+        expect(studentRefRow.description).toBe('#/components/schemas/EdFi_Student_Reference');
+      });
+    });
   });
 
   describe('extractResourceRowsForNamespace', () => {
