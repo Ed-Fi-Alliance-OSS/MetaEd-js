@@ -7,7 +7,33 @@ import type { Namespace } from '@edfi/metaed-core';
 import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
 import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
 import type { ProjectSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ProjectSchema';
+import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import { extractPropertyRowsForNamespace, extractResourceRowsForNamespace } from '../../src/generator/ApiCatalogGenerator';
+
+/**
+ * Helper to create a Namespace object from an OpenAPI fixture
+ */
+function createNamespaceWithFixture(fixture: any): Namespace {
+  return {
+    data: {
+      edfiApiSchema: {
+        apiSchema: {
+          projectSchema: {
+            projectEndpointName: 'ed-fi',
+            projectVersion: '5.2.0',
+            resourceSchemas: {
+              testResource: {
+                openApiFragments: {
+                  resources: fixture,
+                },
+              } as unknown as ResourceSchema,
+            },
+          } as unknown as ProjectSchema,
+        },
+      } as NamespaceEdfiApiSchema,
+    },
+  } as Namespace;
+}
 
 describe('ApiCatalogGenerator', () => {
   describe('extractPropertyRowsForNamespace', () => {
@@ -365,6 +391,49 @@ describe('ApiCatalogGenerator', () => {
       expect(result).toHaveLength(1);
       expect(result[0].propertyName).toBe('codeValue');
       expect(result[0].resourceName).toBe('gradeTypeDescriptors');
+    });
+
+    describe('extractPropertyRowsForNamespace - scalar common ($ref) handling', () => {
+      it('should handle scalar common (direct $ref to internal sub-schema)', () => {
+        const fixture: any = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  contactUniqueId: { type: 'string' },
+                  homeAddress: { $ref: '#/components/schemas/EdFi_Contact_HomeAddress' },
+                },
+                required: ['contactUniqueId'],
+              } as SchemaObject,
+              EdFi_Contact_HomeAddress: {
+                properties: {
+                  streetNumberName: { type: 'string' },
+                  city: { type: 'string' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        // Should have rows for:
+        // 1. contactUniqueId (root property)
+        // 2. homeAddress (the $ref itself, as reference type)
+        // 3. homeAddress.streetNumberName
+        // 4. homeAddress.city
+        expect(rows).toHaveLength(4);
+
+        const homeAddressRow = rows.find(r => r.propertyName === 'homeAddress' && r.dataType === 'reference');
+        expect(homeAddressRow).toBeDefined();
+        expect(homeAddressRow?.description).toBe('#/components/schemas/EdFi_Contact_HomeAddress');
+
+        const streetRow = rows.find(r => r.propertyName === 'homeAddress.streetNumberName');
+        expect(streetRow).toBeDefined();
+        expect(streetRow?.dataType).toBe('string');
+      });
     });
   });
 

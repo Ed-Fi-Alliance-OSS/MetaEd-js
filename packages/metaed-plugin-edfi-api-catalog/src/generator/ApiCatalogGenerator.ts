@@ -20,7 +20,8 @@ import {
   propertiesWorksheetName,
   resourcesWorksheetName,
 } from '../model/ApiCatalogRow';
-// @ts-expect-error - will be used in subsequent tasks
+// Note: singularize will be used in subsequent tasks (array branch)
+// @ts-expect-error - imported but unused until array branch is implemented
 import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
 
 /**
@@ -30,6 +31,30 @@ type EdFiSchemaObject = SchemaObject & {
   'x-Ed-Fi-isIdentity'?: boolean;
   'x-nullable'?: boolean;
 };
+
+/**
+ * Checks if a schema name refers to an internal sub-schema that should be recursed.
+ * All three conditions must be true:
+ * 1. Present as a key in allSchemas
+ * 2. Does NOT end with _Reference, _Readable, or _Writable
+ * 3. Is not the main schema itself
+ */
+function isInternalSubSchema(
+  schemaName: string,
+  allSchemas: Record<string, ReferenceObject | SchemaObject>,
+  mainSchemaName: string,
+): boolean {
+  if (!(schemaName in allSchemas)) return false;
+  if (schemaName === mainSchemaName) return false;
+  if (
+    schemaName.endsWith('_Reference') ||
+    schemaName.endsWith('_Readable') ||
+    schemaName.endsWith('_Writable')
+  ) {
+    return false;
+  }
+  return true;
+}
 
 /**
  * Recursively processes schema properties, building dot-separated path prefixes
@@ -44,18 +69,101 @@ type EdFiSchemaObject = SchemaObject & {
  * @param projectVersion Project version for the row
  * @param resourceName Resource name for the row
  */
-// @ts-expect-error - will be used in subsequent tasks
 function processSchemaProperties(
-  _schema: SchemaObject,
-  _prefix: string,
-  _allSchemas: Record<string, ReferenceObject | SchemaObject>,
-  _mainSchemaName: string,
-  _rows: PropertyRow[],
-  _projectEndpointName: string,
-  _projectVersion: string,
-  _resourceName: string,
+  schema: SchemaObject,
+  prefix: string,
+  allSchemas: Record<string, ReferenceObject | SchemaObject>,
+  mainSchemaName: string,
+  rows: PropertyRow[],
+  projectEndpointName: string,
+  projectVersion: string,
+  resourceName: string,
 ): void {
-  // Algorithm will be implemented in subsequent tasks
+  const requiredProperties = schema.required ?? [];
+
+  Object.entries(schema.properties ?? {}).forEach(([propertyName, propertyDef]) => {
+    // Skip the 'id' property
+    if (propertyName === 'id') {
+      return;
+    }
+
+    const qualifiedName = prefix ? `${prefix}.${propertyName}` : propertyName;
+
+    // ── $ref branch (foreign-key reference OR scalar common) ──
+    if ('$ref' in propertyDef) {
+      const reference = propertyDef as EdFiSchemaObject & { $ref: string };
+      const refSchemaName = reference.$ref.split('/').at(-1) ?? '';
+
+      // Emit row for the $ref itself
+      rows.push({
+        project: projectEndpointName,
+        version: projectVersion,
+        resourceName,
+        propertyName: qualifiedName,
+        description: reference.$ref,
+        dataType: 'reference',
+        minLength: null,
+        maxLength: null,
+        validationRegEx: null,
+        isIdentityKey: reference['x-Ed-Fi-isIdentity'] === true,
+        isNullable: reference['x-nullable'] === true,
+        isRequired: requiredProperties.includes(propertyName),
+      });
+
+      // If it's an internal sub-schema, recurse to expose its properties
+      if (isInternalSubSchema(refSchemaName, allSchemas, mainSchemaName)) {
+        const subPrefix = prefix ? `${prefix}.${propertyName}` : propertyName;
+        const subSchema = allSchemas[refSchemaName] as SchemaObject;
+        processSchemaProperties(
+          subSchema,
+          subPrefix,
+          allSchemas,
+          mainSchemaName,
+          rows,
+          projectEndpointName,
+          projectVersion,
+          resourceName,
+        );
+      }
+    }
+    // ── scalar branch (direct scalar properties and scalar arrays) ──
+    else {
+      const property = propertyDef as EdFiSchemaObject;
+      let dataType: string;
+      let description: string = property.description || '';
+
+      // Extract data type - use format if present, otherwise use type
+      dataType = property.type || 'unknown';
+      if (property.format != null) {
+        dataType = property.format;
+      }
+
+      // For array types, use the items $ref as the description to indicate the array item type
+      // This provides information about what schema type the array contains
+      if (property.type === 'array') {
+        const arrayProperty = property as ArraySchemaObject;
+        if ('$ref' in arrayProperty.items) {
+          const itemsRef = arrayProperty.items as ReferenceObject;
+          description = itemsRef.$ref;
+        }
+      }
+
+      rows.push({
+        project: projectEndpointName,
+        version: projectVersion,
+        resourceName,
+        propertyName: qualifiedName,
+        description,
+        dataType,
+        minLength: property.minLength ?? null,
+        maxLength: property.maxLength ?? null,
+        validationRegEx: property.pattern ?? null,
+        isIdentityKey: property['x-Ed-Fi-isIdentity'] === true,
+        isNullable: property['x-nullable'] === true,
+        isRequired: requiredProperties.includes(propertyName),
+      });
+    }
+  });
 }
 
 /**
@@ -84,84 +192,118 @@ export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyR
       return;
     }
 
-    // Iterate through all schemas in the fragment
-    Object.values(openApiFragment.components.schemas).forEach((schema: SchemaObject) => {
-      if (schema.properties == null) {
-        return;
-      }
+    const { schemas } = openApiFragment.components;
 
-      const requiredProperties = schema.required || [];
+    // ─── Step 1: Identify main schema ───
+    // Find a schema without common suffixes like _Reference, _Readable, or _Writable
+    // and one that has properties
+    const schemaEntries = Object.entries(schemas);
+    const mainSchemaEntry = schemaEntries.find(([schemaName, schema]) => {
+      const hasCommonSuffix =
+        schemaName.endsWith('_Reference') || schemaName.endsWith('_Readable') || schemaName.endsWith('_Writable');
+      return !hasCommonSuffix && (schema as SchemaObject).properties != null;
+    });
 
-      // Iterate through all properties in the schema
-      Object.entries(schema.properties).forEach(([propertyName, propertySchema]) => {
-        // Skip the 'id' property as specified
-        if (propertyName === 'id') {
+    if (mainSchemaEntry == null) {
+      // If no main schema found, fall back to old behavior for backward compatibility
+      // Iterate through all schemas in the fragment
+      Object.values(schemas).forEach((schema: SchemaObject) => {
+        if (schema.properties == null) {
           return;
         }
 
-        let dataType: string;
-        let description: string;
-        let minLength: number | null = null;
-        let maxLength: number | null = null;
-        let validationRegEx: string | null = null;
-        let isIdentityKey = false;
-        let isNullable = false;
+        const requiredProperties = schema.required || [];
 
-        // Handle reference objects
-        if ('$ref' in propertySchema) {
-          const reference = propertySchema as EdFiSchemaObject & { $ref: string };
-          dataType = 'reference';
-          description = reference.$ref;
-          isIdentityKey = reference['x-Ed-Fi-isIdentity'] === true;
-          isNullable = reference['x-nullable'] === true;
-        } else {
-          const property = propertySchema as EdFiSchemaObject;
-
-          // Extract data type - use format if present, otherwise use type
-          dataType = property.type || 'unknown';
-          if (property.format != null) {
-            dataType = property.format;
+        // Iterate through all properties in the schema
+        Object.entries(schema.properties).forEach(([propertyName, propertySchema]) => {
+          // Skip the 'id' property as specified
+          if (propertyName === 'id') {
+            return;
           }
 
-          // Extract other properties
-          description = property.description || '';
+          let dataType: string;
+          let description: string;
+          let minLength: number | null = null;
+          let maxLength: number | null = null;
+          let validationRegEx: string | null = null;
+          let isIdentityKey = false;
+          let isNullable = false;
 
-          // For array types, use the items $ref as the description to indicate the array item type
-          // This provides information about what schema type the array contains
-          if (property.type === 'array') {
-            const arrayProperty = property as ArraySchemaObject;
-            if ('$ref' in arrayProperty.items) {
-              const itemsRef = arrayProperty.items as ReferenceObject;
-              description = itemsRef.$ref;
+          // Handle reference objects
+          if ('$ref' in propertySchema) {
+            const reference = propertySchema as EdFiSchemaObject & { $ref: string };
+            dataType = 'reference';
+            description = reference.$ref;
+            isIdentityKey = reference['x-Ed-Fi-isIdentity'] === true;
+            isNullable = reference['x-nullable'] === true;
+          } else {
+            const property = propertySchema as EdFiSchemaObject;
+
+            // Extract data type - use format if present, otherwise use type
+            dataType = property.type || 'unknown';
+            if (property.format != null) {
+              dataType = property.format;
             }
+
+            // Extract other properties
+            description = property.description || '';
+
+            // For array types, use the items $ref as the description to indicate the array item type
+            // This provides information about what schema type the array contains
+            if (property.type === 'array') {
+              const arrayProperty = property as ArraySchemaObject;
+              if ('$ref' in arrayProperty.items) {
+                const itemsRef = arrayProperty.items as ReferenceObject;
+                description = itemsRef.$ref;
+              }
+            }
+
+            minLength = property.minLength != null ? property.minLength : null;
+            maxLength = property.maxLength != null ? property.maxLength : null;
+            validationRegEx = property.pattern != null ? property.pattern : null;
+            isIdentityKey = property['x-Ed-Fi-isIdentity'] === true;
+            isNullable = property['x-nullable'] === true;
           }
 
-          minLength = property.minLength != null ? property.minLength : null;
-          maxLength = property.maxLength != null ? property.maxLength : null;
-          validationRegEx = property.pattern != null ? property.pattern : null;
-          isIdentityKey = property['x-Ed-Fi-isIdentity'] === true;
-          isNullable = property['x-nullable'] === true;
-        }
+          // Check if property is in the required array
+          const isRequired = requiredProperties.includes(propertyName);
 
-        // Check if property is in the required array
-        const isRequired = requiredProperties.includes(propertyName);
-
-        rows.push({
-          project: projectEndpointName,
-          version: projectVersion,
-          resourceName,
-          propertyName,
-          description,
-          dataType,
-          minLength,
-          maxLength,
-          validationRegEx,
-          isIdentityKey,
-          isNullable,
-          isRequired,
+          rows.push({
+            project: projectEndpointName,
+            version: projectVersion,
+            resourceName,
+            propertyName,
+            description,
+            dataType,
+            minLength,
+            maxLength,
+            validationRegEx,
+            isIdentityKey,
+            isNullable,
+            isRequired,
+          });
         });
       });
-    });
+      return;
+    }
+
+    const [mainSchemaName, mainSchema] = mainSchemaEntry;
+
+    // ─── Step 2: Build schema lookup (O(1) access) ───
+    const allSchemas = schemas;
+
+    // ─── Step 3: Recursive property walk starting from main schema ───
+    // MetaEd does not allow circular Common references, so no visited-set needed.
+    processSchemaProperties(
+      mainSchema as SchemaObject,
+      '', // prefix starts empty at root
+      allSchemas,
+      mainSchemaName,
+      rows,
+      projectEndpointName,
+      projectVersion,
+      resourceName,
+    );
   });
 
   return rows;
