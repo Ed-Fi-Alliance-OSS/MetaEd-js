@@ -12,6 +12,7 @@ import type {
   ArraySchemaObject,
   ReferenceObject,
 } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
+import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
 import {
   PropertyRow,
   ResourceRow,
@@ -20,7 +21,6 @@ import {
   propertiesWorksheetName,
   resourcesWorksheetName,
 } from '../model/ApiCatalogRow';
-import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
 
 /**
  * Extended SchemaObject type that includes Ed-Fi custom properties
@@ -44,11 +44,7 @@ function isInternalSubSchema(
 ): boolean {
   if (!(schemaName in allSchemas)) return false;
   if (schemaName === mainSchemaName) return false;
-  if (
-    schemaName.endsWith('_Reference') ||
-    schemaName.endsWith('_Readable') ||
-    schemaName.endsWith('_Writable')
-  ) {
+  if (schemaName.endsWith('_Reference') || schemaName.endsWith('_Readable') || schemaName.endsWith('_Writable')) {
     return false;
   }
   return true;
@@ -125,11 +121,7 @@ function processSchemaProperties(
       }
     }
     // ── array branch (array with $ref items) ──
-    else if (
-      propertyDef.type === 'array' &&
-      propertyDef.items &&
-      '$ref' in propertyDef.items
-    ) {
+    else if (propertyDef.type === 'array' && propertyDef.items && '$ref' in propertyDef.items) {
       const arrayProperty = propertyDef as ArraySchemaObject;
       const itemsRef = arrayProperty.items as ReferenceObject;
       const refSchemaName = itemsRef.$ref.split('/').at(-1) ?? '';

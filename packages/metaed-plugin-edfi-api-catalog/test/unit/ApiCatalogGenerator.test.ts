@@ -427,11 +427,11 @@ describe('ApiCatalogGenerator', () => {
         // 4. homeAddress.city
         expect(rows).toHaveLength(4);
 
-        const homeAddressRow = rows.find(r => r.propertyName === 'homeAddress' && r.dataType === 'reference');
+        const homeAddressRow = rows.find((r) => r.propertyName === 'homeAddress' && r.dataType === 'reference');
         expect(homeAddressRow).toBeDefined();
         expect(homeAddressRow?.description).toBe('#/components/schemas/EdFi_Contact_HomeAddress');
 
-        const streetRow = rows.find(r => r.propertyName === 'homeAddress.streetNumberName');
+        const streetRow = rows.find((r) => r.propertyName === 'homeAddress.streetNumberName');
         expect(streetRow).toBeDefined();
         expect(streetRow?.dataType).toBe('string');
       });
@@ -474,11 +474,11 @@ describe('ApiCatalogGenerator', () => {
         // 4. address.state
         expect(rows).toHaveLength(4);
 
-        const addressesArrayRow = rows.find(r => r.propertyName === 'addresses' && r.dataType === 'array');
+        const addressesArrayRow = rows.find((r) => r.propertyName === 'addresses' && r.dataType === 'array');
         expect(addressesArrayRow).toBeDefined();
         expect(addressesArrayRow?.isRequired).toBe(true);
 
-        const cityRow = rows.find(r => r.propertyName === 'address.city');
+        const cityRow = rows.find((r) => r.propertyName === 'address.city');
         expect(cityRow).toBeDefined();
         expect(cityRow?.dataType).toBe('string');
       });
@@ -507,13 +507,13 @@ describe('ApiCatalogGenerator', () => {
 
         expect(rows).toHaveLength(3);
 
-        const uniqueIdRow = rows.find(r => r.propertyName === 'contactUniqueId');
+        const uniqueIdRow = rows.find((r) => r.propertyName === 'contactUniqueId');
         expect(uniqueIdRow).toBeDefined();
         expect(uniqueIdRow?.dataType).toBe('string');
         expect(uniqueIdRow?.description).toBe('Unique identifier');
         expect(uniqueIdRow?.isRequired).toBe(true);
 
-        const countRow = rows.find(r => r.propertyName === 'enrollmentCount');
+        const countRow = rows.find((r) => r.propertyName === 'enrollmentCount');
         expect(countRow).toBeDefined();
         expect(countRow?.dataType).toBe('int32');
       });
@@ -559,13 +559,13 @@ describe('ApiCatalogGenerator', () => {
 
         expect(rows).toHaveLength(4);
 
-        const addressCity = rows.find(r => r.propertyName === 'address.city');
-        const intlCity = rows.find(r => r.propertyName === 'internationalAddress.city');
+        const addressCity = rows.find((r) => r.propertyName === 'address.city');
+        const intlCity = rows.find((r) => r.propertyName === 'internationalAddress.city');
 
         expect(addressCity).toBeDefined();
         expect(intlCity).toBeDefined();
 
-        const unqualifiedCity = rows.find(r => r.propertyName === 'city');
+        const unqualifiedCity = rows.find((r) => r.propertyName === 'city');
         expect(unqualifiedCity).toBeUndefined();
       });
 
@@ -609,7 +609,7 @@ describe('ApiCatalogGenerator', () => {
 
         expect(rows).toHaveLength(5);
 
-        const periodBeginRow = rows.find(r => r.propertyName === 'address.period.beginDate');
+        const periodBeginRow = rows.find((r) => r.propertyName === 'address.period.beginDate');
         expect(periodBeginRow).toBeDefined();
         expect(periodBeginRow?.dataType).toBe('date');
       });
@@ -665,8 +665,8 @@ describe('ApiCatalogGenerator', () => {
         const namespace = createNamespaceWithFixture(fixture);
         const rows = extractPropertyRowsForNamespace(namespace);
 
-        const addressPeriodBegin = rows.find(r => r.propertyName === 'address.period.beginDate');
-        const intlPeriodBegin = rows.find(r => r.propertyName === 'internationalAddress.period.beginDate');
+        const addressPeriodBegin = rows.find((r) => r.propertyName === 'address.period.beginDate');
+        const intlPeriodBegin = rows.find((r) => r.propertyName === 'internationalAddress.period.beginDate');
 
         expect(addressPeriodBegin).toBeDefined();
         expect(intlPeriodBegin).toBeDefined();
@@ -704,7 +704,7 @@ describe('ApiCatalogGenerator', () => {
 
         expect(rows).toHaveLength(3);
 
-        const cityRow = rows.find(r => r.propertyName === 'address.city');
+        const cityRow = rows.find((r) => r.propertyName === 'address.city');
         expect(cityRow).toBeDefined();
       });
 
