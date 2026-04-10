@@ -518,6 +518,160 @@ describe('ApiCatalogGenerator', () => {
         expect(countRow?.dataType).toBe('int32');
       });
     });
+
+    describe('extractPropertyRowsForNamespace - role-named commons', () => {
+      it('should handle plain + role-named common collections', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  addresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Address' },
+                  },
+                  internationalAddresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_InternationalAddress' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_Address: {
+                properties: {
+                  city: { type: 'string' },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_InternationalAddress: {
+                properties: {
+                  city: { type: 'string' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(4);
+
+        const addressCity = rows.find(r => r.propertyName === 'address.city');
+        const intlCity = rows.find(r => r.propertyName === 'internationalAddress.city');
+
+        expect(addressCity).toBeDefined();
+        expect(intlCity).toBeDefined();
+
+        const unqualifiedCity = rows.find(r => r.propertyName === 'city');
+        expect(unqualifiedCity).toBeUndefined();
+      });
+
+      it('should emit nested common properties with full path', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  addresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Address' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_Address: {
+                properties: {
+                  city: { type: 'string' },
+                  periods: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Period' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_Period: {
+                properties: {
+                  beginDate: { type: 'string', format: 'date' },
+                  endDate: { type: 'string', format: 'date' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(5);
+
+        const periodBeginRow = rows.find(r => r.propertyName === 'address.period.beginDate');
+        expect(periodBeginRow).toBeDefined();
+        expect(periodBeginRow?.dataType).toBe('date');
+      });
+
+      it('should emit shared nested commons under separate paths', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  addresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Address' },
+                  },
+                  internationalAddresses: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_InternationalAddress' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_Address: {
+                properties: {
+                  city: { type: 'string' },
+                  periods: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Period' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_InternationalAddress: {
+                properties: {
+                  city: { type: 'string' },
+                  periods: {
+                    type: 'array',
+                    items: { $ref: '#/components/schemas/EdFi_Contact_Period' },
+                  },
+                },
+                required: [],
+              } as SchemaObject,
+              EdFi_Contact_Period: {
+                properties: {
+                  beginDate: { type: 'string', format: 'date' },
+                },
+                required: [],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        const addressPeriodBegin = rows.find(r => r.propertyName === 'address.period.beginDate');
+        const intlPeriodBegin = rows.find(r => r.propertyName === 'internationalAddress.period.beginDate');
+
+        expect(addressPeriodBegin).toBeDefined();
+        expect(intlPeriodBegin).toBeDefined();
+      });
+    });
   });
 
   describe('extractResourceRowsForNamespace', () => {
