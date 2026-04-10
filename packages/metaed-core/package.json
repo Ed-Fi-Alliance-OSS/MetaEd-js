@@ -16,7 +16,7 @@
     "@edfi/antlr4": "4.6.1",
     "@hapi/topo": "^6.0.2",
     "ajv": "^8.12.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.6.2",
     "deep-freeze": "^0.0.1",
     "deepmerge": "^4.3.1",
     "fs-extra": "^11.1.1",
