@@ -4,47 +4,100 @@
 
 As a business analyst, I want a spreadsheet listing all API resources and properties that will be generated for a data model (with or without extensions), so that I can use it for data cataloging, comparison to other versions, and so forth.
 
-## Initial Prompt
+## Plugin
 
-Study packages `metaed-plugin-edfi-api-schema` and `metaed-plugin-edfi-handbook` to learn expected patterns for plugin development, including use of:
+Package: `metaed-plugin-edfi-api-catalog`
 
-- initialize function that creates the plugin
-- enhancers for business logic
-- generators for creating output
-- models for storing values
+The plugin reads the enhanced MetaEd model produced by `metaed-plugin-edfi-api-schema` (accessed as `namespace.data.edfiApiSchema`) and generates an Excel workbook named `Ed-Fi-API-Catalog.xlsx`. It must be loaded last in the plugin list (in `metaed-default-plugins`) so that the API schema data is already in memory.
 
-Then create a new plugin called `metaed-plugin-edfi-api-catalog`.
+## Output: `Ed-Fi-API-Catalog.xlsx`
 
-We need the enhanced metaEd model from the `metaed-plugin-edfi-api-schema`. The code needs to access `namespace.data.edfiApiSchema as NamespaceEdfiApiSchema`. The `edfiApiSchema` should already be in memory, so long as we load the new plugin last in the plugin list (the plugin list is in package `metaed-default-plugins`).
+The workbook contains two worksheets in the following order:
 
-It will need a `generate` function that outputs an Excel spreadsheet. File `EdFiDataHandbookAsExcelGenerator.ts` has a good example of writing Excel files. The output needs a single tab with the following columns, mapped from the `namespace.data.edfiApiSchema as NamespaceEdfiApiSchema` object. Mapping these columns will require looping through objects in the namespace schema.
+### Worksheet 1 — Resources
 
-- `projectEndpointName` as `project`
-- `projectVersion` as `version`
-- iterate over `resourceSchemas` to extract:
-  - the resource schema key as `resourceName`
-  - `isDescriptor`
-  - iterate over the `openApiFragments` to find its `properties`, ignoring any property called `id`:
-    - property key as `propertyName`
-    - `description`
-    - `type` as `dataType`
-      - if the `format` key is present, then use its value to override the `dataType`
-    - `minLength`
-    - `maxLength`
-    - `pattern` as `validationRegEx`
-    - `x-Ed-Fi-isIdentity` as `isIdentityKey`
-    - `x-nullable` as `isNullable`
-  - iterate over the `required` array to set a column value for `isRequired`, matching to the `propertyName` discovered above
+One row per API resource (including descriptors), with the following columns:
 
-## Refactor
+| Column | Source |
+|---|---|
+| Project | `projectEndpointName` |
+| Version | `projectVersion` |
+| Resource Name | resource schema key |
+| Resource Description | description from the main OpenAPI schema object |
+| Domains | comma-separated list of domain names |
 
-- Drop the "Is Descriptor" column
-- Change the "Description" column header to "Property Description"
-- Rename the "API Catalog" worksheet to "Properties"
-- The current list also needs to include all Descriptors
-- Add a new worksheet called "Resources", which will not list individual properties on an entity. Instead, it will have:
-  - Project
-  - Version
-  - Resource Name
-  - Resource Description
-  - Domains
+The **main schema** for a resource is the entry in `components.schemas` whose name does NOT end with `_Reference`, `_Readable`, or `_Writable` and whose value has a `properties` object.
+
+### Worksheet 2 — Properties
+
+One row per property for every resource and descriptor, with the following columns:
+
+| Column | Source |
+|---|---|
+| Project | `projectEndpointName` |
+| Version | `projectVersion` |
+| Resource Name | resource schema key |
+| Property Name | dot-separated path (see below) |
+| Data Type | `format` if present, else `type`; `'array'` for array properties; `'reference'` for `$ref` properties |
+| Property Description | `description` for scalar properties; `items.$ref` path for array properties; `$ref` path for reference properties |
+| Min Length | `minLength` (null if absent) |
+| Max Length | `maxLength` (null if absent) |
+| Validation RegEx | `pattern` (null if absent) |
+| Is Identity Key | `x-Ed-Fi-isIdentity` (false if absent) |
+| Is Nullable | `x-nullable` (false if absent) |
+| Is Required | `true` if the property name appears in the enclosing schema's `required` array |
+
+The property `id` is always omitted.
+
+## Property Name Prefixing for Embedded Commons
+
+Properties that belong to an embedded Common type are prefixed with a dot-separated path so that readers can identify which common (and which role-named variant) a property originates from. Top-level scalar properties carry no prefix.
+
+### Examples (Contact resource, simplified)
+
+| Property Name | Data Type |
+|---|---|
+| `contactUniqueId` | string |
+| `addresses` | array |
+| `address.streetNumberName` | string |
+| `address.periods` | array |
+| `address.period.beginDate` | date |
+| `internationalAddresses` | array |
+| `internationalAddress.streetNumberName` | string |
+| `internationalAddress.addressTypeDescriptor` | string |
+
+### Algorithm
+
+The generator performs a **recursive traversal** starting from the main schema:
+
+1. **Build schema lookup.** Collect all `components.schemas` entries into a lookup map; identify the main schema name (same rule as the Resources worksheet).
+
+2. **Walk properties recursively** (`processSchemaProperties(schema, prefix, ...)`):
+
+   - **`$ref` property** (scalar common or foreign-key reference):
+     - Emit a row with `dataType = 'reference'` and `description = $ref path`.
+     - If the referenced schema is an *internal sub-schema* (see below), recurse into it using `propertyName` as the next prefix segment (no singularization — scalar common names are already singular).
+
+   - **`array` property with `items.$ref`**:
+     - Emit a row with `dataType = 'array'` and `description = items.$ref path`.
+     - If the referenced schema is an internal sub-schema, recurse into it using `singularize(propertyName)` as the next prefix segment (e.g., `"addresses"` → `"address"`).
+
+   - **Scalar / other property**:
+     - Emit a single row using the standard field extraction. No recursion.
+
+   The qualified property name at any level is `prefix ? "${prefix}.${propertyName}" : propertyName`.
+
+3. **Internal sub-schema definition.** A referenced schema name is considered an internal sub-schema when all three conditions hold:
+   - It is present as a key in the schema lookup.
+   - It does NOT end with `_Reference`, `_Readable`, or `_Writable`.
+   - It is not the main schema name itself.
+
+   This deliberately does _not_ require the sub-schema name to start with the main schema's prefix, because resources that inherit from a base entity (e.g., `CommunityProvider` inheriting `EducationOrganization`) reference sub-schemas named after the base entity (e.g., `EdFi_EducationOrganization_Address`).
+
+4. **Shared nested commons** are emitted once per containing path. If both `Address` and `InternationalAddress` include a `Period` sub-collection, Period's properties appear as both `address.period.*` and `internationalAddress.period.*` — this is correct.
+
+5. **Orphaned sub-schemas** (present in `components.schemas` but unreachable from the main schema's `$ref` chains) produce no rows. This is intentional.
+
+6. **Circular references** are not possible in MetaEd Common definitions, so no visited-set is required.
+
+For singularization, import from `@edfi/metaed-plugin-edfi-api-schema/src/Utility` (do NOT add `inflection` as a direct dependency of this plugin).
