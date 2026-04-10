@@ -483,6 +483,41 @@ describe('ApiCatalogGenerator', () => {
         expect(cityRow?.dataType).toBe('string');
       });
     });
+
+    describe('extractPropertyRowsForNamespace - scalar properties', () => {
+      it('should emit main-schema scalar properties without prefix', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Contact: {
+                properties: {
+                  id: { type: 'string' },
+                  contactUniqueId: { type: 'string', description: 'Unique identifier' },
+                  enrollmentCount: { type: 'integer', format: 'int32' },
+                  isPrimary: { type: 'boolean' },
+                },
+                required: ['contactUniqueId'],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(3);
+
+        const uniqueIdRow = rows.find(r => r.propertyName === 'contactUniqueId');
+        expect(uniqueIdRow).toBeDefined();
+        expect(uniqueIdRow?.dataType).toBe('string');
+        expect(uniqueIdRow?.description).toBe('Unique identifier');
+        expect(uniqueIdRow?.isRequired).toBe(true);
+
+        const countRow = rows.find(r => r.propertyName === 'enrollmentCount');
+        expect(countRow).toBeDefined();
+        expect(countRow?.dataType).toBe('int32');
+      });
+    });
   });
 
   describe('extractResourceRowsForNamespace', () => {
