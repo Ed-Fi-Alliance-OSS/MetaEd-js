@@ -20,6 +20,8 @@ import {
   propertiesWorksheetName,
   resourcesWorksheetName,
 } from '../model/ApiCatalogRow';
+// @ts-expect-error - will be used in subsequent tasks
+import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
 
 /**
  * Extended SchemaObject type that includes Ed-Fi custom properties
@@ -28,6 +30,33 @@ type EdFiSchemaObject = SchemaObject & {
   'x-Ed-Fi-isIdentity'?: boolean;
   'x-nullable'?: boolean;
 };
+
+/**
+ * Recursively processes schema properties, building dot-separated path prefixes
+ * for properties within commons.
+ *
+ * @param schema The current schema being processed
+ * @param prefix The dot-separated path prefix (empty string for root level)
+ * @param allSchemas All schemas in components.schemas (lookup map)
+ * @param mainSchemaName The main entity schema name (to avoid recursing into itself)
+ * @param rows Array to accumulate PropertyRow objects
+ * @param projectEndpointName Project name for the row
+ * @param projectVersion Project version for the row
+ * @param resourceName Resource name for the row
+ */
+// @ts-expect-error - will be used in subsequent tasks
+function processSchemaProperties(
+  _schema: SchemaObject,
+  _prefix: string,
+  _allSchemas: Record<string, ReferenceObject | SchemaObject>,
+  _mainSchemaName: string,
+  _rows: PropertyRow[],
+  _projectEndpointName: string,
+  _projectVersion: string,
+  _resourceName: string,
+): void {
+  // Algorithm will be implemented in subsequent tasks
+}
 
 /**
  * Extracts property rows from a namespace's API schema data
