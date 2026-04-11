@@ -10,6 +10,11 @@ updates:
     target-branch: main
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+      semver-minor-days: 7
+      semver-patch-days: 3
     groups:
       minor-patches:
         applies-to: version-updates
@@ -18,11 +23,6 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
-        cooldown:
-          default-days: 7
-          semver-major-days: 14
-          semver-minor-days: 7
-          semver-patch-days: 3
       security-minor-patches:
         applies-to: security-updates
         patterns:
