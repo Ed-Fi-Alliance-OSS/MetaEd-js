@@ -42,11 +42,11 @@ function createNamespaceWithFixture(fixture: any): Namespace {
  */
 function createNamespaceWithMultipleResources(resources: Record<string, any>): Namespace {
   const resourceSchemas: Record<string, unknown> = {};
-  for (const [name, fixture] of Object.entries(resources)) {
+  Object.entries(resources).forEach(([name, fixture]) => {
     resourceSchemas[name] = {
       openApiFragments: { resources: fixture },
     } as unknown as ResourceSchema;
-  }
+  });
   return {
     data: {
       edfiApiSchema: {
