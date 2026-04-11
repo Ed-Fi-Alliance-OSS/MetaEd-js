@@ -12,7 +12,7 @@ import * as OpenApiTypes from '@edfi/metaed-plugin-edfi-api-schema/src/model/Ope
 import { extractPropertyRowsForNamespace, extractResourceRowsForNamespace } from '../../src/generator/ApiCatalogGenerator';
 
 /**
- * Helper to create a Namespace object from an OpenAPI fixture
+ * Helper to create a Namespace object from an OpenAPI fixture (single resource)
  */
 function createNamespaceWithFixture(fixture: any): Namespace {
   return {
@@ -29,6 +29,32 @@ function createNamespaceWithFixture(fixture: any): Namespace {
                 },
               } as unknown as ResourceSchema,
             },
+          } as unknown as ProjectSchema,
+        },
+      } as NamespaceEdfiApiSchema,
+    },
+  } as Namespace;
+}
+
+/**
+ * Helper to create a Namespace object from a map of resource name → OpenAPI fixture.
+ * Mirrors real data where _Reference schemas live in their own resource's fragment.
+ */
+function createNamespaceWithMultipleResources(resources: Record<string, any>): Namespace {
+  const resourceSchemas: Record<string, unknown> = {};
+  for (const [name, fixture] of Object.entries(resources)) {
+    resourceSchemas[name] = {
+      openApiFragments: { resources: fixture },
+    } as unknown as ResourceSchema;
+  }
+  return {
+    data: {
+      edfiApiSchema: {
+        apiSchema: {
+          projectSchema: {
+            projectEndpointName: 'ed-fi',
+            projectVersion: '5.2.0',
+            resourceSchemas,
           } as unknown as ProjectSchema,
         },
       } as NamespaceEdfiApiSchema,
@@ -673,6 +699,192 @@ describe('ApiCatalogGenerator', () => {
       });
     });
 
+    describe('extractPropertyRowsForNamespace - reference natural key expansion', () => {
+      it('should expand _Reference schema properties as prefixed rows (e.g. schoolReference.schoolId)', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_AcademicWeek: {
+                properties: {
+                  id: { type: 'string' },
+                  weekIdentifier: { type: 'string' },
+                  schoolReference: {
+                    $ref: '#/components/schemas/EdFi_School_Reference',
+                    'x-Ed-Fi-isIdentity': true,
+                  } as SchemaObject,
+                },
+                required: ['weekIdentifier', 'schoolReference'],
+              } as SchemaObject,
+              EdFi_School_Reference: {
+                properties: {
+                  schoolId: { type: 'integer', format: 'int32' },
+                },
+                required: ['schoolId'],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        // Should have rows for:
+        // 1. weekIdentifier (scalar)
+        // 2. schoolReference (the reference row itself)
+        // 3. schoolReference.schoolId (natural key from the _Reference schema)
+        expect(rows).toHaveLength(3);
+
+        const refRow = rows.find((r) => r.propertyName === 'schoolReference');
+        expect(refRow).toBeDefined();
+        expect(refRow?.dataType).toBe('reference');
+        expect(refRow?.isIdentityKey).toBe(true);
+        expect(refRow?.isRequired).toBe(true);
+
+        const schoolIdRow = rows.find((r) => r.propertyName === 'schoolReference.schoolId');
+        expect(schoolIdRow).toBeDefined();
+        expect(schoolIdRow?.dataType).toBe('int32');
+        expect(schoolIdRow?.isRequired).toBe(true);
+      });
+
+      it('should expand multiple _Reference schemas each with their own prefix', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_AcademicWeek: {
+                properties: {
+                  id: { type: 'string' },
+                  schoolReference: {
+                    $ref: '#/components/schemas/EdFi_School_Reference',
+                  } as SchemaObject,
+                  sessionReference: {
+                    $ref: '#/components/schemas/EdFi_Session_Reference',
+                  } as SchemaObject,
+                },
+                required: ['schoolReference', 'sessionReference'],
+              } as SchemaObject,
+              EdFi_School_Reference: {
+                properties: {
+                  schoolId: { type: 'integer', format: 'int32' },
+                },
+                required: ['schoolId'],
+              } as SchemaObject,
+              EdFi_Session_Reference: {
+                properties: {
+                  schoolId: { type: 'integer', format: 'int32' },
+                  schoolYear: { type: 'integer', format: 'int32' },
+                  sessionName: { type: 'string' },
+                },
+                required: ['schoolId', 'schoolYear', 'sessionName'],
+              } as SchemaObject,
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        // Should have rows for:
+        // 1. schoolReference
+        // 2. schoolReference.schoolId
+        // 3. sessionReference
+        // 4. sessionReference.schoolId
+        // 5. sessionReference.schoolYear
+        // 6. sessionReference.sessionName
+        expect(rows).toHaveLength(6);
+
+        expect(rows.find((r) => r.propertyName === 'schoolReference.schoolId')).toBeDefined();
+        expect(rows.find((r) => r.propertyName === 'sessionReference.schoolId')).toBeDefined();
+        expect(rows.find((r) => r.propertyName === 'sessionReference.schoolYear')).toBeDefined();
+        expect(rows.find((r) => r.propertyName === 'sessionReference.sessionName')).toBeDefined();
+      });
+
+      it('should expand _Reference schema when it lives in a separate resource fragment (realistic structure)', () => {
+        // Mirror real data: EdFi_School_Reference lives in the schools fragment, not academicWeeks
+        const namespace = createNamespaceWithMultipleResources({
+          academicWeeks: {
+            components: {
+              schemas: {
+                EdFi_AcademicWeek: {
+                  properties: {
+                    id: { type: 'string' },
+                    weekIdentifier: { type: 'string', 'x-Ed-Fi-isIdentity': true },
+                    schoolReference: {
+                      $ref: '#/components/schemas/EdFi_School_Reference',
+                      'x-Ed-Fi-isIdentity': true,
+                    } as SchemaObject,
+                  },
+                  required: ['weekIdentifier', 'schoolReference'],
+                } as SchemaObject,
+                EdFi_AcademicWeek_Reference: {
+                  properties: {
+                    weekIdentifier: { type: 'string' },
+                    schoolId: { type: 'integer', format: 'int64' },
+                  },
+                  required: ['weekIdentifier', 'schoolId'],
+                } as SchemaObject,
+              },
+            },
+          },
+          schools: {
+            components: {
+              schemas: {
+                EdFi_School: {
+                  properties: {
+                    id: { type: 'string' },
+                    schoolId: { type: 'integer', format: 'int64', 'x-Ed-Fi-isIdentity': true },
+                  },
+                  required: ['schoolId'],
+                } as SchemaObject,
+                EdFi_School_Reference: {
+                  properties: {
+                    schoolId: { type: 'integer', format: 'int64', 'x-Ed-Fi-isIdentity': true },
+                  },
+                  required: ['schoolId'],
+                } as SchemaObject,
+              },
+            },
+          },
+        });
+
+        const rows = extractPropertyRowsForNamespace(namespace);
+        const academicWeekRows = rows.filter((r) => r.resourceName === 'academicWeeks');
+
+        // academicWeeks should produce:
+        // 1. weekIdentifier
+        // 2. schoolReference
+        // 3. schoolReference.schoolId  ← from EdFi_School_Reference in the schools fragment
+        expect(academicWeekRows).toHaveLength(3);
+        expect(academicWeekRows.find((r) => r.propertyName === 'schoolReference.schoolId')).toBeDefined();
+        expect(academicWeekRows.find((r) => r.propertyName === 'schoolReference.schoolId')?.dataType).toBe('int64');
+      });
+
+      it('should not expand _Reference schema when schema is not present in allSchemas', () => {
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_StudentSchoolAssociation: {
+                properties: {
+                  studentReference: {
+                    $ref: '#/components/schemas/EdFi_Student_Reference',
+                    'x-Ed-Fi-isIdentity': true,
+                  } as SchemaObject,
+                },
+                required: ['studentReference'],
+              } as SchemaObject,
+              // EdFi_Student_Reference is NOT in allSchemas — no expansion should occur
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(1);
+        expect(rows[0].propertyName).toBe('studentReference');
+        expect(rows[0].dataType).toBe('reference');
+      });
+    });
+
     describe('extractPropertyRowsForNamespace - inherited schemas', () => {
       it('should recurse inherited sub-schema (cross-entity reference)', () => {
         const fixture: Partial<OpenApiTypes.Document> = {
@@ -708,7 +920,7 @@ describe('ApiCatalogGenerator', () => {
         expect(cityRow).toBeDefined();
       });
 
-      it('should NOT recurse _Reference schema even if present in allSchemas', () => {
+      it('should expand _Reference schema present in allSchemas into prefixed natural key rows', () => {
         const fixture: Partial<OpenApiTypes.Document> = {
           components: {
             schemas: {
@@ -733,12 +945,16 @@ describe('ApiCatalogGenerator', () => {
         const namespace = createNamespaceWithFixture(fixture);
         const rows = extractPropertyRowsForNamespace(namespace);
 
-        expect(rows).toHaveLength(1);
+        // studentReference row + studentReference.studentId + studentReference.firstName
+        expect(rows).toHaveLength(3);
 
-        const studentRefRow = rows[0];
-        expect(studentRefRow.propertyName).toBe('studentReference');
-        expect(studentRefRow.dataType).toBe('reference');
-        expect(studentRefRow.description).toBe('#/components/schemas/EdFi_Student_Reference');
+        const studentRefRow = rows.find((r) => r.propertyName === 'studentReference');
+        expect(studentRefRow).toBeDefined();
+        expect(studentRefRow?.dataType).toBe('reference');
+        expect(studentRefRow?.description).toBe('#/components/schemas/EdFi_Student_Reference');
+
+        expect(rows.find((r) => r.propertyName === 'studentReference.studentId')).toBeDefined();
+        expect(rows.find((r) => r.propertyName === 'studentReference.firstName')).toBeDefined();
       });
     });
   });

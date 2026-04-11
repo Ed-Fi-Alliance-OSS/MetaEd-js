@@ -31,9 +31,9 @@ type EdFiSchemaObject = SchemaObject & {
 };
 
 /**
- * Checks if a schema name refers to an internal sub-schema that should be recursed.
- * All three conditions must be true:
- * 1. Present as a key in allSchemas
+ * Checks if a schema name refers to an internal Common sub-schema that should be recursed.
+ * All conditions must be true:
+ * 1. Present as a key in allSchemas (current resource's schemas)
  * 2. Does NOT end with _Reference, _Readable, or _Writable
  * 3. Is not the main schema itself
  */
@@ -52,11 +52,12 @@ function isInternalSubSchema(
 
 /**
  * Recursively processes schema properties, building dot-separated path prefixes
- * for properties within commons.
+ * for properties within commons and references.
  *
  * @param schema The current schema being processed
  * @param prefix The dot-separated path prefix (empty string for root level)
- * @param allSchemas All schemas in components.schemas (lookup map)
+ * @param allSchemas Schemas from the current resource's OpenAPI fragment (Commons lookup)
+ * @param referenceSchemas Namespace-wide map of all _Reference schemas (cross-resource lookup)
  * @param mainSchemaName The main entity schema name (to avoid recursing into itself)
  * @param rows Array to accumulate PropertyRow objects
  * @param projectEndpointName Project name for the row
@@ -67,6 +68,7 @@ function processSchemaProperties(
   schema: SchemaObject,
   prefix: string,
   allSchemas: Record<string, ReferenceObject | SchemaObject>,
+  referenceSchemas: Record<string, SchemaObject>,
   mainSchemaName: string,
   rows: PropertyRow[],
   projectEndpointName: string,
@@ -104,7 +106,7 @@ function processSchemaProperties(
         isRequired: requiredProperties.includes(propertyName),
       });
 
-      // If it's an internal sub-schema, recurse to expose its properties
+      // If it's an internal Common sub-schema, recurse to expose its properties
       if (isInternalSubSchema(refSchemaName, allSchemas, mainSchemaName)) {
         const subPrefix = prefix ? `${prefix}.${propertyName}` : propertyName;
         const subSchema = allSchemas[refSchemaName] as SchemaObject;
@@ -112,6 +114,22 @@ function processSchemaProperties(
           subSchema,
           subPrefix,
           allSchemas,
+          referenceSchemas,
+          mainSchemaName,
+          rows,
+          projectEndpointName,
+          projectVersion,
+          resourceName,
+        );
+        // If it's a _Reference schema, recurse to expose natural key properties as prefixed rows
+      } else if (refSchemaName in referenceSchemas) {
+        const subPrefix = prefix ? `${prefix}.${propertyName}` : propertyName;
+        const subSchema = referenceSchemas[refSchemaName];
+        processSchemaProperties(
+          subSchema,
+          subPrefix,
+          allSchemas,
+          referenceSchemas,
           mainSchemaName,
           rows,
           projectEndpointName,
@@ -142,7 +160,7 @@ function processSchemaProperties(
         isRequired: requiredProperties.includes(propertyName),
       });
 
-      // If it's an internal sub-schema, recurse using singularized property name
+      // If it's an internal Common sub-schema, recurse using singularized property name
       if (isInternalSubSchema(refSchemaName, allSchemas, mainSchemaName)) {
         const singularContext = singularize(propertyName);
         const subPrefix = prefix ? `${prefix}.${singularContext}` : singularContext;
@@ -151,6 +169,7 @@ function processSchemaProperties(
           subSchema,
           subPrefix,
           allSchemas,
+          referenceSchemas,
           mainSchemaName,
           rows,
           projectEndpointName,
@@ -214,6 +233,21 @@ export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyR
   const { projectEndpointName } = projectSchema;
   const { projectVersion } = projectSchema;
 
+  // Build a namespace-wide map of all _Reference schemas.
+  // In real data each _Reference schema lives in its own resource's fragment (e.g.
+  // EdFi_School_Reference is in the 'schools' fragment, not in 'academicWeeks').
+  // This map lets processSchemaProperties resolve cross-resource references.
+  const referenceSchemas: Record<string, SchemaObject> = {};
+  Object.values(projectSchema.resourceSchemas).forEach((rs: ResourceSchema) => {
+    const fragment = rs.openApiFragments.resources ?? rs.openApiFragments.descriptors;
+    if (fragment?.components?.schemas == null) return;
+    Object.entries(fragment.components.schemas).forEach(([schemaName, schema]) => {
+      if (schemaName.endsWith('_Reference')) {
+        referenceSchemas[schemaName] = schema as SchemaObject;
+      }
+    });
+  });
+
   Object.entries(projectSchema.resourceSchemas).forEach(([resourceEndpoint, resourceSchema]: [string, ResourceSchema]) => {
     const resourceName = resourceEndpoint;
 
@@ -239,7 +273,7 @@ export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyR
 
     const [mainSchemaName, mainSchema] = mainSchemaEntry;
 
-    // Step 2: Build schema lookup
+    // Step 2: Build per-resource schema lookup (for Commons resolution)
     const allSchemas = schemas;
 
     // Step 3: Recursive property walk
@@ -248,6 +282,7 @@ export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyR
       mainSchema as SchemaObject,
       '',
       allSchemas,
+      referenceSchemas,
       mainSchemaName,
       rows,
       projectEndpointName,
