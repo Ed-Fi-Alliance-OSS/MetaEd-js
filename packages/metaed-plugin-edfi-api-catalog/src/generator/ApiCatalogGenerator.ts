@@ -227,7 +227,7 @@ function processSchemaProperties(
       // This provides information about what schema type the array contains
       if (property.type === 'array') {
         const arrayProperty = property as ArraySchemaObject;
-        if ('$ref' in arrayProperty.items) {
+        if (arrayProperty.items && '$ref' in arrayProperty.items) {
           const itemsRef = arrayProperty.items as ReferenceObject;
           description = itemsRef.$ref;
         }
