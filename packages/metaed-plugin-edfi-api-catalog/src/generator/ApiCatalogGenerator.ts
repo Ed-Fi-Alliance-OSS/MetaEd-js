@@ -12,7 +12,7 @@ import type {
   ArraySchemaObject,
   ReferenceObject,
 } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
-import { singularize } from '@edfi/metaed-plugin-edfi-api-schema/src/Utility';
+import { singularize } from '@edfi/metaed-plugin-edfi-api-schema';
 import {
   PropertyRow,
   ResourceRow,

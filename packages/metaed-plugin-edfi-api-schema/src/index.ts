@@ -32,7 +32,7 @@ export type { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchem
 export { prefixedName } from './model/PropertyModifier';
 export { isReferenceElement } from './model/ReferenceComponent';
 export type { ReferenceComponent, ReferenceGroup } from './model/ReferenceComponent';
-export { topLevelApiNameOnEntity, pluralize, uncapitalize } from './Utility';
+export { topLevelApiNameOnEntity, pluralize, singularize, uncapitalize } from './Utility';
 export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
 export type { EqualityConstraint } from './model/EqualityConstraint';
 
