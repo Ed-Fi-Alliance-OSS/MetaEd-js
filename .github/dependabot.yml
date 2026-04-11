@@ -18,3 +18,15 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+        cooldown:
+          default-days: 7
+          semver-major-days: 14
+          semver-minor-days: 7
+          semver-patch-days: 3
+      security-minor-patches:
+        applies-to: security-updates
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
