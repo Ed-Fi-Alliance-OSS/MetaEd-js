@@ -18,13 +18,13 @@ The workbook contains two worksheets in the following order:
 
 One row per API resource (including descriptors), with the following columns:
 
-| Column | Source |
-|---|---|
-| Project | `projectEndpointName` |
-| Version | `projectVersion` |
-| Resource Name | resource schema key |
+| Column               | Source                                          |
+| -------------------- | ----------------------------------------------- |
+| Project              | `projectEndpointName`                           |
+| Version              | `projectVersion`                                |
+| Resource Name        | resource schema key                             |
 | Resource Description | description from the main OpenAPI schema object |
-| Domains | comma-separated list of domain names |
+| Domains              | comma-separated list of domain names            |
 
 The **main schema** for a resource is the entry in `components.schemas` whose name does NOT end with `_Reference`, `_Readable`, or `_Writable` and whose value has a `properties` object.
 
@@ -32,39 +32,56 @@ The **main schema** for a resource is the entry in `components.schemas` whose na
 
 One row per property for every resource and descriptor, with the following columns:
 
-| Column | Source |
-|---|---|
-| Project | `projectEndpointName` |
-| Version | `projectVersion` |
-| Resource Name | resource schema key |
-| Property Name | dot-separated path (see below) |
-| Data Type | `format` if present, else `type`; `'array'` for array properties; `'reference'` for `$ref` properties |
+| Column               | Source                                                                                                            |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Project              | `projectEndpointName`                                                                                             |
+| Version              | `projectVersion`                                                                                                  |
+| Resource Name        | resource schema key                                                                                               |
+| Property Name        | dot-separated path (see below)                                                                                    |
 | Property Description | `description` for scalar properties; `items.$ref` path for array properties; `$ref` path for reference properties |
-| Min Length | `minLength` (null if absent) |
-| Max Length | `maxLength` (null if absent) |
-| Validation RegEx | `pattern` (null if absent) |
-| Is Identity Key | `x-Ed-Fi-isIdentity` (false if absent) |
-| Is Nullable | `x-nullable` (false if absent) |
-| Is Required | `true` if the property name appears in the enclosing schema's `required` array |
+| Data Type            | `format` if present, else `type`; `'array'` for array properties; `'reference'` for `$ref` properties             |
+| Min Length           | `minLength` (null if absent)                                                                                      |
+| Max Length           | `maxLength` (null if absent)                                                                                      |
+| Validation RegEx     | `pattern` (null if absent)                                                                                        |
+| Is Identity Key      | `x-Ed-Fi-isIdentity` (false if absent)                                                                            |
+| Is Nullable          | `x-nullable` (false if absent)                                                                                    |
+| Is Required          | `true` if the property name appears in the enclosing schema's `required` array                                    |
 
 The property `id` is always omitted.
 
-## Property Name Prefixing for Embedded Commons
+## Property Name Prefixing for Embedded Commons and References
 
-Properties that belong to an embedded Common type are prefixed with a dot-separated path so that readers can identify which common (and which role-named variant) a property originates from. Top-level scalar properties carry no prefix.
+Properties that belong to an embedded Common type or a Reference are prefixed with a dot-separated path so that readers can identify which common (and which role-named variant) a property originates from. Top-level scalar properties carry no prefix.
 
-### Examples (Contact resource, simplified)
+> [!NOTE]
+> `educationOrganizationReference` and `schoolYearTypeReference` are hard-coded, because their schemas are not defined following the normal pattern.
 
-| Property Name | Data Type |
-|---|---|
-| `contactUniqueId` | string |
-| `addresses` | array |
-| `address.streetNumberName` | string |
-| `address.periods` | array |
-| `address.period.beginDate` | date |
-| `internationalAddresses` | array |
-| `internationalAddress.streetNumberName` | string |
-| `internationalAddress.addressTypeDescriptor` | string |
+### Examples
+
+#### Contact resource, simplified
+
+| Property Name                                | Data Type |
+| -------------------------------------------- | --------- |
+| `contactUniqueId`                            | string    |
+| `addresses`                                  | array     |
+| `address.streetNumberName`                   | string    |
+| `address.periods`                            | array     |
+| `address.period.beginDate`                   | date      |
+| `internationalAddresses`                     | array     |
+| `internationalAddress.streetNumberName`      | string    |
+| `internationalAddress.addressTypeDescriptor` | string    |
+
+#### AccountabilityRatings, simplified
+
+| Property Name                                            | Data Type |
+| -------------------------------------------------------- | --------- |
+| `educationOrganizationReference`                         | reference |
+| `educationOrganizationReference.educationOrganizationId` | int64     |
+| `ratingTitle`                                            | string    |
+| `rating`                                                 | string    |
+| `ratingDate`                                             | date      |
+| `schoolYearTypeReference`                                | reference |
+| `schoolYearTypeReference.schoolYear`                     | int32     |
 
 ### Algorithm
 
@@ -92,7 +109,7 @@ The generator performs a **recursive traversal** starting from the main schema:
    - It does NOT end with `_Reference`, `_Readable`, or `_Writable`.
    - It is not the main schema name itself.
 
-   This deliberately does _not_ require the sub-schema name to start with the main schema's prefix, because resources that inherit from a base entity (e.g., `CommunityProvider` inheriting `EducationOrganization`) reference sub-schemas named after the base entity (e.g., `EdFi_EducationOrganization_Address`).
+   This deliberately does *not* require the sub-schema name to start with the main schema's prefix, because resources that inherit from a base entity (e.g., `CommunityProvider` inheriting `EducationOrganization`) reference sub-schemas named after the base entity (e.g., `EdFi_EducationOrganization_Address`).
 
 4. **Shared nested commons** are emitted once per containing path. If both `Address` and `InternationalAddress` include a `Period` sub-collection, Period's properties appear as both `address.period.*` and `internationalAddress.period.*` — this is correct.
 
