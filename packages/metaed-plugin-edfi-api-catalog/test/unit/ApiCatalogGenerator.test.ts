@@ -699,6 +699,72 @@ describe('ApiCatalogGenerator', () => {
       });
     });
 
+    describe('extractPropertyRowsForNamespace - hard-coded reference schemas', () => {
+      it('should expand educationOrganizationReference.educationOrganizationId even when schema is absent', () => {
+        // EdFi_EducationOrganization_Reference is never generated (abstract entity)
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Cohort: {
+                properties: {
+                  id: { type: 'string' },
+                  cohortIdentifier: { type: 'string', 'x-Ed-Fi-isIdentity': true },
+                  educationOrganizationReference: {
+                    $ref: '#/components/schemas/EdFi_EducationOrganization_Reference',
+                    'x-Ed-Fi-isIdentity': true,
+                  } as SchemaObject,
+                },
+                required: ['cohortIdentifier', 'educationOrganizationReference'],
+              } as SchemaObject,
+              // EdFi_EducationOrganization_Reference intentionally absent
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(3);
+        expect(rows.find((r) => r.propertyName === 'educationOrganizationReference')).toBeDefined();
+
+        const idRow = rows.find((r) => r.propertyName === 'educationOrganizationReference.educationOrganizationId');
+        expect(idRow).toBeDefined();
+        expect(idRow?.dataType).toBe('int64');
+      });
+
+      it('should expand schoolYearTypeReference.schoolYear even when schema name lacks _Reference suffix', () => {
+        // EdFi_SchoolYearTypeReference exists in schoolYearTypes but name ends with TypeReference, not _Reference
+        const fixture: Partial<OpenApiTypes.Document> = {
+          components: {
+            schemas: {
+              EdFi_Calendar: {
+                properties: {
+                  id: { type: 'string' },
+                  calendarCode: { type: 'string', 'x-Ed-Fi-isIdentity': true },
+                  schoolYearTypeReference: {
+                    $ref: '#/components/schemas/EdFi_SchoolYearTypeReference',
+                    'x-Ed-Fi-isIdentity': true,
+                  } as SchemaObject,
+                },
+                required: ['calendarCode', 'schoolYearTypeReference'],
+              } as SchemaObject,
+              // EdFi_SchoolYearTypeReference intentionally absent
+            },
+          },
+        };
+
+        const namespace = createNamespaceWithFixture(fixture);
+        const rows = extractPropertyRowsForNamespace(namespace);
+
+        expect(rows).toHaveLength(3);
+        expect(rows.find((r) => r.propertyName === 'schoolYearTypeReference')).toBeDefined();
+
+        const yearRow = rows.find((r) => r.propertyName === 'schoolYearTypeReference.schoolYear');
+        expect(yearRow).toBeDefined();
+        expect(yearRow?.dataType).toBe('int32');
+      });
+    });
+
     describe('extractPropertyRowsForNamespace - reference natural key expansion', () => {
       it('should expand _Reference schema properties as prefixed rows (e.g. schoolReference.schoolId)', () => {
         const fixture: Partial<OpenApiTypes.Document> = {

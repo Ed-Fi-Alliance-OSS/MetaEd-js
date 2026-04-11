@@ -31,6 +31,39 @@ type EdFiSchemaObject = SchemaObject & {
 };
 
 /**
+ * Hard-coded reference schemas for two special cases that are not generated into
+ * the OpenAPI fragments and therefore cannot be discovered by scanning resource schemas:
+ *
+ * - EdFi_EducationOrganization_Reference: EducationOrganization is abstract and has no
+ *   resource of its own, so its _Reference schema is never written to any fragment.
+ * - EdFi_SchoolYearTypeReference: The generated schema name does not follow the
+ *   `_Reference` suffix convention (it ends with `TypeReference`), so the map-builder
+ *   loop that filters on `endsWith('_Reference')` misses it.
+ */
+const HARDCODED_REFERENCE_SCHEMAS: Record<string, SchemaObject> = {
+  EdFi_EducationOrganization_Reference: {
+    properties: {
+      educationOrganizationId: {
+        type: 'integer',
+        format: 'int64',
+        'x-Ed-Fi-isIdentity': true,
+      } as EdFiSchemaObject,
+    },
+    required: ['educationOrganizationId'],
+  } as SchemaObject,
+  EdFi_SchoolYearTypeReference: {
+    properties: {
+      schoolYear: {
+        type: 'integer',
+        format: 'int32',
+        'x-Ed-Fi-isIdentity': true,
+      } as EdFiSchemaObject,
+    },
+    required: ['schoolYear'],
+  } as SchemaObject,
+};
+
+/**
  * Checks if a schema name refers to an internal Common sub-schema that should be recursed.
  * All conditions must be true:
  * 1. Present as a key in allSchemas (current resource's schemas)
@@ -237,7 +270,8 @@ export function extractPropertyRowsForNamespace(namespace: Namespace): PropertyR
   // In real data each _Reference schema lives in its own resource's fragment (e.g.
   // EdFi_School_Reference is in the 'schools' fragment, not in 'academicWeeks').
   // This map lets processSchemaProperties resolve cross-resource references.
-  const referenceSchemas: Record<string, SchemaObject> = {};
+  // Seed with hard-coded entries for schemas that are absent or misnamed in the fragments.
+  const referenceSchemas: Record<string, SchemaObject> = { ...HARDCODED_REFERENCE_SCHEMAS };
   Object.values(projectSchema.resourceSchemas).forEach((rs: ResourceSchema) => {
     const fragment = rs.openApiFragments.resources ?? rs.openApiFragments.descriptors;
     if (fragment?.components?.schemas == null) return;
