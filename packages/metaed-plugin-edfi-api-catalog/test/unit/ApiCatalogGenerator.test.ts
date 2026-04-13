@@ -4,11 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import type { Namespace } from '@edfi/metaed-core';
-import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
-import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
-import type { ProjectSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ProjectSchema';
-import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
-import * as OpenApiTypes from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
+import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import type { ProjectSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import type { SchemaObject } from '@edfi/metaed-plugin-edfi-api-schema';
+import * as OpenApiTypes from '@edfi/metaed-plugin-edfi-api-schema';
 import { extractPropertyRowsForNamespace, extractResourceRowsForNamespace } from '../../src/generator/ApiCatalogGenerator';
 
 /**

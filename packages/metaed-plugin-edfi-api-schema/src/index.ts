@@ -29,12 +29,16 @@ export { enhance as apiSchemaBuildingEnhancer } from './enhancer/ApiSchemaBuildi
 export type { CollectedProperty } from './model/CollectedProperty';
 export type { EntityApiSchemaData } from './model/EntityApiSchemaData';
 export type { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
+export type { NamespaceEdfiApiSchema } from './model/Namespace';
 export { prefixedName } from './model/PropertyModifier';
 export { isReferenceElement } from './model/ReferenceComponent';
 export type { ReferenceComponent, ReferenceGroup } from './model/ReferenceComponent';
 export { topLevelApiNameOnEntity, pluralize, singularize, uncapitalize } from './Utility';
 export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
 export type { EqualityConstraint } from './model/EqualityConstraint';
+export type { ProjectSchema } from './model/api-schema/ProjectSchema';
+export type { ResourceSchema } from './model/api-schema/ResourceSchema';
+export type { ArraySchemaObject, Document, ReferenceObject, SchemaObject } from './model/OpenApiTypes';
 
 export function initialize(): MetaEdPlugin {
   const configurationSchemas = new Map();

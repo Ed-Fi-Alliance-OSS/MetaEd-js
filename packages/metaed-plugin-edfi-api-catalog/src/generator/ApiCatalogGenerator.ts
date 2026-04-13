@@ -4,15 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
-import writeXlsxFile from 'write-excel-file';
-import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/Namespace';
-import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema/src/model/api-schema/ResourceSchema';
-import type {
-  SchemaObject,
-  ArraySchemaObject,
-  ReferenceObject,
-} from '@edfi/metaed-plugin-edfi-api-schema/src/model/OpenApiTypes';
 import { singularize } from '@edfi/metaed-plugin-edfi-api-schema';
+import writeXlsxFile from 'write-excel-file';
+import type { NamespaceEdfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import type { ResourceSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import type { SchemaObject, ArraySchemaObject, ReferenceObject } from '@edfi/metaed-plugin-edfi-api-schema';
 import {
   PropertyRow,
   ResourceRow,
