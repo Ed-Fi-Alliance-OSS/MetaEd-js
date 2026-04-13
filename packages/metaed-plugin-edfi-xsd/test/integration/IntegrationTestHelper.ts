@@ -16,7 +16,7 @@ import { generate as generateInterchange } from '../../src/generator/Interchange
 const parser = new DOMParser();
 
 function parseXml(xmlString: string): any {
-  return parser.parseFromString(xmlString);
+  return parser.parseFromString(xmlString, 'text/xml');
 }
 
 const xpathSelectImpl = xpath.useNamespaces({
