@@ -58,4 +58,4 @@ junit.xml
 __pycache__/
 *.py[cod]
 *$py.class
-.claude/settings.local.json
+.claude/
