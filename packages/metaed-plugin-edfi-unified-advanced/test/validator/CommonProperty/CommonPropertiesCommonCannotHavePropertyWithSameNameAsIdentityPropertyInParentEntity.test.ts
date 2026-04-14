@@ -230,4 +230,41 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
       expect(failures).toHaveLength(0);
     });
   });
+
+  describe('when data standard version is 6.0 (below the 6.1 threshold)', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.0.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartCommon('CommonEntity')
+        .withDocumentation('Common documentation')
+        .withStringProperty('ConflictProp', 'Common property', true, false, '100')
+        .withEndCommon()
+
+        .withStartDomainEntity('DomainEntity')
+        .withDocumentation('Domain documentation')
+        .withStringIdentity('ConflictProp', 'Identity property', '100')
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
 });
