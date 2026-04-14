@@ -26,17 +26,25 @@ env:
 
 jobs:
   run-metaed-project:
-    if: github.ref_protected # Don't allow this to run on PRs 
+    if: github.ref_protected # Don't allow this to run on PRs
     name: Run MetaEd Project
     runs-on: ubuntu-latest
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
+        exclude:
+        - config: "TPDM"
+          ds:
+            version: 'DS-6.0.0'
+        - config: "TPDM"
+          ds:
+            version: 'DS-6.1.0'
         ds:
         - version: 'DS-4.0.0'
           short-version: '40'
           project-version: '4.0.0'
           project-description: 'The Ed-Fi Data Model 4.0'
+          technology-version: '7.2.0'
           tpdm-tag-name: 'Data-Standard-v4.0.0-a'
           sample-tag-name: 'v7.3-patch1'
           core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-4.0'
@@ -47,12 +55,31 @@ jobs:
           short-version: '52'
           project-version: '5.2.0'
           project-description: 'The Ed-Fi Data Standard v5.2.0'
+          technology-version: '7.2.0'
           tpdm-tag-name: 'Data-Standard-v5.2.0'
           sample-tag-name: 'main'
           core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-5.2'
           tpdm-path: 'Ed-Fi-TPDM-Model'
           sample-path: 'Ed-Fi-ODS-Implementation/Extensions/5.2.0/Sample/SampleMetaEd'
           homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/5.2.0/Homograph/HomographMetaEd'
+        - version: 'DS-6.0.0'
+          short-version: '60'
+          project-version: '6.0.0'
+          project-description: 'The Ed-Fi Data Model 6.0'
+          technology-version: '7.3.0'
+          sample-tag-name: 'main'
+          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-6.0'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
+        - version: 'DS-6.1.0'
+          short-version: '61'
+          project-version: '6.1.0'
+          project-description: 'The Ed-Fi Data Model 6.1'
+          technology-version: '7.3.0'
+          sample-tag-name: 'main'
+          core-path: 'MetaEd-js/node_modules/@edfi/ed-fi-model-6.1'
+          sample-path: 'Ed-Fi-ODS-Implementation/Extensions/Sample/SampleMetaEd'
+          homograph-path: 'Ed-Fi-ODS-Implementation/Extensions/Homograph/HomographMetaEd'
     defaults:
       run:
         shell: pwsh
@@ -88,7 +115,7 @@ jobs:
           TPDM_PATH: ${{ matrix.ds.tpdm-path }}
           SAMPLE_PATH: ${{ matrix.ds.sample-path }}
           HOMOGRAPH_PATH: ${{ matrix.ds.homograph-path }}
-        run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion ${{ matrix.ds.project-version }} -ProjectDescription "${{ matrix.ds.project-description }}" -CoreProjectPath "${{ matrix.ds.core-path }}" -ExtensionProjectPath ([System.Environment]::GetEnvironmentVariable('${{ matrix.config }}_PATH'.ToUpper())) -ExtensionProjectName ${{ matrix.config }}
+        run: ./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "${{ matrix.ds.technology-version }}" -ProjectVersion ${{ matrix.ds.project-version }} -ProjectDescription "${{ matrix.ds.project-description }}" -CoreProjectPath "${{ matrix.ds.core-path }}" -ExtensionProjectPath ([System.Environment]::GetEnvironmentVariable('${{ matrix.config }}_PATH'.ToUpper())) -ExtensionProjectName ${{ matrix.config }}
         shell: pwsh
 
       - name: Print the created MetaEd config
@@ -128,11 +155,22 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
+        exclude:
+        - config: "TPDM"
+          ds:
+            version: 'DS-6.0.0'
+        - config: "TPDM"
+          ds:
+            version: 'DS-6.1.0'
         ds:
         - version: 'DS-4.0.0'
           short-version: '40'
         - version: 'DS-5.2.0'
           short-version: '52'
+        - version: 'DS-6.0.0'
+          short-version: '60'
+        - version: 'DS-6.1.0'
+          short-version: '61'
     defaults:
       run:
         shell: pwsh
@@ -199,14 +237,18 @@ jobs:
     strategy:
       matrix:
         config: [ "Core", "TPDM", "Homograph", "Sample"]
-        ds-version: ['DS-4.0.0', 'DS-5.2.0']
+        ds-version: ['DS-4.0.0', 'DS-5.2.0', 'DS-6.0.0', 'DS-6.1.0']
         exclude:
         - config: "TPDM"
           ds-version: 'DS-4.0.0'
         - config: "Homograph"
-          ds-version: 'DS-4.0.0'  
+          ds-version: 'DS-4.0.0'
         - config: "Sample"
           ds-version: 'DS-4.0.0'
+        - config: "TPDM"
+          ds-version: 'DS-6.0.0'
+        - config: "TPDM"
+          ds-version: 'DS-6.1.0'
     runs-on: ubuntu-latest
     defaults:
       run:
