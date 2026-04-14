@@ -196,7 +196,7 @@ jobs:
         working-directory: ./MetaEd-js/
         run: ./eng/ApiSchema/build.ps1 -Command MoveMetaEdSchema -ExtensionName "${{ matrix.config }}"
 
-      - name: Update Marker.js File
+      - name: Update Marker.cs File
         if: matrix.config == 'Homograph'  || matrix.config == 'Sample' || matrix.config == 'TPDM'
         shell: pwsh
         run: |

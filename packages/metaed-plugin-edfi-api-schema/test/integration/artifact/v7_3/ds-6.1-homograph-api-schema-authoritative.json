@@ -61,7 +61,7 @@
     "isExtensionProject": true,
     "projectEndpointName": "homograph",
     "projectName": "Homograph",
-    "projectVersion": "6.1.0",
+    "projectVersion": "1.0.0",
     "resourceNameMapping": {
       "Contact": "contacts",
       "Name": "names",

@@ -61,7 +61,7 @@
     "isExtensionProject": true,
     "projectEndpointName": "sample",
     "projectName": "Sample",
-    "projectVersion": "6.1.0",
+    "projectVersion": "1.1.0",
     "resourceNameMapping": {
       "ArtMediumDescriptor": "artMediumDescriptors",
       "Bus": "buses",
