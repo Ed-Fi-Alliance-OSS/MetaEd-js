@@ -210,3 +210,247 @@ describe('when generating change queries version sequence for extension project 
     expect(generatorResult.generatedOutput[0].namespace).toBe('EdFi');
   });
 });
+
+describe('when generating change queries version sequence and comparing to ODS/API 7.3 with DS 6.0 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/sequence/v7.3-ds60');
+  const authoritativeFilename = '0020-CreateChangeVersionSequence-authoritative.sql';
+  const generatedFilename = '0020-CreateChangeVersionSequence-generated.sql';
+
+  let generatedOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    generatedOutput = R.head(
+      R.head(state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
+        .generatedOutput,
+    );
+
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
+  });
+
+  it('should have no differences', async () => {
+    const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
+    const generated: string = path.resolve(artifactPath, generatedFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+describe('when generating change queries version sequence for extension project with ODS/API 7.3 with DS 6.0 and verifying no artifacts are generated', (): void => {
+  const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
+
+  let generatorResult: any;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/', sampleExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: '',
+        },
+        {
+          projectName: 'StudentTranscript',
+          namespaceName: 'exttwo',
+          projectExtension: '.Extension',
+          projectVersion: '1.0.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    generatorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`),
+    );
+  });
+
+  it('should generate artifacts only for EdFi namespace, not for extension namespaces', () => {
+    expect(generatorResult.generatedOutput.length).toBe(1);
+    expect(generatorResult.generatedOutput[0].namespace).toBe('EdFi');
+  });
+});
+
+describe('when generating change queries version sequence and comparing to ODS/API 7.3 with DS 6.1 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/sequence/v7.3-ds61');
+  const authoritativeFilename = '0020-CreateChangeVersionSequence-authoritative.sql';
+  const generatedFilename = '0020-CreateChangeVersionSequence-generated.sql';
+
+  let generatedOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    generatedOutput = R.head(
+      R.head(state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
+        .generatedOutput,
+    );
+
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
+  });
+
+  it('should have no differences', async () => {
+    const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
+    const generated: string = path.resolve(artifactPath, generatedFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+describe('when generating change queries version sequence for extension project with ODS/API 7.3 with DS 6.1 and verifying no artifacts are generated', (): void => {
+  const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
+
+  let generatorResult: any;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/', sampleExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: '',
+        },
+        {
+          projectName: 'StudentTranscript',
+          namespaceName: 'exttwo',
+          projectExtension: '.Extension',
+          projectVersion: '1.0.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    generatorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`),
+    );
+  });
+
+  it('should generate artifacts only for EdFi namespace, not for extension namespaces', () => {
+    expect(generatorResult.generatedOutput.length).toBe(1);
+    expect(generatorResult.generatedOutput[0].namespace).toBe('EdFi');
+  });
+});
