@@ -19,7 +19,7 @@ function getFailure(domainItem: DomainItem, name: string, failureMessage: string
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  if (!versionSatisfies(metaEd.dataStandardVersion, '>4.0.0')) {
+  if (!versionSatisfies(metaEd.dataStandardVersion, '>=6.1.0')) {
     return failures;
   }
 

@@ -107,7 +107,7 @@ describe('when validating descriptor subdomain item does not match top level ent
   let coreNamespace: any = null;
 
   beforeAll(() => {
-    metaEd.dataStandardVersion = '5.0.0';
+    metaEd.dataStandardVersion = '6.1.0';
 
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
