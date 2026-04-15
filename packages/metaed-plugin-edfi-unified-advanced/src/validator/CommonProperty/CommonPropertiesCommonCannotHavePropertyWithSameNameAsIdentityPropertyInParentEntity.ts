@@ -3,10 +3,26 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, ValidationFailure, CommonProperty } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, CommonProperty, TopLevelEntity, EntityProperty } from '@edfi/metaed-core';
 import { versionSatisfies, V6dot1OrGreater } from '@edfi/metaed-core';
 
 const targetVersions: string = V6dot1OrGreater;
+
+function allIdentityProperties(entity: TopLevelEntity): EntityProperty[] {
+  const result: EntityProperty[] = [...entity.identityProperties];
+  if (entity.baseEntity != null) {
+    result.push(...allIdentityProperties(entity.baseEntity));
+  }
+  return result;
+}
+
+function allProperties(entity: TopLevelEntity): EntityProperty[] {
+  const result: EntityProperty[] = [...entity.properties];
+  if (entity.baseEntity != null) {
+    result.push(...allProperties(entity.baseEntity));
+  }
+  return result;
+}
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
@@ -15,8 +31,8 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   metaEd.propertyIndex.common.forEach((commonProperty: CommonProperty) => {
     const { parentEntity, referencedEntity } = commonProperty;
 
-    parentEntity.identityProperties.forEach((identityProperty) => {
-      referencedEntity.properties.forEach((referencedProperty) => {
+    allIdentityProperties(parentEntity).forEach((identityProperty) => {
+      allProperties(referencedEntity).forEach((referencedProperty) => {
         if (identityProperty.fullPropertyName === referencedProperty.fullPropertyName) {
           failures.push({
             validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
