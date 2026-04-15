@@ -7,44 +7,43 @@ import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   DomainEntityBuilder,
+  DomainEntitySubclassBuilder,
   CommonBuilder,
+  CommonSubclassBuilder,
+  AssociationBuilder,
   NamespaceBuilder,
   MetaEdEnvironment,
   ValidationFailure,
 } from '@edfi/metaed-core';
-
-import { commonReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
-
+import {
+  commonReferenceEnhancer,
+  commonSubclassBaseClassEnhancer,
+  domainEntityReferenceEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
+} from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity';
 
 describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity validator', () => {
-  const COMMON_ENTITY = 'CommonEntity';
-  const DOMAIN_ENTITY = 'DomainEntity';
-
-  describe('when a common property has the same name as an identity property in the parent entity', () => {
+  describe('when a common has a property with the same fullPropertyName as a parent identity property', () => {
     let metaEd: MetaEdEnvironment;
     let failures: ValidationFailure[];
-    let coreNamespace: any;
 
     beforeAll(() => {
       metaEd = newMetaEdEnvironment();
-      metaEd.dataStandardVersion = '7.2.0';
+      metaEd.dataStandardVersion = '6.2.0';
+
       MetaEdTextBuilder.build()
         .withBeginNamespace('EdFi')
 
-        // Define the Common Entity with a property that conflicts with parent identity
-        .withStartCommon(COMMON_ENTITY)
+        .withStartCommon('CommonEntity')
         .withDocumentation('Common documentation')
         .withStringProperty('ConflictProp', 'Common property', true, false, '100')
-        .withStringProperty('OtherProp', 'Common property', true, false, '100')
         .withEndCommon()
 
-        // Define the Domain Entity with identity properties named the same as Common properties
-        .withStartDomainEntity(DOMAIN_ENTITY)
+        .withStartDomainEntity('DomainEntity')
         .withDocumentation('Domain documentation')
         .withStringIdentity('ConflictProp', 'Identity property', '100')
-        .withStringIdentity('OtherProp', 'Identity property', '100')
-        .withCommonProperty(COMMON_ENTITY, 'Relationship prop', false, false)
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
         .withEndDomainEntity()
 
         .withEndNamespace()
@@ -53,103 +52,53 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
         .sendToListener(new DomainEntityBuilder(metaEd, []))
         .sendToListener(new CommonBuilder(metaEd, []));
 
-      coreNamespace = metaEd.namespace.get('EdFi');
       commonReferenceEnhancer(metaEd);
-
       failures = validate(metaEd);
     });
 
-    it('should build the common entity', () => {
-      expect(coreNamespace.entity.common.size).toBe(1);
+    it('should have one validation failure', () => {
+      expect(failures).toHaveLength(1);
     });
 
-    it('should build the domain entity', () => {
-      expect(coreNamespace.entity.domainEntity.size).toBe(1);
-    });
-
-    it('should create four validation failures (two entries for each conflicting property)', () => {
-      expect(failures).toHaveLength(4);
-    });
-
-    it('should validate the first failure content', () => {
-      expect(failures[0].validatorName).toBe(
-        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
-      );
-      expect(failures[0].category).toBe('error');
-      expect(failures[0].message).toMatchInlineSnapshot(
-        `"The Common entity 'CommonEntity' referenced in 'DomainEntity' cannot declare a property 'ConflictProp' with the same name as identity property 'ConflictProp' in this entity."`,
-      );
-      expect(failures[0].sourceMap).toMatchInlineSnapshot(`
-        Object {
-          "column": 11,
-          "line": 28,
-          "tokenText": "CommonEntity",
-        }
-      `);
-    });
-
-    it('should validate the identity-side failure for the first property', () => {
-      expect(failures[1].validatorName).toBe(
-        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
-      );
-      expect(failures[1].message).toMatchInlineSnapshot(
-        `"The Common entity 'CommonEntity' referenced in 'DomainEntity' cannot declare a property 'ConflictProp' with the same name as identity property 'ConflictProp' in this entity."`,
-      );
-      expect(failures[1].sourceMap).toMatchInlineSnapshot(`
-        Object {
-          "column": 11,
-          "line": 18,
-          "tokenText": "ConflictProp",
-        }
-      `);
-    });
-
-    it('should validate the failures for the second property', () => {
-      expect(failures[2].validatorName).toBe(
-        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
-      );
-      expect(failures[2].message).toContain('OtherProp');
-      expect(failures[2].sourceMap).toMatchInlineSnapshot(`
-        Object {
-          "column": 11,
-          "line": 28,
-          "tokenText": "CommonEntity",
-        }
-      `);
-
-      expect(failures[3].validatorName).toBe(
-        'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
-      );
-      expect(failures[3].message).toContain('OtherProp');
-      expect(failures[3].sourceMap).toMatchInlineSnapshot(`
-        Object {
-          "column": 11,
-          "line": 23,
-          "tokenText": "OtherProp",
-        }
+    it('should have the correct failure content', () => {
+      expect(failures).toMatchInlineSnapshot(`
+        Array [
+          Object {
+            "category": "error",
+            "fileMap": null,
+            "message": "This Common has a property 'ConflictProp' with the same name as an identity property on this entity, which is not allowed. Options include renaming, role naming, or changing identity status.",
+            "sourceMap": Object {
+              "column": 11,
+              "line": 18,
+              "tokenText": "CommonEntity",
+            },
+            "validatorName": "CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity",
+          },
+        ]
       `);
     });
   });
 
-  describe('when common property does NOT match any identity property of parent entity', () => {
+  describe('when common property does not match any identity property of parent entity', () => {
     let metaEd: MetaEdEnvironment;
     let failures: ValidationFailure[];
 
     beforeAll(() => {
       metaEd = newMetaEdEnvironment();
-      metaEd.dataStandardVersion = '7.2.0';
+      metaEd.dataStandardVersion = '6.2.0';
+
       MetaEdTextBuilder.build()
         .withBeginNamespace('EdFi')
 
-        .withStartCommon(COMMON_ENTITY)
+        .withStartCommon('CommonEntity')
         .withDocumentation('Common documentation')
         .withStringProperty('GoodProp', 'Common property', true, false, '100')
         .withEndCommon()
 
-        .withStartDomainEntity(DOMAIN_ENTITY)
+        .withStartDomainEntity('DomainEntity')
         .withDocumentation('Domain documentation')
         .withStringIdentity('SomeId', 'Identity property', '100')
-        .withCommonProperty(COMMON_ENTITY, 'Relationship prop', false, false)
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
         .withEndDomainEntity()
 
         .withEndNamespace()
@@ -159,11 +108,380 @@ describe('CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityProperty
         .sendToListener(new CommonBuilder(metaEd, []));
 
       commonReferenceEnhancer(metaEd);
-
       failures = validate(metaEd);
     });
 
-    it('should have zero failures when there is no naming conflict', () => {
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
+
+  describe('when role name on identity property disambiguates from common property', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('Referenced entity')
+        .withStringIdentity('EducationOrganizationId', 'Id property', '100')
+        .withEndDomainEntity()
+
+        .withStartCommon('AdministrationPointOfContact')
+        .withDocumentation('Common documentation')
+        .withDomainEntityProperty('EducationOrganization', 'Common property', true, false)
+        .withEndCommon()
+
+        .withStartDomainEntity('AssessmentAdministrationParticipation')
+        .withDocumentation('Domain documentation')
+        .withDomainEntityIdentity('EducationOrganization', 'Identity property', 'Participating')
+        .withCommonProperty('AdministrationPointOfContact', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
+
+  describe('when role name on common property disambiguates from identity property', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartDomainEntity('Person')
+        .withDocumentation('Referenced entity')
+        .withStringIdentity('PersonId', 'Id property', '100')
+        .withEndDomainEntity()
+
+        .withStartCommon('Reviewer')
+        .withDocumentation('Common documentation')
+        .withDomainEntityProperty('Person', 'Common property', false, false, false, 'Reviewer')
+        .withEndCommon()
+
+        .withStartDomainEntity('PerformanceEvaluationRating')
+        .withDocumentation('Domain documentation')
+        .withDomainEntityIdentity('Person', 'Identity property')
+        .withCommonProperty('Reviewer', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
+
+  describe('when data standard version is below 6.1', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '5.0.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartCommon('CommonEntity')
+        .withDocumentation('Common documentation')
+        .withStringProperty('ConflictProp', 'Common property', true, false, '100')
+        .withEndCommon()
+
+        .withStartDomainEntity('DomainEntity')
+        .withDocumentation('Domain documentation')
+        .withStringIdentity('ConflictProp', 'Identity property', '100')
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
+
+  describe('when data standard version is 6.0 (below the 6.1 threshold)', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.0.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartCommon('CommonEntity')
+        .withDocumentation('Common documentation')
+        .withStringProperty('ConflictProp', 'Common property', true, false, '100')
+        .withEndCommon()
+
+        .withStartDomainEntity('DomainEntity')
+        .withDocumentation('Domain documentation')
+        .withStringIdentity('ConflictProp', 'Identity property', '100')
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
+      expect(failures).toHaveLength(0);
+    });
+  });
+
+  describe('when a domain entity subclass inherits an identity property that conflicts with a common property', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartCommon('CommonEntity')
+        .withDocumentation('Common documentation')
+        .withStringProperty('ConflictProp', 'Common property', true, false, '100')
+        .withEndCommon()
+
+        .withStartDomainEntity('BaseDomainEntity')
+        .withDocumentation('Base domain documentation')
+        .withStringIdentity('ConflictProp', 'Identity property', '100')
+        .withEndDomainEntity()
+
+        .withStartDomainEntitySubclass('ChildDomainEntity', 'BaseDomainEntity')
+        .withDocumentation('Child domain documentation')
+        .withCommonProperty('CommonEntity', 'Relationship prop', false, false)
+        .withEndDomainEntitySubclass()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have one validation failure', () => {
+      expect(failures).toHaveLength(1);
+    });
+
+    it('should have the correct failure content', () => {
+      expect(failures[0]).toMatchObject({
+        validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+        category: 'error',
+        message: expect.stringContaining('ConflictProp'),
+      });
+    });
+  });
+
+  describe('when a common subclass inherits a property that conflicts with the parent entity identity property', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartCommon('BaseCommon')
+        .withDocumentation('Base common documentation')
+        .withStringProperty('ConflictProp', 'Common property', true, false, '100')
+        .withEndCommon()
+
+        .withStartCommonSubclass('ChildCommon', 'BaseCommon')
+        .withStringProperty('ExtraProp', 'Extra property', true, false, '100')
+        .withEndCommonSubclass()
+
+        .withStartDomainEntity('DomainEntity')
+        .withDocumentation('Domain documentation')
+        .withStringIdentity('ConflictProp', 'Identity property', '100')
+        .withCommonProperty('ChildCommon', 'Relationship prop', false, false)
+        .withEndDomainEntity()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []))
+        .sendToListener(new CommonSubclassBuilder(metaEd, []));
+
+      commonSubclassBaseClassEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have one validation failure', () => {
+      expect(failures).toHaveLength(1);
+    });
+
+    it('should have the correct failure content', () => {
+      expect(failures[0]).toMatchObject({
+        validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+        category: 'error',
+        message: expect.stringContaining('ConflictProp'),
+      });
+    });
+  });
+
+  describe('when an association has a common property that conflicts with an association identity property', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartDomainEntity('Student')
+        .withDocumentation('Student entity')
+        .withStringIdentity('StudentUniqueId', 'Student identity', '100')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('Education organization entity')
+        .withStringIdentity('EducationOrganizationId', 'Education organization identity', '100')
+        .withEndDomainEntity()
+
+        .withStartCommon('ProgramParticipation')
+        .withDocumentation('Common documentation')
+        .withDomainEntityProperty('EducationOrganization', 'Common property', true, false)
+        .withEndCommon()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('Association documentation')
+        .withAssociationDomainEntityProperty('Student', 'Student reference')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'Education organization reference')
+        .withCommonProperty('ProgramParticipation', 'Program participation', false, false)
+        .withEndAssociation()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have one validation failure', () => {
+      expect(failures).toHaveLength(1);
+    });
+
+    it('should have the correct failure content', () => {
+      expect(failures[0]).toMatchObject({
+        validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
+        category: 'error',
+        message: expect.stringContaining('EducationOrganization'),
+      });
+    });
+  });
+
+  describe('when an association has a common property that does not conflict with association identity properties', () => {
+    let metaEd: MetaEdEnvironment;
+    let failures: ValidationFailure[];
+
+    beforeAll(() => {
+      metaEd = newMetaEdEnvironment();
+      metaEd.dataStandardVersion = '6.2.0';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace('EdFi')
+
+        .withStartDomainEntity('Student')
+        .withDocumentation('Student entity')
+        .withStringIdentity('StudentUniqueId', 'Student identity', '100')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('EducationOrganization')
+        .withDocumentation('Education organization entity')
+        .withStringIdentity('EducationOrganizationId', 'Education organization identity', '100')
+        .withEndDomainEntity()
+
+        .withStartCommon('ProgramParticipation')
+        .withDocumentation('Common documentation')
+        .withStringProperty('ProgramName', 'Program name', true, false, '100')
+        .withEndCommon()
+
+        .withStartAssociation('StudentEducationOrganizationAssociation')
+        .withDocumentation('Association documentation')
+        .withAssociationDomainEntityProperty('Student', 'Student reference')
+        .withAssociationDomainEntityProperty('EducationOrganization', 'Education organization reference')
+        .withCommonProperty('ProgramParticipation', 'Program participation', false, false)
+        .withEndAssociation()
+
+        .withEndNamespace()
+
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new AssociationBuilder(metaEd, []))
+        .sendToListener(new CommonBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      commonReferenceEnhancer(metaEd);
+      failures = validate(metaEd);
+    });
+
+    it('should have no validation failures', () => {
       expect(failures).toHaveLength(0);
     });
   });

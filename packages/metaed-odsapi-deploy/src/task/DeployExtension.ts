@@ -8,7 +8,7 @@ import {
   MetaEdConfiguration,
   MetaEdProject,
   SemVer,
-  V7OrGreater,
+  V7dot1OrGreater,
   formatVersionWithSuppressPrereleaseVersion,
   isDataStandard,
 } from '@edfi/metaed-core';
@@ -42,7 +42,7 @@ function deployExtensionArtifacts(
   };
 
   projectsToDeploy.every((projectToDeploy: MetaEdProject) => {
-    const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
+    const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7dot1OrGreater);
     const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
       ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
       : dataStandardVersion;

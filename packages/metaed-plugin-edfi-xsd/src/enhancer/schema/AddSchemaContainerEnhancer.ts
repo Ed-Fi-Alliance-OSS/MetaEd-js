@@ -9,7 +9,7 @@ import {
   formatVersionWithSuppressPrereleaseVersion,
   getAllEntitiesOfType,
   orderByProp,
-  V7OrGreater,
+  V7dot1OrGreater,
   versionSatisfies,
 } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';
@@ -183,7 +183,7 @@ function baseSchemaSection() {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const versionSatisfiesV7OrGreater = versionSatisfies(
     (metaEd.plugin.get('edfiXsd') as PluginEnvironment)?.targetTechnologyVersion,
-    V7OrGreater,
+    V7dot1OrGreater,
   );
 
   metaEd.namespace.forEach((namespace) => {

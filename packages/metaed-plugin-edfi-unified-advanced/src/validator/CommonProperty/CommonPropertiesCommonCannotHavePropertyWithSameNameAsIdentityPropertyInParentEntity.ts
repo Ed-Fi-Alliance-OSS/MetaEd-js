@@ -3,10 +3,26 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MetaEdEnvironment, ValidationFailure, CommonProperty } from '@edfi/metaed-core';
-import { versionSatisfies, V7OrGreater } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, CommonProperty, TopLevelEntity, EntityProperty } from '@edfi/metaed-core';
+import { versionSatisfies, V6dot1OrGreater } from '@edfi/metaed-core';
 
-const targetVersions: string = V7OrGreater;
+const targetVersions: string = V6dot1OrGreater;
+
+function allIdentityProperties(entity: TopLevelEntity): EntityProperty[] {
+  const result: EntityProperty[] = [...entity.identityProperties];
+  if (entity.baseEntity != null) {
+    result.push(...allIdentityProperties(entity.baseEntity));
+  }
+  return result;
+}
+
+function allProperties(entity: TopLevelEntity): EntityProperty[] {
+  const result: EntityProperty[] = [...entity.properties];
+  if (entity.baseEntity != null) {
+    result.push(...allProperties(entity.baseEntity));
+  }
+  return result;
+}
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
@@ -15,26 +31,14 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   metaEd.propertyIndex.common.forEach((commonProperty: CommonProperty) => {
     const { parentEntity, referencedEntity } = commonProperty;
 
-    parentEntity.identityProperties.forEach((identityProperty) => {
-      referencedEntity.properties.forEach((referencedProperty) => {
-        // Match on metaEdName
-        if (identityProperty.metaEdName === referencedProperty.metaEdName) {
-          const message =
-            `The Common entity '${commonProperty.metaEdName}' referenced in '${parentEntity.metaEdName}' ` +
-            `cannot declare a property '${referencedProperty.metaEdName}' with the same name as identity property ` +
-            `'${identityProperty.metaEdName}' in this entity.`;
+    allIdentityProperties(parentEntity).forEach((identityProperty) => {
+      allProperties(referencedEntity).forEach((referencedProperty) => {
+        if (identityProperty.fullPropertyName === referencedProperty.fullPropertyName) {
           failures.push({
             validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
             category: 'error',
-            message,
+            message: `This Common has a property '${referencedProperty.metaEdName}' with the same name as an identity property on this entity, which is not allowed. Options include renaming, role naming, or changing identity status.`,
             sourceMap: commonProperty.sourceMap.metaEdName,
-            fileMap: null,
-          });
-          failures.push({
-            validatorName: 'CommonPropertiesCommonCannotHavePropertyWithSameNameAsIdentityPropertyInParentEntity',
-            category: 'error',
-            message,
-            sourceMap: identityProperty.sourceMap.metaEdName,
             fileMap: null,
           });
         }

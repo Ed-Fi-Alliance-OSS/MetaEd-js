@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import type { MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
-import { versionSatisfies, Logger, formatVersionWithSuppressPrereleaseVersion, V7OrGreater } from '@edfi/metaed-core';
+import { versionSatisfies, Logger, formatVersionWithSuppressPrereleaseVersion, V7dot1OrGreater } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
@@ -30,7 +30,7 @@ function deployCoreArtifacts(
 ): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
-  const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
+  const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7dot1OrGreater);
   const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
     ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
     : dataStandardVersion;
