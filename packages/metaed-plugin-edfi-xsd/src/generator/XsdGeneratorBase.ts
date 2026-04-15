@@ -14,7 +14,7 @@ import {
   Namespace,
   versionSatisfies,
   PluginEnvironment,
-  V7OrGreater,
+  V7dot1OrGreater,
   formatVersionWithSuppressPrereleaseVersion,
 } from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';
@@ -87,7 +87,7 @@ export function formatAndPrependHeader(xsdBody: string): string {
 }
 
 function isTargetTechnologyV7OrGreater(metaEd: MetaEdEnvironment): boolean {
-  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, V7OrGreater);
+  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, V7dot1OrGreater);
 }
 
 function isTargetTechnologyV5OrV6(metaEd: MetaEdEnvironment): boolean {
