@@ -11,8 +11,8 @@ export {
   orderByPath,
   versionSatisfies,
   targetTechnologyVersionFor,
-  V6OrGreater,
-  V7OrGreater,
+  V6dot1OrGreater,
+  V7dot1OrGreater,
 } from './Utility';
 export { executePipeline } from './pipeline/Pipeline';
 export { createMetaEdFile } from './file/MetaEdFile';

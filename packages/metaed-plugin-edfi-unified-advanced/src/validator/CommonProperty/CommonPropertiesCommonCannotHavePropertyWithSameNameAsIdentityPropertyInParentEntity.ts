@@ -4,9 +4,9 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { MetaEdEnvironment, ValidationFailure, CommonProperty } from '@edfi/metaed-core';
-import { versionSatisfies, V6OrGreater } from '@edfi/metaed-core';
+import { versionSatisfies, V6dot1OrGreater } from '@edfi/metaed-core';
 
-const targetVersions: string = V6OrGreater;
+const targetVersions: string = V6dot1OrGreater;
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

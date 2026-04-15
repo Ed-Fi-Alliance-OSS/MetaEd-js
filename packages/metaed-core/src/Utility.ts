@@ -35,12 +35,12 @@ export const orderByPath = (path: string[]) => R.sortBy(R.compose(R.toLower, R.p
 /**
  *
  */
-export const V6OrGreater: SemVer = '>=6.1.0';
+export const V6dot1OrGreater: SemVer = '>=6.1.0';
 
 /**
  *
  */
-export const V7OrGreater: SemVer = '>=7.1.0';
+export const V7dot1OrGreater: SemVer = '>=7.1.0';
 
 /**
  * https://github.com/npm/node-semver
