@@ -16,11 +16,21 @@ API Schema definition file representing the core Ed-Fi Data Standard, and also w
 5. Run `./eng/ApiSchema/build.ps1 Package -Version "1.0.167" -ExtensionName "Core"` to test the NuGet package build process
 6. Run `./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.167" -ExtensionName "Core"` to push to Azure Artifacts
 
-In case of TPDM, Sample and Homograph extension, Here TPDM extension as example 
+### DS 6.x Example (Core, ODS/API 7.3)
 
-1. Run `./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion "5.2.0" -ProjectDescription "The Ed-Fi Data Standard v5.2.0" -CoreProjectPath "<path to the Core MetaEd files>" -ExtensionProjectPath "<path to the TPDM MetaEd files>" -ExtensionProjectName "TPDM" ` to generate MetaEdConfig-7.2.0-DS-5.2-Core.json
+1. Run `./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.3.0" -ProjectVersion "6.1.0" -ProjectDescription "The Ed-Fi Data Model 6.1" -CoreProjectPath "<path to the Core MetaEd files>" -ExtensionProjectPath "" -ExtensionProjectName "Core" ` to generate MetaEdConfig-7.3.0-DS-6.1-Core.json
+2. Run `./eng/ApiSchema/build.ps1 Build -Version "1.0.167" -ExtensionName "Core"`
+3. Run `./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "./MetaEd-js/eng/ApiSchema/MetaEdConfig-7.3.0-DS-6.1-Core.json" `
+4. Run `./eng/ApiSchema/build.ps1 Package -Version "1.0.167" -ExtensionName "Core"` to test the NuGet package build process
+5. Run `./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.167" -ExtensionName "Core"` to push to Azure Artifacts
+
+Note: DS 6.x does not have a separate TPDM extension (TPDM is integrated into the core model).
+
+### Extension Example (DS 5.2, TPDM, ODS/API 7.2)
+
+1. Run `./eng/ApiSchema/CreateMetaEdConfig.ps1 -Workspace ${{ github.workspace }} -TechnologyVersion "7.2.0" -ProjectVersion "5.2.0" -ProjectDescription "The Ed-Fi Data Standard v5.2.0" -CoreProjectPath "<path to the Core MetaEd files>" -ExtensionProjectPath "<path to the TPDM MetaEd files>" -ExtensionProjectName "TPDM" ` to generate MetaEdConfig-7.2.0-DS-5.2-TPDM.json
 2. Run `./eng/ApiSchema/build.ps1 Build -Version "1.0.167" -ExtensionName "TPDM"` 
-3. Change namespace EdFi.DataStandard52.ApiSchema; to namespace EdFi.TPDM.ApiSchema; in Marker.js
+3. Change namespace EdFi.DataStandard52.ApiSchema; to namespace EdFi.TPDM.ApiSchema; in Marker.cs
 4. Run `./eng/ApiSchema/build.ps1 -Command RunMetaEd  -SchemaPackagingConfigFile "./MetaEd-js/eng/ApiSchema/MetaEdConfig-7.2.0-DS-5.2-TPDM.json" `
 5. Run `./eng/ApiSchema/build.ps1 Package -Version "1.0.167" -ExtensionName "TPDM"` to test the NuGet package build process
 6. Run `./eng/ApiSchema/build.ps1 BuildAndPublish -Version "1.0.167" -ExtensionName "TPDM"` to push to Azure Artifacts

@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "@edfi/ed-fi-model-4.0": "3.0.4",
+    "@edfi/ed-fi-model-6.0": "3.0.1",
+    "@edfi/ed-fi-model-6.1": "3.0.0",
     "xml-js": "^1.6.11"
   },
   "scripts": {

@@ -112,6 +112,134 @@ describe('when generating api model targeting tech version 6.1 with common cardi
   });
 });
 
+describe('when generating api model for data standard 6.0 targeting tech version 7.3 and comparing to authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact');
+  const authoritativeCoreFilename = 'edfi-7.3-ds60-api-model-authoritative.json';
+  const generatedCoreFilename = 'edfi-7.3-ds60-api-model-generated.json';
+
+  let generatedCoreOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+    );
+
+    [generatedCoreOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+describe('when generating api model for data standard 6.1 targeting tech version 7.3 and comparing to authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact');
+  const authoritativeCoreFilename = 'edfi-7.3-ds61-api-model-authoritative.json';
+  const generatedCoreFilename = 'edfi-7.3-ds61-api-model-generated.json';
+
+  let generatedCoreOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+    );
+
+    [generatedCoreOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
 describe('when generating api model targeting tech version 7.1 with common cardinality extensions and comparing it to data standard 4.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
   const sampleExtensionPath: string = path.resolve(__dirname, './common-cardinality-project');

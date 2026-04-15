@@ -249,3 +249,411 @@ describe('when generating ApiSchema for data standard 5.2 and Homograph 1.0 for 
     expect(expectOneOf).toContain(result);
   });
 });
+
+// DS 6.0
+describe('when generating ApiSchema for data standard 6.0 for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeCoreFilename = 'ds-6.0-api-schema-authoritative.json';
+  const generatedCoreFilename = 'ds-6.0-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/'],
+      pluginConfigDirectories: [path.resolve(__dirname)],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: 'The Ed-Fi Data Standard v6.0',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [generatedCoreOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+  });
+
+  it('should have no DS 6.0 file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+// DS 6.0 Sample
+describe('when generating ApiSchema for data standard 6.0 and Sample for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeExtensionFilename = 'ds-6.0-sample-api-schema-authoritative.json';
+  const generatedExtensionFilename = 'ds-6.0-sample-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/', path.resolve(__dirname, './sample-project')],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: 'The Ed-Fi Data Standard v6.0',
+        },
+        {
+          projectName: 'Sample',
+          namespaceName: 'Sample',
+          projectExtension: 'Sample',
+          projectVersion: '1.1.0',
+          description: 'Sample-Core',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no DS 6.0 Sample file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+// DS 6.0 Homograph
+describe('when generating ApiSchema for data standard 6.0 and Homograph for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeExtensionFilename = 'ds-6.0-homograph-api-schema-authoritative.json';
+  const generatedExtensionFilename = 'ds-6.0-homograph-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.0/', path.resolve(__dirname, './homograph-project')],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.0.0',
+          description: 'The Ed-Fi Data Standard v6.0',
+        },
+        {
+          projectName: 'Homograph',
+          namespaceName: 'Homograph',
+          projectExtension: 'Homograph',
+          projectVersion: '1.0.0',
+          description: 'Homograph',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no DS 6.0 Homograph file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+// DS 6.1
+describe('when generating ApiSchema for data standard 6.1 for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeCoreFilename = 'ds-6.1-api-schema-authoritative.json';
+  const generatedCoreFilename = 'ds-6.1-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/'],
+      pluginConfigDirectories: [path.resolve(__dirname)],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: 'The Ed-Fi Data Standard v6.1',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [generatedCoreOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+  });
+
+  it('should have no DS 6.1 file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+// DS 6.1 Sample
+describe('when generating ApiSchema for data standard 6.1 and Sample for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeExtensionFilename = 'ds-6.1-sample-api-schema-authoritative.json';
+  const generatedExtensionFilename = 'ds-6.1-sample-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/', path.resolve(__dirname, './sample-project')],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: 'The Ed-Fi Data Standard v6.1',
+        },
+        {
+          projectName: 'Sample',
+          namespaceName: 'Sample',
+          projectExtension: 'Sample',
+          projectVersion: '1.1.0',
+          description: 'Sample-Core',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no DS 6.1 Sample file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
+
+// DS 6.1 Homograph
+describe('when generating ApiSchema for data standard 6.1 and Homograph for ODS/API 7.3', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/v7_3/');
+  const authoritativeExtensionFilename = 'ds-6.1-homograph-api-schema-authoritative.json';
+  const generatedExtensionFilename = 'ds-6.1-homograph-api-schema-generated.json';
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.3.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-6.1/', path.resolve(__dirname, './homograph-project')],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '6.1.0',
+          description: 'The Ed-Fi Data Standard v6.1',
+        },
+        {
+          projectName: 'Homograph',
+          namespaceName: 'Homograph',
+          projectExtension: 'Homograph',
+          projectVersion: '1.0.0',
+          description: 'Homograph',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '6.1.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    await loadPluginConfiguration(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = state.generatorResults.filter(
+      (x) => x.generatorName === 'edfiApiSchema.ApiSchemaGenerator',
+    )[0];
+    const [, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no DS 6.1 Homograph file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});

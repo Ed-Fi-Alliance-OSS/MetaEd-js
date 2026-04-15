@@ -36,7 +36,7 @@ const testConfigurations: TestConfiguration[] = [
   {
     testFile: 'ApiSchemaAuthoritativeCompare_v7_3.test.ts',
     artifactDir: 'v7_3',
-    description: 'Data Standard 5.2 and TPDM 1.1 for ODS/API 7.3',
+    description: 'Data Standards 5.2/6.0/6.1 for ODS/API 7.3',
   },
 ];
 
