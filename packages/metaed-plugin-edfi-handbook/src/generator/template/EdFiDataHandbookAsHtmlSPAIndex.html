@@ -627,7 +627,6 @@
                                             <template x-if="selectedEntity.showIdentityColumn">
                                                 <th>Identity</th>
                                             </template>
-                                            <th>Is Sensitive Data</th>
                                             <th>Cardinality</th>
                                             <th>Definition</th>
                                             <template x-if="showMerge">
@@ -681,7 +680,6 @@
                                                 <template x-if="selectedEntity.showIdentityColumn">
                                                     <td x-text="trueFalseToYesNo(prop.isIdentity)"></td>
                                                 </template>
-                                                <td x-text="trueFalseToYesNo(prop.isSensitiveData)"></td>
                                                 <td x-text="prop.cardinality"></td>
                                                 <td x-text="prop.definition"></td>
                                                 <template x-if="showMerge">
