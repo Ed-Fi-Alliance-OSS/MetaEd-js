@@ -22,7 +22,7 @@
     "touch": "^3.1.0"
   },
   "devDependencies": {
-    "klaw-sync": "^6.0.0"
+    "klaw-sync": "^7.0.0"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
