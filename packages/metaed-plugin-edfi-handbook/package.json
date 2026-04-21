@@ -22,7 +22,7 @@
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
     "ramda": "^0.32.0",
-    "sort-array": "^4.1.5",
+    "sort-array": "^5.1.1",
     "write-excel-file": "^2.0.9"
   },
   "scripts": {
