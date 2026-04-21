@@ -29,6 +29,6 @@
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
   },
   "devDependencies": {
-    "read-excel-file": "^5.8.5"
+    "read-excel-file": "^8.0.3"
   }
 }
