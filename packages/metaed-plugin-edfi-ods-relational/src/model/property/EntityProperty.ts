@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import * as R from 'ramda';
-import { getAllProperties, getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
+import { getAllProperties, getAllTopLevelEntitiesForNamespaces, NoEntityProperty } from '@edfi/metaed-core';
 import { MetaEdEnvironment, EnhancerResult, EntityProperty } from '@edfi/metaed-core';
 import { prependRoleNameToMetaEdName } from '../../shared/Utility';
 
@@ -20,6 +20,10 @@ export interface EntityPropertyEdfiOds {
   relatedUsiProperty?: EntityProperty;
   // True if this is an usi property
   isUsiProperty: boolean;
+  /**
+   * If this is a USI property, the UniqueId property represented by it.
+   */
+  sourceUniqueIdProperty: EntityProperty;
 }
 
 // Enhancer for object setup
@@ -32,7 +36,7 @@ export function odsContextPrefix(property: EntityProperty): string {
   return R.isEmpty(property.shortenTo) || property.shortenTo == null ? property.roleName : property.shortenTo;
 }
 
-export function addEntityPropertyEdfiOdsTo(property: EntityProperty) {
+export function addEntityPropertyEdfiOdsTo(property: EntityProperty): void {
   if (property.data.edfiOdsRelational == null) property.data.edfiOdsRelational = {};
 
   Object.assign(property.data.edfiOdsRelational, {
@@ -43,6 +47,7 @@ export function addEntityPropertyEdfiOdsTo(property: EntityProperty) {
     odsIsUniqueIndex: false,
     isUniqueIdProperty: false,
     isUsiProperty: false,
+    sourceUniqueIdProperty: NoEntityProperty,
   });
 }
 

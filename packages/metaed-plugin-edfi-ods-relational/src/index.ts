@@ -55,6 +55,7 @@ export { flattenNameComponentsFromGroup, simpleTableNameGroupConcat } from './mo
 export { TopLevelEntityEdfiOds } from './model/TopLevelEntity';
 export { DescriptorEdfiOds } from './model/Descriptor';
 export { ReferencePropertyEdfiOds } from './model/property/ReferenceProperty';
+export type { EntityPropertyEdfiOds } from './model/property/EntityProperty';
 
 export {
   EdFiOdsRelationalEntityRepository,

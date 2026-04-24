@@ -2044,3 +2044,125 @@ describe('when building a domain entity referencing another role named with a Un
     `);
   });
 });
+
+describe('when building a domain entity referencing another with a nested UniqueId identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('StudentAcademicRecord')
+      .withDocumentation('doc')
+      .withStringIdentity('Description', 'doc', '30')
+      .withDomainEntityIdentity('Student', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseTranscript')
+      .withDocumentation('doc')
+      .withStringIdentity('SectionIdentifier', 'doc', '30')
+      .withDomainEntityIdentity('StudentAcademicRecord', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should map the query field to the nested reference UniqueId path', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('CourseTranscript');
+    const queryFieldMapping = removeSourcePropertyFromQueryFieldMapping(entity?.data.edfiApiSchema.queryFieldMapping);
+    expect(queryFieldMapping).toMatchInlineSnapshot(`
+      Object {
+        "description": Array [
+          Object {
+            "path": "$.studentAcademicRecordReference.description",
+            "type": "string",
+          },
+        ],
+        "id": Array [
+          Object {
+            "path": "$.id",
+            "type": "string",
+          },
+        ],
+        "sectionIdentifier": Array [
+          Object {
+            "path": "$.sectionIdentifier",
+            "type": "string",
+          },
+        ],
+        "studentUniqueId": Array [
+          Object {
+            "path": "$.studentAcademicRecordReference.studentUniqueId",
+            "type": "string",
+          },
+        ],
+      }
+    `);
+  });
+});
+
+describe('when building an association subclass with a base association Student UniqueId identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAssociation('GeneralStudentProgramAssociation')
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('Program', 'doc')
+      .withDateIdentity('BeginDate', 'doc')
+      .withEndAssociation()
+
+      .withStartAssociationSubclass('StudentProgramAssociation', 'GeneralStudentProgramAssociation')
+      .withDocumentation('doc')
+      .withIntegerProperty('SubclassProperty', 'doc', true, false)
+      .withEndAssociationSubclass()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Program')
+      .withDocumentation('doc')
+      .withStringIdentity('ProgramName', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new AssociationSubclassBuilder(metaEd, []));
+
+    associationSubclassBaseClassEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should map the query field to the subclass resource Student reference UniqueId path', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.associationSubclass.get('StudentProgramAssociation');
+    const queryFieldMapping = removeSourcePropertyFromQueryFieldMapping(entity?.data.edfiApiSchema.queryFieldMapping);
+    expect(queryFieldMapping.studentUniqueId).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "path": "$.studentReference.studentUniqueId",
+          "type": "string",
+        },
+      ]
+    `);
+  });
+});

@@ -6,6 +6,7 @@
 import { getEntitiesOfTypeForNamespaces, newIntegerProperty } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, IntegerProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import { addEntityPropertyEdfiOdsTo } from '../model/property/EntityProperty';
+import type { EntityPropertyEdfiOds } from '../model/property/EntityProperty';
 import { TopLevelEntityEdfiOds } from '../model/TopLevelEntity';
 
 const enhancerName = 'CreateUsisFromUniqueIdsEnhancer';
@@ -50,6 +51,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     addEntityPropertyEdfiOdsTo(usiProperty);
     usiProperty.data.edfiOdsRelational.odsIsIdentityDatabaseType = true;
     usiProperty.data.edfiOdsRelational.isUsiProperty = true;
+    (usiProperty.data.edfiOdsRelational as EntityPropertyEdfiOds).sourceUniqueIdProperty = uniqueIdProperty;
 
     entity.data.edfiOdsRelational.odsProperties.push(usiProperty);
     entity.data.edfiOdsRelational.odsIdentityProperties.push(usiProperty);
