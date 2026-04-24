@@ -11,8 +11,11 @@ import {
   getAllEntitiesOfType,
   EntityProperty,
   newEntityProperty,
+  MetaEdPropertyPath,
+  NoEntityProperty,
 } from '@edfi/metaed-core';
 import { Table, tableEntities, Column, canonicalColumnNameFor } from '@edfi/metaed-plugin-edfi-ods-relational';
+import type { EntityPropertyEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { PathType } from '../model/api-schema/PathType';
@@ -150,55 +153,72 @@ function addQueryFieldPathInfo(
 }
 
 /**
- * Handle USI columns by constructing a synthetic QueryFieldMapping
+ * Finds the UniqueId property represented by a synthetic USI column.
  */
-function addUniqueIdColumn(column: Column, queryFieldMapping: QueryFieldMapping): void {
+function sourceUniqueIdPropertyFrom(column: Column): EntityProperty {
+  const usiProperty: EntityProperty | undefined = column.sourceEntityProperties.find((property: EntityProperty) => {
+    const edfiOdsRelationalData: EntityPropertyEdfiOds | undefined = property.data.edfiOdsRelational;
+    return edfiOdsRelationalData?.isUsiProperty === true;
+  });
+  if (usiProperty == null) return NoEntityProperty;
+
+  return (usiProperty.data.edfiOdsRelational as EntityPropertyEdfiOds).sourceUniqueIdProperty;
+}
+
+/**
+ * Builds a semantic property path by replacing only the terminal synthetic USI property with its source UniqueId property.
+ */
+function sourceUniqueIdPropertyPathFrom(column: Column, sourceUniqueIdProperty: EntityProperty): MetaEdPropertyPath {
+  const propertyPathParts: string[] = column.propertyPath.split('.');
+  propertyPathParts[propertyPathParts.length - 1] = sourceUniqueIdProperty.fullPropertyName;
+  return propertyPathParts.join('.') as MetaEdPropertyPath;
+}
+
+/**
+ * Handle USI columns by using the semantic JsonPaths for their source UniqueId properties.
+ */
+function addUniqueIdColumn(column: Column, entity: TopLevelEntity, queryFieldMapping: QueryFieldMapping): void {
   const columnName = canonicalColumnNameFor(column);
   if (!columnName.endsWith(usiSuffix)) return;
 
   // Extract the entity/role name from the column name
   const namePrefix = columnName.substring(0, columnName.length - usiSuffix.length);
+  const queryFieldName = `${uncapitalize(namePrefix)}UniqueId`;
 
-  // Check if this represents the entity's own identifier or a reference to another entity
-  const referenceProperty = column.sourceEntityProperties.find((property: EntityProperty) =>
-    ['domainEntity', 'association'].includes(property.type),
+  const sourceUniqueIdProperty: EntityProperty = sourceUniqueIdPropertyFrom(column);
+  if (sourceUniqueIdProperty === NoEntityProperty || sourceUniqueIdProperty.fullPropertyName === '') return;
+
+  const jsonPathsInfo: JsonPathsInfo | null = findMergeJsonPathsMapping(
+    entity,
+    sourceUniqueIdPropertyPathFrom(column, sourceUniqueIdProperty),
   );
+  if (jsonPathsInfo == null) return;
 
-  let queryFieldName: string;
-  let jsonPath: JsonPath;
+  jsonPathsInfo.jsonPathPropertyPairs.forEach((pair) => {
+    const queryFieldPathInfo: QueryFieldPathInfo = {
+      path: pair.jsonPath,
+      type: 'string',
+      sourceProperty: pair.sourceProperty,
+    };
 
-  if (referenceProperty == null) {
-    // This is the entity's own identifier
-    queryFieldName = `${uncapitalize(namePrefix)}UniqueId`;
-    jsonPath = `$.${queryFieldName}` as JsonPath;
-  } else {
-    // This is a FK column
-    queryFieldName = `${uncapitalize(namePrefix)}UniqueId`;
-    jsonPath = `$.${uncapitalize(namePrefix)}Reference.${uncapitalize(referenceProperty.metaEdName)}UniqueId` as JsonPath;
-  }
-
-  const queryFieldPathInfo: QueryFieldPathInfo = {
-    path: jsonPath,
-    type: 'string',
-    sourceProperty: { ...newEntityProperty(), type: 'string' },
-  };
-
-  addQueryFieldPathInfo(queryFieldMapping, queryFieldName, queryFieldPathInfo);
+    addQueryFieldPathInfo(queryFieldMapping, queryFieldName, queryFieldPathInfo);
+  });
 }
 
 /**
  * Adds queryFieldMapping based on that
  */
 function addQueryFieldMappingsFrom(column: Column, entity: TopLevelEntity, queryFieldMapping: QueryFieldMapping): void {
+  // USI columns need conversion to UniqueId
+  if (column.isFromUsiProperty) {
+    addUniqueIdColumn(column, entity, queryFieldMapping);
+    return;
+  }
+
   const jsonPathsInfo: JsonPathsInfo | null = findMergeJsonPathsMapping(entity, column.propertyPath);
 
   // Handle synthetic columns
   if (jsonPathsInfo == null) {
-    // USI columns need conversion to UniqueId
-    if (column.isFromUsiProperty) {
-      addUniqueIdColumn(column, queryFieldMapping);
-      return;
-    }
     // Other synthetic columns don't map to anything
     return;
   }
