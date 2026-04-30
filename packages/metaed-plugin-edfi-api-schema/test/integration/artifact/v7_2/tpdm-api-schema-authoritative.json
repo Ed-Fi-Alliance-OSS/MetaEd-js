@@ -19502,12 +19502,14 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "",
+                      "description": "A unique alphanumeric code assigned to a student.",
                       "in": "query",
                       "name": "studentUniqueId",
                       "schema": {
+                        "maxLength": 32,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The amount of financial aid awarded to a person for the term/year.",

@@ -1589,12 +1589,14 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "",
+                      "description": "A unique alphanumeric code assigned to a staff.",
                       "in": "query",
                       "name": "staffUniqueId",
                       "schema": {
+                        "maxLength": 32,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The date the bus route became operational.",
@@ -1980,7 +1982,7 @@
           ],
           "staffUniqueId": [
             {
-              "path": "$.staffReference.staffEducationOrganizationAssignmentAssociationUniqueId",
+              "path": "$.staffEducationOrganizationAssignmentAssociationReference.staffUniqueId",
               "type": "string"
             }
           ],
@@ -6299,12 +6301,14 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "",
+                      "description": "A unique alphanumeric code assigned to a student.",
                       "in": "query",
                       "name": "studentUniqueId",
                       "schema": {
+                        "maxLength": 32,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The total number of art pieces completed by the student during the program.",
@@ -6831,7 +6835,7 @@
           ],
           "studentUniqueId": [
             {
-              "path": "$.studentReference.generalStudentProgramAssociationUniqueId",
+              "path": "$.studentReference.studentUniqueId",
               "type": "string"
             }
           ]
@@ -9266,12 +9270,14 @@
                       "x-Ed-Fi-isIdentity": true
                     },
                     {
-                      "description": "",
+                      "description": "A unique alphanumeric code assigned to a student.",
                       "in": "query",
                       "name": "studentUniqueId",
                       "schema": {
+                        "maxLength": 32,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The time of day for the commencement ceremony.",
@@ -9335,12 +9341,14 @@
                       }
                     },
                     {
-                      "description": "",
+                      "description": "A unique alphanumeric code assigned to a staff.",
                       "in": "query",
                       "name": "staffUniqueId",
                       "schema": {
+                        "maxLength": 32,
                         "type": "string"
-                      }
+                      },
+                      "x-Ed-Fi-isIdentity": true
                     },
                     {
                       "description": "The GPA the student is working toward.",
