@@ -29,6 +29,7 @@ import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPro
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
+import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 
 import { enhance } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { metaEdPluginEnhancers } from '../integration/PluginHelper';
@@ -65,6 +66,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -118,6 +120,7 @@ describe('when building domain entity with single merge directive', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -184,6 +187,7 @@ describe('when building domain entity extension with single merge directive', ()
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -257,6 +261,7 @@ describe('when building association extension with single merge directive', () =
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -314,6 +319,7 @@ describe('when building domain entity with DomainEntity collection and two merge
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -386,6 +392,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -454,6 +461,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -533,6 +541,7 @@ describe('when two domain entities with all four possible simple identities are 
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -621,6 +630,7 @@ describe('when merging on both a reference and a simple identity down multiple l
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -701,6 +711,7 @@ describe('when merging on a reference with multiple levels of domain entities be
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -777,6 +788,7 @@ describe('when merging on a reference through a choice', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -838,6 +850,7 @@ describe('when merging on a reference through a common collection', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -909,6 +922,7 @@ describe('when a role named merge follows a role named merge with school year en
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
     mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
@@ -922,12 +936,254 @@ describe('when a role named merge follows a role named merge with school year en
           "targetJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
         },
         Object {
-          "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+          "sourceJsonPath": "$.grades[*].gradeReference.schoolId",
           "targetJsonPath": "$.gradingPeriodReference.schoolId",
         },
         Object {
           "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
           "targetJsonPath": "$.gradingPeriodReference.schoolYear",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when a merge directive routes through a common collection to a reference whose identity is merged-away', () => {
+  // Regression for the case where the merge source path passes through a common (or choice / inline common)
+  // before reaching a reference whose internal identity is merged-away. The covering JsonPath has to be located
+  // by FlattenedIdentityProperty identity rather than by reconstructing a path from initialPropertyPath, since
+  // initialPropertyPath only captures the top-level segment and would drop the intermediate common.
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withCommonProperty('GradeItem', 'doc', false, true)
+      .withMergeDirective('GradeItem.Grade.GradingPeriod', 'GradingPeriod')
+      .withEndDomainEntity()
+
+      .withStartCommon('GradeItem')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Grade', 'doc')
+      .withEndCommon()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'Session.School')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('SessionIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should produce equality constraints using the covering canonical JsonPath under the common path', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('ReportCard');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.gradeItems[*].gradeReference.gradingPeriodIdentity",
+          "targetJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
+        },
+        Object {
+          "sourceJsonPath": "$.gradeItems[*].gradeReference.schoolId",
+          "targetJsonPath": "$.gradingPeriodReference.schoolId",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when a merge directive is on one of two role-named references to the same entity that has its own internal merge', () => {
+  // Regression for the case where the entity contains two role-named references to the same entity
+  // (here Interim/Final both reference Grade), and only one of them hosts a merge directive that
+  // descends into an identity property covered by Grade's own internal merge. The covering JsonPath
+  // must come from the same role-named branch as the source merge directive: a global scan of the
+  // entity's mergeJsonPathsMapping for any pair sharing the covering FlattenedIdentityProperty
+  // can return the wrong branch, because the covering FIP is reused across both branches.
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withDomainEntityProperty('Grade', 'doc', false, true, false, 'Interim')
+      .withDomainEntityProperty('Grade', 'doc', false, true, false, 'Final')
+      .withMergeDirective('FinalGrade.GradingPeriod', 'GradingPeriod')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'Session.School')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('SessionIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should produce equality constraints whose covering JSON path stays on the FinalGrade branch', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('ReportCard');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.finalGrades[*].finalGradeReference.gradingPeriodIdentity",
+          "targetJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
+        },
+        Object {
+          "sourceJsonPath": "$.finalGrades[*].finalGradeReference.schoolId",
+          "targetJsonPath": "$.gradingPeriodReference.schoolId",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when a merge directive descends into a role-named reference whose internal identity is merged-away on the target side', () => {
+  // Inverse of the previous test. The merge directive is hosted on the top-level GradingPeriod
+  // identity and targets FinalGrade.GradingPeriod, whose internal SchoolId identity is merged-away
+  // within Grade. Without target-side merge coverage adjustment, the targetJsonPath would point at
+  // the role-name-prefixed gradingPeriodSchoolId field, which doesn't exist in the API document.
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withDomainEntityProperty('Grade', 'doc', false, true, false, 'Interim')
+      .withDomainEntityProperty('Grade', 'doc', false, true, false, 'Final')
+      .withMergeDirective('GradingPeriod', 'FinalGrade.GradingPeriod')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'Session.School')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withIntegerIdentity('SessionIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should produce equality constraints whose target covering JSON path stays on the FinalGrade branch', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('ReportCard');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
+          "targetJsonPath": "$.finalGrades[*].finalGradeReference.gradingPeriodIdentity",
+        },
+        Object {
+          "sourceJsonPath": "$.gradingPeriodReference.schoolId",
+          "targetJsonPath": "$.finalGrades[*].finalGradeReference.schoolId",
         },
       ]
     `);
