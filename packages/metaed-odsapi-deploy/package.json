@@ -15,9 +15,9 @@
   "dependencies": {
     "@edfi/metaed-core": "4.7.1-dev.1",
     "chalk": "^4.1.2",
-    "fs-extra": "^11.1.1",
+    "fs-extra": "^11.3.5",
     "ramda": "^0.32.0",
-    "semver": "^7.5.4",
+    "semver": "^7.8.0",
     "sugar": "^2.0.6",
     "touch": "^3.1.0"
   },
