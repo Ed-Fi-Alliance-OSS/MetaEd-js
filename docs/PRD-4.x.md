@@ -310,7 +310,7 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 
 ## 6. Out of Scope and Known Limitations
 
-### Explicit Exclusions
+### Explicit Exclusions from the Document
 
 - **The MetaEd DSL syntax and semantics** — documented in the MetaEd Language Specification.
 - **Internal compilation pipeline details** — the Initialize → Load → Parse → Build → Validate → Enhance → Generate → Write pipeline is documented in developer-facing architecture docs, not in this product requirements document.
@@ -318,7 +318,7 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 - **ODS/API runtime behavior** — MetaEd generates artifacts for the ODS/API; it does not define ODS/API runtime requirements.
 - **Data Standard content** — the actual entities, descriptors, and associations in any Data Standard version are authored in `.metaed` files and are not part of this product's requirements.
 
-### Known Limitations
+### Known Limitations of the Current Implementation
 
 - MetaEd does not validate that the ODS/API deployment directory is correctly structured before deploying; it assumes the target follows the expected repository layout.
 - The IDE's workspace file includes user-specific paths (e.g., to `node_modules` inside the extension directory) that are not portable across machines and should not be committed to version control.
@@ -334,7 +334,8 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 | **MetaEd IDE**       | The Visual Studio Code extension providing authoring and build/deploy capabilities.                               |
 | **MetaEd Generator** | The command-line application that compiles `.metaed` files into artifacts.                                        |
 | **ODS**              | Operational Data Store — the database backing an Ed-Fi API.                                                       |
-| **ODS/API**          | The Ed-Fi ODS / API platform that serves the Ed-Fi REST API.                                                      |
+| **ODS/API**          | The Ed-Fi ODS / API platform is the legacy reference implementation of REST API based on the Ed-Fi Data Standard.                                                      |
+| **Ed-Fi API**        | The successor to the ODS/API, which also consumes MetaEd-generated artifacts, particularly the API metadata.      |
 | **Data Standard**    | The Ed-Fi Unifying Data Model, versioned and expressed in `.metaed` files.                                        |
 | **Extension**        | A user-defined addition to the core Ed-Fi Data Standard.                                                          |
 | **Alliance Mode**    | A configuration setting that makes core model files editable; intended only for the Ed-Fi Alliance internal team. |
