@@ -124,14 +124,7 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 - **FR-BUILD-4**: The Build command SHALL support the `--defaultPluginTechVersion` flag to specify the target ODS/API version in semver format.
 - **FR-BUILD-5**: The Build command SHALL support the `--suppressPrereleaseVersion` flag (default: true) to suppress prerelease identifiers in version output.
 - **FR-BUILD-6**: The Build command SHALL exit with code `1` on failure, enabling CI pipelines to detect build errors.
-- **FR-BUILD-7**: The Build command SHALL produce output in the following directory structure under the configured `artifactDirectory`:
-  - `Documentation/DataDictionary/`
-  - `Documentation/Ed-Fi-Handbook/`
-  - `Documentation/UDM/`
-  - `EdFi/ApiMetadata/`
-  - `EdFi/Database/`
-  - `EdFi/Interchange/`
-  - `EdFi/XSD/`
+- **FR-BUILD-7**: The Build command SHALL produce output in a configured output directory; details about the output files depend on the plugins used at build time.
 
 ### 3.3 Deploy Command
 
@@ -139,15 +132,18 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 - **FR-DEPLOY-2**: The Deploy command SHALL accept configuration via a JSON config file or command-line switches (`-s` source, `-t` target).
 - **FR-DEPLOY-3**: The Deploy command SHALL require the `-a` / `--accept-license` flag.
 - **FR-DEPLOY-4**: The Deploy command SHALL support the `--core` flag to deploy core artifacts in addition to extensions.
-- **FR-DEPLOY-5**: The Deploy command SHALL support the `--suppressDelete` flag to prevent deletion of the SupportingArtifacts deployment folder.
-- **FR-DEPLOY-6**: The Deploy command SHALL produce output in the following structure under the configured `deployDirectory`:
-  - `Ed-Fi-ODS/Standard/Metadata/`
-  - `Ed-Fi-ODS/Database/Data/EdFi/`
-  - `Ed-Fi-ODS/Database/Structure/EdFi/`
-  - `Ed-Fi-ODS/Database/Schemas/Interchange/`
-  - `Ed-Fi-ODS/Database/Schemas/XSD/`
-  - `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Standard/SupportingArtifacts/Metadata/ApiModel.json`
-- **FR-DEPLOY-7**: The `deployDirectory` SHALL point to the parent directory containing `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` folders.
+- **FR-DEPLOY-5**: The Deploy command SHALL support the `--suppressDelete` flag to prevent deletion of existing extension artifact directories before deploying.
+- **FR-DEPLOY-6**: When the `--core` flag is specified (ODS/API version ≥ 7.0), the Deploy command SHALL copy core artifacts into the configured `deployDirectory` under `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/{dataStandardVersion}/Artifacts/`:
+  - `ApiMetadata/` → `Metadata/`
+  - `Database/SQLServer/ODS/Data/` → `MsSql/Data/Ods/`
+  - `Database/SQLServer/ODS/Structure/` → `MsSql/Structure/Ods/`
+  - `Database/PostgreSQL/ODS/Data/` → `PgSql/Data/Ods/`
+  - `Database/PostgreSQL/ODS/Structure/` → `PgSql/Structure/Ods/`
+  - `Interchange/` → `Schemas/`
+  - `XSD/` → `Schemas/`
+- **FR-DEPLOY-7**: The Deploy command SHALL copy extension artifacts into the configured `deployDirectory` under `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/` using the same mapping as FR-DEPLOY-6.
+- **FR-DEPLOY-8**: The `deployDirectory` SHALL point to the parent directory containing `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` folders.
+- **FR-DEPLOY-9**: Unless `--suppressDelete` is specified, the Deploy command SHALL remove existing extension artifact directories (`Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Artifacts`) before deploying new artifacts.
 
 ### 3.4 Configuration
 
@@ -191,13 +187,8 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 #### 3.5.3 API Metadata
 
-- **FR-API-1**: The Build SHALL generate API metadata files used by the ODS/API build process, including:
-  - `DomainMetadata.xml`
-  - `DomainMetadata-Extension.xml`
-  - `EdOrgReferenceMetadata.xml`
-  - `ApiModel.json`
-- **FR-API-2**: The Build SHALL generate API metadata files used by the Ed-Fi API v8 build and runtime processes, including:
-  - `ApiSchema{prefix}.json`
+- **FR-API-1**: The Build SHALL generate API metadata files used by the ODS/API build process, including: `ApiModel{prefix}.json`
+- **FR-API-2**: The Build SHALL generate API metadata files used by the Ed-Fi API v8+ build and runtime processes, including: `ApiSchema{prefix}.json`
 
 #### 3.5.4 Data Handbook
 
@@ -332,7 +323,7 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 - MetaEd does not validate that the ODS/API deployment directory is correctly structured before deploying; it assumes the target follows the expected repository layout.
 - The IDE's workspace file includes user-specific paths (e.g., to `node_modules` inside the extension directory) that are not portable across machines and should not be committed to version control.
 - Alliance Mode enables editing of core files; non-Alliance users must leave this disabled to avoid inadvertent and costly errors.
-- The Deploy command deletes the `SupportingArtifacts` folder by default unless `--suppressDelete` is specified.
+- The Deploy command deletes existing extension artifact directories by default unless `--suppressDelete` is specified.
 
 ## 8. Glossary
 
