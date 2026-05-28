@@ -166,14 +166,14 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 #### 3.5.1 SQL Scripts
 
 - **FR-SQL-1**: The Build SHALL generate SQL scripts compatible with both Microsoft SQL Server and PostgreSQL for creating an operational data store (ODS).
-- **FR-SQL-2**: Generated SQL files SHALL include:
-  - `0001-Schemas.sql` — core database schema definitions
-  - `0001-EXTENSION-{namespace}-Schemas.sql` — extension schema definitions
-  - `0004-Tables.sql` — core database tables
-  - `0004-EXTENSION-{namespace}.sql` — extension database tables
-  - `0009-IdColumnUniqueIndexes.sql` — indexing for API support on core tables
-  - `0009-EXTENSION-{namespace}-IdColumnUniqueIndexes.sql` — indexing for extension tables
-- **FR-SQL-3**: Files prefixed with "EXTENSION" SHALL be additive to the standard ODS/API script set; files without "EXTENSION" SHALL replace the corresponding shipped files.
+- **FR-SQL-2**: Generated SQL files SHALL include (but are not limited to):
+  - `xxxx-Schemas.sql` — core database schema definitions
+  - `xxxx-Tables.sql` — core database tables
+  - `xxxx-IdColumnUniqueIndexes.sql` — indexing for API support on core tables
+  - `xxxx-CreateTrackedChangeTables.sql`  — core tracked delete tables for Change Queries
+  - `xxxx-CreateTriggersForDeleteTracking.sql` (MSSQL only) - triggers for tracked delete support
+- **FR-SQL-3**: The Build SHALL generate separate SQL files for core and extension artifacts, with extension files prefixed by "EXTENSION" (e.g., `EXTENSION-xxxx-Tables.sql`).
+- **FR-SQL-4**: Files prefixed with "EXTENSION" SHALL be additive to the standard ODS/API script set; files without "EXTENSION" SHALL replace the corresponding shipped files.
 
 #### 3.5.2 XSD Files
 
@@ -325,7 +325,7 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 - Alliance Mode enables editing of core files; non-Alliance users must leave this disabled to avoid inadvertent and costly errors.
 - The Deploy command deletes existing extension artifact directories by default unless `--suppressDelete` is specified.
 
-## 8. Glossary
+## 7. Glossary
 
 | Term                 | Definition                                                                                                        |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
