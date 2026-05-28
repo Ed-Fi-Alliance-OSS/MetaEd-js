@@ -1,28 +1,26 @@
 # MetaEd Product Requirements Document — Version 4.x
 
-| Field              | Value                                                          |
-| ------------------ | -------------------------------------------------------------- |
-| Status             | Draft                                                          |
-| Owner              | Ed-Fi Alliance                                                 |
-| Repository         | Ed-Fi-Alliance-OSS/MetaEd-Js                                   |
-| Current Version    | 4.7                                                            |
-| Platform           | Visual Studio Code Extension + Node.js CLI                     |
-| Source References   | cli.md, automated-tests.md, artifact-specific-configuration.md, api-schema-catalog.md, MetaEd IDE User Guide, MetaEd for Continuous Integration |
+- Status: Done
+- Owner: Stephen Fuqua
+- Repository: Ed-Fi-Alliance-OSS/MetaEd-Js
+- Current Version: 4.7
+- Platform: Visual Studio Code Extension + Node.js CLI
 
----
+> [!TIP] Document Scope
+> This PRD defines the product requirements for MetaEd version 4.x primarily from the end-user's perspective, which includes the new JavaScript/TypeScript implementation of the MetaEd generator and the accompanying VS Code extension. It covers the core features, functional and non-functional requirements, system architecture, and known limitations of this major release. The document is intended to guide development and ensure alignment with user needs and strategic goals.
+>
+> It does _not cover_ details about the MetaEd DSL syntax and semantics, the internal compilation pipeline, or details on how to construct the API model files used by ODS/API code generation and by the Ed-Fi API v8 deployment and runtime processes.
 
 ## 1. Product Overview
 
 MetaEd is a technology framework that uses an Ed-Fi-aligned domain-specific language (DSL) to auto-generate software, database, and data standard artifacts from a single source definition. The term "MetaEd" encompasses:
 
-- **MetaEd Language** — a lightweight DSL describing Ed-Fi data elements, their properties, and their organization into entities. Files use the `.metaed` extension.
+- **MetaEd Language** — a lightweight DSL describing data elements, their properties, and their organization into entities and domains (the Ed-Fi Unified Data Model). Files use the `.metaed` extension.
 - **MetaEd Generator** — a command-line application that compiles MetaEd language files into technical artifacts.
 - **MetaEd IDE** — a Visual Studio Code extension providing an integrated development environment for authoring `.metaed` files and invoking the generator.
 - **MetaEd Packages** — a collection of Node.js packages that implement the parsing, validation, enhancement, and generation pipeline.
 
-The Ed-Fi Alliance uses MetaEd internally to produce core components such as the Ed-Fi Standard Interchange Schema (XSD files), the Ed-Fi ODS database scripts (SQL), and technical documentation from a single source definition written in the MetaEd DSL.
-
-A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community members for the generation of Ed-Fi Extensions and all related artifacts.
+The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSON API metadata, SQL scripts, and technical documentation from a single source definition written in the MetaEd DSL. Externally, Ed-Fi Community members use MetaEd to create and maintain Ed-Fi Extensions, which are additive data models that extend the core Ed-Fi Data Standard to meet local needs.
 
 ### 1.1 Strategic Alignment
 
@@ -40,19 +38,52 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 
 ### 1.3 Jobs to Be Done
 
-- **When** I need to create or modify an Ed-Fi extension, **I want** to author `.metaed` files in a guided IDE with syntax highlighting and validation, **so that** I can quickly define my extension without learning the internals of XSD, SQL, or API metadata formats.
-- **When** I am ready to test my model changes, **I want** to run a Build command that compiles all artifacts, **so that** I can verify correctness before deploying.
-- **When** I need to integrate my extension with the ODS/API, **I want** to run a Deploy command that copies artifacts to the correct locations, **so that** the ODS/API build process picks them up automatically.
-- **When** I maintain a CI pipeline for data model changes, **I want** to run MetaEd headlessly via Node.js, **so that** I can validate and produce artifacts on every commit without a graphical environment.
-- **When** I need to understand the API shape of a data model, **I want** a generated API Catalog spreadsheet, **so that** I can catalog resources and their properties for comparison and documentation purposes.
+#### JTBD 1.1. Author data model extensions in a guided IDE
 
----
+**Personas**: Education Agency Developers, Ed-Fi Integration Partners, Ed-Fi Alliance Technical Team
+
+**When** I need to create or modify an Ed-Fi extension, **I want** to author `.metaed` files in a guided IDE with syntax highlighting and validation, **so that** I can quickly define my extension without learning the internals of XSD, SQL, or API metadata formats.
+
+**How MetaEd Helps**: The VS Code extension provides syntax highlighting, real-time semantic validation, and inline error reporting so authors get immediate feedback on model correctness.
+
+#### JTBD 1.2. Compile model changes into deployable artifacts
+
+**Personas**: Education Agency Developers, Ed-Fi Integration Partners, Ed-Fi Alliance Technical Team
+
+**When** I am ready to test my model changes, **I want** to run a Build command that compiles all artifacts, **so that** I can verify correctness before deploying.
+
+**How MetaEd Helps**: The Build command transforms `.metaed` source files into SQL scripts, XSD schemas, API metadata, interchange definitions, and documentation in a single operation.
+
+#### JTBD 1.3. Deploy extension artifacts to the ODS/API
+
+**Personas**: Education Agency Developers, Ed-Fi Integration Partners
+
+**When** I need to integrate my extension with the ODS/API, **I want** to run a Deploy command that copies artifacts to the correct locations, **so that** the ODS/API build process picks them up automatically.
+
+**How MetaEd Helps**: The Deploy command knows the expected directory structure of the ODS/API source tree and copies each artifact type to its correct destination.
+
+#### JTBD 1.4. Validate and produce artifacts in CI
+
+**Personas**: Ed-Fi Alliance Technical Team, Ed-Fi Integration Partners
+
+**When** I maintain a CI pipeline for data model changes, **I want** to run MetaEd headlessly via Node.js, **so that** I can validate and produce artifacts on every commit without a graphical environment.
+
+**How MetaEd Helps**: The `metaed-console` CLI accepts a JSON configuration file and returns a non-zero exit code on failure, integrating cleanly with CI/CD pipelines.
+
+#### JTBD 1.5. Understand the API shape of a data model
+
+**Personas**: Business Analysts, Education Agency Developers, Ed-Fi Integration Partners
+
+**When** I need to understand the API shape of a data model, **I want** a generated API Catalog spreadsheet, **so that** I can catalog resources and their properties for comparison and documentation purposes.
+
+**How MetaEd Helps**: The API Catalog plugin generates an Excel workbook with Resources and Properties tabs that describe every endpoint and field derived from the model.
 
 ## 2. Enterprise and System Context
 
 ### 2.1 External Systems and Integrations
 
 - **Ed-Fi ODS/API** — the primary consumer of MetaEd-generated artifacts (SQL scripts, XSD, API metadata). MetaEd's Deploy command copies artifacts into the ODS/API source tree for its build process.
+- **Ed-Fi API** - successor to the ODS/API, which also consumes MetaEd-generated artifacts, particularly the API metadata.
 - **Ed-Fi Data Standard (Model packages)** — versioned npm packages (e.g., `@edfi/ed-fi-model-4.0`) containing the core `.metaed` files. Extensions reference these as dependencies.
 - **Visual Studio Code** — host environment for the MetaEd IDE extension.
 - **Node.js** — runtime environment for the MetaEd generator and all packages.
@@ -64,8 +95,6 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 - MetaEd runs entirely on the developer's local machine (or CI agent). It does not communicate with external services at runtime.
 - Generated artifacts are files on disk. MetaEd does not directly deploy to running servers or databases.
 - The Deploy command writes to a local clone of the ODS/API source repositories.
-
----
 
 ## 3. Functional Requirements
 
@@ -131,11 +160,10 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
   - `metaEdConfiguration.defaultPluginTechVersion` — target ODS/API version
   - `metaEdConfiguration.allianceMode` — enables editing of core model files
   - `metaEdConfiguration.suppressPrereleaseVersion` — suppresses prerelease version identifiers
-- **FR-CFG-2**: A configuration file named `metaed.conf.json` SHALL be ignored by git (convention).
-- **FR-CFG-3**: The system SHALL support artifact-specific configuration files (`{pluginShortName}.config.json`) placed in plugin configuration directories.
-- **FR-CFG-4**: Artifact-specific configuration files SHALL support matching rules based on entity type, namespace, core/extensions flag, and entity name.
-- **FR-CFG-5**: Artifact-specific configuration data SHALL be validated using Joi schemas registered by each plugin.
-- **FR-CFG-6**: Configuration matching options (`namespace`, `core`, `extensions`) SHALL be mutually exclusive within a single match rule.
+- **FR-CFG-2**: The system MAY support artifact-specific configuration files (`{pluginShortName}.config.json`) placed in plugin configuration directories.
+- **FR-CFG-3**: Artifact-specific configuration files SHALL support matching rules based on entity type, namespace, core/extensions flag, and entity name.
+- **FR-CFG-4**: Artifact-specific configuration data SHALL be validated using Joi schemas registered by each plugin.
+- **FR-CFG-5**: Configuration matching options (`namespace`, `core`, `extensions`) SHALL be mutually exclusive within a single match rule.
 
 ### 3.5 Build Outputs
 
@@ -168,17 +196,18 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
   - `DomainMetadata-Extension.xml`
   - `EdOrgReferenceMetadata.xml`
   - `ApiModel.json`
+- **FR-API-2**: The Build SHALL generate API metadata files used by the Ed-Fi API v8 build and runtime processes, including:
+  - `ApiSchema{prefix}.json`
 
 #### 3.5.4 Data Handbook
 
 - **FR-HBK-1**: The Build SHALL generate a comprehensive data handbook combining core and extension definitions.
-- **FR-HBK-2**: The handbook SHALL be produced in multiple formats:
-  - `Ed-Fi-Handbook.xlsx` — Excel workbook
-  - `Ed-Fi-Data-Handbook-Index.html` — interactive, searchable HTML file (self-contained, can be hosted on a web server or run locally)
+- **FR-HBK-2**: The handbook SHALL be produced in an HTML format: `Ed-Fi-Data-Handbook-Index.html` — interactive, searchable HTML file (self-contained, can be hosted on a web server or run locally)
+- **FR-HBK-3**: The handbook MAY be produced in an Excel format: `Ed-Fi-Handbook.xlsx`
 
 #### 3.5.5 Data Dictionaries
 
-- **FR-DICT-1**: The Build SHALL generate data dictionaries documenting generated structures:
+- **FR-DICT-1**: The Build MAY generate data dictionaries documenting generated structures:
   - `SqlDataDictionary.xlsx` — documentation on core and extension database tables
   - `XmlDataDictionary.xlsx` — documentation on core and extension XSD elements
 
@@ -206,8 +235,6 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 - **FR-CI-3**: The `@edfi/metaed-odsapi-deploy` package SHALL be installable from the Ed-Fi npm registry for deploy in CI pipelines.
 - **FR-CI-4**: Both packages SHALL support the same configuration file format used by the IDE.
 
----
-
 ## 4. Non-Functional Requirements
 
 ### Compatibility
@@ -222,6 +249,7 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 
 - **NFR-LIC-1**: Usage of the Ed-Fi Unifying Data Model SHALL require explicit acceptance of the Ed-Fi License Agreement.
 - **NFR-LIC-2**: The system SHALL not execute Build or Deploy commands until the license is accepted.
+- **NFR-LIC-3**: The IDE itself SHALL be freely available on the Visual Studio Marketplace under the Apache-2.0 license.
 
 ### Reliability
 
@@ -248,37 +276,35 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 - **NFR-SDLC-1**: The repository SHALL maintain automated CI checks including TypeScript type checking, ESLint, and unit tests on every pull request.
 - **NFR-SDLC-2**: Test coverage SHALL include both unit tests and database integration tests (SQL Server and PostgreSQL).
 
----
-
 ## 5. System Architecture
 
 ### 5.1 Component Packages
 
-| Package | Description |
-| ------- | ----------- |
-| `metaed-core` | Core engine providing parsing, model, pipeline, validation, enhancement, and generation APIs. |
-| `metaed-console` | CLI entry point for running the MetaEd build process from the command line. |
-| `metaed-default-plugins` | Returns the default ordered set of MetaEd plugins used for a standard build. |
-| `metaed-odsapi-deploy` | Provides deployment tasks for copying generated artifacts into an Ed-Fi ODS/API target directory. |
-| `metaed-odsapi-deploy-console` | CLI entry point for running the ODS/API deployment workflow. |
-| `metaed-plugin-edfi-api-catalog` | Generates an Excel catalog of API resources and their properties from the MetaEd API schema. |
-| `metaed-plugin-edfi-api-schema` | Builds the enhanced Ed-Fi API schema model used by downstream plugins and generators. |
-| `metaed-plugin-edfi-handbook` | Generates the Ed-Fi Data Handbook outputs (HTML and Excel) from the MetaEd model. |
-| `metaed-plugin-edfi-ods-changequery` | Provides the common change-query model logic for Ed-Fi ODS/API change tracking. |
-| `metaed-plugin-edfi-ods-changequery-postgresql` | Generates PostgreSQL-specific change-query database artifacts. |
-| `metaed-plugin-edfi-ods-changequery-sqlserver` | Generates SQL Server-specific change-query database artifacts. |
-| `metaed-plugin-edfi-ods-postgresql` | Generates Ed-Fi ODS database artifacts for PostgreSQL. |
-| `metaed-plugin-edfi-ods-recordownership` | Generates the record-ownership database artifacts used by the ODS/API. |
-| `metaed-plugin-edfi-ods-recordownership-postgresql` | Generates record-ownership database artifacts for PostgreSQL. |
-| `metaed-plugin-edfi-ods-recordownership-sqlserver` | Generates record-ownership database artifacts for SQL Server. |
-| `metaed-plugin-edfi-ods-relational` | Provides the shared relational ODS generation logic used by database-specific plugins. |
-| `metaed-plugin-edfi-ods-sqlserver` | Generates Ed-Fi ODS database artifacts for SQL Server. |
-| `metaed-plugin-edfi-odsapi` | Generates the Ed-Fi ODS/API metadata artifacts and coordinates overall API build outputs. |
-| `metaed-plugin-edfi-sql-dictionary` | Generates the Ed-Fi SQL data dictionary output. |
-| `metaed-plugin-edfi-unified` | Provides the shared unified model foundation (validators, enhancers) used by multiple plugins. |
-| `metaed-plugin-edfi-unified-advanced` | Provides the advanced unified model layer for richer cross-plugin generation. |
-| `metaed-plugin-edfi-xml-dictionary` | Generates the Ed-Fi XML data dictionary output. |
-| `metaed-plugin-edfi-xsd` | Generates Ed-Fi XSD schema artifacts. |
+| Package                                             | Description                                                                                       |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `metaed-core`                                       | Core engine providing parsing, model, pipeline, validation, enhancement, and generation APIs.     |
+| `metaed-console`                                    | CLI entry point for running the MetaEd build process from the command line.                       |
+| `metaed-default-plugins`                            | Returns the default ordered set of MetaEd plugins used for a standard build.                      |
+| `metaed-odsapi-deploy`                              | Provides deployment tasks for copying generated artifacts into an Ed-Fi ODS/API target directory. |
+| `metaed-odsapi-deploy-console`                      | CLI entry point for running the ODS/API deployment workflow.                                      |
+| `metaed-plugin-edfi-api-catalog`                    | Generates an Excel catalog of API resources and their properties from the MetaEd API schema.      |
+| `metaed-plugin-edfi-api-schema`                     | Builds the enhanced Ed-Fi API schema model used by downstream plugins and generators.             |
+| `metaed-plugin-edfi-handbook`                       | Generates the Ed-Fi Data Handbook outputs (HTML and Excel) from the MetaEd model.                 |
+| `metaed-plugin-edfi-ods-changequery`                | Provides the common change-query model logic for Ed-Fi ODS/API change tracking.                   |
+| `metaed-plugin-edfi-ods-changequery-postgresql`     | Generates PostgreSQL-specific change-query database artifacts.                                    |
+| `metaed-plugin-edfi-ods-changequery-sqlserver`      | Generates SQL Server-specific change-query database artifacts.                                    |
+| `metaed-plugin-edfi-ods-postgresql`                 | Generates Ed-Fi ODS database artifacts for PostgreSQL.                                            |
+| `metaed-plugin-edfi-ods-recordownership`            | Generates the record-ownership database artifacts used by the ODS/API.                            |
+| `metaed-plugin-edfi-ods-recordownership-postgresql` | Generates record-ownership database artifacts for PostgreSQL.                                     |
+| `metaed-plugin-edfi-ods-recordownership-sqlserver`  | Generates record-ownership database artifacts for SQL Server.                                     |
+| `metaed-plugin-edfi-ods-relational`                 | Provides the shared relational ODS generation logic used by database-specific plugins.            |
+| `metaed-plugin-edfi-ods-sqlserver`                  | Generates Ed-Fi ODS database artifacts for SQL Server.                                            |
+| `metaed-plugin-edfi-odsapi`                         | Generates the Ed-Fi ODS/API metadata artifacts and coordinates overall API build outputs.         |
+| `metaed-plugin-edfi-sql-dictionary`                 | Generates the Ed-Fi SQL data dictionary output.                                                   |
+| `metaed-plugin-edfi-unified`                        | Provides the shared unified model foundation (validators, enhancers) used by multiple plugins.    |
+| `metaed-plugin-edfi-unified-advanced`               | Provides the advanced unified model layer for richer cross-plugin generation.                     |
+| `metaed-plugin-edfi-xml-dictionary`                 | Generates the Ed-Fi XML data dictionary output.                                                   |
+| `metaed-plugin-edfi-xsd`                            | Generates Ed-Fi XSD schema artifacts.                                                             |
 
 ### 5.2 Runtime and Deployment
 
@@ -290,8 +316,6 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 ### 5.3 Processing Pipeline
 
 The system follows a sequential pipeline: **Initialize → Load → Parse → Build → Validate → Enhance → Generate → Write**. The DSL and pipeline internals are documented separately and are out of scope for this PRD.
-
----
 
 ## 6. Out of Scope and Known Limitations
 
@@ -310,40 +334,22 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 - Alliance Mode enables editing of core files; non-Alliance users must leave this disabled to avoid inadvertent and costly errors.
 - The Deploy command deletes the `SupportingArtifacts` folder by default unless `--suppressDelete` is specified.
 
-### Assumptions
-
-- Users have Node.js and Visual Studio Code installed.
-- Users with CI workflows have access to the Ed-Fi npm registry.
-- The Ed-Fi License Agreement must be accepted before any artifact generation.
-
----
-
-## 7. Open Questions and Decision Log
-
-| ID | Question | Status | Decision |
-| -- | -------- | ------ | -------- |
-| OQ-1 | Should the PRD specify minimum supported Node.js version? | Open | Currently deferred to release notes. |
-| OQ-2 | Should the Deploy command validate the target directory structure before writing? | Open | — |
-| OQ-3 | Should Alliance Mode be configurable per-project rather than globally? | Open | — |
-
----
-
 ## 8. Glossary
 
-| Term | Definition |
-| ---- | ---------- |
-| **MetaEd** | Umbrella term for the DSL, the compiler, the IDE, and the supporting packages. |
-| **MetaEd DSL** | The domain-specific language used to define Ed-Fi data models. |
-| **MetaEd IDE** | The Visual Studio Code extension providing authoring and build/deploy capabilities. |
-| **MetaEd Generator** | The command-line application that compiles `.metaed` files into artifacts. |
-| **ODS** | Operational Data Store — the database backing an Ed-Fi API. |
-| **ODS/API** | The Ed-Fi ODS / API platform that serves the Ed-Fi REST API. |
-| **Data Standard** | The Ed-Fi Unifying Data Model, versioned and expressed in `.metaed` files. |
-| **Extension** | A user-defined addition to the core Ed-Fi Data Standard. |
-| **Alliance Mode** | A configuration setting that makes core model files editable; intended only for the Ed-Fi Alliance internal team. |
-| **Plugin** | A MetaEd package that provides validators, enhancers, and/or generators for a specific output format. |
-| **Artifact** | Any file generated by the MetaEd build process (SQL, XSD, JSON, HTML, Excel). |
-| **Deploy** | The act of copying generated artifacts into the ODS/API source tree for its build process to consume. |
-| **Namespace** | A scoping mechanism for MetaEd projects (e.g., `EdFi` for core, custom names for extensions). |
-| **Tech Version** | The target ODS/API version (e.g., `6.0.0`) that determines which plugin behaviors and output formats to use. |
-| **SemVer** | Semantic Versioning 2.0.0 — the versioning scheme used for project versions. |
+| Term                 | Definition                                                                                                        |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **MetaEd**           | Umbrella term for the DSL, the compiler, the IDE, and the supporting packages.                                    |
+| **MetaEd DSL**       | The domain-specific language used to define Ed-Fi data models.                                                    |
+| **MetaEd IDE**       | The Visual Studio Code extension providing authoring and build/deploy capabilities.                               |
+| **MetaEd Generator** | The command-line application that compiles `.metaed` files into artifacts.                                        |
+| **ODS**              | Operational Data Store — the database backing an Ed-Fi API.                                                       |
+| **ODS/API**          | The Ed-Fi ODS / API platform that serves the Ed-Fi REST API.                                                      |
+| **Data Standard**    | The Ed-Fi Unifying Data Model, versioned and expressed in `.metaed` files.                                        |
+| **Extension**        | A user-defined addition to the core Ed-Fi Data Standard.                                                          |
+| **Alliance Mode**    | A configuration setting that makes core model files editable; intended only for the Ed-Fi Alliance internal team. |
+| **Plugin**           | A MetaEd package that provides validators, enhancers, and/or generators for a specific output format.             |
+| **Artifact**         | Any file generated by the MetaEd build process (SQL, XSD, JSON, HTML, Excel).                                     |
+| **Deploy**           | The act of copying generated artifacts into the ODS/API source tree for its build process to consume.             |
+| **Namespace**        | A scoping mechanism for MetaEd projects (e.g., `EdFi` for core, custom names for extensions).                     |
+| **Tech Version**     | The target ODS/API version (e.g., `6.0.0`) that determines which plugin behaviors and output formats to use.      |
+| **SemVer**           | Semantic Versioning 2.0.0 — the versioning scheme used for project versions.                                      |
