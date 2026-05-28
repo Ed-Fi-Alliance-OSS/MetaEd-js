@@ -33,6 +33,10 @@ Sub-path mappings:
 
 ## Business Logic
 
-Runs a sequence of filesystem tasks: remove old extension artifacts (unless suppressed),
-deploy core artifacts (ODS/API ≥ 7.0 only), deploy extension artifacts, copy additional
-DB scripts, and refresh csproj timestamps. Stops on the first failure.
+ Runs a sequence of deployment tasks in order: first verifies that required extension
+ projects exist, then removes old extension artifacts (unless suppressed), deploys core
+ artifacts (ODS/API ≥ 7.0 only), and deploys extension artifacts. Additional MSSQL and
+ PostgreSQL script directories are passed into the core/extension deploy steps rather than
+ copied as a separate standalone task. After deployment it refreshes csproj timestamps,
+ runs the legacy-directory check, and stops on the first failure.
+
