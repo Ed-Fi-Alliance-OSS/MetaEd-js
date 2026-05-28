@@ -1,14 +1,18 @@
-# MetaEd Plugin: Ed-Fi API Catalog
+# metaed-plugin-edfi-api-catalog
 
 This plugin generates an Excel spreadsheet catalog of API resources and their properties from the MetaEd API schema.
 
-## Overview
-
 The API Catalog plugin reads the enhanced MetaEd model from the `metaed-plugin-edfi-api-schema` plugin and generates a comprehensive Excel spreadsheet listing all API resources, their properties, and associated metadata.
+
+## Input Configuration
+
+No plugin-specific configuration. Depends on API schema metadata produced by
+`metaed-plugin-edfi-api-schema`.
 
 ## Dependencies
 
 This plugin depends on:
+
 - `@edfi/metaed-core`
 - `@edfi/metaed-plugin-edfi-api-schema`
 
@@ -16,7 +20,7 @@ The plugin must be loaded after the `metaed-plugin-edfi-api-schema` plugin to ac
 
 ## Output
 
-The plugin generates a single Excel file (`Ed-Fi-API-Catalog.xlsx`) with two worksheets:
+The plugin generates a single Excel file (`Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx`) with two worksheets:
 
 ### Resources Worksheet
 
@@ -45,14 +49,12 @@ Contains one row per property within each resource with the following columns:
 - **Is Nullable**: Boolean indicating if the property can be null
 - **Is Required**: Boolean indicating if the property is required
 
-## Usage
+## Business Logic
 
-This plugin is included in the default plugins list and will automatically generate the API catalog when MetaEd processes a data model.
-
-The generated Excel file can be found in the output directory under:
-```
-Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx
-```
+Walks the API schema resource definitions built by the upstream API schema plugin,
+extracts resource and property metadata rows, and writes a multi-sheet XLSX workbook
+suitable for documentation and review purposes. Both resources and descriptors are
+included; reference properties use `dataType = 'reference'`.
 
 ## Implementation Details
 
