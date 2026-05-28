@@ -256,30 +256,29 @@ A version of MetaEd called the MetaEd IDE is freely available to Ed-Fi community
 
 | Package | Description |
 | ------- | ----------- |
-| `metaed-core` | _(to be described in a future iteration)_ |
-| `metaed-console` | _(to be described in a future iteration)_ |
-| `metaed-default-plugins` | _(to be described in a future iteration)_ |
-| `metaed-odsapi-deploy` | _(to be described in a future iteration)_ |
-| `metaed-odsapi-deploy-console` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-api-catalog` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-api-schema` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-data-catalog` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-handbook` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-changequery` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-changequery-postgresql` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-changequery-sqlserver` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-postgresql` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-recordownership` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-recordownership-postgresql` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-recordownership-sqlserver` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-relational` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-ods-sqlserver` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-odsapi` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-sql-dictionary` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-unified` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-unified-advanced` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-xml-dictionary` | _(to be described in a future iteration)_ |
-| `metaed-plugin-edfi-xsd` | _(to be described in a future iteration)_ |
+| `metaed-core` | Core engine providing parsing, model, pipeline, validation, enhancement, and generation APIs. |
+| `metaed-console` | CLI entry point for running the MetaEd build process from the command line. |
+| `metaed-default-plugins` | Returns the default ordered set of MetaEd plugins used for a standard build. |
+| `metaed-odsapi-deploy` | Provides deployment tasks for copying generated artifacts into an Ed-Fi ODS/API target directory. |
+| `metaed-odsapi-deploy-console` | CLI entry point for running the ODS/API deployment workflow. |
+| `metaed-plugin-edfi-api-catalog` | Generates an Excel catalog of API resources and their properties from the MetaEd API schema. |
+| `metaed-plugin-edfi-api-schema` | Builds the enhanced Ed-Fi API schema model used by downstream plugins and generators. |
+| `metaed-plugin-edfi-handbook` | Generates the Ed-Fi Data Handbook outputs (HTML and Excel) from the MetaEd model. |
+| `metaed-plugin-edfi-ods-changequery` | Provides the common change-query model logic for Ed-Fi ODS/API change tracking. |
+| `metaed-plugin-edfi-ods-changequery-postgresql` | Generates PostgreSQL-specific change-query database artifacts. |
+| `metaed-plugin-edfi-ods-changequery-sqlserver` | Generates SQL Server-specific change-query database artifacts. |
+| `metaed-plugin-edfi-ods-postgresql` | Generates Ed-Fi ODS database artifacts for PostgreSQL. |
+| `metaed-plugin-edfi-ods-recordownership` | Generates the record-ownership database artifacts used by the ODS/API. |
+| `metaed-plugin-edfi-ods-recordownership-postgresql` | Generates record-ownership database artifacts for PostgreSQL. |
+| `metaed-plugin-edfi-ods-recordownership-sqlserver` | Generates record-ownership database artifacts for SQL Server. |
+| `metaed-plugin-edfi-ods-relational` | Provides the shared relational ODS generation logic used by database-specific plugins. |
+| `metaed-plugin-edfi-ods-sqlserver` | Generates Ed-Fi ODS database artifacts for SQL Server. |
+| `metaed-plugin-edfi-odsapi` | Generates the Ed-Fi ODS/API metadata artifacts and coordinates overall API build outputs. |
+| `metaed-plugin-edfi-sql-dictionary` | Generates the Ed-Fi SQL data dictionary output. |
+| `metaed-plugin-edfi-unified` | Provides the shared unified model foundation (validators, enhancers) used by multiple plugins. |
+| `metaed-plugin-edfi-unified-advanced` | Provides the advanced unified model layer for richer cross-plugin generation. |
+| `metaed-plugin-edfi-xml-dictionary` | Generates the Ed-Fi XML data dictionary output. |
+| `metaed-plugin-edfi-xsd` | Generates Ed-Fi XSD schema artifacts. |
 
 ### 5.2 Runtime and Deployment
 
@@ -300,7 +299,7 @@ The system follows a sequential pipeline: **Initialize → Load → Parse → Bu
 
 - **The MetaEd DSL syntax and semantics** — documented in the MetaEd Language Specification.
 - **Internal compilation pipeline details** — the Initialize → Load → Parse → Build → Validate → Enhance → Generate → Write pipeline is documented in developer-facing architecture docs, not in this product requirements document.
-- **Individual package descriptions** — package purposes will be documented in a future iteration of this PRD.
+- **Internal package implementation details** — individual package internals are documented in developer-facing architecture docs.
 - **ODS/API runtime behavior** — MetaEd generates artifacts for the ODS/API; it does not define ODS/API runtime requirements.
 - **Data Standard content** — the actual entities, descriptors, and associations in any Data Standard version are authored in `.metaed` files and are not part of this product's requirements.
 
