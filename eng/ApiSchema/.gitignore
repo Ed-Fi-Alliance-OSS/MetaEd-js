@@ -1,6 +1,12 @@
 *.json
+# discovery-spec.json is a curated, committed asset required for the core ApiSchema package.
+# It is force-tracked despite the broad *.json ignore above so it is always present at CI checkout.
+!discovery-spec.json
 *.xsd
 *.nupkg
+
+# StageAssets output (per-extension payload directories created by build.ps1 -Command StageAssets)
+staging/
 
 # Build results
 [Dd]ebug/
