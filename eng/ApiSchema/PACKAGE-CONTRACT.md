@@ -67,6 +67,15 @@ docs/
   LICENSE
 ```
 
+**Package identity:**
+
+- Every package ID is qualified with the data-standard version it was built against — core as
+  `EdFi.DataStandard<dsv>.ApiSchema` and extensions as `EdFi.DataStandard<dsv>.<Extension>.ApiSchema`
+  (e.g. `EdFi.DataStandard52.Sample.ApiSchema`). An extension built against different core data
+  standards therefore produces distinct, independently resolvable packages (e.g. Sample on DS 5.2 vs
+  DS 6.1) rather than colliding on a single id. Bootstrap (Story 06) resolves the extension package
+  for a given data standard by this qualified id.
+
 **Notes on optional files:**
 
 - `discovery-spec.json` — present in **core packages only**; absent for all extension packages.
@@ -89,7 +98,7 @@ and locate the schema and supporting files without guessing paths.
 | Field | Type | Description |
 |---|---|---|
 | `version` | integer | Package-manifest **format version**. Currently `1`. This is NOT the NuGet package version. |
-| `packageId` | string | NuGet package identifier, e.g. `EdFi.DataStandard52.ApiSchema` or `EdFi.Sample.ApiSchema`. |
+| `packageId` | string | NuGet package identifier. Always qualified with the data-standard version: core is `EdFi.DataStandard<dsv>.ApiSchema` (e.g. `EdFi.DataStandard52.ApiSchema`); extensions are `EdFi.DataStandard<dsv>.<Extension>.ApiSchema` (e.g. `EdFi.DataStandard52.Sample.ApiSchema`). |
 | `projectName` | string | Human-readable project name read from `ApiSchema.json` `projectSchema.projectName`, e.g. `Ed-Fi`, `Sample`. |
 | `projectEndpointName` | string | URL-segment endpoint name read from `ApiSchema.json` `projectSchema.projectEndpointName`, e.g. `ed-fi`, `sample`. |
 | `isExtensionProject` | boolean | `true` for extension packages; `false` for the core package. Read from `ApiSchema.json` `projectSchema.isExtensionProject`. |
@@ -129,7 +138,7 @@ A Sample extension package with XSD:
 ```json
 {
   "version": 1,
-  "packageId": "EdFi.Sample.ApiSchema",
+  "packageId": "EdFi.DataStandard52.Sample.ApiSchema",
   "projectName": "Sample",
   "projectEndpointName": "sample",
   "isExtensionProject": true,
@@ -146,7 +155,7 @@ A Homograph extension package — no XSD, no discovery spec:
 ```json
 {
   "version": 1,
-  "packageId": "EdFi.Homograph.ApiSchema",
+  "packageId": "EdFi.DataStandard52.Homograph.ApiSchema",
   "projectName": "Homograph",
   "projectEndpointName": "homograph",
   "isExtensionProject": true,

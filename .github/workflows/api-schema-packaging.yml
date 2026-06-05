@@ -218,17 +218,10 @@ jobs:
         working-directory: ./MetaEd-js/
         env:
           DataStandardVersion: '${{ matrix.ds.short-version }}'
-        run: |
-          # Compute the exact .nupkg filename produced by the pack step so that Validate
-          # always inspects the freshly-built file rather than relying on any fallback.
-          # For Core the PackageId includes DataStandardVersion (e.g. EdFi.DataStandard52.ApiSchema);
-          # for extensions it is simply EdFi.<Ext>.ApiSchema.
-          if ("${{ matrix.config }}" -eq "Core") {
-            $pkgFile = "./eng/ApiSchema/EdFi.DataStandard${{ matrix.ds.short-version }}.ApiSchema.1.0.${{ github.run_number }}.nupkg"
-          } else {
-            $pkgFile = "./eng/ApiSchema/EdFi.${{ matrix.config }}.ApiSchema.1.0.${{ github.run_number }}.nupkg"
-          }
-          ./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName "${{ matrix.config }}" -PackageFile $pkgFile
+        # Validate computes the exact expected .nupkg filename from DataStandardVersion + the config
+        # (core: EdFi.DataStandard<dsv>.ApiSchema; extensions: EdFi.DataStandard<dsv>.<Ext>.ApiSchema),
+        # so the filename is derived in exactly one place rather than duplicated here.
+        run: ./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName "${{ matrix.config }}" -Version "1.0.${{ github.run_number }}"
 
       - name: Upload Package as Artifact
         if: success()

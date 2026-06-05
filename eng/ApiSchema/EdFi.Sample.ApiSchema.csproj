@@ -9,7 +9,7 @@
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.Sample.ApiSchema</PackageId>
+        <PackageId>EdFi.DataStandard$(DataStandardVersion).Sample.ApiSchema</PackageId>
         <title>Ed-Fi API Schema definition for Sample Extension</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>

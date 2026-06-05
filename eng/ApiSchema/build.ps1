@@ -3,6 +3,10 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
+# This script targets PowerShell 7+ (pwsh): it uses multi-argument Join-Path and other
+# PowerShell 6+ syntax, and Verify shells out to `pwsh`. Windows PowerShell 5.1 is not supported.
+#Requires -Version 7
+
 [CmdLetBinding()]
 param (
     [string]
@@ -62,6 +66,27 @@ function Assert-NativeSuccess {
     }
 }
 
+# Computes the real NuGet PackageId from the extension name and the DataStandardVersion, mirroring
+# the <PackageId> in each .csproj:
+#   Core:       EdFi.DataStandard<dsv>.ApiSchema             (csproj: EdFi.DataStandard$(DataStandardVersion).ApiSchema)
+#   Extensions: EdFi.DataStandard<dsv>.<ExtensionName>.ApiSchema
+# DataStandardVersion is REQUIRED for both core and extensions (DMS-1155 D8): every published
+# ApiSchema package qualifies its id with the data-standard version so that the same extension built
+# against different core data standards (e.g. Sample on DS 5.2 vs 6.1) produces distinct, resolvable
+# packages instead of colliding on one id+version on the immutable feed. This is the single source of
+# truth for the packageId used by WriteManifest, Validate, and Verify.
+function Get-ApiSchemaPackageId {
+    param([string] $ExtensionName, [string] $DataStandardVersion)
+    if (-not $DataStandardVersion) {
+        Write-Error "Get-ApiSchemaPackageId: DataStandardVersion is required (e.g. '52') for '$ExtensionName' but is not set."
+        exit 1
+    }
+    if ($ExtensionName -eq 'Core') {
+        return "EdFi.DataStandard$DataStandardVersion.ApiSchema"
+    }
+    return "EdFi.DataStandard$DataStandardVersion.$ExtensionName.ApiSchema"
+}
+
 function InstallCredentialHandler {
     # Does the same as: iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) }"
     # but this brings support for installing the provider on Linux.
@@ -115,8 +140,12 @@ function PushPackage {
     Write-Output ">>>>> $PackageFile"
 
     if (-not $PackageFile) {
-        Write-Output "Not Package File specified."
-        $PackageFile = "$PSScriptRoot/$projectName.$Version.nupkg"
+        # Local-use fallback only — CI always passes -PackageFile with the exact packed path.
+        # Derive the DS-qualified filename from the real PackageId (mirrors each csproj's
+        # EdFi.DataStandard<dsv>.<...>.ApiSchema, DMS-1155 D8); requires $env:DataStandardVersion.
+        Write-Output "No PackageFile specified; deriving from the DS-qualified PackageId."
+        $packageId = Get-ApiSchemaPackageId -ExtensionName $ExtensionName -DataStandardVersion $env:DataStandardVersion
+        $PackageFile = "$PSScriptRoot/$packageId.$Version.nupkg"
         Write-Output "Package File: $PackageFile"
     }
 
@@ -136,16 +165,16 @@ function BuildPackage {
     # env var (CI pattern), but we also forward it explicitly here so local and Verify runs work
     # without requiring the caller to set the env var separately.
 
-    # Fail fast for Core when DataStandardVersion is not set: the csproj PackageId is
-    # <PackageId>EdFi.DataStandard$(DataStandardVersion).ApiSchema</PackageId> so an empty
-    # value silently produces the wrong id "EdFi.DataStandard.ApiSchema". Extensions do not
-    # include the version in their PackageId and are unaffected.
-    if ($ExtensionName -eq 'Core' -and -not $env:DataStandardVersion) {
-        Write-Error "BuildPackage: DataStandardVersion environment variable is required for Core but is not set. Set `$env:DataStandardVersion` (e.g. '52') before invoking Package."
+    # Fail fast when DataStandardVersion is not set: the csproj PackageId is
+    # <PackageId>EdFi.DataStandard$(DataStandardVersion).<...>.ApiSchema</PackageId> for BOTH core and
+    # extensions (DMS-1155 D8), so an empty value silently produces a malformed id (e.g.
+    # "EdFi.DataStandard.ApiSchema" or "EdFi.DataStandard..Sample.ApiSchema"). Required for all configs.
+    if (-not $env:DataStandardVersion) {
+        Write-Error "BuildPackage: DataStandardVersion environment variable is required (e.g. '52') for '$ExtensionName' but is not set. Set `$env:DataStandardVersion` before invoking Package."
         exit 1
     }
 
-    $dsv = if ($env:DataStandardVersion) { $env:DataStandardVersion } else { "" }
+    $dsv = $env:DataStandardVersion
     $arguments = @(
         "-c", "release",
         "-p:PackageVersion=$Version",
@@ -273,9 +302,17 @@ function StageAssets {
     if ($hasXsdOrInterchange) {
         New-Item -ItemType Directory -Path $xsdDestDir -Force | Out-Null
 
+        # Both XSD/ and Interchange/ collapse into the single staging xsd/ directory under their
+        # original names. Guard against a same-named file in both sources: a silent overwrite would
+        # drop a schema file BEFORE packing, where the package's duplicate-path check can no longer
+        # see it (the package would validate green with a file missing). Fail fast instead.
         if (Test-Path -Path $xsdSourceDir) {
             Get-ChildItem -Path $xsdSourceDir -File | ForEach-Object {
                 $destFile = Join-Path $xsdDestDir $_.Name
+                if (Test-Path -Path $destFile) {
+                    Write-Error "Duplicate staged xsd name '$($_.Name)' for '$ExtensionName' (collision within XSD/ sources)."
+                    exit 1
+                }
                 Copy-Item -Path $_.FullName -Destination $destFile
                 Write-Host "Staged XSD: $destFile"
             }
@@ -284,6 +321,10 @@ function StageAssets {
         if (Test-Path -Path $interchangeSourceDir) {
             Get-ChildItem -Path $interchangeSourceDir -File | ForEach-Object {
                 $destFile = Join-Path $xsdDestDir $_.Name
+                if (Test-Path -Path $destFile) {
+                    Write-Error "Duplicate staged xsd name '$($_.Name)' for '$ExtensionName' (XSD/ and Interchange/ produce the same file name)."
+                    exit 1
+                }
                 Copy-Item -Path $_.FullName -Destination $destFile
                 Write-Host "Staged Interchange: $destFile"
             }
@@ -325,8 +366,10 @@ function StageAssets {
       {
         "version": 1,              -- FORMAT version constant, NOT the NuGet package version
         "packageId": "<string>",   -- NuGet package ID; for core this is "EdFi.DataStandard<Version>.ApiSchema"
-                                      (e.g. "EdFi.DataStandard52.ApiSchema") where <Version> comes from
-                                      $env:DataStandardVersion; for extensions it is "EdFi.<Extension>.ApiSchema"
+                                      (e.g. "EdFi.DataStandard52.ApiSchema") and for extensions it is
+                                      "EdFi.DataStandard<Version>.<Extension>.ApiSchema" (e.g.
+                                      "EdFi.DataStandard52.Sample.ApiSchema"), where <Version> comes from
+                                      $env:DataStandardVersion (DMS-1155 D8)
         "projectName": "<string>", -- from ApiSchema.json projectSchema.projectName
         "projectEndpointName": "<string>", -- from ApiSchema.json projectSchema.projectEndpointName
         "isExtensionProject": <bool>,      -- from ApiSchema.json projectSchema.isExtensionProject
@@ -356,24 +399,12 @@ function WriteManifest {
     $schemaEndpointName     = $apiSchema.projectSchema.projectEndpointName
     $schemaIsExtension      = $apiSchema.projectSchema.isExtensionProject
 
-    # packageId is the NuGet package identifier.
-    # For core packages the real NuGet PackageId includes the DataStandardVersion
-    # (e.g. "EdFi.DataStandard52.ApiSchema"), which matches the csproj's
-    # <PackageId>EdFi.DataStandard$(DataStandardVersion).ApiSchema</PackageId>.
-    # $projectName (set at script top from $ExtensionName) correctly locates the
-    # UNVERSIONED csproj file — it must NOT be used as the manifest packageId for core.
-    # For extensions the csproj PackageId has no version so $projectName is correct.
-    if ($ExtensionName -eq 'Core') {
-        $dsv = $env:DataStandardVersion
-        if (-not $dsv) {
-            Write-Error "WriteManifest: DataStandardVersion environment variable is required for Core but is not set. Set `$env:DataStandardVersion` (e.g. '52') before invoking WriteManifest."
-            exit 1
-        }
-        $packageId = "EdFi.DataStandard$dsv.ApiSchema"
-    }
-    else {
-        $packageId = $projectName
-    }
+    # packageId is the real NuGet package identifier. For BOTH core and extensions it includes the
+    # DataStandardVersion (e.g. "EdFi.DataStandard52.ApiSchema", "EdFi.DataStandard52.Sample.ApiSchema"),
+    # matching each csproj's <PackageId>EdFi.DataStandard$(DataStandardVersion).<...>.ApiSchema</PackageId>
+    # (DMS-1155 D8). $projectName (set at script top from $ExtensionName) only locates the UNVERSIONED
+    # csproj FILE — it must NOT be used as the manifest packageId. Computed via the shared helper.
+    $packageId = Get-ApiSchemaPackageId -ExtensionName $ExtensionName -DataStandardVersion $env:DataStandardVersion
 
     # schemaPath is always the normalised filename used in staging.
     $schemaPath = "ApiSchema.json"
@@ -458,9 +489,10 @@ function WriteManifest {
 
     The .nupkg to validate is resolved as follows:
       - If -PackageFile is provided, that path is used directly (always preferred).
-      - Otherwise the script computes the expected filename from the real NuGet PackageId:
-          * For Core: EdFi.DataStandard<dsv>.ApiSchema.<Version>.nupkg using $env:DataStandardVersion
-          * For extensions: $projectName.<Version>.nupkg (i.e. EdFi.<Ext>.ApiSchema.<Version>.nupkg)
+      - Otherwise the script computes the expected filename from the real NuGet PackageId
+        (via Get-ApiSchemaPackageId), using $env:DataStandardVersion:
+          * For Core: EdFi.DataStandard<dsv>.ApiSchema.<Version>.nupkg
+          * For extensions: EdFi.DataStandard<dsv>.<Ext>.ApiSchema.<Version>.nupkg
       - If the computed file does not exist, validation fails with a clear error — there is NO
         blind "first *.nupkg" fallback. This prevents accidentally validating a stale or wrong
         package (e.g. a pre-existing net10-local.nupkg) when the expected file is absent.
@@ -480,20 +512,10 @@ function Validate {
     # a stale or wrong package (e.g. a pre-existing net10-local.nupkg locally).
     $nupkgPath = $PackageFile
     if (-not $nupkgPath) {
-        # Compute the real NuGet PackageId for the expected filename.
-        # For Core the PackageId includes the DataStandardVersion (mirrors the csproj:
-        # <PackageId>EdFi.DataStandard$(DataStandardVersion).ApiSchema</PackageId>).
-        # For extensions $projectName is already the correct id (no version suffix).
-        if ($ExtensionName -eq 'Core') {
-            $dsv = $env:DataStandardVersion
-            if (-not $dsv) {
-                Write-Error "Validate: DataStandardVersion environment variable is required for Core when -PackageFile is not provided. Set `$env:DataStandardVersion` (e.g. '52')."
-                exit 1
-            }
-            $expectedPackageId = "EdFi.DataStandard$dsv.ApiSchema"
-        } else {
-            $expectedPackageId = $projectName
-        }
+        # Compute the real NuGet PackageId for the expected filename via the shared helper, which
+        # includes the DataStandardVersion for both core and extensions (mirrors each csproj's
+        # <PackageId>EdFi.DataStandard$(DataStandardVersion).<...>.ApiSchema</PackageId>, DMS-1155 D8).
+        $expectedPackageId = Get-ApiSchemaPackageId -ExtensionName $ExtensionName -DataStandardVersion $env:DataStandardVersion
         $nupkgPath = Join-Path $PSScriptRoot "$expectedPackageId.$Version.nupkg"
     }
     if (-not (Test-Path -Path $nupkgPath)) {
@@ -643,9 +665,9 @@ function Validate {
     }
 
     # Required fields type checks.
-    # NOTE: ConvertFrom-Json in PowerShell 5 returns Int32 for JSON integers, and
-    # System.Boolean for JSON booleans. In PowerShell 7 it may return Int64.
-    # We check for numeric types broadly to remain cross-version compatible.
+    # NOTE: ConvertFrom-Json in PowerShell 7 returns Int64 for JSON integers and System.Boolean for
+    # JSON booleans. The numeric check accepts the full numeric set defensively (the value is also
+    # compared to 1 below regardless of concrete numeric type).
 
     # version: number == 1
     Assert-Condition ($null -ne $manifest.version) "manifest field 'version' is missing."
@@ -802,6 +824,44 @@ function Validate {
 
     Prints a clear "PASS: <project>" line for each project and exits non-zero on any failure.
 #>
+
+# ---- Negative-test helpers (used by Verify) ----
+# These exercise the Validate gate adversarially: the gate's entire value is REJECTING bad packages,
+# so these construct known-bad .nupkg files (by mutating a valid one in-memory) and assert Validate
+# fails. A regression that widens the allow-list would otherwise pass CI silently.
+
+# Adds or replaces a text entry inside an open (Update-mode) ZipArchive.
+function Set-ZipEntryText {
+    param([System.IO.Compression.ZipArchive] $Zip, [string] $EntryPath, [string] $Content)
+    $existing = $Zip.GetEntry($EntryPath)
+    if ($null -ne $existing) { $existing.Delete() }
+    $entry  = $Zip.CreateEntry($EntryPath)
+    $writer = [System.IO.StreamWriter]::new($entry.Open())
+    try { $writer.Write($Content) } finally { $writer.Dispose() }
+}
+
+# Copies a valid .nupkg to a new path and applies a mutation scriptblock to the open archive.
+function New-MutatedPackage {
+    param([string] $BasePackage, [string] $DestPackage, [scriptblock] $Mutate)
+    Copy-Item -Path $BasePackage -Destination $DestPackage -Force
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $stream = [System.IO.File]::Open($DestPackage, [System.IO.FileMode]::Open)
+    $zip    = [System.IO.Compression.ZipArchive]::new($stream, [System.IO.Compression.ZipArchiveMode]::Update)
+    try { & $Mutate $zip } finally { $zip.Dispose(); $stream.Dispose() }
+    return $DestPackage
+}
+
+# Runs Validate against a package in a child pwsh and asserts it is REJECTED (non-zero exit).
+function Assert-ValidateRejects {
+    param([string] $ScriptPath, [string] $PackageFile, [string] $ExtensionName, [string] $CaseName)
+    & pwsh -NoProfile -Command "& '$ScriptPath' -Command Validate -ExtensionName '$ExtensionName' -PackageFile '$PackageFile'" *> $null
+    if ($LASTEXITCODE -eq 0) {
+        Write-Error "Verify NEGATIVE case FAILED: Validate ACCEPTED a bad package ('$CaseName'). The gate must reject it."
+        exit 1
+    }
+    Write-Host "  rejected as expected: $CaseName" -ForegroundColor Green
+}
+
 function Verify {
     # Use a unique version suffix to avoid collisions with pre-existing .nupkg files.
     $verifyVersion = "0.0.0-verify"
@@ -897,8 +957,8 @@ function Verify {
 
         # WriteManifest — also from $tmpRoot (staging dir is relative to script root, not cwd,
         # but WriteManifest uses $solutionRoot which is $PSScriptRoot, so run from any dir).
-        # DataStandardVersion must be set for Core so the manifest packageId is computed correctly;
-        # for extensions it is ignored (empty string is fine).
+        # DataStandardVersion must be set for BOTH core and extensions so the manifest packageId is
+        # computed correctly (e.g. EdFi.DataStandard52.Sample.ApiSchema) — DMS-1155 D8.
         Write-Host "  [WriteManifest] $ProjectExtensionName"
         & pwsh -NoProfile -Command "
             `$env:DataStandardVersion = '$DataStdVersion'
@@ -910,7 +970,7 @@ function Verify {
             exit 1
         }
 
-        # Package (dotnet pack) — pass DataStandardVersion for core.
+        # Package (dotnet pack) — pass DataStandardVersion (required for core and extensions, D8).
         Write-Host "  [Package] $ProjectExtensionName"
         & pwsh -NoProfile -Command "
             `$env:DataStandardVersion = '$DataStdVersion'
@@ -922,13 +982,9 @@ function Verify {
             exit 1
         }
 
-        # Determine the produced .nupkg path.
-        # For Core the PackageId includes DataStandardVersion; for extensions it does not.
-        if ($ProjectExtensionName -eq 'Core') {
-            $nupkgName = "EdFi.DataStandard$($DataStdVersion).ApiSchema.$verifyVersion.nupkg"
-        } else {
-            $nupkgName = "EdFi.$ProjectExtensionName.ApiSchema.$verifyVersion.nupkg"
-        }
+        # Determine the produced .nupkg path. The PackageId includes DataStandardVersion for both
+        # core and extensions (DMS-1155 D8); computed via the shared helper so it stays in lockstep.
+        $nupkgName = "$(Get-ApiSchemaPackageId -ExtensionName $ProjectExtensionName -DataStandardVersion $DataStdVersion).$verifyVersion.nupkg"
         $nupkgPath = Join-Path $PSScriptRoot $nupkgName
 
         if (-not (Test-Path -Path $nupkgPath)) {
@@ -936,10 +992,11 @@ function Verify {
             exit 1
         }
 
-        # Validate — reuse the existing Validate command.
+        # Validate — reuse the existing Validate command. -PackageFile is authoritative, so -Version
+        # is not passed (it would be ignored when -PackageFile is present).
         Write-Host "  [Validate] $ProjectExtensionName"
         & pwsh -NoProfile -Command "
-            & '$scriptPath' -Command Validate -ExtensionName '$ProjectExtensionName' -Version '$verifyVersion' -PackageFile '$nupkgPath'
+            & '$scriptPath' -Command Validate -ExtensionName '$ProjectExtensionName' -PackageFile '$nupkgPath'
         " | Out-Host
         $code = $LASTEXITCODE
         if ($code -ne 0) {
@@ -995,12 +1052,9 @@ function Verify {
         # Positive packageId assertion: confirm the manifest contains the expected NuGet package id.
         # This catches the class of bug fixed in Task 11 (unversioned core id) and any future
         # regression where the manifest packageId drifts from the real NuGet package identity.
-        $expectedPackageId = switch ($ProjectExtensionName) {
-            'Core'      { "EdFi.DataStandard$($DataStdVersion).ApiSchema" }
-            'Sample'    { 'EdFi.Sample.ApiSchema' }
-            'Homograph' { 'EdFi.Homograph.ApiSchema' }
-            default     { "EdFi.$ProjectExtensionName.ApiSchema" }
-        }
+        # Computed via the shared helper so core and extensions both carry the DataStandardVersion
+        # (e.g. EdFi.DataStandard52.ApiSchema, EdFi.DataStandard52.Sample.ApiSchema) — DMS-1155 D8.
+        $expectedPackageId = Get-ApiSchemaPackageId -ExtensionName $ProjectExtensionName -DataStandardVersion $DataStdVersion
         Assert-Extra ([string]::Compare($manifestObj.packageId, $expectedPackageId, [System.StringComparison]::OrdinalIgnoreCase) -eq 0) "manifest packageId must be '$expectedPackageId' but is '$($manifestObj.packageId)'."
 
         # Homograph: discoverySpecPath and xsdDirectory must be null.
@@ -1057,22 +1111,87 @@ function Verify {
         $generatedNupkgs += $pkg
         Write-Host "PASS: Core" -ForegroundColor Green
 
-        # Run Sample (extension WITH XSD).
+        # Run Sample (extension WITH XSD). DataStandardVersion is now REQUIRED for extensions too,
+        # because the extension csproj PackageId interpolates $(DataStandardVersion) (DMS-1155 D8) —
+        # e.g. EdFi.DataStandard52.Sample.ApiSchema. "52" mirrors the "DS-5.2.0" short-version.
         Write-Host "`nVerify: running pipeline for Sample ..."
-        # Empty DataStdVersion is intentional and safe for extensions: extension csproj PackageIds
-        # do not interpolate $(DataStandardVersion), so the empty value has no effect.
-        $pkg = Invoke-VerifyProject -ProjectExtensionName "Sample" -DataStdVersion ""
+        $pkg = Invoke-VerifyProject -ProjectExtensionName "Sample" -DataStdVersion "52"
         $generatedNupkgs += $pkg
+        $samplePkg = $pkg   # reused as the valid base for the negative cases below
         Write-Host "PASS: Sample" -ForegroundColor Green
 
-        # Run Homograph (extension WITHOUT XSD/Interchange/discovery-spec).
+        # Run Homograph (extension WITHOUT XSD/Interchange/discovery-spec). DataStandardVersion is
+        # required for extensions (see Sample comment above).
         Write-Host "`nVerify: running pipeline for Homograph ..."
-        # Empty DataStdVersion is intentional and safe for extensions (see Sample comment above).
-        $pkg = Invoke-VerifyProject -ProjectExtensionName "Homograph" -DataStdVersion ""
+        $pkg = Invoke-VerifyProject -ProjectExtensionName "Homograph" -DataStdVersion "52"
         $generatedNupkgs += $pkg
         Write-Host "PASS: Homograph" -ForegroundColor Green
 
         Write-Host "`nVerify: ALL PROJECTS PASSED." -ForegroundColor Green
+
+        # ---- NEGATIVE cases: the Validate gate MUST reject malformed/tampered packages ----
+        # These mutate the valid Sample .nupkg ($samplePkg) in-memory and assert Validate fails,
+        # plus one StageAssets duplicate-name case. They turn the previously-manual adversarial
+        # checks into a checked-in regression guard for the publish gate.
+        Write-Host "`nVerify: running NEGATIVE cases (gate must REJECT each) ..."
+        $scriptPath = Join-Path $PSScriptRoot "build.ps1"
+        $negDir = Join-Path $tmpRoot "neg"
+        New-Item -ItemType Directory -Path $negDir -Force | Out-Null
+
+        # 1. Planted top-level assembly (fails the positive allow-list).
+        $p = New-MutatedPackage -BasePackage $samplePkg -DestPackage (Join-Path $negDir 'case-dll.nupkg') -Mutate {
+            param($zip) Set-ZipEntryText -Zip $zip -EntryPath 'evil.dll' -Content 'x'
+        }
+        Assert-ValidateRejects -ScriptPath $scriptPath -PackageFile $p -ExtensionName 'Sample' -CaseName 'planted top-level evil.dll'
+
+        # 2. Planted forbidden directory segment (lib/) — caught by the segment denylist.
+        $p = New-MutatedPackage -BasePackage $samplePkg -DestPackage (Join-Path $negDir 'case-lib.nupkg') -Mutate {
+            param($zip) Set-ZipEntryText -Zip $zip -EntryPath 'lib/net10.0/x.txt' -Content 'x'
+        }
+        Assert-ValidateRejects -ScriptPath $scriptPath -PackageFile $p -ExtensionName 'Sample' -CaseName 'planted lib/ directory segment'
+
+        # 3. Non-.xsd file under the xsd/ payload directory.
+        $p = New-MutatedPackage -BasePackage $samplePkg -DestPackage (Join-Path $negDir 'case-xsd-dll.nupkg') -Mutate {
+            param($zip) Set-ZipEntryText -Zip $zip -EntryPath 'contentFiles/any/any/ApiSchema/xsd/evil.dll' -Content 'x'
+        }
+        Assert-ValidateRejects -ScriptPath $scriptPath -PackageFile $p -ExtensionName 'Sample' -CaseName 'non-.xsd file under xsd/'
+
+        # 4. Manifest packageId tampered so it no longer matches the nuspec <id> (check 7).
+        $p = New-MutatedPackage -BasePackage $samplePkg -DestPackage (Join-Path $negDir 'case-badid.nupkg') -Mutate {
+            param($zip)
+            $manifestPath = 'contentFiles/any/any/ApiSchema/package-manifest.json'
+            $entry  = $zip.GetEntry($manifestPath)
+            $reader = [System.IO.StreamReader]::new($entry.Open())
+            try { $json = $reader.ReadToEnd() } finally { $reader.Dispose() }
+            $obj = $json | ConvertFrom-Json
+            $obj.packageId = 'EdFi.DataStandard52.WrongId.ApiSchema'
+            Set-ZipEntryText -Zip $zip -EntryPath $manifestPath -Content ($obj | ConvertTo-Json -Depth 5)
+        }
+        Assert-ValidateRejects -ScriptPath $scriptPath -PackageFile $p -ExtensionName 'Sample' -CaseName 'manifest packageId != nuspec <id>'
+
+        # 5. Extension package carrying a discovery-spec.json (forbidden for extensions, check 8).
+        $p = New-MutatedPackage -BasePackage $samplePkg -DestPackage (Join-Path $negDir 'case-extdisc.nupkg') -Mutate {
+            param($zip) Set-ZipEntryText -Zip $zip -EntryPath 'contentFiles/any/any/ApiSchema/discovery-spec.json' -Content '{}'
+        }
+        Assert-ValidateRejects -ScriptPath $scriptPath -PackageFile $p -ExtensionName 'Sample' -CaseName 'extension carrying discovery-spec.json'
+
+        # 6. StageAssets must reject an XSD/ + Interchange/ file-name collision (before pack).
+        $dupProj   = 'DupCollide'
+        $dupApiDir = Join-Path $metaEdOutputRoot $dupProj "ApiSchema"
+        $dupXsdDir = Join-Path $metaEdOutputRoot $dupProj "XSD"
+        $dupIntDir = Join-Path $metaEdOutputRoot $dupProj "Interchange"
+        New-Item -ItemType Directory -Path $dupApiDir, $dupXsdDir, $dupIntDir -Force | Out-Null
+        Set-Content -Path (Join-Path $dupApiDir "ApiSchema-EXTENSION.json") -Value $sampleSchema -Encoding utf8
+        Set-Content -Path (Join-Path $dupXsdDir "Collide.xsd") -Value $minimalXsd -Encoding utf8
+        Set-Content -Path (Join-Path $dupIntDir "Collide.xsd") -Value $minimalXsd -Encoding utf8
+        & pwsh -NoProfile -Command "Set-Location '$tmpRoot'; & '$scriptPath' -Command StageAssets -ExtensionName '$dupProj'" *> $null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Error "Verify NEGATIVE case FAILED: StageAssets ACCEPTED a duplicate XSD/Interchange file name. It must reject it."
+            exit 1
+        }
+        Write-Host "  rejected as expected: StageAssets duplicate XSD/Interchange name" -ForegroundColor Green
+
+        Write-Host "`nVerify: ALL NEGATIVE CASES correctly rejected." -ForegroundColor Green
     }
     finally {
         # ---- clean up synthetic MetaEdOutput and staging directories ----
@@ -1085,7 +1204,7 @@ function Verify {
         }
 
         # Remove staging directories created for the verify run.
-        foreach ($ext in @("Core", "Sample", "Homograph")) {
+        foreach ($ext in @("Core", "Sample", "Homograph", "DupCollide")) {
             $stagingDir = Join-Path $PSScriptRoot "staging" $ext
             if (Test-Path -Path $stagingDir) {
                 Remove-Item -Path $stagingDir -Recurse -Force -ErrorAction SilentlyContinue

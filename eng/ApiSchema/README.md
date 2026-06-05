@@ -66,18 +66,19 @@ Reads project identity semantically from the staged `ApiSchema.json` (`projectSc
 `projectSchema.projectEndpointName`, `projectSchema.isExtensionProject`) and writes
 `staging/<ExtensionName>/package-manifest.json`. Must be run after `StageAssets`.
 
-> **Core requires `$env:DataStandardVersion`** — the NuGet `PackageId` for Core is
-> `EdFi.DataStandard<Version>.ApiSchema` (e.g. `EdFi.DataStandard52.ApiSchema`), so
-> `$env:DataStandardVersion` must be set before invoking `WriteManifest`, `Package`, or `Validate`
-> for Core. Extensions do not include the version in their `PackageId` and do not need this variable.
+> **`$env:DataStandardVersion` is required for every package (core and extensions)** — the NuGet
+> `PackageId` is data-standard-qualified: core is `EdFi.DataStandard<Version>.ApiSchema` (e.g.
+> `EdFi.DataStandard52.ApiSchema`) and extensions are `EdFi.DataStandard<Version>.<Extension>.ApiSchema`
+> (e.g. `EdFi.DataStandard52.Sample.ApiSchema`), so `$env:DataStandardVersion` must be set before
+> invoking `WriteManifest`, `Package`, or `Validate` (DMS-1155 D8).
 
 ```powershell
-# Core requires the Data Standard short-version (e.g. 52) so the PackageId resolves to
-# EdFi.DataStandard52.ApiSchema. Extensions do not need this.
+# Set the Data Standard short-version (e.g. 52) so the PackageId resolves correctly for core
+# (EdFi.DataStandard52.ApiSchema) and extensions (EdFi.DataStandard52.Sample.ApiSchema).
 $env:DataStandardVersion = '52'
 ./eng/ApiSchema/build.ps1 -Command WriteManifest -ExtensionName Core
 
-# Extensions — no env var needed:
+# Extensions need it too:
 ./eng/ApiSchema/build.ps1 -Command WriteManifest -ExtensionName TPDM|Sample|Homograph
 ```
 
@@ -92,15 +93,16 @@ transient (empty) compile to `bin/`; however, `<IncludeBuildOutput>false</Includ
 compiled assembly is **never** included in the `.nupkg`, so the published package is DLL-free. The `bin/` and
 `obj/` directories are gitignored and are not committed.
 
-`$env:DataStandardVersion` is required for Core (see step 3 above). The script exits immediately with a
-clear error if it is unset for Core, so no mis-named package is ever produced.
+`$env:DataStandardVersion` is required for core and extensions (see step 3 above). The script exits
+immediately with a clear error if it is unset, so no mis-named package is ever produced.
 
 ```powershell
-# Core:
 $env:DataStandardVersion = '52'
+
+# Core:
 ./eng/ApiSchema/build.ps1 Package -Version "1.0.<run_number>" -ExtensionName Core
 
-# Extensions — no env var needed:
+# Extensions need it too:
 ./eng/ApiSchema/build.ps1 Package -Version "1.0.<run_number>" -ExtensionName TPDM|Sample|Homograph
 ```
 
@@ -110,14 +112,16 @@ Extracts the `.nupkg` and verifies all contract invariants: exactly one schema a
 parseable JSON, `package-manifest.json` present with all required fields and correct types, manifest path
 targets exist, no duplicate paths, and no forbidden payload entries. Exits non-zero on any violation.
 
-`$env:DataStandardVersion` is required for Core when `-PackageFile` is not provided (see step 3 above).
+`$env:DataStandardVersion` is required for core and extensions when `-PackageFile` is not provided, so
+the expected filename can be computed (see step 3 above).
 
 ```powershell
-# Core:
 $env:DataStandardVersion = '52'
+
+# Core:
 ./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName Core -Version "1.0.<run_number>"
 
-# Extensions — no env var needed:
+# Extensions need it too:
 ./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName TPDM|Sample|Homograph -Version "1.0.<run_number>"
 ```
 

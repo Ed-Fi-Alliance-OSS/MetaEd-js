@@ -9,7 +9,7 @@
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.Homograph.ApiSchema</PackageId>
+        <PackageId>EdFi.DataStandard$(DataStandardVersion).Homograph.ApiSchema</PackageId>
         <title>Ed-Fi API Schema definition for Homograph Extension</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>

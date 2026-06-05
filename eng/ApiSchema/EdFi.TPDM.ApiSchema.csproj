@@ -9,7 +9,7 @@
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <Version>$(Version)</Version>
-        <PackageId>EdFi.TPDM.ApiSchema</PackageId>
+        <PackageId>EdFi.DataStandard$(DataStandardVersion).TPDM.ApiSchema</PackageId>
         <title>Ed-Fi API Schema definition for TPDM Extension</title>
         <authors>Ed-Fi Alliance</authors>
         <projectUrl>https://github.com/Ed-Fi-Alliance-OSS</projectUrl>
