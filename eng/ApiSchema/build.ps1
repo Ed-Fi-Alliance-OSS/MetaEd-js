@@ -154,7 +154,11 @@ function PushPackage {
     }
     else {
         Write-Output "Pushing the NuGet Package $PackageFile to $EdFiNuGetFeed"
-        dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey
+        # --skip-duplicate makes a 409 Conflict (version already published to the immutable Azure
+        # Artifacts feed) a success, so re-running a partially-failed publish run is idempotent.
+        # github.run_number is stable across "Re-run all jobs", so already-pushed matrix cells would
+        # otherwise 409. Auth/network/feed errors still surface a non-zero exit via Assert-NativeSuccess.
+        dotnet nuget push $PackageFile --source $EdFiNuGetFeed --api-key $NuGetApiKey --skip-duplicate
         Assert-NativeSuccess -ExitCode $LASTEXITCODE -CommandName "dotnet nuget push ($PackageFile)"
     }
 }
