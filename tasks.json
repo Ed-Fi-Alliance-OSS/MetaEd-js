@@ -192,6 +192,6 @@
       "Run the focused Jest tests for the changed package with `npx jest path/to/test.ts` from the repository root.",
       "Optionally validate merged OpenAPI documents with `@apidevtools/swagger-parser` if new full-document validation coverage is added."
     ],
-    "completed": false
+    "completed": true
   }
 ]

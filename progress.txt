@@ -50,3 +50,9 @@ Key decisions: accepted generated Change Query OpenAPI contract into v7.1/v7.2/v
 Files changed: v7_1/v7_2/v7_3 api-schema authoritative JSON artifacts, tasks.json, progress.txt.
 Verification: updater dry-run copy set reviewed; v7.1/v7.2/v7.3 AuthoritativeCompare Jest pass; package tsc and ESLint pass; spot-checked /availableChangeVersions, /deletes, /keyChanges, extension no base docs, snapshot-only strings absent except model descriptions.
 Notes: final validation task remains.
+
+2026-06-10 - Completed validation for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: added generated OpenAPI composition validation with swagger-parser; validates core resources/descriptors/changeQueries plus compatible extension fragments; dedupes tags during composition; no artifact diffs expected.
+Files changed: OpenApiGeneratedDocumentValidation.test.ts, tasks.json, progress.txt.
+Verification: new validation Jest, Change Query focused Jest, v7.1/v7.2/v7.3 AuthoritativeCompare Jest, package tsc, package ESLint.
+Notes: no npm run build used.
