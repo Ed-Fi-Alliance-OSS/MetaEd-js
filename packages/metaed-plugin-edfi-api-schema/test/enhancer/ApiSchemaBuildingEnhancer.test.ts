@@ -50,6 +50,7 @@ import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/e
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
+import { enhance as queryFieldMappingEnhancer } from '../../src/enhancer/QueryFieldMappingEnhancer';
 import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
@@ -80,6 +81,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
+  queryFieldMappingEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   typeCoercionJsonPathsEnhancer(metaEd);
   enhance(metaEd);
