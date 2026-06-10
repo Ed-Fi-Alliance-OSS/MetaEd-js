@@ -62,3 +62,9 @@ Key decisions: createResourceFragment/createDescriptorFragment compute tracked-c
 Files changed: OpenApiSpecificationEnhancerBase.ts, OpenApiResourceFragmentEnhancer.ts, OpenApiChangeQuerySchemaBuilder.test.ts, OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiChangeQuerySchemaBuilder Jest, OpenApiResourceFragmentEnhancer Jest, package tsc, package ESLint, OpenApiGeneratedDocumentValidation Jest.
 Notes: no artifact diffs expected; no npm run build used. Existing uncommitted tasks.json hygiene-task deletion was left as pre-existing work.
+
+2026-06-10 - Completed refactoring scalar OpenAPI schema mapper for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: extracted shared EntityProperty to OpenAPI SchemaObject mapper used by GET-many query params and tracked-change key schemas; preserved caller-specific unsupported-type fallbacks; kept tracked-change identity field names semantic via queryFieldMapping.
+Files changed: OpenApiEntityPropertySchemaMapper.ts, OpenApiSpecificationEnhancerBase.ts, OpenApiChangeQuerySchemaBuilder.ts, OpenApiChangeQuerySchemaBuilder.test.ts, tasks.json, progress.txt.
+Verification: OpenApiChangeQuerySchemaBuilder Jest, OpenApiResourceFragmentEnhancer Jest, package tsc, package ESLint.
+Notes: no artifact diffs expected; no npm run build used. Existing uncommitted tasks.json hygiene-task deletion remains unrelated pre-existing work.

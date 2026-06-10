@@ -224,7 +224,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
       "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "repo-hygiene",

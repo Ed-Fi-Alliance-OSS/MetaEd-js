@@ -3,13 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import {
-  type DomainEntity,
-  type EntityProperty,
-  type IntegerProperty,
-  type StringProperty,
-  type TopLevelEntity,
-} from '@edfi/metaed-core';
+import { type DomainEntity, type TopLevelEntity } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { JsonPath } from '../model/api-schema/JsonPath';
 import type { PathType } from '../model/api-schema/PathType';
@@ -17,6 +11,7 @@ import type { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
 import type { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
 import type { SchemaObject, Schemas } from '../model/OpenApiTypes';
 import { deAcronym, normalizeDescriptorName } from '../Utility';
+import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
 
 /**
  * Component schema names used by tracked-change OpenAPI response schemas.
@@ -99,58 +94,12 @@ function schemaObjectFromPathType(pathType: PathType): SchemaObject {
 }
 
 /**
- * Creates an OpenAPI schema object from source property semantic type metadata.
- */
-function schemaObjectFromSourceProperty(sourceProperty: EntityProperty): SchemaObject {
-  switch (sourceProperty.type) {
-    case 'boolean':
-      return { type: 'boolean' };
-    case 'currency':
-    case 'decimal':
-    case 'percent':
-    case 'sharedDecimal':
-      return { type: 'number', format: 'double' };
-    case 'date':
-      return { type: 'string', format: 'date' };
-    case 'datetime':
-      return { type: 'string', format: 'date-time' };
-    case 'descriptor':
-    case 'enumeration':
-      return { type: 'string', maxLength: 306 };
-    case 'duration':
-      return { type: 'string', maxLength: 30 };
-    case 'integer':
-    case 'sharedInteger': {
-      const integerProperty: IntegerProperty = sourceProperty as IntegerProperty;
-      return { type: 'integer', format: integerProperty.hasBigHint ? 'int64' : 'int32' };
-    }
-    case 'short':
-    case 'sharedShort':
-    case 'schoolYearEnumeration':
-    case 'year':
-      return { type: 'integer', format: 'int32' };
-    case 'string':
-    case 'sharedString': {
-      const stringProperty: StringProperty = sourceProperty as StringProperty;
-      const result: SchemaObject = { type: 'string' };
-      if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
-      if (stringProperty.maxLength) result.maxLength = Number(stringProperty.maxLength);
-      return result;
-    }
-    case 'time':
-      return { type: 'string' };
-    default:
-      return { type: 'string' };
-  }
-}
-
-/**
  * Creates an OpenAPI schema object from query field path metadata.
  */
 function schemaObjectFromQueryFieldPathInfo(pathInfo: QueryFieldPathInfo): SchemaObject {
   if (pathInfo.sourceProperty == null) return schemaObjectFromPathType(pathInfo.type);
 
-  return schemaObjectFromSourceProperty(pathInfo.sourceProperty);
+  return schemaObjectFromEntityProperty(pathInfo.sourceProperty, { type: 'string' });
 }
 
 /**

@@ -4,13 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { invariant } from 'ts-invariant';
-import { type TopLevelEntity, EntityProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
+import { type TopLevelEntity } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
 import {
   Operation,
   Parameter,
-  SchemaObject,
   ResponsesObject,
   ParameterObject,
   ReferenceObject,
@@ -22,6 +21,7 @@ import { pluralize, deAcronym, createUriSegment } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
 import { type TrackedChangeSchemaNames, trackedChangeSchemaNamesFor } from './OpenApiChangeQuerySchemaBuilder';
+import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -342,62 +342,6 @@ function newStaticTrackedChangeQueryParameters(): Parameter[] {
   ];
 }
 
-/**
- * Returns an OpenAPI schema object corresponding to the given property based on its type.
- */
-function schemaObjectFrom(property: EntityProperty): SchemaObject {
-  switch (property.type) {
-    case 'boolean':
-      return { type: 'boolean' };
-
-    case 'duration':
-      return { type: 'string', maxLength: 30 };
-
-    case 'currency':
-    case 'decimal':
-    case 'percent':
-    case 'sharedDecimal':
-      return { type: 'number', format: 'double' };
-
-    case 'date':
-      return { type: 'string', format: 'date' };
-
-    case 'datetime':
-      return { type: 'string', format: 'date-time' };
-
-    case 'descriptor':
-    case 'enumeration':
-      return { type: 'string', maxLength: 306 };
-
-    case 'integer':
-    case 'sharedInteger': {
-      const integerProperty: IntegerProperty = property as IntegerProperty;
-      return { type: 'integer', format: integerProperty.hasBigHint ? 'int64' : 'int32' };
-    }
-
-    case 'short':
-    case 'sharedShort':
-    case 'schoolYearEnumeration':
-    case 'year':
-      return { type: 'integer', format: 'int32' };
-
-    case 'string':
-    case 'sharedString': {
-      const result: SchemaObject = { type: 'string' };
-      const stringProperty: StringProperty = property as StringProperty;
-      if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
-      if (stringProperty.maxLength) result.maxLength = Number(stringProperty.maxLength);
-      return result;
-    }
-
-    case 'time':
-      return { type: 'string' };
-
-    default:
-      return { type: 'boolean' };
-  }
-}
-
 // All descriptor documents have the same OpenAPI get by query parameters
 const descriptorOpenApiParameters: Parameter[] = [
   {
@@ -489,7 +433,7 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
       name: fieldName,
       in: 'query',
       description: sourceProperty.documentation,
-      schema: schemaObjectFrom(sourceProperty),
+      schema: schemaObjectFromEntityProperty(sourceProperty),
       ...(sourceProperty.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
     };
 
