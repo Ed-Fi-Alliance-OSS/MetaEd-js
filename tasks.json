@@ -33,7 +33,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts` from the repository root after updating authoritative artifacts if generated artifacts changed.",
       "Inspect `projectSchema.openApiBaseDocuments.changeQueries.paths` in a generated core ApiSchema artifact under `packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3` and confirm it contains only `/availableChangeVersions`."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "openapi-generation",

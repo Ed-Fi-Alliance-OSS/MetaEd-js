@@ -4,22 +4,81 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { type MetaEdEnvironment, type EnhancerResult, type Namespace } from '@edfi/metaed-core';
-import { ComponentsObject, Document } from '../model/OpenApiTypes';
+import { ComponentsObject, Document, Operation, PathsObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import { createHardcodedParameterResponses, createHardcodedComponentParameters } from './OpenApiSpecificationEnhancerBase';
 import { newSchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { OpenApiDocumentType, OpenApiDocumentTypeValue } from '../model/api-schema/OpenApiDocumentType';
 
 /**
- * Creates the base OpenAPI document structure without paths, schemas, or tags.
- * This structure is common to all OpenAPI documents (resources, descriptors, etc.)
+ * Creates the component object for a document type.
  */
-function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: OpenApiDocumentTypeValue): Document {
-  const components: ComponentsObject = {
+function createComponentsObject(documentType: OpenApiDocumentTypeValue): ComponentsObject {
+  if (documentType === OpenApiDocumentType.CHANGE_QUERIES) {
+    return {
+      schemas: {},
+      responses: {},
+      parameters: {},
+    };
+  }
+
+  return {
     schemas: {},
     responses: createHardcodedParameterResponses(),
     parameters: createHardcodedComponentParameters(),
   };
+}
+
+/**
+ * Creates the Change Queries available change versions operation.
+ */
+function createAvailableChangeVersionsOperation(): Operation {
+  return {
+    operationId: 'getAvailableChangeVersions',
+    summary: 'Retrieves the available change version range.',
+    responses: {
+      '200': {
+        description: 'The available change version range was successfully retrieved.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              required: ['oldestChangeVersion', 'newestChangeVersion'],
+              properties: {
+                oldestChangeVersion: {
+                  type: 'integer',
+                  format: 'int64',
+                },
+                newestChangeVersion: {
+                  type: 'integer',
+                  format: 'int64',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+}
+
+/**
+ * Creates the path object for the standalone Change Queries OpenAPI document.
+ */
+function createChangeQueriesPaths(): PathsObject {
+  return {
+    '/availableChangeVersions': {
+      get: createAvailableChangeVersionsOperation(),
+    },
+  };
+}
+
+/**
+ * Creates the base OpenAPI document structure with document-specific initial paths and components.
+ * This structure is common to all OpenAPI documents (resources, descriptors, etc.)
+ */
+function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: OpenApiDocumentTypeValue): Document {
+  const components: ComponentsObject = createComponentsObject(documentType);
 
   const openApiDocument: Document = {
     openapi: '3.0.0',
@@ -35,7 +94,7 @@ function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: Open
         url: '',
       },
     ],
-    paths: {},
+    paths: documentType === OpenApiDocumentType.CHANGE_QUERIES ? createChangeQueriesPaths() : {},
     components,
     tags: [],
   };

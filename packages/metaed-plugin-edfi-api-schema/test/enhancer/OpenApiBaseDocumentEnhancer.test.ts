@@ -82,16 +82,63 @@ describe('OpenApiBaseDocumentEnhancer', () => {
     it('should create base document for change queries', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
       const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
 
       expect(changeQueriesDoc).toBeDefined();
       expect(changeQueriesDoc?.openapi).toBe('3.0.0');
       expect(changeQueriesDoc?.info?.title).toBe('Ed-Fi Data Management Service API');
       expect(changeQueriesDoc?.info?.version).toBe('1');
       expect(changeQueriesDoc?.servers).toHaveLength(1);
-      expect(changeQueriesDoc?.paths).toEqual({});
+      expect(changeQueriesDoc?.paths).toMatchInlineSnapshot(`
+        Object {
+          "/availableChangeVersions": Object {
+            "get": Object {
+              "operationId": "getAvailableChangeVersions",
+              "responses": Object {
+                "200": Object {
+                  "content": Object {
+                    "application/json": Object {
+                      "schema": Object {
+                        "properties": Object {
+                          "newestChangeVersion": Object {
+                            "format": "int64",
+                            "type": "integer",
+                          },
+                          "oldestChangeVersion": Object {
+                            "format": "int64",
+                            "type": "integer",
+                          },
+                        },
+                        "required": Array [
+                          "oldestChangeVersion",
+                          "newestChangeVersion",
+                        ],
+                        "type": "object",
+                      },
+                    },
+                  },
+                  "description": "The available change version range was successfully retrieved.",
+                },
+              },
+              "summary": "Retrieves the available change version range.",
+            },
+          },
+        }
+      `);
+      expect(changeQueriesDoc?.paths['/availableChangeVersions']?.get?.parameters).toBeUndefined();
+      expect(changeQueriesDoc?.paths['/changeQueries/v1/availableChangeVersions']).toBeUndefined();
+      expect(resourcesDoc?.paths['/availableChangeVersions']).toBeUndefined();
+      expect(descriptorsDoc?.paths['/availableChangeVersions']).toBeUndefined();
       expect(changeQueriesDoc?.components?.schemas).toEqual({});
-      expect(changeQueriesDoc?.components?.responses).toBeDefined();
-      expect(changeQueriesDoc?.components?.parameters).toBeDefined();
+      expect(changeQueriesDoc?.components?.responses).toEqual({});
+      expect(changeQueriesDoc?.components?.parameters).toEqual({});
+      expect(changeQueriesDoc?.components?.securitySchemes).toBeUndefined();
+      expect(changeQueriesDoc?.security).toBeUndefined();
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('oauth2');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('tokenUrl');
       expect(changeQueriesDoc?.tags).toEqual([]);
     });
 

@@ -3,3 +3,8 @@ Key decisions: added changeQueries OpenAPI document type; OpenApiBaseDocumentEnh
 Files changed: OpenApiDocumentType.ts, Namespace.ts, ProjectSchema.ts, OpenApiBaseDocumentEnhancer.ts, ApiSchemaBuildingEnhancer.ts, OpenApiBaseDocumentEnhancer.test.ts, ApiSchemaBuildingEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiBaseDocumentEnhancer Jest, ApiSchemaBuildingEnhancer Jest, package tsc, package ESLint, generator spot-check core has resources/descriptors/changeQueries and extension omits openApiBaseDocuments.
 Notes: authoritative artifact refresh intentionally deferred to authoritative-artifacts task; next task should populate /availableChangeVersions in changeQueries.paths.
+
+2026-06-10 - Completed openapi-generation availableChangeVersions for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: changeQueries base doc now specializes paths/components; emits only ODS-style /availableChangeVersions path; 200 body has required oldestChangeVersion/newestChangeVersion integer int64; no inherited query params, snapshot components, OAuth/security.
+Files changed: OpenApiBaseDocumentEnhancer.ts, OpenApiBaseDocumentEnhancer.test.ts, tasks.json, progress.txt.
+Verification: OpenApiBaseDocumentEnhancer Jest, package tsc, package ESLint. Authoritative artifact refresh still deferred to authoritative-artifacts task.
