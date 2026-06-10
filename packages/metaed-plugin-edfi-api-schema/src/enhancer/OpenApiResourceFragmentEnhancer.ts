@@ -18,16 +18,18 @@ import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { deAcronym } from '../Utility';
 import { createTrackedChangeSchemasFrom } from './OpenApiChangeQuerySchemaBuilder';
+import { Schemas } from '../model/OpenApiTypes';
 
 /**
  * Creates an OpenAPI fragment for a resource entity
  */
 export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment {
+  const trackedChangeSchemas: Schemas = createTrackedChangeSchemasFrom(entity);
   const fragment: OpenApiFragment = {
     components: {
       schemas: {
         ...createSchemasFrom(entity),
-        ...createTrackedChangeSchemasFrom(entity),
+        ...trackedChangeSchemas,
       },
     },
   };
@@ -37,7 +39,7 @@ export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment 
 
   return {
     ...fragment,
-    paths: createPathsFrom(entity),
+    paths: createPathsFrom(entity, trackedChangeSchemas),
     tags: createTagsFrom(entity),
   };
 }
@@ -46,12 +48,14 @@ export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment 
  * Creates an OpenAPI fragment for a descriptor entity
  */
 function createDescriptorFragment(entity: TopLevelEntity): OpenApiFragment {
+  const trackedChangeSchemas: Schemas = createTrackedChangeSchemasFrom(entity);
+
   return {
-    paths: createPathsFrom(entity),
+    paths: createPathsFrom(entity, trackedChangeSchemas),
     components: {
       schemas: {
         ...createSchemasFrom(entity),
-        ...createTrackedChangeSchemasFrom(entity),
+        ...trackedChangeSchemas,
       },
     },
     tags: createTagsFrom(entity),

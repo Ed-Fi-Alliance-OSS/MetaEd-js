@@ -56,3 +56,9 @@ Key decisions: added generated OpenAPI composition validation with swagger-parse
 Files changed: OpenApiGeneratedDocumentValidation.test.ts, tasks.json, progress.txt.
 Verification: new validation Jest, Change Query focused Jest, v7.1/v7.2/v7.3 AuthoritativeCompare Jest, package tsc, package ESLint.
 Notes: no npm run build used.
+
+2026-06-10 - Completed openapi-generation tracked-change path/schema consistency for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: createResourceFragment/createDescriptorFragment compute tracked-change schemas once and pass same set to createPathsFrom; createPathsFrom gates /deletes and /keyChanges on emitted key/delete/keyChange schemas; focused no-public-identity case omits tracked-change paths instead of dangling refs; resource fragment test harness now includes SubclassIdentityFullnameEnhancer to mirror real enhancer order.
+Files changed: OpenApiSpecificationEnhancerBase.ts, OpenApiResourceFragmentEnhancer.ts, OpenApiChangeQuerySchemaBuilder.test.ts, OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
+Verification: OpenApiChangeQuerySchemaBuilder Jest, OpenApiResourceFragmentEnhancer Jest, package tsc, package ESLint, OpenApiGeneratedDocumentValidation Jest.
+Notes: no artifact diffs expected; no npm run build used. Existing uncommitted tasks.json hygiene-task deletion was left as pre-existing work.

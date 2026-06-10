@@ -39,13 +39,15 @@ import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJs
 import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
+import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
 import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as queryFieldMappingEnhancer } from '../../src/enhancer/QueryFieldMappingEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
-import { enhance } from '../../src/enhancer/OpenApiResourceFragmentEnhancer';
+import { createResourceFragment, enhance } from '../../src/enhancer/OpenApiResourceFragmentEnhancer';
 import { NamespaceEdfiApiSchema } from '../../src/model/Namespace';
 import { OpenApiDocumentType } from '../../src/model/api-schema/OpenApiDocumentType';
+import type { JsonPath } from '../../src/model/api-schema/JsonPath';
 import type { OpenApiFragment } from '../../src/model/api-schema/OpenApiFragment';
 import type { Operation, Parameter } from '../../src/model/OpenApiTypes';
 import { metaEdPluginEnhancers } from '../integration/PluginHelper';
@@ -162,12 +164,50 @@ function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment) {
   resourceNameEnhancer(metaEd);
   documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
+  subclassIdentityFullnameEnhancer(metaEd);
   queryFieldMappingEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   typeCoercionJsonPathsEnhancer(metaEd);
   resourceDomainEnhancer(metaEd);
   openApiRequestBodyComponentEnhancer(metaEd);
   openApiReferenceComponentEnhancer(metaEd);
+}
+
+/**
+ * Creates a concrete resource whose identity metadata cannot derive public tracked-change key schemas.
+ */
+function concreteResourceWithoutPublicTrackedChangeKeyMetadata(): TopLevelEntity {
+  return {
+    type: 'domainEntity',
+    metaEdName: 'Student',
+    documentation: 'A student',
+    allowPrimaryKeyUpdates: false,
+    namespace: {
+      namespaceName: 'EdFi',
+      projectName: 'Ed-Fi',
+      isExtension: false,
+    },
+    data: {
+      edfiApiSchema: {
+        endpointName: 'students',
+        domains: [],
+        identityJsonPaths: ['$.studentUniqueId' as JsonPath],
+        queryFieldMapping: {},
+        openApiReferenceComponent: {},
+        openApiReferenceComponentPropertyName: '',
+        openApiRequestBodyComponent: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+            },
+          },
+        },
+        openApiRequestBodyComponentPropertyName: 'EdFi_Student',
+        openApiRequestBodyCollectionComponents: [],
+      },
+    },
+  } as unknown as TopLevelEntity;
 }
 
 describe('OpenApiResourceFragmentEnhancer', () => {
@@ -356,6 +396,23 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       const fragment = studentApiData.openApiFragments[OpenApiDocumentType.DESCRIPTORS];
 
       expect(fragment).toBeUndefined();
+    });
+  });
+
+  describe('when creating a resource fragment without public tracked-change key metadata', () => {
+    const fragment: OpenApiFragment = createResourceFragment(concreteResourceWithoutPublicTrackedChangeKeyMetadata());
+
+    it('should omit tracked-change paths that would reference missing schemas', () => {
+      const trackedChangeSchemaNames: string[] = Object.keys(fragment.components.schemas).filter((schemaName: string) =>
+        schemaName.includes('_TrackedChange'),
+      );
+
+      expect(fragment.paths?.['/ed-fi/students']).toBeDefined();
+      expect(fragment.paths?.['/ed-fi/students/{id}']).toBeDefined();
+      expect(fragment.paths?.['/ed-fi/students/deletes']).toBeUndefined();
+      expect(fragment.paths?.['/ed-fi/students/keyChanges']).toBeUndefined();
+      expect(trackedChangeSchemaNames).toEqual([]);
+      expect(JSON.stringify(fragment)).not.toContain('_TrackedChange');
     });
   });
 

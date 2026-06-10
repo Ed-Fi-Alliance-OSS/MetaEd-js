@@ -199,6 +199,14 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
     });
   });
 
+  describe('when creating schemas for a concrete resource without public identity field metadata', () => {
+    const entity: TopLevelEntity = topLevelEntityWith('domainEntity', 'Student', false, {});
+
+    it('should not create tracked-change schemas', () => {
+      expect(createTrackedChangeSchemasFrom(entity)).toMatchInlineSnapshot(`Object {}`);
+    });
+  });
+
   describe('when creating schemas for a descriptor', () => {
     const entity: TopLevelEntity = {
       type: 'descriptor',

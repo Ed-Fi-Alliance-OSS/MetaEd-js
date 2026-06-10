@@ -208,7 +208,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
       "Review generated OpenAPI fragments or the merged-document validation test output and confirm `/deletes` and `/keyChanges` response refs always resolve to emitted tracked-change schemas."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "refactoring",
