@@ -174,7 +174,7 @@
       "Run `npx ts-node packages/metaed-plugin-edfi-api-schema/test/integration/update-authoritative-files.ts --dry-run` from the repository root to confirm the generated-to-authoritative copy set before updating authoritative files.",
       "Review `git diff -- packages/metaed-plugin-edfi-api-schema/test/integration/artifact` before accepting the updates."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "validation",
