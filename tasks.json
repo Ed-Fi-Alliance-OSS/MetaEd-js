@@ -71,7 +71,7 @@
       "Review inline snapshots for a regular resource with scalar and reference identity fields.",
       "Review inline snapshots for a descriptor and confirm only `namespace` and `codeValue` appear in key schemas."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "openapi-generation",

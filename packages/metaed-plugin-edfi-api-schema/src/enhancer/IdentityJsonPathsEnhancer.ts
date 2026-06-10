@@ -36,6 +36,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     (descriptor.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths = [];
   });
 
+  // SchoolYearType is modeled by a hard-coded resource schema with schoolYear as its public identity.
+  getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((schoolYearEnumeration) => {
+    (schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths = ['$.schoolYear' as JsonPath];
+  });
+
   return {
     enhancerName: 'IdentityJsonPathsEnhancer',
     success: true,

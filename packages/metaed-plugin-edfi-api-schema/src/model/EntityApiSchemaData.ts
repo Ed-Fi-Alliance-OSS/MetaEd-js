@@ -284,6 +284,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     endpointName: '' as EndpointName,
     resourceName: '' as MetaEdResourceName,
     identityFullnames: [],
+    identityJsonPaths: [],
     queryFieldMapping: {},
     namespaceSecurableElements: [],
     educationOrganizationSecurableElements: [],

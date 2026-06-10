@@ -17,6 +17,7 @@ import { createSchemasFrom, createPathsFrom, createTagsFrom } from './OpenApiSpe
 import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { deAcronym } from '../Utility';
+import { createTrackedChangeSchemasFrom } from './OpenApiChangeQuerySchemaBuilder';
 
 /**
  * Creates an OpenAPI fragment for a resource entity
@@ -24,7 +25,10 @@ import { deAcronym } from '../Utility';
 export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment {
   const fragment: OpenApiFragment = {
     components: {
-      schemas: createSchemasFrom(entity),
+      schemas: {
+        ...createSchemasFrom(entity),
+        ...createTrackedChangeSchemasFrom(entity),
+      },
     },
   };
 
@@ -45,7 +49,10 @@ function createDescriptorFragment(entity: TopLevelEntity): OpenApiFragment {
   return {
     paths: createPathsFrom(entity),
     components: {
-      schemas: createSchemasFrom(entity),
+      schemas: {
+        ...createSchemasFrom(entity),
+        ...createTrackedChangeSchemasFrom(entity),
+      },
     },
     tags: createTagsFrom(entity),
   };
