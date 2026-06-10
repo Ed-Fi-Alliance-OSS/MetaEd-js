@@ -38,3 +38,9 @@ Key decisions: locked MetaEd side of profile contract in unit coverage; fragment
 Files changed: OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiResourceFragmentEnhancer Jest, package tsc, package ESLint.
 Notes: no source behavior change; authoritative artifact refresh still deferred.
+
+2026-06-10 - Completed tests for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: audited focused Change Query OpenAPI coverage already added across base document, resource fragment, and schema builder suites; no extra assertions needed for task contract.
+Files changed: tasks.json, progress.txt.
+Verification: OpenApiBaseDocumentEnhancer/OpenApiResourceFragmentEnhancer/OpenApiChangeQuerySchemaBuilder Jest, package tsc, package ESLint.
+Notes: authoritative artifact refresh still next; checked-in artifacts remain intentionally stale until authoritative-artifacts task.
