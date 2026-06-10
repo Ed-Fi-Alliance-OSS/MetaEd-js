@@ -422,11 +422,21 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
     });
   });
 
-  describe('when creating schemas for a concrete resource without public identity field metadata', () => {
-    const entity: TopLevelEntity = topLevelEntityWith('domainEntity', 'Student', false, {});
+  describe('when creating schemas for a concrete resource without complete public identity field metadata', () => {
+    const entity: TopLevelEntity = topLevelEntityWith('domainEntity', 'Student', false, {
+      studentUniqueId: [
+        {
+          path: '$.studentReference.studentUniqueId' as JsonPath,
+          type: 'string',
+          sourceProperty: stringSourceProperty(),
+        },
+      ],
+    });
 
-    it('should not create tracked-change schemas', () => {
-      expect(createTrackedChangeSchemasFrom(entity)).toMatchInlineSnapshot(`Object {}`);
+    it('should fail rather than create partial tracked-change schemas', () => {
+      expect(() => createTrackedChangeSchemasFrom(entity)).toThrow(
+        'Unable to create tracked-change key schema for EdFi.Student. Missing public query field mapping for identity JSON path(s): $.entryGradeLevelDescriptor, $.schoolReference.schoolId.',
+      );
     });
   });
 

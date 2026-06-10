@@ -400,19 +400,10 @@ describe('OpenApiResourceFragmentEnhancer', () => {
   });
 
   describe('when creating a resource fragment without public tracked-change key metadata', () => {
-    const fragment: OpenApiFragment = createResourceFragment(concreteResourceWithoutPublicTrackedChangeKeyMetadata());
-
-    it('should omit tracked-change paths that would reference missing schemas', () => {
-      const trackedChangeSchemaNames: string[] = Object.keys(fragment.components.schemas).filter((schemaName: string) =>
-        schemaName.includes('_TrackedChange'),
+    it('should fail rather than omit tracked-change paths', () => {
+      expect(() => createResourceFragment(concreteResourceWithoutPublicTrackedChangeKeyMetadata())).toThrow(
+        'Unable to create tracked-change key schema for EdFi.Student. Missing public query field mapping for identity JSON path(s): $.studentUniqueId.',
       );
-
-      expect(fragment.paths?.['/ed-fi/students']).toBeDefined();
-      expect(fragment.paths?.['/ed-fi/students/{id}']).toBeDefined();
-      expect(fragment.paths?.['/ed-fi/students/deletes']).toBeUndefined();
-      expect(fragment.paths?.['/ed-fi/students/keyChanges']).toBeUndefined();
-      expect(trackedChangeSchemaNames).toEqual([]);
-      expect(JSON.stringify(fragment)).not.toContain('_TrackedChange');
     });
   });
 

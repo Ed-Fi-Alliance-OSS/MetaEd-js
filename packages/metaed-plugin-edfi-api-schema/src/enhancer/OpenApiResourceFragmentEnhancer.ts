@@ -39,7 +39,7 @@ export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment 
 
   return {
     ...fragment,
-    paths: createPathsFrom(entity, trackedChangeSchemas),
+    paths: createPathsFrom(entity),
     tags: createTagsFrom(entity),
   };
 }
@@ -51,7 +51,7 @@ function createDescriptorFragment(entity: TopLevelEntity): OpenApiFragment {
   const trackedChangeSchemas: Schemas = createTrackedChangeSchemasFrom(entity);
 
   return {
-    paths: createPathsFrom(entity, trackedChangeSchemas),
+    paths: createPathsFrom(entity),
     components: {
       schemas: {
         ...createSchemasFrom(entity),

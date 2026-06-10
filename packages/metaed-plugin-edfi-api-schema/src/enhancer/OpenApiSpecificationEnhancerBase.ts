@@ -751,23 +751,9 @@ export function createSchemasFrom(entity: TopLevelEntity): Schemas {
 }
 
 /**
- * Returns whether the tracked-change schemas needed by tracked-change paths are present.
- */
-function hasTrackedChangePathSchemas(
-  trackedChangeSchemas: Schemas,
-  trackedChangeSchemaNames: TrackedChangeSchemaNames,
-): boolean {
-  return (
-    trackedChangeSchemas[trackedChangeSchemaNames.keyValues] != null &&
-    trackedChangeSchemas[trackedChangeSchemaNames.deleteItem] != null &&
-    trackedChangeSchemas[trackedChangeSchemaNames.keyChangeItem] != null
-  );
-}
-
-/**
  * Creates the paths from a given TopLevelEntity
  */
-export function createPathsFrom(entity: TopLevelEntity, trackedChangeSchemas: Schemas): PathsObject {
+export function createPathsFrom(entity: TopLevelEntity): PathsObject {
   const paths: PathsObject = {};
 
   const projectEndpointName: ProjectEndpointName = createUriSegment(entity.namespace.projectName) as ProjectEndpointName;
@@ -781,18 +767,15 @@ export function createPathsFrom(entity: TopLevelEntity, trackedChangeSchemas: Sc
     'x-Ed-Fi-domains': domains,
   };
 
-  const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
-  if (hasTrackedChangePathSchemas(trackedChangeSchemas, trackedChangeSchemaNames)) {
-    paths[`${resourcePath}/deletes`] = {
-      get: createTrackedChangeDeletesSectionFor(entity, endpointName),
-      'x-Ed-Fi-domains': domains,
-    };
+  paths[`${resourcePath}/deletes`] = {
+    get: createTrackedChangeDeletesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
 
-    paths[`${resourcePath}/keyChanges`] = {
-      get: createTrackedChangeKeyChangesSectionFor(entity, endpointName),
-      'x-Ed-Fi-domains': domains,
-    };
-  }
+  paths[`${resourcePath}/keyChanges`] = {
+    get: createTrackedChangeKeyChangesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
 
   paths[`${resourcePath}/{id}`] = {
     get: createGetByIdSectionFor(entity, endpointName),

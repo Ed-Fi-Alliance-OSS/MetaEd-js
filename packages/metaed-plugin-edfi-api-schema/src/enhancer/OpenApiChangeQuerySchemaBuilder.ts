@@ -39,6 +39,13 @@ type QueryFieldPathInfoMatch = {
 };
 
 /**
+ * Creates a display name for tracked-change invariant messages.
+ */
+function entityDisplayNameFor(entity: TopLevelEntity): string {
+  return `${entity.namespace.namespaceName}.${entity.metaEdName}`;
+}
+
+/**
  * Creates the tracked-change component base name for an entity.
  */
 function trackedChangeComponentBaseNameFor(entity: TopLevelEntity): string {
@@ -125,12 +132,36 @@ function queryFieldPathInfoMatching(
 }
 
 /**
+ * Asserts that a concrete resource has complete semantic metadata for tracked-change key schemas.
+ */
+function assertCanCreateIdentityFieldSchemasFrom(
+  entity: TopLevelEntity,
+  identityJsonPaths: JsonPath[],
+  missingIdentityJsonPaths: JsonPath[],
+): void {
+  if (identityJsonPaths.length === 0) {
+    throw new Error(
+      `Unable to create tracked-change key schema for ${entityDisplayNameFor(entity)}. No identity JSON paths were found.`,
+    );
+  }
+
+  if (missingIdentityJsonPaths.length > 0) {
+    throw new Error(
+      `Unable to create tracked-change key schema for ${entityDisplayNameFor(
+        entity,
+      )}. Missing public query field mapping for identity JSON path(s): ${missingIdentityJsonPaths.join(', ')}.`,
+    );
+  }
+}
+
+/**
  * Creates public identity field schemas for a regular resource from identity and query-field metadata.
  */
 function identityFieldSchemasFrom(entity: TopLevelEntity): IdentityFieldSchema[] {
   const entityApiSchemaData: EntityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   const identityJsonPaths: JsonPath[] = entityApiSchemaData.identityJsonPaths ?? [];
   const includedFieldNames: Set<string> = new Set();
+  const missingIdentityJsonPaths: JsonPath[] = [];
   const result: IdentityFieldSchema[] = [];
 
   identityJsonPaths.forEach((identityJsonPath: JsonPath) => {
@@ -138,7 +169,12 @@ function identityFieldSchemasFrom(entity: TopLevelEntity): IdentityFieldSchema[]
       identityJsonPath,
       entityApiSchemaData.queryFieldMapping,
     );
-    if (match == null || includedFieldNames.has(match.fieldName)) return;
+    if (match == null) {
+      missingIdentityJsonPaths.push(identityJsonPath);
+      return;
+    }
+
+    if (includedFieldNames.has(match.fieldName)) return;
 
     includedFieldNames.add(match.fieldName);
     result.push({
@@ -146,6 +182,8 @@ function identityFieldSchemasFrom(entity: TopLevelEntity): IdentityFieldSchema[]
       schema: schemaObjectFromQueryFieldPathInfo(match.pathInfo),
     });
   });
+
+  assertCanCreateIdentityFieldSchemasFrom(entity, identityJsonPaths, missingIdentityJsonPaths);
 
   return result;
 }
@@ -249,8 +287,6 @@ export function createTrackedChangeSchemasFrom(entity: TopLevelEntity): Schemas 
   const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
   const keyValuesSchema: SchemaObject =
     entity.type === 'descriptor' ? descriptorKeyValuesSchema() : keyValuesSchemaFrom(identityFieldSchemasFrom(entity));
-
-  if (keyValuesSchema.required == null || keyValuesSchema.required.length === 0) return {};
 
   return {
     [trackedChangeSchemaNames.keyValues]: keyValuesSchema,
