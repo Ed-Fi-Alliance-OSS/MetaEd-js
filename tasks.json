@@ -23,7 +23,7 @@
     "acceptance-criteria": [
       "The core `openApiBaseDocuments.changeQueries` document contains the ODS-style path key `/availableChangeVersions`, not `/changeQueries/v1/availableChangeVersions`.",
       "The `GET /availableChangeVersions` operation exposes a `200` `application/json` object response with required `oldestChangeVersion` and `newestChangeVersion` integer `int64` properties.",
-      "The `GET /availableChangeVersions` operation does not include resource or descriptor query parameters such as `minChangeVersion`, `maxChangeVersion`, `limit`, `offset`, `totalCount`, `pageToken`, or `pageSize`.",
+      "The `GET /availableChangeVersions` operation has no advertised query parameters, including resource or descriptor parameters such as `minChangeVersion`, `maxChangeVersion`, `limit`, `offset`, `totalCount`, `pageToken`, or `pageSize`.",
       "The standalone document does not include resource or descriptor paths, and resource/descriptor documents do not include `/availableChangeVersions`.",
       "The standalone document does not emit deployment-specific OAuth2 security schemes, root `security`, token URLs, or runtime server URLs that DMS must inject at serve time.",
       "The standalone document does not include snapshot headers, snapshot response descriptions, or snapshot-specific response components."
@@ -61,6 +61,7 @@
       "Descriptor tracked-change key schemas use required public `namespace` and `codeValue` properties because descriptor `identityJsonPaths` is intentionally empty.",
       "Descriptor-reference identity fields in regular resource key schemas are represented as public descriptor URI string fields rather than internal descriptor IDs.",
       "Concrete abstract resources that materialize as endpoints derive tracked-change key schemas from their concrete resource schema and identity metadata, while abstract schema-only resources do not receive tracked-change response schemas.",
+      "Tracked-change response item `id` properties are represented as strings.",
       "`/deletes` item schemas require `id`, `changeVersion`, and `keyValues`; `/keyChanges` item schemas require `id`, `changeVersion`, `oldKeyValues`, and `newKeyValues`.",
       "Every generated key object schema marks each identity property as required and uses the JSON schema type information available from existing API Schema metadata.",
       "`changeVersion`, `minChangeVersion`, and `maxChangeVersion` are represented consistently as integer `int64` values."
@@ -98,6 +99,7 @@
     "acceptance-criteria": [
       "Every non-composite generated regular resource in the resources OpenAPI fragments advertises `/{projectEndpointName}/{resourceEndpoint}/deletes` and `/{projectEndpointName}/{resourceEndpoint}/keyChanges`.",
       "Every generated descriptor in the descriptors OpenAPI fragments advertises `/{projectEndpointName}/{descriptorEndpoint}/deletes` and `/{projectEndpointName}/{descriptorEndpoint}/keyChanges`.",
+      "Tracked-change endpoint advertisement is driven by generated resource and descriptor OpenAPI fragments, not by claim/action metadata, `ReadChanges` authorization strategies, or runtime tracked-change inventory.",
       "`SchoolYearType` is treated as a regular Change Query resource and advertises both tracked-change paths.",
       "Concrete abstract resources that materialize as endpoints advertise both tracked-change paths under their concrete endpoint names.",
       "Extension-defined top-level resources and descriptors advertise tracked-change paths under their extension project endpoint.",
@@ -105,6 +107,8 @@
       "Abstract resources that do not materialize to endpoints continue to emit schemas only and do not receive tracked-change paths.",
       "Tracked-change paths are emitted as `get` operations on sibling collection subpaths, not as operations under `/{id}` paths.",
       "`/deletes` and `/keyChanges` operations include `minChangeVersion`, `maxChangeVersion`, `limit`, `offset`, and `totalCount` query parameters.",
+      "`minChangeVersion` and `maxChangeVersion` query parameters use integer `int64`; `limit` and `offset` use integer `int32`; `totalCount` uses a boolean schema with default `false`, matching existing component parameter conventions.",
+      "`/deletes` and `/keyChanges` operations do not include cursor-paging parameters such as `pageToken` or `pageSize`, and do not inherit live resource query-field filters.",
       "`/deletes` and `/keyChanges` operations expose `200` `application/json` array responses that reference the generated delete item and key-change item schemas."
     ],
     "steps-to-verify": [
@@ -139,6 +143,7 @@
       "Unit tests cover standalone `changeQueries` base document creation, core-only emission, and the `/availableChangeVersions` response shape.",
       "Unit tests cover `/deletes` and `/keyChanges` path generation for a regular resource, descriptor, concrete abstract resource, `SchoolYearType`, extension-defined top-level resource, and resource-extension overlay exclusion.",
       "Unit tests cover required query parameters on tracked-change paths and live GET-many change-version parameters.",
+      "Unit tests assert that tracked-change paths do not include cursor-paging parameters or live resource query-field filters.",
       "Unit tests cover regular-resource key schema derivation from identity metadata and descriptor key schema derivation from `namespace` and `codeValue`.",
       "Tests assert that snapshot-specific OpenAPI artifacts are absent from generated DMS OpenAPI output.",
       "Tests use inline snapshots where they verify full generated OpenAPI objects."
