@@ -193,5 +193,52 @@
       "Optionally validate merged OpenAPI documents with `@apidevtools/swagger-parser` if new full-document validation coverage is added."
     ],
     "completed": true
+  },
+  {
+    "category": "openapi-generation",
+    "description": "Low: Keep tracked-change path emission and tracked-change schema emission consistent for every concrete Change Query resource.",
+    "acceptance-criteria": [
+      "`createPathsFrom` does not emit `/deletes` or `/keyChanges` operations that reference tracked-change item schemas unless those schemas are emitted for the same fragment.",
+      "The implementation removes the silent concrete-resource path where `createTrackedChangeSchemasFrom` returns no schemas while tracked-change paths are still generated.",
+      "If a concrete generated resource cannot derive a public identity-key schema from semantic metadata, the output remains internally consistent and the case is covered by a focused test.",
+      "Generated core and extension OpenAPI fragments contain no dangling tracked-change `$ref` values."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiChangeQuerySchemaBuilder.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Review generated OpenAPI fragments or the merged-document validation test output and confirm `/deletes` and `/keyChanges` response refs always resolve to emitted tracked-change schemas."
+    ],
+    "completed": false
+  },
+  {
+    "category": "refactoring",
+    "description": "Low: Consolidate duplicated property-to-OpenAPI schema mapping used by tracked-change key schemas and standard OpenAPI query/resource schema generation.",
+    "acceptance-criteria": [
+      "The scalar `EntityProperty` to OpenAPI `SchemaObject` mapping used by tracked-change key schema generation is shared with the existing OpenAPI generation path instead of being reimplemented in `OpenApiChangeQuerySchemaBuilder`.",
+      "The shared mapping preserves current generated output for descriptor URI strings, integers including `int64`, dates, date-times, strings with length constraints, booleans, decimals, school years, and years.",
+      "Tracked-change key schemas continue to derive field names from `queryFieldMapping` and do not introduce string parsing of resource names, component names, or JSONPath segments.",
+      "Focused tests cover at least one tracked-change identity field for each scalar category whose mapping is shared."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiChangeQuerySchemaBuilder.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root."
+    ],
+    "completed": false
+  },
+  {
+    "category": "repo-hygiene",
+    "description": "Low: Remove the root progress log artifact from the branch before merge.",
+    "acceptance-criteria": [
+      "`progress.txt` is not committed as a root repository artifact unless the team intentionally documents and references it as part of the repository workflow.",
+      "Implementation progress history needed for this story remains represented by `tasks.json` or reviewed commit history rather than a standalone root log file.",
+      "The branch diff contains no unrelated process-log file changes outside the requested MetaEd implementation and task tracking."
+    ],
+    "steps-to-verify": [
+      "Run `git ls-files progress.txt` from the repository root and confirm it returns no tracked file, or review the documented reason if the file is intentionally retained.",
+      "Run `git diff --name-status origin/main...HEAD -- progress.txt tasks.json` and confirm only intentional task-tracking changes remain.",
+      "Review the final branch diff for root-level process artifacts unrelated to the MetaEd OpenAPI implementation."
+    ],
+    "completed": false
   }
 ]

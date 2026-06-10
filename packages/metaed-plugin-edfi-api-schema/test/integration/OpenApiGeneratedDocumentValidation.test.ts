@@ -3,13 +3,36 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { readFileSync } from 'node:fs';
 import path from 'path';
 import SwaggerParser from '@apidevtools/swagger-parser';
+import {
+  buildMetaEd,
+  buildParseTree,
+  initializeNamespaces,
+  loadFileIndex,
+  loadFiles,
+  loadPluginConfiguration,
+  newMetaEdConfiguration,
+  newState,
+  runEnhancers,
+  runGenerators,
+  setupPlugins,
+  type GeneratedOutput,
+  type GeneratorResult,
+  type MetaEdProject,
+  type SemVer,
+  type State,
+  walkBuilders,
+} from '@edfi/metaed-core';
 import type { OpenAPI } from 'openapi-types';
 import type { ComponentsObject, Document, Schemas, TagObject } from '../../src/model/OpenApiTypes';
 import { OpenApiDocumentType, type OpenApiDocumentTypeValue } from '../../src/model/api-schema/OpenApiDocumentType';
 import type { OpenApiFragment } from '../../src/model/api-schema/OpenApiFragment';
+import { metaEdPlugins } from './PluginHelper';
+
+jest.setTimeout(120000);
+
+const API_SCHEMA_GENERATOR_NAME = 'edfiApiSchema.ApiSchemaGenerator';
 
 /**
  * OpenAPI base documents keyed by API metadata document type.
@@ -39,7 +62,9 @@ type ResourceSchemaArtifact = {
  */
 type ProjectSchemaArtifact = {
   abstractResources: { [resourceName: string]: AbstractResourceArtifact };
+  isExtensionProject: boolean;
   openApiBaseDocuments?: OpenApiBaseDocuments;
+  projectName: string;
   resourceSchemas: { [endpointName: string]: ResourceSchemaArtifact };
 };
 
@@ -63,60 +88,233 @@ type ComposedOpenApiDocument = Document & {
 };
 
 /**
- * A core ApiSchema artifact and the extension artifacts compatible with it.
+ * Project inputs needed to generate ApiSchema artifacts for a validation scenario.
  */
 type ValidationGroup = {
-  artifactDirectory: string;
-  coreArtifactFilename: string;
-  extensionArtifactFilenames: string[];
+  dataStandardVersion: SemVer;
+  defaultPluginTechVersion: SemVer;
+  projectPaths: string[];
+  projects: MetaEdProject[];
   scenarioName: string;
 };
 
 /**
- * Groups of generated artifacts that compose into served OpenAPI documents.
+ * Groups of MetaEd projects that compose into served OpenAPI documents.
  */
 const validationGroups: ValidationGroup[] = [
   {
-    artifactDirectory: 'v7_1',
-    coreArtifactFilename: 'ds-5.0-api-schema-generated.json',
-    extensionArtifactFilenames: [],
+    dataStandardVersion: '5.0.0',
+    defaultPluginTechVersion: '7.1.0',
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/'],
+    projects: [
+      {
+        projectName: 'Ed-Fi',
+        namespaceName: 'EdFi',
+        projectExtension: '',
+        projectVersion: '5.0.0',
+        description: 'The Ed-Fi Data Standard v5.0',
+      },
+    ],
     scenarioName: 'ODS/API 7.1 data standard 5.0',
   },
   {
-    artifactDirectory: 'v7_2',
-    coreArtifactFilename: 'ds-5.1-api-schema-generated.json',
-    extensionArtifactFilenames: ['tpdm-api-schema-generated.json'],
+    dataStandardVersion: '5.1.0',
+    defaultPluginTechVersion: '7.2.0',
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-5.1/', path.resolve(__dirname, './tpdm-project')],
+    projects: [
+      {
+        projectName: 'Ed-Fi',
+        namespaceName: 'EdFi',
+        projectExtension: '',
+        projectVersion: '5.1.0',
+        description: 'The Ed-Fi Data Standard v5.1',
+      },
+      {
+        projectName: 'TPDM',
+        namespaceName: 'TPDM',
+        projectExtension: 'TPDM',
+        projectVersion: '1.1.0',
+        description: 'TPDM-Core',
+      },
+    ],
     scenarioName: 'ODS/API 7.2 data standard 5.1 with TPDM',
   },
   {
-    artifactDirectory: 'v7_3',
-    coreArtifactFilename: 'ds-5.2-api-schema-generated.json',
-    extensionArtifactFilenames: [
-      'homograph-api-schema-generated.json',
-      'sample-api-schema-generated.json',
-      'tpdm-api-schema-generated.json',
+    dataStandardVersion: '5.2.0',
+    defaultPluginTechVersion: '7.3.0',
+    projectPaths: [
+      './node_modules/@edfi/ed-fi-model-5.2/',
+      path.resolve(__dirname, './homograph-project'),
+      path.resolve(__dirname, './sample-project'),
+      path.resolve(__dirname, './tpdm-project'),
+    ],
+    projects: [
+      {
+        projectName: 'Ed-Fi',
+        namespaceName: 'EdFi',
+        projectExtension: '',
+        projectVersion: '5.2.0',
+        description: 'The Ed-Fi Data Standard v5.2',
+      },
+      {
+        projectName: 'Homograph',
+        namespaceName: 'Homograph',
+        projectExtension: 'Homograph',
+        projectVersion: '1.0.0',
+        description: 'Homograph',
+      },
+      {
+        projectName: 'Sample',
+        namespaceName: 'Sample',
+        projectExtension: 'Sample',
+        projectVersion: '1.1.0',
+        description: 'Sample-Core',
+      },
+      {
+        projectName: 'TPDM',
+        namespaceName: 'TPDM',
+        projectExtension: 'TPDM',
+        projectVersion: '1.1.0',
+        description: 'TPDM-Core',
+      },
     ],
     scenarioName: 'ODS/API 7.3 data standard 5.2 with extensions',
   },
   {
-    artifactDirectory: 'v7_3',
-    coreArtifactFilename: 'ds-6.0-api-schema-generated.json',
-    extensionArtifactFilenames: ['ds-6.0-homograph-api-schema-generated.json', 'ds-6.0-sample-api-schema-generated.json'],
+    dataStandardVersion: '6.0.0',
+    defaultPluginTechVersion: '7.3.0',
+    projectPaths: [
+      './node_modules/@edfi/ed-fi-model-6.0/',
+      path.resolve(__dirname, './homograph-project'),
+      path.resolve(__dirname, './sample-project'),
+    ],
+    projects: [
+      {
+        projectName: 'Ed-Fi',
+        namespaceName: 'EdFi',
+        projectExtension: '',
+        projectVersion: '6.0.0',
+        description: 'The Ed-Fi Data Standard v6.0',
+      },
+      {
+        projectName: 'Homograph',
+        namespaceName: 'Homograph',
+        projectExtension: 'Homograph',
+        projectVersion: '1.0.0',
+        description: 'Homograph',
+      },
+      {
+        projectName: 'Sample',
+        namespaceName: 'Sample',
+        projectExtension: 'Sample',
+        projectVersion: '1.1.0',
+        description: 'Sample-Core',
+      },
+    ],
     scenarioName: 'ODS/API 7.3 data standard 6.0 with extensions',
   },
   {
-    artifactDirectory: 'v7_3',
-    coreArtifactFilename: 'ds-6.1-api-schema-generated.json',
-    extensionArtifactFilenames: ['ds-6.1-homograph-api-schema-generated.json', 'ds-6.1-sample-api-schema-generated.json'],
+    dataStandardVersion: '6.1.0',
+    defaultPluginTechVersion: '7.3.0',
+    projectPaths: [
+      './node_modules/@edfi/ed-fi-model-6.1/',
+      path.resolve(__dirname, './homograph-project'),
+      path.resolve(__dirname, './sample-project'),
+    ],
+    projects: [
+      {
+        projectName: 'Ed-Fi',
+        namespaceName: 'EdFi',
+        projectExtension: '',
+        projectVersion: '6.1.0',
+        description: 'The Ed-Fi Data Standard v6.1',
+      },
+      {
+        projectName: 'Homograph',
+        namespaceName: 'Homograph',
+        projectExtension: 'Homograph',
+        projectVersion: '1.0.0',
+        description: 'Homograph',
+      },
+      {
+        projectName: 'Sample',
+        namespaceName: 'Sample',
+        projectExtension: 'Sample',
+        projectVersion: '1.1.0',
+        description: 'Sample-Core',
+      },
+    ],
     scenarioName: 'ODS/API 7.3 data standard 6.1 with extensions',
   },
 ];
 
 /**
- * Reads a generated ApiSchema artifact from the integration artifact directory.
+ * Parses a generated ApiSchema artifact from generator output.
  */
-function readArtifact(artifactDirectory: string, artifactFilename: string): ApiSchemaArtifact {
-  return JSON.parse(readFileSync(path.resolve(__dirname, 'artifact', artifactDirectory, artifactFilename), 'utf8'));
+function apiSchemaArtifactFrom(generatedOutput: GeneratedOutput): ApiSchemaArtifact {
+  return JSON.parse(generatedOutput.resultString);
+}
+
+/**
+ * Generates ApiSchema artifacts for a validation group using the full MetaEd pipeline.
+ */
+async function generatedApiSchemaArtifactsFor(validationGroup: ValidationGroup): Promise<ApiSchemaArtifact[]> {
+  const state: State = {
+    ...newState(),
+    metaEdConfiguration: {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: validationGroup.defaultPluginTechVersion,
+      pluginConfigDirectories: [path.resolve(__dirname)],
+      projectPaths: validationGroup.projectPaths,
+      projects: validationGroup.projects,
+    },
+    metaEdPlugins: metaEdPlugins(),
+  };
+  state.metaEd.dataStandardVersion = validationGroup.dataStandardVersion;
+
+  setupPlugins(state);
+  loadFiles(state);
+  loadFileIndex(state);
+  buildParseTree(buildMetaEd, state);
+  await walkBuilders(state);
+  initializeNamespaces(state);
+  await loadPluginConfiguration(state);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const metaEdPlugin of state.metaEdPlugins) {
+    await runEnhancers(metaEdPlugin, state);
+    await runGenerators(metaEdPlugin, state);
+  }
+
+  const generatorResult: GeneratorResult = state.generatorResults.filter(
+    (result: GeneratorResult): boolean => result.generatorName === API_SCHEMA_GENERATOR_NAME,
+  )[0];
+
+  expect(generatorResult.generatedOutput).toHaveLength(validationGroup.projects.length);
+
+  return generatorResult.generatedOutput.map(apiSchemaArtifactFrom);
+}
+
+/**
+ * Returns the generated core ApiSchema artifact and fails the test if it is missing.
+ */
+function coreArtifactFrom(apiSchemaArtifacts: ApiSchemaArtifact[]): ApiSchemaArtifact {
+  const coreArtifacts: ApiSchemaArtifact[] = apiSchemaArtifacts.filter(
+    (apiSchemaArtifact: ApiSchemaArtifact): boolean => !apiSchemaArtifact.projectSchema.isExtensionProject,
+  );
+
+  expect(coreArtifacts).toHaveLength(1);
+
+  return coreArtifacts[0];
+}
+
+/**
+ * Returns the generated extension ApiSchema artifacts.
+ */
+function extensionArtifactsFrom(apiSchemaArtifacts: ApiSchemaArtifact[]): ApiSchemaArtifact[] {
+  return apiSchemaArtifacts.filter(
+    (apiSchemaArtifact: ApiSchemaArtifact): boolean => apiSchemaArtifact.projectSchema.isExtensionProject,
+  );
 }
 
 /**
@@ -196,15 +394,15 @@ async function validateOpenApiDocument(document: Document): Promise<OpenAPI.Docu
 
 describe('generated OpenAPI documents', (): void => {
   describe.each(validationGroups)('$scenarioName', (validationGroup: ValidationGroup): void => {
+    let apiSchemaArtifacts: ApiSchemaArtifact[] = [];
+
+    beforeAll(async (): Promise<void> => {
+      apiSchemaArtifacts = await generatedApiSchemaArtifactsFor(validationGroup);
+    });
+
     it('should validate merged resources, descriptors, and change queries documents', async (): Promise<void> => {
-      const coreArtifact: ApiSchemaArtifact = readArtifact(
-        validationGroup.artifactDirectory,
-        validationGroup.coreArtifactFilename,
-      );
-      const extensionArtifacts: ApiSchemaArtifact[] = validationGroup.extensionArtifactFilenames.map(
-        (extensionArtifactFilename: string): ApiSchemaArtifact =>
-          readArtifact(validationGroup.artifactDirectory, extensionArtifactFilename),
-      );
+      const coreArtifact: ApiSchemaArtifact = coreArtifactFrom(apiSchemaArtifacts);
+      const extensionArtifacts: ApiSchemaArtifact[] = extensionArtifactsFrom(apiSchemaArtifacts);
       const projectSchemas: ProjectSchemaArtifact[] = [
         coreArtifact.projectSchema,
         ...extensionArtifacts.map(
