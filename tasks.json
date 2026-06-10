@@ -91,7 +91,7 @@
       "Inspect generated resource and descriptor OpenAPI fragments for a core resource, descriptor, `SchoolYearType`, and extension-defined resource.",
       "Search generated ApiSchema artifacts with `rg \"minChangeVersion|maxChangeVersion|Use-Snapshot\" packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm change-version parameters appear only on expected operations and `Use-Snapshot` is absent from DMS OpenAPI output."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "openapi-generation",

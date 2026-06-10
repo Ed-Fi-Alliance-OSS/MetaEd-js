@@ -20,3 +20,9 @@ Key decisions: removed shared NotFoundUseSnapshot response; GET-many and GET-by-
 Files changed: OpenApiSpecificationEnhancerBase.ts, OpenApiBaseDocumentEnhancer.test.ts, OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiResourceFragmentEnhancer Jest, OpenApiBaseDocumentEnhancer Jest, package tsc, package ESLint, source search for snapshot OpenAPI strings.
 Notes: checked-in integration artifacts still reflect old output and remain deferred to authoritative-artifacts task.
+
+2026-06-10 - Completed openapi-generation live Change Query filters for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: existing shared GET-many parameter builder already emits MinChangeVersion/MaxChangeVersion with int64 component definitions; completed task by adding focused fragment coverage for core resource, descriptor, SchoolYearType, extension-defined resource/descriptor, and resource-extension overlay exclusion.
+Files changed: OpenApiResourceFragmentEnhancer.test.ts, OpenApiBaseDocumentEnhancer.test.ts, tasks.json, progress.txt.
+Verification: OpenApiResourceFragmentEnhancer Jest, OpenApiBaseDocumentEnhancer Jest, package tsc, package ESLint.
+Notes: no source behavior change and no artifact refresh; checked-in artifacts already contained live GET-many change-version refs.

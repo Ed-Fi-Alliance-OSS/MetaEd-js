@@ -158,6 +158,24 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.parameters?.['If-None-Match']).toBeDefined();
       expect(resourcesDoc?.components?.parameters?.limit).toBeDefined();
       expect(resourcesDoc?.components?.parameters?.offset).toBeDefined();
+      expect(resourcesDoc?.components?.parameters?.MinChangeVersion).toEqual({
+        name: 'minChangeVersion',
+        in: 'query',
+        description: 'Used in synchronization to set sequence minimum ChangeVersion',
+        schema: {
+          type: 'integer',
+          format: 'int64',
+        },
+      });
+      expect(resourcesDoc?.components?.parameters?.MaxChangeVersion).toEqual({
+        name: 'maxChangeVersion',
+        in: 'query',
+        description: 'Used in synchronization to set sequence maximum ChangeVersion',
+        schema: {
+          type: 'integer',
+          format: 'int64',
+        },
+      });
     });
 
     it('should include hardcoded responses', () => {
