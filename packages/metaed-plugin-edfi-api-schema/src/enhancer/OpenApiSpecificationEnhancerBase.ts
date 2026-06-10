@@ -59,10 +59,6 @@ export function createHardcodedParameterResponses(): ResponsesObject {
     NotFound: {
       description: 'The resource could not be found.',
     },
-    NotFoundUseSnapshot: {
-      description:
-        'The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.',
-    },
     Conflict: {
       description:
         'Conflict.  The request cannot be completed because it would result in an invalid state.  See the response body for details.',
@@ -248,7 +244,7 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
         $ref: '#/components/responses/Forbidden',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',
@@ -517,7 +513,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
         $ref: '#/components/responses/Forbidden',
       },
       '404': {
-        $ref: '#/components/responses/NotFoundUseSnapshot',
+        $ref: '#/components/responses/NotFound',
       },
       '500': {
         $ref: '#/components/responses/Error',
@@ -536,18 +532,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
   return {
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
-    parameters: [
-      ...newStaticGetByIdParameters(),
-      {
-        name: 'Use-Snapshot',
-        in: 'header',
-        description: 'Indicates if the configured Snapshot should be used.',
-        schema: {
-          type: 'boolean',
-          default: false,
-        },
-      },
-    ],
+    parameters: newStaticGetByIdParameters(),
     responses: {
       '200': {
         description: 'The requested resource was successfully retrieved.',
@@ -574,7 +559,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         $ref: '#/components/responses/Forbidden',
       },
       '404': {
-        $ref: '#/components/responses/NotFoundUseSnapshot',
+        $ref: '#/components/responses/NotFound',
       },
       '500': {
         $ref: '#/components/responses/Error',
@@ -626,7 +611,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
         $ref: '#/components/responses/NotFound',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',
@@ -671,7 +656,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
         $ref: '#/components/responses/NotFound',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',

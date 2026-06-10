@@ -50,7 +50,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiBaseDocumentEnhancer.test.ts` from the repository root.",
       "Search generated ApiSchema artifacts with `rg \"Use-Snapshot|NotFoundUseSnapshot|snapshot\" packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm remaining matches are outside DMS OpenAPI output or are intentionally unrelated model text."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "semantic-modeling",

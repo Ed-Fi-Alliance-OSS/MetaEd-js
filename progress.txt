@@ -14,3 +14,9 @@ Key decisions: added reusable OpenApiChangeQuerySchemaBuilder; exact identityJso
 Files changed: OpenApiChangeQuerySchemaBuilder.ts, OpenApiResourceFragmentEnhancer.ts, IdentityJsonPathsEnhancer.ts, EntityApiSchemaData.ts, OpenApiChangeQuerySchemaBuilder.test.ts, IdentityJsonPathsEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiChangeQuerySchemaBuilder Jest, OpenApiResourceFragmentEnhancer Jest, IdentityJsonPathsEnhancer Jest, package tsc, package ESLint.
 Notes: components now exist for later /deletes and /keyChanges path wiring; authoritative artifact refresh still deferred.
+
+2026-06-10 - Completed openapi-generation snapshot cleanup for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: removed shared NotFoundUseSnapshot response; GET-many and GET-by-id now use NotFound; GET-by-id no longer emits Use-Snapshot header; write/delete 405 descriptions are generic.
+Files changed: OpenApiSpecificationEnhancerBase.ts, OpenApiBaseDocumentEnhancer.test.ts, OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
+Verification: OpenApiResourceFragmentEnhancer Jest, OpenApiBaseDocumentEnhancer Jest, package tsc, package ESLint, source search for snapshot OpenAPI strings.
+Notes: checked-in integration artifacts still reflect old output and remain deferred to authoritative-artifacts task.

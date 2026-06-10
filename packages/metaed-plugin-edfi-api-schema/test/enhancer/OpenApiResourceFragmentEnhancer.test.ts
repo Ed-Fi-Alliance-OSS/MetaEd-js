@@ -111,6 +111,26 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('students');
+
+      const serializedFragment: string = JSON.stringify(fragment);
+      expect(serializedFragment).not.toContain('Use-Snapshot');
+      expect(serializedFragment).not.toContain('NotFoundUseSnapshot');
+      expect(serializedFragment).not.toContain('snapshot');
+      expect(fragment?.paths?.['/ed-fi/students']?.get?.responses['404']).toEqual({
+        $ref: '#/components/responses/NotFound',
+      });
+      expect(fragment?.paths?.['/ed-fi/students/{id}']?.get?.responses['404']).toEqual({
+        $ref: '#/components/responses/NotFound',
+      });
+      expect(fragment?.paths?.['/ed-fi/students']?.post?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
+      expect(fragment?.paths?.['/ed-fi/students/{id}']?.put?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
+      expect(fragment?.paths?.['/ed-fi/students/{id}']?.delete?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
     });
 
     it('should not create a descriptors fragment for domain entities', () => {
@@ -159,6 +179,26 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('gradeLevelDescriptors');
+
+      const serializedFragment: string = JSON.stringify(fragment);
+      expect(serializedFragment).not.toContain('Use-Snapshot');
+      expect(serializedFragment).not.toContain('NotFoundUseSnapshot');
+      expect(serializedFragment).not.toContain('snapshot');
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']?.get?.responses['404']).toEqual({
+        $ref: '#/components/responses/NotFound',
+      });
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.get?.responses['404']).toEqual({
+        $ref: '#/components/responses/NotFound',
+      });
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']?.post?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.put?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.delete?.responses['405']).toEqual({
+        description: 'Method Is Not Allowed.',
+      });
     });
 
     it('should not create a resources fragment for descriptors', () => {

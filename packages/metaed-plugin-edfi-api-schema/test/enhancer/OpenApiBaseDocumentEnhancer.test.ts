@@ -60,6 +60,10 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.schemas?.EdFi_SchoolYearTypeReference).toBeDefined();
       expect(resourcesDoc?.components?.responses).toBeDefined();
       expect(resourcesDoc?.components?.parameters).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
+      expect(JSON.stringify(resourcesDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(resourcesDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(resourcesDoc)).not.toContain('snapshot');
       expect(resourcesDoc?.tags).toEqual([]);
     });
 
@@ -76,6 +80,10 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(descriptorsDoc?.components?.schemas).toEqual({});
       expect(descriptorsDoc?.components?.responses).toBeDefined();
       expect(descriptorsDoc?.components?.parameters).toBeDefined();
+      expect(descriptorsDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('snapshot');
       expect(descriptorsDoc?.tags).toEqual([]);
     });
 
@@ -137,6 +145,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(changeQueriesDoc?.security).toBeUndefined();
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('Use-Snapshot');
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('snapshot');
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('oauth2');
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('tokenUrl');
       expect(changeQueriesDoc?.tags).toEqual([]);
@@ -158,6 +167,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.responses?.Created).toBeDefined();
       expect(resourcesDoc?.components?.responses?.Updated).toBeDefined();
       expect(resourcesDoc?.components?.responses?.NotFound).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
       expect(resourcesDoc?.components?.responses?.BadRequest).toBeDefined();
     });
   });
