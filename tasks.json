@@ -134,7 +134,7 @@
       "Review generated tracked-change component names for at least one core resource and one extension resource.",
       "Review generated fragments and confirm `/deletes` and `/keyChanges` paths share the owning resource path prefix."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "tests",
