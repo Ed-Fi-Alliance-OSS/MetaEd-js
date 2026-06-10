@@ -1,0 +1,192 @@
+[
+  {
+    "category": "schema-contract",
+    "description": "Extend the MetaEd API Schema OpenAPI document contract so `projectSchema.openApiBaseDocuments.changeQueries` can be emitted as an optional core-only base document.",
+    "acceptance-criteria": [
+      "`OpenApiDocumentType` and related `NamespaceEdfiApiSchema` and `ProjectSchema` types accept a `changeQueries` document key alongside `resources` and `descriptors`.",
+      "Core/data-standard namespaces can carry `openApiBaseDocuments.changeQueries`; extension namespaces do not emit that standalone base document.",
+      "`ApiSchemaBuildingEnhancer` copies the optional `changeQueries` base document into core `projectSchema.openApiBaseDocuments` without adding the key to extension project schemas.",
+      "The existing `resources` and `descriptors` base document behavior remains unchanged except for explicit snapshot cleanup handled in a separate task.",
+      "`apiSchemaVersion` remains `1.0.0` because the new document is OpenAPI-only metadata under `openApiBaseDocuments`.",
+      "All new or changed exported types and functions have summary JSDoc comments and explicit TypeScript annotations."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiBaseDocumentEnhancer.test.ts` from the repository root.",
+      "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root.",
+      "Review a generated core ApiSchema JSON artifact under `packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm `projectSchema.openApiBaseDocuments.changeQueries` is present only for the core project."
+    ],
+    "completed": false
+  },
+  {
+    "category": "openapi-generation",
+    "description": "Generate the standalone Change-Queries OpenAPI base document that advertises `GET /availableChangeVersions` for DMS metadata discovery.",
+    "acceptance-criteria": [
+      "The core `openApiBaseDocuments.changeQueries` document contains the ODS-style path key `/availableChangeVersions`, not `/changeQueries/v1/availableChangeVersions`.",
+      "The `GET /availableChangeVersions` operation exposes a `200` `application/json` object response with required `oldestChangeVersion` and `newestChangeVersion` integer `int64` properties.",
+      "The `GET /availableChangeVersions` operation does not include resource or descriptor query parameters such as `minChangeVersion`, `maxChangeVersion`, `limit`, `offset`, `totalCount`, `pageToken`, or `pageSize`.",
+      "The standalone document does not include resource or descriptor paths, and resource/descriptor documents do not include `/availableChangeVersions`.",
+      "The standalone document does not emit deployment-specific OAuth2 security schemes, root `security`, token URLs, or runtime server URLs that DMS must inject at serve time.",
+      "The standalone document does not include snapshot headers, snapshot response descriptions, or snapshot-specific response components."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiBaseDocumentEnhancer.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts` from the repository root after updating authoritative artifacts if generated artifacts changed.",
+      "Inspect `projectSchema.openApiBaseDocuments.changeQueries.paths` in a generated core ApiSchema artifact under `packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3` and confirm it contains only `/availableChangeVersions`."
+    ],
+    "completed": false
+  },
+  {
+    "category": "openapi-generation",
+    "description": "Remove snapshot-only OpenAPI artifacts from the DMS OpenAPI documents emitted by `metaed-plugin-edfi-api-schema`.",
+    "acceptance-criteria": [
+      "Generated resource, descriptor, and Change-Queries OpenAPI documents do not define or reference `Use-Snapshot` header parameters.",
+      "Generated resource, descriptor, and Change-Queries OpenAPI documents do not define or reference the shared `NotFoundUseSnapshot` response.",
+      "Generated GET-by-query and GET-by-id operations use non-snapshot not-found responses and descriptions.",
+      "Generated write and delete operation responses do not include snapshot-specific `405 Method Is Not Allowed` descriptions.",
+      "No generated OpenAPI fragment or base document contains the text `Use-Snapshot` or snapshot-only response wording."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiBaseDocumentEnhancer.test.ts` from the repository root.",
+      "Search generated ApiSchema artifacts with `rg \"Use-Snapshot|NotFoundUseSnapshot|snapshot\" packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm remaining matches are outside DMS OpenAPI output or are intentionally unrelated model text."
+    ],
+    "completed": false
+  },
+  {
+    "category": "semantic-modeling",
+    "description": "Build reusable OpenAPI schema generation for Change Query identity-key response payloads from existing semantic API Schema metadata.",
+    "acceptance-criteria": [
+      "Regular resource tracked-change key schemas are derived by correlating exact `identityJsonPaths` values with `queryFieldMapping` and `QueryFieldPathInfo` source-property metadata, without parsing endpoint names, component names, or JSONPath segments.",
+      "Regular resource key schemas expose public query-field names for identity fields and omit internal storage identifiers.",
+      "Descriptor tracked-change key schemas use required public `namespace` and `codeValue` properties because descriptor `identityJsonPaths` is intentionally empty.",
+      "Descriptor-reference identity fields in regular resource key schemas are represented as public descriptor URI string fields rather than internal descriptor IDs.",
+      "Concrete abstract resources that materialize as endpoints derive tracked-change key schemas from their concrete resource schema and identity metadata, while abstract schema-only resources do not receive tracked-change response schemas.",
+      "`/deletes` item schemas require `id`, `changeVersion`, and `keyValues`; `/keyChanges` item schemas require `id`, `changeVersion`, `oldKeyValues`, and `newKeyValues`.",
+      "Every generated key object schema marks each identity property as required and uses the JSON schema type information available from existing API Schema metadata.",
+      "`changeVersion`, `minChangeVersion`, and `maxChangeVersion` are represented consistently as integer `int64` values."
+    ],
+    "steps-to-verify": [
+      "Run focused unit tests for the new tracked-change schema helper, for example `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` or a new helper-specific test file from the repository root.",
+      "Review inline snapshots for a regular resource with scalar and reference identity fields.",
+      "Review inline snapshots for a descriptor and confirm only `namespace` and `codeValue` appear in key schemas."
+    ],
+    "completed": false
+  },
+  {
+    "category": "openapi-generation",
+    "description": "Advertise live Change Query window filters on existing resource and descriptor GET-many OpenAPI operations.",
+    "acceptance-criteria": [
+      "Every generated regular resource GET-many operation includes `minChangeVersion` and `maxChangeVersion` query parameters.",
+      "Every generated descriptor GET-many operation includes `minChangeVersion` and `maxChangeVersion` query parameters.",
+      "`SchoolYearType` GET-many OpenAPI output includes `minChangeVersion` and `maxChangeVersion` because it is treated as a regular Change Query resource.",
+      "Extension-defined top-level resource and descriptor GET-many operations include the same change-version query parameters under their extension project endpoint.",
+      "Resource-extension overlays under `_ext` do not receive standalone live Change Query filter parameters because they are not standalone endpoints.",
+      "The live GET-many parameters are not added to GET-by-id, POST, PUT, DELETE, `/deletes`, `/keyChanges`, or `/availableChangeVersions` operations through this task.",
+      "`minChangeVersion` and `maxChangeVersion` are represented consistently with the ChangeVersion contract as integer `int64` query parameters.",
+      "No `Use-Snapshot` parameter or snapshot-specific response is introduced while adding the live change-version parameters."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Inspect generated resource and descriptor OpenAPI fragments for a core resource, descriptor, `SchoolYearType`, and extension-defined resource.",
+      "Search generated ApiSchema artifacts with `rg \"minChangeVersion|maxChangeVersion|Use-Snapshot\" packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm change-version parameters appear only on expected operations and `Use-Snapshot` is absent from DMS OpenAPI output."
+    ],
+    "completed": false
+  },
+  {
+    "category": "openapi-generation",
+    "description": "Emit `/deletes` and `/keyChanges` OpenAPI paths for generated resources and descriptors that support Change Query discovery.",
+    "acceptance-criteria": [
+      "Every non-composite generated regular resource in the resources OpenAPI fragments advertises `/{projectEndpointName}/{resourceEndpoint}/deletes` and `/{projectEndpointName}/{resourceEndpoint}/keyChanges`.",
+      "Every generated descriptor in the descriptors OpenAPI fragments advertises `/{projectEndpointName}/{descriptorEndpoint}/deletes` and `/{projectEndpointName}/{descriptorEndpoint}/keyChanges`.",
+      "`SchoolYearType` is treated as a regular Change Query resource and advertises both tracked-change paths.",
+      "Concrete abstract resources that materialize as endpoints advertise both tracked-change paths under their concrete endpoint names.",
+      "Extension-defined top-level resources and descriptors advertise tracked-change paths under their extension project endpoint.",
+      "Resource-extension overlays under `_ext` do not receive standalone `/deletes` or `/keyChanges` paths.",
+      "Abstract resources that do not materialize to endpoints continue to emit schemas only and do not receive tracked-change paths.",
+      "Tracked-change paths are emitted as `get` operations on sibling collection subpaths, not as operations under `/{id}` paths.",
+      "`/deletes` and `/keyChanges` operations include `minChangeVersion`, `maxChangeVersion`, `limit`, `offset`, and `totalCount` query parameters.",
+      "`/deletes` and `/keyChanges` operations expose `200` `application/json` array responses that reference the generated delete item and key-change item schemas."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/ApiSchemaBuildingEnhancer.test.ts` from the repository root if ResourceSchema copying behavior changes.",
+      "Inspect generated core and extension ApiSchema artifacts for representative resource, descriptor, `SchoolYearType`, and resource-extension cases."
+    ],
+    "completed": false
+  },
+  {
+    "category": "profile-integration",
+    "description": "Make the MetaEd-emitted tracked-change OpenAPI fragments compatible with DMS profile-specific OpenAPI filtering and schema suffixing.",
+    "acceptance-criteria": [
+      "Tracked-change response component names are deterministic and resource-specific so DMS can create profile-suffixed tracked-change schemas without colliding with normal resource representation schemas.",
+      "MetaEd emits stable unprofiled tracked-change component names and references; profile-specific suffixing remains DMS-owned.",
+      "The tracked-change key schemas contain only identity-key fields and are not shaped as readable or writable resource representations.",
+      "Generated resource paths make `/deletes` and `/keyChanges` clearly owned by their parent resource path so DMS can preserve them for readable profile resources.",
+      "The standalone `changeQueries` base document is emitted only as an unprofiled core document and is not duplicated through resource or descriptor fragments.",
+      "MetaEd unit or integration tests document the expected fragment shape that DMS profile filtering consumes."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Review generated tracked-change component names for at least one core resource and one extension resource.",
+      "Review generated fragments and confirm `/deletes` and `/keyChanges` paths share the owning resource path prefix."
+    ],
+    "completed": false
+  },
+  {
+    "category": "tests",
+    "description": "Add focused unit and integration coverage for the Change Query OpenAPI surface in `metaed-plugin-edfi-api-schema`.",
+    "acceptance-criteria": [
+      "Unit tests cover standalone `changeQueries` base document creation, core-only emission, and the `/availableChangeVersions` response shape.",
+      "Unit tests cover `/deletes` and `/keyChanges` path generation for a regular resource, descriptor, concrete abstract resource, `SchoolYearType`, extension-defined top-level resource, and resource-extension overlay exclusion.",
+      "Unit tests cover required query parameters on tracked-change paths and live GET-many change-version parameters.",
+      "Unit tests cover regular-resource key schema derivation from identity metadata and descriptor key schema derivation from `namespace` and `codeValue`.",
+      "Tests assert that snapshot-specific OpenAPI artifacts are absent from generated DMS OpenAPI output.",
+      "Tests use inline snapshots where they verify full generated OpenAPI objects."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiBaseDocumentEnhancer.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/OpenApiResourceFragmentEnhancer.test.ts` from the repository root.",
+      "Run any new focused test file added for Change Query OpenAPI helpers with `npx jest path/to/test.ts` from the repository root."
+    ],
+    "completed": false
+  },
+  {
+    "category": "authoritative-artifacts",
+    "description": "Update the generated and authoritative ApiSchema integration artifacts to reflect the new Change Query OpenAPI contract.",
+    "acceptance-criteria": [
+      "Core data-standard artifacts include `projectSchema.openApiBaseDocuments.changeQueries` with `/availableChangeVersions`.",
+      "Core data-standard artifacts include `/deletes` and `/keyChanges` fragments for regular resources, concrete abstract resources, descriptors, and `SchoolYearType`.",
+      "Extension artifacts include `/deletes` and `/keyChanges` fragments for extension-defined top-level resources and descriptors.",
+      "Extension artifacts do not include `projectSchema.openApiBaseDocuments.changeQueries`.",
+      "Updated artifacts contain strongly typed tracked-change response schemas and do not contain snapshot-only OpenAPI artifacts in DMS OpenAPI sections.",
+      "Updated artifacts preserve `apiSchemaVersion` and show only OpenAPI metadata changes expected by this story.",
+      "Authoritative compare tests pass for every supported API Schema integration suite whose output changes."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_1.test.ts` from the repository root if v7.1 artifacts change.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_2.test.ts` from the repository root if v7.2 artifacts change.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts` from the repository root.",
+      "Run `npx ts-node packages/metaed-plugin-edfi-api-schema/test/integration/update-authoritative-files.ts --dry-run` from the repository root to confirm the generated-to-authoritative copy set before updating authoritative files.",
+      "Review `git diff -- packages/metaed-plugin-edfi-api-schema/test/integration/artifact` before accepting the updates."
+    ],
+    "completed": false
+  },
+  {
+    "category": "validation",
+    "description": "Validate the completed MetaEd OpenAPI output and package quality without running the repository publishing build.",
+    "acceptance-criteria": [
+      "Merged resource, descriptor, and Change-Queries OpenAPI documents have no dangling `$ref` values introduced by the new tracked-change schemas or paths.",
+      "The `metaed-plugin-edfi-api-schema` package type check passes.",
+      "Directory-level ESLint passes for the package source and tests touched by the implementation.",
+      "No `npm run build` command is used.",
+      "The final implementation notes identify any generated artifact diffs that are expected because of the Change Query OpenAPI contract."
+    ],
+    "steps-to-verify": [
+      "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root.",
+      "Run `npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-plugin-edfi-api-schema/src packages/metaed-plugin-edfi-api-schema/test` from the repository root.",
+      "Run the focused Jest tests for the changed package with `npx jest path/to/test.ts` from the repository root.",
+      "Optionally validate merged OpenAPI documents with `@apidevtools/swagger-parser` if new full-document validation coverage is added."
+    ],
+    "completed": false
+  }
+]
