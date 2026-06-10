@@ -8,12 +8,13 @@ import { ComponentsObject, Document } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import { createHardcodedParameterResponses, createHardcodedComponentParameters } from './OpenApiSpecificationEnhancerBase';
 import { newSchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
+import { OpenApiDocumentType, OpenApiDocumentTypeValue } from '../model/api-schema/OpenApiDocumentType';
 
 /**
  * Creates the base OpenAPI document structure without paths, schemas, or tags.
  * This structure is common to all OpenAPI documents (resources, descriptors, etc.)
  */
-function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: string): Document {
+function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: OpenApiDocumentTypeValue): Document {
   const components: ComponentsObject = {
     schemas: {},
     responses: createHardcodedParameterResponses(),
@@ -40,9 +41,12 @@ function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: stri
   };
 
   // Add hardcoded SchoolYearTypeReference schema only to resources document
-  if (documentType === 'resources') {
+  if (documentType === OpenApiDocumentType.RESOURCES) {
     const schoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
-    components.schemas!.EdFi_SchoolYearTypeReference = schoolYearOpenApis.schoolYearEnumerationOpenApi;
+    const { schemas } = components;
+    if (schemas != null) {
+      schemas.EdFi_SchoolYearTypeReference = schoolYearOpenApis.schoolYearEnumerationOpenApi;
+    }
   }
 
   return openApiDocument;
@@ -61,8 +65,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // Create base documents for resources and descriptors
     namespaceEdfiApiSchema.openApiBaseDocuments = {
-      resources: createBaseOpenApiDocument(metaEd, 'resources'),
-      descriptors: createBaseOpenApiDocument(metaEd, 'descriptors'),
+      [OpenApiDocumentType.RESOURCES]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.RESOURCES),
+      [OpenApiDocumentType.DESCRIPTORS]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.DESCRIPTORS),
+      [OpenApiDocumentType.CHANGE_QUERIES]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.CHANGE_QUERIES),
     };
   });
 

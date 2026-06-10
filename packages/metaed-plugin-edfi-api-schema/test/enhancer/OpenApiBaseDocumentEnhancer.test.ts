@@ -14,6 +14,7 @@ import {
 import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
 import { enhance } from '../../src/enhancer/OpenApiBaseDocumentEnhancer';
 import { NamespaceEdfiApiSchema } from '../../src/model/Namespace';
+import { OpenApiDocumentType } from '../../src/model/api-schema/OpenApiDocumentType';
 
 describe('OpenApiBaseDocumentEnhancer', () => {
   describe('when enhancing a core namespace', () => {
@@ -47,7 +48,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
 
     it('should create base document for resources', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc).toBeDefined();
       expect(resourcesDoc?.openapi).toBe('3.0.0');
@@ -64,7 +65,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
 
     it('should create base document for descriptors', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.descriptors;
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
 
       expect(descriptorsDoc).toBeDefined();
       expect(descriptorsDoc?.openapi).toBe('3.0.0');
@@ -78,9 +79,25 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(descriptorsDoc?.tags).toEqual([]);
     });
 
+    it('should create base document for change queries', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+
+      expect(changeQueriesDoc).toBeDefined();
+      expect(changeQueriesDoc?.openapi).toBe('3.0.0');
+      expect(changeQueriesDoc?.info?.title).toBe('Ed-Fi Data Management Service API');
+      expect(changeQueriesDoc?.info?.version).toBe('1');
+      expect(changeQueriesDoc?.servers).toHaveLength(1);
+      expect(changeQueriesDoc?.paths).toEqual({});
+      expect(changeQueriesDoc?.components?.schemas).toEqual({});
+      expect(changeQueriesDoc?.components?.responses).toBeDefined();
+      expect(changeQueriesDoc?.components?.parameters).toBeDefined();
+      expect(changeQueriesDoc?.tags).toEqual([]);
+    });
+
     it('should include hardcoded component parameters', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc?.components?.parameters?.['If-None-Match']).toBeDefined();
       expect(resourcesDoc?.components?.parameters?.limit).toBeDefined();
@@ -89,7 +106,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
 
     it('should include hardcoded responses', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc?.components?.responses?.Created).toBeDefined();
       expect(resourcesDoc?.components?.responses?.Updated).toBeDefined();

@@ -15,7 +15,7 @@
       "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root.",
       "Review a generated core ApiSchema JSON artifact under `packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and confirm `projectSchema.openApiBaseDocuments.changeQueries` is present only for the core project."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "openapi-generation",

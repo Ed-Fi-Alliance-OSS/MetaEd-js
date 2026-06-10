@@ -9,9 +9,23 @@ import { type Document } from './OpenApiTypes';
 import { DomainName } from './api-schema/DomainName';
 import { OpenApiDocumentTypeValue } from './api-schema/OpenApiDocumentType';
 
+/**
+ * API Schema data accumulated on a MetaEd namespace by the API Schema plugin.
+ */
 export type NamespaceEdfiApiSchema = {
+  /**
+   * The ApiSchema document generated for this namespace.
+   */
   apiSchema: ApiSchema;
+
+  /**
+   * Domain names defined by this namespace.
+   */
   domains: DomainName[];
+
+  /**
+   * Core-only OpenAPI base documents keyed by document type.
+   */
   openApiBaseDocuments?: {
     [documentType in OpenApiDocumentTypeValue]?: Document;
   };
@@ -19,7 +33,7 @@ export type NamespaceEdfiApiSchema = {
 
 const enhancerName = 'NamespaceSetupEnhancer';
 
-export function addNamespaceEdfiApiSchema(namespace: Namespace) {
+export function addNamespaceEdfiApiSchema(namespace: Namespace): void {
   if (namespace.data.edfiApiSchema == null) namespace.data.edfiApiSchema = {};
 
   Object.assign(namespace.data.edfiApiSchema, {

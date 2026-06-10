@@ -213,6 +213,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const resourceNameMapping: ResourceNameMapping = {};
     const caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping = {};
     const abstractResources: AbstractResourceMapping = {};
+    const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
 
     const projectSchema: ProjectSchema = {
       projectName: namespace.projectName as MetaEdProjectName,
@@ -227,11 +228,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       isExtensionProject: namespace.isExtension,
       educationOrganizationTypes: namespace.data.educationOrganizationTypes as MetaEdResourceName[],
       educationOrganizationHierarchy: namespace.data.educationOrganizationHierarchy as EducationOrganizationHierarchy,
-      domains: (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).domains,
-      openApiBaseDocuments: (namespace.data.edfiApiSchema as NamespaceEdfiApiSchema).openApiBaseDocuments,
+      domains: namespaceEdfiApiSchema.domains,
+      ...(namespace.isExtension || namespaceEdfiApiSchema.openApiBaseDocuments == null
+        ? {}
+        : { openApiBaseDocuments: namespaceEdfiApiSchema.openApiBaseDocuments }),
     };
 
-    const { apiSchema } = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+    const { apiSchema } = namespaceEdfiApiSchema;
     apiSchema.projectSchema = projectSchema;
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntity').forEach((domainEntity) => {
