@@ -21,6 +21,7 @@ import {
 import { pluralize, deAcronym, createUriSegment } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
+import { type TrackedChangeSchemaNames, trackedChangeSchemaNamesFor } from './OpenApiChangeQuerySchemaBuilder';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -319,6 +320,29 @@ function newStaticUpdateByIdParameters(): Parameter[] {
 }
 
 /**
+ * Returns the hardcoded query parameters for Change Query tracked-change paths.
+ */
+function newStaticTrackedChangeQueryParameters(): Parameter[] {
+  return [
+    {
+      $ref: '#/components/parameters/MinChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/MaxChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/limit',
+    },
+    {
+      $ref: '#/components/parameters/offset',
+    },
+    {
+      $ref: '#/components/parameters/totalCount',
+    },
+  ];
+}
+
+/**
  * Returns an OpenAPI schema object corresponding to the given property based on its type.
  */
 function schemaObjectFrom(property: EntityProperty): SchemaObject {
@@ -571,6 +595,76 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
 }
 
 /**
+ * Creates the standard response object for Change Query tracked-change operations.
+ */
+function createTrackedChangeResponsesFor(trackedChangeItemSchemaName: string): ResponsesObject {
+  return {
+    '200': {
+      description: 'The requested Change Query results were successfully retrieved.',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'array',
+            items: {
+              $ref: `#/components/schemas/${trackedChangeItemSchemaName}`,
+            },
+          },
+        },
+      },
+    },
+    '400': {
+      $ref: '#/components/responses/BadRequest',
+    },
+    '401': {
+      $ref: '#/components/responses/Unauthorized',
+    },
+    '403': {
+      $ref: '#/components/responses/Forbidden',
+    },
+    '404': {
+      $ref: '#/components/responses/NotFound',
+    },
+    '500': {
+      $ref: '#/components/responses/Error',
+    },
+  };
+}
+
+/**
+ * Returns the "get" section of the tracked-change deletes path for the given entity.
+ */
+export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
+  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
+
+  return {
+    description: 'This GET operation provides access to deleted resource keys in the requested ChangeVersion range.',
+    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}Deletes`,
+    parameters: newStaticTrackedChangeQueryParameters(),
+    responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.deleteItem),
+    summary: 'Retrieves deleted resource keys for Change Queries.',
+    tags: [endpointName],
+  };
+}
+
+/**
+ * Returns the "get" section of the tracked-change key changes path for the given entity.
+ */
+export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
+  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
+
+  return {
+    description: 'This GET operation provides access to changed resource keys in the requested ChangeVersion range.',
+    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}KeyChanges`,
+    parameters: newStaticTrackedChangeQueryParameters(),
+    responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.keyChangeItem),
+    summary: 'Retrieves changed resource keys for Change Queries.',
+    tags: [endpointName],
+  };
+}
+
+/**
  * Returns the "put" section of id "path" for the given entity
  */
 export function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
@@ -720,15 +814,26 @@ export function createPathsFrom(entity: TopLevelEntity): PathsObject {
 
   const projectEndpointName: ProjectEndpointName = createUriSegment(entity.namespace.projectName) as ProjectEndpointName;
   const { endpointName, domains } = entity.data.edfiApiSchema as EntityApiSchemaData;
+  const resourcePath: string = `/${projectEndpointName}/${endpointName}`;
 
   // Add to paths without "id"
-  paths[`/${projectEndpointName}/${endpointName}`] = {
+  paths[resourcePath] = {
     post: createPostSectionFor(entity, endpointName),
     get: createGetByQuerySectionFor(entity, endpointName),
     'x-Ed-Fi-domains': domains,
   };
 
-  paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
+  paths[`${resourcePath}/deletes`] = {
+    get: createTrackedChangeDeletesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
+
+  paths[`${resourcePath}/keyChanges`] = {
+    get: createTrackedChangeKeyChangesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
+
+  paths[`${resourcePath}/{id}`] = {
     get: createGetByIdSectionFor(entity, endpointName),
     put: createPutSectionFor(entity, endpointName),
     delete: createDeleteSectionFor(entity, endpointName),

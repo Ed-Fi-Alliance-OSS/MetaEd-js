@@ -26,3 +26,9 @@ Key decisions: existing shared GET-many parameter builder already emits MinChang
 Files changed: OpenApiResourceFragmentEnhancer.test.ts, OpenApiBaseDocumentEnhancer.test.ts, tasks.json, progress.txt.
 Verification: OpenApiResourceFragmentEnhancer Jest, OpenApiBaseDocumentEnhancer Jest, package tsc, package ESLint.
 Notes: no source behavior change and no artifact refresh; checked-in artifacts already contained live GET-many change-version refs.
+
+2026-06-10 - Completed openapi-generation tracked-change paths for /home/brad/work/dms-root/Data-Management-Service/reference/design/backend-redesign/epics/10-update-tracking-change-queries/20-openapi-change-query-surface.md
+Key decisions: createPathsFrom now emits sibling /deletes and /keyChanges GET paths for generated resources/descriptors; operations use MinChangeVersion/MaxChangeVersion/limit/offset/totalCount refs only; responses are application/json arrays referencing per-resource tracked-change schemas; resource extensions still no standalone paths.
+Files changed: OpenApiSpecificationEnhancerBase.ts, OpenApiResourceFragmentEnhancer.test.ts, tasks.json, progress.txt.
+Verification: OpenApiResourceFragmentEnhancer Jest, ApiSchemaBuildingEnhancer Jest, package tsc, package ESLint.
+Notes: authoritative artifact refresh intentionally deferred to authoritative-artifacts task; compare tests expected to differ until artifacts are updated.

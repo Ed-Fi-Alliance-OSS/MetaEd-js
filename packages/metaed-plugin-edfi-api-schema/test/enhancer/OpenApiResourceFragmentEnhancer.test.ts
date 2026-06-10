@@ -6,6 +6,7 @@
 import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
+  DomainEntitySubclassBuilder,
   DescriptorBuilder,
   EnumerationBuilder,
   MetaEdTextBuilder,
@@ -18,6 +19,7 @@ import {
   domainEntityReferenceEnhancer,
   descriptorReferenceEnhancer,
   domainEntityExtensionBaseClassEnhancer,
+  domainEntitySubclassBaseClassEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
@@ -54,6 +56,16 @@ const changeVersionParameterRefs: string[] = [
   '#/components/parameters/MaxChangeVersion',
 ];
 
+const trackedChangeParameterRefs: string[] = [
+  '#/components/parameters/MinChangeVersion',
+  '#/components/parameters/MaxChangeVersion',
+  '#/components/parameters/limit',
+  '#/components/parameters/offset',
+  '#/components/parameters/totalCount',
+];
+
+const cursorPagingParameterRefs: string[] = ['#/components/parameters/pageToken', '#/components/parameters/pageSize'];
+
 /**
  * Returns an operation from a fragment path for focused OpenAPI assertions.
  */
@@ -71,6 +83,13 @@ function parameterRefsFrom(operation: Operation): string[] {
 }
 
 /**
+ * Returns inline parameter names from an OpenAPI operation.
+ */
+function parameterNamesFrom(operation: Operation): string[] {
+  return (operation.parameters ?? []).flatMap((parameter: Parameter) => ('name' in parameter ? [parameter.name] : []));
+}
+
+/**
  * Asserts an operation advertises live Change Query filter parameters.
  */
 function expectLiveChangeVersionFilterParameters(operation: Operation): void {
@@ -83,6 +102,44 @@ function expectLiveChangeVersionFilterParameters(operation: Operation): void {
 function expectNoLiveChangeVersionFilterParameters(operation: Operation): void {
   const parameterRefs: string[] = parameterRefsFrom(operation);
   changeVersionParameterRefs.forEach((parameterRef: string) => expect(parameterRefs).not.toContain(parameterRef));
+}
+
+/**
+ * Asserts an operation advertises only the tracked-change query parameters.
+ */
+function expectTrackedChangeQueryParameters(operation: Operation): void {
+  const parameterRefs: string[] = parameterRefsFrom(operation);
+
+  expect(parameterRefs).toEqual(trackedChangeParameterRefs);
+  cursorPagingParameterRefs.forEach((parameterRef: string) => expect(parameterRefs).not.toContain(parameterRef));
+  expect(parameterNamesFrom(operation)).toEqual([]);
+}
+
+/**
+ * Asserts a tracked-change operation references the expected response item schema.
+ */
+function expectTrackedChangeResponseSchema(operation: Operation, trackedChangeItemSchemaName: string): void {
+  expect(operation.responses['200']).toEqual({
+    description: 'The requested Change Query results were successfully retrieved.',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: {
+            $ref: `#/components/schemas/${trackedChangeItemSchemaName}`,
+          },
+        },
+      },
+    },
+  });
+}
+
+/**
+ * Asserts an operation advertises a tracked-change response and query parameter contract.
+ */
+function expectTrackedChangeOperation(operation: Operation, trackedChangeItemSchemaName: string): void {
+  expectTrackedChangeQueryParameters(operation);
+  expectTrackedChangeResponseSchema(operation, trackedChangeItemSchemaName);
 }
 
 function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment) {
@@ -152,6 +209,8 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas?.EdFi_Student).toBeDefined();
       expect(fragment?.paths).toBeDefined();
       expect(fragment?.paths?.['/ed-fi/students']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/students/deletes']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/students/keyChanges']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('students');
@@ -187,6 +246,23 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/students/{id}', 'get'));
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/students/{id}', 'put'));
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/students/{id}', 'delete'));
+    });
+
+    it('should add tracked-change delete and key-change paths with response schemas', () => {
+      const student = namespace.entity.domainEntity.get('Student');
+      const studentApiData = student.data.edfiApiSchema;
+      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/students/deletes', 'get'),
+        'EdFi_Student_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/students/keyChanges', 'get'),
+        'EdFi_Student_TrackedChangeKeyChange',
+      );
+      expect(fragment.paths?.['/ed-fi/students/deletes']?.['x-Ed-Fi-domains']).toEqual([]);
+      expect(fragment.paths?.['/ed-fi/students/keyChanges']?.['x-Ed-Fi-domains']).toEqual([]);
     });
 
     it('should not create a descriptors fragment for domain entities', () => {
@@ -232,6 +308,8 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.components?.schemas?.EdFi_GradeLevelDescriptor).toBeDefined();
       expect(fragment?.paths).toBeDefined();
       expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/deletes']).toBeDefined();
+      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/keyChanges']).toBeDefined();
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('gradeLevelDescriptors');
@@ -267,6 +345,21 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'get'));
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'put'));
       expectNoLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'delete'));
+    });
+
+    it('should add tracked-change delete and key-change paths with descriptor response schemas', () => {
+      const descriptor = namespace.entity.descriptor.get('GradeLevel');
+      const descriptorApiData = descriptor.data.edfiApiSchema;
+      const fragment = descriptorApiData.openApiFragments[OpenApiDocumentType.DESCRIPTORS] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/deletes', 'get'),
+        'EdFi_GradeLevelDescriptor_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/keyChanges', 'get'),
+        'EdFi_GradeLevelDescriptor_TrackedChangeKeyChange',
+      );
     });
 
     it('should not create a resources fragment for descriptors', () => {
@@ -308,6 +401,21 @@ describe('OpenApiResourceFragmentEnhancer', () => {
 
       expectLiveChangeVersionFilterParameters(operationFrom(fragment, '/ed-fi/schoolYearTypes', 'get'));
     });
+
+    it('should add tracked-change delete and key-change paths to SchoolYearType', () => {
+      const schoolYear = namespace.entity.schoolYearEnumeration.get('SchoolYear') as SchoolYearEnumeration;
+      const schoolYearApiData = schoolYear.data.edfiApiSchema;
+      const fragment = schoolYearApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/schoolYearTypes/deletes', 'get'),
+        'EdFi_SchoolYear_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/schoolYearTypes/keyChanges', 'get'),
+        'EdFi_SchoolYear_TrackedChangeKeyChange',
+      );
+    });
   });
 
   describe('when enhancing an abstract domain entity', () => {
@@ -346,6 +454,52 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       // Abstract entities have no paths or tags
       expect(fragment?.paths).toBeUndefined();
       expect(fragment?.tags).toBeUndefined();
+    });
+  });
+
+  describe('when enhancing a concrete abstract resource subclass', () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+    const namespaceName = 'EdFi';
+    let namespace: Namespace;
+
+    beforeAll(() => {
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartAbstractEntity('EducationOrganization')
+        .withDocumentation('Base education organization')
+        .withIntegerIdentity('EducationOrganizationId', 'doc')
+        .withEndAbstractEntity()
+        .withStartDomainEntitySubclass('School', 'EducationOrganization')
+        .withDocumentation('A school')
+        .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+        .withEndDomainEntitySubclass()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []))
+        .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
+
+      domainEntityReferenceEnhancer(metaEd);
+      domainEntitySubclassBaseClassEnhancer(metaEd);
+      runPrerequisiteEnhancers(metaEd);
+      enhance(metaEd);
+
+      namespace = metaEd.namespace.get(namespaceName) as Namespace;
+    });
+
+    it('should add tracked-change delete and key-change paths to concrete subclass endpoints', () => {
+      const school = namespace.entity.domainEntitySubclass.get('School') as TopLevelEntity;
+      const schoolApiData = school.data.edfiApiSchema;
+      const fragment = schoolApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/schools/deletes', 'get'),
+        'EdFi_School_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/ed-fi/schools/keyChanges', 'get'),
+        'EdFi_School_TrackedChangeKeyChange',
+      );
     });
   });
 
@@ -518,6 +672,21 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expectLiveChangeVersionFilterParameters(operationFrom(fragment, '/sample-extension/busRoutes', 'get'));
     });
 
+    it('should add tracked-change paths to extension-defined resource operations', () => {
+      const busRoute = extensionNamespace.entity.domainEntity.get('BusRoute') as TopLevelEntity;
+      const busRouteApiData = busRoute.data.edfiApiSchema;
+      const fragment = busRouteApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/sample-extension/busRoutes/deletes', 'get'),
+        'SampleExtension_BusRoute_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/sample-extension/busRoutes/keyChanges', 'get'),
+        'SampleExtension_BusRoute_TrackedChangeKeyChange',
+      );
+    });
+
     it('should add live Change Query filters to extension-defined descriptor GET-many operations', () => {
       const transportationMode = extensionNamespace.entity.descriptor.get('TransportationMode') as TopLevelEntity;
       const transportationModeApiData = transportationMode.data.edfiApiSchema;
@@ -525,6 +694,21 @@ describe('OpenApiResourceFragmentEnhancer', () => {
 
       expectLiveChangeVersionFilterParameters(
         operationFrom(fragment, '/sample-extension/transportationModeDescriptors', 'get'),
+      );
+    });
+
+    it('should add tracked-change paths to extension-defined descriptor operations', () => {
+      const transportationMode = extensionNamespace.entity.descriptor.get('TransportationMode') as TopLevelEntity;
+      const transportationModeApiData = transportationMode.data.edfiApiSchema;
+      const fragment = transportationModeApiData.openApiFragments[OpenApiDocumentType.DESCRIPTORS] as OpenApiFragment;
+
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/sample-extension/transportationModeDescriptors/deletes', 'get'),
+        'SampleExtension_TransportationModeDescriptor_TrackedChangeDelete',
+      );
+      expectTrackedChangeOperation(
+        operationFrom(fragment, '/sample-extension/transportationModeDescriptors/keyChanges', 'get'),
+        'SampleExtension_TransportationModeDescriptor_TrackedChangeKeyChange',
       );
     });
   });

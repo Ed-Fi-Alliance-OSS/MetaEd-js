@@ -116,7 +116,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/ApiSchemaBuildingEnhancer.test.ts` from the repository root if ResourceSchema copying behavior changes.",
       "Inspect generated core and extension ApiSchema artifacts for representative resource, descriptor, `SchoolYearType`, and resource-extension cases."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "profile-integration",
