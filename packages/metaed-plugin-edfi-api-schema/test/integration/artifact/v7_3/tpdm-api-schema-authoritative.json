@@ -12738,9 +12738,9 @@
                     }
                   },
                   "required": [
-                    "evaluationElementTitle",
                     "educationOrganizationId",
                     "evaluationDate",
+                    "evaluationElementTitle",
                     "evaluationObjectiveTitle",
                     "evaluationPeriodDescriptor",
                     "evaluationTitle",
@@ -14049,8 +14049,8 @@
                     }
                   },
                   "required": [
-                    "evaluationElementTitle",
                     "educationOrganizationId",
+                    "evaluationElementTitle",
                     "evaluationObjectiveTitle",
                     "evaluationPeriodDescriptor",
                     "evaluationTitle",
@@ -15450,11 +15450,11 @@
                     }
                   },
                   "required": [
-                    "evaluationObjectiveTitle",
-                    "evaluationTitle",
                     "educationOrganizationId",
                     "evaluationDate",
+                    "evaluationObjectiveTitle",
                     "evaluationPeriodDescriptor",
+                    "evaluationTitle",
                     "performanceEvaluationTitle",
                     "performanceEvaluationTypeDescriptor",
                     "personId",
@@ -16686,8 +16686,8 @@
                     }
                   },
                   "required": [
-                    "evaluationObjectiveTitle",
                     "educationOrganizationId",
+                    "evaluationObjectiveTitle",
                     "evaluationPeriodDescriptor",
                     "evaluationTitle",
                     "performanceEvaluationTitle",
@@ -20525,12 +20525,12 @@
                     }
                   },
                   "required": [
-                    "evaluationDate",
-                    "evaluationTitle",
-                    "performanceEvaluationTypeDescriptor",
                     "educationOrganizationId",
+                    "evaluationDate",
                     "evaluationPeriodDescriptor",
+                    "evaluationTitle",
                     "performanceEvaluationTitle",
+                    "performanceEvaluationTypeDescriptor",
                     "personId",
                     "schoolYear",
                     "sourceSystemDescriptor",
@@ -22543,9 +22543,9 @@
                     }
                   },
                   "required": [
-                    "evaluationTitle",
                     "educationOrganizationId",
                     "evaluationPeriodDescriptor",
+                    "evaluationTitle",
                     "performanceEvaluationTitle",
                     "performanceEvaluationTypeDescriptor",
                     "schoolYear",
@@ -27056,10 +27056,10 @@
                     "evaluationPeriodDescriptor",
                     "performanceEvaluationTitle",
                     "performanceEvaluationTypeDescriptor",
-                    "schoolYear",
-                    "termDescriptor",
                     "personId",
-                    "sourceSystemDescriptor"
+                    "schoolYear",
+                    "sourceSystemDescriptor",
+                    "termDescriptor"
                   ],
                   "type": "object"
                 },
@@ -30109,9 +30109,9 @@
                     "evaluationTitle",
                     "performanceEvaluationTitle",
                     "performanceEvaluationTypeDescriptor",
+                    "rubricRating",
                     "schoolYear",
-                    "termDescriptor",
-                    "rubricRating"
+                    "termDescriptor"
                   ],
                   "type": "object"
                 },
@@ -31914,9 +31914,9 @@
                     }
                   },
                   "required": [
+                    "namespace",
                     "personId",
                     "sourceSystemDescriptor",
-                    "namespace",
                     "surveyIdentifier",
                     "surveyResponseIdentifier"
                   ],
@@ -32896,9 +32896,9 @@
                     }
                   },
                   "required": [
+                    "namespace",
                     "personId",
                     "sourceSystemDescriptor",
-                    "namespace",
                     "surveyIdentifier",
                     "surveyResponseIdentifier",
                     "surveySectionTitle"

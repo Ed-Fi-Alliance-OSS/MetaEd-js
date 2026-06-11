@@ -139,9 +139,11 @@ function keyValuesSchemaFrom(identityFieldSchemas: IdentityFieldSchema[]): Schem
     required.push(identityFieldSchema.fieldName);
   });
 
+  const sortedRequired: string[] = [...required].sort();
+
   return {
     type: 'object',
-    required,
+    required: sortedRequired,
     properties,
   };
 }
