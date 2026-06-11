@@ -116,18 +116,11 @@ async function runAuthoritativeTest(testFile: string, description: string): Prom
 
   try {
     const testPath = `packages/metaed-plugin-edfi-api-schema/test/integration/${testFile}`;
-    const testCommand = `npx jest --testPathPattern="${testPath}" --verbose`;
+    const testCommand = `npx jest "${testPath}" --verbose`;
     logVerbose(`Executing: ${testCommand}`);
 
-    // Change to workspace root directory for Jest to work properly
     const workspaceRoot = path.join(__dirname, '..', '..', '..', '..');
-    const originalCwd = process.cwd();
-    process.chdir(workspaceRoot);
-
-    const { stdout } = await execAsync(testCommand);
-
-    // Change back to original directory
-    process.chdir(originalCwd);
+    const { stdout } = await execAsync(testCommand, { cwd: workspaceRoot });
 
     if (isVerbose && stdout) {
       log('Test output:', 'gray');

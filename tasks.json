@@ -42,7 +42,7 @@
       "Run `cd packages/metaed-plugin-edfi-api-schema && npm run update-authoritative` to regenerate compare artifacts and copy generated output to authoritative files.",
       "Run `git diff -- packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and inspect that the artifact changes are limited to the expected school year reference path type updates."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "integration-validation",

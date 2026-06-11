@@ -9528,7 +9528,7 @@
               {
                 "identityJsonPath": "$.graduationSchoolYearTypeReference.schoolYear",
                 "referenceJsonPath": "$.graduationPlanReference.graduationSchoolYear",
-                "type": "string"
+                "type": "number"
               }
             ],
             "resourceName": "GraduationPlan"
