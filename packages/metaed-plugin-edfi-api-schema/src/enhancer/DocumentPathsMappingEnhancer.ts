@@ -67,6 +67,9 @@ function allJsonPathsMappingFor(entity: TopLevelEntity): JsonPathsMapping {
   return edfiApiSchemaData.allJsonPathsMapping;
 }
 
+/**
+ * Maps a semantic MetaEd property type to an ApiSchema path type.
+ */
 function getPathType(propertyType: PropertyType): PathType {
   switch (propertyType) {
     case 'boolean':
@@ -80,6 +83,7 @@ function getPathType(propertyType: PropertyType): PathType {
     case 'short':
     case 'sharedShort':
     case 'year':
+    case 'schoolYearEnumeration':
       return 'number';
     case 'date':
       return 'date';

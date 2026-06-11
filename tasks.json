@@ -1,0 +1,78 @@
+[
+  {
+    "category": "implementation",
+    "description": "Update `packages/metaed-plugin-edfi-api-schema/src/enhancer/DocumentPathsMappingEnhancer.ts` so the semantic MetaEd `schoolYearEnumeration` property type maps to ApiSchema `PathType` `number` when document reference path metadata is built.",
+    "acceptance-criteria": [
+      "`getPathType` explicitly returns `number` for `schoolYearEnumeration`.",
+      "Existing mappings for boolean, numeric, date, date-time, string, and time property types remain unchanged.",
+      "The implementation uses the MetaEd property type value directly and does not infer school year semantics from JSON path strings, resource names, or other naming conventions.",
+      "The change is limited to the MetaEd ApiSchema package and does not update downstream DMS fixture files."
+    ],
+    "steps-to-verify": [
+      "Review `packages/metaed-plugin-edfi-api-schema/src/enhancer/DocumentPathsMappingEnhancer.ts` and confirm `schoolYearEnumeration` is handled in the `getPathType` switch.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts` from the repository root."
+    ],
+    "completed": true
+  },
+  {
+    "category": "unit-tests",
+    "description": "Update the focused `DocumentPathsMappingEnhancer` unit coverage so school year reference JSON path entries expect numeric path typing.",
+    "acceptance-criteria": [
+      "At least one direct `SchoolYear` reference snapshot or assertion expects `referenceJsonPaths[*].type` to be `number` for `$.schoolYearTypeReference.schoolYear`.",
+      "Existing role-named, collection, nested, or merge-related school year reference path coverage is updated where the corrected mapping changes expected output.",
+      "Non-school-year path type expectations in `DocumentPathsMappingEnhancer.test.ts` remain unchanged except for unavoidable snapshot context around the school year entries.",
+      "The unit test fails against the old mapping and passes after `schoolYearEnumeration` maps to `number`."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts` from the repository root.",
+      "Review the snapshot diff for `packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts` and confirm changed `type` values are school year reference paths changing from `string` to `number`."
+    ],
+    "completed": false
+  },
+  {
+    "category": "artifact-regeneration",
+    "description": "Regenerate and update the MetaEd ApiSchema authoritative artifacts affected by the corrected generator output across the package's supported authoritative compare coverage.",
+    "acceptance-criteria": [
+      "Authoritative artifacts under `packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_1`, `v7_2`, and `v7_3` are refreshed from generated output after the mapping fix.",
+      "Coverage includes Data Standard 5.0 for ODS/API 7.1, Data Standard 5.1 and TPDM for ODS/API 7.2, and the v7.3 Data Standard 5.2, 6.0, 6.1, TPDM, Sample, and Homograph scenarios exercised by `ApiSchemaAuthoritativeCompare_v7_3.test.ts`.",
+      "Regenerated diffs show school year `referenceJsonPaths[*].type` values changing to `number` where applicable.",
+      "No DMS ApiSchema fixture files are changed as part of this MetaEd-side task."
+    ],
+    "steps-to-verify": [
+      "Run `cd packages/metaed-plugin-edfi-api-schema && npm run update-authoritative` to regenerate compare artifacts and copy generated output to authoritative files.",
+      "Run `git diff -- packages/metaed-plugin-edfi-api-schema/test/integration/artifact` and inspect that the artifact changes are limited to the expected school year reference path type updates."
+    ],
+    "completed": false
+  },
+  {
+    "category": "integration-validation",
+    "description": "Validate that the corrected MetaEd ApiSchema output is internally consistent for school year reference paths and that the branch remains scoped to MetaEd artifacts.",
+    "acceptance-criteria": [
+      "`studentAcademicRecordReference.schoolYear` no longer appears in generated or authoritative ApiSchema output as a `referenceJsonPaths[*].type` of `string` while the same path is included in `numericJsonPaths`.",
+      "School year reference path type metadata is consistent with existing JSON schema, type coercion, and OpenAPI school year handling.",
+      "Authoritative compare tests pass for all ApiSchema compare suites after artifact refresh.",
+      "The final file diff excludes downstream DMS fixture updates; those remain a downstream PR or handoff using corrected MetaEd output."
+    ],
+    "steps-to-verify": [
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_1.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_2.test.ts` from the repository root.",
+      "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts` from the repository root.",
+      "Inspect representative generated or authoritative artifacts, including `packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/ds-5.2-api-schema-authoritative.json`, for school year reference entries now typed as `number`."
+    ],
+    "completed": false
+  },
+  {
+    "category": "quality-checks",
+    "description": "Run package-level TypeScript and ESLint checks for the MetaEd ApiSchema package after the implementation, tests, and artifacts are updated.",
+    "acceptance-criteria": [
+      "`npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` passes from the repository root.",
+      "`npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-plugin-edfi-api-schema` passes from the repository root.",
+      "No `npm run build` command is run."
+    ],
+    "steps-to-verify": [
+      "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root.",
+      "Run `npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-plugin-edfi-api-schema` from the repository root."
+    ],
+    "completed": false
+  }
+]
