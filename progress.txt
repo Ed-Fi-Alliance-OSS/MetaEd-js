@@ -28,3 +28,11 @@ DMS-1199 integration-validation task completed.
 - Verification: v7_1, v7_2, and v7_3 ApiSchema authoritative compare Jest suites pass.
 - Verification: ds-5.2 generated and authoritative studentAcademicRecordReference.schoolYear referenceJsonPaths type is number and path remains in numericJsonPaths.
 - Notes: DMS fixture files still out of scope; quality-checks remains next.
+
+DMS-1199 quality-checks task completed.
+- Story ref: .orc/DMS-1199.md.
+- Decision: package-level TypeScript and ESLint are sufficient final MetaEd ApiSchema quality loops; no npm build run.
+- Files changed: tasks.json; progress.txt.
+- Verification: npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit passes.
+- Verification: npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-plugin-edfi-api-schema passes.
+- Notes: all tasks in tasks.json complete.

@@ -73,6 +73,6 @@
       "Run `npx tsc -p packages/metaed-plugin-edfi-api-schema --noEmit` from the repository root.",
       "Run `npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-plugin-edfi-api-schema` from the repository root."
     ],
-    "completed": false
+    "completed": true
   }
 ]
