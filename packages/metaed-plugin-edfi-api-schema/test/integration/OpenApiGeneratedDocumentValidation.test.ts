@@ -33,6 +33,9 @@ import { metaEdPlugins } from './PluginHelper';
 jest.setTimeout(120000);
 
 const API_SCHEMA_GENERATOR_NAME = 'edfiApiSchema.ApiSchemaGenerator';
+const AVAILABLE_CHANGE_VERSIONS_PATH = '/availableChangeVersions';
+const GRADE_LEVEL_DESCRIPTOR_PATH = '/ed-fi/gradeLevelDescriptors';
+const STUDENT_RESOURCE_PATH = '/ed-fi/students';
 
 /**
  * OpenAPI base documents keyed by API metadata document type.
@@ -392,6 +395,57 @@ async function validateOpenApiDocument(document: Document): Promise<OpenAPI.Docu
   return SwaggerParser.validate(document as unknown as OpenAPI.Document);
 }
 
+/**
+ * Asserts a composed OpenAPI document includes a GET path.
+ */
+function expectGetPath(document: Document, pathName: string): void {
+  expect(document.paths[pathName]?.get).toBeDefined();
+}
+
+/**
+ * Asserts the standalone Change Queries document contains only the fixed availableChangeVersions route.
+ */
+function expectStandaloneChangeQueriesDocument(changeQueriesBaseDocument: Document): void {
+  expect(Object.keys(changeQueriesBaseDocument.paths)).toEqual([AVAILABLE_CHANGE_VERSIONS_PATH]);
+  expect(changeQueriesBaseDocument.paths[AVAILABLE_CHANGE_VERSIONS_PATH]?.get).toBeDefined();
+  expect(changeQueriesBaseDocument.paths[`${STUDENT_RESOURCE_PATH}/deletes`]).toBeUndefined();
+  expect(changeQueriesBaseDocument.paths[`${STUDENT_RESOURCE_PATH}/keyChanges`]).toBeUndefined();
+  expect(changeQueriesBaseDocument.paths[`${GRADE_LEVEL_DESCRIPTOR_PATH}/deletes`]).toBeUndefined();
+  expect(changeQueriesBaseDocument.paths[`${GRADE_LEVEL_DESCRIPTOR_PATH}/keyChanges`]).toBeUndefined();
+}
+
+/**
+ * Asserts resource-scoped tracked-change paths remain in the resource and descriptor OpenAPI documents.
+ */
+function expectTrackedChangePathsInResourceDocuments(resourcesDocument: Document, descriptorsDocument: Document): void {
+  expect(resourcesDocument.paths[AVAILABLE_CHANGE_VERSIONS_PATH]).toBeUndefined();
+  expect(descriptorsDocument.paths[AVAILABLE_CHANGE_VERSIONS_PATH]).toBeUndefined();
+  expectGetPath(resourcesDocument, `${STUDENT_RESOURCE_PATH}/deletes`);
+  expectGetPath(resourcesDocument, `${STUDENT_RESOURCE_PATH}/keyChanges`);
+  expectGetPath(descriptorsDocument, `${GRADE_LEVEL_DESCRIPTOR_PATH}/deletes`);
+  expectGetPath(descriptorsDocument, `${GRADE_LEVEL_DESCRIPTOR_PATH}/keyChanges`);
+}
+
+/**
+ * Asserts extension projects do not carry core OpenAPI base documents.
+ */
+function expectNoExtensionBaseDocuments(extensionArtifacts: ApiSchemaArtifact[]): void {
+  extensionArtifacts.forEach((extensionArtifact: ApiSchemaArtifact): void => {
+    expect(extensionArtifact.projectSchema.openApiBaseDocuments).toBeUndefined();
+  });
+}
+
+/**
+ * Asserts resource schemas do not expose a changeQueries fragment document type.
+ */
+function expectNoChangeQueriesFragments(projectSchemas: ProjectSchemaArtifact[]): void {
+  projectSchemas.forEach((projectSchema: ProjectSchemaArtifact): void => {
+    Object.values(projectSchema.resourceSchemas).forEach((resourceSchema: ResourceSchemaArtifact): void => {
+      expect(resourceSchema.openApiFragments[OpenApiDocumentType.CHANGE_QUERIES]).toBeUndefined();
+    });
+  });
+}
+
 describe('generated OpenAPI documents', (): void => {
   describe.each(validationGroups)('$scenarioName', (validationGroup: ValidationGroup): void => {
     let apiSchemaArtifacts: ApiSchemaArtifact[] = [];
@@ -400,7 +454,7 @@ describe('generated OpenAPI documents', (): void => {
       apiSchemaArtifacts = await generatedApiSchemaArtifactsFor(validationGroup);
     });
 
-    it('should validate merged resources, descriptors, and change queries documents', async (): Promise<void> => {
+    it('should validate OpenAPI documents and preserve Change Query path distribution', async (): Promise<void> => {
       const coreArtifact: ApiSchemaArtifact = coreArtifactFrom(apiSchemaArtifacts);
       const extensionArtifacts: ApiSchemaArtifact[] = extensionArtifactsFrom(apiSchemaArtifacts);
       const projectSchemas: ProjectSchemaArtifact[] = [
@@ -418,10 +472,26 @@ describe('generated OpenAPI documents', (): void => {
       expect(descriptorsBaseDocument).toBeDefined();
       expect(resourcesBaseDocument).toBeDefined();
 
+      const descriptorsDocument: Document = composeOpenApiDocument(
+        descriptorsBaseDocument as Document,
+        projectSchemas,
+        OpenApiDocumentType.DESCRIPTORS,
+      );
+      const resourcesDocument: Document = composeOpenApiDocument(
+        resourcesBaseDocument as Document,
+        projectSchemas,
+        OpenApiDocumentType.RESOURCES,
+      );
+
+      expectStandaloneChangeQueriesDocument(changeQueriesBaseDocument as Document);
+      expectTrackedChangePathsInResourceDocuments(resourcesDocument, descriptorsDocument);
+      expectNoExtensionBaseDocuments(extensionArtifacts);
+      expectNoChangeQueriesFragments(projectSchemas);
+
       const documentsToValidate: Document[] = [
         changeQueriesBaseDocument as Document,
-        composeOpenApiDocument(descriptorsBaseDocument as Document, projectSchemas, OpenApiDocumentType.DESCRIPTORS),
-        composeOpenApiDocument(resourcesBaseDocument as Document, projectSchemas, OpenApiDocumentType.RESOURCES),
+        descriptorsDocument,
+        resourcesDocument,
       ];
 
       await Promise.all(documentsToValidate.map(validateOpenApiDocument));

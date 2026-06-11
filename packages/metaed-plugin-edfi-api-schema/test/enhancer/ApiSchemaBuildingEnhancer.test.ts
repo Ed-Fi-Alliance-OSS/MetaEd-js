@@ -55,6 +55,7 @@ import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/Identit
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance, removeSourcePropertyFromDocumentPathsMapping } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
+import { enhance as openApiTrackedChangeKeyFieldEnhancer } from '../../src/enhancer/OpenApiTrackedChangeKeyFieldEnhancer';
 import { enhance as openApiBaseDocumentEnhancer } from '../../src/enhancer/OpenApiBaseDocumentEnhancer';
 import { NamespaceEdfiApiSchema } from '../../src/model/Namespace';
 import { OpenApiDocumentType } from '../../src/model/api-schema/OpenApiDocumentType';
@@ -84,6 +85,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   queryFieldMappingEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   typeCoercionJsonPathsEnhancer(metaEd);
+  openApiTrackedChangeKeyFieldEnhancer(metaEd);
   enhance(metaEd);
 }
 
@@ -3595,7 +3597,7 @@ describe('when building ApiSchema with OpenAPI base documents', () => {
     enhance(metaEd);
   });
 
-  it('should copy optional change queries base document into core project schema', () => {
+  it('should copy optional standalone Change Queries base document into core project schema', () => {
     const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = coreNamespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
 
     expect(namespaceEdfiApiSchema.apiSchema.projectSchema.openApiBaseDocuments).toBeDefined();

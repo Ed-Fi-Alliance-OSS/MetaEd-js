@@ -122,7 +122,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
 
-    // Create base documents for resources and descriptors
+    // Create base documents for resources, descriptors, and the standalone Change Queries fixed route.
     namespaceEdfiApiSchema.openApiBaseDocuments = {
       [OpenApiDocumentType.RESOURCES]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.RESOURCES),
       [OpenApiDocumentType.DESCRIPTORS]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.DESCRIPTORS),

@@ -87,7 +87,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(descriptorsDoc?.tags).toEqual([]);
     });
 
-    it('should create base document for change queries', () => {
+    it('should create standalone Change Queries base document for availableChangeVersions', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
       const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
       const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
