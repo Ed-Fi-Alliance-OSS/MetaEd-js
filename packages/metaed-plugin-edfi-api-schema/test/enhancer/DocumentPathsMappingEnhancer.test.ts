@@ -204,7 +204,7 @@ describe('when building simple domain entity with all the simple non-collections
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -356,7 +356,7 @@ describe('when building simple domain entity with all the simple collections', (
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -545,7 +545,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
             Object {
               "identityJsonPath": "$.sessionReference.schoolYear",
               "referenceJsonPath": "$.courseOfferingReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.sessionReference.sessionName",
@@ -610,7 +610,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
             Object {
               "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
               "referenceJsonPath": "$.sessionReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.sessionName",
@@ -656,7 +656,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -1625,7 +1625,7 @@ describe('when building domain entity with two school year enumerations, one rol
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.classOfSchoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -1647,7 +1647,7 @@ describe('when building domain entity with two school year enumerations, one rol
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -1707,7 +1707,7 @@ describe('when building domain entity with reference to domain entity with schoo
             Object {
               "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
               "referenceJsonPath": "$.calendarReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "Calendar",
@@ -1783,7 +1783,7 @@ describe('when building a schema for StudentCohort', () => {
             Object {
               "identityJsonPath": "$.schoolYear",
               "referenceJsonPath": "$.years[*].schoolYearTypeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
           ],
           "resourceName": "SchoolYearType",
@@ -2138,7 +2138,7 @@ describe('when a collection reference is to a role named resource that has a sch
             Object {
               "identityJsonPath": "$.gradingPeriodReference.schoolYear",
               "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
-              "type": "string",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.studentSectionAssociationReference.schoolId",
@@ -2148,7 +2148,7 @@ describe('when a collection reference is to a role named resource that has a sch
             Object {
               "identityJsonPath": "$.studentSectionAssociationReference.schoolYear",
               "referenceJsonPath": "$.grades[*].gradeReference.schoolYear",
-              "type": "string",
+              "type": "number",
             },
             Object {
               "identityJsonPath": "$.studentSectionAssociationReference.studentId",

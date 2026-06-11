@@ -1669,7 +1669,7 @@
               {
                 "identityJsonPath": "$.schoolYear",
                 "referenceJsonPath": "$.cohortYears[*].schoolYearTypeReference.schoolYear",
-                "type": "string"
+                "type": "number"
               }
             ],
             "resourceName": "SchoolYearType"
@@ -7878,7 +7878,7 @@
               {
                 "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
                 "referenceJsonPath": "$._ext.tpdm.studentAcademicRecords[*].studentAcademicRecordReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.studentReference.studentUniqueId",
@@ -12046,7 +12046,7 @@
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.schoolYear",
                 "referenceJsonPath": "$.evaluationElementReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.termDescriptor",
@@ -12106,7 +12106,7 @@
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.schoolYear",
                 "referenceJsonPath": "$.evaluationObjectiveRatingReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.termDescriptor",
@@ -12151,7 +12151,7 @@
               {
                 "identityJsonPath": "$.evaluationRatingReference.schoolYear",
                 "referenceJsonPath": "$.evaluationObjectiveRatingReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationRatingReference.sourceSystemDescriptor",
@@ -13624,7 +13624,7 @@
               {
                 "identityJsonPath": "$.evaluationReference.schoolYear",
                 "referenceJsonPath": "$.evaluationObjectiveReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationReference.termDescriptor",
@@ -14825,7 +14825,7 @@
               {
                 "identityJsonPath": "$.evaluationReference.schoolYear",
                 "referenceJsonPath": "$.evaluationObjectiveReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationReference.termDescriptor",
@@ -14875,7 +14875,7 @@
               {
                 "identityJsonPath": "$.evaluationReference.schoolYear",
                 "referenceJsonPath": "$.evaluationRatingReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationReference.termDescriptor",
@@ -14910,7 +14910,7 @@
               {
                 "identityJsonPath": "$.performanceEvaluationRatingReference.schoolYear",
                 "referenceJsonPath": "$.evaluationRatingReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.performanceEvaluationRatingReference.sourceSystemDescriptor",
@@ -16234,7 +16234,7 @@
               {
                 "identityJsonPath": "$.performanceEvaluationReference.schoolYear",
                 "referenceJsonPath": "$.evaluationReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.performanceEvaluationReference.termDescriptor",
@@ -19673,7 +19673,7 @@
               {
                 "identityJsonPath": "$.performanceEvaluationReference.schoolYear",
                 "referenceJsonPath": "$.evaluationReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.performanceEvaluationReference.termDescriptor",
@@ -19764,7 +19764,7 @@
               {
                 "identityJsonPath": "$.performanceEvaluationReference.schoolYear",
                 "referenceJsonPath": "$.performanceEvaluationRatingReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.performanceEvaluationReference.termDescriptor",
@@ -19852,7 +19852,7 @@
               {
                 "identityJsonPath": "$.courseOfferingReference.schoolYear",
                 "referenceJsonPath": "$.sectionReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.courseOfferingReference.sessionName",
@@ -22182,7 +22182,7 @@
               {
                 "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
                 "referenceJsonPath": "$.performanceEvaluationReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.termDescriptor",
@@ -26405,7 +26405,7 @@
               {
                 "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
                 "referenceJsonPath": "$.performanceEvaluationReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.termDescriptor",
@@ -28667,7 +28667,7 @@
               {
                 "identityJsonPath": "$.schoolYear",
                 "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
-                "type": "string"
+                "type": "number"
               }
             ],
             "resourceName": "SchoolYearType"
@@ -29744,7 +29744,7 @@
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.schoolYear",
                 "referenceJsonPath": "$.evaluationElementReference.schoolYear",
-                "type": "string"
+                "type": "number"
               },
               {
                 "identityJsonPath": "$.evaluationObjectiveReference.termDescriptor",
