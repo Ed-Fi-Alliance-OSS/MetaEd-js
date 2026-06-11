@@ -163,6 +163,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
         in: 'query',
         description: 'Used in synchronization to set sequence minimum ChangeVersion',
         schema: {
+          minimum: 0,
           type: 'integer',
           format: 'int64',
         },
@@ -172,6 +173,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
         in: 'query',
         description: 'Used in synchronization to set sequence maximum ChangeVersion',
         schema: {
+          minimum: 0,
           type: 'integer',
           format: 'int64',
         },
