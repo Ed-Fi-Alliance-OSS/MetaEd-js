@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { type DomainEntity, type TopLevelEntity } from '@edfi/metaed-core';
+import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { SchemaObject, Schemas } from '../model/OpenApiTypes';
 import type { TrackedChangeKeyField } from '../model/TrackedChangeKeyField';
@@ -74,13 +75,12 @@ function assertCanCreateIdentityFieldSchemasFrom(
   entity: TopLevelEntity,
   trackedChangeKeyFields: TrackedChangeKeyField[],
 ): void {
-  if (trackedChangeKeyFields.length === 0) {
-    throw new Error(
-      `Unable to create tracked-change key schema for ${entityDisplayNameFor(
-        entity,
-      )}. No tracked-change key fields were found.`,
-    );
-  }
+  invariant(
+    trackedChangeKeyFields.length > 0,
+    `Unable to create tracked-change key schema for ${entityDisplayNameFor(
+      entity,
+    )}. No tracked-change key fields were found.`,
+  );
 }
 
 /**

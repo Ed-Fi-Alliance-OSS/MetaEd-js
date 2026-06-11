@@ -231,6 +231,35 @@ describe('OpenApiTrackedChangeKeyFieldEnhancer', () => {
     });
   });
 
+  describe('when non-merged-away identity fields produce the same public key field name', () => {
+    it('should fail rather than silently choosing one source property', () => {
+      const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+      const namespaceName = 'EdFi';
+
+      MetaEdTextBuilder.build()
+        .withBeginNamespace(namespaceName)
+        .withStartDomainEntity('Student')
+        .withDocumentation('doc')
+        .withStringIdentity('UniqueId', 'doc', '30', null, 'Student')
+        .withEndDomainEntity()
+
+        .withStartDomainEntity('Grade')
+        .withDocumentation('doc')
+        .withDomainEntityIdentity('Student', 'doc')
+        .withIntegerIdentity('StudentUniqueId', 'doc')
+        .withEndDomainEntity()
+        .withEndNamespace()
+        .sendToListener(new NamespaceBuilder(metaEd, []))
+        .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+      runPrerequisiteEnhancers(metaEd);
+
+      expect(() => openApiTrackedChangeKeyFieldEnhancer(metaEd)).toThrow(
+        'Tracked-change key field name collision for EdFi.Grade: studentUniqueId is produced by multiple non-merged-away identity properties with different schemas.',
+      );
+    });
+  });
+
   describe('when comparing tracked-change key fields to query field mapping', () => {
     it('should keep merge-aware identity names aligned', () => {
       const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
