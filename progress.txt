@@ -5,3 +5,10 @@ DMS-1199 implementation task completed.
 - Files changed: packages/metaed-plugin-edfi-api-schema/src/enhancer/DocumentPathsMappingEnhancer.ts; packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts; tasks.json; progress.txt.
 - Verification: focused DocumentPathsMappingEnhancer Jest test passes; package tsc and eslint pass.
 - Notes: DMS fixture updates remain downstream/out of scope; authoritative artifact regeneration remains future task.
+
+DMS-1199 unit coverage task completed.
+- Story ref: .orc/DMS-1199.md.
+- Decision: treat existing focused snapshot updates from implementation commit as satisfying unit coverage; no extra test shape needed.
+- Files changed: tasks.json; progress.txt.
+- Verification: npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts passes, 35 tests/35 snapshots.
+- Notes: artifact regeneration remains next.

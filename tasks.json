@@ -27,7 +27,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts` from the repository root.",
       "Review the snapshot diff for `packages/metaed-plugin-edfi-api-schema/test/enhancer/DocumentPathsMappingEnhancer.test.ts` and confirm changed `type` values are school year reference paths changing from `string` to `number`."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "artifact-regeneration",
