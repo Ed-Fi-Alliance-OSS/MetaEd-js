@@ -350,6 +350,69 @@
                     "studentSchoolAssociationReference"
                   ],
                   "type": "object"
+                },
+                "Homograph_Contact_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_Contact_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Contact_TrackedChangeKey": {
+                  "properties": {
+                    "contactFirstName": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "contactLastSurname": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "contactFirstName",
+                    "contactLastSurname"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Contact_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Contact_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Contact_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -432,7 +495,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -475,7 +538,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -488,6 +551,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "contacts"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/contacts/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographContactsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Contact_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "contacts"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/contacts/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographContactsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Contact_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "contacts"
                   ]
@@ -530,7 +711,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -562,15 +743,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -597,7 +769,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -654,7 +826,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -849,6 +1021,69 @@
                     "lastSurname"
                   ],
                   "type": "object"
+                },
+                "Homograph_Name_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_Name_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Name_TrackedChangeKey": {
+                  "properties": {
+                    "firstName": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "lastSurname": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "firstName",
+                    "lastSurname"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Name_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Name_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Name_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -931,7 +1166,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -974,7 +1209,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -987,6 +1222,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "names"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/names/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographNamesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Name_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "names"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/names/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographNamesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Name_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "names"
                   ]
@@ -1029,7 +1382,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1061,15 +1414,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -1096,7 +1440,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1153,7 +1497,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1308,6 +1652,62 @@
                     "schoolYear"
                   ],
                   "type": "object"
+                },
+                "Homograph_SchoolYearType_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_SchoolYearType_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_SchoolYearType_TrackedChangeKey": {
+                  "properties": {
+                    "schoolYear": {
+                      "maxLength": 20,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "schoolYear"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_SchoolYearType_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_SchoolYearType_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_SchoolYearType_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -1378,7 +1778,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1421,7 +1821,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1434,6 +1834,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "schoolYearTypes"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/schoolYearTypes/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographSchoolYearTypesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_SchoolYearType_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "schoolYearTypes"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/schoolYearTypes/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographSchoolYearTypesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_SchoolYearType_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "schoolYearTypes"
                   ]
@@ -1476,7 +1994,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1508,15 +2026,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -1543,7 +2052,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1600,7 +2109,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1824,6 +2333,62 @@
                     "schoolName"
                   ],
                   "type": "object"
+                },
+                "Homograph_School_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_School_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_School_TrackedChangeKey": {
+                  "properties": {
+                    "schoolName": {
+                      "maxLength": 100,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "schoolName"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_School_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_School_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_School_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -1904,7 +2469,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1947,7 +2512,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1960,6 +2525,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "schools"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/schools/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographSchoolsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_School_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "schools"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/schools/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographSchoolsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_School_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "schools"
                   ]
@@ -2002,7 +2685,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2034,15 +2717,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -2069,7 +2743,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2126,7 +2800,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2464,6 +3138,69 @@
                     "studentSchoolAssociationReference"
                   ],
                   "type": "object"
+                },
+                "Homograph_Staff_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_Staff_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Staff_TrackedChangeKey": {
+                  "properties": {
+                    "staffFirstName": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "staffLastSurname": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "staffFirstName",
+                    "staffLastSurname"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Staff_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Staff_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Staff_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -2546,7 +3283,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2589,7 +3326,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2602,6 +3339,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "staffs"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/staffs/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStaffsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Staff_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "staffs"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/staffs/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStaffsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Staff_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "staffs"
                   ]
@@ -2644,7 +3499,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2676,15 +3531,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -2711,7 +3557,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2768,7 +3614,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3011,6 +3857,74 @@
                     "studentLastSurname"
                   ],
                   "type": "object"
+                },
+                "Homograph_StudentSchoolAssociation_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_StudentSchoolAssociation_TrackedChangeKey": {
+                  "properties": {
+                    "schoolName": {
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "studentFirstName": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "studentLastSurname": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "schoolName",
+                    "studentFirstName",
+                    "studentLastSurname"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_StudentSchoolAssociation_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -3103,7 +4017,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -3146,7 +4060,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3159,6 +4073,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "studentSchoolAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/studentSchoolAssociations/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStudentSchoolAssociationsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "studentSchoolAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/studentSchoolAssociations/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStudentSchoolAssociationsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_StudentSchoolAssociation_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "studentSchoolAssociations"
                   ]
@@ -3201,7 +4233,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3233,15 +4265,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -3268,7 +4291,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -3325,7 +4348,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3603,6 +4626,69 @@
                     "studentLastSurname"
                   ],
                   "type": "object"
+                },
+                "Homograph_Student_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Homograph_Student_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Student_TrackedChangeKey": {
+                  "properties": {
+                    "studentFirstName": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "studentLastSurname": {
+                      "maxLength": 75,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "studentFirstName",
+                    "studentLastSurname"
+                  ],
+                  "type": "object"
+                },
+                "Homograph_Student_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Student_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Homograph_Student_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -3695,7 +4781,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -3738,7 +4824,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3751,6 +4837,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "students"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/students/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStudentsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Student_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "students"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/homograph/students/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_HomographStudentsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Homograph_Student_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "students"
                   ]
@@ -3793,7 +4997,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3825,15 +5029,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -3860,7 +5055,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -3917,7 +5112,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"

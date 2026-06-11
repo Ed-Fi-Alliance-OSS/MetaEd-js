@@ -211,6 +211,67 @@
                     "shortDescription"
                   ],
                   "type": "object"
+                },
+                "Sample_ArtMediumDescriptor_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_ArtMediumDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_ArtMediumDescriptor_TrackedChangeKey": {
+                  "properties": {
+                    "codeValue": {
+                      "maxLength": 50,
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "maxLength": 255,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "namespace",
+                    "codeValue"
+                  ],
+                  "type": "object"
+                },
+                "Sample_ArtMediumDescriptor_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_ArtMediumDescriptor_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_ArtMediumDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -327,7 +388,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -370,7 +431,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -383,6 +444,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "artMediumDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/artMediumDescriptors/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleArtMediaDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_ArtMediumDescriptor_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "artMediumDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/artMediumDescriptors/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleArtMediaKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_ArtMediumDescriptor_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "artMediumDescriptors"
                   ]
@@ -425,7 +604,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -457,15 +636,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -492,7 +662,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -549,7 +719,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1436,6 +1606,67 @@
                     "telephoneNumberTypeDescriptor"
                   ],
                   "type": "object"
+                },
+                "Sample_BusRoute_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_BusRoute_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_BusRoute_TrackedChangeKey": {
+                  "properties": {
+                    "busId": {
+                      "maxLength": 120,
+                      "type": "string"
+                    },
+                    "busRouteNumber": {
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "busId",
+                    "busRouteNumber"
+                  ],
+                  "type": "object"
+                },
+                "Sample_BusRoute_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_BusRoute_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_BusRoute_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -1645,7 +1876,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1688,7 +1919,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1701,6 +1932,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "busRoutes"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/busRoutes/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleBusRoutesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_BusRoute_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "busRoutes"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/busRoutes/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleBusRoutesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_BusRoute_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "busRoutes"
                   ]
@@ -1743,7 +2092,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1775,15 +2124,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -1810,7 +2150,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1867,7 +2207,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2106,6 +2446,62 @@
                     "busId"
                   ],
                   "type": "object"
+                },
+                "Sample_Bus_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_Bus_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_Bus_TrackedChangeKey": {
+                  "properties": {
+                    "busId": {
+                      "maxLength": 120,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "busId"
+                  ],
+                  "type": "object"
+                },
+                "Sample_Bus_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_Bus_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_Bus_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -2176,7 +2572,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2219,7 +2615,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2232,6 +2628,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "buses"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/buses/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleBusesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_Bus_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "buses"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/buses/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleBusesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_Bus_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "buses"
                   ]
@@ -2274,7 +2788,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2306,15 +2820,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -2341,7 +2846,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2398,7 +2903,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3668,6 +4173,67 @@
                     "shortDescription"
                   ],
                   "type": "object"
+                },
+                "Sample_FavoriteBookCategoryDescriptor_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_FavoriteBookCategoryDescriptor_TrackedChangeKey": {
+                  "properties": {
+                    "codeValue": {
+                      "maxLength": 50,
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "maxLength": 255,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "namespace",
+                    "codeValue"
+                  ],
+                  "type": "object"
+                },
+                "Sample_FavoriteBookCategoryDescriptor_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -3784,7 +4350,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -3827,7 +4393,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3840,6 +4406,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "favoriteBookCategoryDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/favoriteBookCategoryDescriptors/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleFavoriteBookCategoriesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "favoriteBookCategoryDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/favoriteBookCategoryDescriptors/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleFavoriteBookCategoriesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_FavoriteBookCategoryDescriptor_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "favoriteBookCategoryDescriptors"
                   ]
@@ -3882,7 +4566,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -3914,15 +4598,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -3949,7 +4624,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4006,7 +4681,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4233,6 +4908,67 @@
                     "shortDescription"
                   ],
                   "type": "object"
+                },
+                "Sample_MembershipTypeDescriptor_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_MembershipTypeDescriptor_TrackedChangeKey": {
+                  "properties": {
+                    "codeValue": {
+                      "maxLength": 50,
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "maxLength": 255,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "namespace",
+                    "codeValue"
+                  ],
+                  "type": "object"
+                },
+                "Sample_MembershipTypeDescriptor_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -4349,7 +5085,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4392,7 +5128,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4405,6 +5141,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "membershipTypeDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/membershipTypeDescriptors/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleMembershipTypesDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "membershipTypeDescriptors"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/membershipTypeDescriptors/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleMembershipTypesKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_MembershipTypeDescriptor_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "membershipTypeDescriptors"
                   ]
@@ -4447,7 +5301,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4479,15 +5333,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -4514,7 +5359,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4571,7 +5416,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -6225,6 +7070,87 @@
                     "style"
                   ],
                   "type": "object"
+                },
+                "Sample_StudentArtProgramAssociation_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentArtProgramAssociation_TrackedChangeKey": {
+                  "properties": {
+                    "beginDate": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "educationOrganizationId": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "programEducationOrganizationId": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "programName": {
+                      "maxLength": 60,
+                      "type": "string"
+                    },
+                    "programTypeDescriptor": {
+                      "maxLength": 306,
+                      "type": "string"
+                    },
+                    "studentUniqueId": {
+                      "maxLength": 32,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "beginDate",
+                    "educationOrganizationId",
+                    "programEducationOrganizationId",
+                    "programName",
+                    "programTypeDescriptor",
+                    "studentUniqueId"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentArtProgramAssociation_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
                 }
               }
             },
@@ -6468,7 +7394,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -6511,7 +7437,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -6524,6 +7450,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "studentArtProgramAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/studentArtProgramAssociations/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleStudentArtProgramAssociationsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "studentArtProgramAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/studentArtProgramAssociations/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleStudentArtProgramAssociationsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_StudentArtProgramAssociation_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "studentArtProgramAssociations"
                   ]
@@ -6566,7 +7610,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -6598,15 +7642,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -6633,7 +7668,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -6690,7 +7725,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -9208,6 +10243,77 @@
                   ],
                   "type": "object"
                 },
+                "Sample_StudentGraduationPlanAssociation_TrackedChangeDelete": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "keyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "keyValues"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentGraduationPlanAssociation_TrackedChangeKey": {
+                  "properties": {
+                    "educationOrganizationId": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "graduationPlanTypeDescriptor": {
+                      "maxLength": 306,
+                      "type": "string"
+                    },
+                    "graduationSchoolYear": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "studentUniqueId": {
+                      "maxLength": 32,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "educationOrganizationId",
+                    "graduationPlanTypeDescriptor",
+                    "graduationSchoolYear",
+                    "studentUniqueId"
+                  ],
+                  "type": "object"
+                },
+                "Sample_StudentGraduationPlanAssociation_TrackedChangeKeyChange": {
+                  "properties": {
+                    "changeVersion": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "newKeyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_TrackedChangeKey"
+                    },
+                    "oldKeyValues": {
+                      "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_TrackedChangeKey"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "changeVersion",
+                    "oldKeyValues",
+                    "newKeyValues"
+                  ],
+                  "type": "object"
+                },
                 "Sample_StudentGraduationPlanAssociation_YearsAttended": {
                   "properties": {
                     "yearsAttended": {
@@ -9400,7 +10506,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -9443,7 +10549,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -9456,6 +10562,124 @@
                     }
                   },
                   "summary": "Creates or updates resources based on the natural key values of the supplied resource.",
+                  "tags": [
+                    "studentGraduationPlanAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/studentGraduationPlanAssociations/deletes": {
+                "get": {
+                  "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleStudentGraduationPlanAssociationsDeletes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_TrackedChangeDelete"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves deleted resource keys for Change Queries.",
+                  "tags": [
+                    "studentGraduationPlanAssociations"
+                  ]
+                },
+                "x-Ed-Fi-domains": [
+                ]
+              },
+              "/sample/studentGraduationPlanAssociations/keyChanges": {
+                "get": {
+                  "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
+                  "operationId": "get_SampleStudentGraduationPlanAssociationsKeyChanges",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MinChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MaxChangeVersion"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/totalCount"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Sample_StudentGraduationPlanAssociation_TrackedChangeKeyChange"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "The requested Change Query results were successfully retrieved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Retrieves changed resource keys for Change Queries.",
                   "tags": [
                     "studentGraduationPlanAssociations"
                   ]
@@ -9498,7 +10722,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -9530,15 +10754,6 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
-                    },
-                    {
-                      "description": "Indicates if the configured Snapshot should be used.",
-                      "in": "header",
-                      "name": "Use-Snapshot",
-                      "schema": {
-                        "default": false,
-                        "type": "boolean"
-                      }
                     }
                   ],
                   "responses": {
@@ -9565,7 +10780,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFoundUseSnapshot"
+                      "$ref": "#/components/responses/NotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -9622,7 +10837,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed."
+                      "description": "Method Is Not Allowed."
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"

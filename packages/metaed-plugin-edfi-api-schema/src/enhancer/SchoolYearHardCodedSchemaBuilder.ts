@@ -61,6 +61,7 @@ export function buildSchoolYearResourceSchema(
   const endpointName: EndpointName = 'schoolYearTypes' as EndpointName;
   const lowerCasedEndpointName: EndpointName = 'schoolyeartypes' as EndpointName;
   const documentObjectPaths = ['schoolYear', 'currentSchoolYear', 'schoolYearDescription'];
+  const entityApiSchemaData: EntityApiSchemaData = schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData;
 
   resourceNameMapping[metaEdResourceName] = endpointName;
   caseInsensitiveEndpointNameMapping[lowerCasedEndpointName] = endpointName;
@@ -96,7 +97,7 @@ export function buildSchoolYearResourceSchema(
       type: 'object',
     },
     equalityConstraints: [],
-    identityJsonPaths: ['$.schoolYear'] as JsonPath[],
+    identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     booleanJsonPaths: ['$.currentSchoolYear'] as JsonPath[],
     numericJsonPaths: ['$.schoolYear'] as JsonPath[],
     dateJsonPaths: [] as JsonPath[],
@@ -105,9 +106,7 @@ export function buildSchoolYearResourceSchema(
     isSubclass: false,
     isResourceExtension: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
-    queryFieldMapping: removeSourcePropertyFromQueryFieldMapping(
-      (schoolYearEnumeration.data.edfiApiSchema as EntityApiSchemaData).queryFieldMapping,
-    ),
+    queryFieldMapping: removeSourcePropertyFromQueryFieldMapping(entityApiSchemaData.queryFieldMapping),
     securableElements: { Namespace: [], EducationOrganization: [], Student: [], Contact: [], Staff: [] },
     authorizationPathways: [],
     arrayUniquenessConstraints: [],

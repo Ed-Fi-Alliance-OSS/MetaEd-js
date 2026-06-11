@@ -1260,3 +1260,33 @@ describe('when building domain entity referencing another which has inline commo
     `);
   });
 });
+
+describe('when building a school year enumeration', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEnumerationItem('2022')
+      .withEndEnumeration()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []));
+
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct identityJsonPaths for SchoolYearType', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.schoolYearEnumeration.get('SchoolYear');
+    const identityJsonPaths = entity?.data.edfiApiSchema.identityJsonPaths;
+    expect(identityJsonPaths).toMatchInlineSnapshot(`
+      Array [
+        "$.schoolYear",
+      ]
+    `);
+  });
+});

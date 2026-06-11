@@ -14,6 +14,7 @@ import {
 import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
 import { enhance } from '../../src/enhancer/OpenApiBaseDocumentEnhancer';
 import { NamespaceEdfiApiSchema } from '../../src/model/Namespace';
+import { OpenApiDocumentType } from '../../src/model/api-schema/OpenApiDocumentType';
 
 describe('OpenApiBaseDocumentEnhancer', () => {
   describe('when enhancing a core namespace', () => {
@@ -47,7 +48,7 @@ describe('OpenApiBaseDocumentEnhancer', () => {
 
     it('should create base document for resources', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc).toBeDefined();
       expect(resourcesDoc?.openapi).toBe('3.0.0');
@@ -59,12 +60,16 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.schemas?.EdFi_SchoolYearTypeReference).toBeDefined();
       expect(resourcesDoc?.components?.responses).toBeDefined();
       expect(resourcesDoc?.components?.parameters).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
+      expect(JSON.stringify(resourcesDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(resourcesDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(resourcesDoc)).not.toContain('snapshot');
       expect(resourcesDoc?.tags).toEqual([]);
     });
 
     it('should create base document for descriptors', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.descriptors;
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
 
       expect(descriptorsDoc).toBeDefined();
       expect(descriptorsDoc?.openapi).toBe('3.0.0');
@@ -75,25 +80,114 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(descriptorsDoc?.components?.schemas).toEqual({});
       expect(descriptorsDoc?.components?.responses).toBeDefined();
       expect(descriptorsDoc?.components?.parameters).toBeDefined();
+      expect(descriptorsDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(descriptorsDoc)).not.toContain('snapshot');
       expect(descriptorsDoc?.tags).toEqual([]);
+    });
+
+    it('should create standalone Change Queries base document for availableChangeVersions', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
+
+      expect(changeQueriesDoc).toBeDefined();
+      expect(changeQueriesDoc?.openapi).toBe('3.0.0');
+      expect(changeQueriesDoc?.info?.title).toBe('Ed-Fi Data Management Service API');
+      expect(changeQueriesDoc?.info?.version).toBe('1');
+      expect(changeQueriesDoc?.servers).toHaveLength(1);
+      expect(changeQueriesDoc?.paths).toMatchInlineSnapshot(`
+        Object {
+          "/availableChangeVersions": Object {
+            "get": Object {
+              "operationId": "getAvailableChangeVersions",
+              "responses": Object {
+                "200": Object {
+                  "content": Object {
+                    "application/json": Object {
+                      "schema": Object {
+                        "properties": Object {
+                          "newestChangeVersion": Object {
+                            "format": "int64",
+                            "type": "integer",
+                          },
+                          "oldestChangeVersion": Object {
+                            "format": "int64",
+                            "type": "integer",
+                          },
+                        },
+                        "required": Array [
+                          "oldestChangeVersion",
+                          "newestChangeVersion",
+                        ],
+                        "type": "object",
+                      },
+                    },
+                  },
+                  "description": "The available change version range was successfully retrieved.",
+                },
+              },
+              "summary": "Retrieves the available change version range.",
+            },
+          },
+        }
+      `);
+      expect(changeQueriesDoc?.paths['/availableChangeVersions']?.get?.parameters).toBeUndefined();
+      expect(changeQueriesDoc?.paths['/changeQueries/v1/availableChangeVersions']).toBeUndefined();
+      expect(resourcesDoc?.paths['/availableChangeVersions']).toBeUndefined();
+      expect(descriptorsDoc?.paths['/availableChangeVersions']).toBeUndefined();
+      expect(changeQueriesDoc?.components?.schemas).toEqual({});
+      expect(changeQueriesDoc?.components?.responses).toEqual({});
+      expect(changeQueriesDoc?.components?.parameters).toEqual({});
+      expect(changeQueriesDoc?.components?.securitySchemes).toBeUndefined();
+      expect(changeQueriesDoc?.security).toBeUndefined();
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('Use-Snapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('NotFoundUseSnapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('snapshot');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('oauth2');
+      expect(JSON.stringify(changeQueriesDoc)).not.toContain('tokenUrl');
+      expect(changeQueriesDoc?.tags).toEqual([]);
     });
 
     it('should include hardcoded component parameters', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc?.components?.parameters?.['If-None-Match']).toBeDefined();
       expect(resourcesDoc?.components?.parameters?.limit).toBeDefined();
       expect(resourcesDoc?.components?.parameters?.offset).toBeDefined();
+      expect(resourcesDoc?.components?.parameters?.MinChangeVersion).toEqual({
+        name: 'minChangeVersion',
+        in: 'query',
+        description: 'Used in synchronization to set sequence minimum ChangeVersion',
+        schema: {
+          minimum: 0,
+          type: 'integer',
+          format: 'int64',
+        },
+      });
+      expect(resourcesDoc?.components?.parameters?.MaxChangeVersion).toEqual({
+        name: 'maxChangeVersion',
+        in: 'query',
+        description: 'Used in synchronization to set sequence maximum ChangeVersion',
+        schema: {
+          minimum: 0,
+          type: 'integer',
+          format: 'int64',
+        },
+      });
     });
 
     it('should include hardcoded responses', () => {
       const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
-      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.resources;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
 
       expect(resourcesDoc?.components?.responses?.Created).toBeDefined();
       expect(resourcesDoc?.components?.responses?.Updated).toBeDefined();
       expect(resourcesDoc?.components?.responses?.NotFound).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
       expect(resourcesDoc?.components?.responses?.BadRequest).toBeDefined();
     });
   });

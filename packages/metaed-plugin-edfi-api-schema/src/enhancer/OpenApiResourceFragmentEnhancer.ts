@@ -17,14 +17,20 @@ import { createSchemasFrom, createPathsFrom, createTagsFrom } from './OpenApiSpe
 import { OpenApiFragment } from '../model/api-schema/OpenApiFragment';
 import { newSchoolYearOpenApis, SchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { deAcronym } from '../Utility';
+import { createTrackedChangeSchemasFrom } from './OpenApiChangeQuerySchemaBuilder';
+import { Schemas } from '../model/OpenApiTypes';
 
 /**
  * Creates an OpenAPI fragment for a resource entity
  */
 export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment {
+  const trackedChangeSchemas: Schemas = createTrackedChangeSchemasFrom(entity);
   const fragment: OpenApiFragment = {
     components: {
-      schemas: createSchemasFrom(entity),
+      schemas: {
+        ...createSchemasFrom(entity),
+        ...trackedChangeSchemas,
+      },
     },
   };
 
@@ -42,10 +48,15 @@ export function createResourceFragment(entity: TopLevelEntity): OpenApiFragment 
  * Creates an OpenAPI fragment for a descriptor entity
  */
 function createDescriptorFragment(entity: TopLevelEntity): OpenApiFragment {
+  const trackedChangeSchemas: Schemas = createTrackedChangeSchemasFrom(entity);
+
   return {
     paths: createPathsFrom(entity),
     components: {
-      schemas: createSchemasFrom(entity),
+      schemas: {
+        ...createSchemasFrom(entity),
+        ...trackedChangeSchemas,
+      },
     },
     tags: createTagsFrom(entity),
   };

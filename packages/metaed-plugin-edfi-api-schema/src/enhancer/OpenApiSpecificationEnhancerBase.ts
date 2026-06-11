@@ -4,13 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { invariant } from 'ts-invariant';
-import { type TopLevelEntity, EntityProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
+import { type TopLevelEntity } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EndpointName } from '../model/api-schema/EndpointName';
 import {
   Operation,
   Parameter,
-  SchemaObject,
   ResponsesObject,
   ParameterObject,
   ReferenceObject,
@@ -21,6 +20,8 @@ import {
 import { pluralize, deAcronym, createUriSegment } from '../Utility';
 import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
+import { type TrackedChangeSchemaNames, trackedChangeSchemaNamesFor } from './OpenApiChangeQuerySchemaBuilder';
+import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
 
 /**
  * Creates the set of hardcoded component parameters
@@ -58,10 +59,6 @@ export function createHardcodedParameterResponses(): ResponsesObject {
     },
     NotFound: {
       description: 'The resource could not be found.',
-    },
-    NotFoundUseSnapshot: {
-      description:
-        'The resource could not be found. If Use-Snapshot header is set to true, this response can indicate the snapshot may have been removed.',
     },
     Conflict: {
       description:
@@ -114,6 +111,7 @@ export function createHardcodedComponentParameters(): { [key: string]: Reference
       in: 'query',
       description: 'Used in synchronization to set sequence minimum ChangeVersion',
       schema: {
+        minimum: 0,
         type: 'integer',
         format: 'int64',
       },
@@ -123,6 +121,7 @@ export function createHardcodedComponentParameters(): { [key: string]: Reference
       in: 'query',
       description: 'Used in synchronization to set sequence maximum ChangeVersion',
       schema: {
+        minimum: 0,
         type: 'integer',
         format: 'int64',
       },
@@ -248,7 +247,7 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
         $ref: '#/components/responses/Forbidden',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',
@@ -323,59 +322,26 @@ function newStaticUpdateByIdParameters(): Parameter[] {
 }
 
 /**
- * Returns an OpenAPI schema object corresponding to the given property based on its type.
+ * Returns the hardcoded query parameters for Change Query tracked-change paths.
  */
-function schemaObjectFrom(property: EntityProperty): SchemaObject {
-  switch (property.type) {
-    case 'boolean':
-      return { type: 'boolean' };
-
-    case 'duration':
-      return { type: 'string', maxLength: 30 };
-
-    case 'currency':
-    case 'decimal':
-    case 'percent':
-    case 'sharedDecimal':
-      return { type: 'number', format: 'double' };
-
-    case 'date':
-      return { type: 'string', format: 'date' };
-
-    case 'datetime':
-      return { type: 'string', format: 'date-time' };
-
-    case 'descriptor':
-    case 'enumeration':
-      return { type: 'string', maxLength: 306 };
-
-    case 'integer':
-    case 'sharedInteger': {
-      const integerProperty: IntegerProperty = property as IntegerProperty;
-      return { type: 'integer', format: integerProperty.hasBigHint ? 'int64' : 'int32' };
-    }
-
-    case 'short':
-    case 'sharedShort':
-    case 'schoolYearEnumeration':
-    case 'year':
-      return { type: 'integer', format: 'int32' };
-
-    case 'string':
-    case 'sharedString': {
-      const result: SchemaObject = { type: 'string' };
-      const stringProperty: StringProperty = property as StringProperty;
-      if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
-      if (stringProperty.maxLength) result.maxLength = Number(stringProperty.maxLength);
-      return result;
-    }
-
-    case 'time':
-      return { type: 'string' };
-
-    default:
-      return { type: 'boolean' };
-  }
+function newStaticTrackedChangeQueryParameters(): Parameter[] {
+  return [
+    {
+      $ref: '#/components/parameters/MinChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/MaxChangeVersion',
+    },
+    {
+      $ref: '#/components/parameters/limit',
+    },
+    {
+      $ref: '#/components/parameters/offset',
+    },
+    {
+      $ref: '#/components/parameters/totalCount',
+    },
+  ];
 }
 
 // All descriptor documents have the same OpenAPI get by query parameters
@@ -469,7 +435,7 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
       name: fieldName,
       in: 'query',
       description: sourceProperty.documentation,
-      schema: schemaObjectFrom(sourceProperty),
+      schema: schemaObjectFromEntityProperty(sourceProperty),
       ...(sourceProperty.isPartOfIdentity && { 'x-Ed-Fi-isIdentity': true }),
     };
 
@@ -517,7 +483,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
         $ref: '#/components/responses/Forbidden',
       },
       '404': {
-        $ref: '#/components/responses/NotFoundUseSnapshot',
+        $ref: '#/components/responses/NotFound',
       },
       '500': {
         $ref: '#/components/responses/Error',
@@ -536,18 +502,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
   return {
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
-    parameters: [
-      ...newStaticGetByIdParameters(),
-      {
-        name: 'Use-Snapshot',
-        in: 'header',
-        description: 'Indicates if the configured Snapshot should be used.',
-        schema: {
-          type: 'boolean',
-          default: false,
-        },
-      },
-    ],
+    parameters: newStaticGetByIdParameters(),
     responses: {
       '200': {
         description: 'The requested resource was successfully retrieved.',
@@ -574,13 +529,83 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
         $ref: '#/components/responses/Forbidden',
       },
       '404': {
-        $ref: '#/components/responses/NotFoundUseSnapshot',
+        $ref: '#/components/responses/NotFound',
       },
       '500': {
         $ref: '#/components/responses/Error',
       },
     },
     summary: 'Retrieves a specific resource using the resource\'s identifier (using the "Get By Id" pattern).',
+    tags: [endpointName],
+  };
+}
+
+/**
+ * Creates the standard response object for Change Query tracked-change operations.
+ */
+function createTrackedChangeResponsesFor(trackedChangeItemSchemaName: string): ResponsesObject {
+  return {
+    '200': {
+      description: 'The requested Change Query results were successfully retrieved.',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'array',
+            items: {
+              $ref: `#/components/schemas/${trackedChangeItemSchemaName}`,
+            },
+          },
+        },
+      },
+    },
+    '400': {
+      $ref: '#/components/responses/BadRequest',
+    },
+    '401': {
+      $ref: '#/components/responses/Unauthorized',
+    },
+    '403': {
+      $ref: '#/components/responses/Forbidden',
+    },
+    '404': {
+      $ref: '#/components/responses/NotFound',
+    },
+    '500': {
+      $ref: '#/components/responses/Error',
+    },
+  };
+}
+
+/**
+ * Returns the "get" section of the tracked-change deletes path for the given entity.
+ */
+export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
+  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
+
+  return {
+    description: 'This GET operation provides access to deleted resource keys in the requested ChangeVersion range.',
+    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}Deletes`,
+    parameters: newStaticTrackedChangeQueryParameters(),
+    responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.deleteItem),
+    summary: 'Retrieves deleted resource keys for Change Queries.',
+    tags: [endpointName],
+  };
+}
+
+/**
+ * Returns the "get" section of the tracked-change key changes path for the given entity.
+ */
+export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
+  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
+
+  return {
+    description: 'This GET operation provides access to changed resource keys in the requested ChangeVersion range.',
+    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}KeyChanges`,
+    parameters: newStaticTrackedChangeQueryParameters(),
+    responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.keyChangeItem),
+    summary: 'Retrieves changed resource keys for Change Queries.',
     tags: [endpointName],
   };
 }
@@ -626,7 +651,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
         $ref: '#/components/responses/NotFound',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',
@@ -671,7 +696,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
         $ref: '#/components/responses/NotFound',
       },
       '405': {
-        description: 'Method Is Not Allowed. When the Use-Snapshot header is set to true, the method is not allowed.',
+        description: 'Method Is Not Allowed.',
       },
       '409': {
         $ref: '#/components/responses/Conflict',
@@ -735,15 +760,26 @@ export function createPathsFrom(entity: TopLevelEntity): PathsObject {
 
   const projectEndpointName: ProjectEndpointName = createUriSegment(entity.namespace.projectName) as ProjectEndpointName;
   const { endpointName, domains } = entity.data.edfiApiSchema as EntityApiSchemaData;
+  const resourcePath: string = `/${projectEndpointName}/${endpointName}`;
 
   // Add to paths without "id"
-  paths[`/${projectEndpointName}/${endpointName}`] = {
+  paths[resourcePath] = {
     post: createPostSectionFor(entity, endpointName),
     get: createGetByQuerySectionFor(entity, endpointName),
     'x-Ed-Fi-domains': domains,
   };
 
-  paths[`/${projectEndpointName}/${endpointName}/{id}`] = {
+  paths[`${resourcePath}/deletes`] = {
+    get: createTrackedChangeDeletesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
+
+  paths[`${resourcePath}/keyChanges`] = {
+    get: createTrackedChangeKeyChangesSectionFor(entity, endpointName),
+    'x-Ed-Fi-domains': domains,
+  };
+
+  paths[`${resourcePath}/{id}`] = {
     get: createGetByIdSectionFor(entity, endpointName),
     put: createPutSectionFor(entity, endpointName),
     delete: createDeleteSectionFor(entity, endpointName),

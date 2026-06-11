@@ -98,7 +98,7 @@ export type BaseProjectSchema = {
   isExtensionProject: boolean;
 
   /**
-   * Base OpenAPI documents for each document type (only for core projects)
+   * Base OpenAPI documents for each document type, emitted only for core projects.
    */
   openApiBaseDocuments?: {
     [documentType in OpenApiDocumentTypeValue]?: Document;

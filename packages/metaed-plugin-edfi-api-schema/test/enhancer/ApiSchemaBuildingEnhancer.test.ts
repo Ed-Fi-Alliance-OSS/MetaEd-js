@@ -50,10 +50,16 @@ import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/e
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
+import { enhance as queryFieldMappingEnhancer } from '../../src/enhancer/QueryFieldMappingEnhancer';
 import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance as typeCoercionJsonPathsEnhancer } from '../../src/enhancer/TypeCoercionJsonPathsEnhancer';
 import { enhance, removeSourcePropertyFromDocumentPathsMapping } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
+import { enhance as openApiTrackedChangeKeyFieldEnhancer } from '../../src/enhancer/OpenApiTrackedChangeKeyFieldEnhancer';
+import { enhance as openApiBaseDocumentEnhancer } from '../../src/enhancer/OpenApiBaseDocumentEnhancer';
+import { NamespaceEdfiApiSchema } from '../../src/model/Namespace';
+import { OpenApiDocumentType } from '../../src/model/api-schema/OpenApiDocumentType';
+import { type Document } from '../../src/model/OpenApiTypes';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv as unknown as Parameters<typeof addFormatsTo>[0]);
@@ -76,8 +82,10 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   documentPathsMappingEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
+  queryFieldMappingEnhancer(metaEd);
   identityJsonPathsEnhancer(metaEd);
   typeCoercionJsonPathsEnhancer(metaEd);
+  openApiTrackedChangeKeyFieldEnhancer(metaEd);
   enhance(metaEd);
 }
 
@@ -3529,5 +3537,85 @@ describe('when testing projectEndpointName transformation in ApiSchemaBuildingEn
 
     expect(projectSchema).toBeDefined();
     expect(projectSchema?.projectEndpointName).toBe('special-education');
+  });
+});
+
+describe('when building ApiSchema with OpenAPI base documents', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const coreNamespaceName = 'EdFi';
+  const extensionNamespaceName = 'SampleExtension';
+  let coreNamespace: Namespace;
+  let extensionNamespace: Namespace;
+
+  beforeAll(() => {
+    metaEd.dataStandardVersion = '5.2.0';
+
+    coreNamespace = {
+      ...newNamespace(),
+      namespaceName: coreNamespaceName,
+      projectName: 'Ed-Fi',
+      projectVersion: '5.2.0',
+      projectDescription: 'The Ed-Fi Data Standard v5.2',
+    };
+    extensionNamespace = {
+      ...newNamespace(),
+      namespaceName: extensionNamespaceName,
+      isExtension: true,
+      dependencies: [coreNamespace],
+      projectName: 'Sample',
+      projectVersion: '1.1.0',
+      projectDescription: 'Sample Extension',
+    };
+
+    coreNamespace.data.educationOrganizationTypes = [];
+    coreNamespace.data.educationOrganizationHierarchy = {};
+    extensionNamespace.data.educationOrganizationTypes = [];
+    extensionNamespace.data.educationOrganizationHierarchy = {};
+
+    metaEd.namespace.set(coreNamespaceName, coreNamespace);
+    metaEd.namespace.set(extensionNamespaceName, extensionNamespace);
+
+    namespaceSetupEnhancer(metaEd);
+    openApiBaseDocumentEnhancer(metaEd);
+
+    const extensionChangeQueriesDocument: Document = {
+      openapi: '3.0.0',
+      info: {
+        title: 'Extension Change Queries',
+        version: '1',
+      },
+      paths: {},
+    };
+
+    const extensionNamespaceEdfiApiSchema: NamespaceEdfiApiSchema = extensionNamespace.data
+      .edfiApiSchema as NamespaceEdfiApiSchema;
+    extensionNamespaceEdfiApiSchema.openApiBaseDocuments = {
+      [OpenApiDocumentType.CHANGE_QUERIES]: extensionChangeQueriesDocument,
+    };
+
+    enhance(metaEd);
+  });
+
+  it('should copy optional standalone Change Queries base document into core project schema', () => {
+    const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = coreNamespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+
+    expect(namespaceEdfiApiSchema.apiSchema.projectSchema.openApiBaseDocuments).toBeDefined();
+    expect(namespaceEdfiApiSchema.apiSchema.projectSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES]).toBe(
+      namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES],
+    );
+  });
+
+  it('should not copy base documents into extension project schema', () => {
+    const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = extensionNamespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+
+    expect(namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES]).toBeDefined();
+    expect(namespaceEdfiApiSchema.apiSchema.projectSchema.openApiBaseDocuments).toBeUndefined();
+  });
+
+  it('should keep apiSchemaVersion unchanged', () => {
+    const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = coreNamespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
+
+    expect(namespaceEdfiApiSchema.apiSchema.apiSchemaVersion).toBe('1.0.0');
   });
 });

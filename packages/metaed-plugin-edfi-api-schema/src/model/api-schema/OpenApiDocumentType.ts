@@ -9,6 +9,10 @@
 export const OpenApiDocumentType = {
   RESOURCES: 'resources',
   DESCRIPTORS: 'descriptors',
+  CHANGE_QUERIES: 'changeQueries',
 } as const;
 
+/**
+ * String values identifying the supported OpenAPI base document and fragment types.
+ */
 export type OpenApiDocumentTypeValue = typeof OpenApiDocumentType[keyof typeof OpenApiDocumentType];

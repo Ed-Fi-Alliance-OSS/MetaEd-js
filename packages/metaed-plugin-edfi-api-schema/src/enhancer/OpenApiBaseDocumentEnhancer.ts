@@ -4,21 +4,81 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { type MetaEdEnvironment, type EnhancerResult, type Namespace } from '@edfi/metaed-core';
-import { ComponentsObject, Document } from '../model/OpenApiTypes';
+import { ComponentsObject, Document, Operation, PathsObject } from '../model/OpenApiTypes';
 import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import { createHardcodedParameterResponses, createHardcodedComponentParameters } from './OpenApiSpecificationEnhancerBase';
 import { newSchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
+import { OpenApiDocumentType, OpenApiDocumentTypeValue } from '../model/api-schema/OpenApiDocumentType';
 
 /**
- * Creates the base OpenAPI document structure without paths, schemas, or tags.
- * This structure is common to all OpenAPI documents (resources, descriptors, etc.)
+ * Creates the component object for a document type.
  */
-function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: string): Document {
-  const components: ComponentsObject = {
+function createComponentsObject(documentType: OpenApiDocumentTypeValue): ComponentsObject {
+  if (documentType === OpenApiDocumentType.CHANGE_QUERIES) {
+    return {
+      schemas: {},
+      responses: {},
+      parameters: {},
+    };
+  }
+
+  return {
     schemas: {},
     responses: createHardcodedParameterResponses(),
     parameters: createHardcodedComponentParameters(),
   };
+}
+
+/**
+ * Creates the Change Queries available change versions operation.
+ */
+function createAvailableChangeVersionsOperation(): Operation {
+  return {
+    operationId: 'getAvailableChangeVersions',
+    summary: 'Retrieves the available change version range.',
+    responses: {
+      '200': {
+        description: 'The available change version range was successfully retrieved.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              required: ['oldestChangeVersion', 'newestChangeVersion'],
+              properties: {
+                oldestChangeVersion: {
+                  type: 'integer',
+                  format: 'int64',
+                },
+                newestChangeVersion: {
+                  type: 'integer',
+                  format: 'int64',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+}
+
+/**
+ * Creates the path object for the standalone Change Queries OpenAPI document.
+ */
+function createChangeQueriesPaths(): PathsObject {
+  return {
+    '/availableChangeVersions': {
+      get: createAvailableChangeVersionsOperation(),
+    },
+  };
+}
+
+/**
+ * Creates the base OpenAPI document structure with document-specific initial paths and components.
+ * This structure is common to all OpenAPI documents (resources, descriptors, etc.)
+ */
+function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: OpenApiDocumentTypeValue): Document {
+  const components: ComponentsObject = createComponentsObject(documentType);
 
   const openApiDocument: Document = {
     openapi: '3.0.0',
@@ -34,15 +94,18 @@ function createBaseOpenApiDocument(metaEd: MetaEdEnvironment, documentType: stri
         url: '',
       },
     ],
-    paths: {},
+    paths: documentType === OpenApiDocumentType.CHANGE_QUERIES ? createChangeQueriesPaths() : {},
     components,
     tags: [],
   };
 
   // Add hardcoded SchoolYearTypeReference schema only to resources document
-  if (documentType === 'resources') {
+  if (documentType === OpenApiDocumentType.RESOURCES) {
     const schoolYearOpenApis = newSchoolYearOpenApis(metaEd.minSchoolYear, metaEd.maxSchoolYear);
-    components.schemas!.EdFi_SchoolYearTypeReference = schoolYearOpenApis.schoolYearEnumerationOpenApi;
+    const { schemas } = components;
+    if (schemas != null) {
+      schemas.EdFi_SchoolYearTypeReference = schoolYearOpenApis.schoolYearEnumerationOpenApi;
+    }
   }
 
   return openApiDocument;
@@ -59,10 +122,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     const namespaceEdfiApiSchema: NamespaceEdfiApiSchema = namespace.data.edfiApiSchema as NamespaceEdfiApiSchema;
 
-    // Create base documents for resources and descriptors
+    // Create base documents for resources, descriptors, and the standalone Change Queries fixed route.
     namespaceEdfiApiSchema.openApiBaseDocuments = {
-      resources: createBaseOpenApiDocument(metaEd, 'resources'),
-      descriptors: createBaseOpenApiDocument(metaEd, 'descriptors'),
+      [OpenApiDocumentType.RESOURCES]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.RESOURCES),
+      [OpenApiDocumentType.DESCRIPTORS]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.DESCRIPTORS),
+      [OpenApiDocumentType.CHANGE_QUERIES]: createBaseOpenApiDocument(metaEd, OpenApiDocumentType.CHANGE_QUERIES),
     };
   });
 
