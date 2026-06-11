@@ -11,17 +11,13 @@ import {
   type TopLevelEntity,
 } from '@edfi/metaed-core';
 import { createTrackedChangeSchemasFrom } from '../../src/enhancer/OpenApiChangeQuerySchemaBuilder';
-import type { JsonPath } from '../../src/model/api-schema/JsonPath';
-import type { PathType } from '../../src/model/api-schema/PathType';
-import type { QueryFieldMapping } from '../../src/model/api-schema/QueryFieldMapping';
+import type { TrackedChangeKeyField, TrackedChangeKeyFieldName } from '../../src/model/TrackedChangeKeyField';
 
 /**
  * A tracked-change identity source property case used to verify scalar OpenAPI schema mapping.
  */
 type ScalarIdentitySourcePropertyCase = {
-  fieldName: string;
-  identityJsonPath: JsonPath;
-  pathType: PathType;
+  fieldName: TrackedChangeKeyFieldName;
   sourceProperty: EntityProperty;
 };
 
@@ -90,138 +86,90 @@ function descriptorSourceProperty(): EntityProperty {
 function scalarIdentitySourcePropertyCases(): ScalarIdentitySourcePropertyCase[] {
   return [
     {
-      fieldName: 'booleanIdentity',
-      identityJsonPath: '$.booleanIdentity' as JsonPath,
-      pathType: 'boolean',
+      fieldName: 'booleanIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('boolean', 'Boolean identity field'),
     },
     {
-      fieldName: 'dateIdentity',
-      identityJsonPath: '$.dateIdentity' as JsonPath,
-      pathType: 'date',
+      fieldName: 'dateIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('date', 'Date identity field'),
     },
     {
-      fieldName: 'dateTimeIdentity',
-      identityJsonPath: '$.dateTimeIdentity' as JsonPath,
-      pathType: 'date-time',
+      fieldName: 'dateTimeIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('datetime', 'Date-time identity field'),
     },
     {
-      fieldName: 'decimalIdentity',
-      identityJsonPath: '$.decimalIdentity' as JsonPath,
-      pathType: 'number',
+      fieldName: 'decimalIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('decimal', 'Decimal identity field'),
     },
     {
-      fieldName: 'descriptorIdentity',
-      identityJsonPath: '$.descriptorIdentity' as JsonPath,
-      pathType: 'string',
+      fieldName: 'descriptorIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: descriptorSourceProperty(),
     },
     {
-      fieldName: 'durationIdentity',
-      identityJsonPath: '$.durationIdentity' as JsonPath,
-      pathType: 'string',
+      fieldName: 'durationIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('duration', 'Duration identity field'),
     },
     {
-      fieldName: 'int64Identity',
-      identityJsonPath: '$.int64Identity' as JsonPath,
-      pathType: 'number',
+      fieldName: 'int64Identity' as TrackedChangeKeyFieldName,
       sourceProperty: bigIntegerSourceProperty(),
     },
     {
-      fieldName: 'schoolYearIdentity',
-      identityJsonPath: '$.schoolYearIdentity' as JsonPath,
-      pathType: 'number',
+      fieldName: 'schoolYearIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('schoolYearEnumeration', 'School year identity field'),
     },
     {
-      fieldName: 'stringIdentity',
-      identityJsonPath: '$.stringIdentity' as JsonPath,
-      pathType: 'string',
+      fieldName: 'stringIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: stringSourceProperty(),
     },
     {
-      fieldName: 'timeIdentity',
-      identityJsonPath: '$.timeIdentity' as JsonPath,
-      pathType: 'time',
+      fieldName: 'timeIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('time', 'Time identity field'),
     },
     {
-      fieldName: 'yearIdentity',
-      identityJsonPath: '$.yearIdentity' as JsonPath,
-      pathType: 'number',
+      fieldName: 'yearIdentity' as TrackedChangeKeyFieldName,
       sourceProperty: sourcePropertyOfType('year', 'Year identity field'),
     },
   ];
 }
 
 /**
- * Creates query field mapping metadata from scalar source property cases.
+ * Creates tracked-change key field metadata from scalar source property cases.
  */
-function queryFieldMappingFrom(sourcePropertyCases: ScalarIdentitySourcePropertyCase[]): QueryFieldMapping {
-  const result: QueryFieldMapping = {};
-
-  sourcePropertyCases.forEach((sourcePropertyCase: ScalarIdentitySourcePropertyCase) => {
-    result[sourcePropertyCase.fieldName] = [
-      {
-        path: sourcePropertyCase.identityJsonPath,
-        type: sourcePropertyCase.pathType,
-        sourceProperty: sourcePropertyCase.sourceProperty,
-      },
-    ];
-  });
-
-  return result;
+function trackedChangeKeyFieldsFrom(sourcePropertyCases: ScalarIdentitySourcePropertyCase[]): TrackedChangeKeyField[] {
+  return sourcePropertyCases.map((sourcePropertyCase: ScalarIdentitySourcePropertyCase) => ({
+    fieldName: sourcePropertyCase.fieldName,
+    sourceProperty: sourcePropertyCase.sourceProperty,
+  }));
 }
 
 /**
- * Creates regular resource query field mapping metadata for tracked-change schema tests.
+ * Creates regular resource tracked-change key field metadata for tracked-change schema tests.
  */
-function regularResourceQueryFieldMapping(): QueryFieldMapping {
-  return {
-    entryGradeLevelDescriptor: [
-      {
-        path: '$.entryGradeLevelDescriptor' as JsonPath,
-        type: 'string',
-        sourceProperty: descriptorSourceProperty(),
-      },
-    ],
-    internalEntryGradeLevelDescriptorId: [
-      {
-        path: '$.entryGradeLevelDescriptorId' as JsonPath,
-        type: 'number',
-        sourceProperty: integerSourceProperty(),
-      },
-    ],
-    schoolId: [
-      {
-        path: '$.schoolReference.schoolId' as JsonPath,
-        type: 'number',
-        sourceProperty: integerSourceProperty(),
-      },
-    ],
-    studentUniqueId: [
-      {
-        path: '$.studentReference.studentUniqueId' as JsonPath,
-        type: 'string',
-        sourceProperty: stringSourceProperty(),
-      },
-    ],
-  };
+function regularResourceTrackedChangeKeyFields(): TrackedChangeKeyField[] {
+  return [
+    {
+      fieldName: 'entryGradeLevelDescriptor' as TrackedChangeKeyFieldName,
+      sourceProperty: descriptorSourceProperty(),
+    },
+    {
+      fieldName: 'schoolId' as TrackedChangeKeyFieldName,
+      sourceProperty: integerSourceProperty(),
+    },
+    {
+      fieldName: 'studentUniqueId' as TrackedChangeKeyFieldName,
+      sourceProperty: stringSourceProperty(),
+    },
+  ];
 }
 
 /**
- * Creates a top-level entity with explicit identity paths for tracked-change schema generation.
+ * Creates a top-level entity with explicit tracked-change key fields for tracked-change schema generation.
  */
-function topLevelEntityWithIdentityJsonPaths(
+function topLevelEntityWithTrackedChangeKeyFields(
   type: string,
   metaEdName: string,
   isAbstract: boolean,
-  identityJsonPaths: JsonPath[],
-  queryFieldMapping: QueryFieldMapping,
+  trackedChangeKeyFields: TrackedChangeKeyField[],
 ): TopLevelEntity {
   return {
     type,
@@ -232,8 +180,7 @@ function topLevelEntityWithIdentityJsonPaths(
     },
     data: {
       edfiApiSchema: {
-        identityJsonPaths,
-        queryFieldMapping,
+        trackedChangeKeyFields,
       },
     },
   } as unknown as TopLevelEntity;
@@ -246,19 +193,9 @@ function topLevelEntityWith(
   type: string,
   metaEdName: string,
   isAbstract: boolean,
-  queryFieldMapping: QueryFieldMapping,
+  trackedChangeKeyFields: TrackedChangeKeyField[],
 ): TopLevelEntity {
-  return topLevelEntityWithIdentityJsonPaths(
-    type,
-    metaEdName,
-    isAbstract,
-    [
-      '$.entryGradeLevelDescriptor' as JsonPath,
-      '$.schoolReference.schoolId' as JsonPath,
-      '$.studentReference.studentUniqueId' as JsonPath,
-    ],
-    queryFieldMapping,
-  );
+  return topLevelEntityWithTrackedChangeKeyFields(type, metaEdName, isAbstract, trackedChangeKeyFields);
 }
 
 describe('OpenApiChangeQuerySchemaBuilder', () => {
@@ -267,7 +204,7 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
       'association',
       'StudentSchoolAssociation',
       false,
-      regularResourceQueryFieldMapping(),
+      regularResourceTrackedChangeKeyFields(),
     );
 
     it('should create tracked-change schemas from public identity query fields', () => {
@@ -347,12 +284,11 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
 
   describe('when creating key schemas from scalar identity source properties', () => {
     const sourcePropertyCases: ScalarIdentitySourcePropertyCase[] = scalarIdentitySourcePropertyCases();
-    const entity: TopLevelEntity = topLevelEntityWithIdentityJsonPaths(
+    const entity: TopLevelEntity = topLevelEntityWithTrackedChangeKeyFields(
       'domainEntity',
       'ScalarIdentityResource',
       false,
-      sourcePropertyCases.map((sourcePropertyCase: ScalarIdentitySourcePropertyCase) => sourcePropertyCase.identityJsonPath),
-      queryFieldMappingFrom(sourcePropertyCases),
+      trackedChangeKeyFieldsFrom(sourcePropertyCases),
     );
 
     it('should use the standard OpenAPI schema mapping for tracked-change identity fields', () => {
@@ -423,19 +359,11 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
   });
 
   describe('when creating schemas for a concrete resource without complete public identity field metadata', () => {
-    const entity: TopLevelEntity = topLevelEntityWith('domainEntity', 'Student', false, {
-      studentUniqueId: [
-        {
-          path: '$.studentReference.studentUniqueId' as JsonPath,
-          type: 'string',
-          sourceProperty: stringSourceProperty(),
-        },
-      ],
-    });
+    const entity: TopLevelEntity = topLevelEntityWith('domainEntity', 'Student', false, []);
 
     it('should fail rather than create partial tracked-change schemas', () => {
       expect(() => createTrackedChangeSchemasFrom(entity)).toThrow(
-        'Unable to create tracked-change key schema for EdFi.Student. Missing public query field mapping for identity JSON path(s): $.entryGradeLevelDescriptor, $.schoolReference.schoolId.',
+        'Unable to create tracked-change key schema for EdFi.Student. No tracked-change key fields were found.',
       );
     });
   });
@@ -526,7 +454,7 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
       'domainEntitySubclass',
       'School',
       false,
-      regularResourceQueryFieldMapping(),
+      regularResourceTrackedChangeKeyFields(),
     );
 
     it('should create tracked-change schemas for the concrete resource', () => {
@@ -545,7 +473,7 @@ describe('OpenApiChangeQuerySchemaBuilder', () => {
       'domainEntity',
       'EducationOrganization',
       true,
-      regularResourceQueryFieldMapping(),
+      regularResourceTrackedChangeKeyFields(),
     );
 
     it('should not create tracked-change schemas', () => {

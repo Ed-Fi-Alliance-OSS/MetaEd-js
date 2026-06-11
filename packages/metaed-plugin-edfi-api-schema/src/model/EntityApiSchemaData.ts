@@ -35,6 +35,7 @@ import { RelationalTableNode } from './relational/RelationalTableNode';
 import { RelationalNamingPlan } from './relational/RelationalNamingPlan';
 import { RelationalNameOverrides } from './relational/RelationalNameOverrides';
 import { CommonExtensionOverride } from './api-schema/CommonExtensionOverride';
+import { TrackedChangeKeyField } from './TrackedChangeKeyField';
 
 export type EntityApiSchemaData = {
   /**
@@ -149,6 +150,11 @@ export type EntityApiSchemaData = {
    * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
   identityJsonPaths: JsonPath[];
+
+  /**
+   * Public key fields used by tracked-change OpenAPI response schemas.
+   */
+  trackedChangeKeyFields: TrackedChangeKeyField[];
 
   /**
    * A list of the JsonPaths that are of type boolean for use in type coercion.
@@ -285,6 +291,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     resourceName: '' as MetaEdResourceName,
     identityFullnames: [],
     identityJsonPaths: [],
+    trackedChangeKeyFields: [],
     queryFieldMapping: {},
     namespaceSecurableElements: [],
     educationOrganizationSecurableElements: [],

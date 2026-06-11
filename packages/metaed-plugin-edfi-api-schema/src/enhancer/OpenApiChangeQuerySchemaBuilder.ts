@@ -5,11 +5,8 @@
 
 import { type DomainEntity, type TopLevelEntity } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import type { JsonPath } from '../model/api-schema/JsonPath';
-import type { PathType } from '../model/api-schema/PathType';
-import type { QueryFieldMapping } from '../model/api-schema/QueryFieldMapping';
-import type { QueryFieldPathInfo } from '../model/api-schema/QueryFieldPathInfo';
 import type { SchemaObject, Schemas } from '../model/OpenApiTypes';
+import type { TrackedChangeKeyField } from '../model/TrackedChangeKeyField';
 import { deAcronym, normalizeDescriptorName } from '../Utility';
 import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
 
@@ -28,14 +25,6 @@ export type TrackedChangeSchemaNames = {
 type IdentityFieldSchema = {
   fieldName: string;
   schema: SchemaObject;
-};
-
-/**
- * Query field path information matched to a public query field name.
- */
-type QueryFieldPathInfoMatch = {
-  fieldName: string;
-  pathInfo: QueryFieldPathInfo;
 };
 
 /**
@@ -79,113 +68,43 @@ function isAbstractResource(entity: TopLevelEntity): boolean {
 }
 
 /**
- * Creates a fallback schema from API Schema path type metadata.
- */
-function schemaObjectFromPathType(pathType: PathType): SchemaObject {
-  switch (pathType) {
-    case 'boolean':
-      return { type: 'boolean' };
-    case 'date':
-      return { type: 'string', format: 'date' };
-    case 'date-time':
-      return { type: 'string', format: 'date-time' };
-    case 'number':
-      return { type: 'number', format: 'double' };
-    case 'string':
-      return { type: 'string' };
-    case 'time':
-      return { type: 'string' };
-    default:
-      return { type: 'string' };
-  }
-}
-
-/**
- * Creates an OpenAPI schema object from query field path metadata.
- */
-function schemaObjectFromQueryFieldPathInfo(pathInfo: QueryFieldPathInfo): SchemaObject {
-  if (pathInfo.sourceProperty == null) return schemaObjectFromPathType(pathInfo.type);
-
-  return schemaObjectFromEntityProperty(pathInfo.sourceProperty, { type: 'string' });
-}
-
-/**
- * Finds public query field path info by exact identity JSON path match.
- */
-function queryFieldPathInfoMatching(
-  identityJsonPath: JsonPath,
-  queryFieldMapping: QueryFieldMapping,
-): QueryFieldPathInfoMatch | undefined {
-  const matchingQueryFieldEntry: [string, QueryFieldPathInfo[]] | undefined = Object.entries(queryFieldMapping).find(
-    ([, pathInfos]: [string, QueryFieldPathInfo[]]) =>
-      pathInfos.some((pathInfo: QueryFieldPathInfo) => pathInfo.path === identityJsonPath),
-  );
-  if (matchingQueryFieldEntry == null) return undefined;
-
-  const [fieldName, pathInfos] = matchingQueryFieldEntry;
-  const matchingPathInfo: QueryFieldPathInfo | undefined = pathInfos.find(
-    (pathInfo: QueryFieldPathInfo) => pathInfo.path === identityJsonPath,
-  );
-  if (matchingPathInfo == null) return undefined;
-
-  return { fieldName, pathInfo: matchingPathInfo };
-}
-
-/**
  * Asserts that a concrete resource has complete semantic metadata for tracked-change key schemas.
  */
 function assertCanCreateIdentityFieldSchemasFrom(
   entity: TopLevelEntity,
-  identityJsonPaths: JsonPath[],
-  missingIdentityJsonPaths: JsonPath[],
+  trackedChangeKeyFields: TrackedChangeKeyField[],
 ): void {
-  if (identityJsonPaths.length === 0) {
-    throw new Error(
-      `Unable to create tracked-change key schema for ${entityDisplayNameFor(entity)}. No identity JSON paths were found.`,
-    );
-  }
-
-  if (missingIdentityJsonPaths.length > 0) {
+  if (trackedChangeKeyFields.length === 0) {
     throw new Error(
       `Unable to create tracked-change key schema for ${entityDisplayNameFor(
         entity,
-      )}. Missing public query field mapping for identity JSON path(s): ${missingIdentityJsonPaths.join(', ')}.`,
+      )}. No tracked-change key fields were found.`,
     );
   }
 }
 
 /**
- * Creates public identity field schemas for a regular resource from identity and query-field metadata.
+ * Creates an OpenAPI schema object from a tracked-change key field.
+ */
+function identityFieldSchemaFrom(trackedChangeKeyField: TrackedChangeKeyField): IdentityFieldSchema {
+  return {
+    fieldName: trackedChangeKeyField.fieldName,
+    schema: schemaObjectFromEntityProperty(trackedChangeKeyField.sourceProperty, { type: 'string' }),
+  };
+}
+
+/**
+ * Creates public identity field schemas for a regular resource from tracked-change key field metadata.
  */
 function identityFieldSchemasFrom(entity: TopLevelEntity): IdentityFieldSchema[] {
   const entityApiSchemaData: EntityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-  const identityJsonPaths: JsonPath[] = entityApiSchemaData.identityJsonPaths ?? [];
-  const includedFieldNames: Set<string> = new Set();
-  const missingIdentityJsonPaths: JsonPath[] = [];
-  const result: IdentityFieldSchema[] = [];
+  const trackedChangeKeyFields: TrackedChangeKeyField[] = entityApiSchemaData.trackedChangeKeyFields ?? [];
 
-  identityJsonPaths.forEach((identityJsonPath: JsonPath) => {
-    const match: QueryFieldPathInfoMatch | undefined = queryFieldPathInfoMatching(
-      identityJsonPath,
-      entityApiSchemaData.queryFieldMapping,
-    );
-    if (match == null) {
-      missingIdentityJsonPaths.push(identityJsonPath);
-      return;
-    }
+  assertCanCreateIdentityFieldSchemasFrom(entity, trackedChangeKeyFields);
 
-    if (includedFieldNames.has(match.fieldName)) return;
-
-    includedFieldNames.add(match.fieldName);
-    result.push({
-      fieldName: match.fieldName,
-      schema: schemaObjectFromQueryFieldPathInfo(match.pathInfo),
-    });
-  });
-
-  assertCanCreateIdentityFieldSchemasFrom(entity, identityJsonPaths, missingIdentityJsonPaths);
-
-  return result;
+  return trackedChangeKeyFields.map((trackedChangeKeyField: TrackedChangeKeyField) =>
+    identityFieldSchemaFrom(trackedChangeKeyField),
+  );
 }
 
 /**

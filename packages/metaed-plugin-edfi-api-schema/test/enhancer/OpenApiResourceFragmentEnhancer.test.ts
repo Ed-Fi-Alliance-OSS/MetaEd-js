@@ -27,11 +27,14 @@ import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/Ent
 import { enhance as namespaceSetupEnhancer } from '../../src/model/Namespace';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
+import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
+import { enhance as mergeCoveringFlattenedIdentityPropertyEnhancer } from '../../src/enhancer/MergeCoveringFlattenedIdentityPropertyEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 import { enhance as openApiRequestBodyComponentEnhancer } from '../../src/enhancer/OpenApiRequestBodyComponentEnhancer';
 import { enhance as openApiReferenceComponentEnhancer } from '../../src/enhancer/OpenApiReferenceComponentEnhancer';
+import { enhance as openApiTrackedChangeKeyFieldEnhancer } from '../../src/enhancer/OpenApiTrackedChangeKeyFieldEnhancer';
 import { enhance as resourceDomainEnhancer } from '../../src/enhancer/ResourceDomainEnhancer';
 import { enhance as jsonSchemaForInsertEnhancer } from '../../src/enhancer/JsonSchemaForInsertEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
@@ -157,6 +160,9 @@ function runPrerequisiteEnhancers(metaEd: MetaEdEnvironment) {
   apiPropertyMappingEnhancer(metaEd);
   propertyCollectingEnhancer(metaEd);
   apiEntityMappingEnhancer(metaEd);
+  subclassApiEntityMappingEnhancer(metaEd);
+  mergeCoveringFlattenedIdentityPropertyEnhancer(metaEd);
+  openApiTrackedChangeKeyFieldEnhancer(metaEd);
   jsonSchemaForInsertEnhancer(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
   mergeJsonPathsMappingEnhancer(metaEd);
@@ -192,6 +198,7 @@ function concreteResourceWithoutPublicTrackedChangeKeyMetadata(): TopLevelEntity
         endpointName: 'students',
         domains: [],
         identityJsonPaths: ['$.studentUniqueId' as JsonPath],
+        trackedChangeKeyFields: [],
         queryFieldMapping: {},
         openApiReferenceComponent: {},
         openApiReferenceComponentPropertyName: '',
@@ -402,7 +409,7 @@ describe('OpenApiResourceFragmentEnhancer', () => {
   describe('when creating a resource fragment without public tracked-change key metadata', () => {
     it('should fail rather than omit tracked-change paths', () => {
       expect(() => createResourceFragment(concreteResourceWithoutPublicTrackedChangeKeyMetadata())).toThrow(
-        'Unable to create tracked-change key schema for EdFi.Student. Missing public query field mapping for identity JSON path(s): $.studentUniqueId.',
+        'Unable to create tracked-change key schema for EdFi.Student. No tracked-change key fields were found.',
       );
     });
   });
