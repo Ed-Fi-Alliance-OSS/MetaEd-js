@@ -20,3 +20,11 @@ DMS-1199 artifact regeneration task completed.
 - Files changed: packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_1/ds-5.0-api-schema-authoritative.json; v7_2 ds-5.1 and tpdm authoritative JSON; v7_3 DS/TPDM/Sample authoritative JSON with school year reference path type updates; packages/metaed-plugin-edfi-api-schema/test/integration/update-authoritative-files.ts; tasks.json; progress.txt.
 - Verification: cd packages/metaed-plugin-edfi-api-schema && npm run update-authoritative passes; v7_1/v7_2/v7_3 compare Jest suites pass; focused DocumentPathsMappingEnhancer Jest test passes; package tsc and eslint pass.
 - Notes: artifact diff limited to referenceJsonPaths type string to number changes for school year paths; integration-validation remains next.
+
+DMS-1199 integration-validation task completed.
+- Story ref: .orc/DMS-1199.md.
+- Decision: validate generated and authoritative ds-5.2 output directly after compare suites; generated files are ignored artifacts from Jest run.
+- Files changed: tasks.json; progress.txt.
+- Verification: v7_1, v7_2, and v7_3 ApiSchema authoritative compare Jest suites pass.
+- Verification: ds-5.2 generated and authoritative studentAcademicRecordReference.schoolYear referenceJsonPaths type is number and path remains in numericJsonPaths.
+- Notes: DMS fixture files still out of scope; quality-checks remains next.

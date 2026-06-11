@@ -59,7 +59,7 @@
       "Run `npx jest packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts` from the repository root.",
       "Inspect representative generated or authoritative artifacts, including `packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/ds-5.2-api-schema-authoritative.json`, for school year reference entries now typed as `number`."
     ],
-    "completed": false
+    "completed": true
   },
   {
     "category": "quality-checks",
