@@ -561,7 +561,7 @@
               "/homograph/contacts/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographContactsDeletes",
+                  "operationId": "deletes_HomographContacts",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -620,7 +620,7 @@
               "/homograph/contacts/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographContactsKeyChanges",
+                  "operationId": "keyChanges_HomographContacts",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1232,7 +1232,7 @@
               "/homograph/names/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographNamesDeletes",
+                  "operationId": "deletes_HomographNames",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1291,7 +1291,7 @@
               "/homograph/names/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographNamesKeyChanges",
+                  "operationId": "keyChanges_HomographNames",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1844,7 +1844,7 @@
               "/homograph/schoolYearTypes/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographSchoolYearTypesDeletes",
+                  "operationId": "deletes_HomographSchoolYearTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1903,7 +1903,7 @@
               "/homograph/schoolYearTypes/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographSchoolYearTypesKeyChanges",
+                  "operationId": "keyChanges_HomographSchoolYearTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2535,7 +2535,7 @@
               "/homograph/schools/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographSchoolsDeletes",
+                  "operationId": "deletes_HomographSchools",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2594,7 +2594,7 @@
               "/homograph/schools/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographSchoolsKeyChanges",
+                  "operationId": "keyChanges_HomographSchools",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -3349,7 +3349,7 @@
               "/homograph/staffs/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStaffsDeletes",
+                  "operationId": "deletes_HomographStaffs",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -3408,7 +3408,7 @@
               "/homograph/staffs/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStaffsKeyChanges",
+                  "operationId": "keyChanges_HomographStaffs",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4083,7 +4083,7 @@
               "/homograph/studentSchoolAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStudentSchoolAssociationsDeletes",
+                  "operationId": "deletes_HomographStudentSchoolAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4142,7 +4142,7 @@
               "/homograph/studentSchoolAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStudentSchoolAssociationsKeyChanges",
+                  "operationId": "keyChanges_HomographStudentSchoolAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4847,7 +4847,7 @@
               "/homograph/students/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStudentsDeletes",
+                  "operationId": "deletes_HomographStudents",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4906,7 +4906,7 @@
               "/homograph/students/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_HomographStudentsKeyChanges",
+                  "operationId": "keyChanges_HomographStudents",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"

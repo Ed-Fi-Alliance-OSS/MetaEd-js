@@ -454,7 +454,7 @@
               "/sample/artMediumDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleArtMediaDeletes",
+                  "operationId": "deletes_SampleArtMedia",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -513,7 +513,7 @@
               "/sample/artMediumDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleArtMediaKeyChanges",
+                  "operationId": "keyChanges_SampleArtMedia",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1942,7 +1942,7 @@
               "/sample/busRoutes/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleBusRoutesDeletes",
+                  "operationId": "deletes_SampleBusRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2001,7 +2001,7 @@
               "/sample/busRoutes/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleBusRoutesKeyChanges",
+                  "operationId": "keyChanges_SampleBusRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2638,7 +2638,7 @@
               "/sample/buses/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleBusesDeletes",
+                  "operationId": "deletes_SampleBuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2697,7 +2697,7 @@
               "/sample/buses/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleBusesKeyChanges",
+                  "operationId": "keyChanges_SampleBuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4410,7 +4410,7 @@
               "/sample/favoriteBookCategoryDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleFavoriteBookCategoriesDeletes",
+                  "operationId": "deletes_SampleFavoriteBookCategories",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4469,7 +4469,7 @@
               "/sample/favoriteBookCategoryDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleFavoriteBookCategoriesKeyChanges",
+                  "operationId": "keyChanges_SampleFavoriteBookCategories",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5145,7 +5145,7 @@
               "/sample/membershipTypeDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleMembershipTypesDeletes",
+                  "operationId": "deletes_SampleMembershipTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5204,7 +5204,7 @@
               "/sample/membershipTypeDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleMembershipTypesKeyChanges",
+                  "operationId": "keyChanges_SampleMembershipTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7454,7 +7454,7 @@
               "/sample/studentArtProgramAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleStudentArtProgramAssociationsDeletes",
+                  "operationId": "deletes_SampleStudentArtProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7513,7 +7513,7 @@
               "/sample/studentArtProgramAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleStudentArtProgramAssociationsKeyChanges",
+                  "operationId": "keyChanges_SampleStudentArtProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10560,7 +10560,7 @@
               "/sample/studentGraduationPlanAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleStudentGraduationPlanAssociationsDeletes",
+                  "operationId": "deletes_SampleStudentGraduationPlanAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10619,7 +10619,7 @@
               "/sample/studentGraduationPlanAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_SampleStudentGraduationPlanAssociationsKeyChanges",
+                  "operationId": "keyChanges_SampleStudentGraduationPlanAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
