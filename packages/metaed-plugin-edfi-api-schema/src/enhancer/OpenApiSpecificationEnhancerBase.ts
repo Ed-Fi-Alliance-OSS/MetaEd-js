@@ -585,7 +585,7 @@ export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, end
 
   return {
     description: 'This GET operation provides access to deleted resource keys in the requested ChangeVersion range.',
-    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}Deletes`,
+    operationId: `deletes${extensionPrefix}${pluralize(entity.metaEdName)}`,
     parameters: newStaticTrackedChangeQueryParameters(),
     responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.deleteItem),
     summary: 'Retrieves deleted resource keys for Change Queries.',
@@ -602,7 +602,7 @@ export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, 
 
   return {
     description: 'This GET operation provides access to changed resource keys in the requested ChangeVersion range.',
-    operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}KeyChanges`,
+    operationId: `keyChanges${extensionPrefix}${pluralize(entity.metaEdName)}`,
     parameters: newStaticTrackedChangeQueryParameters(),
     responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.keyChangeItem),
     summary: 'Retrieves changed resource keys for Change Queries.',

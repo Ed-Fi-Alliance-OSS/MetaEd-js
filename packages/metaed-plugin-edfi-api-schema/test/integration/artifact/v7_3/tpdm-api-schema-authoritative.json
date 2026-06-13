@@ -506,7 +506,7 @@
               "/tpdm/accreditationStatusDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMAccreditationStatusesDeletes",
+                  "operationId": "deletes_TPDMAccreditationStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -565,7 +565,7 @@
               "/tpdm/accreditationStatusDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMAccreditationStatusesKeyChanges",
+                  "operationId": "keyChanges_TPDMAccreditationStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1241,7 +1241,7 @@
               "/tpdm/aidTypeDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMAidTypesDeletes",
+                  "operationId": "deletes_TPDMAidTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -1300,7 +1300,7 @@
               "/tpdm/aidTypeDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMAidTypesKeyChanges",
+                  "operationId": "keyChanges_TPDMAidTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2391,7 +2391,7 @@
               "/tpdm/candidateEducatorPreparationProgramAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCandidateEducatorPreparationProgramAssociationsDeletes",
+                  "operationId": "deletes_TPDMCandidateEducatorPreparationProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2451,7 +2451,7 @@
               "/tpdm/candidateEducatorPreparationProgramAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCandidateEducatorPreparationProgramAssociationsKeyChanges",
+                  "operationId": "keyChanges_TPDMCandidateEducatorPreparationProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5079,7 +5079,7 @@
               "/tpdm/candidates/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCandidatesDeletes",
+                  "operationId": "deletes_TPDMCandidates",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5139,7 +5139,7 @@
               "/tpdm/candidates/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCandidatesKeyChanges",
+                  "operationId": "keyChanges_TPDMCandidates",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5950,7 +5950,7 @@
               "/tpdm/certificationRouteDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCertificationRoutesDeletes",
+                  "operationId": "deletes_TPDMCertificationRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -6009,7 +6009,7 @@
               "/tpdm/certificationRouteDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCertificationRoutesKeyChanges",
+                  "operationId": "keyChanges_TPDMCertificationRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -6685,7 +6685,7 @@
               "/tpdm/coteachingStyleObservedDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCoteachingStyleObservedsDeletes",
+                  "operationId": "deletes_TPDMCoteachingStyleObserveds",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -6744,7 +6744,7 @@
               "/tpdm/coteachingStyleObservedDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCoteachingStyleObservedsKeyChanges",
+                  "operationId": "keyChanges_TPDMCoteachingStyleObserveds",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7420,7 +7420,7 @@
               "/tpdm/credentialStatusDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCredentialStatusesDeletes",
+                  "operationId": "deletes_TPDMCredentialStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7479,7 +7479,7 @@
               "/tpdm/credentialStatusDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMCredentialStatusesKeyChanges",
+                  "operationId": "keyChanges_TPDMCredentialStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -8634,7 +8634,7 @@
               "/tpdm/educatorPreparationPrograms/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEducatorPreparationProgramsDeletes",
+                  "operationId": "deletes_TPDMEducatorPreparationPrograms",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -8694,7 +8694,7 @@
               "/tpdm/educatorPreparationPrograms/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEducatorPreparationProgramsKeyChanges",
+                  "operationId": "keyChanges_TPDMEducatorPreparationPrograms",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -9369,7 +9369,7 @@
               "/tpdm/educatorRoleDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEducatorRolesDeletes",
+                  "operationId": "deletes_TPDMEducatorRoles",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -9428,7 +9428,7 @@
               "/tpdm/educatorRoleDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEducatorRolesKeyChanges",
+                  "operationId": "keyChanges_TPDMEducatorRoles",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10104,7 +10104,7 @@
               "/tpdm/englishLanguageExamDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEnglishLanguageExamsDeletes",
+                  "operationId": "deletes_TPDMEnglishLanguageExams",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10163,7 +10163,7 @@
               "/tpdm/englishLanguageExamDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEnglishLanguageExamsKeyChanges",
+                  "operationId": "keyChanges_TPDMEnglishLanguageExams",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10839,7 +10839,7 @@
               "/tpdm/eppProgramPathwayDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEPPProgramPathwaysDeletes",
+                  "operationId": "deletes_TPDMEPPProgramPathways",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10898,7 +10898,7 @@
               "/tpdm/eppProgramPathwayDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEPPProgramPathwaysKeyChanges",
+                  "operationId": "keyChanges_TPDMEPPProgramPathways",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -11574,7 +11574,7 @@
               "/tpdm/evaluationElementRatingLevelDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementRatingLevelsDeletes",
+                  "operationId": "deletes_TPDMEvaluationElementRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -11633,7 +11633,7 @@
               "/tpdm/evaluationElementRatingLevelDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementRatingLevelsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationElementRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -13076,7 +13076,7 @@
               "/tpdm/evaluationElementRatings/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementRatingsDeletes",
+                  "operationId": "deletes_TPDMEvaluationElementRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -13136,7 +13136,7 @@
               "/tpdm/evaluationElementRatings/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementRatingsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationElementRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -14341,7 +14341,7 @@
               "/tpdm/evaluationElements/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementsDeletes",
+                  "operationId": "deletes_TPDMEvaluationElements",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -14401,7 +14401,7 @@
               "/tpdm/evaluationElements/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationElementsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationElements",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -15746,7 +15746,7 @@
               "/tpdm/evaluationObjectiveRatings/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationObjectiveRatingsDeletes",
+                  "operationId": "deletes_TPDMEvaluationObjectiveRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -15806,7 +15806,7 @@
               "/tpdm/evaluationObjectiveRatings/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationObjectiveRatingsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationObjectiveRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -16975,7 +16975,7 @@
               "/tpdm/evaluationObjectives/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationObjectivesDeletes",
+                  "operationId": "deletes_TPDMEvaluationObjectives",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -17035,7 +17035,7 @@
               "/tpdm/evaluationObjectives/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationObjectivesKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationObjectives",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -17765,7 +17765,7 @@
               "/tpdm/evaluationPeriodDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationPeriodsDeletes",
+                  "operationId": "deletes_TPDMEvaluationPeriods",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -17824,7 +17824,7 @@
               "/tpdm/evaluationPeriodDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationPeriodsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationPeriods",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -18500,7 +18500,7 @@
               "/tpdm/evaluationRatingLevelDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingLevelsDeletes",
+                  "operationId": "deletes_TPDMEvaluationRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -18559,7 +18559,7 @@
               "/tpdm/evaluationRatingLevelDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingLevelsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -19235,7 +19235,7 @@
               "/tpdm/evaluationRatingStatusDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingStatusesDeletes",
+                  "operationId": "deletes_TPDMEvaluationRatingStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -19294,7 +19294,7 @@
               "/tpdm/evaluationRatingStatusDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingStatusesKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationRatingStatuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -20866,7 +20866,7 @@
               "/tpdm/evaluationRatings/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingsDeletes",
+                  "operationId": "deletes_TPDMEvaluationRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -20925,7 +20925,7 @@
               "/tpdm/evaluationRatings/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationRatingsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -21688,7 +21688,7 @@
               "/tpdm/evaluationTypeDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationTypesDeletes",
+                  "operationId": "deletes_TPDMEvaluationTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -21747,7 +21747,7 @@
               "/tpdm/evaluationTypeDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationTypesKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluationTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -22820,7 +22820,7 @@
               "/tpdm/evaluations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationsDeletes",
+                  "operationId": "deletes_TPDMEvaluations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -22880,7 +22880,7 @@
               "/tpdm/evaluations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMEvaluationsKeyChanges",
+                  "operationId": "keyChanges_TPDMEvaluations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -23725,7 +23725,7 @@
               "/tpdm/financialAids/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMFinancialAidsDeletes",
+                  "operationId": "deletes_TPDMFinancialAids",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -23785,7 +23785,7 @@
               "/tpdm/financialAids/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMFinancialAidsKeyChanges",
+                  "operationId": "keyChanges_TPDMFinancialAids",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -24469,7 +24469,7 @@
               "/tpdm/genderDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMGendersDeletes",
+                  "operationId": "deletes_TPDMGenders",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -24528,7 +24528,7 @@
               "/tpdm/genderDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMGendersKeyChanges",
+                  "operationId": "keyChanges_TPDMGenders",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -25204,7 +25204,7 @@
               "/tpdm/objectiveRatingLevelDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMObjectiveRatingLevelsDeletes",
+                  "operationId": "deletes_TPDMObjectiveRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -25263,7 +25263,7 @@
               "/tpdm/objectiveRatingLevelDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMObjectiveRatingLevelsKeyChanges",
+                  "operationId": "keyChanges_TPDMObjectiveRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -25939,7 +25939,7 @@
               "/tpdm/performanceEvaluationRatingLevelDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationRatingLevelsDeletes",
+                  "operationId": "deletes_TPDMPerformanceEvaluationRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -25998,7 +25998,7 @@
               "/tpdm/performanceEvaluationRatingLevelDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationRatingLevelsKeyChanges",
+                  "operationId": "keyChanges_TPDMPerformanceEvaluationRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -27365,7 +27365,7 @@
               "/tpdm/performanceEvaluationRatings/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationRatingsDeletes",
+                  "operationId": "deletes_TPDMPerformanceEvaluationRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -27425,7 +27425,7 @@
               "/tpdm/performanceEvaluationRatings/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationRatingsKeyChanges",
+                  "operationId": "keyChanges_TPDMPerformanceEvaluationRatings",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -28174,7 +28174,7 @@
               "/tpdm/performanceEvaluationTypeDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationTypesDeletes",
+                  "operationId": "deletes_TPDMPerformanceEvaluationTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -28233,7 +28233,7 @@
               "/tpdm/performanceEvaluationTypeDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationTypesKeyChanges",
+                  "operationId": "keyChanges_TPDMPerformanceEvaluationTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -29290,7 +29290,7 @@
               "/tpdm/performanceEvaluations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationsDeletes",
+                  "operationId": "deletes_TPDMPerformanceEvaluations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -29350,7 +29350,7 @@
               "/tpdm/performanceEvaluations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMPerformanceEvaluationsKeyChanges",
+                  "operationId": "keyChanges_TPDMPerformanceEvaluations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -30396,7 +30396,7 @@
               "/tpdm/rubricDimensions/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMRubricDimensionsDeletes",
+                  "operationId": "deletes_TPDMRubricDimensions",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -30456,7 +30456,7 @@
               "/tpdm/rubricDimensions/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMRubricDimensionsKeyChanges",
+                  "operationId": "keyChanges_TPDMRubricDimensions",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -31179,7 +31179,7 @@
               "/tpdm/rubricRatingLevelDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMRubricRatingLevelsDeletes",
+                  "operationId": "deletes_TPDMRubricRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -31238,7 +31238,7 @@
               "/tpdm/rubricRatingLevelDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMRubricRatingLevelsKeyChanges",
+                  "operationId": "keyChanges_TPDMRubricRatingLevels",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -32122,7 +32122,7 @@
               "/tpdm/surveyResponsePersonTargetAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMSurveyResponsePersonTargetAssociationsDeletes",
+                  "operationId": "deletes_TPDMSurveyResponsePersonTargetAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -32181,7 +32181,7 @@
               "/tpdm/surveyResponsePersonTargetAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMSurveyResponsePersonTargetAssociationsKeyChanges",
+                  "operationId": "keyChanges_TPDMSurveyResponsePersonTargetAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -33115,7 +33115,7 @@
               "/tpdm/surveySectionResponsePersonTargetAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMSurveySectionResponsePersonTargetAssociationsDeletes",
+                  "operationId": "deletes_TPDMSurveySectionResponsePersonTargetAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -33174,7 +33174,7 @@
               "/tpdm/surveySectionResponsePersonTargetAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "get_TPDMSurveySectionResponsePersonTargetAssociationsKeyChanges",
+                  "operationId": "keyChanges_TPDMSurveySectionResponsePersonTargetAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"

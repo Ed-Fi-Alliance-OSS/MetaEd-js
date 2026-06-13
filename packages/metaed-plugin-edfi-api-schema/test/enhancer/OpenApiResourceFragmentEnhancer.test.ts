@@ -306,15 +306,13 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       const student = namespace.entity.domainEntity.get('Student');
       const studentApiData = student.data.edfiApiSchema;
       const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+      const deleteOperation: Operation = operationFrom(fragment, '/ed-fi/students/deletes', 'get');
+      const keyChangeOperation: Operation = operationFrom(fragment, '/ed-fi/students/keyChanges', 'get');
 
-      expectTrackedChangeOperation(
-        operationFrom(fragment, '/ed-fi/students/deletes', 'get'),
-        'EdFi_Student_TrackedChangeDelete',
-      );
-      expectTrackedChangeOperation(
-        operationFrom(fragment, '/ed-fi/students/keyChanges', 'get'),
-        'EdFi_Student_TrackedChangeKeyChange',
-      );
+      expect(deleteOperation.operationId).toBe('deletesStudents');
+      expect(keyChangeOperation.operationId).toBe('keyChangesStudents');
+      expectTrackedChangeOperation(deleteOperation, 'EdFi_Student_TrackedChangeDelete');
+      expectTrackedChangeOperation(keyChangeOperation, 'EdFi_Student_TrackedChangeKeyChange');
       expect(fragment.paths?.['/ed-fi/students/deletes']?.['x-Ed-Fi-domains']).toEqual([]);
       expect(fragment.paths?.['/ed-fi/students/keyChanges']?.['x-Ed-Fi-domains']).toEqual([]);
     });
