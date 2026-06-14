@@ -24,6 +24,13 @@ import { type TrackedChangeSchemaNames, trackedChangeSchemaNamesFor } from './Op
 import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
 
 /**
+ * Returns the extension namespace prefix for OpenAPI operation identifiers.
+ */
+function operationIdExtensionPrefixFor(entity: TopLevelEntity): string {
+  return entity.namespace.isExtension ? entity.namespace.namespaceName : '';
+}
+
+/**
  * Creates the set of hardcoded component parameters
  */
 export function createHardcodedParameterResponses(): ResponsesObject {
@@ -211,7 +218,7 @@ export function createHardcodedComponentParameters(): { [key: string]: Reference
  * Returns the "post" section of non-id "path" for the given entity
  */
 export function createPostSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   return {
     description:
       'The POST operation can be used to create or update resources. In database terms, this is often referred to as an "upsert" operation (insert + update). Clients should NOT include the resource "id" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.',
@@ -448,7 +455,7 @@ function getByQueryParametersFor(entity: TopLevelEntity): Parameter[] {
  * Returns the "get" section of the non-id "path" for the given entity
  */
 export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   return {
     description:
       'This GET operation provides access to resources using the "Get" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).',
@@ -498,7 +505,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
  * Returns the "get" section of id "path" for the given entity
  */
 export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   return {
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
@@ -580,7 +587,7 @@ function createTrackedChangeResponsesFor(trackedChangeItemSchemaName: string): R
  * Returns the "get" section of the tracked-change deletes path for the given entity.
  */
 export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
 
   return {
@@ -597,7 +604,7 @@ export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, end
  * Returns the "get" section of the tracked-change key changes path for the given entity.
  */
 export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   const trackedChangeSchemaNames: TrackedChangeSchemaNames = trackedChangeSchemaNamesFor(entity);
 
   return {
@@ -614,7 +621,7 @@ export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, 
  * Returns the "put" section of id "path" for the given entity
  */
 export function createPutSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   return {
     description:
       'The PUT operation is used to update a resource by identifier. If the resource identifier ("id") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.',
@@ -673,7 +680,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
  * Returns the "delete" section of id "path" for the given entity
  */
 export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: EndpointName): Operation {
-  const extensionPrefix: string = entity.namespace.isExtension ? `_${entity.namespace.namespaceName}` : '';
+  const extensionPrefix: string = operationIdExtensionPrefixFor(entity);
   return {
     description:
       "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
