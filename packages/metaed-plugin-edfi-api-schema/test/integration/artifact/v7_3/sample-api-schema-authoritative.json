@@ -278,7 +278,7 @@
               "/sample/artMediumDescriptors": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleArtMedia",
+                  "operationId": "getSampleArtMedia",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -400,7 +400,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleArtMedium",
+                  "operationId": "postSampleArtMedium",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -453,7 +453,7 @@
               "/sample/artMediumDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleArtMedia",
+                  "operationId": "deletesSampleArtMedia",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -512,7 +512,7 @@
               "/sample/artMediumDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleArtMedia",
+                  "operationId": "keyChangesSampleArtMedia",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -571,7 +571,7 @@
               "/sample/artMediumDescriptors/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleArtMediaById",
+                  "operationId": "deleteSampleArtMediaById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -622,7 +622,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleArtMediaById",
+                  "operationId": "getSampleArtMediaById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -674,7 +674,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleArtMedium",
+                  "operationId": "putSampleArtMedium",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -1673,7 +1673,7 @@
               "/sample/busRoutes": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleBusRoutes",
+                  "operationId": "getSampleBusRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -1888,7 +1888,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleBusRoute",
+                  "operationId": "postSampleBusRoute",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -1941,7 +1941,7 @@
               "/sample/busRoutes/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleBusRoutes",
+                  "operationId": "deletesSampleBusRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2000,7 +2000,7 @@
               "/sample/busRoutes/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleBusRoutes",
+                  "operationId": "keyChangesSampleBusRoutes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2059,7 +2059,7 @@
               "/sample/busRoutes/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleBusRoutesById",
+                  "operationId": "deleteSampleBusRoutesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -2110,7 +2110,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleBusRoutesById",
+                  "operationId": "getSampleBusRoutesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -2162,7 +2162,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleBusRoute",
+                  "operationId": "putSampleBusRoute",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -2508,7 +2508,7 @@
               "/sample/buses": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleBuses",
+                  "operationId": "getSampleBuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -2584,7 +2584,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleBus",
+                  "operationId": "postSampleBus",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -2637,7 +2637,7 @@
               "/sample/buses/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleBuses",
+                  "operationId": "deletesSampleBuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2696,7 +2696,7 @@
               "/sample/buses/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleBuses",
+                  "operationId": "keyChangesSampleBuses",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -2755,7 +2755,7 @@
               "/sample/buses/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleBusesById",
+                  "operationId": "deleteSampleBusesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -2806,7 +2806,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleBusesById",
+                  "operationId": "getSampleBusesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -2858,7 +2858,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleBus",
+                  "operationId": "putSampleBus",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -4234,7 +4234,7 @@
               "/sample/favoriteBookCategoryDescriptors": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleFavoriteBookCategories",
+                  "operationId": "getSampleFavoriteBookCategories",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -4356,7 +4356,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleFavoriteBookCategory",
+                  "operationId": "postSampleFavoriteBookCategory",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -4409,7 +4409,7 @@
               "/sample/favoriteBookCategoryDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleFavoriteBookCategories",
+                  "operationId": "deletesSampleFavoriteBookCategories",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4468,7 +4468,7 @@
               "/sample/favoriteBookCategoryDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleFavoriteBookCategories",
+                  "operationId": "keyChangesSampleFavoriteBookCategories",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -4527,7 +4527,7 @@
               "/sample/favoriteBookCategoryDescriptors/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleFavoriteBookCategoriesById",
+                  "operationId": "deleteSampleFavoriteBookCategoriesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -4578,7 +4578,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleFavoriteBookCategoriesById",
+                  "operationId": "getSampleFavoriteBookCategoriesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -4630,7 +4630,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleFavoriteBookCategory",
+                  "operationId": "putSampleFavoriteBookCategory",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -4969,7 +4969,7 @@
               "/sample/membershipTypeDescriptors": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleMembershipTypes",
+                  "operationId": "getSampleMembershipTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -5091,7 +5091,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleMembershipType",
+                  "operationId": "postSampleMembershipType",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -5144,7 +5144,7 @@
               "/sample/membershipTypeDescriptors/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleMembershipTypes",
+                  "operationId": "deletesSampleMembershipTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5203,7 +5203,7 @@
               "/sample/membershipTypeDescriptors/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleMembershipTypes",
+                  "operationId": "keyChangesSampleMembershipTypes",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -5262,7 +5262,7 @@
               "/sample/membershipTypeDescriptors/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleMembershipTypesById",
+                  "operationId": "deleteSampleMembershipTypesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -5313,7 +5313,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleMembershipTypesById",
+                  "operationId": "getSampleMembershipTypesById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -5365,7 +5365,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleMembershipType",
+                  "operationId": "putSampleMembershipType",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -7151,7 +7151,7 @@
               "/sample/studentArtProgramAssociations": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleStudentArtProgramAssociations",
+                  "operationId": "getSampleStudentArtProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -7400,7 +7400,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleStudentArtProgramAssociation",
+                  "operationId": "postSampleStudentArtProgramAssociation",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -7453,7 +7453,7 @@
               "/sample/studentArtProgramAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleStudentArtProgramAssociations",
+                  "operationId": "deletesSampleStudentArtProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7512,7 +7512,7 @@
               "/sample/studentArtProgramAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleStudentArtProgramAssociations",
+                  "operationId": "keyChangesSampleStudentArtProgramAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -7571,7 +7571,7 @@
               "/sample/studentArtProgramAssociations/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleStudentArtProgramAssociationsById",
+                  "operationId": "deleteSampleStudentArtProgramAssociationsById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -7622,7 +7622,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleStudentArtProgramAssociationsById",
+                  "operationId": "getSampleStudentArtProgramAssociationsById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -7674,7 +7674,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleStudentArtProgramAssociation",
+                  "operationId": "putSampleStudentArtProgramAssociation",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -10320,7 +10320,7 @@
               "/sample/studentGraduationPlanAssociations": {
                 "get": {
                   "description": "This GET operation provides access to resources using the \"Get\" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).",
-                  "operationId": "get_SampleStudentGraduationPlanAssociations",
+                  "operationId": "getSampleStudentGraduationPlanAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/offset"
@@ -10506,7 +10506,7 @@
                 },
                 "post": {
                   "description": "The POST operation can be used to create or update resources. In database terms, this is often referred to as an \"upsert\" operation (insert + update). Clients should NOT include the resource \"id\" in the JSON body because it will result in an error. The web service will identify whether the resource already exists based on the natural key values provided, and update or create the resource appropriately. It is recommended to use POST for both create and update except while updating natural key of a resource in which case PUT operation must be used.",
-                  "operationId": "post_SampleStudentGraduationPlanAssociation",
+                  "operationId": "postSampleStudentGraduationPlanAssociation",
                   "requestBody": {
                     "content": {
                       "application/json": {
@@ -10559,7 +10559,7 @@
               "/sample/studentGraduationPlanAssociations/deletes": {
                 "get": {
                   "description": "This GET operation provides access to deleted resource keys in the requested ChangeVersion range.",
-                  "operationId": "deletes_SampleStudentGraduationPlanAssociations",
+                  "operationId": "deletesSampleStudentGraduationPlanAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10618,7 +10618,7 @@
               "/sample/studentGraduationPlanAssociations/keyChanges": {
                 "get": {
                   "description": "This GET operation provides access to changed resource keys in the requested ChangeVersion range.",
-                  "operationId": "keyChanges_SampleStudentGraduationPlanAssociations",
+                  "operationId": "keyChangesSampleStudentGraduationPlanAssociations",
                   "parameters": [
                     {
                       "$ref": "#/components/parameters/MinChangeVersion"
@@ -10677,7 +10677,7 @@
               "/sample/studentGraduationPlanAssociations/{id}": {
                 "delete": {
                   "description": "The DELETE operation is used to delete an existing resource by identifier. If the resource doesn't exist, an error will result (the resource will not be found).",
-                  "operationId": "delete_SampleStudentGraduationPlanAssociationsById",
+                  "operationId": "deleteSampleStudentGraduationPlanAssociationsById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -10728,7 +10728,7 @@
                 },
                 "get": {
                   "description": "This GET operation retrieves a resource by the specified resource identifier.",
-                  "operationId": "get_SampleStudentGraduationPlanAssociationsById",
+                  "operationId": "getSampleStudentGraduationPlanAssociationsById",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",
@@ -10780,7 +10780,7 @@
                 },
                 "put": {
                   "description": "The PUT operation is used to update a resource by identifier. If the resource identifier (\"id\") is provided in the JSON body, it will be ignored. Additionally, this API resource is not configured for cascading natural key updates. Natural key values for this resource cannot be changed using PUT operation, so the recommendation is to use POST as that supports upsert behavior.",
-                  "operationId": "put_SampleStudentGraduationPlanAssociation",
+                  "operationId": "putSampleStudentGraduationPlanAssociation",
                   "parameters": [
                     {
                       "description": "A resource identifier that uniquely identifies the resource.",

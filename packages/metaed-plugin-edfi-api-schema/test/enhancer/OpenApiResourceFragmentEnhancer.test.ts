@@ -810,6 +810,30 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expectLiveChangeVersionFilterParameters(operationFrom(fragment, '/sample-extension/busRoutes', 'get'));
     });
 
+    it('should create extension-defined resource operationIds without underscores', () => {
+      const busRoute = extensionNamespace.entity.domainEntity.get('BusRoute') as TopLevelEntity;
+      const busRouteApiData = busRoute.data.edfiApiSchema;
+      const fragment = busRouteApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expect(operationFrom(fragment, '/sample-extension/busRoutes', 'get').operationId).toBe('getSampleExtensionBusRoutes');
+      expect(operationFrom(fragment, '/sample-extension/busRoutes', 'post').operationId).toBe('postSampleExtensionBusRoute');
+      expect(operationFrom(fragment, '/sample-extension/busRoutes/deletes', 'get').operationId).toBe(
+        'deletesSampleExtensionBusRoutes',
+      );
+      expect(operationFrom(fragment, '/sample-extension/busRoutes/keyChanges', 'get').operationId).toBe(
+        'keyChangesSampleExtensionBusRoutes',
+      );
+      expect(operationFrom(fragment, '/sample-extension/busRoutes/{id}', 'get').operationId).toBe(
+        'getSampleExtensionBusRoutesById',
+      );
+      expect(operationFrom(fragment, '/sample-extension/busRoutes/{id}', 'put').operationId).toBe(
+        'putSampleExtensionBusRoute',
+      );
+      expect(operationFrom(fragment, '/sample-extension/busRoutes/{id}', 'delete').operationId).toBe(
+        'deleteSampleExtensionBusRoutesById',
+      );
+    });
+
     it('should add tracked-change paths to extension-defined resource operations', () => {
       const busRoute = extensionNamespace.entity.domainEntity.get('BusRoute') as TopLevelEntity;
       const busRouteApiData = busRoute.data.edfiApiSchema;
