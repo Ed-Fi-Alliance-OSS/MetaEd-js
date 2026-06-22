@@ -11,9 +11,9 @@ No plugin-specific configuration. Depends on XSD model data produced by
 
 Generates a single Excel workbook:
 
-- `Documentation/XmlDataDictionary.xlsx`
+- `DataDictionary/XmlDataDictionary.xlsx`
 
-The workbook contains three sheets: Elements, ComplexTypes, and SimpleTypes.
+The workbook contains three sheets: Elements, Complex Types, and Simple Types.
 
 ## Business Logic
 

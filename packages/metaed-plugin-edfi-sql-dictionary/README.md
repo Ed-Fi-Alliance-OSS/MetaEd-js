@@ -4,8 +4,9 @@ MetaEd plugin that generates an Excel SQL data dictionary from ODS table metadat
 
 ## Input Configuration
 
-No plugin-specific configuration. Depends on relational ODS model data produced by
-`metaed-plugin-edfi-ods-relational`.
+No plugin-specific configuration. Depends on ODS table and column model data from
+`metaed-plugin-edfi-ods-relational` and SQL Server-specific naming data (table names,
+column names, data types) from `metaed-plugin-edfi-ods-sqlserver`.
 
 ## Output
 
