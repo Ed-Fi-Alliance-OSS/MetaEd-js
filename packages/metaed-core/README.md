@@ -9,7 +9,7 @@ abstractions, and pipeline orchestration used by all MetaEd packages.
 
 - `artifactDirectory` — Where generated artifacts are written
 - `deployDirectory` — Target for deployment operations
-- `pluginTechVersion` — Technology version for plugin selection
+- `pluginTechVersion` — Technology version field (present for compatibility; current plugin setup assigns every plugin `defaultPluginTechVersion`)
 - `defaultPluginTechVersion` — Fallback technology version
 - `projects` — Array of project definitions (name, version, namespace, paths)
 - `projectPaths` — File system paths for MetaEd source files
@@ -27,7 +27,8 @@ abstractions, and pipeline orchestration used by all MetaEd packages.
 
 ## Business Logic
 
-Orchestrates the sequential pipeline: initialize → load → parse → build → validate →
-enhance → generate → write. Defines the plugin contract (validators, enhancers,
+Orchestrates the sequential pipeline: initialize → load → parse → build → namespace
+init → plugin config load → then for each plugin in dependency order: validate →
+enhance → generate → write output. Defines the plugin contract (validators, enhancers,
 generators), the domain model types, and the shared infrastructure for file I/O,
 logging, and configuration resolution.

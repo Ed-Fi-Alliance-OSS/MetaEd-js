@@ -6,7 +6,7 @@ Command-line interface for running the MetaEd build pipeline.
 
 CLI arguments via `yargs`:
 
-- `--config / -c` — Path to a JSON configuration file (relative to working directory)
+- `--config / -c` — Path to a JSON configuration file (relative paths are resolved relative to the console module directory; use absolute paths to avoid ambiguity)
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--accept-license / -a` — Required flag to accept the license agreement
 - `--suppressPrereleaseVersion` — Suppress pre-release version in output paths (default: `true`)
@@ -28,8 +28,8 @@ and generators in sequence. Logs timing information for each phase.
 
 ## Usage
 
-1. Build the project from the parent directory with `npm run build`.
-2. To confirm it is functional, try `node ./dist/index.js -h`.
+1. Build the project from the repo root with `npm run build`.
+2. To confirm it is functional, try `node packages/metaed-console/dist/index.js -h`.
 3. The easiest way to run this is with a config file. See `metaed-edfi-5.2.json` for a fully-worked
    sample config file. Note that this shows Alliance Mode _on_, which is only appropriate in the Ed-Fi Alliance's build
    processes. External users should set this to `false`. To run with a config file:
