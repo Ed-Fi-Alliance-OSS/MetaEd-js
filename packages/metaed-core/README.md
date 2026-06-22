@@ -21,8 +21,9 @@ abstractions, and pipeline orchestration used by all MetaEd packages.
 
 - Parsed MetaEd model (domain entities, associations, descriptors, etc.)
 - Pipeline execution results (validation failures, generated output)
-- `GeneratedOutput` objects containing file name, folder, namespace, and content
-  (as string or stream)
+- `GeneratedOutput` objects containing a human-readable name, namespace, file name,
+  folder name, and content as either a string (`resultString`) or a binary `Buffer`
+  (`resultStream`; takes precedence over `resultString` when set)
 
 ## Business Logic
 

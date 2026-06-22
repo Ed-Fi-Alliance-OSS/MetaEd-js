@@ -14,6 +14,7 @@ with `edfiOdsRecordOwnership` data on each table.
 
 ## Business Logic
 
-Marks every ODS table with a record-ownership flag so that downstream platform-specific
+Marks aggregate root ODS tables with a record-ownership flag so that downstream platform-specific
 generators (PostgreSQL, SQL Server) can add ownership-token columns when the feature is
-enabled. Acts as the shared foundation for the record-ownership companion plugins.
+enabled. Non-aggregate-root tables are not flagged. Acts as the shared foundation for the
+record-ownership companion plugins.
