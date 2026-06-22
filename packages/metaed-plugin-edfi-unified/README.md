@@ -9,8 +9,8 @@ No plugin-specific configuration.
 
 ## Output
 
-No file artifacts. This plugin only enriches the in-memory MetaEd model with unified
-transformations used by other plugins (XSD, XML dictionary, ODS, etc.).
+No file artifacts. This plugin validates the in-memory MetaEd model and enriches it with
+unified transformations used by other plugins (XSD, XML dictionary, ODS, etc.).
 
 ## Business Logic
 

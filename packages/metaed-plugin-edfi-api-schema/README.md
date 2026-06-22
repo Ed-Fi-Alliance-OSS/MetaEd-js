@@ -16,7 +16,7 @@ Registers two optional configuration schemas:
 Generates one JSON file per namespace:
 
 - `ApiSchema/ApiSchema.json` (for core)
-- `ApiSchema/ApiSchema-{projectPrefix}.json` (for extensions)
+- `ApiSchema/ApiSchema-{projectExtension}.json` (for extensions)
 
 ## Business Logic
 

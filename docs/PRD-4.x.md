@@ -9,7 +9,7 @@
 > [!TIP] Document Scope
 > This PRD defines the product requirements for MetaEd version 4.x, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
 >
-> It does _not cover_ the MetaEd DSL syntax and semantics, the internal compilation pipeline, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
+> It does _not cover_ the MetaEd DSL syntax and semantics, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
 
 ## 1. Product Overview
 
@@ -41,7 +41,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### 1.2 Target Users and Personas
 
-- **Ed-Fi Alliance Technical Team / Data Standard maintainers** — maintain the core Ed-Fi Data Standard MetaEd project and need repeatable generated artifacts for release and packaging workflows. Require full control over core model files and use advanced features like plugin configuration, Alliance Mode, and CI builds.
+- **Ed-Fi Alliance Technical Team / Data Standard maintainers** — maintain the core Ed-Fi Data Standard MetaEd project and need repeatable generated artifacts for release and packaging workflows. Use internal workflows that rely on plugin configuration, Alliance Mode-enabled builds, and CI automation.
 - **Education Agency Developers and Ed-Fi Integration Partners / Extension developers** — maintain additive MetaEd extension projects and need validation plus generated artifacts for ODS/API integration. Build and maintain extensions on behalf of education agencies using both CLI workflows and CI pipelines.
 - **Build and release engineers** — run MetaEd headlessly in CI, publish npm packages, package API Schema artifacts, and verify generated outputs against authoritative fixtures.
 - **Business Analysts / Downstream artifact consumers** — use generated spreadsheets, HTML documentation, JSON schema and metadata files, SQL scripts, and XSD files without reading `.metaed` source. Review generated documentation to understand the data model.
@@ -251,8 +251,8 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### Compatibility
 
-- **NFR-COMPAT-1**: MetaEd SHALL run on Windows, macOS, and Linux (any platform supported by Node.js).
-- **NFR-COMPAT-2**: MetaEd SHALL support Node.js LTS versions current at the time of release; CI SHALL verify on Node 22.
+- **NFR-COMPAT-1**: MetaEd SHALL run in Node.js-based local and CI environments compatible with its dependencies; this repository's automation currently verifies Ubuntu-based execution.
+- **NFR-COMPAT-2**: Repository automation SHALL verify Node 22.
 - **NFR-COMPAT-3**: TypeScript SHALL compile to CommonJS modules targeting ES2017.
 - **NFR-COMPAT-4**: Generated SQL artifacts SHALL distinguish SQL Server and PostgreSQL output directories and generator plugins, targeting both database platforms.
 - **NFR-COMPAT-5**: MetaEd SHALL support multiple Ed-Fi Data Standard versions configurable via `projectVersion` and `defaultPluginTechVersion`.
@@ -282,7 +282,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### Observability
 
-- **NFR-OBS-1**: Build and deploy commands SHALL log major stages, plugin execution, artifact directory, deploy copy operations, warnings, and elapsed time.
+- **NFR-OBS-1**: Default build and deploy runs SHALL log high-level progress, plugin execution, artifact directory, deploy copy operations, warnings, and elapsed time; more detailed stage tracing SHALL require debug logging.
 - **NFR-OBS-2**: Validation failures SHALL carry category, message, and source/file mapping where available.
 
 ### SDLC
@@ -383,7 +383,7 @@ Generators return `GeneratedOutput` objects containing a human-readable name, na
 - The API Schema packaging workflow matrix uses `TPDM`, but the TPDM checkout step currently checks for lowercase `tpdm`, so that workflow step does not run for the TPDM matrix entries as written.
 - The API Catalog generator contains hard-coded handling for EducationOrganization and SchoolYear reference schemas because those reference schemas are not always discoverable from generated OpenAPI fragments.
 - The output writer's deletion guard is path-name based: it requires `MetaEdOutput` to appear in the output path before deleting an existing output directory.
-- Alliance Mode enables editing of core files; non-Alliance users must leave this disabled to avoid inadvertent errors.
+- Alliance Mode is an internal setting used by Ed-Fi Alliance workflows. In this repository it affects some validation, SQL header, and deploy behaviors; any IDE-side editability behavior is outside the scope of MetaEd-js.
 
 ## 7. Glossary
 
@@ -410,6 +410,6 @@ Generators return `GeneratedOutput` objects containing a human-readable name, na
 | API Schema | JSON schema output generated as `ApiSchema*.json` for API schema consumers. |
 | Change Query | SQL artifacts for change version, tracked delete, and related change tracking support. |
 | Record Ownership | SQL artifacts that add ownership token support to aggregate root tables when enabled by target version. |
-| Alliance Mode | A configuration setting that makes core model files editable; intended only for the Ed-Fi Alliance internal team. |
+| Alliance Mode | An internal configuration setting used by Ed-Fi Alliance workflows. In MetaEd-js it affects selected validation, generation, and deploy behaviors; any IDE-side editability behavior is implemented outside this repository. |
 | SemVer | Semantic Versioning 2.0.0 — the versioning scheme used for project versions. |
 | Tech Version | The target ODS/API version (e.g., `6.0.0`) that determines which plugin behaviors and output formats to use. |
