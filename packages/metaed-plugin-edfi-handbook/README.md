@@ -10,10 +10,10 @@ No plugin-specific configuration. Relies on model data enriched by upstream enha
 
 Generates two artifacts:
 
-- `Ed-Fi-Handbook/Ed-Fi-Data-Handbook-Index.html` — Interactive HTML single-page
-  application for browsing handbook entries
-- `Ed-Fi-Handbook/Ed-Fi-Handbook.xlsx` — Excel workbook with the same content in
-  spreadsheet form
+- `Documentation/Ed-Fi-Handbook/Ed-Fi-Data-Handbook-Index.html` — Interactive HTML
+  single-page application for browsing handbook entries
+- `Documentation/Ed-Fi-Handbook/Ed-Fi-Handbook.xlsx` — Excel workbook with the same
+  content in spreadsheet form
 
 ## Business Logic
 

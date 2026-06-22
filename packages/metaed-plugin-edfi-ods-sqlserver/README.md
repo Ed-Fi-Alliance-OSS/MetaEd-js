@@ -18,7 +18,7 @@ Generates SQL Server ODS scripts under `Database/SQLServer/ODS/`:
 - `Data/0010-*-Enumerations.sql` — Descriptor/enumeration seed data
 - `Data/0020-*-SchoolYears.sql` — School year seed data
 
-Additional scripts for indexes and authorization views are also generated.
+Additional scripts for indexes and education organization authorization indexes are also generated.
 
 ## Business Logic
 
