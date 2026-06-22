@@ -12,7 +12,7 @@ column names, data types) from `metaed-plugin-edfi-ods-sqlserver`.
 
 Generates a single Excel workbook:
 
-- `DataDictionary/SqlDataDictionary.xlsx`
+- `Documentation/DataDictionary/SqlDataDictionary.xlsx`
 
 The workbook contains two sheets: Tables (table names and descriptions) and Columns
 (column names, types, constraints per table).
