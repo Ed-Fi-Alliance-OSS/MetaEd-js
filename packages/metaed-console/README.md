@@ -32,5 +32,6 @@ and generators in sequence. Logs timing information for each phase.
 2. To confirm it is functional, try `node packages/metaed-console/dist/index.js -h`.
 3. The easiest way to run this is with a config file. See `metaed-edfi-5.2.json` for a fully-worked
    sample config file. Note that this shows Alliance Mode _on_, which is only appropriate in the Ed-Fi Alliance's build
-   processes. External users should set this to `false`. To run with a config file:
-    `node ./dist/index.js -a -c ./metaed-edfi-5.2.json`.
+   processes. External users should set this to `false`. From the repo root, run with a config file using an absolute path
+   or a path that resolves from the console module directory, for example:
+    `node packages/metaed-console/dist/index.js -a -c packages/metaed-console/metaed-edfi-5.2.json`.
