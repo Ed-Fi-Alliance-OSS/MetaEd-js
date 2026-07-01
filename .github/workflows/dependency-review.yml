@@ -13,6 +13,8 @@ on:
       - "packages/**"
       - ".github"
 
+permissions: read-all
+
 jobs:
   scan-actions:
     name: Scan Actions

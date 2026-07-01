@@ -26,6 +26,8 @@ on:
           - "false"
           - "true"
 
+permissions: read-all
+
 jobs:
   publish-major:
     name: Publish Release

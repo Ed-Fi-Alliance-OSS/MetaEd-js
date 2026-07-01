@@ -9,13 +9,14 @@ on:
   issues:
     types: [opened]
 
-permissions:
-  issues: write
+permissions: read-all
 
 jobs:
   manage-community-issues:
     runs-on: ubuntu-latest
     if: github.event.issue.user.type != 'bot'
+    permissions:
+      issues: write
     steps:
       - name: Check if user has repository access
         id: check-repo-access

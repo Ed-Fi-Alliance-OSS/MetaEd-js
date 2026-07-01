@@ -9,8 +9,7 @@ on:
     paths:
       - ".github/workflows/copilot-setup-steps.yml"
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   copilot-setup-steps:
