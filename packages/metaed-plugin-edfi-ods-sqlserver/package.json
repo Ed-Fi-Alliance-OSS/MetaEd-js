@@ -30,7 +30,7 @@
     "@edfi/ed-fi-model-6.1": "3.0.0",
     "cli-highlight": "^2.1.11",
     "mssql": "^11.0.1",
-    "tedious": "^19.2.1"
+    "tedious": "^19.2.2"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
