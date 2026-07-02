@@ -16,6 +16,8 @@ on:
           - "false"
           - "true"
 
+permissions: read-all
+
 jobs:
   retry-publish:
     name: Retry Publish

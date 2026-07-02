@@ -21,6 +21,8 @@ on:
     branches:
       - main
 
+permissions: read-all
+
 jobs:
   publish-dev:
     name: Publish Dev

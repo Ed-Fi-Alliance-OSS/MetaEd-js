@@ -32,6 +32,8 @@ on:
       AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN :
         required: true
 
+permissions: read-all
+
 env:
   NPM_REGISTRY: //pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/
 
@@ -43,12 +45,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Set up Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
           check-latest: true
@@ -62,7 +64,7 @@ jobs:
 
       - name: Import GPG key
         id: import-gpg
-        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef # v6.0.0
+        uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5 # v6.2.0
         with:
           gpg_private_key: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
           passphrase: ${{ secrets.EDFIBUILDAGENT_PASSPHRASE }}
@@ -113,5 +115,5 @@ jobs:
       # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
       - name: Setup tmate session
         if: always() && inputs.debug_enabled == 'true'
-        uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # v3.17
+        uses: mxschmitt/action-tmate@e5c7151931ca95bad1c6f4190c730ecf8c7dde48 # v3.19
         timeout-minutes: 10
