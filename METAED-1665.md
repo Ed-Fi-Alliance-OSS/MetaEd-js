@@ -219,11 +219,11 @@ silently no-oping, so waiting for a normal release train is risky.
 | --- | --- | --- |
 | V6 integration tests (incl. runDeployTasks 6.x delete-then-copy) | ✅ Pass (2026-07-07) | `DeployCoreV6.test.ts`, `DeployExtensionV6.test.ts`, `DeployV6AtDefaultTechVersion.test.ts` (6.0.0 default-gate), `RunDeployTasksV6.test.ts` (delete-then-copy, stale artifact removed) |
 | Package tests / lint / tsc | ✅ Pass (2026-07-07) | Jest: 6 suites / 16 tests / 7 snapshots. `eslint --max-warnings 0` clean. `tsc --noEmit` clean. |
-| S1 Deploy 6.1 | — | |
-| S2 Deploy 6.2 | — | |
-| S3 Deploy 7.3 regression | — | |
-| S4 Re-deploy overwrite | — | |
-| S15 TPDM on 6.x | — | |
+| S1 Deploy 6.1 | ✅ Pass (2026-07-07) | Via Extension Development Host (local 4.7.1-dev.7 tarballs), DS 4.0 + Sample ext. `EdFi.Ods.Extensions.Sample/Artifacts/{Metadata,MsSql,PgSql,Schemas}` created & populated, 1:1 with build output; no 7.x `Versions/` structure; no `Data/` folder deployed because the minimal project generates none (correct skip). |
+| S2 Deploy 6.2 | ✅ Pass (2026-07-07) | Same workspace switched to target 6.2; Build + Deploy. Layout identical to S1 (29 files under `EdFi.Ods.Extensions.Sample/Artifacts/`), fresh file timestamps confirm re-deploy, no 7.x `Versions/` structure. |
+| S3 Deploy 7.3 regression | ✅ Pass (2026-07-07) | DS 6.0 + Sample ext at 7.3 (build confirmed `odsApiVersion: 7.3`). `Versions/1.0.0/Standard/6.0.0/Artifacts/...` created; 6.x-style `Artifacts` folder removed by cleanup and NOT recreated (V6 tasks no-op at >=7.0.0). Deployed set mirrors build output (no Interchange/XSD generated at 7.3 — expected). First attempt accidentally re-ran 6.2 in the wrong Dev Host window; detected via `odsApiVersion` in build output and repeated correctly. |
+| S4 Re-deploy overwrite | ✅ Pass (2026-07-07) | Stale marker file seeded into deployed `Artifacts/MsSql/Data/` was removed by re-deploy; all 29 artifacts recreated byte-listing-identical. Note: empty `MsSql/Data/Ods` dir appears in every deploy — faithful copy of the build's empty `Database/SQLServer/ODS/Data/` output dir (same as v4.6 behavior), not stale state. |
+| S15 TPDM on 6.x | ✅ Pass (2026-07-07) | TPDM-Core 1.1.0 (repo `tpdm-project` fixture, pre-validated DS 4.0-compatible) + DS 4.0, target 6.1 via Dev Host. Build confirmed `odsApiVersion: 6.1`; 34 files deployed to `EdFi.Ods.Extensions.TPDM/Artifacts/{Metadata,MsSql,PgSql,Schemas}`. Reproduces the customer's reported case, now working. |
 
 ### Extended smoke results
 

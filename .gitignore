@@ -58,4 +58,8 @@ junit.xml
 __pycache__/
 *.py[cod]
 *$py.class
-.claude/
+# Claude Code local files are ignored, except shared skills explicitly re-included below
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/deploy-smoke/

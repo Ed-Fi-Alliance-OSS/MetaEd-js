@@ -83,7 +83,7 @@
       "details": "DS 4.0 + simple extension; Build + Deploy with targetOdsApiVersion 6.1. Verify EdFi.Ods.Extensions.<Project>/Artifacts/{Metadata,MsSql,PgSql,Schemas} created and populated.",
       "dependsOn": ["T8"],
       "blocking": true,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "S2",
@@ -92,7 +92,7 @@
       "details": "Same as S1 with target 6.2 (DS 4.0).",
       "dependsOn": ["T8"],
       "blocking": true,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "S3",
@@ -101,7 +101,7 @@
       "details": "DS 6.0 project + extension, target 7.3. Verify Versions/<projVer>/Standard/<dsVer>/Artifacts structure still created and 6.x-style Artifacts folder is NOT created.",
       "dependsOn": ["T8"],
       "blocking": true,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "S4",
@@ -110,7 +110,7 @@
       "details": "Deploy twice; second deploy removes and recreates Artifacts cleanly (RemoveExtensionArtifacts + V6 deploy interplay), no stale files.",
       "dependsOn": ["S1"],
       "blocking": true,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "S15",
@@ -119,7 +119,7 @@
       "details": "TPDM as the extension project, using a checkout compatible with DS 4.0 / ODS/API 6.x (a mismatched TPDM version could masquerade as a deploy regression); Build + Deploy. Proves the reported real-world case (reporter reproduced with TPDM and a customer extension).",
       "dependsOn": ["T8"],
       "blocking": true,
-      "status": "pending"
+      "status": "complete"
     },
     {
       "id": "T9",
