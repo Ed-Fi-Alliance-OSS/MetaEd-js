@@ -54,6 +54,11 @@ type BaseJsonPathsInfo = {
    * When the property represents a reference, this captures the JSON path to the reference object itself.
    */
   referenceObjectJsonPath?: JsonPath;
+
+  /**
+   * Whether the API document path is required after applying parent context such as Choice.
+   */
+  isRequired: boolean;
 };
 
 /**

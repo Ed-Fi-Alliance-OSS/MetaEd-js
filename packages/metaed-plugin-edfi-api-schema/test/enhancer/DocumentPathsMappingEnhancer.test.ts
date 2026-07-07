@@ -762,7 +762,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           "isDescriptor": true,
           "isPartOfIdentity": false,
           "isReference": true,
-          "isRequired": true,
+          "isRequired": false,
           "path": "$.contentClassDescriptor",
           "projectName": "EdFi",
           "resourceName": "ContentClassDescriptor",
@@ -800,14 +800,14 @@ describe('when building domain entity with nested choice and inline commons', ()
         "LearningResourceChoice.LearningResource.ShortDescription": Object {
           "isPartOfIdentity": false,
           "isReference": false,
-          "isRequired": true,
+          "isRequired": false,
           "path": "$.shortDescription",
           "type": "string",
         },
         "LearningResourceChoice.LearningResourceMetadataURI": Object {
           "isPartOfIdentity": false,
           "isReference": false,
-          "isRequired": true,
+          "isRequired": false,
           "path": "$.learningResourceMetadataURI",
           "type": "string",
         },
@@ -817,6 +817,119 @@ describe('when building domain entity with nested choice and inline commons', ()
           "isRequired": false,
           "path": "$.requiredURIs[*].requiredURI",
           "type": "string",
+        },
+      }
+    `);
+  });
+});
+
+describe('when building domain entity with required choice members', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('SurveyResponse')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SurveyResponseIdentifier', 'doc')
+      .withDomainEntityProperty('School', 'doc', true, false)
+      .withChoiceProperty('SurveyResponderChoice', 'doc', true, false)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '32')
+      .withEndDomainEntity()
+
+      .withStartDescriptor('ResponderType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartChoice('SurveyResponderChoice')
+      .withDocumentation('doc')
+      .withDomainEntityProperty('Student', 'doc', true, false)
+      .withDescriptorProperty('ResponderType', 'doc', true, false)
+      .withStringProperty('ResponderName', 'doc', true, false, '60')
+      .withEndChoice()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new ChoiceBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+    choiceReferenceEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should make choice members optional but keep required non-choice references required', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('SurveyResponse');
+    const documentPathsMapping = removeSourcePropertyFromDocumentPathsMapping(
+      entity?.data.edfiApiSchema.documentPathsMapping,
+    );
+    expect(documentPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "School": Object {
+          "isDescriptor": false,
+          "isPartOfIdentity": false,
+          "isReference": true,
+          "isRequired": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolId",
+              "referenceJsonPath": "$.schoolReference.schoolId",
+              "type": "number",
+            },
+          ],
+          "resourceName": "School",
+        },
+        "SurveyResponderChoice.ResponderName": Object {
+          "isPartOfIdentity": false,
+          "isReference": false,
+          "isRequired": false,
+          "path": "$.responderName",
+          "type": "string",
+        },
+        "SurveyResponderChoice.ResponderTypeDescriptor": Object {
+          "isDescriptor": true,
+          "isPartOfIdentity": false,
+          "isReference": true,
+          "isRequired": false,
+          "path": "$.responderTypeDescriptor",
+          "projectName": "EdFi",
+          "resourceName": "ResponderTypeDescriptor",
+          "type": "string",
+        },
+        "SurveyResponderChoice.Student": Object {
+          "isDescriptor": false,
+          "isPartOfIdentity": false,
+          "isReference": true,
+          "isRequired": false,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.studentUniqueId",
+              "referenceJsonPath": "$.studentReference.studentUniqueId",
+              "type": "string",
+            },
+          ],
+          "resourceName": "Student",
+        },
+        "SurveyResponseIdentifier": Object {
+          "isPartOfIdentity": true,
+          "isReference": false,
+          "isRequired": true,
+          "path": "$.surveyResponseIdentifier",
+          "type": "number",
         },
       }
     `);
@@ -1370,14 +1483,14 @@ describe('when building domain entity with a common with a choice', () => {
         "ContentStandard.PublicationDateChoice.PublicationDate": Object {
           "isPartOfIdentity": false,
           "isReference": false,
-          "isRequired": true,
+          "isRequired": false,
           "path": "$.contentStandard.publicationDate",
           "type": "string",
         },
         "ContentStandard.PublicationDateChoice.PublicationYear": Object {
           "isPartOfIdentity": false,
           "isReference": false,
-          "isRequired": true,
+          "isRequired": false,
           "path": "$.contentStandard.publicationYear",
           "type": "string",
         },
