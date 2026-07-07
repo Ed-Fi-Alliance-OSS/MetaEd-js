@@ -18,8 +18,8 @@ import {
 } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeApiSchemaPlugin } from '@edfi/metaed-plugin-edfi-api-schema';
-import readXlsxFile from 'read-excel-file/node';
-import type { CellValue, Row } from 'read-excel-file';
+import { readSheet } from 'read-excel-file/node';
+import type { CellValue, Row } from 'read-excel-file/node';
 import { generate } from '../../src/generator/ApiCatalogGenerator';
 import { propertiesWorksheetName, resourcesWorksheetName } from '../../src/model/ApiCatalogRow';
 
@@ -124,15 +124,11 @@ describe('when generating api catalog workbook for real-model edge cases', (): v
     generatorResults = await generate(metaEd);
 
     resourceRows = toWorksheetRows(
-      await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-        sheet: resourcesWorksheetName,
-      }),
+      await readSheet(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), resourcesWorksheetName),
     );
 
     propertyRows = toWorksheetRows(
-      await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-        sheet: propertiesWorksheetName,
-      }),
+      await readSheet(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), propertiesWorksheetName),
     );
   });
 

@@ -10,7 +10,7 @@
     "@typescript-eslint/parser": "8.58.2",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
@@ -33,6 +33,20 @@
   "workspaces": [
     "packages/*"
   ],
+  "overrides": {
+    "@apidevtools/json-schema-ref-parser": {
+      "js-yaml": "4.3.0"
+    },
+    "cosmiconfig": {
+      "js-yaml": "4.3.0"
+    },
+    "ip-address": "10.2.0",
+    "lerna": {
+      "js-yaml": "4.3.0"
+    },
+    "sigstore": "4.1.1",
+    "tar": "7.5.19"
+  },
   "scripts": {
     "antlr-gen": "java -jar ./antlr/antlr-4.6-complete.jar -Dlanguage=JavaScript -o ./packages/metaed-core/src/grammar/gen ./packages/metaed-core/src/grammar/language/BaseLexer.g4 ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4",
     "metaed:build": "node ./packages/metaed-console/dist/index.js -c ./metaed.conf.json -a",

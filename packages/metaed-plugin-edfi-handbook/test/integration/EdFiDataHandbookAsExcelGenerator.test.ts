@@ -23,7 +23,8 @@ import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin
 import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { initialize as initializeApiSchemaPlugin } from '@edfi/metaed-plugin-edfi-api-schema';
 import { defaultPluginTechVersion } from '@edfi/metaed-core';
-import readXlsxFile from 'read-excel-file/node';
+import { readSheet } from 'read-excel-file/node';
+import type { Row } from 'read-excel-file/node';
 import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsExcelGenerator';
 import { handbookWorksheetName } from '../../src/model/HandbookRow';
@@ -33,7 +34,7 @@ describe('when generating excel version of handbook', (): void => {
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
-  let resultRows: any;
+  let resultRows: Row[];
 
   beforeAll(async () => {
     const namespaceBuilder = new NamespaceBuilder(metaEd, []);
@@ -86,9 +87,7 @@ describe('when generating excel version of handbook', (): void => {
 
     generatorResults = await generate(metaEd);
 
-    resultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: handbookWorksheetName,
-    });
+    resultRows = await readSheet(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), handbookWorksheetName);
   });
 
   it('should generate excel sheet', (): void => {

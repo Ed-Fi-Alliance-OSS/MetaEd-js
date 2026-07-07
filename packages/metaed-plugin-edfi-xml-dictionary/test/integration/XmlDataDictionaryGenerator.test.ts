@@ -13,7 +13,8 @@ import {
 } from '@edfi/metaed-core';
 import { initialize as initializeXsdPlugin } from '@edfi/metaed-plugin-edfi-xsd';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
-import readXlsxFile from 'read-excel-file/node';
+import { readSheet } from 'read-excel-file/node';
+import type { Row } from 'read-excel-file/node';
 import { generate } from '../../src/generator/XmlDataDictionaryGenerator';
 import { elementsWorksheetName } from '../../src/model/Elements';
 import { complexTypesWorksheetName } from '../../src/model/ComplexTypes';
@@ -24,9 +25,9 @@ describe('when generating xsd for domain entity', (): void => {
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
-  let elementsResultRows: any;
-  let complexTypesResultRows: any;
-  let simpleTypesResultRows: any;
+  let elementsResultRows: Row[];
+  let complexTypesResultRows: Row[];
+  let simpleTypesResultRows: Row[];
 
   beforeAll(async () => {
     const namespaceBuilder = new NamespaceBuilder(metaEd, []);
@@ -61,17 +62,20 @@ describe('when generating xsd for domain entity', (): void => {
 
     generatorResults = await generate(metaEd);
 
-    elementsResultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: elementsWorksheetName,
-    });
+    elementsResultRows = await readSheet(
+      generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0),
+      elementsWorksheetName,
+    );
 
-    complexTypesResultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: complexTypesWorksheetName,
-    });
+    complexTypesResultRows = await readSheet(
+      generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0),
+      complexTypesWorksheetName,
+    );
 
-    simpleTypesResultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: simpleTypesWorksheetName,
-    });
+    simpleTypesResultRows = await readSheet(
+      generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0),
+      simpleTypesWorksheetName,
+    );
   });
 
   it('should generate elements excel sheet', (): void => {
