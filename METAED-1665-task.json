@@ -1,0 +1,242 @@
+{
+  "ticket": "METAED-1665",
+  "title": "MetaEd v4.7 Deploy to 6.x API broken",
+  "planFile": "METAED-1665.md",
+  "notes": "Tasks marked blocking=true form the PR gate. blocking=false tasks are extended smoke follow-up and must not hold the fix PR.",
+  "tasks": [
+    {
+      "id": "T1",
+      "phase": "fix",
+      "title": "Restore DeployCoreV6.ts near-verbatim from v4.6.0",
+      "details": "git show v4.6.0:packages/metaed-odsapi-deploy/src/task/DeployCoreV6.ts into src/task/. Uses static paths only (no sugar templating). Keep original version gate '>=5.4.0 <7.0.0' (core still defaults defaultPluginTechVersion to 6.0.0). Do NOT restore RemoveExtensionArtifactsV2andV3.ts (covered tech <3.3.0, legitimately unsupported).",
+      "dependsOn": [],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T2",
+      "phase": "fix",
+      "title": "Recreate DeployExtensionV6.ts modernized (projects-based)",
+      "details": "Keep as close as possible to current DeployExtension.ts structure (same shape, same metaEdConfiguration.projects.filter(!isDataStandard) enumeration); differ only in the 6.x destination path EdFi.Ods.Extensions.<Project>/Artifacts (no Versions/Standard segments, no DS-version formatting) and the version gate '>=5.4.0 <7.0.0'. Eliminates directory-name inference and AdditionalScripts pseudo-project deployment.",
+      "dependsOn": [],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T3",
+      "phase": "fix",
+      "title": "Re-register V6 tasks in RunDeployTasks.ts",
+      "details": "deployCoreV6Task before deployCoreTask; deployExtensionV6Task before deployExtensionTask, matching v4.6.0 ordering. Each task self-gates by version.",
+      "dependsOn": ["T1", "T2"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T4",
+      "phase": "fix",
+      "title": "Restore and update V6 integration tests",
+      "details": "Restore DeployCoreV6.test.ts from v4.6.0 (update for fixture drift). Rewrite DeployExtensionV6.test.ts for the modernized projects-based task — expectations must NOT include AdditionalScripts pseudo-extension deployment, and the test MUST populate metaEdConfiguration.projects with the extension project — set both projectName: 'Sample' AND an explicit non-EdFi namespaceName: 'Sample' — isDataStandard only checks namespaceName === 'EdFi' (packages/metaed-core/src/project/ProjectTypes.ts:33), so newMetaEdProject()'s empty-string default would pass the filter by accident: the modernized task enumerates configured projects, so an empty projects list correctly deploys nothing and the test would pass while exercising nothing. Assert the expected copied files with inline snapshots or explicit file paths so a success-with-no-output run fails. ALSO add a focused gate test at defaultPluginTechVersion '6.0.0' (the metaed-core default, MetaEdConfiguration.ts:12) proving both V6 tasks deploy rather than no-op — locks the '>=5.4.0 <7.0.0' gate against future narrowing to '>=6.1.0'.",
+      "dependsOn": ["T3"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T5",
+      "phase": "fix",
+      "title": "Add runDeployTasks-level 6.x delete-then-copy integration test",
+      "details": "Full runDeployTasks with a 6.x defaultPluginTechVersion and a pre-existing EdFi.Ods.Extensions.<Project>/Artifacts folder: proves RemoveExtensionArtifacts deletes it and the V6 deploy task recreates and populates it. Do NOT reuse the shared test/integration/artifact fixture as-is: it has AdditionalScripts under the artifact root, and ExtensionProjectsExists/RemoveExtensionArtifacts/RefreshProject enumerate artifact folders (directoryExcludeList is only ApiSchema/Documentation/EdFi), so AdditionalScripts is interpreted as a project at pipeline level. Use a clean fixture with only EdFi and Sample, or keep optional scripts outside the artifact root. metaEdConfiguration.projects must include the Sample extension project with projectName: 'Sample' and namespaceName: 'Sample' (non-EdFi), or the V6 extension deploy correctly deploys nothing; assert copied files via snapshot or explicit paths so success-with-no-output fails.",
+      "dependsOn": ["T3"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T6",
+      "phase": "verify-repo",
+      "title": "Run deploy package test suite, lint, and type check",
+      "details": "npx jest packages/metaed-odsapi-deploy; npx eslint --max-warnings 0 --ext .js,.ts packages/metaed-odsapi-deploy; npx tsc -p packages/metaed-odsapi-deploy --noEmit",
+      "dependsOn": ["T4", "T5"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T7",
+      "phase": "smoke-setup",
+      "title": "Wire local MetaEd build into vscode-metaed-ide via npm pack tarballs",
+      "details": "npm pack the local 4.7.1-dev packages and reference them with file: entries in C:\\Simpat\\vscode-metaed-ide\\package.json (no manual copying into node_modules/@edfi). Launch via Extension Development Host. Packed tarballs ship only /dist, so first transpile via 'npx lerna run build --stream' (this triggers package build scripts even though it is not literally 'npm run build'). This transpile is EXCEPTIONAL packaging/smoke setup — defensible for npm pack and nothing else; it must not become normal validation. T7 is blocking smoke SETUP — the gated smoke tests S1-S4/S15 depend on it — but dist/ output is not a validation signal: run the transpile strictly after T6 (Jest/ESLint/tsc) is green; verification comes from Jest/ESLint/tsc only.",
+      "dependsOn": ["T6"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "T8",
+      "phase": "smoke-setup",
+      "title": "Prepare deploy target skeleton and test projects",
+      "details": "Folder skeleton for metaed.odsApiDeploymentDirectory: Ed-Fi-ODS/ plus Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.<Project>/ for EACH extension project (Sample and TPDM) — ExtensionProjectsExists.ts fails the deploy if the C# project folder is missing. Skeleton is sufficient for the fix; real ODS/API 6.x checkout + initdev is non-blocking release confidence. Projects: DS 4.0 workspace + simple extension (metaEdProject package.json, one DomainEntity + one Descriptor); TPDM checkout for S15.",
+      "dependsOn": ["T7"],
+      "blocking": true,
+      "status": "complete"
+    },
+    {
+      "id": "S1",
+      "phase": "smoke-gate",
+      "title": "Deploy to ODS/API 6.1 — bug fix verification",
+      "details": "DS 4.0 + simple extension; Build + Deploy with targetOdsApiVersion 6.1. Verify EdFi.Ods.Extensions.<Project>/Artifacts/{Metadata,MsSql,PgSql,Schemas} created and populated.",
+      "dependsOn": ["T8"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "S2",
+      "phase": "smoke-gate",
+      "title": "Deploy to ODS/API 6.2",
+      "details": "Same as S1 with target 6.2 (DS 4.0).",
+      "dependsOn": ["T8"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "S3",
+      "phase": "smoke-gate",
+      "title": "Deploy to ODS/API 7.3 — regression check",
+      "details": "DS 6.0 project + extension, target 7.3. Verify Versions/<projVer>/Standard/<dsVer>/Artifacts structure still created and 6.x-style Artifacts folder is NOT created.",
+      "dependsOn": ["T8"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "S4",
+      "phase": "smoke-gate",
+      "title": "Re-deploy overwrite behavior on 6.1",
+      "details": "Deploy twice; second deploy removes and recreates Artifacts cleanly (RemoveExtensionArtifacts + V6 deploy interplay), no stale files.",
+      "dependsOn": ["S1"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "S15",
+      "phase": "smoke-gate",
+      "title": "TPDM deploy to 6.1 or 6.2",
+      "details": "TPDM as the extension project, using a checkout compatible with DS 4.0 / ODS/API 6.x (a mismatched TPDM version could masquerade as a deploy regression); Build + Deploy. Proves the reported real-world case (reporter reproduced with TPDM and a customer extension).",
+      "dependsOn": ["T8"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "T9",
+      "phase": "wrap-up",
+      "title": "Record PR-gate results and open fix PR",
+      "details": "Fill PR gate results table in METAED-1665.md; PR from METAED-1665 branch with fix + tests; comment on METAED-1665 with root cause, fix summary, and gate results.",
+      "dependsOn": ["T6", "S1", "S2", "S3", "S4", "S15"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "T10",
+      "phase": "wrap-up",
+      "title": "Coordinate expedited 4.7.x patch/prerelease",
+      "details": "Customer is blocked on 4.6 rollback and 4.7 deletes existing 6.x Artifacts before no-oping; do not wait for the normal release train.",
+      "dependsOn": ["T9"],
+      "blocking": true,
+      "status": "pending"
+    },
+    {
+      "id": "S5",
+      "phase": "smoke-extended",
+      "title": "Switch ODS targets and rebuild",
+      "details": "Cycle targetOdsApiVersion 6.1 -> 7.3 -> 6.1 with compatible DS projects; build succeeds each time; artifacts reflect the target.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S6",
+      "phase": "smoke-extended",
+      "title": "DS/ODS version mismatch handling",
+      "details": "DS 5.x project with target 6.1 should produce a clear compatibility error notification, no crash. (DS 4.0 with 7.3 is allowed by the pairing map.)",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S7",
+      "phase": "smoke-extended",
+      "title": "Switch Data Standard versions and rebuild",
+      "details": "Build with ed-fi-model-4.0 (target 6.1), then swap workspace to ed-fi-model-6.0 (target 7.3); both build.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S8",
+      "phase": "smoke-extended",
+      "title": "Garbage text in a .metaed file",
+      "details": "Paste invalid text in extension project file; squiggles + Problems entries appear; revert clears them.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S9",
+      "phase": "smoke-extended",
+      "title": "Targeted validation errors",
+      "details": "Missing documentation, missing identity, reference to nonexistent entity, duplicate property name; expect messages matching QA spreadsheet patterns.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S10",
+      "phase": "smoke-extended",
+      "title": "Build a simple extension project",
+      "details": "New extension with metaEdProject package.json, one DomainEntity + one Descriptor; build success; MetaEdOutput artifacts generated.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S11",
+      "phase": "smoke-extended",
+      "title": "License agreement gating",
+      "details": "Deploy with acceptedLicense unchecked; expect license agreement message and no deployment.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S12",
+      "phase": "smoke-extended",
+      "title": "Deploy without deployment directory set",
+      "details": "Expect 'To deploy, set Ods Api Deployment Directory in Workspace settings.' message.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S13",
+      "phase": "smoke-extended",
+      "title": "Core file edit protection (non-Alliance mode)",
+      "details": "Edit a core DS file; expect warning/override prompt on save.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "S14",
+      "phase": "smoke-extended",
+      "title": "Delete a referenced domain entity file and build",
+      "details": "Expect reference errors in Problems tab.",
+      "dependsOn": ["T8"],
+      "blocking": false,
+      "status": "pending"
+    },
+    {
+      "id": "T11",
+      "phase": "wrap-up",
+      "title": "Record extended smoke results and file any new bugs",
+      "details": "Append S5-S14 results to METAED-1665.md; file separate Jira tickets for any new bugs found. Does not block the fix PR or release.",
+      "dependsOn": ["S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S14"],
+      "blocking": false,
+      "status": "pending"
+    }
+  ]
+}
