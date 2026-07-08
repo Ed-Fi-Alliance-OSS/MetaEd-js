@@ -56,6 +56,15 @@ function appendNextJsonPathName(
 }
 
 /**
+ * Determines whether the value at this JsonPath is required within its containing JSON object or array item.
+ * Only flattened parent context carried in the PropertyModifier, such as choice or inline common optionality,
+ * changes that value. Required collection containers are handled by schema/OpenAPI requiredness, not here.
+ */
+function isJsonPathValueRequired(property: EntityProperty, propertyModifier: PropertyModifier): boolean {
+  return (property.isRequired || property.isPartOfIdentity) && !propertyModifier.optionalDueToParent;
+}
+
+/**
  * Adds a JsonPath to the JsonPathsMapping for a given list of PropertyPaths. Handles array initialization when needed.
  */
 function addJsonPathTo(
@@ -65,21 +74,37 @@ function addJsonPathTo(
   jsonPath: JsonPath,
   isTopLevel: boolean,
   terminalProperty: EntityProperty,
+  propertyModifier: PropertyModifier,
   flattenedIdentityProperty: FlattenedIdentityProperty,
 ) {
   propertyPaths.forEach((propertyPath) => {
+    const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
+
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
-        ? { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity: false, initialPropertyPath, terminalProperty }
-        : { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity: false, initialPropertyPath };
+        ? {
+            jsonPathPropertyPairs: [],
+            isTopLevel,
+            isArrayIdentity: false,
+            initialPropertyPath,
+            terminalProperty,
+            isRequired,
+          }
+        : { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity: false, initialPropertyPath, isRequired };
       jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
-    // Avoid duplicates
-    if (jsonPathsMapping[propertyPath].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
+    const jsonPathsInfo: JsonPathsInfo = jsonPathsMapping[propertyPath];
+    invariant(
+      jsonPathsInfo.isRequired === isRequired,
+      `Conflicting isRequired detected for "${propertyPath}": "${jsonPathsInfo.isRequired}" vs "${isRequired}"`,
+    );
 
-    jsonPathsMapping[propertyPath].jsonPathPropertyPairs.push({
+    // Avoid duplicates
+    if (jsonPathsInfo.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
+
+    jsonPathsInfo.jsonPathPropertyPairs.push({
       jsonPath,
       sourceProperty: terminalProperty,
       flattenedIdentityProperty,
@@ -126,6 +151,7 @@ function jsonPathsForReferentialProperty(
     // Because these are flattened, we know they are non-reference properties
     jsonPathsForNonReference(
       flattenedIdentityProperty.identityProperty,
+      parentPropertyModifier(flattenedIdentityProperty, propertyModifier),
       jsonPathsMappingForThisProperty,
       initialPropertyPath,
       propertyPathsFromIdentityProperty(currentPropertyPath, flattenedIdentityProperty),
@@ -156,6 +182,7 @@ function jsonPathsForReferentialProperty(
               jsonPath,
               isTopLevel,
               property,
+              propertyModifier,
               flattenedIdentityProperty,
             );
           });
@@ -217,6 +244,11 @@ function jsonPathsForChoiceAndInlineCommonProperty(
   isTopLevel: boolean,
 ) {
   // prefixes from choice and inline common that affect child properties
+  const optionalDueToParent: boolean =
+    property.isOptional ||
+    property.isOptionalCollection ||
+    propertyModifier.optionalDueToParent ||
+    property.type === 'choice';
   const parentPrefixes: string[] =
     property.roleName === property.metaEdName
       ? [...propertyModifier.parentPrefixes]
@@ -226,7 +258,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
 
   allProperties.forEach((allProperty) => {
     const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
-      { optionalDueToParent: propertyModifier.optionalDueToParent, parentPrefixes },
+      { optionalDueToParent, parentPrefixes },
       allProperty.propertyModifier,
     );
 
@@ -254,6 +286,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
  */
 function jsonPathsForNonReference(
   property: EntityProperty,
+  propertyModifier: PropertyModifier,
   jsonPathsMapping: JsonPathsMapping,
   initialPropertyPath: MetaEdPropertyPath,
   currentPropertyPaths: MetaEdPropertyPath[],
@@ -272,6 +305,7 @@ function jsonPathsForNonReference(
       `${currentJsonPath}.schoolYear` as JsonPath,
       isTopLevel,
       property,
+      propertyModifier,
       flattenedIdentityProperty,
     );
   } else {
@@ -282,6 +316,7 @@ function jsonPathsForNonReference(
       currentJsonPath,
       isTopLevel,
       property,
+      propertyModifier,
       flattenedIdentityProperty,
     );
   }
@@ -346,6 +381,7 @@ function jsonPathsForDescriptorCollection(
     ),
     isTopLevel,
     property,
+    propertyModifier,
     NoFlattenedIdentityProperty,
   );
 }
@@ -367,6 +403,7 @@ function jsonPathsForNonReferenceCollection(
 
   jsonPathsForNonReference(
     property,
+    propertyModifier,
     jsonPathsMapping,
     initialPropertyPath,
     [currentPropertyPath],
@@ -381,6 +418,7 @@ function jsonPathsForNonReferenceCollection(
  */
 function jsonPathsForSchoolYearEnumeration(
   property: EntityProperty,
+  propertyModifier: PropertyModifier,
   jsonPathsMapping: JsonPathsMapping,
   initialPropertyPath: MetaEdPropertyPath,
   currentPropertyPath: MetaEdPropertyPath,
@@ -396,6 +434,7 @@ function jsonPathsForSchoolYearEnumeration(
     `${currentJsonPath}.schoolYear` as JsonPath,
     isTopLevel,
     property,
+    propertyModifier,
     NoFlattenedIdentityProperty,
   );
 }
@@ -501,6 +540,7 @@ function jsonPathsFor(
 
   jsonPathsForNonReference(
     property,
+    propertyModifier,
     jsonPathsMapping,
     initialPropertyPath,
     [currentPropertyPath],
@@ -535,6 +575,7 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
     if (property.type === 'schoolYearEnumeration')
       jsonPathsForSchoolYearEnumeration(
         property,
+        propertyModifier,
         mergeJsonPathsMapping,
         property.fullPropertyName as MetaEdPropertyPath,
         property.fullPropertyName as MetaEdPropertyPath,

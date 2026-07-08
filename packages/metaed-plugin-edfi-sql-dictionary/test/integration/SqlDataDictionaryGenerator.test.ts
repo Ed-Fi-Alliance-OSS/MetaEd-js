@@ -14,7 +14,8 @@ import {
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
-import readXlsxFile from 'read-excel-file/node';
+import { readSheet } from 'read-excel-file/node';
+import type { Row } from 'read-excel-file/node';
 import { generate } from '../../src/generator/SqlDataDictionaryGenerator';
 import { tablesWorksheetName } from '../../src/model/Tables';
 import { columnsWorksheetName } from '../../src/model/Columns';
@@ -24,8 +25,8 @@ describe('when generating a simple sql data dictionary', (): void => {
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
-  let tableResultRows: any;
-  let columnResultRows: any;
+  let tableResultRows: Row[];
+  let columnResultRows: Row[];
 
   beforeAll(async () => {
     const namespaceBuilder = new NamespaceBuilder(metaEd, []);
@@ -61,13 +62,15 @@ describe('when generating a simple sql data dictionary', (): void => {
 
     generatorResults = await generate(metaEd);
 
-    tableResultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: tablesWorksheetName,
-    });
+    tableResultRows = await readSheet(
+      generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0),
+      tablesWorksheetName,
+    );
 
-    columnResultRows = await readXlsxFile(generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0), {
-      sheet: columnsWorksheetName,
-    });
+    columnResultRows = await readSheet(
+      generatorResults.generatedOutput[0].resultStream ?? Buffer.alloc(0),
+      columnsWorksheetName,
+    );
   });
 
   it('should generate table excel sheet', (): void => {

@@ -224,6 +224,7 @@ function buildDocumentReferencePaths(
   startOfPropertyPath: string,
   referenceProperty: ReferentialProperty,
   allJsonPathsMapping: JsonPathsMapping,
+  isRequired: boolean,
 ): DocumentReferencePaths {
   const { referencedEntity } = referenceProperty;
   const referencedEntityApiSchemaData = referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
@@ -239,7 +240,7 @@ function buildDocumentReferencePaths(
       allJsonPathsMapping,
     ),
     sourceProperty: referenceProperty,
-    isRequired: referenceProperty.isRequired || referenceProperty.isPartOfIdentity,
+    isRequired,
     isPartOfIdentity: referenceProperty.isPartOfIdentity,
   };
 }
@@ -247,6 +248,7 @@ function buildDocumentReferencePaths(
 function buildDescriptorPath(
   jsonPathPropertyPairs: JsonPathPropertyPair[],
   property: EntityProperty,
+  isRequired: boolean,
 ): DescriptorReferencePath {
   invariant(jsonPathPropertyPairs.length === 1, 'Descriptor should only have one path');
 
@@ -261,13 +263,15 @@ function buildDescriptorPath(
     path: jsonPathPropertyPairs[0].jsonPath,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
-    isRequired:
-      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isRequired,
     isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
-function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): DocumentReferencePaths {
+function buildSchoolYearEnumerationPath(
+  jsonPathPropertyPairs: JsonPathPropertyPair[],
+  isRequired: boolean,
+): DocumentReferencePaths {
   invariant(jsonPathPropertyPairs.length === 1, 'SchoolYear should only have one path');
 
   return {
@@ -283,21 +287,19 @@ function buildSchoolYearEnumerationPath(jsonPathPropertyPairs: JsonPathPropertyP
       },
     ],
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
-    isRequired:
-      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isRequired,
     isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
 
-function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[]): ScalarPath {
+function buildScalarPath(jsonPathPropertyPairs: JsonPathPropertyPair[], isRequired: boolean): ScalarPath {
   invariant(jsonPathPropertyPairs.length === 1, 'Scalar should only have one path');
   return {
     path: jsonPathPropertyPairs[0].jsonPath,
     isReference: false,
     type: getPathType(jsonPathPropertyPairs[0].sourceProperty.type),
     sourceProperty: jsonPathPropertyPairs[0].sourceProperty,
-    isRequired:
-      jsonPathPropertyPairs[0].sourceProperty.isRequired || jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
+    isRequired,
     isPartOfIdentity: jsonPathPropertyPairs[0].sourceProperty.isPartOfIdentity,
   };
 }
@@ -323,13 +325,18 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
 
     if (property.type === 'association' || property.type === 'domainEntity') {
       const referenceProperty: ReferentialProperty = property as ReferentialProperty;
-      result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
+      result[propertyPath] = buildDocumentReferencePaths(
+        propertyPath,
+        referenceProperty,
+        allJsonPathsMapping,
+        jsonPathsInfo.isRequired,
+      );
     } else if (property.type === 'descriptor') {
-      result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property);
+      result[propertyPath] = buildDescriptorPath(jsonPathPropertyPairs, property, jsonPathsInfo.isRequired);
     } else if (property.type === 'schoolYearEnumeration') {
-      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs);
+      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPathPropertyPairs, jsonPathsInfo.isRequired);
     } else {
-      result[propertyPath] = buildScalarPath(jsonPathPropertyPairs);
+      result[propertyPath] = buildScalarPath(jsonPathPropertyPairs, jsonPathsInfo.isRequired);
     }
   });
 

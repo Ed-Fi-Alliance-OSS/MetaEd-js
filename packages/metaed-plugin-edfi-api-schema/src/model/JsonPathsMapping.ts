@@ -54,6 +54,17 @@ type BaseJsonPathsInfo = {
    * When the property represents a reference, this captures the JSON path to the reference object itself.
    */
   referenceObjectJsonPath?: JsonPath;
+
+  /**
+   * Whether this value is required within the JSON object or array item where it appears.
+   *
+   * This is not a whole-document presence guarantee. Optional scalar commons and optional common
+   * collections still report required child values as required, because those values are required
+   * when their containing object or array item is present. Choice and inline common ancestry is
+   * applied because those properties are flattened and have no containing object of their own.
+   * Required collection container cardinality is handled by schema/OpenAPI requiredness.
+   */
+  isRequired: boolean;
 };
 
 /**
