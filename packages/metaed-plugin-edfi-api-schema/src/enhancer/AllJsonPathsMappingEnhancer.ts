@@ -73,8 +73,9 @@ function hasAtMostTwoArrayLevels(jsonPath: JsonPath): boolean {
 }
 
 /**
- * Determines whether the value at this JsonPath is required in the effective API payload context.
- * Required collection containers are handled by schema/OpenAPI requiredness, not here.
+ * Determines whether the value at this JsonPath is required within its containing JSON object or array item.
+ * Only flattened parent context carried in the PropertyModifier, such as choice or inline common optionality,
+ * changes that value. Required collection containers are handled by schema/OpenAPI requiredness, not here.
  */
 function isJsonPathValueRequired(property: EntityProperty, propertyModifier: PropertyModifier): boolean {
   return (property.isRequired || property.isPartOfIdentity) && !propertyModifier.optionalDueToParent;
