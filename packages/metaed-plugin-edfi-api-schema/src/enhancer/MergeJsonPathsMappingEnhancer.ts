@@ -78,9 +78,10 @@ function addJsonPathTo(
   flattenedIdentityProperty: FlattenedIdentityProperty,
 ) {
   propertyPaths.forEach((propertyPath) => {
+    const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
+
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
-      const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
         ? {
             jsonPathPropertyPairs: [],
@@ -94,10 +95,16 @@ function addJsonPathTo(
       jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
-    // Avoid duplicates
-    if (jsonPathsMapping[propertyPath].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
+    const jsonPathsInfo: JsonPathsInfo = jsonPathsMapping[propertyPath];
+    invariant(
+      jsonPathsInfo.isRequired === isRequired,
+      `Conflicting isRequired detected for "${propertyPath}": "${jsonPathsInfo.isRequired}" vs "${isRequired}"`,
+    );
 
-    jsonPathsMapping[propertyPath].jsonPathPropertyPairs.push({
+    // Avoid duplicates
+    if (jsonPathsInfo.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
+
+    jsonPathsInfo.jsonPathPropertyPairs.push({
       jsonPath,
       sourceProperty: terminalProperty,
       flattenedIdentityProperty,

@@ -100,17 +100,21 @@ function addJsonPathTo(
   invariant(hasAtMostTwoArrayLevels(jsonPath), 'ApiSchema does not support documents wih arrays nested more than two deep');
 
   propertyPaths.forEach((propertyPath) => {
+    const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
+
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
-      const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
         ? { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity, initialPropertyPath, terminalProperty, isRequired }
         : { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity, initialPropertyPath, isRequired };
       jsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
-    // Avoid duplicates
     const jsonPathsInfo: JsonPathsInfo = jsonPathsMapping[propertyPath];
+    invariant(
+      jsonPathsInfo.isRequired === isRequired,
+      `Conflicting isRequired detected for "${propertyPath}": "${jsonPathsInfo.isRequired}" vs "${isRequired}"`,
+    );
 
     if (collectionContainerJsonPath != null) {
       const existingContainer: JsonPath | undefined = jsonPathsInfo.collectionContainerJsonPath;
@@ -136,6 +140,7 @@ function addJsonPathTo(
       }
     }
 
+    // Avoid duplicates
     if (jsonPathsInfo.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
 
     jsonPathsInfo.jsonPathPropertyPairs.push({
