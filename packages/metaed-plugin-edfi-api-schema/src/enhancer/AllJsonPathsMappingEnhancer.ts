@@ -73,9 +73,10 @@ function hasAtMostTwoArrayLevels(jsonPath: JsonPath): boolean {
 }
 
 /**
- * Determines whether this path is required in the effective API payload context.
+ * Determines whether the value at this JsonPath is required in the effective API payload context.
+ * Required collection containers are handled by schema/OpenAPI requiredness, not here.
  */
-function isJsonPathRequired(property: EntityProperty, propertyModifier: PropertyModifier): boolean {
+function isJsonPathValueRequired(property: EntityProperty, propertyModifier: PropertyModifier): boolean {
   return (property.isRequired || property.isPartOfIdentity) && !propertyModifier.optionalDueToParent;
 }
 
@@ -100,7 +101,7 @@ function addJsonPathTo(
   propertyPaths.forEach((propertyPath) => {
     // initialize if necessary
     if (jsonPathsMapping[propertyPath] == null) {
-      const isRequired: boolean = isJsonPathRequired(terminalProperty, propertyModifier);
+      const isRequired: boolean = isJsonPathValueRequired(terminalProperty, propertyModifier);
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
         ? { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity, initialPropertyPath, terminalProperty, isRequired }
         : { jsonPathPropertyPairs: [], isTopLevel, isArrayIdentity, initialPropertyPath, isRequired };
