@@ -1,13 +1,13 @@
 # MetaEd Product Requirements Document — Version 4.x
 
 - Owner: Stephen Fuqua
+- Version: 4.8
+- Status: completed
 - Repository: Ed-Fi-Alliance-OSS/MetaEd-Js
-- Current Version: 4.7
-- Package version source: Lerna version `4.7.1-dev.1`
 - Platform and runtime: Node.js packages compiled from TypeScript to ES2017/CommonJS; CI runs Node 22
 
-> [!TIP] Document Scope
-> This PRD defines the product requirements for MetaEd version 4.x, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
+> [!TIP]
+> This PRD defines the product requirements for MetaEd version 4.8, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
 >
 > It does _not cover_ the MetaEd DSL syntax and semantics, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
 
@@ -114,12 +114,12 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### 3.1 Project Input and Configuration
 
 - **FR-CFG-1**: The build CLI SHALL accept a JSON configuration file through `-c` / `--config` containing a top-level `metaEdConfiguration` object.
-- **FR-CFG-2**: `metaEdConfiguration` SHALL support `artifactDirectory`, `deployDirectory`, `pluginTechVersion`, `projects`, `projectPaths`, `pluginConfigDirectories`, `defaultPluginTechVersion`, `allianceMode`, and `suppressPrereleaseVersion`; it MAY include `externalVariables` for Jsonnet configuration evaluation.
+- **FR-CFG-2**: `metaEdConfiguration` SHALL support `artifactDirectory`, `deployDirectory`, `pluginTechVersion`, `projects`, `projectPaths`, `pluginConfigDirectories`, `defaultPluginTechVersion`, `allianceMode`, and `suppressPrereleaseVersion`; it SHALL support an optional `externalVariables` field for Jsonnet configuration evaluation.
 - **FR-CFG-3**: The pipeline SHALL require `projects` and `projectPaths` to have the same length and SHALL map each project metadata entry to the corresponding source path.
 - **FR-CFG-4**: The file loader SHALL recursively load files with `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED` extensions from each configured project path.
 - **FR-CFG-5**: The build and deploy CLIs SHALL require exactly one Data Standard project, identified by namespace `EdFi`; no Data Standard project or multiple Data Standard projects SHALL cause failure.
 - **FR-CFG-6**: The project scanner used by the deploy console source mode SHALL read `package.json` files containing `metaEdProject`, derive `namespaceName` by removing non-alphanumeric characters from `projectName` only when the result starts with an uppercase letter, include the package description when present, sort a project whose `projectName` is exactly `EdFi` ahead of other projects, otherwise sort discovered projects by project name, and de-duplicate discovered projects by project name.
-- **FR-CFG-7**: The project scanner MAY accept `projectNames` overrides that update discovered project names and derived namespaces in discovery order.
+- **FR-CFG-7**: The project scanner SHALL accept optional `projectNames` overrides that update discovered project names and derived namespaces in discovery order.
 - **FR-CFG-8**: Plugin configuration files SHALL be discovered from configured `pluginConfigDirectories`, or from input project directories when no plugin config directories are configured, as `{pluginShortName}.config.jsonnet` or `{pluginShortName}.config.json`, with Jsonnet preferred when both exist.
 - **FR-CFG-9**: Plugin configuration loading SHALL support `externalVariables` for Jsonnet evaluation.
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
@@ -154,6 +154,11 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 - **FR-API-SCHEMA-1**: The build SHALL generate API Schema JSON files per namespace as `ApiSchema/ApiSchema.json` when `projectExtension` is empty or `ApiSchema/ApiSchema-{projectExtension}.json` when it is not, through `metaed-plugin-edfi-api-schema`.
 - **FR-API-SCHEMA-2**: API Schema output SHALL include `apiSchemaVersion` and a project schema containing project identity, endpoint name, `compatibleDsRange` for extension-project compatibility, description, resource schemas, resource-name mappings, case-insensitive endpoint-name mappings, abstract resources, education organization information, domains, extension-project flag, and core OpenAPI base documents where generated. Resource schemas SHALL include generated JSON schema-for-insert data, identity JSON paths, document path mappings, equality constraints, type-coercion JSON paths, decimal validation information, securable elements, authorization pathways, array uniqueness constraints, OpenAPI fragments, query-field mappings where applicable, school year enumeration resource schema when present, and optional relational naming metadata where generated.
+
+> [!TIP]
+> The API Schema JSON files are intended for use by the Data Management Service, aka DMS (part of Ed-Fi API v8).
+> The schema is [fully documented](https://github.com/Ed-Fi-Alliance-OSS/Data-Management-Service/blob/main/docs/API-SCHEMA-DOCUMENTATION.md)
+> in the DMS code repository.
 
 #### 3.3.3 SQL Server and PostgreSQL ODS SQL
 
@@ -241,11 +246,11 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### 3.6 API Schema Packaging Automation
 
-- **FR-PKG-1**: The repository MAY create MetaEd build configuration files for API Schema packaging automation using `eng/ApiSchema/CreateMetaEdConfig.ps1`.
+- **FR-PKG-1**: The repository SHALL create MetaEd build configuration files for API Schema packaging automation using `eng/ApiSchema/CreateMetaEdConfig.ps1`.
 - **FR-PKG-2**: API Schema packaging configuration generation SHALL write `eng/ApiSchema/MetaEdConfig.json` with `artifactDirectory` set to the packaging `MetaEdOutput` path, a core namespace `EdFi` project named `Ed-Fi`, an optional extension project, `defaultPluginTechVersion`, `allianceMode` set to `true`, and `suppressPrereleaseVersion` set to `true`. Extension project versions SHALL come from `metaEdProject.projectVersion` in the extension `package.json` when present; otherwise the default SHALL be `1.1.0` for TPDM and `1.0.0` for other extensions.
-- **FR-PKG-3**: The API Schema packaging automation MAY run MetaEd through `eng/ApiSchema/build.ps1 -Command RunMetaEd`.
-- **FR-PKG-4**: The API Schema packaging automation MAY copy generated `ApiSchema*.json` files from `MetaEdOutput` into `eng/ApiSchema` package projects for Core, TPDM, Homograph, or Sample package variants; it MAY also copy core XSD and interchange files for Core and extension XSD/interchange files for TPDM and Sample, while the Homograph packaging path currently copies only API Schema JSON.
-- **FR-PKG-5**: The API Schema packaging automation MAY build, pack, and publish .NET packages through `dotnet` and Azure Artifacts when the corresponding workflow commands and credentials are supplied.
+- **FR-PKG-3**: The API Schema packaging automation SHALL run MetaEd through `eng/ApiSchema/build.ps1 -Command RunMetaEd`.
+- **FR-PKG-4**: The API Schema packaging automation SHALL copy generated `ApiSchema*.json` files from `MetaEdOutput` into `eng/ApiSchema` package projects for Core, TPDM, Homograph, or Sample package variants; it SHALL also copy core XSD and interchange files for Core and extension XSD/interchange files for TPDM and Sample, while the Homograph packaging path currently copies only API Schema JSON.
+- **FR-PKG-5**: The API Schema packaging automation SHALL build, pack, and publish .NET packages through `dotnet` and Azure Artifacts when the corresponding workflow commands and credentials are supplied.
 
 ## 4. Non-Functional Requirements
 
@@ -277,7 +282,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### Security
 
 - **NFR-SEC-1**: Normal build and deploy runtime behavior SHALL operate on local files and SHALL NOT require credentials.
-- **NFR-SEC-2**: Publishing workflows MAY use package-feed credentials, but those credentials are outside normal build and deploy runtime behavior.
+- **NFR-SEC-2**: Publishing workflows SHALL use package-feed credentials; those credentials are outside normal build and deploy runtime behavior.
 - **NFR-SEC-3**: MetaEd SHALL NOT transmit data to external services during normal operation.
 
 ### Observability
@@ -290,7 +295,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **NFR-SDLC-1**: Pull request CI SHALL run TypeScript and ESLint checks through `npm run test:lint`.
 - **NFR-SDLC-2**: Pull request CI SHALL run non-database unit tests, SQL Server database tests, and PostgreSQL database tests.
 - **NFR-SDLC-3**: Repository workflows SHOULD run dependency review, CodeQL analysis, and OpenSSF Scorecard checks where configured.
-- **NFR-SDLC-4**: Release workflows MAY publish npm packages to Azure Artifacts using Lerna.
+- **NFR-SDLC-4**: Release workflows SHALL publish npm packages to Azure Artifacts using Lerna.
 
 ## 5. System Architecture
 
