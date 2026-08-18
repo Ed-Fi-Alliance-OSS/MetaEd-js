@@ -13,11 +13,16 @@ import {
 import { EntityApiSchemaData } from '../../model/EntityApiSchemaData';
 import { JsonPath } from '../../model/api-schema/JsonPath';
 import { JsonPathPropertyPair, JsonPathsInfo } from '../../model/JsonPathsMapping';
+import { hasExtensionProperties } from '../../Utility';
 
 /**
  * Finds the Namespace SharedStrings on an entity that can be Namespace security elements for the document.
  *
  * Namespace properties in the Data Standard are URI SharedString properties named Namespace.
+ *
+ * Only root-scope Namespace values qualify. A Namespace inside an array container or under a resource
+ * extension _ext container describes a single collection item, not the document as a whole, so it cannot
+ * serve as an authorization securable for the document.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Hardcoded find of the URI SharedString
@@ -36,6 +41,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+        // Values inside an array container are per-item, not root-scope
+        if (jsonPathsInfo.collectionContainerJsonPath != null) return;
+
+        // Values under a resource extension _ext container are not root-scope
+        if (hasExtensionProperties(jsonPathsInfo)) return;
+
         jsonPathsInfo.jsonPathPropertyPairs.forEach((jsonPathPropertyPair: JsonPathPropertyPair) => {
           // Needs to be a SharedString property
           if (jsonPathPropertyPair.sourceProperty.type !== 'sharedString') return;
