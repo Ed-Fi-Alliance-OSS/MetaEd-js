@@ -25,7 +25,18 @@ import {
   walkBuilders,
 } from '@edfi/metaed-core';
 import type { OpenAPI } from 'openapi-types';
-import type { ComponentsObject, Document, Schemas, TagObject } from '../../src/model/OpenApiTypes';
+import type {
+  ComponentsObject,
+  Document,
+  HeaderObject,
+  Operation,
+  ParameterObject,
+  PathItemObject,
+  ResponseObject,
+  SchemaObject,
+  Schemas,
+  TagObject,
+} from '../../src/model/OpenApiTypes';
 import { OpenApiDocumentType, type OpenApiDocumentTypeValue } from '../../src/model/api-schema/OpenApiDocumentType';
 import type { OpenApiFragment } from '../../src/model/api-schema/OpenApiFragment';
 import { metaEdPlugins } from './PluginHelper';
@@ -36,6 +47,26 @@ const API_SCHEMA_GENERATOR_NAME = 'edfiApiSchema.ApiSchemaGenerator';
 const AVAILABLE_CHANGE_VERSIONS_PATH = '/availableChangeVersions';
 const GRADE_LEVEL_DESCRIPTOR_PATH = '/ed-fi/gradeLevelDescriptors';
 const STUDENT_RESOURCE_PATH = '/ed-fi/students';
+
+const PROBLEM_DETAILS_MEDIA_TYPE = 'application/problem+json';
+const PROBLEM_DETAILS_SCHEMA_KEY = 'ProblemDetails';
+const PROBLEM_DETAILS_SCHEMA_REF = `#/components/schemas/${PROBLEM_DETAILS_SCHEMA_KEY}`;
+const SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY = 'SnapshotMethodNotAllowed';
+const SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REF = `#/components/responses/${SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY}`;
+const SNAPSHOT_NOT_FOUND_RESPONSE_KEY = 'SnapshotNotFound';
+const SNAPSHOT_NOT_FOUND_RESPONSE_REF = `#/components/responses/${SNAPSHOT_NOT_FOUND_RESPONSE_KEY}`;
+const USE_SNAPSHOT_PARAMETER_KEY = 'Use-Snapshot';
+const USE_SNAPSHOT_PARAMETER_REF = `#/components/parameters/${USE_SNAPSHOT_PARAMETER_KEY}`;
+
+const PROBLEM_DETAILS_REQUIRED_PROPERTIES: string[] = [
+  'detail',
+  'type',
+  'title',
+  'status',
+  'correlationId',
+  'validationErrors',
+  'errors',
+];
 
 /**
  * OpenAPI base documents keyed by API metadata document type.
@@ -389,10 +420,28 @@ function openApiBaseDocumentsFrom(apiSchemaArtifact: ApiSchemaArtifact): OpenApi
 }
 
 /**
- * Validates a generated OpenAPI document with the parser's own OpenAPI type boundary.
+ * Validates a generated OpenAPI document with the parser's own OpenAPI type boundary. The parser
+ * dereferences in place, so it is given a copy and the composed documents keep their `$ref`s for
+ * the reference-resolution and snapshot-contract assertions.
  */
 async function validateOpenApiDocument(document: Document): Promise<OpenAPI.Document> {
-  return SwaggerParser.validate(document as unknown as OpenAPI.Document);
+  return SwaggerParser.validate(structuredClone(document) as unknown as OpenAPI.Document);
+}
+
+/**
+ * Asserts a snapshot-eligible GET operation advertises the Use-Snapshot header and the snapshot 404.
+ */
+function expectSnapshotEligibleGet(operation: Operation): void {
+  expect(operation.parameters).toContainEqual({ $ref: USE_SNAPSHOT_PARAMETER_REF });
+  expect(operation.responses['404']).toEqual({ $ref: SNAPSHOT_NOT_FOUND_RESPONSE_REF });
+}
+
+/**
+ * Asserts a mutating operation documents the snapshot 405 and does not advertise the header.
+ */
+function expectSnapshotMutation(operation: Operation): void {
+  expect(operation.parameters ?? []).not.toContainEqual({ $ref: USE_SNAPSHOT_PARAMETER_REF });
+  expect(operation.responses['405']).toEqual({ $ref: SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REF });
 }
 
 /**
@@ -408,6 +457,9 @@ function expectGetPath(document: Document, pathName: string): void {
 function expectStandaloneChangeQueriesDocument(changeQueriesBaseDocument: Document): void {
   expect(Object.keys(changeQueriesBaseDocument.paths)).toEqual([AVAILABLE_CHANGE_VERSIONS_PATH]);
   expect(changeQueriesBaseDocument.paths[AVAILABLE_CHANGE_VERSIONS_PATH]?.get).toBeDefined();
+  expectSnapshotEligibleGet(changeQueriesBaseDocument.paths[AVAILABLE_CHANGE_VERSIONS_PATH]?.get as Operation);
+  // Change Queries has no mutating operation, so it deliberately carries no snapshot 405 component
+  expect(changeQueriesBaseDocument.components?.responses?.[SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY]).toBeUndefined();
   expect(changeQueriesBaseDocument.paths[`${STUDENT_RESOURCE_PATH}/deletes`]).toBeUndefined();
   expect(changeQueriesBaseDocument.paths[`${STUDENT_RESOURCE_PATH}/keyChanges`]).toBeUndefined();
   expect(changeQueriesBaseDocument.paths[`${GRADE_LEVEL_DESCRIPTOR_PATH}/deletes`]).toBeUndefined();
@@ -424,6 +476,213 @@ function expectTrackedChangePathsInResourceDocuments(resourcesDocument: Document
   expectGetPath(resourcesDocument, `${STUDENT_RESOURCE_PATH}/keyChanges`);
   expectGetPath(descriptorsDocument, `${GRADE_LEVEL_DESCRIPTOR_PATH}/deletes`);
   expectGetPath(descriptorsDocument, `${GRADE_LEVEL_DESCRIPTOR_PATH}/keyChanges`);
+}
+
+/**
+ * The three documents DMS serves independently for one validation scenario, plus the project
+ * schemas they were composed from.
+ */
+type ServedOpenApiDocuments = {
+  changeQueriesDocument: Document;
+  descriptorsDocument: Document;
+  extensionArtifacts: ApiSchemaArtifact[];
+  projectSchemas: ProjectSchemaArtifact[];
+  resourcesDocument: Document;
+};
+
+/**
+ * Composes the resources and descriptors documents from every project's fragments and pairs them
+ * with the standalone Change Queries document, mirroring how DMS assembles what it serves.
+ */
+function servedDocumentsFrom(apiSchemaArtifacts: ApiSchemaArtifact[]): ServedOpenApiDocuments {
+  const coreArtifact: ApiSchemaArtifact = coreArtifactFrom(apiSchemaArtifacts);
+  const extensionArtifacts: ApiSchemaArtifact[] = extensionArtifactsFrom(apiSchemaArtifacts);
+  const projectSchemas: ProjectSchemaArtifact[] = [
+    coreArtifact.projectSchema,
+    ...extensionArtifacts.map(
+      (extensionArtifact: ApiSchemaArtifact): ProjectSchemaArtifact => extensionArtifact.projectSchema,
+    ),
+  ];
+  const openApiBaseDocuments: OpenApiBaseDocuments = openApiBaseDocumentsFrom(coreArtifact);
+  const changeQueriesBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.CHANGE_QUERIES];
+  const descriptorsBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.DESCRIPTORS];
+  const resourcesBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.RESOURCES];
+
+  expect(changeQueriesBaseDocument).toBeDefined();
+  expect(descriptorsBaseDocument).toBeDefined();
+  expect(resourcesBaseDocument).toBeDefined();
+
+  return {
+    changeQueriesDocument: changeQueriesBaseDocument as Document,
+    descriptorsDocument: composeOpenApiDocument(
+      descriptorsBaseDocument as Document,
+      projectSchemas,
+      OpenApiDocumentType.DESCRIPTORS,
+    ),
+    extensionArtifacts,
+    projectSchemas,
+    resourcesDocument: composeOpenApiDocument(
+      resourcesBaseDocument as Document,
+      projectSchemas,
+      OpenApiDocumentType.RESOURCES,
+    ),
+  };
+}
+
+/**
+ * Returns every independently served document for a validation scenario.
+ */
+function allServedDocumentsFrom(servedDocuments: ServedOpenApiDocuments): Document[] {
+  return [servedDocuments.changeQueriesDocument, servedDocuments.descriptorsDocument, servedDocuments.resourcesDocument];
+}
+
+/**
+ * Collects every `$ref` string appearing anywhere in an OpenAPI document.
+ */
+function referencesFrom(value: unknown, references: Set<string>): Set<string> {
+  if (Array.isArray(value)) {
+    value.forEach((item: unknown): void => {
+      referencesFrom(item, references);
+    });
+    return references;
+  }
+
+  if (value != null && typeof value === 'object') {
+    Object.entries(value as { [key: string]: unknown }).forEach(([key, item]: [string, unknown]): void => {
+      if (key === '$ref' && typeof item === 'string') {
+        references.add(item);
+        return;
+      }
+      referencesFrom(item, references);
+    });
+  }
+
+  return references;
+}
+
+/**
+ * Builds the set of component references an independently served document can resolve on its own.
+ */
+function resolvableReferencesFrom(document: Document): Set<string> {
+  const resolvable: Set<string> = new Set<string>();
+
+  Object.entries(document.components ?? {}).forEach(
+    ([sectionName, section]: [string, { [key: string]: unknown } | undefined]): void => {
+      Object.keys(section ?? {}).forEach((componentKey: string): void => {
+        resolvable.add(`#/components/${sectionName}/${componentKey}`);
+      });
+    },
+  );
+
+  return resolvable;
+}
+
+/**
+ * Asserts every reference in a document resolves against that same document's components, which is
+ * what makes each base document servable on its own once extension fragments are composed in.
+ */
+function expectAllReferencesResolveWithinDocument(document: Document): void {
+  const resolvable: Set<string> = resolvableReferencesFrom(document);
+  const references: string[] = Array.from(referencesFrom(document, new Set<string>()));
+  const unresolvable: string[] = references.filter((reference: string): boolean => !resolvable.has(reference));
+
+  expect(references.length).toBeGreaterThan(0);
+  expect(unresolvable).toEqual([]);
+}
+
+/**
+ * Asserts every resource or descriptor operation in a composed document carries its snapshot
+ * contract. Every GET in these documents is snapshot-eligible, and every POST, PUT, and DELETE is a
+ * snapshot-rejected mutation, so iterating covers core and extension paths alike without naming any.
+ */
+function expectSnapshotOperationCoverage(document: Document): void {
+  let eligibleGetCount = 0;
+  let mutationCount = 0;
+
+  Object.values(document.paths).forEach((pathItem: PathItemObject | undefined): void => {
+    if (pathItem == null) return;
+
+    if (pathItem.get != null) {
+      eligibleGetCount += 1;
+      expectSnapshotEligibleGet(pathItem.get);
+    }
+
+    [pathItem.post, pathItem.put, pathItem.delete].forEach((operation: Operation | undefined): void => {
+      if (operation == null) return;
+      mutationCount += 1;
+      expectSnapshotMutation(operation);
+    });
+  });
+
+  expect(eligibleGetCount).toBeGreaterThan(0);
+  expect(mutationCount).toBeGreaterThan(0);
+}
+
+/**
+ * Asserts the reusable Use-Snapshot header parameter has its exact documented shape.
+ */
+function expectUseSnapshotParameter(document: Document): void {
+  expect(document.components?.parameters?.[USE_SNAPSHOT_PARAMETER_KEY]).toEqual({
+    name: USE_SNAPSHOT_PARAMETER_KEY,
+    in: 'header',
+    description: 'Indicates whether the request should be served from the configured Snapshot.',
+    schema: {
+      type: 'boolean',
+      default: false,
+    },
+  } as ParameterObject);
+}
+
+/**
+ * Asserts the shared DMS ProblemDetails envelope schema is present with all required properties.
+ */
+function expectProblemDetailsSchema(document: Document): void {
+  const problemDetails = document.components?.schemas?.[PROBLEM_DETAILS_SCHEMA_KEY] as SchemaObject | undefined;
+
+  expect(problemDetails).toBeDefined();
+  expect(problemDetails?.type).toBe('object');
+  expect(problemDetails?.required).toEqual(PROBLEM_DETAILS_REQUIRED_PROPERTIES);
+  expect(Object.keys(problemDetails?.properties ?? {}).sort()).toEqual([...PROBLEM_DETAILS_REQUIRED_PROPERTIES].sort());
+}
+
+/**
+ * Asserts the snapshot 404 response carries the exact DMS problem details for Snapshot Not Found.
+ */
+function expectSnapshotNotFoundResponse(document: Document): void {
+  const response = document.components?.responses?.[SNAPSHOT_NOT_FOUND_RESPONSE_KEY] as ResponseObject | undefined;
+
+  expect(response).toBeDefined();
+  expect(response?.content?.[PROBLEM_DETAILS_MEDIA_TYPE]?.schema).toEqual({ $ref: PROBLEM_DETAILS_SCHEMA_REF });
+  expect(response?.content?.[PROBLEM_DETAILS_MEDIA_TYPE]?.example).toEqual({
+    detail: 'Snapshot not found.',
+    type: 'urn:ed-fi:api:not-found',
+    title: 'Not Found',
+    status: 404,
+    correlationId: expect.any(String),
+    validationErrors: {},
+    errors: [],
+  });
+}
+
+/**
+ * Asserts the snapshot 405 response carries the exact DMS problem details and the Allow header.
+ */
+function expectSnapshotMethodNotAllowedResponse(document: Document): void {
+  const response = document.components?.responses?.[SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY] as ResponseObject | undefined;
+
+  expect(response).toBeDefined();
+  expect(response?.content?.[PROBLEM_DETAILS_MEDIA_TYPE]?.schema).toEqual({ $ref: PROBLEM_DETAILS_SCHEMA_REF });
+  expect(response?.content?.[PROBLEM_DETAILS_MEDIA_TYPE]?.example).toEqual({
+    detail: 'An attempt was made to modify data in a Snapshot, but this data is read-only.',
+    type: 'urn:ed-fi:api:snapshots:method-not-allowed',
+    title: 'Method Not Allowed with Snapshots',
+    status: 405,
+    correlationId: expect.any(String),
+    validationErrors: {},
+    errors: [],
+  });
+  expect((response?.headers?.Allow as HeaderObject | undefined)?.example).toBe('GET');
+  expect((response?.headers?.Allow as HeaderObject | undefined)?.schema).toEqual({ type: 'string' });
 }
 
 /**
@@ -455,46 +714,42 @@ describe('generated OpenAPI documents', (): void => {
     });
 
     it('should validate OpenAPI documents and preserve Change Query path distribution', async (): Promise<void> => {
-      const coreArtifact: ApiSchemaArtifact = coreArtifactFrom(apiSchemaArtifacts);
-      const extensionArtifacts: ApiSchemaArtifact[] = extensionArtifactsFrom(apiSchemaArtifacts);
-      const projectSchemas: ProjectSchemaArtifact[] = [
-        coreArtifact.projectSchema,
-        ...extensionArtifacts.map(
-          (extensionArtifact: ApiSchemaArtifact): ProjectSchemaArtifact => extensionArtifact.projectSchema,
-        ),
-      ];
-      const openApiBaseDocuments: OpenApiBaseDocuments = openApiBaseDocumentsFrom(coreArtifact);
-      const changeQueriesBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.CHANGE_QUERIES];
-      const descriptorsBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.DESCRIPTORS];
-      const resourcesBaseDocument: Document | undefined = openApiBaseDocuments[OpenApiDocumentType.RESOURCES];
+      const servedDocuments: ServedOpenApiDocuments = servedDocumentsFrom(apiSchemaArtifacts);
+      const { changeQueriesDocument, descriptorsDocument, extensionArtifacts, projectSchemas, resourcesDocument } =
+        servedDocuments;
 
-      expect(changeQueriesBaseDocument).toBeDefined();
-      expect(descriptorsBaseDocument).toBeDefined();
-      expect(resourcesBaseDocument).toBeDefined();
-
-      const descriptorsDocument: Document = composeOpenApiDocument(
-        descriptorsBaseDocument as Document,
-        projectSchemas,
-        OpenApiDocumentType.DESCRIPTORS,
-      );
-      const resourcesDocument: Document = composeOpenApiDocument(
-        resourcesBaseDocument as Document,
-        projectSchemas,
-        OpenApiDocumentType.RESOURCES,
-      );
-
-      expectStandaloneChangeQueriesDocument(changeQueriesBaseDocument as Document);
+      expectStandaloneChangeQueriesDocument(changeQueriesDocument);
       expectTrackedChangePathsInResourceDocuments(resourcesDocument, descriptorsDocument);
       expectNoExtensionBaseDocuments(extensionArtifacts);
       expectNoChangeQueriesFragments(projectSchemas);
 
-      const documentsToValidate: Document[] = [
-        changeQueriesBaseDocument as Document,
-        descriptorsDocument,
-        resourcesDocument,
-      ];
+      await Promise.all(allServedDocumentsFrom(servedDocuments).map(validateOpenApiDocument));
+    });
 
-      await Promise.all(documentsToValidate.map(validateOpenApiDocument));
+    it('should carry the snapshot components in every independently served document', (): void => {
+      const servedDocuments: ServedOpenApiDocuments = servedDocumentsFrom(apiSchemaArtifacts);
+      const { changeQueriesDocument, descriptorsDocument, resourcesDocument } = servedDocuments;
+
+      [resourcesDocument, descriptorsDocument, changeQueriesDocument].forEach((document: Document): void => {
+        expectUseSnapshotParameter(document);
+        expectProblemDetailsSchema(document);
+        expectSnapshotNotFoundResponse(document);
+      });
+
+      [resourcesDocument, descriptorsDocument].forEach((document: Document): void => {
+        expectSnapshotMethodNotAllowedResponse(document);
+      });
+    });
+
+    it('should document the snapshot contract on every eligible composed operation', (): void => {
+      const { descriptorsDocument, resourcesDocument } = servedDocumentsFrom(apiSchemaArtifacts);
+
+      expectSnapshotOperationCoverage(resourcesDocument);
+      expectSnapshotOperationCoverage(descriptorsDocument);
+    });
+
+    it('should resolve every reference within its own served document', (): void => {
+      allServedDocumentsFrom(servedDocumentsFrom(apiSchemaArtifacts)).forEach(expectAllReferencesResolveWithinDocument);
     });
   });
 });

@@ -359,6 +359,9 @@
                         "maxLength": 75,
                         "type": "string"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -388,7 +391,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -431,7 +434,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -470,6 +473,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -496,7 +502,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -529,6 +535,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -555,7 +564,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -604,7 +613,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -636,6 +645,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -662,7 +674,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -719,7 +731,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1847,6 +1859,9 @@
                         "format": "double",
                         "type": "number"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -1876,7 +1891,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -1919,7 +1934,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -1958,6 +1973,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -1984,7 +2002,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2017,6 +2035,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2043,7 +2064,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2092,7 +2113,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2124,6 +2145,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2150,7 +2174,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2207,7 +2231,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2543,6 +2567,9 @@
                         "type": "string"
                       },
                       "x-Ed-Fi-isIdentity": true
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2572,7 +2599,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2615,7 +2642,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2654,6 +2681,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2680,7 +2710,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2713,6 +2743,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2739,7 +2772,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2788,7 +2821,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -2820,6 +2853,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -2846,7 +2882,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -2903,7 +2939,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4315,6 +4351,9 @@
                         "maxLength": 75,
                         "type": "string"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -4344,7 +4383,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4387,7 +4426,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4426,6 +4465,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -4452,7 +4494,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4485,6 +4527,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -4511,7 +4556,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4560,7 +4605,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -4592,6 +4637,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -4618,7 +4666,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -4675,7 +4723,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -5050,6 +5098,9 @@
                         "maxLength": 75,
                         "type": "string"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -5079,7 +5130,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -5122,7 +5173,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -5161,6 +5212,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -5187,7 +5241,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -5220,6 +5274,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -5246,7 +5303,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -5295,7 +5352,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -5327,6 +5384,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -5353,7 +5413,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -5410,7 +5470,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -7359,6 +7419,9 @@
                       "schema": {
                         "type": "boolean"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -7388,7 +7451,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -7431,7 +7494,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -7470,6 +7533,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -7496,7 +7562,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -7529,6 +7595,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -7555,7 +7624,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -7604,7 +7673,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -7636,6 +7705,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -7662,7 +7734,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -7719,7 +7791,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -10465,6 +10537,9 @@
                         "format": "double",
                         "type": "number"
                       }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -10494,7 +10569,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -10537,7 +10612,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -10576,6 +10651,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -10602,7 +10680,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -10635,6 +10713,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/totalCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -10661,7 +10742,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -10710,7 +10791,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"
@@ -10742,6 +10823,9 @@
                     },
                     {
                       "$ref": "#/components/parameters/If-None-Match"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Use-Snapshot"
                     }
                   ],
                   "responses": {
@@ -10768,7 +10852,7 @@
                       "$ref": "#/components/responses/Forbidden"
                     },
                     "404": {
-                      "$ref": "#/components/responses/NotFound"
+                      "$ref": "#/components/responses/SnapshotNotFound"
                     },
                     "500": {
                       "$ref": "#/components/responses/Error"
@@ -10825,7 +10909,7 @@
                       "$ref": "#/components/responses/NotFound"
                     },
                     "405": {
-                      "description": "Method Is Not Allowed."
+                      "$ref": "#/components/responses/SnapshotMethodNotAllowed"
                     },
                     "409": {
                       "$ref": "#/components/responses/Conflict"

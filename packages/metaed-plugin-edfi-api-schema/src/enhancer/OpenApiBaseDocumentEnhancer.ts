@@ -9,23 +9,52 @@ import { NamespaceEdfiApiSchema } from '../model/Namespace';
 import { createHardcodedParameterResponses, createHardcodedComponentParameters } from './OpenApiSpecificationEnhancerBase';
 import { newSchoolYearOpenApis } from './OpenApiComponentEnhancerBase';
 import { OpenApiDocumentType, OpenApiDocumentTypeValue } from '../model/api-schema/OpenApiDocumentType';
+import {
+  PROBLEM_DETAILS_SCHEMA_KEY,
+  SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY,
+  SNAPSHOT_NOT_FOUND_RESPONSE_KEY,
+  SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
+  USE_SNAPSHOT_PARAMETER_KEY,
+  USE_SNAPSHOT_PARAMETER_REFERENCE,
+  createProblemDetailsSchema,
+  createSnapshotMethodNotAllowedResponse,
+  createSnapshotNotFoundResponse,
+  createUseSnapshotParameter,
+} from './OpenApiSnapshotComponentBuilder';
 
 /**
- * Creates the component object for a document type.
+ * Creates the component object for a document type. Each base document is served independently,
+ * so every document owns its own copy of the snapshot components its operations reference.
+ * Change Queries has no mutating operation, so it omits the snapshot 405 response.
  */
 function createComponentsObject(documentType: OpenApiDocumentTypeValue): ComponentsObject {
   if (documentType === OpenApiDocumentType.CHANGE_QUERIES) {
     return {
-      schemas: {},
-      responses: {},
-      parameters: {},
+      schemas: {
+        [PROBLEM_DETAILS_SCHEMA_KEY]: createProblemDetailsSchema(),
+      },
+      responses: {
+        [SNAPSHOT_NOT_FOUND_RESPONSE_KEY]: createSnapshotNotFoundResponse(),
+      },
+      parameters: {
+        [USE_SNAPSHOT_PARAMETER_KEY]: createUseSnapshotParameter(),
+      },
     };
   }
 
   return {
-    schemas: {},
-    responses: createHardcodedParameterResponses(),
-    parameters: createHardcodedComponentParameters(),
+    schemas: {
+      [PROBLEM_DETAILS_SCHEMA_KEY]: createProblemDetailsSchema(),
+    },
+    responses: {
+      ...createHardcodedParameterResponses(),
+      [SNAPSHOT_NOT_FOUND_RESPONSE_KEY]: createSnapshotNotFoundResponse(),
+      [SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_KEY]: createSnapshotMethodNotAllowedResponse(),
+    },
+    parameters: {
+      ...createHardcodedComponentParameters(),
+      [USE_SNAPSHOT_PARAMETER_KEY]: createUseSnapshotParameter(),
+    },
   };
 }
 
@@ -36,6 +65,7 @@ function createAvailableChangeVersionsOperation(): Operation {
   return {
     operationId: 'getAvailableChangeVersions',
     summary: 'Retrieves the available change version range.',
+    parameters: [USE_SNAPSHOT_PARAMETER_REFERENCE],
     responses: {
       '200': {
         description: 'The available change version range was successfully retrieved.',
@@ -58,6 +88,7 @@ function createAvailableChangeVersionsOperation(): Operation {
           },
         },
       },
+      '404': SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
     },
   };
 }
