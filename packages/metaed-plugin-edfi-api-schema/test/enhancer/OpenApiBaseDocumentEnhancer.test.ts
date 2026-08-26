@@ -60,10 +60,10 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.schemas?.EdFi_SchoolYearTypeReference).toBeDefined();
       expect(resourcesDoc?.components?.responses).toBeDefined();
       expect(resourcesDoc?.components?.parameters).toBeDefined();
-      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
-      expect(JSON.stringify(resourcesDoc)).not.toContain('Use-Snapshot');
-      expect(JSON.stringify(resourcesDoc)).not.toContain('NotFoundUseSnapshot');
-      expect(JSON.stringify(resourcesDoc)).not.toContain('snapshot');
+      expect(resourcesDoc?.components?.schemas?.ProblemDetails).toBeDefined();
+      expect(resourcesDoc?.components?.parameters?.['Use-Snapshot']).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.SnapshotNotFound).toBeDefined();
+      expect(resourcesDoc?.components?.responses?.SnapshotMethodNotAllowed).toBeDefined();
       expect(resourcesDoc?.tags).toEqual([]);
     });
 
@@ -77,13 +77,13 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(descriptorsDoc?.info?.version).toBe('1');
       expect(descriptorsDoc?.servers).toHaveLength(1);
       expect(descriptorsDoc?.paths).toEqual({});
-      expect(descriptorsDoc?.components?.schemas).toEqual({});
+      expect(Object.keys(descriptorsDoc?.components?.schemas ?? {})).toEqual(['ProblemDetails']);
       expect(descriptorsDoc?.components?.responses).toBeDefined();
       expect(descriptorsDoc?.components?.parameters).toBeDefined();
-      expect(descriptorsDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
-      expect(JSON.stringify(descriptorsDoc)).not.toContain('Use-Snapshot');
-      expect(JSON.stringify(descriptorsDoc)).not.toContain('NotFoundUseSnapshot');
-      expect(JSON.stringify(descriptorsDoc)).not.toContain('snapshot');
+      expect(descriptorsDoc?.components?.parameters?.['Use-Snapshot']).toBeDefined();
+      expect(descriptorsDoc?.components?.responses?.SnapshotNotFound).toBeDefined();
+      expect(descriptorsDoc?.components?.responses?.SnapshotMethodNotAllowed).toBeDefined();
+      expect(descriptorsDoc?.components?.schemas?.EdFi_SchoolYearTypeReference).toBeUndefined();
       expect(descriptorsDoc?.tags).toEqual([]);
     });
 
@@ -103,6 +103,11 @@ describe('OpenApiBaseDocumentEnhancer', () => {
           "/availableChangeVersions": Object {
             "get": Object {
               "operationId": "getAvailableChangeVersions",
+              "parameters": Array [
+                Object {
+                  "$ref": "#/components/parameters/Use-Snapshot",
+                },
+              ],
               "responses": Object {
                 "200": Object {
                   "content": Object {
@@ -128,24 +133,33 @@ describe('OpenApiBaseDocumentEnhancer', () => {
                   },
                   "description": "The available change version range was successfully retrieved.",
                 },
+                "404": Object {
+                  "$ref": "#/components/responses/SnapshotNotFound",
+                },
               },
               "summary": "Retrieves the available change version range.",
             },
           },
         }
       `);
-      expect(changeQueriesDoc?.paths['/availableChangeVersions']?.get?.parameters).toBeUndefined();
+      expect(changeQueriesDoc?.paths['/availableChangeVersions']?.get?.parameters).toEqual([
+        { $ref: '#/components/parameters/Use-Snapshot' },
+      ]);
+      expect(changeQueriesDoc?.paths['/availableChangeVersions']?.get?.responses['404']).toEqual({
+        $ref: '#/components/responses/SnapshotNotFound',
+      });
       expect(changeQueriesDoc?.paths['/changeQueries/v1/availableChangeVersions']).toBeUndefined();
       expect(resourcesDoc?.paths['/availableChangeVersions']).toBeUndefined();
       expect(descriptorsDoc?.paths['/availableChangeVersions']).toBeUndefined();
-      expect(changeQueriesDoc?.components?.schemas).toEqual({});
-      expect(changeQueriesDoc?.components?.responses).toEqual({});
-      expect(changeQueriesDoc?.components?.parameters).toEqual({});
+
+      // The standalone Change Queries document carries exactly the components its single operation
+      // references. It has no mutating operation, so it deliberately omits SnapshotMethodNotAllowed.
+      expect(Object.keys(changeQueriesDoc?.components?.schemas ?? {})).toEqual(['ProblemDetails']);
+      expect(Object.keys(changeQueriesDoc?.components?.responses ?? {})).toEqual(['SnapshotNotFound']);
+      expect(Object.keys(changeQueriesDoc?.components?.parameters ?? {})).toEqual(['Use-Snapshot']);
+      expect(changeQueriesDoc?.components?.responses?.SnapshotMethodNotAllowed).toBeUndefined();
       expect(changeQueriesDoc?.components?.securitySchemes).toBeUndefined();
       expect(changeQueriesDoc?.security).toBeUndefined();
-      expect(JSON.stringify(changeQueriesDoc)).not.toContain('Use-Snapshot');
-      expect(JSON.stringify(changeQueriesDoc)).not.toContain('NotFoundUseSnapshot');
-      expect(JSON.stringify(changeQueriesDoc)).not.toContain('snapshot');
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('oauth2');
       expect(JSON.stringify(changeQueriesDoc)).not.toContain('tokenUrl');
       expect(changeQueriesDoc?.tags).toEqual([]);
@@ -187,8 +201,174 @@ describe('OpenApiBaseDocumentEnhancer', () => {
       expect(resourcesDoc?.components?.responses?.Created).toBeDefined();
       expect(resourcesDoc?.components?.responses?.Updated).toBeDefined();
       expect(resourcesDoc?.components?.responses?.NotFound).toBeDefined();
-      expect(resourcesDoc?.components?.responses?.NotFoundUseSnapshot).toBeUndefined();
       expect(resourcesDoc?.components?.responses?.BadRequest).toBeDefined();
+    });
+
+    it('should include the reusable Use-Snapshot header parameter in resources and descriptors', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
+      const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+
+      expect(resourcesDoc?.components?.parameters?.['Use-Snapshot']).toMatchInlineSnapshot(`
+        Object {
+          "description": "Indicates whether the request should be served from the configured Snapshot.",
+          "in": "header",
+          "name": "Use-Snapshot",
+          "schema": Object {
+            "default": false,
+            "type": "boolean",
+          },
+        }
+      `);
+      expect(descriptorsDoc?.components?.parameters?.['Use-Snapshot']).toEqual(
+        resourcesDoc?.components?.parameters?.['Use-Snapshot'],
+      );
+      expect(changeQueriesDoc?.components?.parameters?.['Use-Snapshot']).toEqual(
+        resourcesDoc?.components?.parameters?.['Use-Snapshot'],
+      );
+    });
+
+    it('should include the shared ProblemDetails schema in every independently served document', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
+      const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+
+      expect(resourcesDoc?.components?.schemas?.ProblemDetails).toMatchInlineSnapshot(`
+        Object {
+          "description": "The shared Ed-Fi Data Management Service problem details envelope for failure responses.",
+          "properties": Object {
+            "correlationId": Object {
+              "description": "The correlation identifier of the request that produced this problem.",
+              "type": "string",
+            },
+            "detail": Object {
+              "description": "A human-readable explanation specific to this occurrence of the problem.",
+              "type": "string",
+            },
+            "errors": Object {
+              "description": "Errors that are not attributable to a specific location in the request.",
+              "items": Object {
+                "type": "string",
+              },
+              "type": "array",
+            },
+            "status": Object {
+              "description": "The HTTP status code produced for this occurrence of the problem.",
+              "format": "int32",
+              "type": "integer",
+            },
+            "title": Object {
+              "description": "A short, human-readable summary of the problem type.",
+              "type": "string",
+            },
+            "type": Object {
+              "description": "A URI reference that identifies the problem type.",
+              "type": "string",
+            },
+            "validationErrors": Object {
+              "additionalProperties": Object {
+                "items": Object {
+                  "type": "string",
+                },
+                "type": "array",
+              },
+              "description": "Validation failures keyed by the location of the invalid value.",
+              "type": "object",
+            },
+          },
+          "required": Array [
+            "detail",
+            "type",
+            "title",
+            "status",
+            "correlationId",
+            "validationErrors",
+            "errors",
+          ],
+          "type": "object",
+        }
+      `);
+      expect(descriptorsDoc?.components?.schemas?.ProblemDetails).toEqual(resourcesDoc?.components?.schemas?.ProblemDetails);
+      expect(changeQueriesDoc?.components?.schemas?.ProblemDetails).toEqual(
+        resourcesDoc?.components?.schemas?.ProblemDetails,
+      );
+    });
+
+    it('should include the Snapshot Not Found response with the exact problem details example', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
+      const changeQueriesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.CHANGE_QUERIES];
+
+      expect(resourcesDoc?.components?.responses?.SnapshotNotFound).toMatchInlineSnapshot(`
+        Object {
+          "content": Object {
+            "application/problem+json": Object {
+              "example": Object {
+                "correlationId": "d4f2b1c8-6a3e-4a2f-9c1d-7b5e8a0f3c21",
+                "detail": "Snapshot not found.",
+                "errors": Array [],
+                "status": 404,
+                "title": "Not Found",
+                "type": "urn:ed-fi:api:not-found",
+                "validationErrors": Object {},
+              },
+              "schema": Object {
+                "$ref": "#/components/schemas/ProblemDetails",
+              },
+            },
+          },
+          "description": "The requested resource could not be found. When the Use-Snapshot header is true, this also indicates that the configured Snapshot could not be found, for example because it has been removed.",
+        }
+      `);
+      expect(descriptorsDoc?.components?.responses?.SnapshotNotFound).toEqual(
+        resourcesDoc?.components?.responses?.SnapshotNotFound,
+      );
+      expect(changeQueriesDoc?.components?.responses?.SnapshotNotFound).toEqual(
+        resourcesDoc?.components?.responses?.SnapshotNotFound,
+      );
+    });
+
+    it('should include the snapshot Method Not Allowed response with an Allow header', () => {
+      const namespaceEdfiApiSchema = namespace?.data.edfiApiSchema as NamespaceEdfiApiSchema;
+      const resourcesDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.RESOURCES];
+      const descriptorsDoc = namespaceEdfiApiSchema.openApiBaseDocuments?.[OpenApiDocumentType.DESCRIPTORS];
+
+      expect(resourcesDoc?.components?.responses?.SnapshotMethodNotAllowed).toMatchInlineSnapshot(`
+        Object {
+          "content": Object {
+            "application/problem+json": Object {
+              "example": Object {
+                "correlationId": "d4f2b1c8-6a3e-4a2f-9c1d-7b5e8a0f3c21",
+                "detail": "An attempt was made to modify data in a Snapshot, but this data is read-only.",
+                "errors": Array [],
+                "status": 405,
+                "title": "Method Not Allowed with Snapshots",
+                "type": "urn:ed-fi:api:snapshots:method-not-allowed",
+                "validationErrors": Object {},
+              },
+              "schema": Object {
+                "$ref": "#/components/schemas/ProblemDetails",
+              },
+            },
+          },
+          "description": "Method Not Allowed. An attempt was made to modify data in a Snapshot, but Snapshot data is read-only.",
+          "headers": Object {
+            "Allow": Object {
+              "description": "The methods the endpoint accepts for a Snapshot request.",
+              "example": "GET",
+              "schema": Object {
+                "type": "string",
+              },
+            },
+          },
+        }
+      `);
+      expect(descriptorsDoc?.components?.responses?.SnapshotMethodNotAllowed).toEqual(
+        resourcesDoc?.components?.responses?.SnapshotMethodNotAllowed,
+      );
     });
   });
 

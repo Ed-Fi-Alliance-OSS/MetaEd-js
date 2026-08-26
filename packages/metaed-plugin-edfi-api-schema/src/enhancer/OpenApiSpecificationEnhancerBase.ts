@@ -22,6 +22,11 @@ import { ProjectEndpointName } from '../model/api-schema/ProjectEndpointName';
 import { normalizeDescriptorName } from '../Utility';
 import { type TrackedChangeSchemaNames, trackedChangeSchemaNamesFor } from './OpenApiChangeQuerySchemaBuilder';
 import { schemaObjectFromEntityProperty } from './OpenApiEntityPropertySchemaMapper';
+import {
+  SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REFERENCE,
+  SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
+  USE_SNAPSHOT_PARAMETER_REFERENCE,
+} from './OpenApiSnapshotComponentBuilder';
 
 /**
  * Returns the extension namespace prefix for OpenAPI operation identifiers.
@@ -253,9 +258,7 @@ export function createPostSectionFor(entity: TopLevelEntity, endpointName: Endpo
       '403': {
         $ref: '#/components/responses/Forbidden',
       },
-      '405': {
-        description: 'Method Is Not Allowed.',
-      },
+      '405': SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REFERENCE,
       '409': {
         $ref: '#/components/responses/Conflict',
       },
@@ -460,7 +463,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
     description:
       'This GET operation provides access to resources using the "Get" search pattern.  The values of any properties of the resource that are specified will be used to return all matching results (if it exists).',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}`,
-    parameters: [...newStaticGetByQueryParameters(), ...getByQueryParametersFor(entity)],
+    parameters: [...newStaticGetByQueryParameters(), ...getByQueryParametersFor(entity), USE_SNAPSHOT_PARAMETER_REFERENCE],
     responses: {
       '200': {
         description: 'The requested resource was successfully retrieved.',
@@ -489,9 +492,7 @@ export function createGetByQuerySectionFor(entity: TopLevelEntity, endpointName:
       '403': {
         $ref: '#/components/responses/Forbidden',
       },
-      '404': {
-        $ref: '#/components/responses/NotFound',
-      },
+      '404': SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
       '500': {
         $ref: '#/components/responses/Error',
       },
@@ -509,7 +510,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
   return {
     description: 'This GET operation retrieves a resource by the specified resource identifier.',
     operationId: `get${extensionPrefix}${pluralize(entity.metaEdName)}ById`,
-    parameters: newStaticGetByIdParameters(),
+    parameters: [...newStaticGetByIdParameters(), USE_SNAPSHOT_PARAMETER_REFERENCE],
     responses: {
       '200': {
         description: 'The requested resource was successfully retrieved.',
@@ -535,9 +536,7 @@ export function createGetByIdSectionFor(entity: TopLevelEntity, endpointName: En
       '403': {
         $ref: '#/components/responses/Forbidden',
       },
-      '404': {
-        $ref: '#/components/responses/NotFound',
-      },
+      '404': SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
       '500': {
         $ref: '#/components/responses/Error',
       },
@@ -574,9 +573,7 @@ function createTrackedChangeResponsesFor(trackedChangeItemSchemaName: string): R
     '403': {
       $ref: '#/components/responses/Forbidden',
     },
-    '404': {
-      $ref: '#/components/responses/NotFound',
-    },
+    '404': SNAPSHOT_NOT_FOUND_RESPONSE_REFERENCE,
     '500': {
       $ref: '#/components/responses/Error',
     },
@@ -593,7 +590,7 @@ export function createTrackedChangeDeletesSectionFor(entity: TopLevelEntity, end
   return {
     description: 'This GET operation provides access to deleted resource keys in the requested ChangeVersion range.',
     operationId: `deletes${extensionPrefix}${pluralize(entity.metaEdName)}`,
-    parameters: newStaticTrackedChangeQueryParameters(),
+    parameters: [...newStaticTrackedChangeQueryParameters(), USE_SNAPSHOT_PARAMETER_REFERENCE],
     responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.deleteItem),
     summary: 'Retrieves deleted resource keys for Change Queries.',
     tags: [endpointName],
@@ -610,7 +607,7 @@ export function createTrackedChangeKeyChangesSectionFor(entity: TopLevelEntity, 
   return {
     description: 'This GET operation provides access to changed resource keys in the requested ChangeVersion range.',
     operationId: `keyChanges${extensionPrefix}${pluralize(entity.metaEdName)}`,
-    parameters: newStaticTrackedChangeQueryParameters(),
+    parameters: [...newStaticTrackedChangeQueryParameters(), USE_SNAPSHOT_PARAMETER_REFERENCE],
     responses: createTrackedChangeResponsesFor(trackedChangeSchemaNames.keyChangeItem),
     summary: 'Retrieves changed resource keys for Change Queries.',
     tags: [endpointName],
@@ -657,9 +654,7 @@ export function createPutSectionFor(entity: TopLevelEntity, endpointName: Endpoi
       '404': {
         $ref: '#/components/responses/NotFound',
       },
-      '405': {
-        description: 'Method Is Not Allowed.',
-      },
+      '405': SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REFERENCE,
       '409': {
         $ref: '#/components/responses/Conflict',
       },
@@ -702,9 +697,7 @@ export function createDeleteSectionFor(entity: TopLevelEntity, endpointName: End
       '404': {
         $ref: '#/components/responses/NotFound',
       },
-      '405': {
-        description: 'Method Is Not Allowed.',
-      },
+      '405': SNAPSHOT_METHOD_NOT_ALLOWED_RESPONSE_REFERENCE,
       '409': {
         $ref: '#/components/responses/Conflict',
       },

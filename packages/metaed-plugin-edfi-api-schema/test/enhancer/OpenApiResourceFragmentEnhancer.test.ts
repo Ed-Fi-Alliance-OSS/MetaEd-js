@@ -65,12 +65,21 @@ const changeVersionParameterRefs: string[] = [
   '#/components/parameters/MaxChangeVersion',
 ];
 
+const snapshotParameterRef = '#/components/parameters/Use-Snapshot';
+
+const snapshotNotFoundResponseRef = '#/components/responses/SnapshotNotFound';
+
+const snapshotMethodNotAllowedResponseRef = '#/components/responses/SnapshotMethodNotAllowed';
+
+const notFoundResponseRef = '#/components/responses/NotFound';
+
 const trackedChangeParameterRefs: string[] = [
   '#/components/parameters/MinChangeVersion',
   '#/components/parameters/MaxChangeVersion',
   '#/components/parameters/limit',
   '#/components/parameters/offset',
   '#/components/parameters/totalCount',
+  snapshotParameterRef,
 ];
 
 const cursorPagingParameterRefs: string[] = ['#/components/parameters/pageToken', '#/components/parameters/pageSize'];
@@ -111,6 +120,32 @@ function expectLiveChangeVersionFilterParameters(operation: Operation): void {
 function expectNoLiveChangeVersionFilterParameters(operation: Operation): void {
   const parameterRefs: string[] = parameterRefsFrom(operation);
   changeVersionParameterRefs.forEach((parameterRef: string) => expect(parameterRefs).not.toContain(parameterRef));
+}
+
+/**
+ * Asserts a snapshot-eligible GET operation advertises the reusable Use-Snapshot header parameter
+ * and documents the Snapshot Not Found 404.
+ */
+function expectSnapshotEligibleOperation(operation: Operation): void {
+  expect(parameterRefsFrom(operation)).toContain(snapshotParameterRef);
+  expect(operation.responses['404']).toEqual({ $ref: snapshotNotFoundResponseRef });
+}
+
+/**
+ * Asserts a mutating operation documents the snapshot-specific 405 and does not advertise the
+ * Use-Snapshot header parameter.
+ */
+function expectSnapshotMutationOperation(operation: Operation): void {
+  expect(parameterRefsFrom(operation)).not.toContain(snapshotParameterRef);
+  expect(operation.responses['405']).toEqual({ $ref: snapshotMethodNotAllowedResponseRef });
+}
+
+/**
+ * Asserts a by-id mutating operation keeps the ordinary Not Found 404, because a snapshot write is
+ * rejected with 405 before a snapshot lookup can fail.
+ */
+function expectOrdinaryNotFoundResponse(operation: Operation): void {
+  expect(operation.responses['404']).toEqual({ $ref: notFoundResponseRef });
 }
 
 /**
@@ -268,26 +303,25 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('students');
+    });
 
-      const serializedFragment: string = JSON.stringify(fragment);
-      expect(serializedFragment).not.toContain('Use-Snapshot');
-      expect(serializedFragment).not.toContain('NotFoundUseSnapshot');
-      expect(serializedFragment).not.toContain('snapshot');
-      expect(fragment?.paths?.['/ed-fi/students']?.get?.responses['404']).toEqual({
-        $ref: '#/components/responses/NotFound',
-      });
-      expect(fragment?.paths?.['/ed-fi/students/{id}']?.get?.responses['404']).toEqual({
-        $ref: '#/components/responses/NotFound',
-      });
-      expect(fragment?.paths?.['/ed-fi/students']?.post?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
-      expect(fragment?.paths?.['/ed-fi/students/{id}']?.put?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
-      expect(fragment?.paths?.['/ed-fi/students/{id}']?.delete?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
+    it('should document the snapshot contract on every eligible resource operation', () => {
+      const student = namespace.entity.domainEntity.get('Student');
+      const studentApiData = student.data.edfiApiSchema;
+      const fragment = studentApiData.openApiFragments[OpenApiDocumentType.RESOURCES] as OpenApiFragment;
+
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/students', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/students/{id}', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/students/deletes', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/students/keyChanges', 'get'));
+
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/students', 'post'));
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/students/{id}', 'put'));
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/students/{id}', 'delete'));
+
+      expectOrdinaryNotFoundResponse(operationFrom(fragment, '/ed-fi/students/{id}', 'put'));
+      expectOrdinaryNotFoundResponse(operationFrom(fragment, '/ed-fi/students/{id}', 'delete'));
+      expect(operationFrom(fragment, '/ed-fi/students', 'post').responses['404']).toBeUndefined();
     });
 
     it('should add live Change Query filters only to the GET-many operation', () => {
@@ -451,26 +485,24 @@ describe('OpenApiResourceFragmentEnhancer', () => {
       expect(fragment?.tags).toBeDefined();
       expect(fragment?.tags).toHaveLength(1);
       expect(fragment?.tags?.[0].name).toBe('gradeLevelDescriptors');
+    });
 
-      const serializedFragment: string = JSON.stringify(fragment);
-      expect(serializedFragment).not.toContain('Use-Snapshot');
-      expect(serializedFragment).not.toContain('NotFoundUseSnapshot');
-      expect(serializedFragment).not.toContain('snapshot');
-      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']?.get?.responses['404']).toEqual({
-        $ref: '#/components/responses/NotFound',
-      });
-      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.get?.responses['404']).toEqual({
-        $ref: '#/components/responses/NotFound',
-      });
-      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors']?.post?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
-      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.put?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
-      expect(fragment?.paths?.['/ed-fi/gradeLevelDescriptors/{id}']?.delete?.responses['405']).toEqual({
-        description: 'Method Is Not Allowed.',
-      });
+    it('should document the snapshot contract on every eligible descriptor operation', () => {
+      const descriptor = namespace.entity.descriptor.get('GradeLevel');
+      const descriptorApiData = descriptor.data.edfiApiSchema;
+      const fragment = descriptorApiData.openApiFragments[OpenApiDocumentType.DESCRIPTORS] as OpenApiFragment;
+
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/deletes', 'get'));
+      expectSnapshotEligibleOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/keyChanges', 'get'));
+
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors', 'post'));
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'put'));
+      expectSnapshotMutationOperation(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'delete'));
+
+      expectOrdinaryNotFoundResponse(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'put'));
+      expectOrdinaryNotFoundResponse(operationFrom(fragment, '/ed-fi/gradeLevelDescriptors/{id}', 'delete'));
     });
 
     it('should add live Change Query filters only to the descriptor GET-many operation', () => {
