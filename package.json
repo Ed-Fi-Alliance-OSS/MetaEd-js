@@ -3,7 +3,7 @@
   "description": "MetaEd for JavaScript",
   "private": true,
   "devDependencies": {
-    "@octokit/core": "^5.0.0",
+    "@octokit/core": "^7.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.4",
     "@typescript-eslint/eslint-plugin": "8.58.2",
