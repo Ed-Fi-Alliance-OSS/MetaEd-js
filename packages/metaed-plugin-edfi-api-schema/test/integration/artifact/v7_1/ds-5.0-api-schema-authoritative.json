@@ -110363,7 +110363,6 @@
             }
           ],
           "Namespace": [
-            "$.requiredAssessments[*].assessmentReference.namespace"
           ],
           "Staff": [
           ],
@@ -155276,7 +155275,6 @@
           "EducationOrganization": [
           ],
           "Namespace": [
-            "$.assessmentItems[*].assessmentItemReference.namespace",
             "$.assessmentReference.namespace",
             "$.parentObjectiveAssessmentReference.namespace"
           ],
@@ -247178,9 +247176,7 @@
             }
           ],
           "Namespace": [
-            "$.assessmentReference.namespace",
-            "$.items[*].assessmentItemReference.namespace",
-            "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace"
+            "$.assessmentReference.namespace"
           ],
           "Staff": [
           ],

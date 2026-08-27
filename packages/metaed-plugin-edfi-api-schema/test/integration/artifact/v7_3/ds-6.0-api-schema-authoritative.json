@@ -25083,7 +25083,6 @@
           "EducationOrganization": [
           ],
           "Namespace": [
-            "$.assessmentBatteryParts[*].assessmentBatteryPartReference.namespace",
             "$.assessmentReference.namespace"
           ],
           "Staff": [
@@ -25912,8 +25911,7 @@
           "EducationOrganization": [
           ],
           "Namespace": [
-            "$.assessmentReference.namespace",
-            "$.objectiveAssessments[*].objectiveAssessmentReference.namespace"
+            "$.assessmentReference.namespace"
           ],
           "Staff": [
           ],
@@ -62768,7 +62766,6 @@
           "EducationOrganization": [
           ],
           "Namespace": [
-            "$.certificationExams[*].certificationExamReference.namespace",
             "$.namespace"
           ],
           "Staff": [
@@ -178067,8 +178064,6 @@
             }
           ],
           "Namespace": [
-            "$.requiredAssessments[*].assessmentReference.namespace",
-            "$.requiredCertifications[*].certificationReference.namespace"
           ],
           "Staff": [
           ],
@@ -228489,9 +228484,7 @@
           "EducationOrganization": [
           ],
           "Namespace": [
-            "$.assessmentItems[*].assessmentItemReference.namespace",
-            "$.assessmentReference.namespace",
-            "$.parentObjectiveAssessments[*].parentObjectiveAssessmentReference.namespace"
+            "$.assessmentReference.namespace"
           ],
           "Staff": [
           ],
@@ -355769,9 +355762,7 @@
             }
           ],
           "Namespace": [
-            "$.assessmentReference.namespace",
-            "$.items[*].assessmentItemReference.namespace",
-            "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace"
+            "$.assessmentReference.namespace"
           ],
           "Staff": [
           ],
