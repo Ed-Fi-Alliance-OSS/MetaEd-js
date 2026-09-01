@@ -14,6 +14,7 @@ MetaEd now supports [Jsonnet](https://jsonnet.org/) configuration files in addit
 ## File Naming
 
 Configuration files can use either extension:
+
 - `.config.json` - Standard JSON configuration
 - `.config.jsonnet` - Jsonnet configuration with advanced features
 
@@ -26,6 +27,7 @@ Since JSON is a valid subset of Jsonnet, you can rename any `.config.json` file 
 ## Basic Example
 
 ### Original JSON
+
 ```json
 {
   "config": [
@@ -56,6 +58,7 @@ Since JSON is a valid subset of Jsonnet, you can rename any `.config.json` file 
 ```
 
 ### Improved Jsonnet
+
 ```jsonnet
 // Define common values as variables
 local namespace = "EdFi";
@@ -109,6 +112,7 @@ local enableFeature = std.extVar("ENABLE_FEATURE") == "true";
 ```
 
 Pass external variables via MetaEd configuration:
+
 ```javascript
 {
   externalVariables: {
@@ -120,7 +124,8 @@ Pass external variables via MetaEd configuration:
 
 ### Complex Configuration Example
 
-See [examples/edfiApiSchema.config.jsonnet](../examples/edfiApiSchema.config.jsonnet) for a comprehensive example showing:
+See [examples/edfiApiSchema.config.jsonnet](../../metaed-plugin-edfi-api-schema/examples/edfiApiSchema.config.jsonnet) for a comprehensive example showing:
+
 - Helper functions for creating rules
 - Version range constants
 - Conditional configuration
