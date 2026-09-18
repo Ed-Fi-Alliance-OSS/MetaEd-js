@@ -134,6 +134,7 @@ import { validate as subdomainMustNotDuplicateDomainItems } from './validator/Su
 import { validate as subdomainParentDomainNameMustMatchADomain } from './validator/Subdomain/SubdomainParentDomainNameMustMatchADomain';
 
 import { validate as extensionNamespacePropertiesShouldNotHaveSameRoleNameAsPropertyName } from './validator/CrossProperty/ExtensionNamespacePropertiesShouldNotHaveSameRoleNameAsPropertyName';
+import { validate as noPagingPropertyNames } from './validator/CrossProperty/NoPagingPropertyNames';
 
 import { enhance as abstractGeneralStudentProgramAssociationDiminisher } from './diminisher/AbstractGeneralStudentProgramAssociationDiminisher';
 
@@ -339,6 +340,7 @@ function validatorList(): Validator[] {
     subdomainParentDomainNameMustMatchADomain,
 
     extensionNamespacePropertiesShouldNotHaveSameRoleNameAsPropertyName,
+    noPagingPropertyNames,
   ];
 }
 

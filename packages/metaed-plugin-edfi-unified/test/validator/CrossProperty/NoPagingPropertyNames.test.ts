@@ -12,6 +12,7 @@ import {
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, SemVer, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CrossProperty/NoPagingPropertyNames';
+import { initialize } from '../../../src/index';
 
 /**
  * A MetaEd environment whose edfiUnified plugin targets the given Ed-Fi API version. This is the technology
@@ -321,5 +322,11 @@ describe('when the edfiUnified plugin environment is absent and using every rese
 
   it('should have no validation failures', (): void => {
     expect(failures).toHaveLength(0);
+  });
+});
+
+describe('when initializing the unified plugin', (): void => {
+  it('should register the validator', (): void => {
+    expect(initialize().validator).toContain(validate);
   });
 });
