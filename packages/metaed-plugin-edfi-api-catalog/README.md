@@ -58,12 +58,26 @@ suitable for documentation and review purposes. Both resources and descriptors a
 included; reference properties use `dataType = 'reference'`, and the key fields of the
 referenced entity get their own rows under the reference's dotted path.
 
+- **Project and resource names.** The Project column holds the project endpoint name and the
+  Resource Name column holds the resource endpoint name, on both worksheets.
+- **`id` omission.** Any property named `id`, at every nesting level, is omitted from the
+  Properties worksheet.
+- **Recursion.** The generator recurses into common sub-schemas and reference schemas
+  referenced by a direct `$ref`, and recurses into array items only when they are common
+  sub-schemas (using the singularized array property name as the path segment). Nested
+  property origins are represented with dot-separated property paths.
+- **Hard-coded reference schemas.** The generator contains hard-coded handling for the
+  EducationOrganization and SchoolYear reference schemas. EducationOrganization is abstract and
+  has no resource of its own, so no fragment contains its `_Reference` schema. The SchoolYear
+  reference schema does exist as `EdFi_SchoolYearTypeReference`, but the generator's
+  `_Reference` suffix filter misses it.
+
 ## Implementation Details
 
 - The plugin has no enhancers or validators
 - It contains a single generator that reads from `namespace.data.edfiApiSchema`
 - Both regular resources and descriptors are included in the catalog
 - Reference properties are included with `dataType = 'reference'`
-- Reference schemas for `EducationOrganization` and `SchoolYearType` are hard-coded, because they cannot be discovered from the OpenAPI fragments
+- Reference schemas for `EducationOrganization` and `SchoolYearType` are hard-coded (see Business Logic for why each is not picked up from the OpenAPI fragments)
 - Any property named `id`, at any nesting level, is excluded from the Properties worksheet
 - Properties are extracted from OpenAPI fragments (preferring 'resources', falling back to 'descriptors')

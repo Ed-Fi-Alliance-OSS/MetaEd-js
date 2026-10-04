@@ -19,3 +19,7 @@ Builds the Ed-Fi ODS/API domain model by running a large set of API-model enhanc
 that derive resource definitions, associations, and metadata. Serializes the enriched
 model to JSON for consumption by the ODS/API application. Also includes validators for
 API-specific modeling rules.
+
+- Warns when required choice properties appear in extensions.
+- Rejects extension subclasses except EducationOrganization domain entity subclasses and
+  GeneralStudentProgramAssociation association subclasses.

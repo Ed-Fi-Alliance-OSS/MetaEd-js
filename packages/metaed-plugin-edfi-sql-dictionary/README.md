@@ -22,3 +22,6 @@ The workbook contains two sheets: Tables (table names and descriptions) and Colu
 Collects ODS relational table and column metadata from all namespaces, sorts entries
 alphabetically, and writes a two-sheet Excel data dictionary for documentation and
 database review purposes.
+
+- Table names, column names, and data types use the SQL Server dialect, read from the
+  `data.edfiOdsSqlServer` model data contributed by `metaed-plugin-edfi-ods-sqlserver`.
