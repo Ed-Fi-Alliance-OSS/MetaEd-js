@@ -20,3 +20,7 @@ constraints are violated; the other 6 report deprecation warnings (not errors) f
 deprecated entities, extensions, subclasses, properties, domain item references, and
 interchange item references. Deprecation warnings for non-extension namespaces are
 reported only when `allianceMode` is enabled.
+
+- The error-level validators cover merge directive paths and property compatibility,
+  out-reference paths that need a merge directive or role name, common-property identity
+  requirements, identity-name conflicts, and self-referencing property role names.

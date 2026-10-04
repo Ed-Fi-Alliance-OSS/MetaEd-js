@@ -34,3 +34,38 @@ enhance → generate. Output is written once, after the plugin loop, and only if
 failure occurred while running plugins. Defines the plugin contract (validators, enhancers,
 generators), the domain model types, and the shared infrastructure for file I/O,
 logging, and configuration resolution.
+
+- **Pipeline stages.** The full stage order is: initialization, plugin setup (target
+  technology versions), file loading, syntax validation, file indexing, parse tree building,
+  model building (builder walk), namespace initialization, plugin configuration loading,
+  per-plugin validators/enhancers/generators, output writing, and validation file mapping.
+- **Early return.** The pipeline returns early, skipping all later stages including validation
+  file mapping, when file loading fails, plugin configuration loading fails or records an
+  error-category failure, or output writing fails. Validation file mapping is also where
+  validation failures are logged, so these early returns suppress validation failure output
+  (for example, plugin configuration validation messages are not printed). Known issue:
+  METAED-1676.
+- **Syntax validation.** Syntax validation failures are collected per loaded file before the
+  aggregate parse tree is built, and are included in the final validation result. When
+  `stopOnValidationFailure` is enabled, existing error-category failures prevent plugin
+  enhancers, plugin generators, and output writing.
+- **File loading.** Files are loaded recursively from each project path when the extension is
+  `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED`. Loading fails the build when no such files are
+  found in any configured input directory.
+- **Output location.** Output goes to `artifactDirectory` (relative values resolved from the
+  last input project path) or, when empty, to `MetaEdOutput` under the last input project path.
+- **Output writing.** The writer creates directories recursively and writes each
+  `GeneratedOutput` to `{namespace}/{folderName}/{fileName}`, or `{folderName}/{fileName}` when
+  the namespace is empty. An output with neither a non-empty `resultString` nor a `resultStream`
+  produces no file.
+- **Output safety guards.** Before writing, an existing output directory is deleted only if the
+  output path contains the substring `MetaEdOutput`; otherwise the writer logs an error and fails.
+  This guard is path-name based, not a check of directory contents. The writer also refuses to
+  write (and fails) when `.metaed` files (any of the casings above) are found in the output
+  location.
+- **Project scanner.** `ProjectLoader` (`src/project/ProjectLoader.ts`) implements the
+  `package.json` `metaEdProject` scanner used by `metaed-odsapi-deploy-console` source-scan
+  mode; its discovery, namespace derivation, sorting (METAED-1675), de-duplication, and
+  project-name override rules are documented in that package's README.
+- **Compilation target.** Packages are compiled from TypeScript to CommonJS modules targeting
+  ES2017.

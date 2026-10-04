@@ -30,6 +30,11 @@ Assembles the default plugin set, resolves the data standard version from projec
 metadata, builds the pipeline state, and runs all registered validators, enhancers,
 and generators in sequence. Logs the total elapsed time when the run completes.
 
+- The license acceptance option is required by yargs, but its value is not validated and
+  acceptance is not persisted.
+- Pipeline stage order, early-return behavior (METAED-1676), and output safety guards are
+  documented in the `metaed-core` README.
+
 ## Usage
 
 1. Build the project from the repo root with `npm run build`.

@@ -33,3 +33,9 @@ as `{prefix}-{projectExtension}-{namespaceName}-{suffix}.sql`, or
 Consumes the relational ODS model produced by `metaed-plugin-edfi-ods-relational` and
 emits PostgreSQL-specific DDL for schemas, tables, foreign keys, constraints, seed data,
 indexes, and education organization authorization index scripts.
+
+- Schema, table, foreign key, and extended property scripts are written for every namespace
+  without checking for corresponding model data; enumeration and school year scripts are
+  written only when such rows exist.
+- The version-gated education organization authorization index and aggregate ID column scripts
+  (`>=7.1.0` / `>=7.3.0`) are emitted only when table data exists.

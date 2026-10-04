@@ -32,3 +32,9 @@ Table-level scripts are generated only when the namespace has the required model
 Runs its own PostgreSQL-specific enhancers to build the change-query model, then its
 generators, several of which delegate to helpers in the common change-query package. Emits DDL using PostgreSQL syntax for sequences,
 triggers, and indexes.
+
+- Change schema and change version sequence scripts are generated without a model-data check:
+  for every namespace below technology version `7.3.0`, and for the core namespace only (skipped
+  for extension namespaces) at `>=7.3.0`. Table-level scripts and indirect update cascade
+  triggers are generated only when the required model data exists. Tracked delete schema
+  scripts are skipped for `<3.4.0 || >5.4.0`.

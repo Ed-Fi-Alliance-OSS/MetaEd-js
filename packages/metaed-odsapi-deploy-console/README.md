@@ -39,4 +39,33 @@ Two operating modes:
   existing artifacts in the output directory may be copied.
 - **Config-based mode** (`--config`): uses the supplied `metaEdConfiguration` with a
   pre-built `artifactDirectory` and runs only the deploy tasks — the build pipeline is
-  not executed.
+  not executed. The supplied configuration is copied without merging defaults from
+  `newMetaEdConfiguration`, and the `--suppressPrereleaseVersion` CLI option is not applied
+  to it. As a result, a missing `suppressPrereleaseVersion` means no prerelease suppression,
+  and a missing `defaultPluginTechVersion` without `-x` causes version-gated deploy tasks
+  (those requiring a minimum version) to be skipped.
+
+Source-scan project discovery (implemented by `ProjectLoader` in `metaed-core`):
+
+- Reads `package.json` files containing a `metaEdProject` object and includes the package
+  `description` when present.
+- Derives `namespaceName` by removing non-alphanumeric characters from `projectName`, only
+  when the result starts with an uppercase letter; otherwise the namespace is empty.
+- Scans subdirectories only while no projects have been discovered yet, so mixed source
+  inputs can miss nested projects after an earlier project has already been found.
+- De-duplicates discovered projects by project name, so two projects with the same project
+  name cannot both be represented in one deploy build.
+- Sorts discovered projects alphabetically by `projectName`. Known issue (METAED-1675): the
+  sort is intended to place a project whose `projectName` is exactly `EdFi` first, but because
+  of a `R.pathEq` argument-order bug under ramda 0.32
+  (`packages/metaed-core/src/project/ProjectLoader.ts`), that rule never matches.
+- `--projectNames` overrides update discovered project names and derived namespaces in
+  discovery order. Override entries equal to the existing project name are skipped, and all
+  overrides are ignored when more `projectNames` are supplied than projects discovered.
+
+Other notes:
+
+- The license acceptance option is required by yargs, but its value is not validated and
+  acceptance is not persisted.
+- When a deploy task fails, the console sets a non-zero exit code but does not print the
+  returned `failureMessage` (METAED-1678).

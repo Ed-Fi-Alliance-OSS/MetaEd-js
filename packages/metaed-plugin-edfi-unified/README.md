@@ -19,3 +19,8 @@ constraints, extension correctness, etc.) and applies core model enhancements th
 entities, properties, and relationships into forms required by downstream generators.
 Provides the shared model foundation for interchange schemas, type hierarchies, and
 cross-entity relationships that multiple output plugins depend on.
+
+- Validation coverage includes unresolved references, duplicate names, illegal extensions and
+  subclasses, redeclared properties, invalid identity declarations and renames, invalid
+  domain/subdomain/interchange membership, invalid namespace casing, and invalid shared/simple
+  property bounds.

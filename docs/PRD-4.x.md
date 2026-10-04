@@ -4,12 +4,14 @@
 - Version: 4.8
 - Status: completed
 - Repository: Ed-Fi-Alliance-OSS/MetaEd-Js
-- Platform and runtime: Node.js packages compiled from TypeScript to ES2017/CommonJS; pull request and npm publish CI run Node 22
+- Platform and runtime: Node.js packages (CommonJS); pull request and npm publish CI run Node 22
 
 > [!TIP]
 > This PRD defines the product requirements for MetaEd version 4.8, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
 >
 > It does _not cover_ the MetaEd DSL syntax and semantics, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
+>
+> Package-level behavior details are documented in each package's `README.md` under Business Logic.
 
 ## 1. Product Overview
 
@@ -116,10 +118,10 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **FR-CFG-1**: The build CLI SHALL accept a JSON configuration file through `-c` / `--config` containing a top-level `metaEdConfiguration` object.
 - **FR-CFG-2**: `metaEdConfiguration` SHALL support `artifactDirectory`, `deployDirectory`, `projects`, `projectPaths`, `pluginConfigDirectories`, `defaultPluginTechVersion`, `allianceMode`, and `suppressPrereleaseVersion`; it SHALL accept `pluginTechVersion` but ignore it (see §6.2); it SHALL support an optional `externalVariables` field for Jsonnet configuration evaluation.
 - **FR-CFG-3**: The pipeline SHALL require `projects` and `projectPaths` to have the same length and SHALL map each project metadata entry to the corresponding source path.
-- **FR-CFG-4**: The file loader SHALL recursively load files with `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED` extensions from each configured project path.
+- **FR-CFG-4**: The file loader SHALL recursively load `.metaed` files (case-insensitive extension) from each configured project path.
 - **FR-CFG-5**: The build and deploy CLIs SHALL require exactly one Data Standard project, identified by namespace `EdFi`; no Data Standard project or multiple Data Standard projects SHALL cause failure.
-- **FR-CFG-6**: The project scanner used by the deploy console source mode SHALL read `package.json` files containing `metaEdProject`, derive `namespaceName` by removing non-alphanumeric characters from `projectName` only when the result starts with an uppercase letter, include the package description when present, sort discovered projects alphabetically by project name (see §6.2 regarding the intended EdFi-first sort), and de-duplicate discovered projects by project name.
-- **FR-CFG-7**: The project scanner SHALL accept optional `projectNames` overrides that update discovered project names and derived namespaces in discovery order; override entries equal to the existing project name SHALL be skipped, and all overrides SHALL be ignored when more `projectNames` are supplied than projects discovered.
+- **FR-CFG-6**: Deploy console source mode SHALL discover projects from `package.json` files containing `metaEdProject` metadata, deriving each project's namespace from its project name (see §6.2 for discovery limitations).
+- **FR-CFG-7**: Source-mode project discovery SHALL accept optional `projectNames` overrides for discovered project names.
 - **FR-CFG-8**: Plugin configuration files SHALL be discovered from configured `pluginConfigDirectories`, or from input project directories when no plugin config directories are configured, as `{pluginShortName}.config.jsonnet` or `{pluginShortName}.config.json`, with Jsonnet preferred when both exist.
 - **FR-CFG-9**: Plugin configuration loading SHALL support `externalVariables` for Jsonnet evaluation.
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
@@ -135,14 +137,14 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **FR-BUILD-3**: The build CLI SHALL accept `-c` / `--config` to specify a JSON configuration file.
 - **FR-BUILD-4**: The build CLI SHALL accept `-x` / `--defaultPluginTechVersion` to override the configured default technology version for all plugins.
 - **FR-BUILD-5**: The default plugin technology version SHALL be `6.0.0` when not overridden by configuration or CLI argument.
-- **FR-BUILD-6**: The build CLI SHALL support `--suppressPrereleaseVersion`, defaulting to `true`. The CLI value SHALL be applied only when no configuration object is supplied; in config-based execution the value from `metaEdConfiguration` is used. The option affects generated version data, not artifact output paths.
-- **FR-BUILD-7**: The build pipeline SHALL run initialization, plugin setup, file loading, syntax validation, file indexing, parse tree building, model building, namespace initialization, plugin configuration loading, validators, enhancers, generators, output writing, and validation file mapping, in that order. The pipeline SHALL return early, skipping all later stages including validation file mapping and logging, when file loading fails, plugin configuration loading fails or reports an error, or output writing fails (see §6.2).
+- **FR-BUILD-6**: The build CLI SHALL support `--suppressPrereleaseVersion`, defaulting to `true`; when a configuration file is supplied, the configuration's `suppressPrereleaseVersion` value governs instead. The option affects generated version data, not artifact output paths.
+- **FR-BUILD-7**: The build pipeline SHALL load source files, validate, enhance, and generate artifacts through each plugin, and write output, in that order (see §5.1). Some failures end the run before validation messages are reported (see §6.2, METAED-1676).
 - **FR-BUILD-8**: The build pipeline SHALL stop plugin execution on validation errors when `stopOnValidationFailure` is enabled.
 - **FR-BUILD-9**: The build CLI SHALL exit with code `0` only when no validation error and no pipeline failure occurred; otherwise it SHALL exit with code `1`.
-- **FR-BUILD-10**: Generated outputs SHALL be written under the configured artifact directory or a `MetaEdOutput` directory under the last input project path. Relative `artifactDirectory` values SHALL be resolved from the last input project path. Outputs with an empty namespace SHALL be written directly under their folder name, and outputs with neither a non-empty result string nor a result stream SHALL produce no file.
+- **FR-BUILD-10**: Generated outputs SHALL be written under the configured artifact directory or a `MetaEdOutput` directory under the last input project path. Relative `artifactDirectory` values SHALL be resolved from the last input project path.
 - **FR-BUILD-11**: Output writing SHALL group generated files by namespace, with the generator-provided folder path under that namespace.
-- **FR-BUILD-12**: Output writing SHALL refuse to delete an existing output directory unless the path contains `MetaEdOutput`.
-- **FR-BUILD-13**: Output writing SHALL refuse to write when `.metaed` files are found in the output location.
+- **FR-BUILD-12**: Output writing SHALL NOT delete MetaEd source: it SHALL replace an existing output directory only when that directory's path identifies it as a MetaEd output location (contains `MetaEdOutput`), and SHALL otherwise fail.
+- **FR-BUILD-13**: Output writing SHALL NOT overwrite MetaEd source: it SHALL refuse to write when `.metaed` files are found in the output location.
 
 ### 3.3 Generated Artifact Families
 
@@ -153,7 +155,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 #### 3.3.2 API Schema
 
 - **FR-API-SCHEMA-1**: The build SHALL generate API Schema JSON files per namespace as `ApiSchema/ApiSchema.json` when `projectExtension` is empty or `ApiSchema/ApiSchema-{projectExtension}.json` when it is not, through `metaed-plugin-edfi-api-schema`.
-- **FR-API-SCHEMA-2**: API Schema output SHALL include `apiSchemaVersion` and a project schema containing project identity, endpoint name, `compatibleDsRange` (set to the exact Data Standard version for extension projects, not a range, and `null` for the core project), description, resource schemas, resource-name mappings, case-insensitive endpoint-name mappings, abstract resources, education organization information, domains, extension-project flag, and core OpenAPI base documents where generated. Resource schemas SHALL include resource name, descriptor, school-year-enumeration, resource-extension, and subclass flags (with superclass information for subclasses), `allowIdentityUpdates`, generated JSON schema-for-insert data, identity JSON paths, document path mappings, equality constraints, type-coercion JSON paths, decimal validation information, securable elements, authorization pathways, array uniqueness constraints, OpenAPI fragments, query-field mappings where applicable, `commonExtensionOverrides` for extension projects, and optional relational naming metadata where generated. For the core project, the school year enumeration SHALL be emitted as a hard-coded `schoolYearTypes` entry in `resourceSchemas`; the project-level `schoolYearEnumeration` field is never populated.
+- **FR-API-SCHEMA-2**: API Schema output SHALL contain an `apiSchemaVersion` and a project schema describing the project and its resource schemas in the format documented by the DMS (see the note below).
 
 > [!TIP]
 > The API Schema JSON files are intended for use by the Data Management Service, aka DMS (part of Ed-Fi API v8).
@@ -164,15 +166,15 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 - **FR-ODS-SQL-1**: The build SHALL generate SQL Server ODS structure and data scripts under `Database/SQLServer/ODS/`.
 - **FR-ODS-SQL-2**: The build SHALL generate PostgreSQL ODS structure and data scripts under `Database/PostgreSQL/ODS/`.
-- **FR-ODS-SQL-3**: SQL ODS outputs SHALL include schema, table, foreign key, and extended property scripts for every namespace, without checking for corresponding model data; enumeration and school year scripts SHALL be written only when enumeration or school year rows exist. Core file names SHALL use `{prefix}-{suffix}.sql`, and extension file names SHALL include namespace context as `{prefix}-{projectExtension}-{namespaceName}-{suffix}.sql` or `{prefix}-{namespaceName}-{suffix}.sql` when `projectExtension` is empty.
+- **FR-ODS-SQL-3**: SQL ODS outputs SHALL include schema, table, foreign key, and extended property scripts, plus enumeration and school year seed-data scripts when such data exists; extension script file names SHALL include the namespace.
 - **FR-ODS-SQL-4**: SQL ODS outputs SHALL include ID column unique index scripts for tables that require generated ID indexes.
-- **FR-ODS-SQL-5**: For technology versions `>=7.1.0`, SQL ODS outputs SHALL include education organization authorization index creation scripts when table data exists.
-- **FR-ODS-SQL-6**: For technology versions `>=7.3.0`, SQL ODS outputs SHALL include aggregate ID column scripts and education organization authorization index update scripts when table data exists.
+- **FR-ODS-SQL-5**: For technology versions `>=7.1.0`, SQL ODS outputs SHALL include education organization authorization index creation scripts.
+- **FR-ODS-SQL-6**: For technology versions `>=7.3.0`, SQL ODS outputs SHALL include aggregate ID column scripts and education organization authorization index update scripts.
 - **FR-ODS-SQL-7**: SQL-generating plugins SHALL include Apache-2.0 license headers in supported SQL templates only when `allianceMode` is enabled and the relevant target technology version satisfies `>=5.0.0`.
 
 #### 3.3.4 Change Query SQL
 
-- **FR-CHANGE-QUERY-SQL-1**: The change query plugins SHALL generate change schema, change version sequence, change version column/index, tracked delete schema, tracked delete table, delete tracking trigger, change version/key change trigger, and indirect update cascade trigger scripts under `Database/{SQLServer|PostgreSQL}/ODS/Structure/Changes/`. Tracked delete schema scripts SHALL be skipped for target technology versions `<3.4.0 || >5.4.0`. For target technology versions below `7.3.0`, change schema and change version sequence scripts SHALL be generated for every namespace without a model-data check; for `>=7.3.0`, they SHALL be generated for the core namespace and skipped for extension namespaces. Table-level scripts and indirect update cascade triggers SHALL be generated when required model data exists.
+- **FR-CHANGE-QUERY-SQL-1**: The change query plugins SHALL generate change-tracking SQL (change schema and version sequence, change version columns and indexes, tracked deletes, and supporting triggers) under `Database/{SQLServer|PostgreSQL}/ODS/Structure/Changes/`, with the script set varying by target technology version.
 
 #### 3.3.5 Record Ownership SQL
 
@@ -190,26 +192,26 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 #### 3.3.8 Data Dictionaries
 
-- **FR-DICTIONARY-1**: The SQL dictionary plugin SHALL generate `Documentation/DataDictionary/SqlDataDictionary.xlsx` with table and column worksheets derived from relational ODS model data, using SQL Server-dialect table names, column names, and data types (`data.edfiOdsSqlServer`).
+- **FR-DICTIONARY-1**: The SQL dictionary plugin SHALL generate `Documentation/DataDictionary/SqlDataDictionary.xlsx` with table and column worksheets derived from relational ODS model data, using SQL Server-dialect table names, column names, and data types.
 - **FR-DICTIONARY-2**: The XML dictionary plugin SHALL generate `Documentation/DataDictionary/XmlDataDictionary.xlsx` with elements, complex types, and simple types worksheets derived from XSD model data.
 
 #### 3.3.9 API Catalog
 
 - **FR-API-CATALOG-1**: The API Catalog plugin SHALL generate `Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx`.
 - **FR-API-CATALOG-2**: The API Catalog SHALL include `Resources` and `Properties` worksheets.
-- **FR-API-CATALOG-3**: The API Catalog `Resources` worksheet SHALL include project (the project endpoint name), version, resource name (the resource endpoint name), resource description, and domains.
-- **FR-API-CATALOG-4**: The API Catalog `Properties` worksheet SHALL include project (the project endpoint name), version, resource name (the resource endpoint name), property name, property description, data type, min length, max length, validation regular expression, identity key flag, nullable flag, and required flag.
-- **FR-API-CATALOG-5**: The API Catalog SHALL omit any property named `id`, at every nesting level, from the properties worksheet.
-- **FR-API-CATALOG-6**: The API Catalog SHALL recurse into common sub-schemas and reference schemas referenced by a direct `$ref`, SHALL recurse into array items only when they are common sub-schemas (using the singularized array property name as the path segment), and SHALL represent nested property origins with dot-separated property paths.
+- **FR-API-CATALOG-3**: The API Catalog `Resources` worksheet SHALL include project, version, resource name, resource description, and domains.
+- **FR-API-CATALOG-4**: The API Catalog `Properties` worksheet SHALL include project, version, resource name, property name, property description, data type, min length, max length, validation regular expression, identity key flag, nullable flag, and required flag.
+- **FR-API-CATALOG-5**: The API Catalog SHALL omit `id` properties from the `Properties` worksheet.
+- **FR-API-CATALOG-6**: The API Catalog SHALL list nested properties from common sub-schemas and references using dot-separated property paths.
 
 ### 3.4 Model Validation
 
-- **FR-VAL-1**: The pipeline SHALL collect syntax validation failures per loaded file before building the aggregate parse tree and SHALL include them in the final validation result; when `stopOnValidationFailure` is enabled, existing error-category failures SHALL prevent plugin enhancers, plugin generators, and output writing.
-- **FR-VAL-2**: The unified plugin SHALL validate core model relationships, including unresolved references, duplicate names, illegal extensions and subclasses, redeclared properties, invalid identity declarations and renames, invalid domain/subdomain/interchange membership, invalid namespace casing, and invalid shared/simple property bounds.
-- **FR-VAL-3**: The unified advanced plugin SHALL validate merge directive paths and property compatibility, out-reference paths that need a merge directive or role name, common-property identity requirements, identity-name conflicts, and self-referencing property role names; it SHALL also report deprecation warnings for deprecated entities, extensions, subclasses, properties, domain item references, and interchange item references.
+- **FR-VAL-1**: The pipeline SHALL report syntax validation failures in the build's validation result; when `stopOnValidationFailure` is enabled, error-category failures SHALL prevent enhancement, generation, and output writing.
+- **FR-VAL-2**: The unified plugin SHALL validate core model relationships, including references, naming, extensions and subclasses, identities, domain/interchange membership, and property bounds.
+- **FR-VAL-3**: The unified advanced plugin SHALL validate merge directives, role names, and common-property identity rules, and SHALL report deprecation warnings for use of deprecated model elements.
 - **FR-VAL-4**: The ODS relational plugin SHALL warn for properties named `Discriminator` when the target technology version is `>=5.1.0`.
 - **FR-VAL-5**: The change query plugin SHALL reject namespaces named `Changes`, case-insensitively, because that name is reserved by generated change query artifacts.
-- **FR-VAL-6**: The ODS/API plugin SHALL warn when required choice properties appear in extensions and SHALL reject unsupported extension subclasses except EducationOrganization domain entity subclasses and GeneralStudentProgramAssociation association subclasses.
+- **FR-VAL-6**: The ODS/API plugin SHALL validate ODS/API-specific extension restrictions, including unsupported extension subclasses.
 - **FR-VAL-7**: The XSD plugin SHALL suppress core/extension XSD and interchange generation for a namespace with duplicate entity names in dependency namespaces and SHALL report a warning through the duplicate-name validator; `SchemaAnnotation.xsd` SHALL still be generated.
 - **FR-VAL-8**: Deprecation validators SHALL report warnings for extension namespace elements, and SHALL report warnings for non-extension namespace elements only when `allianceMode` is enabled.
 
@@ -218,21 +220,28 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **FR-DEPLOY-1**: `@edfi/metaed-odsapi-deploy-console` SHALL run from Node.js and execute deploy tasks from `@edfi/metaed-odsapi-deploy`.
 - **FR-DEPLOY-2**: The deploy CLI SHALL require `-a` / `--accept-license`.
 - **FR-DEPLOY-3**: The deploy CLI SHALL accept configuration through `-c` / `--config`.
-- **FR-DEPLOY-4**: When no configuration is supplied, the deploy CLI SHALL use `-s` / `--source` and `-p` / `--projectNames` to scan project source directories, build artifacts into `MetaEdOutput` under the last resolved project path, and then deploy to the `-t` / `--target` directory. Only `-s` and `-p` are checked; the CLI does not enforce that `-t` is supplied.
+- **FR-DEPLOY-4**: When no configuration is supplied, the deploy CLI SHALL use `-s` / `--source` and `-p` / `--projectNames` to scan project source directories, build artifacts into `MetaEdOutput` under the last resolved project path, and then deploy to the `-t` / `--target` directory (`-t` is not enforced).
 - **FR-DEPLOY-5**: The deploy CLI SHALL accept `-x` / `--defaultPluginTechVersion` to override the configured default technology version for build and deploy behavior.
-- **FR-DEPLOY-6**: In source-scan mode, the deploy CLI SHALL support `--suppressPrereleaseVersion`, defaulting to `true` when the option is not supplied; in config-based mode, deploy SHALL use the `suppressPrereleaseVersion` value supplied by `metaEdConfiguration`.
+- **FR-DEPLOY-6**: The deploy CLI SHALL support `--suppressPrereleaseVersion` in source-scan mode, defaulting to `true`; in config-based mode, the configuration's `suppressPrereleaseVersion` value governs (see §6.2).
 - **FR-DEPLOY-7**: The deploy CLI SHALL accept `--core` to deploy core artifacts in addition to extension artifacts.
 - **FR-DEPLOY-8**: The deploy CLI SHALL accept `--suppressDelete` to skip deletion of existing extension artifact directories.
-- **FR-DEPLOY-9**: The deploy CLI SHALL accept `--additionalMssqlScriptsDirectory` and `--additionalPostgresScriptsDirectory`; when a core or extension artifact copy task runs for a supported `defaultPluginTechVersion`, deploy SHALL copy those scripts into the corresponding deployed ODS data folders.
-- **FR-DEPLOY-10**: Unless `defaultPluginTechVersion` satisfies `<3.0.0`, deploy SHALL check that extension C# project directories exist under `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/` for each immediate entry (directory or file) in the artifact directory except `ApiSchema`, `Documentation`, and `EdFi`, where `{name}` is the artifact entry name (normally the namespace folder name).
-- **FR-DEPLOY-11**: Unless suppressed, for `defaultPluginTechVersion` values `>=3.3.0` deploy SHALL remove existing unversioned `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/Artifacts` directories, where `{name}` is each artifact directory entry name as in FR-DEPLOY-10; the `>=7.0.0` versioned layout is not removed.
-- **FR-DEPLOY-12**: Core artifact copy SHALL run only when `--core` is supplied. For `defaultPluginTechVersion` satisfying `>=5.4.0 <7.0.0`, the V6 core task SHALL copy into the unversioned `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/` layout; for `>=7.0.0`, the versioned layout in FR-DEPLOY-14 SHALL be used.
-- **FR-DEPLOY-13**: Extension artifact copy SHALL run for `defaultPluginTechVersion` satisfying `>=5.4.0`. For `>=5.4.0 <7.0.0`, the V6 extension task SHALL copy into the unversioned `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Artifacts/` layout; for `>=7.0.0`, the versioned layout in FR-DEPLOY-15 SHALL be used.
-- **FR-DEPLOY-14**: Core deploy SHALL copy from artifact namespace `EdFi` into `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/{dataStandardVersion}/Artifacts/`.
-- **FR-DEPLOY-15**: Extension deploy SHALL copy each non-EdFi project from an artifact source folder named by `projectName` into `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/`.
-- **FR-DEPLOY-16**: For ODS/API technology versions satisfying `>=7.1.0`, deploy SHALL format Data Standard versions with prerelease suppression according to `suppressPrereleaseVersion`; suppression formats a valid semver as `major.minor.0`, removing the prerelease identifier and also zeroing the patch version.
-- **FR-DEPLOY-17**: Deploy SHALL refresh existing extension `EdFi.Ods.Extensions.{name}.csproj` files, where `{name}` is each artifact directory entry name as in FR-DEPLOY-10, by updating their filesystem modification timestamp after copy tasks run.
-- **FR-DEPLOY-18**: For `defaultPluginTechVersion` values `>=3.3.0`, deploy SHALL warn when legacy `SupportingArtifacts` directories exist for the standard or extension projects.
+- **FR-DEPLOY-9**: The deploy CLI SHALL accept `--additionalMssqlScriptsDirectory` and `--additionalPostgresScriptsDirectory` and SHALL copy those scripts into the deployed ODS data folders.
+- **FR-DEPLOY-10**: Before copying, deploy SHALL verify that the target ODS/API source tree contains an `EdFi.Ods.Extensions.{name}` project for each generated extension artifact folder.
+- **FR-DEPLOY-11**: Unless `--suppressDelete` is supplied (FR-DEPLOY-8), deploy SHALL remove previously deployed extension artifacts in the unversioned layout before copying.
+- **FR-DEPLOY-12**: Deploy SHALL copy core artifacts only when `--core` is supplied, into the core target for the selected technology version:
+
+  | `defaultPluginTechVersion` | Core target | Extension target |
+  | --- | --- | --- |
+  | `<5.4.0` | nothing copied | nothing copied |
+  | `>=5.4.0 <7.0.0` | `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/` | `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Artifacts/` |
+  | `>=7.0.0` | `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/{dataStandardVersion}/Artifacts/` | `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/` |
+
+- **FR-DEPLOY-13**: Deploy SHALL copy extension artifacts into the extension target for the selected technology version (see the FR-DEPLOY-12 table).
+- **FR-DEPLOY-14**: Core deploy SHALL copy from the `EdFi` artifact namespace folder.
+- **FR-DEPLOY-15**: Extension deploy SHALL copy each non-EdFi project from the artifact folder named by its `projectName` (see §6.2, METAED-1678).
+- **FR-DEPLOY-16**: For technology versions `>=7.1.0`, the Data Standard version used in deploy paths SHALL honor `suppressPrereleaseVersion` (formatted as `major.minor.0`).
+- **FR-DEPLOY-17**: Deploy SHALL refresh the timestamps of existing extension `EdFi.Ods.Extensions.{name}.csproj` files after copying.
+- **FR-DEPLOY-18**: Deploy SHALL warn when legacy `SupportingArtifacts` directories exist in the target tree.
 - **FR-DEPLOY-19**: Deploy SHALL skip a generated source folder when that folder is absent rather than failing the entire deploy.
 - **FR-DEPLOY-20**: Deploy SHALL map generated folders to ODS/API artifact folders as follows:
   - `ApiMetadata/` → `Metadata/`
@@ -247,9 +256,9 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### 3.6 API Schema Packaging Automation
 
 - **FR-PKG-1**: The repository SHALL create MetaEd build configuration files for API Schema packaging automation using `eng/ApiSchema/CreateMetaEdConfig.ps1`.
-- **FR-PKG-2**: API Schema packaging configuration generation SHALL write `eng/ApiSchema/MetaEdConfig.json` with `artifactDirectory` set to the packaging `MetaEdOutput` path, a core namespace `EdFi` project named `Ed-Fi`, an optional extension project, `defaultPluginTechVersion`, `allianceMode` set to `true`, and `suppressPrereleaseVersion` set to `true`. Extension project versions SHALL come from `metaEdProject.projectVersion` in the extension `package.json` when present; otherwise the default SHALL be `1.1.0` for TPDM and `1.0.0` for other extensions.
+- **FR-PKG-2**: API Schema packaging configuration generation SHALL write `eng/ApiSchema/MetaEdConfig.json` with the packaging `MetaEdOutput` path as `artifactDirectory`, a core project named `Ed-Fi` (namespace `EdFi`), an optional extension project, `defaultPluginTechVersion`, and `allianceMode` and `suppressPrereleaseVersion` set to `true`. Extension versions SHALL come from the extension's `metaEdProject.projectVersion`, defaulting to `1.1.0` for TPDM and `1.0.0` otherwise.
 - **FR-PKG-3**: The API Schema packaging automation SHALL run MetaEd through `eng/ApiSchema/build.ps1 -Command RunMetaEd`.
-- **FR-PKG-4**: The API Schema packaging automation SHALL stage assets for each package variant (Core, TPDM, Homograph, Sample) built by the workflow matrix (TPDM is built only for DS-5.2.0; Homograph and Sample are built for DS-4.0.0 but excluded from publishing) under `eng/ApiSchema/staging/<ExtensionName>/` via `build.ps1 -Command StageAssets`. Staging SHALL normalize the schema file to `ApiSchema.json`, SHALL stage XSD and interchange files under `xsd/` when present (Homograph produces none), and SHALL require `discovery-spec.json` for the core package, failing if it is missing. See `eng/ApiSchema/README.md`.
+- **FR-PKG-4**: The API Schema packaging automation SHALL stage per-package assets (Core, TPDM, Homograph, Sample) via `build.ps1 -Command StageAssets` as described in `eng/ApiSchema/README.md`. The workflow matrix builds TPDM only for DS-5.2.0, and builds Homograph and Sample for DS-4.0.0 without publishing them.
 - **FR-PKG-4a**: The packaging automation SHALL write `package-manifest.json` into each staging directory (after `StageAssets`), SHALL use Data Standard-qualified package IDs, and SHALL validate the package contract as described in `eng/ApiSchema/PACKAGE-CONTRACT.md`.
 - **FR-PKG-5**: The API Schema packaging automation SHALL build, pack, and publish .NET packages through `dotnet` and Azure Artifacts when the workflow runs on a protected ref (`github.ref_protected`); the publish job SHALL always attempt to push and SHALL fail if the feed credentials are missing.
 
@@ -259,7 +268,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 - **NFR-COMPAT-1**: MetaEd SHALL run in Node.js-based local and CI environments compatible with its dependencies; this repository's automation currently verifies Ubuntu-based execution.
 - **NFR-COMPAT-2**: The pull request and npm publish workflows SHALL verify Node 22; the API Schema packaging workflow does not set up a specific Node version.
-- **NFR-COMPAT-3**: TypeScript SHALL compile to CommonJS modules targeting ES2017.
+- **NFR-COMPAT-3**: Published packages SHALL be CommonJS modules (compilation target details are in the `metaed-core` README).
 - **NFR-COMPAT-4**: Generated SQL artifacts SHALL distinguish SQL Server and PostgreSQL output directories and generator plugins, targeting both database platforms.
 - **NFR-COMPAT-5**: MetaEd SHALL support multiple Ed-Fi Data Standard versions configurable via `projectVersion` and `defaultPluginTechVersion`.
 
@@ -271,10 +280,10 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### Reliability
 
 - **NFR-REL-1**: The CLI SHALL return non-zero exit codes for validation errors, pipeline failures, uncaught pipeline exceptions, and unsuccessful deploy tasks.
-- **NFR-REL-2**: The output writer SHALL protect source projects by refusing to delete output directories that do not contain `MetaEdOutput` in the path.
-- **NFR-REL-3**: The output writer SHALL protect source projects by refusing to write into a directory containing `.metaed` files.
-- **NFR-REL-4**: Deploy tasks SHALL stop at the first unsuccessful task and return the failure message to the caller; within the extension artifact copy tasks, a failing project does not stop copying for other projects, and the deploy console does not print the returned failure message (see §6.2).
-- **NFR-REL-5**: Build failures SHALL be reported with a non-zero exit code and, except where the pipeline returns early (see FR-BUILD-7 and §6.2), with clear, actionable error messages.
+- **NFR-REL-2**: The output writer SHALL protect source projects from deletion (see FR-BUILD-12).
+- **NFR-REL-3**: The output writer SHALL protect source projects from being overwritten (see FR-BUILD-13).
+- **NFR-REL-4**: Deploy SHALL stop at the first unsuccessful task and report failure through a non-zero exit code (see §6.2, METAED-1678).
+- **NFR-REL-5**: Build failures SHALL be reported with a non-zero exit code and, except where the pipeline ends early (see §6.2, METAED-1676), with clear, actionable error messages.
 
 ### Performance
 
@@ -302,22 +311,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### 5.1 Processing Pipeline
 
-The build pipeline is sequential:
-
-1. Initialize MetaEd environment.
-2. Set up plugins and target technology versions.
-3. Load `.metaed` files.
-4. Validate syntax.
-5. Load file indexes.
-6. Build the parse tree.
-7. Walk builders to construct the semantic model.
-8. Initialize namespaces.
-9. Load plugin configuration.
-10. For each plugin in dependency order, run validators, enhancers, and generators.
-11. Write generated output.
-12. Map validation failures to files.
-
-The pipeline returns early, skipping all remaining steps, when step 3 fails, step 9 fails or records an error-category failure, or step 11 fails. Because step 12 is also where validation failures are logged, those early returns suppress validation failure output (see §6.2).
+The build pipeline is sequential: load `.metaed` files → validate → enhance → generate → write output, with validation, enhancement, and generation running per plugin in dependency order. When `stopOnValidationFailure` is enabled, the pipeline stops after validation errors. The detailed stage list and early-return behavior are documented in the `metaed-core` README.
 
 Plugins are ordered by `@edfi/metaed-default-plugins`, allowing upstream plugins to create semantic data used by downstream artifact generators.
 
@@ -357,7 +351,7 @@ The default plugin order is:
 
 ### 5.4 Output Model
 
-Generators return `GeneratedOutput` objects containing a human-readable name, namespace, folder name, file name, and either string or binary stream output. The writer creates directories recursively and writes files beneath the artifact directory using `{namespace}/{folderName}/{fileName}`, or `{folderName}/{fileName}` when the namespace is empty. An output with an empty result string and no stream produces no file.
+Generated files are written beneath the artifact directory by namespace and folder; the `GeneratedOutput` shape and write rules are documented in the `metaed-core` README.
 
 ## 6. Out of Scope and Known Limitations
 
@@ -371,28 +365,22 @@ Generators return `GeneratedOutput` objects containing a human-readable name, na
 ### 6.2 Known Limitations
 
 - `MetaEdConfiguration` includes `pluginTechVersion`, and some fixtures contain it, but current plugin setup assigns every plugin the single `defaultPluginTechVersion`.
-- The license acceptance CLI option is required by yargs, but the source does not validate the option value or persist acceptance.
-- The build console's custom config loader resolves relative `-c` / `--config` paths relative to the console module directory; absolute config paths avoid that ambiguity.
+- The `-a` / `--accept-license` flag is required, but acceptance is not persisted.
+- The build console resolves relative `-c` / `--config` paths relative to the console module directory; use absolute config paths.
 - Config-based deploy mode runs deploy tasks against an existing `artifactDirectory`; source-scan mode is the path that builds before deploy.
-- Config-based deploy mode copies the supplied `metaEdConfiguration` without merging defaults from `newMetaEdConfiguration`, and it does not apply the `--suppressPrereleaseVersion` CLI option to the supplied configuration. As a result, a missing `suppressPrereleaseVersion` means no prerelease suppression, and a missing `defaultPluginTechVersion` without `-x` causes version-gated deploy tasks (those requiring a minimum version) to be skipped.
-- Source-scan deploy mode returns without deploying when required source-mode inputs are absent, including `source` or `projectNames`.
-- After source-scan deploy mode attempts a build, the deploy console still invokes deploy tasks even when the build has set a non-zero exit code; if an existing artifact directory remains, deploy can attempt to copy those artifacts.
-- Source-scan project discovery scans subdirectories only while no projects have been discovered yet, so mixed source inputs can miss nested projects after an earlier project has already been found.
-- Source-scan project discovery de-duplicates projects by project name, so two discovered projects with the same project name cannot both be represented in one deploy build.
-- Source-scan namespace derivation returns an empty namespace when `projectName` cannot be converted to an alphanumeric string that starts with an uppercase letter.
-- Deploy copies extension artifacts from source folders named by `projectName` and into target folders named by `projectName`, while generators write output folders using `namespaceName`, and the extension existence check, artifact removal, `.csproj` refresh, and legacy directory tasks derive names from artifact directory entries (namespace folder names). Where `projectName` and `namespaceName` differ, deploy can skip generated extension folders or check, remove, and refresh different ODS/API extension projects than it copies into (METAED-1678).
-- Extension artifact removal only targets the unversioned `Artifacts` folder; for `defaultPluginTechVersion` `>=7.0.0`, previously deployed artifacts in the versioned `Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/` layout are not removed (METAED-1678).
-- Within the extension artifact copy tasks, a copy failure for one project does not stop copying for other projects, and the deploy console sets a non-zero exit code without printing the returned `failureMessage` (METAED-1678).
-- Source-scan project sorting is intended to place a project whose `projectName` is exactly `EdFi` first, but because of a `R.pathEq` argument-order bug under ramda 0.32 (`packages/metaed-core/src/project/ProjectLoader.ts`), that rule never matches and all discovered projects are sorted alphabetically by `projectName` (METAED-1675).
-- The build pipeline returns early when file loading fails, plugin configuration loading fails or reports an error, or output writing fails. These returns skip validation failure file mapping, which is also where validation failures are logged, so, for example, plugin configuration validation messages are not printed (METAED-1676).
+- Config-based deploy mode does not apply defaults or the `--suppressPrereleaseVersion` CLI option: an omitted `suppressPrereleaseVersion` means no prerelease suppression, and an omitted `defaultPluginTechVersion` without `-x` causes version-gated deploy tasks to be skipped.
+- Source-scan deploy mode returns without deploying when `source` or `projectNames` is absent.
+- After source-scan deploy mode attempts a build, the deploy console still invokes deploy tasks even when the build failed; if an existing artifact directory remains, deploy can copy those artifacts.
+- Source-scan project discovery can miss nested projects in mixed source inputs, cannot represent two projects with the same project name, and yields an empty namespace for project names that cannot form one; see the `metaed-odsapi-deploy-console` README.
+- Source-scan project ordering does not place the `EdFi` project first (METAED-1675).
+- Some build failures (file loading, plugin configuration, output writing) end the run without printing validation messages (METAED-1676).
+- Deploy can mismatch extension folders when `projectName` and `namespaceName` differ, does not remove previously deployed artifacts in the `>=7.0.0` versioned layout, and does not print per-project copy failure messages (METAED-1678).
 - Core and extension artifact copy tasks are no-ops for `defaultPluginTechVersion` values below `5.4.0`.
-- A core-only deploy with no extension artifact folders can fail the extension project existence precheck when `allianceMode` is false, because that precheck runs before core copy and ignores root `EdFi`, `Documentation`, and `ApiSchema` folders.
+- A core-only deploy with no extension artifact folders can fail the extension project precheck when `allianceMode` is false.
 - Deploy does not copy generated `ApiSchema/` or `Documentation/` artifact folders into the ODS/API source tree.
 - Deploy assumes the local ODS/API source tree follows expected `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` folder conventions.
-- The console packages declare Node.js `main` entry points but no package `bin` commands, so command execution is through Node.js entry points or repository scripts rather than package-installed binary names.
-- API Schema packaging `RunMetaEd` copies `packages/metaed-plugin-edfi-api-schema/test/integration/edfiApiSchema.config.json` into the core project path before running MetaEd, so packaging output depends on that checked-in configuration fixture.
-- The API Catalog generator contains hard-coded handling for EducationOrganization and SchoolYear reference schemas. EducationOrganization is abstract and has no resource of its own, so no fragment contains its `_Reference` schema; the SchoolYear reference schema exists as `EdFi_SchoolYearTypeReference`, but the generator's `_Reference` suffix filter misses it.
-- The output writer's deletion guard is path-name based: it requires `MetaEdOutput` to appear in the output path before deleting an existing output directory.
+- The console packages declare no package `bin` commands; run them through their Node.js entry points or repository scripts.
+- API Schema packaging output depends on the checked-in API Schema plugin configuration fixture that `RunMetaEd` copies into the core project path (`packages/metaed-plugin-edfi-api-schema/test/integration/edfiApiSchema.config.json`).
 - Alliance Mode is an internal setting used by Ed-Fi Alliance workflows. In this repository it affects some validation, SQL header, and deploy behaviors; any IDE-side editability behavior is outside the scope of MetaEd-js.
 
 ## 7. Glossary
@@ -409,9 +397,9 @@ Generators return `GeneratedOutput` objects containing a human-readable name, na
 | Project extension | A string used by generators in some extension artifact file names; non-EdFi projects default to `EXTENSION` when metadata omits it. |
 | Default plugin technology version | The version string assigned to plugin environments to select version-specific generator behavior. |
 | Plugin | A package that contributes validators, enhancers, generators, and optional configuration schemas. |
-| Validator | A plugin function that reports syntax, semantic, relationship, or configuration failures. |
-| Enhancer | A plugin function that adds derived semantic data to the model for downstream processing. |
-| Generator | A plugin function that produces one or more generated outputs. |
+| Validator | A plugin function that reports model or configuration failures. |
+| Enhancer | A plugin function that adds derived data to the model. |
+| Generator | A plugin function that produces generated outputs. |
 | Artifact | A generated file written by the build pipeline, such as SQL, XSD, JSON, HTML, or Excel. |
 | ODS | Operational Data Store — the database backing an Ed-Fi API. |
 | ODS/API | The downstream Ed-Fi source tree layout targeted by deploy tasks; the legacy reference implementation of the Ed-Fi REST API. |
