@@ -23,7 +23,7 @@ abstractions, and pipeline orchestration used by all MetaEd packages.
 - Pipeline execution results (validation failures, generated output)
 - `GeneratedOutput` objects containing a human-readable name, namespace, file name,
   folder name, and content as either a string (`resultString`) or a binary `Buffer`
-  (`resultStream`; takes precedence over `resultString` when set)
+  (`resultStream`; used only when `resultString` is empty — a non-empty `resultString` takes precedence)
 
 ## Business Logic
 

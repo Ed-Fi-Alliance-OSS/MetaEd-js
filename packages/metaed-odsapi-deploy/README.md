@@ -16,8 +16,15 @@ Accepts `MetaEdConfiguration` plus deploy-specific options:
 
 Copies generated artifacts into the ODS/API file system structure:
 
+ODS/API ≥ 7.0:
+
 - Core artifacts → `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/{version}/Artifacts/`
 - Extension artifacts → `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/Versions/{version}/Standard/{dsVersion}/Artifacts/`
+
+ODS/API ≥ 5.4 and < 7.0:
+
+- Core artifacts → `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts/`
+- Extension artifacts → `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/Artifacts/`
 
 Sub-path mappings:
 
@@ -35,7 +42,7 @@ Sub-path mappings:
 
  Runs a sequence of deployment tasks in order: first verifies that required extension
  projects exist, then removes old extension artifacts (unless suppressed), deploys core
- artifacts (ODS/API ≥ 7.0 only), and deploys extension artifacts. Additional MSSQL and
+ artifacts and extension artifacts (versioned layout for ODS/API ≥ 7.0, unversioned V6 layout for ≥ 5.4 and < 7.0). Additional MSSQL and
  PostgreSQL script directories are passed into the core/extension deploy steps rather than
  copied as a separate standalone task. After deployment it refreshes csproj timestamps,
  runs the legacy-directory check, and stops on the first failure.

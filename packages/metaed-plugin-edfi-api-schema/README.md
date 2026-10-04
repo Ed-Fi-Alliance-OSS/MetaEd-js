@@ -23,4 +23,4 @@ Generates one JSON file per namespace:
 Builds the DMS API schema from MetaEd-enhanced namespace data through a series of
 enhancers that derive resource schemas, document paths, and reference structures.
 Serializes the result as pretty-printed JSON. Also exports many API-schema types and
-enhancers consumed by downstream plugins (api-catalog, odsapi).
+enhancers consumed by downstream plugins (api-catalog, handbook).
