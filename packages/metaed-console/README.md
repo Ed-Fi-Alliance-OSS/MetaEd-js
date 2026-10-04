@@ -9,7 +9,7 @@ CLI arguments via `yargs`:
 - `--config / -c` — Path to a JSON configuration file (relative paths are resolved relative to the console module directory; use absolute paths to avoid ambiguity)
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--accept-license / -a` — Required flag to accept the license agreement
-- `--suppressPrereleaseVersion` — Suppress pre-release version in output paths (default: `true`)
+- `--suppressPrereleaseVersion` — Suppress the prerelease identifier in generated version data (default: `true`). Applied only when no config file is supplied; with `--config`, the config file's `suppressPrereleaseVersion` is used
 
 The config file supplies a `metaEdConfiguration` object with project paths, artifact
 directories, and plugin settings. See `metaed-edfi-5.2.json` for a fully-worked sample.
@@ -31,7 +31,7 @@ and generators in sequence. Logs timing information for each phase.
 1. Build the project from the repo root with `npm run build`.
 2. To confirm it is functional, try `node packages/metaed-console/dist/index.js -h`.
 3. The easiest way to run this is with a config file. See `metaed-edfi-5.2.json` for a fully-worked
-   sample config file. Note that this shows Alliance Mode _on_, which is only appropriate in the Ed-Fi Alliance's build
-   processes. External users should set this to `false`. From the repo root, run with a config file using an absolute path
-   or a path that resolves from the console module directory, for example:
-    `node packages/metaed-console/dist/index.js -a -c packages/metaed-console/metaed-edfi-5.2.json`.
+   sample config file. The sample has Alliance Mode _off_ (`allianceMode: false`); it should only be set to `true` in the Ed-Fi Alliance's build
+   processes. Relative `--config` paths are resolved from the built console module directory, not the current directory, so from the repo root
+   pass an absolute path, for example:
+    `node packages/metaed-console/dist/index.js -a -c "$PWD/packages/metaed-console/metaed-edfi-5.2.json"`.

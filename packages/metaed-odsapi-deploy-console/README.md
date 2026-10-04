@@ -9,7 +9,7 @@ CLI arguments via `yargs`:
 - `--config / -c` — Path to JSON configuration file
 - `--source / -s` — Source project directories (array)
 - `--target / -t` — Parent directory containing the `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` repositories
-- `--projectNames / -p` — Project name overrides applied to discovered projects in discovery order (array)
+- `--projectNames / -p` — Project names applied to discovered projects in discovery order (array); required for source-scan mode
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--core` — Deploy core artifacts
 - `--suppressDelete` — Skip removal of existing extension artifacts
@@ -28,7 +28,7 @@ failure, and logs duration.
 
 Two operating modes:
 
-- **Source-scan mode** (`--source`/`--target`): scans source directories for MetaEd
+- **Source-scan mode** (`--source`/`--target`/`--projectNames`): requires all three; if `--projectNames` is omitted the CLI returns without building or deploying and without reporting an error. Scans source directories for MetaEd
   projects, builds `MetaEdConfiguration`, runs the full generation pipeline, then
   delegates to `metaed-odsapi-deploy` to copy artifacts into the destination repository
   structure.
