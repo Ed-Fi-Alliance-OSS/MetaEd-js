@@ -8,8 +8,12 @@ MetaEd now supports [Jsonnet](https://jsonnet.org/) configuration files in addit
 - **Functions**: Create reusable templates for similar configuration patterns
 - **Comments**: Document your configuration directly in the file
 - **Conditionals**: Include or exclude configuration based on conditions
-- **Imports**: Split large configurations into multiple files
-- **External Variables**: Pass environment-specific values at runtime
+- **External Variables**: Pass environment-specific values at runtime through MetaEd configuration
+
+> [!NOTE]
+> Jsonnet `import` / `importstr` of other files is not currently supported. MetaEd evaluates the
+> configuration file's content without its file path and never supplies library files, so imports
+> cannot be resolved (METAED-1677). Keep each plugin configuration in a single file.
 
 ## File Naming
 
@@ -86,7 +90,9 @@ local createRule(ruleName, entityName, data) = {
 
 ### Using External Variables
 
-External variables allow you to pass values from the environment or command line:
+External variables allow you to pass values into the Jsonnet evaluation. They come only from
+the `externalVariables` field of `metaEdConfiguration`; MetaEd does not read them from
+environment variables or command-line arguments:
 
 ```jsonnet
 local environment = std.extVar("ENVIRONMENT");
@@ -111,7 +117,7 @@ local enableFeature = std.extVar("ENABLE_FEATURE") == "true";
 }
 ```
 
-Pass external variables via MetaEd configuration:
+Pass external variables via the `externalVariables` field of `metaEdConfiguration`:
 
 ```javascript
 {
@@ -141,7 +147,7 @@ All existing JSON configuration files continue to work without any changes. Json
 
 1. **Undefined external variable**: Make sure all external variables used in the Jsonnet file are provided in the configuration
 2. **Syntax errors**: Jsonnet requires proper syntax - use a Jsonnet linter or validator
-3. **Import not found**: Ensure imported files are in the library paths
+3. **Import not found**: Imports are not currently supported (METAED-1677); inline the imported content instead
 
 ### Validation
 

@@ -6,7 +6,8 @@ to enrich models and generate change-tracking SQL.
 
 ## Input Configuration
 
-No plugin-specific configuration. Uses the MetaEd model and target technology version.
+No plugin-specific configuration. Its only registered component is a validator, which uses
+the MetaEd namespaces and does not read the target technology version.
 
 ## Output
 
@@ -20,4 +21,6 @@ exported from this package.
 
 Validates that no namespace is named "Changes" (which would conflict with the
 change-tracking schema). Exports shared enhancer helpers and generator utilities consumed
-by the companion plugins for platform-specific SQL generation.
+by the companion plugins for platform-specific SQL generation, including the shared
+indirect update cascade trigger enhancer and generator logic, which each companion plugin
+registers through its own wrapper.

@@ -14,5 +14,9 @@ are violated.
 ## Business Logic
 
 Adds advanced validation rules on top of the unified model, checking for correct usage
-of merge directives, self-references, common properties, and deprecated patterns.
-Reports human-readable validation errors when modeling constraints are violated.
+of merge directives, self-references, and common properties, and flagging deprecated
+usage. Of its 13 validators, 7 report human-readable validation errors when modeling
+constraints are violated; the other 6 report deprecation warnings (not errors) for
+deprecated entities, extensions, subclasses, properties, domain item references, and
+interchange item references. Deprecation warnings for non-extension namespaces are
+reported only when `allianceMode` is enabled.

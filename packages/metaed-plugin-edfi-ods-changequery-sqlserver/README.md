@@ -4,22 +4,31 @@ MetaEd plugin that generates SQL Server-specific SQL for ODS change-query suppor
 
 ## Input Configuration
 
-No plugin-specific configuration. Depends on the shared `metaed-plugin-edfi-ods-changequery`
-plugin for model enrichment.
+No plugin-specific configuration. The shared `metaed-plugin-edfi-ods-changequery` plugin
+registers no enhancers; this plugin registers its own enhancers to build the change-query
+model, using model types and helper logic exported by the shared package.
 
 ## Output
 
 Generates SQL Server-flavored change-query SQL scripts under
-`Database/SQLServer/ODS/Structure/Changes/`, including:
+`{namespace}/Database/SQLServer/ODS/Structure/Changes/`:
 
-- Tracked-delete table and schema creation
-- Change-version sequence
-- Change-tracking triggers
-- Change-version indexes
-- Indirect update cascade triggers
+- `0010-CreateChangesSchema.sql` and `0020-CreateChangeVersionSequence.sql` — for every
+  namespace below technology version 7.3.0; for the core namespace only at `>=7.3.0`
+- `0030-AddColumnChangeVersionForTables.sql` — change-version columns
+- `0045-CreateTrackedDeleteSchema.sql` — tracked-delete schemas; skipped for
+  `<3.4.0 || >5.4.0`
+- `0050-CreateTrackedDeleteTables.sql` (`0200-CreateTrackedChangeTables.sql` at `>=6.0.0`)
+- `0060-CreateDeletedForTrackingTriggers.sql` (`0220-CreateTriggersForDeleteTracking.sql` at `>=6.0.0`)
+- `0040-CreateTriggerUpdateChangeVersionGenerator.sql`
+  (`0210-CreateTriggersForChangeVersionAndKeyChanges.sql` at `>=6.0.0`)
+- `0070-AddIndexChangeVersionForTables.sql` — change-version indexes
+- `0230-CreateIndirectUpdateCascadeTriggers.sql` — indirect update cascade triggers, only at `>=7.3.0`
+
+Table-level scripts are generated only when the namespace has the required model data.
 
 ## Business Logic
 
-Applies SQL Server-specific enhancers and generators to the change-query model built by
-the common change-query plugin. Emits DDL using SQL Server syntax for sequences,
+Runs its own SQL Server-specific enhancers to build the change-query model, then its
+generators, several of which delegate to helpers in the common change-query package. Emits DDL using SQL Server syntax for sequences,
 triggers, and indexes.

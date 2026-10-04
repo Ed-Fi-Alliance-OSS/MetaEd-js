@@ -8,10 +8,10 @@ No plugin-specific configuration. Operates on the enriched MetaEd model.
 
 ## Output
 
-Generates one JSON file per namespace:
+Generates one JSON file per namespace, under a `{namespace}/` folder:
 
-- `ApiMetadata/ApiModel.json` (for core)
-- `ApiMetadata/ApiModel-{projectExtension}.json` (for extensions)
+- `{namespace}/ApiMetadata/ApiModel.json` when `projectExtension` is empty (core), e.g. `EdFi/ApiMetadata/ApiModel.json`
+- `{namespace}/ApiMetadata/ApiModel-{projectExtension}.json` otherwise (extensions)
 
 ## Business Logic
 

@@ -12,9 +12,9 @@ CLI arguments via `yargs`:
 - `--projectNames / -p` — Project names applied to discovered projects in discovery order (array); required for source-scan mode
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--core` — Deploy core artifacts
-- `--suppressDelete` — Skip removal of existing extension artifacts
+- `--suppressDelete` — Skip removal of existing unversioned extension `Artifacts` directories
 - `--accept-license / -a` — Required license acceptance flag
-- `--suppressPrereleaseVersion` — Suppress pre-release version in paths
+- `--suppressPrereleaseVersion` — Suppress the prerelease identifier in the Data Standard version (formatted as `major.minor.0`) used in generated version data and ODS/API ≥ 7.1 deploy paths (default: `true`). Applied only in source-scan mode; config-based mode uses the config file's `suppressPrereleaseVersion`
 - `--additionalMssqlScriptsDirectory` — Extra SQL Server scripts directory
 - `--additionalPostgresScriptsDirectory` — Extra PostgreSQL scripts directory
 
@@ -28,10 +28,15 @@ failure, and logs duration.
 
 Two operating modes:
 
-- **Source-scan mode** (`--source`/`--target`/`--projectNames`): requires all three; if `--projectNames` is omitted the CLI returns without building or deploying and without reporting an error. Scans source directories for MetaEd
-  projects, builds `MetaEdConfiguration`, runs the full generation pipeline, then
+- **Source-scan mode** (`--source`/`--target`/`--projectNames`): only `--source` and
+  `--projectNames` are checked; if either is omitted the CLI returns without building or
+  deploying and without reporting an error. `--target` is not enforced but is needed as the
+  deploy destination. Scans source directories for MetaEd
+  projects, builds `MetaEdConfiguration`, runs the full generation pipeline into
+  `MetaEdOutput` under the last project path, then
   delegates to `metaed-odsapi-deploy` to copy artifacts into the destination repository
-  structure.
+  structure. Deploy runs even if the build failed (the exit code is still 1), so any
+  existing artifacts in the output directory may be copied.
 - **Config-based mode** (`--config`): uses the supplied `metaEdConfiguration` with a
   pre-built `artifactDirectory` and runs only the deploy tasks — the build pipeline is
   not executed.
