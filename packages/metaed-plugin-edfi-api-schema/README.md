@@ -13,14 +13,14 @@ Registers two optional configuration schemas:
 
 ## Output
 
-Generates one JSON file per namespace:
+Generates one JSON file per namespace, under a `{namespace}/` folder:
 
-- `ApiSchema/ApiSchema.json` (for core)
-- `ApiSchema/ApiSchema-{projectExtension}.json` (for extensions)
+- `{namespace}/ApiSchema/ApiSchema.json` when `projectExtension` is empty (core), e.g. `EdFi/ApiSchema/ApiSchema.json`
+- `{namespace}/ApiSchema/ApiSchema-{projectExtension}.json` otherwise (extensions)
 
 ## Business Logic
 
 Builds the DMS API schema from MetaEd-enhanced namespace data through a series of
 enhancers that derive resource schemas, document paths, and reference structures.
-Serializes the result as pretty-printed JSON. Also exports many API-schema types and
-enhancers consumed by downstream plugins (api-catalog, handbook).
+Serializes the result as pretty-printed JSON. Also exports many API-schema types, helpers,
+and enhancers; downstream plugins (api-catalog, handbook) import only types and helpers.
