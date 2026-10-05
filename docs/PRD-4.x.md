@@ -118,10 +118,10 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **FR-CFG-1**: The build CLI SHALL accept a JSON configuration file through `-c` / `--config` containing a top-level `metaEdConfiguration` object.
 - **FR-CFG-2**: `metaEdConfiguration` SHALL support `artifactDirectory`, `deployDirectory`, `projects`, `projectPaths`, `pluginConfigDirectories`, `defaultPluginTechVersion`, `allianceMode`, and `suppressPrereleaseVersion`; it SHALL accept `pluginTechVersion` but ignore it (see §6.2); it SHALL support an optional `externalVariables` field for Jsonnet configuration evaluation.
 - **FR-CFG-3**: The pipeline SHALL require `projects` and `projectPaths` to have the same length and SHALL map each project metadata entry to the corresponding source path.
-- **FR-CFG-4**: The file loader SHALL recursively load `.metaed` files (case-insensitive extension) from each configured project path.
+- **FR-CFG-4**: The file loader SHALL recursively load files with exactly the `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED` extension from each configured project path.
 - **FR-CFG-5**: The build and deploy CLIs SHALL require exactly one Data Standard project, identified by namespace `EdFi`; no Data Standard project or multiple Data Standard projects SHALL cause failure.
 - **FR-CFG-6**: Deploy console source mode SHALL discover projects from `package.json` files containing `metaEdProject` metadata, deriving each project's namespace from its project name (see §6.2 for discovery limitations).
-- **FR-CFG-7**: Source-mode project discovery SHALL accept optional `projectNames` overrides for discovered project names.
+- **FR-CFG-7**: CLI source-scan mode SHALL require `projectNames` alongside `source`; supplied entries SHALL override the corresponding discovered project names.
 - **FR-CFG-8**: Plugin configuration files SHALL be discovered from configured `pluginConfigDirectories`, or from input project directories when no plugin config directories are configured, as `{pluginShortName}.config.jsonnet` or `{pluginShortName}.config.json`, with Jsonnet preferred when both exist.
 - **FR-CFG-9**: Plugin configuration loading SHALL support `externalVariables` for Jsonnet evaluation.
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
@@ -374,7 +374,7 @@ Generated files are written beneath the artifact directory by namespace and fold
 - Source-scan project discovery can miss nested projects in mixed source inputs, cannot represent two projects with the same project name, and yields an empty namespace for project names that cannot form one; see the `metaed-odsapi-deploy-console` README.
 - Source-scan project ordering does not place the `EdFi` project first (METAED-1675).
 - Some build failures (file loading, plugin configuration, output writing) end the run without printing validation messages (METAED-1676).
-- Deploy can mismatch extension folders when `projectName` and `namespaceName` differ, does not remove previously deployed artifacts in the `>=7.0.0` versioned layout, and does not print per-project copy failure messages (METAED-1678).
+- Deploy can mismatch extension folders when `projectName` and `namespaceName` differ and does not remove previously deployed artifacts in the `>=7.0.0` versioned layout; a copy failure is logged and produces a nonzero exit status, but deployment continues to later projects and the console does not separately re-log the returned failure result (METAED-1678).
 - Core and extension artifact copy tasks are no-ops for `defaultPluginTechVersion` values below `5.4.0`.
 - A core-only deploy with no extension artifact folders can fail the extension project precheck when `allianceMode` is false.
 - Deploy does not copy generated `ApiSchema/` or `Documentation/` artifact folders into the ODS/API source tree.
