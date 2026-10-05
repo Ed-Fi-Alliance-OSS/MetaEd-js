@@ -121,7 +121,7 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 - **FR-CFG-4**: The file loader SHALL recursively load files with exactly the `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED` extension from each configured project path.
 - **FR-CFG-5**: The build and deploy CLIs SHALL require exactly one Data Standard project, identified by namespace `EdFi`; no Data Standard project or multiple Data Standard projects SHALL cause failure.
 - **FR-CFG-6**: Deploy console source mode SHALL discover projects from `package.json` files containing `metaEdProject` metadata, deriving each project's namespace from its project name (see §6.2 for discovery limitations).
-- **FR-CFG-7**: CLI source-scan mode SHALL require `projectNames` alongside `source`; supplied entries SHALL override the corresponding discovered project names.
+- **FR-CFG-7**: CLI source-scan mode SHALL require `projectNames` alongside `source`. Supplied names SHALL override the corresponding discovered project names unless more names are supplied than projects are discovered, in which case the entire override list SHALL be ignored and all discovered project names SHALL be retained.
 - **FR-CFG-8**: Plugin configuration files SHALL be discovered from configured `pluginConfigDirectories`, or from input project directories when no plugin config directories are configured, as `{pluginShortName}.config.jsonnet` or `{pluginShortName}.config.json`, with Jsonnet preferred when both exist.
 - **FR-CFG-9**: Plugin configuration loading SHALL support `externalVariables` for Jsonnet evaluation.
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
@@ -199,8 +199,8 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 - **FR-API-CATALOG-1**: The API Catalog plugin SHALL generate `Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx`.
 - **FR-API-CATALOG-2**: The API Catalog SHALL include `Resources` and `Properties` worksheets.
-- **FR-API-CATALOG-3**: The API Catalog `Resources` worksheet SHALL include project, version, resource name, resource description, and domains.
-- **FR-API-CATALOG-4**: The API Catalog `Properties` worksheet SHALL include project, version, resource name, property name, property description, data type, min length, max length, validation regular expression, identity key flag, nullable flag, and required flag.
+- **FR-API-CATALOG-3**: The API Catalog `Resources` worksheet SHALL include `Project` (the API project endpoint, such as `ed-fi`), `Version`, `Resource Name` (the API resource endpoint, such as `academicWeeks`), `Resource Description`, and `Domains` columns.
+- **FR-API-CATALOG-4**: The API Catalog `Properties` worksheet SHALL include `Project` (the API project endpoint, such as `ed-fi`), `Version`, `Resource Name` (the API resource endpoint, such as `academicWeeks`), `Property Name`, `Property Description`, `Data Type`, `Min Length`, `Max Length`, `Validation RegEx`, `Is Identity Key`, `Is Nullable`, and `Is Required` columns.
 - **FR-API-CATALOG-5**: The API Catalog SHALL omit `id` properties from the `Properties` worksheet.
 - **FR-API-CATALOG-6**: The API Catalog SHALL list nested properties from common sub-schemas and references using dot-separated property paths.
 
