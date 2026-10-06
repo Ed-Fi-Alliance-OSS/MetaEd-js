@@ -22,7 +22,7 @@
     "jest": "^30.0.3",
     "jest-junit": "^17.0.0",
     "jsinspect": "^0.12.7",
-    "lerna": "^9.0.7",
+    "lerna": "^10.0.1",
     "pgtools": "^1.0.1",
     "prettier": "2.7.1",
     "rimraf": "^6.1.3",
