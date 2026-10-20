@@ -18,7 +18,7 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.8.1-dev.7",
     "@xmldom/xmldom": "^0.9.12",
     "deep-freeze": "^0.0.1",
-    "handlebars": "^4.7.7",
+    "handlebars": "^4.7.10",
     "js-beautify": "^1.14.7",
     "ramda": "^0.32.0",
     "semver": "^7.8.5",
@@ -26,7 +26,7 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "xpath": "^0.0.34"
+    "xpath": "^0.0.35"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
