@@ -83,13 +83,14 @@ jobs:
           echo "Configuring user .npmrc for ${{ env.NPM_REGISTRY }}"
           set +x  # disable echo to shell so that the base64-encoded API key never escapes into the log.
           # Create the user .npmrc file with proper settings
-          API_KEY=`echo -n "${{ env.NODE_AUTH_TOKEN }}" | base64`
-          touch $HOME/.npmrc
-          echo "; begin auth token" >> $HOME/.npmrc
-          echo ${{ env.NPM_REGISTRY }}:username=ed-fi-alliance >> $HOME/.npmrc
-          echo ${{ env.NPM_REGISTRY }}:_password=$API_KEY >> $HOME/.npmrc
-          echo ${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org >> $HOME/.npmrc
-          echo "; end auth token" >> $HOME/.npmrc
+          API_KEY=$(echo -n "${{ env.NODE_AUTH_TOKEN }}" | base64)
+          {
+            echo "; begin auth token"
+            echo "${{ env.NPM_REGISTRY }}:username=ed-fi-alliance"
+            echo "${{ env.NPM_REGISTRY }}:_password=$API_KEY"
+            echo "${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org"
+            echo "; end auth token"
+          } >> "$HOME/.npmrc"
 
       - name: Lerna version dev prerelease
         if: inputs.bump == 'dev' && inputs.retry == false
