@@ -11,7 +11,7 @@ on:
       - main
     paths:
       - "packages/**"
-      - ".github"
+      - ".github/**"
 
 permissions: read-all
 
