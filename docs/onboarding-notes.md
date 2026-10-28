@@ -9,7 +9,7 @@
 
 ## Getting Started with MetaEd-js
 
-1. Install Node 24.21.0 or newer. Recommendation: use [nvm-windows](https://github.com/coreybutler/nvm-windows) or
+1. Install Node 24.22.1 or newer. Recommendation: use [nvm-windows](https://github.com/coreybutler/nvm-windows) or
    [nvs](https://github.com/jasongin/nvs).
 2. Clone the repository
 3. Switch to the new repo directory and run `npm install`
