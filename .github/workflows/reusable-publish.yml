@@ -82,8 +82,9 @@ jobs:
         run: |
           echo "Configuring user .npmrc for ${{ env.NPM_REGISTRY }}"
           set +x  # disable echo to shell so that the base64-encoded API key never escapes into the log.
-          # Create the user .npmrc file with proper settings
-          API_KEY=$(echo -n "${{ env.NODE_AUTH_TOKEN }}" | base64)
+          # Keep long tokens on one line so npm reads the complete password.
+          API_KEY=$(printf '%s' "$NODE_AUTH_TOKEN" | base64 -w 0)
+          echo "::add-mask::$API_KEY"
           {
             echo "; begin auth token"
             echo "${{ env.NPM_REGISTRY }}:username=ed-fi-alliance"
