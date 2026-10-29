@@ -37,19 +37,3 @@ Warnings do not trigger the requirement. Omitting the flag or setting it to fals
 existing processing behavior. `stopOnValidationFailure: true` still stops at the first plugin
 validation stage with errors. The requirement does not run validators when `runValidators` is
 disabled; it checks any errors already accumulated in the state.
-
-API-schema, handbook, and API-catalog opt in because schema construction needs resolved
-references and identities, and handbook and catalog consume schema metadata. A plugin that
-consumes metadata from a guarded plugin must also opt in if it cannot operate without that
-metadata. Its validators must remain able to run independently of that metadata.
-
-The relational plugin and its SQL Server, PostgreSQL, change-query, record-ownership, ODS/API,
-and SQL-dictionary consumers also opt in. An unresolved common reference must not start table
-construction or allow downstream processing of incomplete relational metadata. Unified model
-enhancement remains enabled so later validators can use resolved model relationships.
-
-XSD and XML-dictionary processing also require a valid model. An unresolved interchange element
-or identity template must not start XSD enhancement. XML-dictionary generation consumes XSD
-schema metadata, and ODS/API enhancement also depends on XSD metadata; both consumers opt in
-so they cannot process missing metadata when XSD is skipped. Their validators still run, and
-warnings retain their existing behavior.
