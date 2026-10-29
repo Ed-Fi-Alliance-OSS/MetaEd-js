@@ -6,7 +6,17 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { executePipeline, getAllEntitiesOfType, Logger, newState, State, ModelBase, SemVer } from '@edfi/metaed-core';
+import {
+  executePipeline,
+  getAllEntitiesOfType,
+  Logger,
+  newState,
+  State,
+  ModelBase,
+  SemVer,
+  Interchange,
+  InterchangeItem,
+} from '@edfi/metaed-core';
 import { edfiHandbookRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-handbook/src/enhancer/EnhancerHelper';
 import { defaultPlugins } from '../../src';
 
@@ -115,6 +125,46 @@ function expectRelationalProcessing(state: State): void {
     edfiOdsPostgresql: { tableName: 'QaRecord' },
   });
 }
+
+/** Writes an interchange that references the independently removable peer. */
+function writeInterchangeReference(projectPath: string, identityTemplate: boolean): void {
+  fs.writeFileSync(path.join(projectPath, 'QaRecord.metaed'), peer.replace(/QaPeer/g, 'QaRecord'));
+  fs.writeFileSync(
+    path.join(projectPath, 'QaInterchange.metaed'),
+    `Interchange QaInterchange
+  documentation "Regression interchange."
+  extended documentation "Regression interchange details."
+  use case documentation "Exchange regression records."
+  domain entity${identityTemplate ? ' identity' : ''} QaPeer
+  domain entity QaRecord
+`,
+  );
+}
+
+/** Checks actual XSD reference metadata after initial validation and recovery. */
+function expectInterchangeProcessing(state: State, identityTemplate: boolean): void {
+  expect(state.enhancerResults).toContainEqual({ enhancerName: 'InterchangeItemEnhancer', success: true });
+  const interchanges: Interchange[] = (getAllEntitiesOfType(state.metaEd, 'interchange') as Interchange[]).filter(
+    (interchange: Interchange) =>
+      interchange.namespace.namespaceName === 'Sample' && interchange.metaEdName === 'QaInterchange',
+  );
+  expect(interchanges).toHaveLength(1);
+  const items: InterchangeItem[] = (identityTemplate ? interchanges[0].identityTemplates : interchanges[0].elements).filter(
+    (item: InterchangeItem) => item.metaEdName === 'QaPeer',
+  );
+  expect(items).toHaveLength(1);
+  expect(items[0].data.edfiXsd).toMatchObject({
+    xsdName: identityTemplate ? 'QaPeerReference' : 'QaPeer',
+    xsdType: expect.stringContaining('QaPeer'),
+  });
+}
+
+const xsdGeneratorNames: string[] = [
+  'edfiXsd.XsdGenerator',
+  'edfiXsd.SchemaAnnotationGenerator',
+  'XSD Interchanges',
+  'edfiXmlDataDictionary.XmlDataDictionaryGenerator',
+];
 
 describe('continuous linting with invalid models', (): void => {
   let projectPath: string;
@@ -388,6 +438,162 @@ describe('continuous linting with invalid models', (): void => {
           generatorName: 'edfiOdsPostgresql.OdsGenerator',
           generatedOutput: expect.arrayContaining([
             expect.objectContaining({ resultString: expect.stringContaining('CREATE TABLE sample.QaRecord') }),
+          ]),
+        }),
+      ]),
+    );
+    expect(fs.readdirSync(path.join(projectPath, 'MetaEdOutput')).length).toBeGreaterThan(0);
+  });
+
+  describe.each([
+    ['4.0.0', '6.1.0'],
+    ['6.1.0', '7.3.0'],
+  ])('interchange references with DS %s / ODS %s', (dataStandardVersion: SemVer, targetTechnologyVersion: SemVer) => {
+    it.each([false, true])(
+      'recovers after deleting an interchange target (identity template: %s)',
+      async (identityTemplate: boolean) => {
+        writeInterchangeReference(projectPath, identityTemplate);
+        const valid: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expectValid(valid);
+        expectInterchangeProcessing(valid.state, identityTemplate);
+        expect(errors).toEqual([]);
+
+        fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+        const invalid: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expect(invalid.failure).toBe(true);
+        expect(invalid.state.pipelineFailure).toEqual([]);
+        expect(invalid.state.validationFailure).toHaveLength(1);
+        expect(invalid.state.validationFailure[0]).toMatchObject({
+          category: 'error',
+          validatorName: identityTemplate
+            ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
+            : 'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+          message: `Interchange ${
+            identityTemplate ? 'identity template' : 'element'
+          } QaPeer does not match any declared Abstract Entity, Association, Association Subclass, Descriptor, Domain Entity, Domain Entity Subclass`,
+          fileMap: { fullPath: path.join(projectPath, 'QaInterchange.metaed'), lineNumber: 5 },
+          sourceMap: { column: identityTemplate ? 25 : 16, tokenText: 'QaPeer' },
+        });
+        expect(invalid.state.enhancerResults).not.toContainEqual({ enhancerName: 'InterchangeItemEnhancer', success: true });
+        expect(errors).toHaveLength(1);
+        expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+
+        errors.length = 0;
+        fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
+        const restored: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expectValid(restored);
+        expectInterchangeProcessing(restored.state, identityTemplate);
+        expect(errors).toEqual([]);
+      },
+    );
+  });
+
+  it.each([false, true])(
+    'preserves output and skips XSD consumers for a missing interchange target (identity template: %s)',
+    async (identityTemplate: boolean) => {
+      writeInterchangeReference(projectPath, identityTemplate);
+      fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+      const outputPath: string = path.join(projectPath, 'MetaEdOutput');
+      fs.mkdirSync(outputPath);
+      const markerPath: string = path.join(outputPath, 'previous-output.txt');
+      fs.writeFileSync(markerPath, 'previous successful output');
+      const before: fs.Stats = fs.statSync(markerPath);
+      const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
+      expect(invalid.failure).toBe(true);
+      expect(invalid.state.pipelineFailure).toEqual([]);
+      expect(invalid.state.validationFailure).toHaveLength(1);
+      expect(invalid.state.validationFailure[0].validatorName).toBe(
+        identityTemplate
+          ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
+          : 'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+      );
+      expect(errors).toHaveLength(1);
+      expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+      const generators: string[] = invalid.state.generatorResults.map((result) => result.generatorName);
+      xsdGeneratorNames.forEach((name: string) => expect(generators).not.toContain(name));
+      expect(fs.readdirSync(outputPath)).toEqual(['previous-output.txt']);
+      expect(fs.readFileSync(markerPath, 'utf8')).toBe('previous successful output');
+      expect(fs.statSync(markerPath).mtimeMs).toBe(before.mtimeMs);
+    },
+  );
+
+  it('reports downstream ODS/API errors when an interchange target is missing', async () => {
+    writeInterchangeReference(projectPath, false);
+    fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+    fs.writeFileSync(
+      path.join(projectPath, 'QaSubclass.metaed'),
+      `Domain Entity QaSubclass based on QaRecord
+  documentation "Unsupported ODS subclass."
+  integer Extra
+    documentation "Extra value."
+    is optional
+`,
+    );
+    const invalid: { state: State; failure: boolean } = await lint(projectPath);
+    expect(invalid.failure).toBe(true);
+    expect(invalid.state.pipelineFailure).toEqual([]);
+    expect(invalid.state.validationFailure.map((failure) => failure.validatorName)).toEqual([
+      'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+      'SubclassingAnyDomainEntityExceptEducationOrganizationIsUnsupported',
+    ]);
+    expect(errors).toHaveLength(2);
+    invalid.state.validationFailure.forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+  });
+
+  it.each([false, true])('generates XSD and XML dictionary artifacts (warning only: %s)', async (warningOnly: boolean) => {
+    writeInterchangeReference(projectPath, false);
+    if (warningOnly) {
+      fs.appendFileSync(
+        path.join(projectPath, 'QaRecord.metaed'),
+        `  string Discriminator
+    documentation "Triggers an ODS warning."
+    is optional
+    max length 20
+`,
+      );
+    }
+    const result: { state: State; failure: boolean } = await lint(projectPath, true);
+    expect(result.failure).toBe(false);
+    expect(result.state.pipelineFailure).toEqual([]);
+    expect(result.state.validationFailure).toHaveLength(warningOnly ? 1 : 0);
+    if (warningOnly) {
+      expect(result.state.validationFailure[0]).toMatchObject({
+        category: 'warning',
+        validatorName: 'BlockPropertiesNamedDiscriminator',
+      });
+    }
+    expect(errors).toEqual([]);
+    expectInterchangeProcessing(result.state, false);
+    expect(result.state.generatorResults.map((generator) => generator.generatorName)).toEqual(
+      expect.arrayContaining(xsdGeneratorNames),
+    );
+    expect(result.state.generatorResults).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          generatorName: 'XSD Interchanges',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ resultString: expect.stringContaining('QaPeer') }),
+          ]),
+        }),
+        expect.objectContaining({
+          generatorName: 'edfiXmlDataDictionary.XmlDataDictionaryGenerator',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ fileName: 'XmlDataDictionary.xlsx', resultStream: expect.any(Buffer) }),
           ]),
         }),
       ]),

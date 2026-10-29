@@ -47,3 +47,9 @@ The relational plugin and its SQL Server, PostgreSQL, change-query, record-owner
 and SQL-dictionary consumers also opt in. An unresolved common reference must not start table
 construction or allow downstream processing of incomplete relational metadata. Unified model
 enhancement remains enabled so later validators can use resolved model relationships.
+
+XSD and XML-dictionary processing also require a valid model. An unresolved interchange element
+or identity template must not start XSD enhancement. XML-dictionary generation consumes XSD
+schema metadata, and ODS/API enhancement also depends on XSD metadata; both consumers opt in
+so they cannot process missing metadata when XSD is skipped. Their validators still run, and
+warnings retain their existing behavior.

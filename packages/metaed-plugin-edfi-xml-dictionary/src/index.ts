@@ -12,6 +12,7 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [xmlDataDictionaryGenerator],
     shortName: 'edfiXmlDictionary',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }
