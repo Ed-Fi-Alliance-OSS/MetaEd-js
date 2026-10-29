@@ -57,6 +57,7 @@ export function initialize(): MetaEdPlugin {
       CreateIndirectUpdateCascadeTriggerGenerator,
     ],
     shortName: 'edfiOdsChangeQueryPostgresql',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }

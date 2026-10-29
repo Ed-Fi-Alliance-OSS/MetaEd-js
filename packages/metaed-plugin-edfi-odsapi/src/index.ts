@@ -14,6 +14,7 @@ export function initialize(): MetaEdPlugin {
     enhancer: enhancerList(),
     generator: [ApiModelGenerator],
     shortName: 'edfiOdsApi',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }

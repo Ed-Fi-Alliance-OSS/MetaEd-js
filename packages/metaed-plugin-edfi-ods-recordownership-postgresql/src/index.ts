@@ -12,6 +12,7 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [addCreatedByOwnershipColumnForTableGenerator],
     shortName: 'edfiOdsRecordOwnershipPostgresql',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }

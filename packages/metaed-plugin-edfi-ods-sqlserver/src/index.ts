@@ -48,6 +48,7 @@ export function initialize(): MetaEdPlugin {
       updateEducationOrganizationAuthorizationIndexesGenerator,
     ],
     shortName: 'edfiOdsSqlServer',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }

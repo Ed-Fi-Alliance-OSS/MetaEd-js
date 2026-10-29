@@ -42,3 +42,8 @@ API-schema, handbook, and API-catalog opt in because schema construction needs r
 references and identities, and handbook and catalog consume schema metadata. A plugin that
 consumes metadata from a guarded plugin must also opt in if it cannot operate without that
 metadata. Its validators must remain able to run independently of that metadata.
+
+The relational plugin and its SQL Server, PostgreSQL, change-query, record-ownership, ODS/API,
+and SQL-dictionary consumers also opt in. An unresolved common reference must not start table
+construction or allow downstream processing of incomplete relational metadata. Unified model
+enhancement remains enabled so later validators can use resolved model relationships.

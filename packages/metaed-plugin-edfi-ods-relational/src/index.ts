@@ -85,6 +85,7 @@ export function initialize(): MetaEdPlugin {
     enhancer: enhancerList(),
     generator: [],
     shortName: 'edfiOdsRelational',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }
