@@ -17,6 +17,11 @@ export type MetaEdPlugin = {
   enhancer: Enhancer[];
   generator: Generator[];
   shortName: string;
+  /**
+   * Skip this plugin's enhancers and generators when accumulated validation errors exist.
+   * Validators still run, and subsequent plugins continue. Omitted means false.
+   */
+  requiresValidModel?: boolean;
   configurationSchemas?: ConfigurationSchema;
 };
 
@@ -29,6 +34,7 @@ export function newMetaEdPlugin(): MetaEdPlugin {
     enhancer: [],
     generator: [],
     shortName: '',
+    requiresValidModel: false,
     configurationSchemas: new Map(),
   };
 }

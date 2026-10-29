@@ -37,5 +37,8 @@
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+  },
+  "devDependencies": {
+    "@edfi/metaed-core": "4.8.1-dev.9"
   }
 }

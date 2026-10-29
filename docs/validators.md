@@ -24,3 +24,21 @@ for each plugin are executed one-by-one in RunValidator.ts.
 After running the validators, any error/warning found, will be logged by collecting all of the resulting ValidationFailure
 objects.  These include information on the error itself and the file where the error/warning is present.
 
+## Plugins that require a valid model
+
+A plugin can set `requiresValidModel: true` in its initializer when its enhancers or generators
+require valid model input. The pipeline checks accumulated validation errors after running that
+plugin's validators. If errors exist, it skips the plugin's enhancers and generators, marks the
+pipeline result as failed, and continues to subsequent plugins. This preserves later diagnostics
+when `stopOnValidationFailure` is false, as it is during IDE linting. A failed pipeline does not
+write generated output or replace previously generated files.
+
+Warnings do not trigger the requirement. Omitting the flag or setting it to false preserves
+existing processing behavior. `stopOnValidationFailure: true` still stops at the first plugin
+validation stage with errors. The requirement does not run validators when `runValidators` is
+disabled; it checks any errors already accumulated in the state.
+
+API-schema, handbook, and API-catalog opt in because schema construction needs resolved
+references and identities, and handbook and catalog consume schema metadata. A plugin that
+consumes metadata from a guarded plugin must also opt in if it cannot operate without that
+metadata. Its validators must remain able to run independently of that metadata.
