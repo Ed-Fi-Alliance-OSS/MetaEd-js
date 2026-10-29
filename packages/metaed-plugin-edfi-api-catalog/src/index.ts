@@ -16,6 +16,7 @@ export function initialize(): MetaEdPlugin {
     enhancer: [],
     generator: [apiCatalogGenerator],
     shortName: 'edfiApiCatalog',
+    requiresValidModel: true,
     configurationSchemas: new Map(),
   };
 }

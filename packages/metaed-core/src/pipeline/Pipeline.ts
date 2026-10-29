@@ -95,6 +95,15 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
           }
         }
 
+        const hasValidationErrors: boolean = state.validationFailure.some((vf) => vf.category === 'error');
+        if (metaEdPlugin.requiresValidModel && hasValidationErrors) {
+          failure = true;
+          Logger.debug(`Skipping ${metaEdPlugin.shortName} enhancers and generators because validation errors exist`);
+          // Continue collecting diagnostics from later plugins.
+          // eslint-disable-next-line no-continue
+          continue;
+        }
+
         if (state.pipelineOptions.runEnhancers) {
           if (metaEdPlugin.enhancer.length > 0) {
             Logger.debug(`- Running ${metaEdPlugin.enhancer.length} enhancers...`);
