@@ -59,7 +59,21 @@ describe('when generating api model and comparing it to data standard 4.0 author
     }
   });
 
-  it('should have no validation errors', async () => {
-    expect(state.validationFailure).toHaveLength(0);
+  it('should report only the known DS 4.0 domain warning', async () => {
+    expect(state.validationFailure).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "warning",
+          "fileMap": null,
+          "message": "Domain Entity Domain Item property 'ObjectDimentsion' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 2646,
+            "tokenText": "ObjectDimentsion",
+          },
+          "validatorName": "DomainEntityDomainItemMustMatchTopLevelEntity",
+        },
+      ]
+    `);
   });
 });

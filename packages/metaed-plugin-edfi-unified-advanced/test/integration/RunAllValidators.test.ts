@@ -74,7 +74,21 @@ describe('when running enhancers and validators against DS 4.0 and a simple exte
     failures = state.validationFailure;
   });
 
-  it('should have no failures', async () => {
-    expect(failures.length).toBe(0);
+  it('should report only the known DS 4.0 domain warning', async () => {
+    expect(failures).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "warning",
+          "fileMap": null,
+          "message": "Domain Entity Domain Item property 'ObjectDimentsion' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 2646,
+            "tokenText": "ObjectDimentsion",
+          },
+          "validatorName": "DomainEntityDomainItemMustMatchTopLevelEntity",
+        },
+      ]
+    `);
   });
 });

@@ -16,6 +16,7 @@ import {
   SemVer,
   Interchange,
   InterchangeItem,
+  ValidationFailure,
 } from '@edfi/metaed-core';
 import { edfiHandbookRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-handbook/src/enhancer/EnhancerHelper';
 import { defaultPlugins } from '../../src';
@@ -68,9 +69,38 @@ async function lint(
   return executePipeline(state);
 }
 
+/** Asserts the bundled model warning baseline and returns all remaining diagnostics, including errors. */
+function fixtureDiagnostics(state: State): ValidationFailure[] {
+  const modelWarnings: ValidationFailure[] = state.validationFailure.filter(
+    (failure: ValidationFailure) =>
+      failure.category === 'warning' && failure.validatorName === 'DomainEntityDomainItemMustMatchTopLevelEntity',
+  );
+  const isDataStandard4: boolean = state.metaEd.dataStandardVersion === '4.0.0';
+  const modelPath: string = path.resolve(
+    'node_modules/@edfi',
+    isDataStandard4 ? 'ed-fi-model-4.0/Domain/Finance.metaed' : 'ed-fi-model-6.1/Domain/TeachingAndLearning.metaed',
+  );
+  const expectedMembers: [string, number][] = isDataStandard4
+    ? [['ObjectDimentsion', 19]]
+    : [
+        ['StudentEvaluationElement', 108],
+        ['StudentEvaluationObjective', 109],
+      ];
+  expect(modelWarnings).toMatchObject(
+    expectedMembers.map(([name, lineNumber]: [string, number]) => ({
+      category: 'warning',
+      validatorName: 'DomainEntityDomainItemMustMatchTopLevelEntity',
+      message: `Domain Entity Domain Item property '${name}' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi.`,
+      fileMap: { fullPath: modelPath, lineNumber },
+      sourceMap: { tokenText: name, column: 18 },
+    })),
+  );
+  return state.validationFailure.filter((failure: ValidationFailure) => !modelWarnings.includes(failure));
+}
+
 /** Checks that the schema and its dependent handbook actually resumed processing. */
 function expectValid(result: { state: State; failure: boolean }): void {
-  expect(result.state.validationFailure).toEqual([]);
+  expect(fixtureDiagnostics(result.state)).toEqual([]);
   expect(result.state.pipelineFailure).toEqual([]);
   expect(result.failure).toBe(false);
   const records: ModelBase[] = getAllEntitiesOfType(result.state.metaEd, 'domainEntity').filter(
@@ -206,8 +236,8 @@ describe('continuous linting with invalid models', (): void => {
       const invalid: { state: State; failure: boolean } = await lint(projectPath);
       expect(invalid.failure).toBe(true);
       expect(invalid.state.pipelineFailure).toEqual([]);
-      expect(invalid.state.validationFailure).toHaveLength(1);
-      expect(invalid.state.validationFailure[0]).toMatchObject({
+      expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+      expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
         category: 'error',
         validatorName: 'DomainEntityPropertyMustMatchADomainEntity',
         message:
@@ -215,7 +245,7 @@ describe('continuous linting with invalid models', (): void => {
         fileMap: { fullPath: path.join(projectPath, 'QaRecord.metaed'), lineNumber: 6 },
       });
       expect(errors).toHaveLength(1);
-      expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+      expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
       errors.length = 0;
       fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
       expectValid(await lint(projectPath));
@@ -242,8 +272,8 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0]).toMatchObject({
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
       category: 'error',
       validatorName: 'DomainEntityPropertyMustMatchADomainEntity',
       message:
@@ -251,7 +281,7 @@ describe('continuous linting with invalid models', (): void => {
       fileMap: { fullPath: linkPath, lineNumber: 5 },
     });
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     errors.length = 0;
     fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
     expectValid(await lint(projectPath));
@@ -266,10 +296,10 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0].validatorName).toBe('DomainEntityMustContainAnIdentity');
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe('DomainEntityMustContainAnIdentity');
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     expect(fs.existsSync(path.join(projectPath, 'MetaEdOutput'))).toBe(false);
   });
 
@@ -283,15 +313,15 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0]).toMatchObject({
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
       category: 'error',
       validatorName: 'DomainEntityMustContainAnIdentity',
       message: 'Domain Entity QaRecord does not have an identity specified.',
       fileMap: { fullPath: recordPath, lineNumber: 1 },
     });
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     errors.length = 0;
     fs.writeFileSync(recordPath, record);
     expectValid(await lint(projectPath));
@@ -328,12 +358,12 @@ describe('continuous linting with invalid models', (): void => {
       expect(invalid.failure).toBe(true);
       expect(invalid.state.pipelineFailure).toEqual([]);
       // The existing collection validator also reports the unresolved target's missing identity.
-      expect(invalid.state.validationFailure.map((failure) => failure.validatorName)).toEqual(
+      expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual(
         isCollection
           ? ['CommonPropertyMustMatchACommon', 'CommonPropertyCollectionTargetMustContainIdentity']
           : ['CommonPropertyMustMatchACommon'],
       );
-      expect(invalid.state.validationFailure[0]).toMatchObject({
+      expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
         category: 'error',
         validatorName: 'CommonPropertyMustMatchACommon',
         message: "Common property 'QaDetail' does not match any declared Common or Common Subclass in namespace Sample.",
@@ -344,8 +374,8 @@ describe('continuous linting with invalid models', (): void => {
         enhancerName: 'DomainEntityTableEnhancer',
         success: true,
       });
-      expect(errors).toHaveLength(invalid.state.validationFailure.length);
-      invalid.state.validationFailure.forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+      expect(errors).toHaveLength(fixtureDiagnostics(invalid.state).length);
+      fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
       errors.length = 0;
       fs.writeFileSync(path.join(projectPath, 'QaDetail.metaed'), common);
       const restored: { state: State; failure: boolean } = await lint(
@@ -375,12 +405,12 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure.map((failure) => failure.validatorName)).toEqual([
+    expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual([
       'CommonPropertyMustMatchACommon',
       'SubclassingAnyDomainEntityExceptEducationOrganizationIsUnsupported',
     ]);
     expect(errors).toHaveLength(2);
-    invalid.state.validationFailure.forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+    fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
   });
 
   it('preserves existing output and skips relational generators for a missing common', async () => {
@@ -394,10 +424,10 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0].validatorName).toBe('CommonPropertyMustMatchACommon');
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe('CommonPropertyMustMatchACommon');
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     expect(invalid.state.generatorResults.map((result) => result.generatorName)).not.toEqual(
       expect.arrayContaining([expect.stringMatching(/^(edfiOds|edfiSqlDataDictionary)/)]),
     );
@@ -419,8 +449,8 @@ describe('continuous linting with invalid models', (): void => {
     const result: { state: State; failure: boolean } = await lint(projectPath, true);
     expect(result.failure).toBe(false);
     expect(result.state.pipelineFailure).toEqual([]);
-    expect(result.state.validationFailure).toHaveLength(1);
-    expect(result.state.validationFailure[0]).toMatchObject({
+    expect(fixtureDiagnostics(result.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(result.state)[0]).toMatchObject({
       category: 'warning',
       validatorName: 'BlockPropertiesNamedDiscriminator',
     });
@@ -472,8 +502,8 @@ describe('continuous linting with invalid models', (): void => {
         );
         expect(invalid.failure).toBe(true);
         expect(invalid.state.pipelineFailure).toEqual([]);
-        expect(invalid.state.validationFailure).toHaveLength(1);
-        expect(invalid.state.validationFailure[0]).toMatchObject({
+        expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+        expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
           category: 'error',
           validatorName: identityTemplate
             ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
@@ -486,7 +516,7 @@ describe('continuous linting with invalid models', (): void => {
         });
         expect(invalid.state.enhancerResults).not.toContainEqual({ enhancerName: 'InterchangeItemEnhancer', success: true });
         expect(errors).toHaveLength(1);
-        expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+        expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
 
         errors.length = 0;
         fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
@@ -516,14 +546,14 @@ describe('continuous linting with invalid models', (): void => {
       const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
       expect(invalid.failure).toBe(true);
       expect(invalid.state.pipelineFailure).toEqual([]);
-      expect(invalid.state.validationFailure).toHaveLength(1);
-      expect(invalid.state.validationFailure[0].validatorName).toBe(
+      expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+      expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe(
         identityTemplate
           ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
           : 'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
       );
       expect(errors).toHaveLength(1);
-      expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+      expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
       const generators: string[] = invalid.state.generatorResults.map((result) => result.generatorName);
       xsdGeneratorNames.forEach((name: string) => expect(generators).not.toContain(name));
       expect(fs.readdirSync(outputPath)).toEqual(['previous-output.txt']);
@@ -547,12 +577,12 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure.map((failure) => failure.validatorName)).toEqual([
+    expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual([
       'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
       'SubclassingAnyDomainEntityExceptEducationOrganizationIsUnsupported',
     ]);
     expect(errors).toHaveLength(2);
-    invalid.state.validationFailure.forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+    fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
   });
 
   it.each([false, true])('generates XSD and XML dictionary artifacts (warning only: %s)', async (warningOnly: boolean) => {
@@ -570,9 +600,9 @@ describe('continuous linting with invalid models', (): void => {
     const result: { state: State; failure: boolean } = await lint(projectPath, true);
     expect(result.failure).toBe(false);
     expect(result.state.pipelineFailure).toEqual([]);
-    expect(result.state.validationFailure).toHaveLength(warningOnly ? 1 : 0);
+    expect(fixtureDiagnostics(result.state)).toHaveLength(warningOnly ? 1 : 0);
     if (warningOnly) {
-      expect(result.state.validationFailure[0]).toMatchObject({
+      expect(fixtureDiagnostics(result.state)[0]).toMatchObject({
         category: 'warning',
         validatorName: 'BlockPropertiesNamedDiscriminator',
       });
