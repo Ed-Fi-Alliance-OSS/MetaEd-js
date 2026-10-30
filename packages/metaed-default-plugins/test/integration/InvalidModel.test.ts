@@ -6,7 +6,18 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { executePipeline, getAllEntitiesOfType, Logger, newState, State, ModelBase } from '@edfi/metaed-core';
+import {
+  executePipeline,
+  getAllEntitiesOfType,
+  Logger,
+  newState,
+  State,
+  ModelBase,
+  SemVer,
+  Interchange,
+  InterchangeItem,
+  ValidationFailure,
+} from '@edfi/metaed-core';
 import { edfiHandbookRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-handbook/src/enhancer/EnhancerHelper';
 import { defaultPlugins } from '../../src';
 
@@ -20,15 +31,22 @@ const peer: string = `Domain Entity QaPeer
 `;
 
 /** Runs the default pipeline with fresh state; optionally enables generators to check output protection. */
-async function lint(projectPath: string, runGenerators: boolean = false): Promise<{ state: State; failure: boolean }> {
+async function lint(
+  projectPath: string,
+  runGenerators: boolean = false,
+  dataStandardVersion: SemVer = '6.1.0',
+  targetTechnologyVersion: SemVer = '7.3.0',
+): Promise<{ state: State; failure: boolean }> {
   const state: State = newState();
-  state.metaEdConfiguration.projectPaths = [path.resolve('node_modules/@edfi/ed-fi-model-6.1'), projectPath];
+  const modelPackage: string = dataStandardVersion === '4.0.0' ? 'ed-fi-model-4.0' : 'ed-fi-model-6.1';
+  state.metaEdConfiguration.projectPaths = [path.resolve('node_modules/@edfi', modelPackage), projectPath];
+  state.metaEdConfiguration.artifactDirectory = path.join(projectPath, 'MetaEdOutput');
   state.metaEdConfiguration.projects = [
     {
       description: 'Regression fixture',
       projectName: 'Ed-Fi',
       namespaceName: 'EdFi',
-      projectVersion: '6.1.0',
+      projectVersion: dataStandardVersion,
       projectExtension: '',
     },
     {
@@ -39,8 +57,8 @@ async function lint(projectPath: string, runGenerators: boolean = false): Promis
       projectExtension: 'EXTENSION',
     },
   ];
-  state.metaEdConfiguration.defaultPluginTechVersion = '7.3.0';
-  state.metaEd.dataStandardVersion = '6.1.0';
+  state.metaEdConfiguration.defaultPluginTechVersion = targetTechnologyVersion;
+  state.metaEd.dataStandardVersion = dataStandardVersion;
   state.metaEdPlugins = defaultPlugins();
   state.pipelineOptions = {
     runValidators: true,
@@ -51,11 +69,40 @@ async function lint(projectPath: string, runGenerators: boolean = false): Promis
   return executePipeline(state);
 }
 
+/** Asserts the bundled model warning baseline and returns all remaining diagnostics, including errors. */
+function fixtureDiagnostics(state: State): ValidationFailure[] {
+  const modelWarnings: ValidationFailure[] = state.validationFailure.filter(
+    (failure: ValidationFailure) =>
+      failure.category === 'warning' && failure.validatorName === 'DomainEntityDomainItemMustMatchTopLevelEntity',
+  );
+  const isDataStandard4: boolean = state.metaEd.dataStandardVersion === '4.0.0';
+  const modelPath: string = path.resolve(
+    'node_modules/@edfi',
+    isDataStandard4 ? 'ed-fi-model-4.0/Domain/Finance.metaed' : 'ed-fi-model-6.1/Domain/TeachingAndLearning.metaed',
+  );
+  const expectedMembers: [string, number][] = isDataStandard4
+    ? [['ObjectDimentsion', 19]]
+    : [
+        ['StudentEvaluationElement', 108],
+        ['StudentEvaluationObjective', 109],
+      ];
+  expect(modelWarnings).toMatchObject(
+    expectedMembers.map(([name, lineNumber]: [string, number]) => ({
+      category: 'warning',
+      validatorName: 'DomainEntityDomainItemMustMatchTopLevelEntity',
+      message: `Domain Entity Domain Item property '${name}' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi.`,
+      fileMap: { fullPath: modelPath, lineNumber },
+      sourceMap: { tokenText: name, column: 18 },
+    })),
+  );
+  return state.validationFailure.filter((failure: ValidationFailure) => !modelWarnings.includes(failure));
+}
+
 /** Checks that the schema and its dependent handbook actually resumed processing. */
 function expectValid(result: { state: State; failure: boolean }): void {
-  expect(result.failure).toBe(false);
-  expect(result.state.validationFailure).toEqual([]);
+  expect(fixtureDiagnostics(result.state)).toEqual([]);
   expect(result.state.pipelineFailure).toEqual([]);
+  expect(result.failure).toBe(false);
   const records: ModelBase[] = getAllEntitiesOfType(result.state.metaEd, 'domainEntity').filter(
     (entity) => entity.namespace.namespaceName === 'Sample' && entity.metaEdName === 'QaRecord',
   );
@@ -69,6 +116,85 @@ function expectValid(result: { state: State; failure: boolean }): void {
     success: true,
   });
 }
+
+const common: string = `Common QaDetail
+  documentation "Regression detail."
+  string Value
+    documentation "Detail value."
+    is part of identity
+    max length 64
+`;
+
+/** Writes a record whose common reference can be deleted and restored independently. */
+function writeCommonReference(projectPath: string, cardinality: string): void {
+  fs.writeFileSync(path.join(projectPath, 'QaDetail.metaed'), common);
+  fs.writeFileSync(
+    path.join(projectPath, 'QaRecord.metaed'),
+    `${peer.replace(/QaPeer/g, 'QaRecord')}  common QaDetail
+    documentation "Record detail."
+    ${cardinality}
+`,
+  );
+}
+
+/** Checks that relational processing and both database consumers actually ran. */
+function expectRelationalProcessing(state: State): void {
+  expect(state.enhancerResults).toEqual(
+    expect.arrayContaining([
+      { enhancerName: 'DomainEntityTableEnhancer', success: true },
+      { enhancerName: 'SqlServerForeignKeyNamingEnhancer', success: true },
+      { enhancerName: 'PostgresqlForeignKeyNamingEnhancer', success: true },
+    ]),
+  );
+  const records: ModelBase[] = getAllEntitiesOfType(state.metaEd, 'domainEntity').filter(
+    (entity) => entity.namespace.namespaceName === 'Sample' && entity.metaEdName === 'QaRecord',
+  );
+  expect(records).toHaveLength(1);
+  expect(records[0].data.edfiOdsRelational.odsEntityTable.data).toMatchObject({
+    edfiOdsSqlServer: { tableName: 'QaRecord' },
+    edfiOdsPostgresql: { tableName: 'QaRecord' },
+  });
+}
+
+/** Writes an interchange that references the independently removable peer. */
+function writeInterchangeReference(projectPath: string, identityTemplate: boolean): void {
+  fs.writeFileSync(path.join(projectPath, 'QaRecord.metaed'), peer.replace(/QaPeer/g, 'QaRecord'));
+  fs.writeFileSync(
+    path.join(projectPath, 'QaInterchange.metaed'),
+    `Interchange QaInterchange
+  documentation "Regression interchange."
+  extended documentation "Regression interchange details."
+  use case documentation "Exchange regression records."
+  domain entity${identityTemplate ? ' identity' : ''} QaPeer
+  domain entity QaRecord
+`,
+  );
+}
+
+/** Checks actual XSD reference metadata after initial validation and recovery. */
+function expectInterchangeProcessing(state: State, identityTemplate: boolean): void {
+  expect(state.enhancerResults).toContainEqual({ enhancerName: 'InterchangeItemEnhancer', success: true });
+  const interchanges: Interchange[] = (getAllEntitiesOfType(state.metaEd, 'interchange') as Interchange[]).filter(
+    (interchange: Interchange) =>
+      interchange.namespace.namespaceName === 'Sample' && interchange.metaEdName === 'QaInterchange',
+  );
+  expect(interchanges).toHaveLength(1);
+  const items: InterchangeItem[] = (identityTemplate ? interchanges[0].identityTemplates : interchanges[0].elements).filter(
+    (item: InterchangeItem) => item.metaEdName === 'QaPeer',
+  );
+  expect(items).toHaveLength(1);
+  expect(items[0].data.edfiXsd).toMatchObject({
+    xsdName: identityTemplate ? 'QaPeerReference' : 'QaPeer',
+    xsdType: expect.stringContaining('QaPeer'),
+  });
+}
+
+const xsdGeneratorNames: string[] = [
+  'edfiXsd.XsdGenerator',
+  'edfiXsd.SchemaAnnotationGenerator',
+  'XSD Interchanges',
+  'edfiXmlDataDictionary.XmlDataDictionaryGenerator',
+];
 
 describe('continuous linting with invalid models', (): void => {
   let projectPath: string;
@@ -110,8 +236,8 @@ describe('continuous linting with invalid models', (): void => {
       const invalid: { state: State; failure: boolean } = await lint(projectPath);
       expect(invalid.failure).toBe(true);
       expect(invalid.state.pipelineFailure).toEqual([]);
-      expect(invalid.state.validationFailure).toHaveLength(1);
-      expect(invalid.state.validationFailure[0]).toMatchObject({
+      expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+      expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
         category: 'error',
         validatorName: 'DomainEntityPropertyMustMatchADomainEntity',
         message:
@@ -119,7 +245,7 @@ describe('continuous linting with invalid models', (): void => {
         fileMap: { fullPath: path.join(projectPath, 'QaRecord.metaed'), lineNumber: 6 },
       });
       expect(errors).toHaveLength(1);
-      expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+      expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
       errors.length = 0;
       fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
       expectValid(await lint(projectPath));
@@ -146,8 +272,8 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0]).toMatchObject({
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
       category: 'error',
       validatorName: 'DomainEntityPropertyMustMatchADomainEntity',
       message:
@@ -155,7 +281,7 @@ describe('continuous linting with invalid models', (): void => {
       fileMap: { fullPath: linkPath, lineNumber: 5 },
     });
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     errors.length = 0;
     fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
     expectValid(await lint(projectPath));
@@ -170,10 +296,10 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0].validatorName).toBe('DomainEntityMustContainAnIdentity');
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe('DomainEntityMustContainAnIdentity');
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     expect(fs.existsSync(path.join(projectPath, 'MetaEdOutput'))).toBe(false);
   });
 
@@ -187,18 +313,321 @@ describe('continuous linting with invalid models', (): void => {
     const invalid: { state: State; failure: boolean } = await lint(projectPath);
     expect(invalid.failure).toBe(true);
     expect(invalid.state.pipelineFailure).toEqual([]);
-    expect(invalid.state.validationFailure).toHaveLength(1);
-    expect(invalid.state.validationFailure[0]).toMatchObject({
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
       category: 'error',
       validatorName: 'DomainEntityMustContainAnIdentity',
       message: 'Domain Entity QaRecord does not have an identity specified.',
       fileMap: { fullPath: recordPath, lineNumber: 1 },
     });
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain(invalid.state.validationFailure[0].message);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
     errors.length = 0;
     fs.writeFileSync(recordPath, record);
     expectValid(await lint(projectPath));
     expect(errors).toEqual([]);
+  });
+
+  describe.each([
+    ['4.0.0', '6.1.0'],
+    ['6.1.0', '7.3.0'],
+  ])('common references with DS %s / ODS %s', (dataStandardVersion: SemVer, targetTechnologyVersion: SemVer) => {
+    it.each<[string, boolean]>([
+      ['is optional', false],
+      ['is required', false],
+      ['is optional collection', true],
+      ['is required collection', true],
+    ])('recovers after deleting a common referenced as %s', async (cardinality: string, isCollection: boolean) => {
+      writeCommonReference(projectPath, cardinality);
+      const valid: { state: State; failure: boolean } = await lint(
+        projectPath,
+        false,
+        dataStandardVersion,
+        targetTechnologyVersion,
+      );
+      expectValid(valid);
+      expectRelationalProcessing(valid.state);
+      expect(errors).toEqual([]);
+      fs.unlinkSync(path.join(projectPath, 'QaDetail.metaed'));
+      const invalid: { state: State; failure: boolean } = await lint(
+        projectPath,
+        false,
+        dataStandardVersion,
+        targetTechnologyVersion,
+      );
+      expect(invalid.failure).toBe(true);
+      expect(invalid.state.pipelineFailure).toEqual([]);
+      // The existing collection validator also reports the unresolved target's missing identity.
+      expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual(
+        isCollection
+          ? ['CommonPropertyMustMatchACommon', 'CommonPropertyCollectionTargetMustContainIdentity']
+          : ['CommonPropertyMustMatchACommon'],
+      );
+      expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
+        category: 'error',
+        validatorName: 'CommonPropertyMustMatchACommon',
+        message: "Common property 'QaDetail' does not match any declared Common or Common Subclass in namespace Sample.",
+        fileMap: { fullPath: path.join(projectPath, 'QaRecord.metaed'), lineNumber: 6 },
+        sourceMap: { column: 9, tokenText: 'QaDetail' },
+      });
+      expect(invalid.state.enhancerResults).not.toContainEqual({
+        enhancerName: 'DomainEntityTableEnhancer',
+        success: true,
+      });
+      expect(errors).toHaveLength(fixtureDiagnostics(invalid.state).length);
+      fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+      errors.length = 0;
+      fs.writeFileSync(path.join(projectPath, 'QaDetail.metaed'), common);
+      const restored: { state: State; failure: boolean } = await lint(
+        projectPath,
+        false,
+        dataStandardVersion,
+        targetTechnologyVersion,
+      );
+      expectValid(restored);
+      expectRelationalProcessing(restored.state);
+      expect(errors).toEqual([]);
+    });
+  });
+
+  it('reports downstream ODS/API validation errors when a common reference is missing', async () => {
+    writeCommonReference(projectPath, 'is optional');
+    fs.unlinkSync(path.join(projectPath, 'QaDetail.metaed'));
+    fs.writeFileSync(
+      path.join(projectPath, 'QaSubclass.metaed'),
+      `Domain Entity QaSubclass based on QaPeer
+  documentation "Unsupported ODS subclass."
+  integer Extra
+    documentation "Extra value."
+    is optional
+`,
+    );
+    const invalid: { state: State; failure: boolean } = await lint(projectPath);
+    expect(invalid.failure).toBe(true);
+    expect(invalid.state.pipelineFailure).toEqual([]);
+    expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual([
+      'CommonPropertyMustMatchACommon',
+      'SubclassingAnyDomainEntityExceptEducationOrganizationIsUnsupported',
+    ]);
+    expect(errors).toHaveLength(2);
+    fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+  });
+
+  it('preserves existing output and skips relational generators for a missing common', async () => {
+    writeCommonReference(projectPath, 'is optional');
+    fs.unlinkSync(path.join(projectPath, 'QaDetail.metaed'));
+    const outputPath: string = path.join(projectPath, 'MetaEdOutput');
+    fs.mkdirSync(outputPath);
+    const markerPath: string = path.join(outputPath, 'previous-output.txt');
+    fs.writeFileSync(markerPath, 'previous successful output');
+    const before: fs.Stats = fs.statSync(markerPath);
+    const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
+    expect(invalid.failure).toBe(true);
+    expect(invalid.state.pipelineFailure).toEqual([]);
+    expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe('CommonPropertyMustMatchACommon');
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
+    expect(invalid.state.generatorResults.map((result) => result.generatorName)).not.toEqual(
+      expect.arrayContaining([expect.stringMatching(/^(edfiOds|edfiSqlDataDictionary)/)]),
+    );
+    expect(fs.readdirSync(outputPath)).toEqual(['previous-output.txt']);
+    expect(fs.readFileSync(markerPath, 'utf8')).toBe('previous successful output');
+    expect(fs.statSync(markerPath).mtimeMs).toBe(before.mtimeMs);
+  });
+
+  it('still generates relational artifacts when validation reports only warnings', async () => {
+    writeCommonReference(projectPath, 'is optional');
+    fs.appendFileSync(
+      path.join(projectPath, 'QaRecord.metaed'),
+      `  string Discriminator
+    documentation "Triggers an ODS warning."
+    is optional
+    max length 20
+`,
+    );
+    const result: { state: State; failure: boolean } = await lint(projectPath, true);
+    expect(result.failure).toBe(false);
+    expect(result.state.pipelineFailure).toEqual([]);
+    expect(fixtureDiagnostics(result.state)).toHaveLength(1);
+    expect(fixtureDiagnostics(result.state)[0]).toMatchObject({
+      category: 'warning',
+      validatorName: 'BlockPropertiesNamedDiscriminator',
+    });
+    expect(errors).toEqual([]);
+    expectRelationalProcessing(result.state);
+    expect(result.state.generatorResults).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          generatorName: 'edfiOdsSqlServer.OdsGenerator',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ resultString: expect.stringContaining('CREATE TABLE [sample].[QaRecord]') }),
+          ]),
+        }),
+        expect.objectContaining({
+          generatorName: 'edfiOdsPostgresql.OdsGenerator',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ resultString: expect.stringContaining('CREATE TABLE sample.QaRecord') }),
+          ]),
+        }),
+      ]),
+    );
+    expect(fs.readdirSync(path.join(projectPath, 'MetaEdOutput')).length).toBeGreaterThan(0);
+  });
+
+  describe.each([
+    ['4.0.0', '6.1.0'],
+    ['6.1.0', '7.3.0'],
+  ])('interchange references with DS %s / ODS %s', (dataStandardVersion: SemVer, targetTechnologyVersion: SemVer) => {
+    it.each([false, true])(
+      'recovers after deleting an interchange target (identity template: %s)',
+      async (identityTemplate: boolean) => {
+        writeInterchangeReference(projectPath, identityTemplate);
+        const valid: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expectValid(valid);
+        expectInterchangeProcessing(valid.state, identityTemplate);
+        expect(errors).toEqual([]);
+
+        fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+        const invalid: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expect(invalid.failure).toBe(true);
+        expect(invalid.state.pipelineFailure).toEqual([]);
+        expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+        expect(fixtureDiagnostics(invalid.state)[0]).toMatchObject({
+          category: 'error',
+          validatorName: identityTemplate
+            ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
+            : 'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+          message: `Interchange ${
+            identityTemplate ? 'identity template' : 'element'
+          } QaPeer does not match any declared Abstract Entity, Association, Association Subclass, Descriptor, Domain Entity, Domain Entity Subclass`,
+          fileMap: { fullPath: path.join(projectPath, 'QaInterchange.metaed'), lineNumber: 5 },
+          sourceMap: { column: identityTemplate ? 25 : 16, tokenText: 'QaPeer' },
+        });
+        expect(invalid.state.enhancerResults).not.toContainEqual({ enhancerName: 'InterchangeItemEnhancer', success: true });
+        expect(errors).toHaveLength(1);
+        expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
+
+        errors.length = 0;
+        fs.writeFileSync(path.join(projectPath, 'QaPeer.metaed'), peer);
+        const restored: { state: State; failure: boolean } = await lint(
+          projectPath,
+          false,
+          dataStandardVersion,
+          targetTechnologyVersion,
+        );
+        expectValid(restored);
+        expectInterchangeProcessing(restored.state, identityTemplate);
+        expect(errors).toEqual([]);
+      },
+    );
+  });
+
+  it.each([false, true])(
+    'preserves output and skips XSD consumers for a missing interchange target (identity template: %s)',
+    async (identityTemplate: boolean) => {
+      writeInterchangeReference(projectPath, identityTemplate);
+      fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+      const outputPath: string = path.join(projectPath, 'MetaEdOutput');
+      fs.mkdirSync(outputPath);
+      const markerPath: string = path.join(outputPath, 'previous-output.txt');
+      fs.writeFileSync(markerPath, 'previous successful output');
+      const before: fs.Stats = fs.statSync(markerPath);
+      const invalid: { state: State; failure: boolean } = await lint(projectPath, true);
+      expect(invalid.failure).toBe(true);
+      expect(invalid.state.pipelineFailure).toEqual([]);
+      expect(fixtureDiagnostics(invalid.state)).toHaveLength(1);
+      expect(fixtureDiagnostics(invalid.state)[0].validatorName).toBe(
+        identityTemplate
+          ? 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass'
+          : 'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+      );
+      expect(errors).toHaveLength(1);
+      expect(errors[0]).toContain(fixtureDiagnostics(invalid.state)[0].message);
+      const generators: string[] = invalid.state.generatorResults.map((result) => result.generatorName);
+      xsdGeneratorNames.forEach((name: string) => expect(generators).not.toContain(name));
+      expect(fs.readdirSync(outputPath)).toEqual(['previous-output.txt']);
+      expect(fs.readFileSync(markerPath, 'utf8')).toBe('previous successful output');
+      expect(fs.statSync(markerPath).mtimeMs).toBe(before.mtimeMs);
+    },
+  );
+
+  it('reports downstream ODS/API errors when an interchange target is missing', async () => {
+    writeInterchangeReference(projectPath, false);
+    fs.unlinkSync(path.join(projectPath, 'QaPeer.metaed'));
+    fs.writeFileSync(
+      path.join(projectPath, 'QaSubclass.metaed'),
+      `Domain Entity QaSubclass based on QaRecord
+  documentation "Unsupported ODS subclass."
+  integer Extra
+    documentation "Extra value."
+    is optional
+`,
+    );
+    const invalid: { state: State; failure: boolean } = await lint(projectPath);
+    expect(invalid.failure).toBe(true);
+    expect(invalid.state.pipelineFailure).toEqual([]);
+    expect(fixtureDiagnostics(invalid.state).map((failure) => failure.validatorName)).toEqual([
+      'InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass',
+      'SubclassingAnyDomainEntityExceptEducationOrganizationIsUnsupported',
+    ]);
+    expect(errors).toHaveLength(2);
+    fixtureDiagnostics(invalid.state).forEach((failure, index) => expect(errors[index]).toContain(failure.message));
+  });
+
+  it.each([false, true])('generates XSD and XML dictionary artifacts (warning only: %s)', async (warningOnly: boolean) => {
+    writeInterchangeReference(projectPath, false);
+    if (warningOnly) {
+      fs.appendFileSync(
+        path.join(projectPath, 'QaRecord.metaed'),
+        `  string Discriminator
+    documentation "Triggers an ODS warning."
+    is optional
+    max length 20
+`,
+      );
+    }
+    const result: { state: State; failure: boolean } = await lint(projectPath, true);
+    expect(result.failure).toBe(false);
+    expect(result.state.pipelineFailure).toEqual([]);
+    expect(fixtureDiagnostics(result.state)).toHaveLength(warningOnly ? 1 : 0);
+    if (warningOnly) {
+      expect(fixtureDiagnostics(result.state)[0]).toMatchObject({
+        category: 'warning',
+        validatorName: 'BlockPropertiesNamedDiscriminator',
+      });
+    }
+    expect(errors).toEqual([]);
+    expectInterchangeProcessing(result.state, false);
+    expect(result.state.generatorResults.map((generator) => generator.generatorName)).toEqual(
+      expect.arrayContaining(xsdGeneratorNames),
+    );
+    expect(result.state.generatorResults).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          generatorName: 'XSD Interchanges',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ resultString: expect.stringContaining('QaPeer') }),
+          ]),
+        }),
+        expect.objectContaining({
+          generatorName: 'edfiXmlDataDictionary.XmlDataDictionaryGenerator',
+          generatedOutput: expect.arrayContaining([
+            expect.objectContaining({ fileName: 'XmlDataDictionary.xlsx', resultStream: expect.any(Buffer) }),
+          ]),
+        }),
+      ]),
+    );
+    expect(fs.readdirSync(path.join(projectPath, 'MetaEdOutput')).length).toBeGreaterThan(0);
   });
 });

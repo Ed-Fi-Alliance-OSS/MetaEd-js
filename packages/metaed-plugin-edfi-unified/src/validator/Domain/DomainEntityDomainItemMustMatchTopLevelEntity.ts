@@ -6,16 +6,19 @@
 import { DomainItem, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
+/** Creates a nonblocking diagnostic for an unresolved domain entity member. */
 function getFailure(domainItem: DomainItem, name: string, failureMessage: string): ValidationFailure {
   return {
     validatorName: name,
-    category: 'error',
+    // Bundled models still contain mistyped domain members; report them without blocking builds.
+    category: 'warning',
     message: failureMessage,
     sourceMap: domainItem.sourceMap.referencedType,
     fileMap: null,
   };
 }
 
+/** Warns when a domain entity member cannot resolve to a domain entity or subclass. */
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 

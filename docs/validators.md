@@ -37,8 +37,3 @@ Warnings do not trigger the requirement. Omitting the flag or setting it to fals
 existing processing behavior. `stopOnValidationFailure: true` still stops at the first plugin
 validation stage with errors. The requirement does not run validators when `runValidators` is
 disabled; it checks any errors already accumulated in the state.
-
-API-schema, handbook, and API-catalog opt in because schema construction needs resolved
-references and identities, and handbook and catalog consume schema metadata. A plugin that
-consumes metadata from a guarded plugin must also opt in if it cannot operate without that
-metadata. Its validators must remain able to run independently of that metadata.

@@ -10,8 +10,12 @@ import {
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
   NamespaceBuilder,
+  newState,
+  runValidators,
+  setupPlugins,
 } from '@edfi/metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { MetaEdEnvironment, State, ValidationFailure } from '@edfi/metaed-core';
+import { initialize } from '../../../src';
 import { validate } from '../../../src/validator/Domain/DomainEntityDomainItemMustMatchTopLevelEntity';
 
 describe('when validating domain entity domain item matches top level entity', (): void => {
@@ -145,14 +149,11 @@ describe('when validating domain entity domain item matches top level entity sub
   });
 });
 
-describe('when validating domain entity domain item does not match top level entity', (): void => {
+describe('when the unified plugin validates an unresolved domain entity domain item', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const domainName = 'DomainName';
-  const domainEntityName = 'DomainEntityName';
-  const domainEntitySubclassName = 'DomainEntitySubclassName';
 
   let failures: ValidationFailure[];
-  let coreNamespace: any = null;
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -163,42 +164,37 @@ describe('when validating domain entity domain item does not match top level ent
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
 
-      .withStartDomainEntity(domainEntityName)
-      .withDocumentation('doc')
-      .withBooleanProperty('PropertyName', 'doc', true, false)
-      .withEndDomainEntity()
-
-      .withStartDomainEntitySubclass(domainEntitySubclassName, domainEntityName)
-      .withDocumentation('doc')
-      .withBooleanProperty('Property1', 'because a property is required', true, false)
-      .withEndDomainEntitySubclass()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new DomainBuilder(metaEd, []));
 
-    coreNamespace = metaEd.namespace.get('EdFi');
-    failures = validate(metaEd);
+    const state: State = { ...newState(), metaEd, metaEdPlugins: [initialize()] };
+    state.metaEdConfiguration.defaultPluginTechVersion = '7.3.0';
+    setupPlugins(state);
+    runValidators(initialize(), state);
+    failures = state.validationFailure;
   });
 
-  it('should build one domain entity', (): void => {
-    expect(coreNamespace.entity.domain.size).toBe(1);
+  it('should build one domain', (): void => {
+    expect(metaEd.namespace.get('EdFi')?.entity.domain.size).toBe(1);
   });
 
-  it('should have one validation failure()', (): void => {
-    expect(failures).toHaveLength(1);
-    expect(failures[0].validatorName).toBe('DomainEntityDomainItemMustMatchTopLevelEntity');
-    expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchInlineSnapshot(
-      `"Domain Entity Domain Item property 'DomainEntityDomainItemName' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi."`,
-    );
-    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
-      Object {
-        "column": 18,
-        "line": 5,
-        "tokenText": "DomainEntityDomainItemName",
-      }
+  it('should report the unresolved member as a warning through the registered validators', (): void => {
+    expect(failures).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "warning",
+          "fileMap": null,
+          "message": "Domain Entity Domain Item property 'DomainEntityDomainItemName' does not match any declared Domain Entity or Domain Entity Subclass in namespace EdFi.",
+          "sourceMap": Object {
+            "column": 18,
+            "line": 5,
+            "tokenText": "DomainEntityDomainItemName",
+          },
+          "validatorName": "DomainEntityDomainItemMustMatchTopLevelEntity",
+        },
+      ]
     `);
   });
 });
