@@ -19,7 +19,7 @@
     "@edfi/metaed-plugin-edfi-unified": "4.9.0",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.9.0",
     "handlebars": "^4.7.7",
-    "write-excel-file": "^2.0.9"
+    "write-excel-file": "^4.1.1"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
