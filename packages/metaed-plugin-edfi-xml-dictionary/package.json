@@ -20,7 +20,7 @@
     "@xmldom/xmldom": "^0.9.12",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
-    "write-excel-file": "^2.0.9"
+    "write-excel-file": "^4.1.1"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
