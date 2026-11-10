@@ -18,7 +18,7 @@
     "@edfi/metaed-plugin-edfi-unified": "4.9.0",
     "deep-freeze": "^0.0.1",
     "inflection": "^2.0.1",
-    "joi": "^18.2.9",
+    "joi": "^18.3.1",
     "json-stable-stringify": "^1.1.1",
     "ramda": "^0.32.0",
     "ts-invariant": "^0.10.3"
