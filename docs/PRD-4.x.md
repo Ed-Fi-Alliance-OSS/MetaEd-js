@@ -1,13 +1,13 @@
 # MetaEd Product Requirements Document — Version 4.x
 
 - Owner: Stephen Fuqua
-- Version: 4.8
+- Version: 4.10
 - Status: completed
 - Repository: Ed-Fi-Alliance-OSS/MetaEd-Js
 - Platform and runtime: Node.js packages (CommonJS); pull request and npm publish CI run Node 22
 
 > [!TIP]
-> This PRD defines the product requirements for MetaEd version 4.8, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
+> This PRD defines the product requirements for MetaEd version 4.10, covering the Node.js monorepo that implements the MetaEd generator and its command-line interfaces. It covers the core features, functional and non-functional requirements, system architecture, and known limitations.
 >
 > It does _not cover_ the MetaEd DSL syntax and semantics, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
 >
