@@ -8,7 +8,6 @@ CLI arguments via `yargs`:
 
 - `--config / -c` — Path to a JSON configuration file (relative paths are resolved relative to the console module directory; use absolute paths to avoid ambiguity)
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
-- `--accept-license / -a` — Required flag to accept the license agreement
 - `--suppressPrereleaseVersion` — Suppress the prerelease identifier in generated version data, formatting the Data Standard version as `major.minor.0` (default: `true`). Applied only when no config file is supplied; with `--config`, the config file's `suppressPrereleaseVersion` is used
 
 The config file supplies a `metaEdConfiguration` object with project paths, artifact
@@ -30,8 +29,6 @@ Assembles the default plugin set, resolves the data standard version from projec
 metadata, builds the pipeline state, and runs all registered validators, enhancers,
 and generators in sequence. Logs the total elapsed time when the run completes.
 
-- The license acceptance option is required by yargs, but its value is not validated and
-  acceptance is not persisted.
 - Pipeline stage order, early-return behavior (METAED-1676), and output safety guards are
   documented in the `metaed-core` README.
 
@@ -44,6 +41,6 @@ and generators in sequence. Logs the total elapsed time when the run completes.
    processes. Relative `--config` paths are resolved from the built console module directory, not the current directory, so
    pass an absolute path. The sample's relative `projectPaths` (`../../node_modules/...`) are resolved against the current
    directory, so run it from `packages/metaed-console`, for example:
-    `cd packages/metaed-console && node dist/index.js -a -c "$PWD/metaed-edfi-5.2.json"`.
+    `cd packages/metaed-console && node dist/index.js -c "$PWD/metaed-edfi-5.2.json"`.
    With the sample's relative `artifactDirectory`, output is written to `MetaEdOutput` under the Data Standard model package
    directory.

@@ -240,7 +240,7 @@ function RunMetaEd {
     config file. For more details, please refer to the readme file located in
     ./packages/meteaed-console/src/README.md
     #>
-    node ./dist/index.js -a -c $SchemaPackagingConfigFile
+    node ./dist/index.js -c $SchemaPackagingConfigFile
 }
 
 # StageAssets: Creates a flat per-package payload directory under eng/ApiSchema/staging/<ExtensionName>/
