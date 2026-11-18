@@ -2,7 +2,7 @@
 
 - Owner: Stephen Fuqua
 - Version: 4.10
-- Status: completed
+- Status: proposed
 - Repository: Ed-Fi-Alliance-OSS/MetaEd-Js
 - Platform and runtime: Node.js packages (CommonJS); pull request and npm publish CI run Node 22
 
