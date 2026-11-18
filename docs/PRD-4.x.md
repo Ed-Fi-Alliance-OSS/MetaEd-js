@@ -133,7 +133,6 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### 3.2 Build Command
 
 - **FR-BUILD-1**: `@edfi/metaed-console` SHALL run from Node.js and execute the MetaEd pipeline using the default plugin set.
-- **FR-BUILD-2**: The build CLI SHALL require `-a` / `--accept-license` before executing.
 - **FR-BUILD-3**: The build CLI SHALL accept `-c` / `--config` to specify a JSON configuration file.
 - **FR-BUILD-4**: The build CLI SHALL accept `-x` / `--defaultPluginTechVersion` to override the configured default technology version for all plugins.
 - **FR-BUILD-5**: The default plugin technology version SHALL be `6.0.0` when not overridden by configuration or CLI argument.
@@ -218,7 +217,6 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 ### 3.5 Deploy Command
 
 - **FR-DEPLOY-1**: `@edfi/metaed-odsapi-deploy-console` SHALL run from Node.js and execute deploy tasks from `@edfi/metaed-odsapi-deploy`.
-- **FR-DEPLOY-2**: The deploy CLI SHALL require `-a` / `--accept-license`.
 - **FR-DEPLOY-3**: The deploy CLI SHALL accept configuration through `-c` / `--config`.
 - **FR-DEPLOY-4**: When no configuration is supplied, the deploy CLI SHALL use `-s` / `--source` and `-p` / `--projectNames` to scan project source directories, build artifacts into `MetaEdOutput` under the last resolved project path, and then deploy to the `-t` / `--target` directory (`-t` is not enforced).
 - **FR-DEPLOY-5**: The deploy CLI SHALL accept `-x` / `--defaultPluginTechVersion` to override the configured default technology version for build and deploy behavior.
@@ -274,7 +272,6 @@ The product value is artifact consistency: SQL, XSD, API metadata, API schema, d
 
 ### Licensing
 
-- **NFR-LIC-1**: Usage of the Ed-Fi Unifying Data Model SHALL require explicit acceptance of the Ed-Fi License Agreement via the `-a` / `--accept-license` CLI flag.
 - **NFR-LIC-2**: Packages SHALL be licensed as Apache-2.0 as declared in package metadata and repository license files.
 
 ### Reliability
@@ -365,7 +362,6 @@ Generated files are written beneath the artifact directory by namespace and fold
 ### 6.2 Known Limitations
 
 - `MetaEdConfiguration` includes `pluginTechVersion`, and some fixtures contain it, but current plugin setup assigns every plugin the single `defaultPluginTechVersion`.
-- The `-a` / `--accept-license` flag is required, but acceptance is not persisted.
 - The build console resolves relative `-c` / `--config` paths relative to the console module directory; use absolute config paths.
 - Config-based deploy mode runs deploy tasks against an existing `artifactDirectory`; source-scan mode is the path that builds before deploy.
 - Config-based deploy mode does not apply defaults or the `--suppressPrereleaseVersion` CLI option: an omitted `suppressPrereleaseVersion` means no prerelease suppression, and an omitted `defaultPluginTechVersion` without `-x` causes version-gated deploy tasks to be skipped.
