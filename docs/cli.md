@@ -23,9 +23,6 @@ Options:
   --config, -c                    Path to JSON config file
   --defaultPluginTechVersion, -x  The default technology version for all
                                   plugins, in semver format            [string]
-  -a, --accept-license            Accept the Ed-Fi License Agreement at
-                                  https://www.ed-fi.org/getting-started/license-
-                                  ed-fi-technology           [string] [required]
   --suppressPrereleaseVersion     Suppress the prerelease identifier in 
                                   the version         [boolean] [default: true]                                  
   --help, -h                      Show help                            [boolean]
@@ -33,6 +30,8 @@ Options:
 ```
 
 A config file is implicitly required. See [Configuration File](#configuration-file) for help with using a config file.
+
+The former `-a` / `--accept-license` option is no longer required and is ignored if passed, so existing scripts keep working.
 
 ### Build Output
 
@@ -78,15 +77,10 @@ Options:
                                                       [boolean] [default: false]
       --suppressDelete            Suppress deletion of the SupportingArtifacts
                                   deployment folder   [boolean] [default: false]
-  -a, --accept-license            Accept the Ed-Fi License Agreement at
-                                  https://www.ed-fi.org/getting-started/license-
-                                  ed-fi-technology           [string] [required]
    --suppressPrereleaseVersion    Suppress the prerelease identifier in 
                                   the version         [boolean] [default: true]
   -h, --help                      Show help                            [boolean]
   -v, --version                   Show version number                  [boolean]
-
-Missing required argument: accept-license
 ```
 
 See [Configuration File](#configuration-file) for help with using a config file.
@@ -172,5 +166,5 @@ TIP: Git will ignore this file if it is named `metaed.conf.json`.
 Now run the MetaEd build or deploy process with that file:
 
 ```bash
-node <correct module>/index.js -c metaed.conf.json -a
+node <correct module>/index.js -c metaed.conf.json
 ```

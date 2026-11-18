@@ -13,7 +13,6 @@ CLI arguments via `yargs`:
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--core` — Deploy core artifacts
 - `--suppressDelete` — Skip removal of existing unversioned extension `Artifacts` directories
-- `--accept-license / -a` — Required license acceptance flag
 - `--suppressPrereleaseVersion` — Suppress the prerelease identifier in the Data Standard version (formatted as `major.minor.0`) used in generated version data and ODS/API ≥ 7.1 deploy paths (default: `true`). Applied only in source-scan mode; config-based mode uses the config file's `suppressPrereleaseVersion`
 - `--additionalMssqlScriptsDirectory` — Extra SQL Server scripts directory
 - `--additionalPostgresScriptsDirectory` — Extra PostgreSQL scripts directory
@@ -65,7 +64,5 @@ Source-scan project discovery (implemented by `ProjectLoader` in `metaed-core`):
 
 Other notes:
 
-- The license acceptance option is required by yargs, but its value is not validated and
-  acceptance is not persisted.
 - When a deploy task fails, the console sets a non-zero exit code but does not print the
   returned `failureMessage` (METAED-1678).
