@@ -33,12 +33,17 @@ Contains one row per resource with the following columns:
 
 ### Properties Worksheet
 
-The generator reads properties from `components.schemas` in each resource or descriptor's OpenAPI fragment. A resource can appear in Resources with no Properties rows. For example, in the Sample extension, `studentSchoolAssociations` has no property rows. Its `membershipTypeDescriptor` field is under `openApiFragments.resources.exts` in the generated API Schema. Look there for extension fields omitted from the workbook. [Sample API Schema](../metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/sample-api-schema-authoritative.json#L11119-L11136)
+The generator scans the resource or descriptor's `components.schemas` in order. It skips a component if it lacks `properties` or its name ends in `_Reference`, `_Readable`, or `_Writable`. The first remaining component is the root for every property path.
+
+- **Missing parent path.** For `students` and `staffs`, the selected component is the nested `Pet` common. The workbook lists `petName` directly under each resource. In the model, `PetName` belongs to an item in the optional `Pet` collection. [Student additions](../metaed-plugin-edfi-api-schema/test/integration/sample-project/DomainEntity/StudentExtension.metaed) · [Pet model](../metaed-plugin-edfi-api-schema/test/integration/sample-project/Common/Pet.metaed)
+- **Missing rows.** The Resources worksheet lists `studentSchoolAssociations` with no corresponding Properties rows. Its `membershipTypeDescriptor` field is under `openApiFragments.resources.exts` in the generated API Schema. Look there for extension fields omitted from the workbook. [Sample API Schema](../metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/sample-api-schema-authoritative.json#L11119-L11136)
+
+#### Properties columns
 
 - **Project**: The API project endpoint name (e.g., "ed-fi", "tpdm")
 - **Version**: The project version (e.g., "5.2.0")
 - **Resource Name**: The API resource endpoint name
-- **Property Name**: The property path within the resource; nested properties from common sub-schemas and resolved references use dot-separated paths (e.g., `schoolReference.schoolId`), with array item paths using the singularized array property name
+- **Property Name** — The path from the selected component. Nested common properties and resolved reference keys use dot-separated paths (e.g., `schoolReference.schoolId`). Array item paths use the singularized array property name.
 - **Property Description**: The property description from the API schema; for reference and array-of-`$ref` rows, this holds the `$ref` target instead
 - **Data Type**: The property data type (uses `format` if available, otherwise `type`); `reference` for `$ref` properties, `array` for arrays of `$ref` items, or `unknown` when no type is present
 - **Min Length**: Minimum string length constraint (if applicable)
@@ -64,7 +69,7 @@ It gets dotted key rows when the project's reference lookup contains the target.
 - **Recursion.** The generator recurses into common sub-schemas and resolved reference schemas
   reached by a direct `$ref`, and recurses into array items only when they are common
   sub-schemas (using the singularized array property name as the path segment). Nested
-  property origins are represented with dot-separated property paths.
+  paths are relative to the selected component.
 - **Hard-coded reference schemas.** The generator contains hard-coded handling for the
   EducationOrganization and SchoolYear reference schemas. It builds a lookup for each
   project by scanning `resourceSchemas`. The core EducationOrganization reference

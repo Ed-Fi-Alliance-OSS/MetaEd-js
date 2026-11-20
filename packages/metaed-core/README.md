@@ -15,7 +15,7 @@ abstractions, and pipeline orchestration used by all MetaEd packages.
 - `projectPaths` — File system paths for MetaEd source files, parallel to `projects` (same length and order)
 - `pluginConfigDirectories` — Directories containing plugin configuration
 - `allianceMode` — Whether running in Ed-Fi Alliance mode
-- `suppressPrereleaseVersion` — Formats the Data Standard version as `major.minor.0` in some generated version strings (for example XSD schema versions at technology version `>=7.1.0`) and in ODS/API deploy paths; does not affect build artifact paths
+- `suppressPrereleaseVersion` — At ODS/API targets `>=7.1.0`, formats a valid Data Standard version as `major.minor.0` in XSD namespaces, schema annotations, and the Data Standard segment of deploy paths. API Schema uses the supplied versions for `projectVersion` and an extension's `compatibleDsRange`.
 - `externalVariables` — Optional variables passed to Jsonnet plugin configuration evaluation
 
 ## Output
@@ -46,14 +46,15 @@ logging, and configuration resolution.
   rule diagnostic (METAED-1676). A registered rule targeting an unknown namespace fails
   during annotation. The CLI reaches final reporting, logs the namespace and configuration
   path, and exits `1`.
-- **Syntax validation.** Syntax validation failures are collected per loaded file before the
-  aggregate parse tree is built, and are included in the final validation result. When
-  `stopOnValidationFailure` is enabled, existing error-category failures prevent plugin
-  enhancers, plugin generators, and output writing.
-- **Continuing validation.** With `stopOnValidationFailure` disabled, later validators can
-  still run. A plugin with `requiresValidModel` skips its enhancers and generators when
-  validation errors exist and marks the run failed. The writer is skipped, preserving existing
-  artifacts.
+- **Syntax and plugin validation.** The pipeline collects syntax diagnostics per file before
+  building the aggregate parse tree. The build CLI enables both `runValidators` and
+  `stopOnValidationFailure`. After each plugin's validators, an accumulated error stops the
+  loop before that plugin's enhancers and generators and prevents output writing.
+- **Library options.** Disabling `runValidators` also bypasses the stop check. With only plugins
+  that accept an invalid model, the pipeline can report a syntax error, write output, and return
+  `failure: false` even with `stopOnValidationFailure` enabled. Independently, a plugin with
+  `requiresValidModel` skips its own enhancers and generators on accumulated errors, marks the
+  run failed, and allows later plugins to run. This failure preserves existing output.
 - **File loading.** Files are loaded recursively from each project path when the extension is
   `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED`. Loading fails the build when no such files are
   found in any configured input directory.

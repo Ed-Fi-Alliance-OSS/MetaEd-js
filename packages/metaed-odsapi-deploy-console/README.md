@@ -14,7 +14,7 @@ CLI arguments via `yargs`:
 - `--core` — Deploy core artifacts
 - `--suppressDelete` — Skip removal of existing unversioned extension `Artifacts` directories
 - `--accept-license / -a` — License acceptance, also accepted as top-level `"accept-license": true` in the JSON config
-- `--suppressPrereleaseVersion` — Suppress the prerelease identifier in the Data Standard version (formatted as `major.minor.0`) used in generated version data and ODS/API ≥ 7.1 deploy paths (default: `true`). Applied only in source-scan mode; config-based mode uses the config file's `suppressPrereleaseVersion`
+- `--suppressPrereleaseVersion` — In source-scan mode, defaults to `true`. At ODS/API targets `>=7.1.0`, formats a valid Data Standard version as `major.minor.0` in generated XSD namespaces, schema annotations, and the Data Standard segment of deploy paths. API Schema retains the supplied `projectVersion` and extension `compatibleDsRange`. Config-based deploy uses only the configuration setting and keeps the supplied version when the setting is omitted.
 - `--additionalMssqlScriptsDirectory` — Extra SQL Server scripts directory
 - `--additionalPostgresScriptsDirectory` — Extra PostgreSQL scripts directory
 
@@ -23,6 +23,8 @@ CLI arguments via `yargs`:
 Deploys MetaEd artifacts into the target ODS/API repository structure. In source-scan
 mode, also runs the MetaEd build pipeline first. Exits with code 0 on success, 1 on
 failure, and logs duration.
+
+At targets `>=3.3.0`, a leftover entry in `artifactDirectory` can select an unconfigured extension's unversioned `Artifacts/` for deletion. Copy starts at `5.4.0` and processes the non-core projects in `projects`, plus core when `--core` is supplied. [Deploy behavior by target version](../../docs/PRD-4.x.md#deploy-behavior-by-target-version)
 
 ## Business Logic
 
@@ -64,6 +66,10 @@ Source-scan project discovery (implemented by `ProjectLoader` in `metaed-core`):
   (`packages/metaed-core/src/project/ProjectLoader.ts`), that rule never matches.
 - After sorting, keeps one project per resulting `projectName`. For example, if two discovered
   extensions both declare the name `Twin`, distinct overrides preserve both in the scan.
+  The build groups models by derived namespace and takes project metadata from the first
+  matching project. Scanning `Twin-Name` and `TwinName` can therefore produce one
+  `TwinName/` tree with both projects' resources. To build and deploy separate trees, choose
+  extension names that yield distinct namespaces and match the spelling of those namespaces.
 
 Other notes:
 

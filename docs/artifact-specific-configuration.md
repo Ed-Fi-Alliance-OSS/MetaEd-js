@@ -55,6 +55,12 @@ The loader validates the rule structure, then validates each `data` payload agai
 - `educationOrganizationSecurableElements` requires a nonempty `securableElements` array. Each element names a `propertyPath` and a `requiredIdentityProperty`. The enhancer appends matching paths by default. With `mode: "replace"`, it clears the entity's existing education organization securable elements first.
 - `educationOrganizationIdentitySecurableElements` requires a `roleName`.
 
+### New resources and additions
+
+For a new domain entity or association, including one declared in an extension project, the generated resource schema includes the education organization paths found by the security enhancers. An addition to an existing resource (`domainEntityExtension` or `associationExtension`) can also match a rule. The schema builder emits empty `securableElements` arrays for both kinds of addition.
+
+For example, a `Domain Entity EdFi.Student additions` declaration can add a school reference with the role name `Review`. A rule matching that addition can select `ReviewSchool` and its `SchoolId`. The generated `students` extension schema includes `ReviewSchool` in `documentPathsMapping`, while `securableElements.EducationOrganization` is `[]`. [Resource schema builder](../packages/metaed-plugin-edfi-api-schema/src/enhancer/ApiSchemaBuildingEnhancer.ts)
+
 ### Version ranges and overlapping rules
 
 Both rules accept an optional `versionRange` for the Data Standard version. When several API Schema rules match the same entity, MetaEd combines their `securableElements` arrays and keeps the first `versionRange` supplied for that entity. Each security enhancer checks that shared range before applying its configuration.

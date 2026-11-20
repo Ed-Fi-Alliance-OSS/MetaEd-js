@@ -11,6 +11,8 @@ Registers two optional configuration schemas:
 - `educationOrganizationIdentitySecurableElements` — Configures identity security
   elements for education organizations
 
+New domain entities and associations can include the configured security paths. Additions to existing resources emit empty securable-element arrays even when a rule matches. [Configuration guide](../../docs/artifact-specific-configuration.md#new-resources-and-additions)
+
 ## Output
 
 Generates one JSON file per namespace, under a `{namespace}/` folder:

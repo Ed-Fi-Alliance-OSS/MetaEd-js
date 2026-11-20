@@ -9,7 +9,7 @@ CLI arguments via `yargs`:
 - `--config / -c` — Path to a JSON configuration file, resolved from the current working directory
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--accept-license / -a` — License acceptance, also accepted as top-level `"accept-license": true` in the JSON config
-- `--suppressPrereleaseVersion` — Suppress the prerelease identifier in generated version data, formatting the Data Standard version as `major.minor.0` (default: `true`). Applied only when no config file is supplied; with `--config`, the config file's `suppressPrereleaseVersion` is used
+- `--suppressPrereleaseVersion` — At ODS/API targets `>=7.1.0`, format a valid Data Standard version as `major.minor.0` in XSD namespaces and schema annotations. With `--config`, set `metaEdConfiguration.suppressPrereleaseVersion` in the file. The build default is `true` when omitted. For example, with suppression enabled, Data Standard `5.2.0-rc.1` appears as `5.2.0-rc.1` in the core XSD namespace at target `6.0.0` and as `5.2.0` at `7.3.0`. API Schema uses the supplied versions for `projectVersion` and an extension's `compatibleDsRange` at both targets.
 
 The config file supplies a `metaEdConfiguration` object with project paths, artifact
 directories, and plugin settings. See `metaed-edfi-5.2.json` for a fully-worked sample.

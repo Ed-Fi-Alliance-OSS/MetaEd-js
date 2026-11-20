@@ -22,11 +22,11 @@ returns `{prefix}-{namespaceName}-{suffix}.sql`.
 - `Structure/0040-IdColumnUniqueIndexes.sql` — ID column unique indexes, when tables need them
 - `Structure/0050-ExtendedProperties.sql` — Table and column comments when tables exist
 - `Structure/1410-CreateIndex-EdOrgIdsRelationship-AuthPerformance.sql` — Education organization
-  authorization indexes, `>=7.1.0`, for education organization ID columns
+  authorization indexes, `>=7.1.0`, for columns matching the name and role criteria below
 - `Structure/1460-AggregateIdColumns.sql` — Aggregate ID columns, `>=7.3.0`, for aggregate
   root tables in the namespace's own database schema
 - `Structure/1465-UpdateIndex-EdOrgIdsRelationship-AuthPerformance.sql` — Authorization
-  index updates, `>=7.3.0`, for education organization ID or USI columns
+  index updates, `>=7.3.0`, for the columns selected by `1410` and for USI columns
 - `Data/0010-Enumerations.sql` — Seed rows for enumerations and descriptor map types (not all
   descriptors); written only when such rows exist
 - `Data/0020-SchoolYears.sql` — School year seed data; written only when school year rows exist
@@ -43,8 +43,10 @@ indexes, and education organization authorization index scripts.
   An extension containing only a shared type can have just the `0010` schema script in
   its ODS structure directory.
 - At their respective target versions, `1410` and `1465` are rendered only when the namespace
-  has relational tables. Both use aggregate-root columns derived from `EducationOrganizationId`,
-  including renames, when none of their source properties has a role name. `1465` also indexes
+  has relational tables. An aggregate-root column qualifies for both when none of its source
+  properties has a role name and at least one has `metaEdName` or `baseKeyName` equal to
+  `EducationOrganizationId`. For example, an ordinary integer with that name on `Bus` receives
+  an index even without an education organization reference. Independently, `1465` also indexes
   aggregate-root columns derived from USI properties. With Alliance Mode off, each file requires
   at least one qualifying column. With Alliance Mode on, its license header alone can produce
   the file. The separate `1460` generator requires an aggregate root in the namespace's own schema.
