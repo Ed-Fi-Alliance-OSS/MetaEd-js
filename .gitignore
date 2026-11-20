@@ -50,6 +50,7 @@ eng/ApiSchema/*.zip
 
 # Local agent configuration files
 CLAUDE.local.md
+PLAN.md
 
 # Local JUnit test results
 junit.xml
