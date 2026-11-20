@@ -21,8 +21,9 @@ Accepts `MetaEdConfiguration` plus deploy-specific options:
 Copies generated artifacts into the ODS/API file system structure, based on
 `defaultPluginTechVersion`. Core artifacts are copied from the `EdFi` artifact folder;
 extension artifacts are copied from an artifact folder named by `projectName` (see
-METAED-1678 for when this differs from the generated namespace folder). Nothing is copied
-for versions below 5.4.
+METAED-1678 for when this differs from the generated namespace folder). For targets
+`>=3.3.0 <5.4.0`, deploy can remove existing unversioned extension artifacts without
+copying replacements. Set `suppressDelete` to keep them.
 
 ODS/API ≥ 7.0:
 
@@ -48,24 +49,20 @@ Sub-path mappings:
 
 ## Business Logic
 
- Runs a sequence of deployment tasks in order: first verifies that an
- `EdFi.Ods.Extensions.{name}` C# project exists for each artifact directory entry other than
- `ApiSchema`, `Documentation`, and `EdFi` (≥ 3.0). A core-only deploy with no extension
- artifact folders fails this check unless `allianceMode` is `true`. It then removes the
- existing unversioned `EdFi.Ods.Extensions.{name}/Artifacts` directories for those same
- entries (≥ 3.3, unless suppressed; the ≥ 7.0 versioned layout is not removed, METAED-1678),
- deploys core artifacts (only when `deployCore` is set) and extension artifacts (versioned
- layout for ODS/API ≥ 7.0, unversioned V6 layout for ≥ 5.4 and < 7.0). Additional MSSQL and
- PostgreSQL script directories are passed into the core/extension deploy steps rather than
- copied as a separate standalone task. After deployment it refreshes csproj timestamps and
- runs the legacy-directory check. Execution stops at the first task that fails; within the
- extension copy task, a failure for one project does not stop copying for other projects.
+Deploy checks the extension paths, removes eligible unversioned artifacts, then runs the
+core and extension copy tasks for the target version. A core-only deploy with no extension
+artifact folders fails the path check unless `allianceMode` is true or the target version
+skips that check. The copy tasks also handle any additional SQL Server and PostgreSQL
+script directories. Deploy then refreshes existing extension `.csproj` files and checks
+for legacy directories. The task runner stops at the first failed task. Within an extension
+copy task, a failure for one project can still allow copies for later projects.
 
 - **Extension project precheck.** Unless `defaultPluginTechVersion` satisfies `<3.0.0`, checks
   that `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/` exists for each
   immediate entry (directory or file, as returned by `readdirSync`) in the artifact directory
   except `ApiSchema`, `Documentation`, and `EdFi`; `{name}` is the entry name (normally the
-  namespace folder name). The precheck runs before core copy.
+  namespace folder name). The precheck runs before core copy and succeeds for an existing
+  extension path even when there is no `.csproj` file.
 - **Artifact removal.** Unless suppressed, for `defaultPluginTechVersion` `>=3.3.0` removes
   existing unversioned `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/Artifacts`
   directories for the same entry names as the precheck.

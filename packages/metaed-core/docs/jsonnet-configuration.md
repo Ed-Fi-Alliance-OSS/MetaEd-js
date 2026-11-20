@@ -1,154 +1,76 @@
 # Jsonnet Configuration Support
 
-MetaEd now supports [Jsonnet](https://jsonnet.org/) configuration files in addition to JSON. Jsonnet is a data templating language that extends JSON with variables, functions, conditionals, and more, making it easier to manage complex configurations.
-
-## Benefits
-
-- **Variables**: Reduce duplication by defining values once and reusing them
-- **Functions**: Create reusable templates for similar configuration patterns
-- **Comments**: Document your configuration directly in the file
-- **Conditionals**: Include or exclude configuration based on conditions
-- **External Variables**: Pass environment-specific values at runtime through MetaEd configuration
-
-> [!NOTE]
-> Jsonnet `import` / `importstr` of other files is not currently supported. MetaEd evaluates the
-> configuration file's content without its file path and never supplies library files, so imports
-> cannot be resolved (METAED-1677). Keep each plugin configuration in a single file.
+MetaEd accepts JSON and [Jsonnet](https://jsonnet.org/) plugin configuration files. Jsonnet lets a configuration reuse values, call functions, and conditionally include rules. After evaluation, MetaEd validates the resulting rules against the same schemas it uses for JSON.
 
 ## File Naming
 
-Configuration files can use either extension:
-
-- `.config.json` - Standard JSON configuration
-- `.config.jsonnet` - Jsonnet configuration with advanced features
-
-When both files exist for the same plugin, the `.config.jsonnet` file takes precedence.
-
-## Migration from JSON
-
-Since JSON is a valid subset of Jsonnet, you can rename any `.config.json` file to `.config.jsonnet` and it will continue to work. Then you can gradually add Jsonnet features as needed.
+Use the plugin's short name, for example `edfiApiSchema.config.json` or `edfiApiSchema.config.jsonnet`. In each plugin configuration directory, MetaEd prefers the Jsonnet file when both exist. Valid JSON is also valid Jsonnet, so an existing configuration can be renamed before adding Jsonnet expressions.
 
 ## Basic Example
 
-### Original JSON
+This API Schema rule adds the school ID from the responsibility school reference to the securable elements for `DisciplineAction` in Data Standard 5.2.
 
 ```json
 {
-  "config": [
-    {
-      "rule": "rule123",
-      "matches": {
-        "entity": "domainEntity",
-        "namespace": "EdFi",
-        "entityName": "Grade"
-      },
-      "data": {
-        "DataGoesHere": true
-      }
-    },
-    {
-      "rule": "rule456",
-      "matches": {
-        "entity": "domainEntity",
-        "namespace": "EdFi",
-        "entityName": "Student"
-      },
-      "data": {
-        "DataGoesThere": true
-      }
+  "config": {
+    "rule": "educationOrganizationSecurableElements",
+    "matches": { "entity": "domainEntity", "namespace": "EdFi", "entityName": "DisciplineAction" },
+    "data": {
+      "securableElements": [{ "propertyPath": "ResponsibilitySchool", "requiredIdentityProperty": "SchoolId" }]
     }
-  ]
-}
-```
-
-### Improved Jsonnet
-
-```jsonnet
-// Define common values as variables
-local namespace = "EdFi";
-
-// Create a reusable function
-local createRule(ruleName, entityName, data) = {
-  rule: ruleName,
-  matches: {
-    entity: "domainEntity",
-    namespace: namespace,
-    entityName: entityName,
-  },
-  data: data,
-};
-
-{
-  config: [
-    createRule("rule123", "Grade", { DataGoesHere: true }),
-    createRule("rule456", "Student", { DataGoesThere: true }),
-  ],
-}
-```
-
-## Advanced Features
-
-### Using External Variables
-
-External variables allow you to pass values into the Jsonnet evaluation. They come only from
-the `externalVariables` field of `metaEdConfiguration`; MetaEd does not read them from
-environment variables or command-line arguments:
-
-```jsonnet
-local environment = std.extVar("ENVIRONMENT");
-local enableFeature = std.extVar("ENABLE_FEATURE") == "true";
-
-{
-  config: [
-    {
-      rule: "baseRule",
-      data: {
-        environment: environment,
-      },
-    },
-  ] + if enableFeature then [
-    {
-      rule: "optionalRule",
-      data: {
-        enabled: true,
-      },
-    },
-  ] else [],
-}
-```
-
-Pass external variables via the `externalVariables` field of `metaEdConfiguration`:
-
-```javascript
-{
-  externalVariables: {
-    ENVIRONMENT: "production",
-    ENABLE_FEATURE: "true"
   }
 }
 ```
 
-### Complex Configuration Example
+The same rule in Jsonnet can use a function to build the property mapping.
 
-See [examples/edfiApiSchema.config.jsonnet](../../metaed-plugin-edfi-api-schema/examples/edfiApiSchema.config.jsonnet) for a comprehensive example showing:
+```jsonnet
+local school(path) = { propertyPath: path, requiredIdentityProperty: "SchoolId" };
+{
+  config: {
+    rule: "educationOrganizationSecurableElements",
+    matches: { entity: "domainEntity", namespace: "EdFi", entityName: "DisciplineAction" },
+    data: { securableElements: [school("ResponsibilitySchool")] },
+  },
+}
+```
 
-- Helper functions for creating rules
-- Version range constants
-- Conditional configuration
-- Array concatenation for dynamic rules
+## Using External Variables
 
-## Backward Compatibility
+The [checked-in API Schema example](../../metaed-plugin-edfi-api-schema/examples/edfiApiSchema.config.jsonnet) requires one external string, `INCLUDE_REPORTED_SCHOOL`. The value `"true"` includes a mapping from `StudentAssessment.ReportedSchool` to `SchoolId`. The value `"false"` omits that mapping. Both branches apply the other configured security rules.
 
-All existing JSON configuration files continue to work without any changes. Jsonnet support is purely additive and optional.
+To run the example with the repository's installed dependencies, save the following as `metaed.conf.json` in the repository root. Set `artifactDirectory` to an absolute output path on your machine.
 
-## Troubleshooting
+```json
+{
+  "accept-license": true,
+  "metaEdConfiguration": {
+    "artifactDirectory": "/tmp/metaed-example/MetaEdOutput",
+    "projects": [
+      { "projectName": "Ed-Fi", "namespaceName": "EdFi", "projectVersion": "5.2.0", "projectExtension": "" }
+    ],
+    "projectPaths": ["./node_modules/@edfi/ed-fi-model-5.2"],
+    "pluginConfigDirectories": ["./packages/metaed-plugin-edfi-api-schema/examples"],
+    "defaultPluginTechVersion": "7.3.0",
+    "externalVariables": { "INCLUDE_REPORTED_SCHOOL": "false" }
+  }
+}
+```
 
-### Common Errors
+From the repository root, run the build with the value supplied in JSON.
 
-1. **Undefined external variable**: Make sure all external variables used in the Jsonnet file are provided in the configuration
-2. **Syntax errors**: Jsonnet requires proper syntax - use a Jsonnet linter or validator
-3. **Import not found**: Imports are not currently supported (METAED-1677); inline the imported content instead
+```bash
+npx ts-node --transpile-only packages/metaed-console/src/index.ts -c metaed.conf.json
+```
 
-### Validation
+To include the reported school mapping, supply the same field as a dotted build CLI argument.
 
-Configuration validation using Joi schemas works the same for both JSON and Jsonnet files. The Jsonnet is evaluated to JSON first, then validated against the plugin's configuration schema.
+```bash
+npx ts-node --transpile-only packages/metaed-console/src/index.ts -c metaed.conf.json --metaEdConfiguration.externalVariables.INCLUDE_REPORTED_SCHOOL=true
+```
+
+The evaluator reads `metaEdConfiguration.externalVariables` from the parsed configuration. A shell environment variable alone does not populate it. If a required name is missing, `std.extVar` fails during evaluation.
+
+## Imports
+
+CLI builds pass the plugin configuration's contents and external variables to the evaluator. A sibling file referenced by `import` or `importstr` is unavailable in this mode. Keep CLI configurations self-contained. When calling the lower-level loader directly, `loadConfigurationFile` accepts individual files in `libraryPaths` and makes their contents available for import by base name. [Jsonnet loader](../src/plugin/JsonnetConfigLoader.ts)

@@ -40,15 +40,20 @@ logging, and configuration resolution.
   model building (builder walk), namespace initialization, plugin configuration loading,
   per-plugin validators/enhancers/generators, output writing, and validation file mapping.
 - **Early return.** The pipeline returns early, skipping all later stages including validation
-  file mapping, when file loading fails, plugin configuration loading fails or records an
-  error-category failure, or output writing fails. Validation file mapping is also where
-  validation failures are logged, so these early returns suppress validation failure output
-  (for example, plugin configuration validation messages are not printed). Known issue:
-  METAED-1676.
+  file mapping, when file loading fails, plugin configuration loading throws or records a
+  `LoadPluginConfiguration` error, or output writing fails. An unknown plugin rule takes this
+  early return. The CLI logs the plugin's error count and exits `1` before it prints the
+  rule diagnostic (METAED-1676). A registered rule targeting an unknown namespace fails
+  during annotation. The CLI reaches final reporting, logs the namespace and configuration
+  path, and exits `1`.
 - **Syntax validation.** Syntax validation failures are collected per loaded file before the
   aggregate parse tree is built, and are included in the final validation result. When
   `stopOnValidationFailure` is enabled, existing error-category failures prevent plugin
   enhancers, plugin generators, and output writing.
+- **Continuing validation.** With `stopOnValidationFailure` disabled, later validators can
+  still run. A plugin with `requiresValidModel` skips its enhancers and generators when
+  validation errors exist and marks the run failed. The writer is skipped, preserving existing
+  artifacts.
 - **File loading.** Files are loaded recursively from each project path when the extension is
   `.metaed`, `.metaEd`, `.MetaEd`, or `.METAED`. Loading fails the build when no such files are
   found in any configured input directory.
@@ -58,11 +63,9 @@ logging, and configuration resolution.
   `GeneratedOutput` to `{namespace}/{folderName}/{fileName}`, or `{folderName}/{fileName}` when
   the namespace is empty. An output with neither a non-empty `resultString` nor a `resultStream`
   produces no file.
-- **Output safety guards.** Before writing, an existing output directory is deleted only if the
-  output path contains the substring `MetaEdOutput`; otherwise the writer logs an error and fails.
-  This guard is path-name based, not a check of directory contents. The writer also refuses to
-  write (and fails) when `.metaed` files (any of the casings above) are found in the output
-  location.
+- **Output safety guards.** Replacing an existing directory requires `MetaEdOutput` in its
+  resolved path. The writer stops if it finds a recognized MetaEd file, but its check skips
+  ordinary subdirectories. Recursive replacement can therefore delete nested source files.
 - **Project scanner.** `ProjectLoader` (`src/project/ProjectLoader.ts`) implements the
   `package.json` `metaEdProject` scanner used by `metaed-odsapi-deploy-console` source-scan
   mode; its discovery, namespace derivation, sorting (METAED-1675), de-duplication, and

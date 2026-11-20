@@ -13,7 +13,7 @@ CLI arguments via `yargs`:
 - `--defaultPluginTechVersion / -x` — Default plugin technology version
 - `--core` — Deploy core artifacts
 - `--suppressDelete` — Skip removal of existing unversioned extension `Artifacts` directories
-- `--accept-license / -a` — Required license acceptance flag
+- `--accept-license / -a` — License acceptance, also accepted as top-level `"accept-license": true` in the JSON config
 - `--suppressPrereleaseVersion` — Suppress the prerelease identifier in the Data Standard version (formatted as `major.minor.0`) used in generated version data and ODS/API ≥ 7.1 deploy paths (default: `true`). Applied only in source-scan mode; config-based mode uses the config file's `suppressPrereleaseVersion`
 - `--additionalMssqlScriptsDirectory` — Extra SQL Server scripts directory
 - `--additionalPostgresScriptsDirectory` — Extra PostgreSQL scripts directory
@@ -31,15 +31,15 @@ Two operating modes:
 - **Source-scan mode** (`--source`/`--target`/`--projectNames`): only `--source` and
   `--projectNames` are checked; if either is omitted the CLI returns without building or
   deploying and without reporting an error. `--target` is not enforced but is needed as the
-  deploy destination. Scans source directories for MetaEd
-  projects, builds `MetaEdConfiguration`, runs the full generation pipeline into
-  `MetaEdOutput` under the last project path, then
-  delegates to `metaed-odsapi-deploy` to copy artifacts into the destination repository
-  structure. Deploy runs even if the build failed (the exit code is still 1), so any
-  existing artifacts in the output directory may be copied.
+  deploy destination. With absolute source paths, the build writes `MetaEdOutput` under
+  the last resolved project. A project supplied directly as a relative path can appear
+  twice in the output path. A failed build sets exit code 1, but deploy still runs and
+  can copy artifacts from an earlier build.
 - **Config-based mode** (`--config`): uses the supplied `metaEdConfiguration` with a
   pre-built `artifactDirectory` and runs only the deploy tasks — the build pipeline is
-  not executed. The supplied configuration is copied without merging defaults from
+  not executed. A relative artifact path starts at the process working directory. Build resolves
+  it from the last input project, so a separate deploy can read a missing or older tree. Use an
+  absolute `artifactDirectory` for a shared config. The supplied configuration is copied without merging defaults from
   `newMetaEdConfiguration`, and the `--suppressPrereleaseVersion` CLI option is not applied
   to it. As a result, a missing `suppressPrereleaseVersion` means no prerelease suppression,
   and a missing `defaultPluginTechVersion` without `-x` causes version-gated deploy tasks
@@ -47,6 +47,8 @@ Two operating modes:
 
 Source-scan project discovery (implemented by `ProjectLoader` in `metaed-core`):
 
+- An empty scan fails when the CLI reads the last project's path. With at least one discovered
+  project, the CLI checks for exactly one `EdFi` namespace before building.
 - Reads `package.json` files containing a `metaEdProject` object and includes the package
   `description` when present.
 - Derives `namespaceName` by removing non-alphanumeric characters from `projectName`, only

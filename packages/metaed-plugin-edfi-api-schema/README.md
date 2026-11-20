@@ -37,10 +37,12 @@ and enhancers; downstream plugins (api-catalog, handbook) import only types and 
   `allowIdentityUpdates`; generated JSON schema-for-insert data; identity JSON paths; document
   path mappings; equality constraints; type-coercion JSON paths; decimal validation
   information; securable elements; authorization pathways; array uniqueness constraints;
-  OpenAPI fragments; query-field mappings where applicable; `commonExtensionOverrides` for
-  extension projects; and optional relational naming metadata where generated.
-- **School year enumeration.** For the core project, the school year enumeration is emitted as
-  a hard-coded `schoolYearTypes` entry in `resourceSchemas`; the project-level
-  `schoolYearEnumeration` field is never populated.
+  OpenAPI fragments; query-field mappings where applicable; and optional relational naming
+  metadata where generated.
+  Extension-project resources can include `commonExtensionOverrides`. The field is absent on
+  subclasses such as Sample's `studentArtProgramAssociations`.
+- **School year enumeration.** The builder adds the hard-coded `schoolYearTypes` entry to
+  `resourceSchemas` only for a non-extension project containing a school year enumeration
+  named `SchoolYear`. The project-level `schoolYearEnumeration` field stays unpopulated.
 - The full schema is documented in the Data Management Service repository's
   `docs/API-SCHEMA-DOCUMENTATION.md`.

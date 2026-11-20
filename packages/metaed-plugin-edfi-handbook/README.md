@@ -19,6 +19,6 @@ Generates two artifacts:
 ## Business Logic
 
 Enhances model metadata into handbook entries (entity descriptions, properties,
-relationships), then emits both an HTML SPA index and an Excel workbook. Excel rows are
-sorted by UML type and then name; the HTML index only moves the `Student` entry to the
+relationships), then emits both an HTML SPA index and an Excel workbook. Workbook rows have
+no guaranteed order by UML type or name. The HTML index moves the `Student` entry to the
 front so it is displayed on page load.

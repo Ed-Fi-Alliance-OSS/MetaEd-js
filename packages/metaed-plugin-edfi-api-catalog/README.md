@@ -40,7 +40,7 @@ Contains one row per property within each resource with the following columns:
 - **Project**: The API project endpoint name (e.g., "ed-fi", "tpdm")
 - **Version**: The project version (e.g., "5.2.0")
 - **Resource Name**: The API resource endpoint name
-- **Property Name**: The property path within the resource; nested properties from common sub-schemas and referenced entities use dot-separated paths (e.g., `schoolReference.schoolId`), with array item paths using the singularized array property name
+- **Property Name**: The property path within the resource; nested properties from common sub-schemas and resolved references use dot-separated paths (e.g., `schoolReference.schoolId`), with array item paths using the singularized array property name
 - **Property Description**: The property description from the API schema; for reference and array-of-`$ref` rows, this holds the `$ref` target instead
 - **Data Type**: The property data type (uses `format` if available, otherwise `type`); `reference` for `$ref` properties, `array` for arrays of `$ref` items, or `unknown` when no type is present
 - **Min Length**: Minimum string length constraint (if applicable)
@@ -54,21 +54,23 @@ Contains one row per property within each resource with the following columns:
 
 Walks the API schema resource definitions built by the upstream API schema plugin,
 extracts resource and property metadata rows, and writes a multi-sheet XLSX workbook
-suitable for documentation and review purposes. Both resources and descriptors are
-included; reference properties use `dataType = 'reference'`, and the key fields of the
-referenced entity get their own rows under the reference's dotted path.
+covering resources and descriptors. A direct reference has `dataType = 'reference'`.
+It gets dotted key rows when the project's reference lookup contains the target. In TPDM,
+`financialAids` contains `studentReference` without a
+`studentReference.studentUniqueId` row.
 
 - **Project and resource names.** The Project column holds the project endpoint name and the
   Resource Name column holds the resource endpoint name, on both worksheets.
 - **`id` omission.** Any property named `id`, at every nesting level, is omitted from the
   Properties worksheet.
-- **Recursion.** The generator recurses into common sub-schemas and reference schemas
-  referenced by a direct `$ref`, and recurses into array items only when they are common
+- **Recursion.** The generator recurses into common sub-schemas and resolved reference schemas
+  reached by a direct `$ref`, and recurses into array items only when they are common
   sub-schemas (using the singularized array property name as the path segment). Nested
   property origins are represented with dot-separated property paths.
 - **Hard-coded reference schemas.** The generator contains hard-coded handling for the
-  EducationOrganization and SchoolYear reference schemas. EducationOrganization is abstract and
-  has no resource of its own, so no fragment contains its `_Reference` schema. The SchoolYear
+  EducationOrganization and SchoolYear reference schemas. It builds a lookup for each
+  project by scanning `resourceSchemas`. The core EducationOrganization reference
+  schema is under `abstractResources`, outside that collection. The SchoolYear
   reference schema does exist as `EdFi_SchoolYearTypeReference`, but the generator's
   `_Reference` suffix filter misses it.
 
