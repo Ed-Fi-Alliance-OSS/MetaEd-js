@@ -54,7 +54,7 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 **When** I am ready to test my model changes, **I want** to generate the artifacts for my model and target version, **so that** I can verify them before deploying.
 
-**Acceptance.** Building Data Standard 5.2 and TPDM 1.1 for ODS/API 7.3 exits `0` and produces core and extension API schemas matching the reference outputs. [4.9.0 schema comparison](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts#L29-L110) · [Core fixture](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/ds-5.2-api-schema-authoritative.json) · [TPDM fixture](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/tpdm-api-schema-authoritative.json)
+**Acceptance.** Build Data Standard 5.2 and TPDM 1.1 for ODS/API 7.3 using the project metadata (`projects`) and API Schema configuration (`pluginConfigDirectories`) from the linked comparison test. The build exits `0` and produces core and extension API schemas matching the reference outputs. [4.9.0 schema comparison](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/ApiSchemaAuthoritativeCompare_v7_3.test.ts#L29-L110) · [Core fixture](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/ds-5.2-api-schema-authoritative.json) · [TPDM fixture](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/tpdm-api-schema-authoritative.json)
 
 #### JTBD 1.2. Validate a model
 
@@ -125,7 +125,7 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
 - **FR-CFG-11**: Configuration matching SHALL reject a single match rule that combines `namespace` with `core` or `extensions`. A match may set both `core` and `extensions` to true. In that case it selects only core namespaces.
 - **FR-CFG-12**: The API Schema plugin SHALL validate plugin-specific configuration rules for `educationOrganizationSecurableElements` and `educationOrganizationIdentitySecurableElements`.
-- **FR-CFG-13**: When project metadata does not provide `projectExtension`, the file loader SHALL use an empty project extension for namespace `EdFi` and `EXTENSION` for non-EdFi namespaces.
+- **FR-CFG-13**: When project metadata omits `projectExtension` or sets it to an empty string, the file loader SHALL use an empty project extension for namespace `EdFi` and `EXTENSION` for non-EdFi namespaces.
 - **FR-CFG-14**: File loading SHALL fail the build when no `.metaed` files are found in any configured input directory.
 
 ### 3.2 Build Command

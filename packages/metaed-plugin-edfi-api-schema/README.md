@@ -26,10 +26,10 @@ Serializes the result as pretty-printed JSON. Also exports many API-schema types
 and enhancers; downstream plugins (api-catalog, handbook) import only types and helpers.
 
 - **Top-level content.** Output includes `apiSchemaVersion` and a project schema containing
-  project identity, endpoint name, `compatibleDsRange`, description, resource schemas,
+  project identity, endpoint name, `compatibleDsRange`, resource schemas,
   resource-name mappings, case-insensitive endpoint-name mappings, abstract resources,
   education organization information, domains, extension-project flag, and core OpenAPI base
-  documents where generated.
+  documents where generated. The project schema includes `description` when the project metadata supplies it.
 - **`compatibleDsRange`.** Set to the exact Data Standard version for extension projects (not a
   range) and `null` for the core project.
 - **Resource schemas.** Each includes resource name; descriptor, school-year-enumeration,

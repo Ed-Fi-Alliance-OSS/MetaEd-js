@@ -47,7 +47,13 @@ To run the example with the repository's installed dependencies, save the follow
   "metaEdConfiguration": {
     "artifactDirectory": "/tmp/metaed-example/MetaEdOutput",
     "projects": [
-      { "projectName": "Ed-Fi", "namespaceName": "EdFi", "projectVersion": "5.2.0", "projectExtension": "" }
+      {
+        "projectName": "Ed-Fi",
+        "namespaceName": "EdFi",
+        "projectExtension": "",
+        "projectVersion": "5.2.0",
+        "description": "The Ed-Fi Data Standard v5.2"
+      }
     ],
     "projectPaths": ["./node_modules/@edfi/ed-fi-model-5.2"],
     "pluginConfigDirectories": ["./packages/metaed-plugin-edfi-api-schema/examples"],

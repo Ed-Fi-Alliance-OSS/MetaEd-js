@@ -9,10 +9,12 @@ from the plugin environment to control SQL dialect details (e.g., timestamp defa
 
 ## Output
 
-Generates PostgreSQL ODS scripts under `{namespace}/Database/PostgreSQL/ODS/`. Core file names
-are `{prefix}-{suffix}.sql` (e.g. `0010-Schemas.sql`); extension file names add the namespace
-as `{prefix}-{projectExtension}-{namespaceName}-{suffix}.sql`, or
-`{prefix}-{namespaceName}-{suffix}.sql` when `projectExtension` is empty. The list uses core file names.
+Generates PostgreSQL ODS scripts under `{namespace}/Database/PostgreSQL/ODS/`. The list below uses
+core file names of the form `{prefix}-{suffix}.sql`. Extension file names use
+`{prefix}-{projectExtension}-{namespaceName}-{suffix}.sql`. For an extension project, the CLI
+defaults an omitted or empty `projectExtension` to `EXTENSION` (e.g. `0010-EXTENSION-TPDM-Schemas.sql`).
+Calling `fileNameFor` directly with an extension namespace whose `projectExtension` is empty
+returns `{prefix}-{namespaceName}-{suffix}.sql`.
 
 - `Structure/0010-Schemas.sql` — Schema creation
 - `Structure/0020-Tables.sql` — Table DDL when the namespace has tables

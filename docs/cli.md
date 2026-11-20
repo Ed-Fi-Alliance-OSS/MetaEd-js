@@ -63,7 +63,13 @@ This example builds the installed Data Standard 4.0 package for ODS/API 6.0.0. R
     "artifactDirectory": "/work/metaed/MetaEdOutput",
     "deployDirectory": "/work/ed-fi",
     "projects": [
-      { "projectName": "Ed-Fi", "namespaceName": "EdFi", "projectExtension": "", "projectVersion": "4.0.0" }
+      {
+        "projectName": "Ed-Fi",
+        "namespaceName": "EdFi",
+        "projectExtension": "",
+        "projectVersion": "4.0.0",
+        "description": "The Ed-Fi Data Standard v4.0"
+      }
     ],
     "projectPaths": ["./node_modules/@edfi/ed-fi-model-4.0"],
     "pluginConfigDirectories": [],
@@ -83,7 +89,13 @@ To use a local copy of the same model, set `projectPaths` to the directory conta
     "artifactDirectory": "/work/metaed/MetaEdOutput",
     "deployDirectory": "/work/ed-fi",
     "projects": [
-      { "projectName": "Ed-Fi", "namespaceName": "EdFi", "projectExtension": "", "projectVersion": "4.0.0" }
+      {
+        "projectName": "Ed-Fi",
+        "namespaceName": "EdFi",
+        "projectExtension": "",
+        "projectVersion": "4.0.0",
+        "description": "The Ed-Fi Data Standard v4.0"
+      }
     ],
     "projectPaths": ["./ed-fi-model-4.0"],
     "pluginConfigDirectories": [],
