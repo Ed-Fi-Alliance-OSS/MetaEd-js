@@ -15,8 +15,8 @@ Registers two optional configuration schemas:
 
 Generates one JSON file per namespace, under a `{namespace}/` folder:
 
-- `{namespace}/ApiSchema/ApiSchema.json` when `projectExtension` is empty (core), e.g. `EdFi/ApiSchema/ApiSchema.json`
-- `{namespace}/ApiSchema/ApiSchema-{projectExtension}.json` otherwise (extensions)
+- Core always writes `EdFi/ApiSchema/ApiSchema.json`, even when the configuration supplies a `projectExtension`.
+- Extensions write `{namespace}/ApiSchema/ApiSchema-{projectExtension}.json`. The suffix defaults to `EXTENSION` when omitted or empty.
 
 ## Business Logic
 

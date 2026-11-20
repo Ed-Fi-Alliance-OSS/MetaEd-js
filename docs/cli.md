@@ -52,7 +52,9 @@ Deploy skips absent source folders. Generated API Schema files and the shared `D
 
 ## Configuration File
 
-Save one of the following examples as `metaed.conf.json`. Replace the absolute artifact and deploy paths with paths on your machine. Build resolves a relative `artifactDirectory` from the **last input project**. A separate config-based deploy resolves it from the **process working directory**. If those differ, deploy can fail to find the artifacts or copy an older tree. A shared absolute artifact path makes both commands use the same output.
+Save one of the following examples as `metaed.conf.json`. For `artifactDirectory`, choose a dedicated absolute path ending in `MetaEdOutput`. On subsequent builds the writer replaces the output directory and requires its resolved path to contain that exact, case-sensitive text. Set `deployDirectory` to the absolute path of the parent of your ODS/API repositories.
+
+An absolute artifact path also makes build and deploy use the same output. Build resolves a relative `artifactDirectory` from the **last input project**. A separate config-based deploy resolves it from the **process working directory**. If those differ, deploy can fail to find the artifacts or copy an older tree.
 
 This example builds the installed Data Standard 4.0 package for ODS/API 6.0.0. Relative `projectPaths` start at the working directory.
 

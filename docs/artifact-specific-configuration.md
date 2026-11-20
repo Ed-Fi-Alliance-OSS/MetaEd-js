@@ -53,7 +53,13 @@ Save the following JSON as `edfiApiSchema.config.json` in a plugin configuration
 The loader validates the rule structure, then validates each `data` payload against the Joi schema registered for its rule name in the plugin's `configurationSchemas` map. The API Schema plugin registers the two rules shown above. [Rule registration](../packages/metaed-plugin-edfi-api-schema/src/index.ts) · [Payload schemas](../packages/metaed-plugin-edfi-api-schema/src/model/ConfigurationSchema.ts)
 
 - `educationOrganizationSecurableElements` requires a nonempty `securableElements` array. Each element names a `propertyPath` and a `requiredIdentityProperty`. The enhancer appends matching paths by default. With `mode: "replace"`, it clears the entity's existing education organization securable elements first.
-- `educationOrganizationIdentitySecurableElements` requires a `roleName`. Both rules accept a `versionRange` that the enhancers compare with the Data Standard version.
+- `educationOrganizationIdentitySecurableElements` requires a `roleName`.
+
+### Version ranges and overlapping rules
+
+Both rules accept an optional `versionRange` for the Data Standard version. When several API Schema rules match the same entity, MetaEd combines their `securableElements` arrays and keeps the first `versionRange` supplied for that entity. Each security enhancer checks that shared range before applying its configuration.
+
+For example, suppose two rules map `DisciplineAction` to the IDs of `ResponsibilitySchool` and `AssignmentSchool`, with ranges `>=6.0.0` and `>=5.0.0` respectively. On Data Standard 5.2, putting the responsibility school rule first skips both mappings. Putting the assignment school rule first applies both.
 
 ## Configuration Data Storage
 

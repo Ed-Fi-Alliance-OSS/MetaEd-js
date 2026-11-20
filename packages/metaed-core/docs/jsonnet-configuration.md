@@ -39,7 +39,7 @@ local school(path) = { propertyPath: path, requiredIdentityProperty: "SchoolId" 
 
 The [checked-in API Schema example](../../metaed-plugin-edfi-api-schema/examples/edfiApiSchema.config.jsonnet) requires one external string, `INCLUDE_REPORTED_SCHOOL`. The value `"true"` includes a mapping from `StudentAssessment.ReportedSchool` to `SchoolId`. The value `"false"` omits that mapping. Both branches apply the other configured security rules.
 
-To run the example with the repository's installed dependencies, save the following as `metaed.conf.json` in the repository root. Set `artifactDirectory` to an absolute output path on your machine.
+To run the example with the repository's installed dependencies, save the following as `metaed.conf.json` in the repository root. For `artifactDirectory`, choose a dedicated absolute path ending in `MetaEdOutput`. When you rerun the build with a different variable value, the writer replaces the output directory and requires its resolved path to contain that exact, case-sensitive text.
 
 ```json
 {

@@ -55,15 +55,15 @@ Source-scan project discovery (implemented by `ProjectLoader` in `metaed-core`):
   when the result starts with an uppercase letter; otherwise the namespace is empty.
 - Scans subdirectories only while no projects have been discovered yet, so mixed source
   inputs can miss nested projects after an earlier project has already been found.
-- De-duplicates discovered projects by project name, so two projects with the same project
-  name cannot both be represented in one deploy build.
+- Applies `--projectNames` in discovery order, updating each affected project's name and
+  derived namespace. An override equal to the existing name has no effect. If there are
+  more overrides than discovered projects, the scanner ignores all overrides.
 - Sorts discovered projects alphabetically by `projectName`. Known issue (METAED-1675): the
   sort is intended to place a project whose `projectName` is exactly `EdFi` first, but because
   of a `R.pathEq` argument-order bug under ramda 0.32
   (`packages/metaed-core/src/project/ProjectLoader.ts`), that rule never matches.
-- `--projectNames` overrides update discovered project names and derived namespaces in
-  discovery order. Override entries equal to the existing project name are skipped, and all
-  overrides are ignored when more `projectNames` are supplied than projects discovered.
+- After sorting, keeps one project per resulting `projectName`. For example, if two discovered
+  extensions both declare the name `Twin`, distinct overrides preserve both in the scan.
 
 Other notes:
 

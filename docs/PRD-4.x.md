@@ -11,7 +11,7 @@
 >
 > It does _not cover_ the MetaEd DSL syntax and semantics, the MetaEd IDE Visual Studio Code extension (maintained in a separate repository), the Ed-Fi ODS/API runtime behavior, database execution semantics, or the Data Standard content itself.
 >
-> Package-level behavior details are documented in each package's `README.md` under Business Logic.
+> For package-specific behavior, follow the README links in the [component package table](#52-component-packages).
 
 ## 1. Product Overview
 
@@ -106,8 +106,8 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 - MetaEd-js build and deploy commands operate on local files. The build pipeline reads `.metaed` source files and plugin configuration files, then writes artifacts to disk.
 - Deploy copies files into a local ODS/API source tree layout. It does not deploy to running services, execute SQL, start databases, or validate ODS/API runtime behavior.
-- Publishing workflows communicate with package feeds, but normal build and deploy runtime behavior is entirely filesystem-based.
-- MetaEd does not communicate with external services during normal operation and does not require credentials at runtime.
+- The build and deploy commands require no network credentials. Publishing workflows communicate with package feeds.
+- Opening the generated HTML Data Handbook in a browser loads JavaScript and stylesheets from public CDNs.
 
 ## 3. Functional Requirements
 
@@ -124,11 +124,13 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 - **FR-CFG-9**: The build SHALL pass the configured `externalVariables` to the Jsonnet evaluator when loading a plugin configuration (§6.2). [4.9.0 configuration loader](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-core/src/plugin/LoadPluginConfiguration.ts#L129-L135)
 - **FR-CFG-10**: Plugin configuration rules SHALL support plugin-wide data or entity-matched data using `entity`, `namespace`, `core`, `extensions`, and `entityName` matching fields.
 - **FR-CFG-11**: Configuration matching SHALL reject a single match rule that combines `namespace` with `core` or `extensions`. A match may set both `core` and `extensions` to true. In that case it selects only core namespaces.
-- **FR-CFG-12**: The API Schema plugin SHALL validate plugin-specific configuration rules for `educationOrganizationSecurableElements` and `educationOrganizationIdentitySecurableElements`.
+- **FR-CFG-12**: The API Schema plugin SHALL validate plugin-specific configuration rules for `educationOrganizationSecurableElements` and `educationOrganizationIdentitySecurableElements`. When rules match the same entity, the first supplied `versionRange` applies to their combined configuration. [Version ranges and overlapping rules](artifact-specific-configuration.md#version-ranges-and-overlapping-rules)
 - **FR-CFG-13**: When project metadata omits `projectExtension` or sets it to an empty string, the file loader SHALL use an empty project extension for namespace `EdFi` and `EXTENSION` for non-EdFi namespaces.
 - **FR-CFG-14**: File loading SHALL fail the build when no `.metaed` files are found in any configured input directory.
 
 ### 3.2 Build Command
+
+For a command example and the generated directory layout, see the [CLI build guide](cli.md#build).
 
 - **FR-BUILD-1**: `@edfi/metaed-console` SHALL run from Node.js and execute the MetaEd pipeline using the default plugin set.
 - **FR-BUILD-2**: The build CLI SHALL require the parsed license acceptance option (NFR-LIC-1).
@@ -148,11 +150,11 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 #### 3.3.1 ODS/API Metadata
 
-- **FR-ODSAPI-METADATA-1**: The build SHALL generate ODS/API metadata JSON files per namespace as `ApiMetadata/ApiModel.json` when `projectExtension` is empty or `ApiMetadata/ApiModel-{projectExtension}.json` when it is not, through `metaed-plugin-edfi-odsapi`.
+- **FR-ODSAPI-METADATA-1**: The ODS/API plugin SHALL write `EdFi/ApiMetadata/ApiModel.json` for core regardless of the configured `projectExtension`. For extensions it SHALL write `{namespace}/ApiMetadata/ApiModel-{projectExtension}.json`, using `EXTENSION` as the default suffix (FR-CFG-13).
 
 #### 3.3.2 API Schema
 
-- **FR-API-SCHEMA-1**: The build SHALL generate API Schema JSON files per namespace as `ApiSchema/ApiSchema.json` when `projectExtension` is empty or `ApiSchema/ApiSchema-{projectExtension}.json` when it is not, through `metaed-plugin-edfi-api-schema`.
+- **FR-API-SCHEMA-1**: The API Schema plugin SHALL write `EdFi/ApiSchema/ApiSchema.json` for core regardless of the configured `projectExtension`. For extensions it SHALL write `{namespace}/ApiSchema/ApiSchema-{projectExtension}.json`, using `EXTENSION` as the default suffix (FR-CFG-13).
 - **FR-API-SCHEMA-2**: Each file SHALL contain `apiSchemaVersion` and a `projectSchema` describing the project and its resources. The Data Management Service (DMS) consumes these schemas. [4.9.0 output type](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/src/model/api-schema/ApiSchema.ts) · [DMS schema guide](https://github.com/Ed-Fi-Alliance-OSS/Data-Management-Service/blob/4a602608e23fe18cb40c8a29031fe0b8ce38f529/docs/API-SCHEMA-DOCUMENTATION.md)
 
 #### 3.3.3 SQL Server and PostgreSQL ODS SQL
@@ -210,6 +212,8 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 ### 3.5 Deploy Command
 
+For a command example and the destination folders in the ODS/API tree, see the [CLI deploy guide](cli.md#deploy).
+
 - **FR-DEPLOY-1**: `@edfi/metaed-odsapi-deploy-console` SHALL run from Node.js and execute deploy tasks from `@edfi/metaed-odsapi-deploy`.
 - **FR-DEPLOY-2**: The deploy CLI SHALL require the parsed license acceptance option (NFR-LIC-1).
 - **FR-DEPLOY-3**: With `-c` / `--config`, deploy SHALL skip the build and read existing artifacts. A relative `artifactDirectory` is resolved from the process working directory. Reusing a build config can therefore select a missing or older tree when the last input project is elsewhere (FR-BUILD-10). A shared absolute path selects the same artifacts for both commands.
@@ -223,7 +227,9 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 - **FR-DEPLOY-9**: For targets `>=5.4.0`, deploy SHALL copy files supplied through `--additionalMssqlScriptsDirectory` and `--additionalPostgresScriptsDirectory` into the corresponding ODS data folders.
 - **FR-DEPLOY-10**: Before copying, deploy SHALL check that the expected `EdFi.Ods.Extensions.{name}` path exists for each extension entry in the artifact directory. The path alone satisfies the check, even without a `.csproj` file. Deploy skips this check for target versions below `3.0.0` and runs it when the target version is omitted. [4.9.0 precheck](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/ExtensionProjectsExists.ts#L15-L62)
 - **FR-DEPLOY-11**: For targets `>=3.3.0`, deploy SHALL remove existing unversioned extension artifact directories before the copy step unless `--suppressDelete` is supplied.
-- **FR-DEPLOY-12**: Deploy SHALL copy core artifacts only when `--core` is supplied. The table shows the default cleanup and copy behavior by target version.
+- **FR-DEPLOY-12**: Deploy SHALL copy core artifacts only when `--core` is supplied.
+
+  Deploy strips the prerelease suffix from the ODS/API target before comparing it with the ranges below, regardless of `suppressPrereleaseVersion`. For example, `3.3.0-rc.1` counts as `3.3.0`. With default cleanup, deploy can remove an existing unversioned extension `Artifacts/` directory, copy no replacements, and exit `0`.
 
   | `defaultPluginTechVersion` | Unversioned extension artifacts (unless `--suppressDelete`) | Core copy target | Extension copy target |
   | --- | --- | --- | --- |
@@ -285,7 +291,7 @@ The Ed-Fi Alliance uses MetaEd internally to produce core components such as JSO
 
 - **NFR-SEC-1**: Normal build and deploy runtime behavior SHALL operate on local files and SHALL NOT require credentials.
 - **NFR-SEC-2**: Publishing workflows SHALL use package-feed credentials; those credentials are outside normal build and deploy runtime behavior.
-- **NFR-SEC-3**: MetaEd SHALL NOT transmit data to external services during normal operation.
+- **NFR-SEC-3**: The build and deploy commands SHALL operate on local files without transmitting data to external services.
 
 ### Observability
 
@@ -309,29 +315,29 @@ The pipeline loads and parses source files, builds the model, then runs each plu
 
 | Package | Product Responsibility |
 | --- | --- |
-| `@edfi/metaed-core` | Core pipeline, configuration model, file loading, grammar parsing, model builders, validators/enhancers/generators contracts, plugin configuration loading, and output writing. |
-| `@edfi/metaed-console` | Build CLI for running the MetaEd pipeline with default plugins. |
-| `@edfi/metaed-default-plugins` | Default ordered plugin list used by the build and deploy-console build flow. |
-| `@edfi/metaed-odsapi-deploy` | Deploy task library for copying generated artifacts into an ODS/API source tree. |
-| `@edfi/metaed-odsapi-deploy-console` | Deploy CLI for source-scan build-and-deploy mode or config-based deploy mode. |
-| `@edfi/metaed-plugin-edfi-unified` | Foundational Ed-Fi semantic validators and enhancers, including reference resolution, base class resolution, domain/subdomain links, merge directives, and shared type enrichment. |
-| `@edfi/metaed-plugin-edfi-unified-advanced` | Additional validation for merge scenarios, deprecation warnings, common property identity rules, and self-referencing property role names. |
-| `@edfi/metaed-plugin-edfi-ods-relational` | Shared relational ODS model enhancers and a relational validator, used by SQL Server, PostgreSQL, API Schema, SQL dictionary, change query, record ownership, ODS/API, and handbook plugins. |
-| `@edfi/metaed-plugin-edfi-api-schema` | API Schema model enhancers, security-related configuration rules, OpenAPI fragment and relational metadata, and `ApiSchema*.json` generation with API Schema version metadata. |
-| `@edfi/metaed-plugin-edfi-ods-sqlserver` | SQL Server ODS naming, schema/table/column enhancements, and SQL Server ODS SQL script generation. |
-| `@edfi/metaed-plugin-edfi-ods-postgresql` | PostgreSQL ODS naming, schema/table/column enhancements, and PostgreSQL ODS SQL script generation. |
-| `@edfi/metaed-plugin-edfi-xsd` | XSD model enhancers, duplicate-name validation for dependency namespaces, core/extension XSD generation, schema annotation generation, and interchange XSD generation. |
-| `@edfi/metaed-plugin-edfi-ods-changequery` | Common change query validator, common model types, shared generation helpers for change query SQL artifacts, and shared indirect update cascade trigger enhancer and generator logic registered by the dialect-specific plugins. |
-| `@edfi/metaed-plugin-edfi-ods-changequery-sqlserver` | SQL Server-specific change query enhancers and SQL script generators. |
-| `@edfi/metaed-plugin-edfi-ods-changequery-postgresql` | PostgreSQL-specific change query enhancers and SQL script generators. |
-| `@edfi/metaed-plugin-edfi-ods-recordownership` | Common record ownership table enhancement that marks aggregate root tables for ownership token columns for target technology versions `>=3.3.0`. |
-| `@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver` | SQL Server record ownership SQL generation. |
-| `@edfi/metaed-plugin-edfi-ods-recordownership-postgresql` | PostgreSQL record ownership SQL generation. |
-| `@edfi/metaed-plugin-edfi-odsapi` | ODS/API model validators/enhancers and `ApiModel*.json` generation. |
-| `@edfi/metaed-plugin-edfi-xml-dictionary` | XML data dictionary Excel generation from XSD model data. |
-| `@edfi/metaed-plugin-edfi-sql-dictionary` | SQL data dictionary Excel generation from relational ODS model data. |
-| `@edfi/metaed-plugin-edfi-handbook` | Handbook-specific model enhancers plus HTML and Excel Data Handbook generation. |
-| `@edfi/metaed-plugin-edfi-api-catalog` | API Catalog Excel generation from API Schema and OpenAPI fragment data. |
+| [`@edfi/metaed-core`](../packages/metaed-core/README.md) | Core pipeline, configuration model, file loading, grammar parsing, model builders, validators/enhancers/generators contracts, plugin configuration loading, and output writing. |
+| [`@edfi/metaed-console`](../packages/metaed-console/README.md) | Build CLI for running the MetaEd pipeline with default plugins. |
+| [`@edfi/metaed-default-plugins`](../packages/metaed-default-plugins/README.md) | Default ordered plugin list used by the build and deploy-console build flow. |
+| [`@edfi/metaed-odsapi-deploy`](../packages/metaed-odsapi-deploy/README.md) | Deploy task library for copying generated artifacts into an ODS/API source tree. |
+| [`@edfi/metaed-odsapi-deploy-console`](../packages/metaed-odsapi-deploy-console/README.md) | Deploy CLI for source-scan build-and-deploy mode or config-based deploy mode. |
+| [`@edfi/metaed-plugin-edfi-unified`](../packages/metaed-plugin-edfi-unified/README.md) | Foundational Ed-Fi semantic validators and enhancers, including reference resolution, base class resolution, domain/subdomain links, merge directives, and shared type enrichment. |
+| [`@edfi/metaed-plugin-edfi-unified-advanced`](../packages/metaed-plugin-edfi-unified-advanced/README.md) | Additional validation for merge scenarios, deprecation warnings, common property identity rules, and self-referencing property role names. |
+| [`@edfi/metaed-plugin-edfi-ods-relational`](../packages/metaed-plugin-edfi-ods-relational/README.md) | Shared relational ODS model enhancers and a relational validator, used by SQL Server, PostgreSQL, API Schema, SQL dictionary, change query, record ownership, ODS/API, and handbook plugins. |
+| [`@edfi/metaed-plugin-edfi-api-schema`](../packages/metaed-plugin-edfi-api-schema/README.md) | API Schema model enhancers, security-related configuration rules, OpenAPI fragment and relational metadata, and `ApiSchema*.json` generation with API Schema version metadata. |
+| [`@edfi/metaed-plugin-edfi-ods-sqlserver`](../packages/metaed-plugin-edfi-ods-sqlserver/README.md) | SQL Server ODS naming, schema/table/column enhancements, and SQL Server ODS SQL script generation. |
+| [`@edfi/metaed-plugin-edfi-ods-postgresql`](../packages/metaed-plugin-edfi-ods-postgresql/README.md) | PostgreSQL ODS naming, schema/table/column enhancements, and PostgreSQL ODS SQL script generation. |
+| [`@edfi/metaed-plugin-edfi-xsd`](../packages/metaed-plugin-edfi-xsd/README.md) | XSD model enhancers, duplicate-name validation for dependency namespaces, core/extension XSD generation, schema annotation generation, and interchange XSD generation. |
+| [`@edfi/metaed-plugin-edfi-ods-changequery`](../packages/metaed-plugin-edfi-ods-changequery/README.md) | Common change query validator, common model types, shared generation helpers for change query SQL artifacts, and shared indirect update cascade trigger enhancer and generator logic registered by the dialect-specific plugins. |
+| [`@edfi/metaed-plugin-edfi-ods-changequery-sqlserver`](../packages/metaed-plugin-edfi-ods-changequery-sqlserver/README.md) | SQL Server-specific change query enhancers and SQL script generators. |
+| [`@edfi/metaed-plugin-edfi-ods-changequery-postgresql`](../packages/metaed-plugin-edfi-ods-changequery-postgresql/README.md) | PostgreSQL-specific change query enhancers and SQL script generators. |
+| [`@edfi/metaed-plugin-edfi-ods-recordownership`](../packages/metaed-plugin-edfi-ods-recordownership/README.md) | Common record ownership table enhancement that marks aggregate root tables for ownership token columns for target technology versions `>=3.3.0`. |
+| [`@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver`](../packages/metaed-plugin-edfi-ods-recordownership-sqlserver/README.md) | SQL Server record ownership SQL generation. |
+| [`@edfi/metaed-plugin-edfi-ods-recordownership-postgresql`](../packages/metaed-plugin-edfi-ods-recordownership-postgresql/README.md) | PostgreSQL record ownership SQL generation. |
+| [`@edfi/metaed-plugin-edfi-odsapi`](../packages/metaed-plugin-edfi-odsapi/README.md) | ODS/API model validators/enhancers and `ApiModel*.json` generation. |
+| [`@edfi/metaed-plugin-edfi-xml-dictionary`](../packages/metaed-plugin-edfi-xml-dictionary/README.md) | XML data dictionary Excel generation from XSD model data. |
+| [`@edfi/metaed-plugin-edfi-sql-dictionary`](../packages/metaed-plugin-edfi-sql-dictionary/README.md) | SQL data dictionary Excel generation from relational ODS model data. |
+| [`@edfi/metaed-plugin-edfi-handbook`](../packages/metaed-plugin-edfi-handbook/README.md) | Handbook-specific model enhancers plus HTML and Excel Data Handbook generation. |
+| [`@edfi/metaed-plugin-edfi-api-catalog`](../packages/metaed-plugin-edfi-api-catalog/README.md) | API Catalog Excel generation from API Schema and OpenAPI fragment data. |
 
 ### 5.3 Output Model
 
@@ -350,7 +356,7 @@ Generated files are written beneath the artifact directory by namespace and fold
 
 - `MetaEdConfiguration` includes `pluginTechVersion`, and some fixtures contain it, but current plugin setup assigns every plugin the single `defaultPluginTechVersion`.
 - Config-based deploy uses the supplied configuration directly. Omitting `suppressPrereleaseVersion` leaves the supplied version string intact, even if the CLI flag is set. Omitting `defaultPluginTechVersion` without a `-x` override skips artifact removal, copying, and legacy-directory warnings. The extension path check and project timestamp refresh can still run.
-- Source-scan project discovery can miss nested projects in mixed source inputs, cannot represent two projects with the same project name, and yields an empty namespace for project names that cannot form one; see the `metaed-odsapi-deploy-console` README.
+- Source-scan discovery applies `--projectNames` overrides before sorting and keeps one project per resulting name. Distinct overrides can preserve two projects with the same declared name. Mixed source inputs can also miss nested projects, and project names that cannot form a namespace yield an empty namespace. [Deploy-console discovery rules](../packages/metaed-odsapi-deploy-console/README.md#business-logic)
 - Source-scan deploy sorts by project name. For example, extension `Alpha` precedes core project `Ed-Fi`. The last resolved project determines where the CLI puts `MetaEdOutput` (FR-DEPLOY-4). [METAED-1675](https://edfi.atlassian.net/browse/METAED-1675)
 - For an unknown plugin configuration rule, the build records the rule name, reason, and configuration file path. The CLI logs the plugin's error count and exits `1` before printing the detailed diagnostic. A registered rule targeting an unknown namespace passes rule validation, then fails during model annotation. The CLI reaches diagnostic reporting, logs the namespace and configuration path, and exits `1`. [4.9.0 rule validation](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-core/src/plugin/LoadPluginConfiguration.ts#L53-L65) · [METAED-1676](https://edfi.atlassian.net/browse/METAED-1676)
 - Importing a sibling `.libsonnet` file from a plugin configuration fails in a CLI build. The lower-level Jsonnet loader accepts explicit library files through `libraryPaths`, and the build supplies only external variables (FR-CFG-9). [4.9.0 Jsonnet loader](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-core/src/plugin/JsonnetConfigLoader.ts#L82-L103) · [METAED-1677](https://edfi.atlassian.net/browse/METAED-1677)

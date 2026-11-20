@@ -21,9 +21,12 @@ Accepts `MetaEdConfiguration` plus deploy-specific options:
 Copies generated artifacts into the ODS/API file system structure, based on
 `defaultPluginTechVersion`. Core artifacts are copied from the `EdFi` artifact folder;
 extension artifacts are copied from an artifact folder named by `projectName` (see
-METAED-1678 for when this differs from the generated namespace folder). For targets
-`>=3.3.0 <5.4.0`, deploy can remove existing unversioned extension artifacts without
-copying replacements. Set `suppressDelete` to keep them.
+METAED-1678 for when this differs from the generated namespace folder).
+
+Deploy drops the prerelease suffix from the ODS/API target before comparing versions.
+Targets in `>=3.3.0 <5.4.0`, including `3.3.0-rc.1`, can therefore remove existing
+unversioned extension artifacts and exit `0` without copying replacements. Set
+`suppressDelete` to keep them.
 
 ODS/API ≥ 7.0:
 
