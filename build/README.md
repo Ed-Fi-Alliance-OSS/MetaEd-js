@@ -1,34 +1,14 @@
 # Data Model Build Script
 
-Cross-platform build script that will install the latest dev release of MetaEd
-and then run the build process on the Ed-Fi model files.
+The wrapper runs `npm install` in the current directory, then starts the MetaEd build CLI. The wrapper's package declares `@edfi/metaed-console` with the `dev` tag.
 
 ## Usage
 
+From the repository root, open the `build` directory and run the wrapper with a build configuration. Before using the sample, set its `projectPaths` and `artifactDirectory` to paths on your machine. [Sample configuration](sample-config.json)
+
 ```bash
-index.js [options]
+cd build
+node index.js -a -c sample-config.json
 ```
 
-### Config file
-
-| Short | Long     |
-| ----- | -------- |
-| -c    | --config |
-
-### Command line
-
-| Short | Long     | Description                             | Data type / default |
-| ----- | -------- | --------------------------------------- | ------------------- |
-| -s    | --source | The artifact source directories to scan | [array]             |
-| -t    | --target | The deploy target directory             | [string]            |
-
-### Options
-
-| Short | Long                       | Description                                                      | Data type / default        |
-| ----- | -------------------------- | ---------------------------------------------------------------- | -------------------------- |
-| -p    | --projectNames             | The artifact source projectNames to override                     | [array]                    |
-| -x    | --defaultPluginTechVersion | The default technology version for all plugins, in semver format | [string]                   |
-|       | --core                     | Deploy core in addition to any extensions                        | [boolean] [default: false] |
-|       | --suppressDelete           | Suppress deletion of the SupportingArtifacts deployment folder   | [boolean] [default: false] |
-| -h    | --help                     | Show help                                                        | [boolean]                  |
-| -v    | --version                  | Show version number                                              | [boolean]                  |
+Use `-a` or `--accept-license` to accept the license. You can also set `"accept-license": true` at the top level of the JSON file. Run `node index.js --help` from `build` to see the installed version's options. [Build CLI options](../packages/metaed-console/README.md#input-configuration)

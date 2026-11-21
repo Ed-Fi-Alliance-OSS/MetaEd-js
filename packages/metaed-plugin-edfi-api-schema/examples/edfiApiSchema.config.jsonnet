@@ -3,8 +3,8 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-// Example Jsonnet configuration for Ed-Fi API Schema plugin
-// This demonstrates the power of Jsonnet for managing complex configurations
+// API Schema security configuration for Data Standard 5.2.
+// Supply INCLUDE_REPORTED_SCHOOL as "true" or "false" in externalVariables.
 
 // Define reusable functions for creating rules
 local makeSecurityRule(entity, property, identityProp, desc, versionRange=">=4.0.0") = {
@@ -32,8 +32,7 @@ local v4_0 = ">=4.0.0";
 local v4_0_alpha = ">=4.0.0-a";
 local v5_0 = ">=5.0.0";
 
-// Configuration can be controlled via external variables
-local enableExperimentalFeatures = std.extVar("ENABLE_EXPERIMENTAL") == "true";
+local includeReportedSchool = std.extVar("INCLUDE_REPORTED_SCHOOL") == "true";
 
 {
   config: [
@@ -44,14 +43,6 @@ local enableExperimentalFeatures = std.extVar("ENABLE_EXPERIMENTAL") == "true";
       "SchoolId",
       "Maps ResponsibilitySchool reference to SchoolId for security",
       v4_0_alpha
-    ),
-
-    makeSecurityRule(
-      "StudentAssessment",
-      "ReportedSchool",
-      "SchoolId",
-      "Maps ReportedSchool reference to SchoolId for security",
-      v4_0
     ),
 
     // Special case with replace mode
@@ -95,20 +86,14 @@ local enableExperimentalFeatures = std.extVar("ENABLE_EXPERIMENTAL") == "true";
       },
     },
   ] + (
-    // Conditionally add experimental features
-    if enableExperimentalFeatures then [
-      {
-        rule: "experimentalRule",
-        matches: {
-          entity: "domainEntity",
-          namespace: "EdFi",
-          entityName: "ExperimentalEntity",
-        },
-        data: {
-          enabled: true,
-          description: "Experimental feature configuration",
-        },
-      },
+    if includeReportedSchool then [
+      makeSecurityRule(
+        "StudentAssessment",
+        "ReportedSchool",
+        "SchoolId",
+        "Maps ReportedSchool reference to SchoolId for security",
+        v4_0
+      ),
     ] else []
   ),
 }

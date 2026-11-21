@@ -1,22 +1,25 @@
-# MetaEd Plugin: Ed-Fi API Catalog
+# metaed-plugin-edfi-api-catalog
 
-This plugin generates an Excel spreadsheet catalog of API resources and their properties from the MetaEd API schema.
+This plugin generates an Excel catalog of resources and descriptors from the MetaEd API schema. The workbook lists their endpoints and the properties found in their OpenAPI component schemas.
 
-## Overview
+## Input Configuration
 
-The API Catalog plugin reads the enhanced MetaEd model from the `metaed-plugin-edfi-api-schema` plugin and generates a comprehensive Excel spreadsheet listing all API resources, their properties, and associated metadata.
+No plugin-specific configuration. Depends on API schema metadata produced by
+`metaed-plugin-edfi-api-schema`.
 
 ## Dependencies
 
 This plugin depends on:
+
 - `@edfi/metaed-core`
 - `@edfi/metaed-plugin-edfi-api-schema`
+- `@edfi/metaed-plugin-edfi-unified`
 
 The plugin must be loaded after the `metaed-plugin-edfi-api-schema` plugin to access the enhanced API schema data.
 
 ## Output
 
-The plugin generates a single Excel file (`Ed-Fi-API-Catalog.xlsx`) with two worksheets:
+The plugin generates a single Excel file (`Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx`) with two worksheets:
 
 ### Resources Worksheet
 
@@ -30,29 +33,49 @@ Contains one row per resource with the following columns:
 
 ### Properties Worksheet
 
-Contains one row per property within each resource with the following columns:
+The generator scans the resource or descriptor's `components.schemas` in order. It skips a component if it lacks `properties` or its name ends in `_Reference`, `_Readable`, or `_Writable`. The first remaining component is the root for every property path.
+
+- **Missing parent path.** For `students` and `staffs`, the selected component is the nested `Pet` common. The workbook lists `petName` directly under each resource. In the model, `PetName` belongs to an item in the optional `Pet` collection. [Student additions](../metaed-plugin-edfi-api-schema/test/integration/sample-project/DomainEntity/StudentExtension.metaed) · [Pet model](../metaed-plugin-edfi-api-schema/test/integration/sample-project/Common/Pet.metaed)
+- **Missing rows.** The Resources worksheet lists `studentSchoolAssociations` with no corresponding Properties rows. Its `membershipTypeDescriptor` field is under `openApiFragments.resources.exts` in the generated API Schema. Look there for extension fields omitted from the workbook. [Sample API Schema](../metaed-plugin-edfi-api-schema/test/integration/artifact/v7_3/sample-api-schema-authoritative.json#L11119-L11136)
+
+#### Properties columns
 
 - **Project**: The API project endpoint name (e.g., "ed-fi", "tpdm")
 - **Version**: The project version (e.g., "5.2.0")
 - **Resource Name**: The API resource endpoint name
-- **Property Name**: The name of the property within the resource
-- **Property Description**: The property description from the API schema
-- **Data Type**: The property data type (uses `format` if available, otherwise `type`)
+- **Property Name** — The path from the selected component. Nested common properties and resolved reference keys use dot-separated paths (e.g., `schoolReference.schoolId`). Array item paths use the singularized array property name.
+- **Property Description**: The property description from the API schema; for reference and array-of-`$ref` rows, this holds the `$ref` target instead
+- **Data Type**: The property data type (uses `format` if available, otherwise `type`); `reference` for `$ref` properties, `array` for arrays of `$ref` items, or `unknown` when no type is present
 - **Min Length**: Minimum string length constraint (if applicable)
 - **Max Length**: Maximum string length constraint (if applicable)
 - **Validation RegEx**: Regular expression pattern for validation (if applicable)
-- **Is Identity Key**: Boolean indicating if the property is part of the resource identity
+- **Is Identity Key** — True when the containing schema marks the property as an identity key. In the Assessment example, `programReference.programId` identifies the referenced Program. Assessment's own identity is `assessmentIdentifier`.
 - **Is Nullable**: Boolean indicating if the property can be null
-- **Is Required**: Boolean indicating if the property is required
+- **Is Required** — True when the containing schema lists the property as required. A child can be required even when its parent is optional. For example, `contentStandard.mandatingEducationOrganizationReference` is optional in the Assessment example. When that reference is present, its `educationOrganizationId` is required. [Assessment model and workbook rows](test/integration/ApiCatalogGenerator.test.ts)
 
-## Usage
+## Business Logic
 
-This plugin is included in the default plugins list and will automatically generate the API catalog when MetaEd processes a data model.
+Walks the API schema resource definitions built by the upstream API schema plugin,
+extracts resource and property metadata rows, and writes a multi-sheet XLSX workbook
+covering resources and descriptors. A direct reference has `dataType = 'reference'`.
+It gets dotted key rows when the project's reference lookup contains the target. In TPDM,
+`financialAids` contains `studentReference` without a
+`studentReference.studentUniqueId` row.
 
-The generated Excel file can be found in the output directory under:
-```
-Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx
-```
+- **Project and resource names.** The Project column holds the project endpoint name and the
+  Resource Name column holds the resource endpoint name, on both worksheets.
+- **`id` omission.** Any property named `id`, at every nesting level, is omitted from the
+  Properties worksheet.
+- **Recursion.** The generator recurses into common sub-schemas and resolved reference schemas
+  reached by a direct `$ref`, and recurses into array items only when they are common
+  sub-schemas (using the singularized array property name as the path segment). Nested
+  paths are relative to the selected component.
+- **Hard-coded reference schemas.** The generator contains hard-coded handling for the
+  EducationOrganization and SchoolYear reference schemas. It builds a lookup for each
+  project by scanning `resourceSchemas`. The core EducationOrganization reference
+  schema is under `abstractResources`, outside that collection. The SchoolYear
+  reference schema does exist as `EdFi_SchoolYearTypeReference`, but the generator's
+  `_Reference` suffix filter misses it.
 
 ## Implementation Details
 
@@ -60,5 +83,6 @@ Documentation/Ed-Fi-API-Catalog/Ed-Fi-API-Catalog.xlsx
 - It contains a single generator that reads from `namespace.data.edfiApiSchema`
 - Both regular resources and descriptors are included in the catalog
 - Reference properties are included with `dataType = 'reference'`
-- The `id` property is automatically excluded from the Properties worksheet
+- Reference schemas for `EducationOrganization` and `SchoolYearType` are hard-coded (see Business Logic for why each is not picked up from the OpenAPI fragments)
+- Any property named `id`, at any nesting level, is excluded from the Properties worksheet
 - Properties are extracted from OpenAPI fragments (preferring 'resources', falling back to 'descriptors')
