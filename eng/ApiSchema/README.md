@@ -26,11 +26,7 @@ There are no `lib/`, `ref/`, `*.dll`, `*.cs`, `bin/`, or `obj/` entries.
 
 ## Build Flow
 
-All commands are in `eng/ApiSchema/build.ps1` and are invoked as:
-
-```powershell
-./eng/ApiSchema/build.ps1 -Command <CommandName> [parameters...]
-```
+Run the commands from the repository root in PowerShell 7 or later. Steps 2–5 package the `Sample` extension for Data Standard 5.2. To package another project, use its name (`Core`, `TPDM`, or `Homograph`) throughout those steps and set the corresponding Data Standard version.
 
 ### 1. `RunMetaEd` — Generate `MetaEdOutput`
 
@@ -57,7 +53,7 @@ Missing schema JSON and a missing core `discovery-spec.json` are hard failures. 
 (XSD, Interchange) are silently skipped.
 
 ```powershell
-./eng/ApiSchema/build.ps1 -Command StageAssets -ExtensionName Core|TPDM|Sample|Homograph
+./eng/ApiSchema/build.ps1 -Command StageAssets -ExtensionName Sample
 ```
 
 ### 3. `WriteManifest` — Write `package-manifest.json`
@@ -73,13 +69,8 @@ Reads project identity semantically from the staged `ApiSchema.json` (`projectSc
 > invoking `WriteManifest`, `Package`, or `Validate` (DMS-1155 D8).
 
 ```powershell
-# Set the Data Standard short-version (e.g. 52) so the PackageId resolves correctly for core
-# (EdFi.DataStandard52.ApiSchema) and extensions (EdFi.DataStandard52.Sample.ApiSchema).
 $env:DataStandardVersion = '52'
-./eng/ApiSchema/build.ps1 -Command WriteManifest -ExtensionName Core
-
-# Extensions need it too:
-./eng/ApiSchema/build.ps1 -Command WriteManifest -ExtensionName TPDM|Sample|Homograph
+./eng/ApiSchema/build.ps1 -Command WriteManifest -ExtensionName Sample
 ```
 
 The manifest fields are documented in [PACKAGE-CONTRACT.md](PACKAGE-CONTRACT.md#3-package-manifestjson-schema).
@@ -99,11 +90,7 @@ immediately with a clear error if it is unset, so no mis-named package is ever p
 ```powershell
 $env:DataStandardVersion = '52'
 
-# Core:
-./eng/ApiSchema/build.ps1 Package -Version "1.0.<run_number>" -ExtensionName Core
-
-# Extensions need it too:
-./eng/ApiSchema/build.ps1 Package -Version "1.0.<run_number>" -ExtensionName TPDM|Sample|Homograph
+./eng/ApiSchema/build.ps1 -Command Package -ExtensionName Sample -Version "1.0.0"
 ```
 
 ### 5. `Validate` — Assert the produced `.nupkg` matches the contract
@@ -118,11 +105,7 @@ the expected filename can be computed (see step 3 above).
 ```powershell
 $env:DataStandardVersion = '52'
 
-# Core:
-./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName Core -Version "1.0.<run_number>"
-
-# Extensions need it too:
-./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName TPDM|Sample|Homograph -Version "1.0.<run_number>"
+./eng/ApiSchema/build.ps1 -Command Validate -ExtensionName Sample -Version "1.0.0"
 ```
 
 ### 6. Push to Azure Artifacts

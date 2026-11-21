@@ -212,7 +212,29 @@ For a command example and the generated directory layout, see the [CLI build gui
 
 ### 3.5 Deploy Command
 
-Use the version table to check which ODS/API directories a deploy can change. [Deploy behavior by target version](#deploy-behavior-by-target-version) · [CLI deploy guide](cli.md#deploy)
+#### Deploy behavior by target version
+
+Deploy checks and cleans up extension projects using the immediate entries in `artifactDirectory`, excluding `EdFi`, `Documentation`, and `ApiSchema`. When copying extensions, it uses the non-core project names in `projects`. [CLI deploy guide](cli.md#deploy)
+
+Read extension destinations relative to `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/` and core destinations relative to `Ed-Fi-ODS/Application/EdFi.Ods.Standard/`. Both paths start at `deployDirectory`.
+
+| ODS/API target | Extension project paths checked | Deleted per checked entry (unless `--suppressDelete`) | Extension copy from `{projectName}/` | Core copy from `EdFi/` (only with `--core`) |
+| --- | --- | --- | --- | --- |
+| Omitted in deploy config, without `-x` | Each entry | None | None | None |
+| `<3.0.0` | None | None | None | None |
+| `>=3.0.0 <3.3.0` | Each entry | None | None | None |
+| `>=3.3.0 <5.4.0` | Each entry | `Artifacts/` | None | None |
+| `>=5.4.0 <7.0.0` | Each entry | `Artifacts/` | `Artifacts/` | `Artifacts/` |
+| `>=7.0.0` | Each entry | `Artifacts/` | `Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/` | `Standard/{dataStandardVersion}/Artifacts/` |
+
+#### Observed deploy outcomes in 4.9.0
+
+- **Unconfigured extension.** On 6.1, the artifact directory contained `Chosen/` and `Old/`, and both ODS/API extension project directories existed. Only `Chosen` was configured. Deploy deleted `EdFi.Ods.Extensions.Old/Artifacts/`, copied `Chosen`, and exited `0`. [Cleanup](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/RemoveExtensionArtifacts.ts#L13-L38) · [Extension copy](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/DeployExtensionV6.ts#L31-L59)
+- **One project with a different namespace.** Scanning `Twin-Name` on 6.1 generated `TwinName/`. Deploy removed `EdFi.Ods.Extensions.TwinName/Artifacts/`, found no source under `Twin-Name/`, refreshed the existing `.csproj`, and exited `0` without replacing the artifacts. [METAED-1678](https://edfi.atlassian.net/browse/METAED-1678)
+- **Two projects with the same derived namespace.** Scanning `Twin-Name` (1.2.0) and `TwinName` (2.0.0) on 7.3 retained both projects. The single `TwinName/` tree contained both models, and the API Schema identified the first project, `Twin-Name` 1.2.0. Deploy copied the merged API model into `EdFi.Ods.Extensions.TwinName/Versions/2.0.0/Standard/5.2.0/Artifacts/Metadata/` and exited `0`. [Namespace metadata selection](../packages/metaed-core/src/pipeline/InitializeNamespaces.ts)
+- **Cleanup before copy support.** Target comparisons disregard prerelease suffixes. At `3.3.0-rc.1`, for example, the cleanup task can delete existing artifacts and exit `0` even though no copy task runs.
+
+#### Deploy requirements
 
 - **FR-DEPLOY-1**: `@edfi/metaed-odsapi-deploy-console` SHALL run from Node.js and execute deploy tasks from `@edfi/metaed-odsapi-deploy`.
 - **FR-DEPLOY-2**: The deploy CLI SHALL require the parsed license acceptance option (NFR-LIC-1).
@@ -225,10 +247,10 @@ Use the version table to check which ODS/API directories a deploy can change. [D
 - **FR-DEPLOY-7**: The deploy CLI SHALL accept `--core` to deploy core artifacts in addition to extension artifacts.
 - **FR-DEPLOY-8**: The deploy CLI SHALL accept `--suppressDelete` to skip removal of existing unversioned extension artifact directories.
 - **FR-DEPLOY-9**: For targets `>=5.4.0`, deploy SHALL copy files supplied through `--additionalMssqlScriptsDirectory` and `--additionalPostgresScriptsDirectory` into the corresponding ODS data folders.
-- **FR-DEPLOY-10**: For targets `>=3.0.0` or an omitted target, deploy SHALL check that the ODS/API extension project path exists for each immediate artifact-directory entry except `EdFi`, `Documentation`, and `ApiSchema`. This includes files and directories. An existing project directory satisfies the check even without a `.csproj` file. An empty selection passes only in Alliance Mode. [4.9.0 precheck](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/ExtensionProjectsExists.ts#L15-L62)
-- **FR-DEPLOY-11**: For targets `>=3.3.0`, deploy SHALL delete the existing unversioned extension `Artifacts/` directory for each entry selected by FR-DEPLOY-10 before copying, unless `--suppressDelete` is supplied. Cleanup includes entries absent from `projects`.
+- **FR-DEPLOY-10**: Where the version table calls for a path check, deploy SHALL check the extension project path for each selected entry, including files and directories. An existing project directory satisfies the check even without a `.csproj` file. An empty selection requires Alliance Mode to pass, even for a core-only deploy. [4.9.0 precheck](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/ExtensionProjectsExists.ts#L15-L62)
+- **FR-DEPLOY-11**: Deploy SHALL delete the directories marked for cleanup in the version table before copying, including those for entries absent from `projects`. The `--suppressDelete` option skips this step (FR-DEPLOY-8).
 - **FR-DEPLOY-12**: Deploy SHALL copy core artifacts only when `--core` is supplied.
-- **FR-DEPLOY-13**: For targets `>=5.4.0`, deploy SHALL iterate the non-core entries in `projects` and copy each extension's mapped folders into its target. For `>=7.0.0`, copying overwrites matching files in the active versioned target and leaves files that are absent from the new output in place.
+- **FR-DEPLOY-13**: Deploy SHALL copy each configured extension's mapped folders to the destination specified for its target version. In a versioned destination, deploy overwrites matching files and preserves files absent from the new output.
 - **FR-DEPLOY-14**: Core deploy SHALL copy from the `EdFi` artifact namespace folder.
 - **FR-DEPLOY-15**: Deploy SHALL look up each extension source folder by `projectName`. The build writes one folder per `namespaceName` (FR-BUILD-11). To deploy each extension's own output, give each one a distinct namespace that matches its project name.
 - **FR-DEPLOY-16**: For targets `>=7.1.0`, deploy SHALL format a valid Data Standard version as `major.minor.0` in target paths when `suppressPrereleaseVersion` is enabled. Otherwise it uses the supplied version string.
@@ -245,26 +267,6 @@ Use the version table to check which ODS/API directories a deploy can change. [D
   - `XSD/` → `Schemas/`
 - **FR-DEPLOY-21**: Deploy SHALL leave generated `ApiSchema/` and `Documentation/` outputs in the artifact directory because deploy tasks only map API metadata, database, interchange, and XSD artifact families into the ODS/API source tree.
 
-#### Deploy behavior by target version
-
-All destinations are relative to the project directory under `deployDirectory`. The extension directory is `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{name}/`, and the core directory is `Ed-Fi-ODS/Application/EdFi.Ods.Standard/`. For the check and cleanup, `{name}` is each immediate entry in `artifactDirectory` except `EdFi`, `Documentation`, and `ApiSchema`. For extension copy, `{name}` is each non-core `projectName` in `projects`.
-
-| ODS/API target | Extension project paths checked | Deleted per checked entry (unless `--suppressDelete`) | Extension copy from `{projectName}/` | Core copy from `EdFi/` (only with `--core`) |
-| --- | --- | --- | --- | --- |
-| Omitted in deploy config, without `-x` | Each entry | None | None | None |
-| `<3.0.0` | None | None | None | None |
-| `>=3.0.0 <3.3.0` | Each entry | None | None | None |
-| `>=3.3.0 <5.4.0` | Each entry | `Artifacts/` | None | None |
-| `>=5.4.0 <7.0.0` | Each entry | `Artifacts/` | `Artifacts/` | `Artifacts/` |
-| `>=7.0.0` | Each entry | `Artifacts/` | `Versions/{projectVersion}/Standard/{dataStandardVersion}/Artifacts/` | `Standard/{dataStandardVersion}/Artifacts/` |
-
-**Observed in 4.9.0**
-
-- **Unconfigured extension.** On 6.1, the artifact directory contained `Chosen/` and `Old/`, and both ODS/API extension project directories existed. Only `Chosen` was configured. Deploy deleted `EdFi.Ods.Extensions.Old/Artifacts/`, copied `Chosen`, and exited `0`. [Cleanup](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/RemoveExtensionArtifacts.ts#L13-L38) · [Extension copy](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-odsapi-deploy/src/task/DeployExtensionV6.ts#L31-L59)
-- **One project with a different namespace.** Scanning `Twin-Name` on 6.1 generated `TwinName/`. Deploy removed `EdFi.Ods.Extensions.TwinName/Artifacts/`, found no source under `Twin-Name/`, refreshed the existing `.csproj`, and exited `0` without replacing the artifacts. [METAED-1678](https://edfi.atlassian.net/browse/METAED-1678)
-- **Two projects with the same derived namespace.** Scanning `Twin-Name` (1.2.0) and `TwinName` (2.0.0) on 7.3 retained both projects. The single `TwinName/` tree contained both models, and the API Schema identified the first project, `Twin-Name` 1.2.0. Deploy copied the merged API model into `EdFi.Ods.Extensions.TwinName/Versions/2.0.0/Standard/5.2.0/Artifacts/Metadata/` and exited `0`. [Namespace metadata selection](../packages/metaed-core/src/pipeline/InitializeNamespaces.ts)
-- **Cleanup before copy support.** Target comparisons disregard prerelease suffixes. At `3.3.0-rc.1`, for example, the cleanup task can delete existing artifacts and exit `0` even though no copy task runs.
-
 ### 3.6 API Schema Packaging Automation
 
 - **FR-PKG-1**: Packaging SHALL configure a build for the selected Data Standard and target technology version, with the core project and any selected extension.
@@ -272,7 +274,7 @@ All destinations are relative to the project directory under `deployDirectory`. 
 - **FR-PKG-3**: Each NuGet package SHALL include the generated `ApiSchema.json` and any generated XSD and Interchange schemas. Core packaging also copies the checked-in `eng/ApiSchema/discovery-spec.json`. [4.9.0 staging script](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/eng/ApiSchema/build.ps1#L278-L355)
 - **FR-PKG-4**: Packaging SHALL build Core, Sample, and Homograph for Data Standards 4.0.0, 5.2.0, 6.0.0, and 6.1.0, and TPDM for 5.2.0 only. The 4.0.0 Sample and Homograph packages are build artifacts only.
 - **FR-PKG-4a**: Each package SHALL have a Data Standard-qualified ID and a `package-manifest.json`. Packaging SHALL validate the finished package before publishing. [4.9.0 package contract](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/eng/ApiSchema/PACKAGE-CONTRACT.md)
-- **FR-PKG-5**: A manually triggered run on a protected ref SHALL publish eligible packages to Azure Artifacts. Missing feed credentials SHALL fail publication. [4.9.0 packaging workflow](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/.github/workflows/api-schema-packaging.yml) · [Build commands](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/eng/ApiSchema/README.md#build-flow)
+- **FR-PKG-5**: A manually triggered run on a protected ref SHALL publish eligible packages to Azure Artifacts. Missing feed credentials SHALL fail publication. [4.9.0 packaging workflow](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/.github/workflows/api-schema-packaging.yml) · [Build commands](../eng/ApiSchema/README.md#build-flow)
 
 ## 4. Non-Functional Requirements
 
@@ -372,10 +374,7 @@ Generated files are written beneath the artifact directory by namespace and fold
 - Source-scan deploy sorts by project name. For example, extension `Alpha` precedes core project `Ed-Fi`. The last resolved project determines where the CLI puts `MetaEdOutput` (FR-DEPLOY-4). [METAED-1675](https://edfi.atlassian.net/browse/METAED-1675)
 - For an unknown plugin configuration rule, the build records the rule name, reason, and configuration file path. The CLI logs the plugin's error count and exits `1` before printing the detailed diagnostic. A registered rule targeting an unknown namespace passes rule validation, then fails during model annotation. The CLI reaches diagnostic reporting, logs the namespace and configuration path, and exits `1`. [4.9.0 rule validation](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-core/src/plugin/LoadPluginConfiguration.ts#L53-L65) · [METAED-1676](https://edfi.atlassian.net/browse/METAED-1676)
 - Importing a sibling `.libsonnet` file from a plugin configuration fails in a CLI build. The lower-level Jsonnet loader accepts explicit library files through `libraryPaths`, and the build supplies only external variables (FR-CFG-9). [4.9.0 Jsonnet loader](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-core/src/plugin/JsonnetConfigLoader.ts#L82-L103) · [METAED-1677](https://edfi.atlassian.net/browse/METAED-1677)
-- Deploy can exit `0` after deleting unconfigured extension artifacts, skipping a replacement, or copying a merged model into one extension's destination. The version table and examples identify which entries and projects each task uses. [Deploy behavior by target version](#deploy-behavior-by-target-version)
-- A core-only deploy with no extension artifact folders can fail the extension project precheck when `allianceMode` is false.
-- Deploy does not copy generated `ApiSchema/` or `Documentation/` artifact folders into the ODS/API source tree.
-- Deploy assumes the local ODS/API source tree follows expected `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` folder conventions.
+- Deploy expects the ODS/API project layout in §3.5. Even a successful deploy can leave an extension with missing, stale, or merged artifacts. [Deploy behavior by target version](#deploy-behavior-by-target-version) · [Observed deploy outcomes in 4.9.0](#observed-deploy-outcomes-in-490)
 - The console packages declare no package `bin` commands; run them through their Node.js entry points or repository scripts.
 - API Schema packaging uses the [4.9.0 plugin configuration](https://github.com/Ed-Fi-Alliance-OSS/MetaEd-js/blob/v4.9.0/packages/metaed-plugin-edfi-api-schema/test/integration/edfiApiSchema.config.json).
 - Alliance Mode is an internal setting used by Ed-Fi Alliance workflows. It affects selected validators, SQL license headers, and the extension path check.

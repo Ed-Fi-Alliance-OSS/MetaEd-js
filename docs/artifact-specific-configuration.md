@@ -55,6 +55,8 @@ The loader validates the rule structure, then validates each `data` payload agai
 - `educationOrganizationSecurableElements` requires a nonempty `securableElements` array. Each element names a `propertyPath` and a `requiredIdentityProperty`. The enhancer appends matching paths by default. With `mode: "replace"`, it clears the entity's existing education organization securable elements first.
 - `educationOrganizationIdentitySecurableElements` requires a `roleName`.
 
+For guidance on registering rules and handling defaults in a plugin, see the [plugin author guide](../packages/metaed-core/docs/artifact-specific-configuration.md).
+
 ### New resources and additions
 
 For a new domain entity or association, including one declared in an extension project, the generated resource schema includes the education organization paths found by the security enhancers. An addition to an existing resource (`domainEntityExtension` or `associationExtension`) can also match a rule. The schema builder emits empty `securableElements` arrays for both kinds of addition.
