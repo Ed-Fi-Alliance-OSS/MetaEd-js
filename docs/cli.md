@@ -8,6 +8,13 @@ The build CLI generates MetaEd artifacts. The deploy CLI copies selected artifac
 npx ts-node --transpile-only packages/metaed-console/src/index.ts -c metaed.conf.json
 ```
 
+> [!TIP]
+> Run the CLI process _before_ compiling the code, try:
+>
+> ```bash
+> npx ts-node --transpile-only packages/metaed-console/src/index.ts -c metaed.conf.json
+> ```
+
 The examples below accept the license in the JSON file. You can also pass `-a` or `--accept-license` on the command line. Both CLIs require the parsed option. To override the target technology version, pass `-x` with a version such as `6.0.0`. The [build-console README](../packages/metaed-console/README.md#input-configuration) lists the build options.
 
 ### Build Output
