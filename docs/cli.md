@@ -1,6 +1,6 @@
 # Command Line Interface
 
-The build CLI generates MetaEd artifacts. The deploy CLI copies selected artifacts into a local ODS/API source tree. Run the commands below from the repository root. The examples run from source with repository dependencies installed, using `npx ts-node --transpile-only packages/<console>/src/index.ts`. The `dist/` entry points (`node packages/<console>/dist/index.js`) exist only in compiled or published packages. Use `-h` on either CLI to list its options.
+The build CLI generates MetaEd artifacts. The deploy CLI copies selected artifacts into a local ODS/API source tree. Run the commands below from the repository root. The core example uses the compiled console entry points. The Sample example runs from source with repository dependencies installed. Use `-h` on either CLI to list its options.
 
 ## Build
 
