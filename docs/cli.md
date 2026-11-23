@@ -37,7 +37,7 @@ EdFi/
 ## Deploy
 
 ```bash
-npx ts-node --transpile-only packages/metaed-odsapi-deploy-console/src/index.ts -c metaed.conf.json --core
+node packages/metaed-odsapi-deploy-console/dist/index.js -c metaed.conf.json --core
 ```
 
 With `-c`, deploy reads existing artifacts. Use `--core` to include core artifacts in the copy. The core-only example sets `allianceMode` so the extension path check can pass with no extension folders.
