@@ -6,6 +6,11 @@ Library for deploying MetaEd-generated artifacts into the ODS/API repository lay
 
 Accepts `MetaEdConfiguration` plus deploy-specific options:
 
+- `metaEdConfiguration.artifactDirectory` — Root of the generated output. Each project's artifacts are read from `{artifactDirectory}/{projectName}/`
+- `metaEdConfiguration.deployDirectory` — Parent directory containing the ODS/API repositories; destinations resolve from it
+- `metaEdConfiguration.projects` — Projects to deploy. Extension copy uses every non-core project
+- `metaEdConfiguration.allianceMode` — When true, an empty extension list passes the path check
+- `metaEdConfiguration.suppressPrereleaseVersion` — Formats the Data Standard version in deploy paths for targets `>=7.1.0`
 - `metaEdConfiguration.defaultPluginTechVersion` — Determines which deploy tasks run and
   which ODS/API path layout is used
 - `dataStandardVersion` — Data Standard version used in the ≥ 7.0 versioned path; for
@@ -20,7 +25,7 @@ Accepts `MetaEdConfiguration` plus deploy-specific options:
 
 The ODS/API target determines which project paths deploy checks, which directories it removes, and where it copies each project's files. The PRD lists the gates and destination paths for each target, including versions that run cleanup only. [Deploy behavior by target version](../../docs/PRD-4.x.md#deploy-behavior-by-target-version)
 
-Within a project's deployed `Artifacts/` directory, deploy maps the following folders.
+Deploy reads each project's generated output from `{artifactDirectory}/{projectName}/` (`EdFi/` for core) and copies the following source folders into the target's `Artifacts/` folder.
 
 | Source Directory | Deploy Destination |
 |---|---|
@@ -63,5 +68,5 @@ copy task, a failure for one project can still allow copies for later projects.
   only API metadata, database, interchange, and XSD families are mapped.
 - **Versioned targets (METAED-1678).** Cleanup removes only the unversioned `Artifacts/`.
   Copy overwrites matching files in the active versioned target and leaves older files
-  that are absent from the new output. The console sets a non-zero exit code for a failed
-  task without printing its returned `failureMessage`.
+  that are absent from the new output. A failing task logs its failure message with
+  `Logger.error`. The console sets a non-zero exit code and does not print the message again.

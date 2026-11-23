@@ -55,7 +55,7 @@ The loader validates the rule structure, then validates each `data` payload agai
 - `educationOrganizationSecurableElements` requires a nonempty `securableElements` array. Each element names a `propertyPath` and a `requiredIdentityProperty`. The enhancer appends matching paths by default. With `mode: "replace"`, it clears the entity's existing education organization securable elements first.
 - `educationOrganizationIdentitySecurableElements` requires a `roleName`.
 
-For guidance on registering rules and handling defaults in a plugin, see the [plugin author guide](../packages/metaed-core/docs/artifact-specific-configuration.md).
+For guidance on registering rules and handling defaults in a plugin, see the [plugin author guide](../packages/metaed-core/docs/plugin-author-configuration.md).
 
 ### New resources and additions
 

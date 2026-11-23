@@ -26,16 +26,32 @@ There are no `lib/`, `ref/`, `*.dll`, `*.cs`, `bin/`, or `obj/` entries.
 
 ## Build Flow
 
-Run the commands from the repository root in PowerShell 7 or later. Steps 2–5 package the `Sample` extension for Data Standard 5.2. To package another project, use its name (`Core`, `TPDM`, or `Homograph`) throughout those steps and set the corresponding Data Standard version.
+Use PowerShell 7 or later. Run each command from the repository root, except that `RunMetaEd` leaves the shell in `packages/metaed-console`, so return to the repository root after Step 1 before running Step 2. Steps 2–5 package the `Sample` extension for Data Standard 5.2. To package another project, use its name (`Core`, `TPDM`, or `Homograph`) throughout those steps and set the corresponding Data Standard version. The config used in Step 1 must include the project and Data Standard version that Steps 2–5 package (here, `Sample` and Data Standard 5.2).
 
 ### 1. `RunMetaEd` — Generate `MetaEdOutput`
 
 Runs the MetaEd compiler against the config file to produce `MetaEdOutput/`. This is the unchanged source
 of truth for all downstream packaging steps.
 
+`RunMetaEd` has side effects. It runs, in order:
+
+- `npm config set registry https://registry.npmjs.org/`, which changes the user's npm configuration
+- `npm cache clean --force`
+- `npm install`
+- `npm run build`
+- `Set-Location ./packages/metaed-console`, and the shell stays there afterward
+- `CopyPluginConfigurationFiles`, which copies `packages/metaed-plugin-edfi-api-schema/test/integration/edfiApiSchema.config.json`
+  into the first path in the config's `projectPaths` (the core project), overwriting any existing copy
+- `node ./dist/index.js -a -c <config>`
+
+The script changes directory before it reads the config, so pass an absolute `-SchemaPackagingConfigFile`
+path. Relative `projectPaths` in that file resolve from `packages/metaed-console`.
+
 ```powershell
-./eng/ApiSchema/build.ps1 -Command RunMetaEd -SchemaPackagingConfigFile "<path-to-MetaEdConfig.json>"
+./eng/ApiSchema/build.ps1 -Command RunMetaEd -SchemaPackagingConfigFile "<absolute-path-to-MetaEdConfig.json>"
 ```
+
+After this step, run `Set-Location <repository-root>` before Step 2.
 
 ### 2. `StageAssets` — Stage the flat ApiSchema payload
 
@@ -48,6 +64,13 @@ only the allow-listed assets:
   Omitted for extensions that produce no XSD (e.g. Homograph).
 - `discovery-spec.json` — curated discovery specification from `eng/ApiSchema/`; **required for core
   packages** (staging fails if missing); not included for extensions.
+
+`StageAssets` reads from `./MetaEdOutput/<EdFi|ExtensionName>/` relative to the current directory. It reads
+`ApiSchema/ApiSchema.json` (core) or `ApiSchema/ApiSchema-EXTENSION.json` (extension), plus `XSD/` and
+`Interchange/`. Run it from the repository root, with the Step 1 config's `artifactDirectory` set to
+`<repo>/MetaEdOutput`. [CreateMetaEdConfig.ps1](CreateMetaEdConfig.ps1) generates a suitable config. It writes
+`eng/ApiSchema/MetaEdConfig.json` under `<Workspace>/MetaEd-js/` and sets `artifactDirectory` to
+`<Workspace>/MetaEd-js/MetaEdOutput`, so it expects the repository to be checked out as `<Workspace>/MetaEd-js`.
 
 Missing schema JSON and a missing core `discovery-spec.json` are hard failures. Absent optional assets
 (XSD, Interchange) are silently skipped.
@@ -115,10 +138,10 @@ validated `.nupkg` artifact to the Azure Artifacts feed.
 
 ```powershell
 # Install the NuGet credential provider (CI only):
-./eng/ApiSchema/build.ps1 InstallCredentialHandler
+./eng/ApiSchema/build.ps1 -Command InstallCredentialHandler
 
 # Push a package to the feed:
-./eng/ApiSchema/build.ps1 PushPackage -EdFiNuGetFeed "<feed-url>" -NuGetApiKey "<key>" -PackageFile "<path>.nupkg"
+./eng/ApiSchema/build.ps1 -Command PushPackage -EdFiNuGetFeed "<feed-url>" -NuGetApiKey "<key>" -PackageFile "<path>.nupkg"
 ```
 
 ## Local End-to-End Smoke Test (`Verify`)

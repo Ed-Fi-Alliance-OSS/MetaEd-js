@@ -1,18 +1,18 @@
 # Command Line Interface
 
-The build CLI generates MetaEd artifacts. The deploy CLI copies selected artifacts into a local ODS/API source tree. Run the commands below from the repository root. The core example uses the compiled console entry points. The Sample example runs from source with repository dependencies installed. Use `-h` on either CLI to list its options.
+The build CLI generates MetaEd artifacts. The deploy CLI copies selected artifacts into a local ODS/API source tree. Run the commands below from the repository root. The examples run from source with repository dependencies installed, using `npx ts-node --transpile-only packages/<console>/src/index.ts`. The `dist/` entry points (`node packages/<console>/dist/index.js`) exist only in compiled or published packages. Use `-h` on either CLI to list its options.
 
 ## Build
 
 ```bash
-node packages/metaed-console/dist/index.js -c metaed.conf.json
+npx ts-node --transpile-only packages/metaed-console/src/index.ts -c metaed.conf.json
 ```
 
 The examples below accept the license in the JSON file. You can also pass `-a` or `--accept-license` on the command line. Both CLIs require the parsed option. To override the target technology version, pass `-x` with a version such as `6.0.0`. The [build-console README](../packages/metaed-console/README.md#input-configuration) lists the build options.
 
 ### Build Output
 
-The build writes core artifacts under `EdFi/`, shared documentation under `Documentation/`, and extension artifacts under each distinct extension namespace. For source-scan deploy, choose extension project names that are distinct after namespace derivation and match their namespace spelling. For example, `Twin-Name` and `TwinName` both generate into `TwinName/`, while deploy looks for a source folder for each project name.
+The build writes core artifacts under `EdFi/`, shared documentation under `Documentation/`, and extension artifacts under each distinct extension namespace.
 
 ```text
 Documentation/
@@ -30,12 +30,14 @@ EdFi/
 ## Deploy
 
 ```bash
-node packages/metaed-odsapi-deploy-console/dist/index.js -c metaed.conf.json --core
+npx ts-node --transpile-only packages/metaed-odsapi-deploy-console/src/index.ts -c metaed.conf.json --core
 ```
 
 With `-c`, deploy reads existing artifacts. Use `--core` to include core artifacts in the copy. The core-only example sets `allianceMode` so the extension path check can pass with no extension folders.
 
 **Check the contents of `artifactDirectory` before deploying.** At targets `>=3.3.0`, every immediate entry except `EdFi`, `Documentation`, and `ApiSchema` selects an ODS/API extension's unversioned `Artifacts/` directory for cleanup. On 6.1, a leftover `Old/` in `artifactDirectory` can cause deploy to delete `EdFi.Ods.Extensions.Old/Artifacts/` even when `Chosen` is the only configured extension. Deploy can then copy `Chosen` and exit `0`. Use `--suppressDelete` to skip cleanup. [Deploy behavior by target version](PRD-4.x.md#deploy-behavior-by-target-version) · [Source-scan build and deploy](../packages/metaed-odsapi-deploy-console/README.md#business-logic)
+
+For source-scan deploy, choose extension project names that are distinct after namespace derivation and match their namespace spelling. For example, `Twin-Name` and `TwinName` both generate into `TwinName/`, while deploy looks for a source folder for each project name.
 
 ### Deploy Output
 

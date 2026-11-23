@@ -4,7 +4,9 @@ MetaEd plugin that generates the Ed-Fi ODS/API domain model JSON.
 
 ## Input Configuration
 
-No plugin-specific configuration. Operates on the enriched MetaEd model.
+No plugin-specific configuration. Depends on relational model data from
+`metaed-plugin-edfi-ods-relational` and interchange data from `metaed-plugin-edfi-xsd`.
+Uses `targetTechnologyVersion` to vary API model details.
 
 ## Output
 

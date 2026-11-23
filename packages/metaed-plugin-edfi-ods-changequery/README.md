@@ -19,8 +19,8 @@ exported from this package.
 
 ## Business Logic
 
-Validates that no namespace is named "Changes" (which would conflict with the
-change-tracking schema). Exports shared enhancer helpers and generator utilities consumed
+Validates that no namespace is named "Changes", ignoring case, because that name would
+conflict with the change-tracking schema. Exports shared enhancer helpers and generator utilities consumed
 by the companion plugins for platform-specific SQL generation, including the shared
 indirect update cascade trigger enhancer and generator logic, which each companion plugin
 registers through its own wrapper.

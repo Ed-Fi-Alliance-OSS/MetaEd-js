@@ -10,7 +10,7 @@ CLI arguments via `yargs`:
 - `--source / -s` — Source project directories (array)
 - `--target / -t` — Parent directory containing the `Ed-Fi-ODS` and `Ed-Fi-ODS-Implementation` repositories
 - `--projectNames / -p` — Project names applied to discovered projects in discovery order (array); required for source-scan mode
-- `--defaultPluginTechVersion / -x` — Default plugin technology version
+- `--defaultPluginTechVersion / -x` — Default plugin technology version. Defaults to `6.0.0` in source-scan mode, which selects the 6.x deploy layout
 - `--core` — Deploy core artifacts
 - `--suppressDelete` — Skip removal of existing unversioned extension `Artifacts` directories
 - `--accept-license / -a` — License acceptance, also accepted as top-level `"accept-license": true` in the JSON config
@@ -21,10 +21,10 @@ CLI arguments via `yargs`:
 ## Output
 
 Deploys MetaEd artifacts into the target ODS/API repository structure. In source-scan
-mode, also runs the MetaEd build pipeline first. Exits with code 0 on success, 1 on
+mode, also runs the MetaEd build pipeline first. Copy starts at `5.4.0` and processes the non-core projects in `projects`, plus core when `--core` is supplied. Exits with code 0 on success, 1 on
 failure, and logs duration.
 
-At targets `>=3.3.0`, a leftover entry in `artifactDirectory` can select an unconfigured extension's unversioned `Artifacts/` for deletion. Copy starts at `5.4.0` and processes the non-core projects in `projects`, plus core when `--core` is supplied. [Deploy behavior by target version](../../docs/PRD-4.x.md#deploy-behavior-by-target-version)
+At targets `>=3.3.0`, a leftover entry in `artifactDirectory` can select an unconfigured extension's unversioned `Artifacts/` for deletion. [Deploy behavior by target version](../../docs/PRD-4.x.md#deploy-behavior-by-target-version)
 
 ## Business Logic
 
@@ -37,7 +37,7 @@ Two operating modes:
   the last resolved project. A project supplied directly as a relative path can appear
   twice in the output path. A failed build sets exit code 1, but deploy still runs and
   can copy artifacts from an earlier build.
-- **Config-based mode** (`--config`): uses the supplied `metaEdConfiguration` with a
+- **Config-based mode** (`--config`): requires exactly one `EdFi`-namespace project in `projects`, otherwise it logs an error and exits `1`. Uses the supplied `metaEdConfiguration` with a
   pre-built `artifactDirectory` and runs only the deploy tasks — the build pipeline is
   not executed. A relative artifact path starts at the process working directory. Build resolves
   it from the last input project, so a separate deploy can read a missing or older tree. Use an
@@ -75,5 +75,5 @@ Other notes:
 
 - The license acceptance option is required by yargs, but its value is not validated and
   acceptance is not persisted.
-- When a deploy task fails, the console sets a non-zero exit code but does not print the
-  returned `failureMessage` (METAED-1678).
+- When a deploy task fails, the task logs its failure message with `Logger.error`. The
+  console sets a non-zero exit code and does not print the message again (METAED-1678).
