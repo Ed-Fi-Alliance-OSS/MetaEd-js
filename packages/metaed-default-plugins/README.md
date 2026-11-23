@@ -14,6 +14,5 @@ all standard MetaEd plugins, cached after first initialization.
 
 ## Business Logic
 
-Imports and initializes all standard Ed-Fi plugins (unified, ODS relational, SQL Server,
-PostgreSQL, change query, record ownership, XSD, API schema, handbook, dictionaries,
-etc.) and returns them in the dependency order required by the pipeline.
+Imports and initializes the standard Ed-Fi plugins and returns them in the dependency order
+required by the pipeline. The authoritative plugin order is in [`src/index.ts`](src/index.ts).

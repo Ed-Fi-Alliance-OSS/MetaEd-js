@@ -13,8 +13,6 @@ Generates SQL Server ODS scripts under `{namespace}/Database/SQLServer/ODS/`. Th
 core file names of the form `{prefix}-{suffix}.sql`. Extension file names use
 `{prefix}-{projectExtension}-{namespaceName}-{suffix}.sql`. For an extension project, the CLI
 defaults an omitted or empty `projectExtension` to `EXTENSION` (e.g. `0010-EXTENSION-TPDM-Schemas.sql`).
-Calling `fileNameFor` directly with an extension namespace whose `projectExtension` is empty
-returns `{prefix}-{namespaceName}-{suffix}.sql`.
 
 - `Structure/0010-Schemas.sql` — Schema creation
 - `Structure/0020-Tables.sql` — Table DDL when the namespace has tables
@@ -42,11 +40,14 @@ indexes, and education organization authorization index scripts.
   foreign keys supply the constraint script, and seed scripts require corresponding rows.
   An extension containing only a shared type can have just the `0010` schema script in
   its ODS structure directory.
-- At their respective target versions, `1410` and `1465` are rendered only when the namespace
-  has relational tables. An aggregate-root column qualifies for both when none of its source
-  properties has a role name and at least one has `metaEdName` or `baseKeyName` equal to
-  `EducationOrganizationId`. For example, an ordinary integer with that name on `Bus` receives
-  an index even without an education organization reference. Independently, `1465` also indexes
-  aggregate-root columns derived from USI properties. With Alliance Mode off, each file requires
-  at least one qualifying column. With Alliance Mode on, its license header alone can produce
-  the file. The separate `1460` generator requires an aggregate root in the namespace's own schema.
+- `1410` is rendered at `>=7.1.0`, and `1465` and `1460` at `>=7.3.0`. `1410` and `1465`
+  also require the namespace to have relational tables.
+- Column qualification for `1410` and `1465`: an aggregate-root column qualifies when none of
+  its source properties has a role name and at least one has `metaEdName` or `baseKeyName`
+  equal to `EducationOrganizationId`. For example, an ordinary integer with that name on
+  `Bus` receives an index even without an education organization reference.
+- `1465` also indexes aggregate-root columns derived from USI properties.
+- `1460` requires an aggregate root in the namespace's own schema.
+- Alliance Mode adds an Apache license header to generated scripts, only when `allianceMode`
+  is enabled and the target version is `>=5.0.0`. With it off, `1410` and `1465` each require
+  at least one qualifying column. With it on, the license header alone can produce the file.

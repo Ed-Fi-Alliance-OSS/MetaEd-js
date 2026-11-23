@@ -42,7 +42,7 @@ logging, and configuration resolution.
 - **Early return.** The pipeline returns early, skipping all later stages including validation
   file mapping, when file loading fails, plugin configuration loading throws or records a
   `LoadPluginConfiguration` error, or output writing fails. An unknown plugin rule takes this
-  early return. The CLI logs the plugin's error count and exits `1` before it prints the
+  early return. The CLI logs the plugin's error count and exits `1` without printing the
   rule diagnostic (METAED-1676). A registered rule targeting an unknown namespace fails
   during annotation. The CLI reaches final reporting, logs the namespace and configuration
   path, and exits `1`.

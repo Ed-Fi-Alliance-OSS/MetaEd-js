@@ -5,7 +5,7 @@ MetaEd plugin that enriches ODS table metadata with record-ownership awareness.
 ## Input Configuration
 
 No plugin-specific configuration. Uses `targetTechnologyVersion` from the plugin
-environment (record ownership is enabled for versions ≥ 3.3.0).
+environment (record ownership is enabled for versions `>=3.3.0`).
 
 ## Output
 
